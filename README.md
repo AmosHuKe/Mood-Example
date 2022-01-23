@@ -3,14 +3,28 @@
 > `情绪记录` 样例工程  
 > 运用`Flutter`的实践工程，主要目的是学习、实践。  
 > 注意：由于是学习实践工程，所以重点在于学习，许多业务逻辑可能并不符合现实。  
-  
+
+## 🔖 Todo  
+
+[ ] 多语言  
+[ ] 多主题  
+[ ] 暗黑模式  
+[x] 本地数据管理  
+[x] 路由管理  
+[x] 状态管理  
+[ ] 隐私解锁  
+[ ] 动画  
+[ ] 通知  
+
+## 📱 测试运行环境
+
+……  
+
 ## 🎉 开发环境
 
 ```
-[√] Flutter (Channel stable, 2.8.0, on Microsoft Windows  
-    [Version 10.0.22000.376], locale zh-CN)  
-[√] Android toolchain - develop for Android devices (Android  
-    SDK version 31.0.0)  
+[√] Flutter (Channel stable, 2.8.0, on Microsoft Windows [Version 10.0.22000.376], locale zh-CN)  
+[√] Android toolchain - develop for Android devices (Android SDK version 31.0.0)  
 [√] Android Studio (version 2020.3)  
 [√] VS Code (version 1.63.2)  
 ```
