@@ -104,7 +104,7 @@ Open sourced under the BSD-3-Clause license.
 
 ## Packages 许可证  
 
-感谢开源贡献  
+感谢开源  
 
 * [flutter_screenutil](https://pub.dev/packages/flutter_screenutil) [[Apache-2.0 License](https://pub.dev/packages/flutter_screenutil/license)]  
 * [provider](https://pub.dev/packages/provider) [[MIT License](https://pub.dev/packages/provider/license)]  
@@ -132,8 +132,8 @@ Illustration by <a href="https://icons8.com/illustrations/author/5ed4dd0e01d0360
 
 ## 🎨 Design
 
-> [1] Outcrowd. [Mobile App - Onboarding with 3D](https://dribbble.com/shots/14238732-Mobile-App-Onboarding-with-3D)  
-> [2] Taras Migulko. [The Brainbob mobile app](https://dribbble.com/shots/15865091-The-Brainbob-mobile-app)  
-> [3] Bogusław Podhalicz. [Mindfulness Concept App](https://dribbble.com/shots/15733031-Mindfulness-Concept-App)  
-> [4] Omer Erdogan. [Dashboard Mobile View](https://dribbble.com/shots/15053744-Dashboard-Mobile-View)  
+> Outcrowd. [Mobile App - Onboarding with 3D](https://dribbble.com/shots/14238732-Mobile-App-Onboarding-with-3D)  
+> Taras Migulko. [The Brainbob mobile app](https://dribbble.com/shots/15865091-The-Brainbob-mobile-app)  
+> Bogusław Podhalicz. [Mindfulness Concept App](https://dribbble.com/shots/15733031-Mindfulness-Concept-App)  
+> Omer Erdogan. [Dashboard Mobile View](https://dribbble.com/shots/15053744-Dashboard-Mobile-View)  
 
