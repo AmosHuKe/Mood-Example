@@ -1,8 +1,12 @@
 <h1 align="center">Mood Example</h1> 
 
+<center>
+
 [![Mood-Example v1.0.0](https://img.shields.io/badge/Mood--Example-v1.0.0-3e4663)](https://flutter.dev/) 
 [![Flutter v8.0](https://img.shields.io/badge/Flutter-v8.0-46D1FD)](https://flutter.dev/) 
 [![Dart v2.15](https://img.shields.io/badge/Dart-v2.15-04599D)](https://dart.dev/) 
+
+</center>
 
 
 > `情绪记录` 样例工程  
