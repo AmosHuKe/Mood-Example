@@ -122,4 +122,18 @@ Open sourced under the BSD-3-Clause license.
 * [cupertino_icons](https://pub.dev/packages/cupertino_icons) [[MIT License](https://pub.dev/packages/cupertino_icons/license)]  
 * [remixicon](https://pub.dev/packages/remixicon) [[MIT License](https://pub.dev/packages/remixicon/license)]  
 * [flutter_lints](https://pub.dev/packages/flutter_lints) [[BSD-3-Clause License](https://pub.dev/packages/flutter_lints/license)]  
-  
+
+
+## 🖼️ Illustration
+
+<a target="_blank" href="https://icons8.com/illustrations/style--woolly"><img alt="style--woolly" src="https://img.shields.io/badge/Illustration Style-Woolly-BA5A56"/></a>  
+Illustration by <a href="https://icons8.com/illustrations/author/5ed4dd0e01d03600149fec60">Svetlana Tulenina</a> from <a href="https://icons8.com/illustrations">Ouch!</a>  
+
+
+## 🎨 Design
+
+> [1] Outcrowd. [Mobile App - Onboarding with 3D](https://dribbble.com/shots/14238732-Mobile-App-Onboarding-with-3D)  
+> [2] Taras Migulko. [The Brainbob mobile app](https://dribbble.com/shots/15865091-The-Brainbob-mobile-app)  
+> [3] Bogusław Podhalicz. [Mindfulness Concept App](https://dribbble.com/shots/15733031-Mindfulness-Concept-App)  
+> [4] Omer Erdogan. [Dashboard Mobile View](https://dribbble.com/shots/15053744-Dashboard-Mobile-View)  
+
