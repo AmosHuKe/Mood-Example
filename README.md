@@ -15,8 +15,8 @@
 
 ## 🌏 相关网站
 
-> Flutter官网（中文）：[https://flutter.dev/](https://flutter.dev/)  
-> Flutter官网（英文）：[https://flutter.cn/](https://flutter.cn/)  
+> Flutter官网（中文）：[https://flutter.cn/](https://flutter.dev/)  
+> Flutter官网（英文）：[https://flutter.dev/](https://flutter.cn/)  
 > Packages：[https://pub.dev/](https://pub.dev/)  
 
 
