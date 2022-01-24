@@ -1,11 +1,9 @@
 <h1 align="center">Mood Example</h1> 
 
 <p align="center">
-
-![Mood-Example v1.0.0](https://img.shields.io/badge/Mood--Example-v1.0.0-3e4663) 
-[![Flutter v8.0](https://img.shields.io/badge/Flutter-v8.0-46D1FD)](https://flutter.dev/) 
-[![Dart v2.15](https://img.shields.io/badge/Dart-v2.15-04599D)](https://dart.dev/) 
-
+<img alt="Mood-Example v1.0.0" src="https://img.shields.io/badge/Mood--Example-v1.0.0-3e4663"/> 
+<a href="https://flutter.dev/"><img alt="Flutter v8.0" src="https://img.shields.io/badge/Flutter-v8.0-46D1FD"/></a> 
+<a href="https://dart.dev/"><img alt="Dart v2.15" src="https://img.shields.io/badge/Dart-v2.15-04599D"/></a> 
 </p>
 
 
