@@ -2,8 +2,8 @@
 
 <p align="center">
 <img alt="Mood-Example v1.0.0" src="https://img.shields.io/badge/Mood--Example-v1.0.0-3e4663"/> 
-<a href="https://flutter.dev/"><img alt="Flutter v8.0" src="https://img.shields.io/badge/Flutter-v8.0-46D1FD"/></a> 
-<a href="https://dart.dev/"><img alt="Dart v2.15" src="https://img.shields.io/badge/Dart-v2.15-04599D"/></a> 
+<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v8.0" src="https://img.shields.io/badge/Flutter-v8.0-46D1FD"/></a> 
+<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.15" src="https://img.shields.io/badge/Dart-v2.15-04599D"/></a> 
 </p>
 
 
@@ -15,9 +15,9 @@
 
 ## 🌏 相关网站
 
-> Flutter官网（中文）：[https://flutter.cn/](https://flutter.dev/)  
-> Flutter官网（英文）：[https://flutter.dev/](https://flutter.cn/)  
-> Packages：[https://pub.dev/](https://pub.dev/)  
+> Flutter官网（中文）：<a target="_blank" href="https://flutter.cn/">https://flutter.cn/</a>  
+> Flutter官网（英文）：<a target="_blank" href="https://flutter.dev/">https://flutter.dev/</a>  
+> Packages：<a target="_blank" href="https://pub.dev/">https://pub.dev/</a>  
 
 
 ## 🔖 Todo
@@ -127,7 +127,7 @@ Open sourced under the BSD-3-Clause license.
 ## 🖼️ Illustration
 
 <a target="_blank" href="https://icons8.com/illustrations/style--woolly"><img alt="style--woolly" src="https://img.shields.io/badge/Illustration Style-Woolly-BA5A56"/></a>  
-Illustration by <a href="https://icons8.com/illustrations/author/5ed4dd0e01d03600149fec60">Svetlana Tulenina</a> from <a href="https://icons8.com/illustrations">Ouch!</a>  
+Illustration by <a target="_blank" href="https://icons8.com/illustrations/author/5ed4dd0e01d03600149fec60">Svetlana Tulenina</a> from <a target="_blank" href="https://icons8.com/illustrations">Ouch!</a>  
 
 
 ## 🎨 Design
