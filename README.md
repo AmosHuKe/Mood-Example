@@ -1,5 +1,5 @@
 <h1 align="center"> 
-<img src="./README/logo/logo.png" width="48px" style="border-radius:16px;" /> Mood Example
+<img src="./.README/logo/logo.png" width="48px" style="border-radius:16px;" /> Mood Example
 </h1> 
 
 <p align="center">
@@ -89,7 +89,6 @@
 │   ├── main.dart                 # 主应用入口
 │   └── routes.dart               # 路由管理
 ├── test                          # 工程测试文件
-├── web                           # Web工程文件
 ├── .gitignore                    # Git提交仓库忽略文件配置
 ├── .metadata                     # 当前workspace配置记录
 ├── analysis_options.yaml         # Dart语言代码规范
