@@ -113,7 +113,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
         image: Image.asset(
           "assets/images/onboarding/onboarding_1.png",
           fit: BoxFit.cover,
-          height: 360.h,
+          height: 320.h,
         ),
         describe: Column(
           children: [
@@ -133,7 +133,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
         image: Image.asset(
           "assets/images/onboarding/onboarding_2.png",
           fit: BoxFit.cover,
-          height: 360.h,
+          height: 320.h,
         ),
         describe: Column(
           children: [
@@ -153,7 +153,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
         image: Image.asset(
           "assets/images/onboarding/onboarding_3.png",
           fit: BoxFit.cover,
-          height: 360.h,
+          height: 320.h,
         ),
         describe: Text(
           "从现在开始记录更好的自己",

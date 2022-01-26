@@ -446,7 +446,7 @@ class _CalendarState extends State<Calendar> {
               outsideBuilder: (context, day, focusedDay) {
                 return calenderBuilder(
                   day: day,
-                  textStyle: const TextStyle(color: Colors.black87),
+                  textStyle: const TextStyle(color: AppTheme.subColor),
                 );
               },
               todayBuilder: (context, day, focusedDay) {
