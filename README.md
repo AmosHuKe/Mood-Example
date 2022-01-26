@@ -1,4 +1,6 @@
-<h1 align="center">Mood Example</h1> 
+<h1 align="center"> 
+<img src="./README/logo/logo.png" width="32px" style="border-radius:12px;" /> Mood Example
+</h1> 
 
 <p align="center">
 <img alt="Mood-Example v1.0.0" src="https://img.shields.io/badge/Mood--Example-v1.0.0-3e4663"/> 
