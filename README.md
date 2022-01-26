@@ -130,7 +130,7 @@ Open sourced under the BSD-3-Clause license.
 Illustration by <a target="_blank" href="https://icons8.com/illustrations/author/5ed4dd0e01d03600149fec60">Svetlana Tulenina</a> from <a target="_blank" href="https://icons8.com/illustrations">Ouch!</a>  
 
 
-## 🎨 Design
+## 🎨 设计参考
 
 > Outcrowd. [Mobile App - Onboarding with 3D](https://dribbble.com/shots/14238732-Mobile-App-Onboarding-with-3D)  
 > Taras Migulko. [The Brainbob mobile app](https://dribbble.com/shots/15865091-The-Brainbob-mobile-app)  
