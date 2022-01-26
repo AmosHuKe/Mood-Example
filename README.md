@@ -10,7 +10,8 @@
 `情绪记录` 样例工程  
 管理自己的情绪，记录当下所见所想，以及其他`实验室`功能  
 运用 `Flutter` 的实践工程，主要目的是学习、实践。  
-注意：由于是学习实践工程，所以重点在于学习，许多业务逻辑可能并不符合现实。  
+> 注意：由于是学习实践工程，所以重点在于学习，许多业务逻辑可能并不符合现实。  
+> Emoji因设备缘故，会存在不同样式。  
 
 
 ## 🌏 相关网站
@@ -27,7 +28,7 @@
 - [ ] 暗黑模式  
 - [x] 本地数据管理  
 - [x] 路由管理  
-- [x] 状态管理  
+- [x] 状态管理（MVVM）  
 - [ ] 隐私解锁  
 - [ ] 动画  
 - [ ] 通知  
@@ -130,10 +131,9 @@ Open sourced under the BSD-3-Clause license.
 Illustration by <a target="_blank" href="https://icons8.com/illustrations/author/5ed4dd0e01d03600149fec60">Svetlana Tulenina</a> from <a target="_blank" href="https://icons8.com/illustrations">Ouch!</a>  
 
 
-## 🎨 设计参考
+## 🎨 Design
 
 > Outcrowd. [Mobile App - Onboarding with 3D](https://dribbble.com/shots/14238732-Mobile-App-Onboarding-with-3D)  
 > Taras Migulko. [The Brainbob mobile app](https://dribbble.com/shots/15865091-The-Brainbob-mobile-app)  
 > Bogusław Podhalicz. [Mindfulness Concept App](https://dribbble.com/shots/15733031-Mindfulness-Concept-App)  
-> Omer Erdogan. [Dashboard Mobile View](https://dribbble.com/shots/15053744-Dashboard-Mobile-View)  
 
