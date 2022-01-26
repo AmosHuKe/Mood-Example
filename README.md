@@ -1,5 +1,12 @@
+
+<p align="center">
+<img alt="Preview1" src="./.README/preview/preview1.png">
+</p>
+
+<br/>
+
 <h1 align="center"> 
-<img src="./.README/logo/logo.png" width="48px" style="border-radius:16px;" /> Mood Example
+<img alt="Logo" src="./.README/logo/logo.png" width="48px" style="border-radius:16px;" /> Mood Example
 </h1> 
 
 <p align="center">
