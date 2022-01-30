@@ -13,7 +13,8 @@
 <img alt="Mood-Example v1.0.0" src="https://img.shields.io/badge/Mood--Example-v1.0.0-3e4663"/> 
 <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v8.0" src="https://img.shields.io/badge/Flutter-v8.0-46D1FD"/></a> 
 <a target="_blank" href="https://dart.dev/"><img alt="Dart v2.15" src="https://img.shields.io/badge/Dart-v2.15-04599D"/></a> 
-</p>
+<a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
+</p> 
 
 
 `情绪记录` 样例工程  
@@ -65,26 +66,34 @@
 
 在[开发环境](#%EF%B8%8F-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83)支持的情况下  
 
-> 拷贝项目：git clone https://github.com/AmosHuKe/Mood-Example.git  
-> 获取依赖：flutter pub get  
-> 启动项目：flutter run 或 相关IDE启动  
-> 更多启动模式：flutter run --Debug/Release/Profile/test  
+```sh
+# 拷贝项目
+$ git clone https://github.com/AmosHuKe/Mood-Example.git
 
+# 获取依赖
+$ flutter pub get
+
+# 启动项目 或 相关IDE启动
+$ flutter run
+
+# 更多启动模式
+$ flutter run --Debug/Release/Profile/test
+```
 
 ## 📑 项目结构
 
-```
-├── android                       # Android工程文件 
+```sh
+├── android                       # Android 工程文件 
 ├── assets                        # 静态资源文件
 ├── build                         # 编译或运行后产物
-├── ios                           # IOS工程文件
-├── lib                           # 工程相关文件(主要编码)
+├── ios                           # IOS 工程文件
+├── lib                           # 工程相关文件（主要编码）
 │   ├── common                    # 公共相关
 │   │   └── utils.dart            # 工具
 │   ├── db                        # 数据存储相关
-│   │   ├── database              # sqflite数据表配置
-│   │   ├── db.dart               # sqflite数据库相关
-│   │   └── preferences_db.dart   # shared_preferences数据相关
+│   │   ├── database              # sqflite 数据表配置
+│   │   ├── db.dart               # sqflite 数据库相关
+│   │   └── preferences_db.dart   # shared_preferences 数据相关
 │   ├── models                    # 数据模型
 │   ├── services                  # 数据服务
 │   ├── view_models               # 业务逻辑
@@ -96,19 +105,25 @@
 │   ├── main.dart                 # 主应用入口
 │   └── routes.dart               # 路由管理
 ├── test                          # 工程测试文件
-├── .gitignore                    # Git提交仓库忽略文件配置
-├── .metadata                     # 当前workspace配置记录
-├── analysis_options.yaml         # Dart语言代码规范
+├── .gitignore                    # Git 提交仓库忽略文件配置
+├── .metadata                     # 当前 workspace 配置记录
+├── analysis_options.yaml         # Dart 语言代码规范
 ├── pubspec.lock                  # 依赖生成的文件
-└── pubspec.yaml                  # 核心配置文件(项目配置、依赖等)
+└── pubspec.yaml                  # 核心配置文件（项目配置、依赖等）
 ```
 
 
-## License 许可证
+## 🖼️ Illustration
 
-[![BSD-3-Clause License](https://img.shields.io/badge/license-BSD--3--Clause-green)](https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE)  
-Open sourced under the BSD-3-Clause license.  
-根据 BSD-3-Clause 许可证开源。  
+<a target="_blank" href="https://icons8.com/illustrations/style--woolly"><img alt="style--woolly" src="https://img.shields.io/badge/Illustration Style-Woolly-BA5A56"/></a>  
+Illustration by <a target="_blank" href="https://icons8.com/illustrations/author/5ed4dd0e01d03600149fec60">Svetlana Tulenina</a> from <a target="_blank" href="https://icons8.com/illustrations">Ouch!</a>  
+
+
+## 🎨 Design
+
+* Outcrowd. [Mobile App - Onboarding with 3D](https://dribbble.com/shots/14238732-Mobile-App-Onboarding-with-3D)  
+* Taras Migulko. [The Brainbob mobile app](https://dribbble.com/shots/15865091-The-Brainbob-mobile-app)  
+* Bogusław Podhalicz. [Mindfulness Concept App](https://dribbble.com/shots/15733031-Mindfulness-Concept-App)  
 
 
 ## Packages 许可证  
@@ -133,15 +148,10 @@ Open sourced under the BSD-3-Clause license.
 * [flutter_lints](https://pub.dev/packages/flutter_lints) [[BSD-3-Clause License](https://pub.dev/packages/flutter_lints/license)]  
 
 
-## 🖼️ Illustration
+## License 许可证
 
-<a target="_blank" href="https://icons8.com/illustrations/style--woolly"><img alt="style--woolly" src="https://img.shields.io/badge/Illustration Style-Woolly-BA5A56"/></a>  
-Illustration by <a target="_blank" href="https://icons8.com/illustrations/author/5ed4dd0e01d03600149fec60">Svetlana Tulenina</a> from <a target="_blank" href="https://icons8.com/illustrations">Ouch!</a>  
-
-
-## 🎨 Design
-
-> Outcrowd. [Mobile App - Onboarding with 3D](https://dribbble.com/shots/14238732-Mobile-App-Onboarding-with-3D)  
-> Taras Migulko. [The Brainbob mobile app](https://dribbble.com/shots/15865091-The-Brainbob-mobile-app)  
-> Bogusław Podhalicz. [Mindfulness Concept App](https://dribbble.com/shots/15733031-Mindfulness-Concept-App)  
+[![BSD-3-Clause License](https://img.shields.io/badge/license-BSD--3--Clause-green)](https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE)  
+Open sourced under the BSD-3-Clause license.  
+根据 BSD-3-Clause 许可证开源。  
+© AmosHuKe
 
