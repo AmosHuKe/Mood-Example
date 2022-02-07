@@ -114,11 +114,10 @@ class _StatisticBodyState extends State<StatisticBody> {
                 children: [
                   Text(
                     "统计",
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 40.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.headline1!.copyWith(
+                          fontSize: 40.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   Row(
                     children: [
@@ -377,8 +376,8 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                   gradientTo: Offset.fromDirection(1.56, 1.8),
                   colors: [
                     AppTheme.primaryColor.withOpacity(0.1),
-                    Colors.white,
-                    Colors.white,
+                    Theme.of(context).cardColor,
+                    Theme.of(context).cardColor,
                   ],
                 ),
               ),
@@ -431,13 +430,17 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
               drawVerticalLine: true,
               getDrawingHorizontalLine: (value) {
                 return FlLine(
-                  color: Colors.black.withOpacity(0.1),
+                  color: isDarkMode(context)
+                      ? Colors.white.withOpacity(0.1)
+                      : Colors.black.withOpacity(0.1),
                   strokeWidth: 0.6,
                 );
               },
               getDrawingVerticalLine: (value) {
                 return FlLine(
-                  color: Colors.black12,
+                  color: isDarkMode(context)
+                      ? Colors.white.withOpacity(0.1)
+                      : Colors.black12,
                   strokeWidth: 0,
                 );
               },
@@ -573,7 +576,9 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
             colors: [
-              AppTheme.backgroundColor1,
+              isDarkMode(context)
+                  ? const Color(0xFF2B3034)
+                  : AppTheme.backgroundColor1,
             ],
             y: 100,
           ),
@@ -860,7 +865,6 @@ class StatisticsCard extends StatelessWidget {
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.sp)),
-      color: Colors.white,
       child: Container(
         constraints: BoxConstraints(
           minWidth: 72.w,
@@ -899,10 +903,10 @@ class StatisticsCard extends StatelessWidget {
               ),
               child: Text(
                 title,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14.sp,
-                ),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .copyWith(fontSize: 14.sp),
               ),
             ),
             Text(
@@ -946,7 +950,6 @@ class StatisticLayout extends StatelessWidget {
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.sp)),
-      color: Colors.white,
       child: Container(
         height: height,
         margin: EdgeInsets.only(
@@ -964,11 +967,10 @@ class StatisticLayout extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.headline1!.copyWith(
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
                 SizedBox(
                   height: 4.w,
@@ -1031,8 +1033,8 @@ class FilterBottom extends StatelessWidget {
                     primaryColor,
                   ]
                 : [
-                    Colors.white,
-                    Colors.white,
+                    Theme.of(context).cardColor,
+                    Theme.of(context).cardColor,
                   ],
           ),
           borderRadius: BorderRadius.circular(14.sp),
@@ -1050,7 +1052,11 @@ class FilterBottom extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            color: checked ? Colors.white : Colors.black87,
+            color: checked
+                ? Colors.white
+                : isDarkMode(context)
+                    ? Colors.white
+                    : Colors.black87,
             fontSize: 12.sp,
           ),
         ),

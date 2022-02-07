@@ -7,7 +7,6 @@ import 'package:remixicon/remixicon.dart';
 
 ///
 import 'package:moodexample/app_theme.dart';
-import 'package:moodexample/widgets/action_button/action_button.dart';
 
 /// 外层抽屉菜单（左）
 class MenuScreenLeft extends StatelessWidget {
@@ -25,7 +24,8 @@ class MenuScreenLeft extends StatelessWidget {
       orientation: Orientation.landscape,
     );
     return Scaffold(
-      backgroundColor: const Color(0xFF3e4663),
+      backgroundColor:
+          isDarkMode(context) ? const Color(0xFF282C3A) : AppTheme.primaryColor,
       body: InkWell(
         child: const SafeArea(
           child: MenuScreenLeftBody(),

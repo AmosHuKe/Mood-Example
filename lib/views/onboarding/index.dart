@@ -59,13 +59,6 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
   /// Swiper控制
   final SwiperController _swiperController = SwiperController();
 
-  /// 内容字体样式
-  final _textContentStyle = TextStyle(
-    fontSize: 18.sp,
-    fontWeight: FontWeight.w400,
-    color: Colors.black87,
-  );
-
   @override
   void initState() {
     super.initState();
@@ -106,6 +99,12 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    /// 内容字体样式
+    final _textContentStyle = Theme.of(context).textTheme.bodyText1!.copyWith(
+          fontSize: 18.sp,
+          fontWeight: FontWeight.w400,
+        );
+
     /// Swiper内容
     _swiperList = [
       TextImageSwiper(
@@ -190,7 +189,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
             },
             pagination: SwiperPagination(
               builder: DotSwiperPaginationBuilder(
-                activeColor: Colors.black,
+                activeColor: isDarkMode(context) ? Colors.white : Colors.black,
                 color: Colors.grey,
                 size: 8.w,
                 space: 10.w,
@@ -292,10 +291,10 @@ class TextImageSwiper extends StatelessWidget {
           ),
           child: Text(
             title,
-            style: TextStyle(
-              fontSize: 32.sp,
-              fontWeight: FontWeight.w900,
-            ),
+            style: Theme.of(context).textTheme.headline1!.copyWith(
+                  fontSize: 32.sp,
+                  fontWeight: FontWeight.w900,
+                ),
           ),
         ),
         Padding(

@@ -38,11 +38,16 @@ Future<T?> showModalBottomDetail<T>({
               width: 24.w,
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [
-                      Colors.grey,
-                      Colors.grey,
-                    ],
+                  gradient: LinearGradient(
+                    colors: isDarkMode(context)
+                        ? [
+                            const Color(0xFF2B3034),
+                            const Color(0xFF2B3034),
+                          ]
+                        : [
+                            Colors.grey,
+                            Colors.grey,
+                          ],
                   ),
                   borderRadius: BorderRadius.circular(8.w),
                 ),

@@ -84,11 +84,10 @@ class _HomeBodyState extends State<HomeBody> {
                 children: [
                   Text(
                     "Hi~",
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 48.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.headline1?.copyWith(
+                          fontSize: 48.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   Image.asset(
                     "assets/images/woolly/woolly-yellow-star.png",
@@ -149,11 +148,13 @@ class _HomeBodyState extends State<HomeBody> {
                             padding: EdgeInsets.only(bottom: 24.w),
                             child: Text(
                               "帮助",
-                              style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 24.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline1
+                                  ?.copyWith(
+                                    fontSize: 24.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
                           ),
                           const Article(),
@@ -192,11 +193,10 @@ class _HeaderState extends State<Header> {
             children: [
               Text(
                 "现在感觉如何",
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontWeight: FontWeight.normal,
-                  fontSize: 20.sp,
-                ),
+                style: Theme.of(context).textTheme.headline1?.copyWith(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 20.sp,
+                    ),
               ),
               Consumer<MoodViewModel>(
                 builder: (_, moodViewModel, child) {
@@ -311,11 +311,10 @@ class OptionCard extends StatelessWidget {
         children: [
           DecoratedBox(
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [
-                  AppTheme.backgroundColor1,
-                  AppTheme.backgroundColor1,
-                ],
+              gradient: LinearGradient(
+                colors: isDarkMode(context)
+                    ? [const Color(0xFF2B3034), const Color(0xFF2B3034)]
+                    : [AppTheme.backgroundColor1, AppTheme.backgroundColor1],
               ),
               borderRadius: BorderRadius.circular(18.w),
             ),
@@ -336,10 +335,9 @@ class OptionCard extends StatelessWidget {
             padding: EdgeInsets.only(top: 10.w),
             child: Text(
               title,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 14.sp,
-              ),
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    fontSize: 14.sp,
+                  ),
             ),
           ),
         ],
@@ -578,7 +576,7 @@ class _ArticleState extends State<Article> {
             colors: [
               Color(0xFFFFCEBD),
               Color(0xFFFFCEBD),
-              Color(0x99FFCEBD),
+              Color(0xFFFFDCCF),
             ],
           ),
           children: [
@@ -646,7 +644,7 @@ class _ArticleState extends State<Article> {
             colors: [
               Color(0xFFFFD390),
               Color(0xFFFFD390),
-              Color(0x99FFD390),
+              Color(0xFFFFE1B3),
             ],
           ),
           children: [

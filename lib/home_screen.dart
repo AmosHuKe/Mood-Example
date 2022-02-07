@@ -97,18 +97,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
       orientation: Orientation.portrait,
     );
+    ThemeData appTheme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).tabBarTheme.labelColor,
       body: IndexedStack(
         index: _currentPage,
         children: pages,
       ),
       bottomNavigationBar: DecoratedBox(
         decoration: BoxDecoration(
-          gradient: const LinearGradient(colors: [
-            Colors.white,
-            Colors.white,
+          gradient: LinearGradient(colors: [
+            appTheme.bottomNavigationBarTheme.backgroundColor ?? Colors.white,
+            appTheme.bottomNavigationBarTheme.backgroundColor ?? Colors.white,
           ]),
           boxShadow: [
             BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 24),
@@ -123,10 +124,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               enableFeedback: false,
               padding: EdgeInsets.only(left: 40.w, right: 0.w),
               controller: _pageController,
-
               indicatorColor: Colors.transparent,
-              labelColor: Colors.black,
-              unselectedLabelColor: AppTheme.subColor,
               labelStyle: TextStyle(
                 height: 0.5.h,
                 fontSize: 10.sp,
@@ -178,10 +176,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             InkWell(
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
+                  gradient: LinearGradient(
                     colors: [
-                      AppTheme.backgroundColor1,
-                      AppTheme.backgroundColor1,
+                      isDarkMode(context)
+                          ? Colors.black12
+                          : AppTheme.backgroundColor1,
+                      isDarkMode(context)
+                          ? Colors.black12
+                          : AppTheme.backgroundColor1,
                     ],
                   ),
                   borderRadius: BorderRadius.only(
@@ -210,7 +212,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         child: Icon(
                           Remix.arrow_right_line,
                           size: 14.sp,
-                          color: Colors.black,
+                          color: isDarkMode(context)
+                              ? const Color(0xFFEFEFEF)
+                              : Colors.black,
                         ),
                       );
                     },
