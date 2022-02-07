@@ -69,7 +69,7 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        foregroundColor: Colors.black,
+        foregroundColor: Theme.of(context).textTheme.headline1!.color,
         shadowColor: Colors.transparent,
         titleTextStyle: TextStyle(
           color: Colors.black,
@@ -77,8 +77,10 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
         ),
         leading: ActionButton(
           decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [AppTheme.backgroundColor1, AppTheme.backgroundColor1],
+              gradient: LinearGradient(
+                colors: isDarkMode(context)
+                    ? [Theme.of(context).cardColor, Theme.of(context).cardColor]
+                    : [AppTheme.backgroundColor1, AppTheme.backgroundColor1],
               ),
               borderRadius:
                   BorderRadius.only(bottomRight: Radius.circular(18.w))),
@@ -125,10 +127,10 @@ class _MoodCategorySelectBodyState extends State<MoodCategorySelectBody> {
             children: [
               Text(
                 _type == "edit" ? "换一种心情？" : "现在感觉如何",
-                style: TextStyle(
-                  fontSize: 24.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.headline1!.copyWith(
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 4.w),
@@ -214,10 +216,10 @@ class MoodChoiceCard extends StatelessWidget {
         height: 128.w,
         child: DecoratedBox(
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
+            gradient: LinearGradient(
               colors: [
-                Color(0xFFFFFFFF),
-                Color(0xFFFFFFFF),
+                Theme.of(context).cardColor,
+                Theme.of(context).cardColor,
               ],
             ),
             borderRadius: BorderRadius.circular(32.w),
@@ -236,10 +238,10 @@ class MoodChoiceCard extends StatelessWidget {
               ),
               Text(
                 title,
-                style: TextStyle(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: Theme.of(context).textTheme.headline1!.copyWith(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
               ),
             ],
           ),

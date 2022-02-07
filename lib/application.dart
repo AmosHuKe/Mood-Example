@@ -138,7 +138,7 @@ class _MenuPageState extends State<MenuPage> {
       disableGesture: false,
       openCurve: Curves.easeOut,
       closeCurve: Curves.fastOutSlowIn,
-      backgroundColor: Colors.white38,
+      backgroundColor: isDarkMode(context) ? Colors.black26 : Colors.white38,
       angle: 0,
       swipeOffset: 3.0,
       mainScreenScale: 0.3,

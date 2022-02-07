@@ -71,6 +71,11 @@ class AppTheme {
     splashColor: Colors.transparent,
     // 点击时背景高亮颜色
     highlightColor: Colors.transparent,
+    // Card
+    cardColor: Colors.white,
+    // bottomSheet
+    bottomSheetTheme:
+        const BottomSheetThemeData(modalBackgroundColor: Colors.white),
   );
 
   /// 深色主题
@@ -85,7 +90,7 @@ class AppTheme {
     // 主颜色
     primaryColor: primaryColor,
     // scaffold背景颜色
-    scaffoldBackgroundColor: const Color(0xFF101213),
+    scaffoldBackgroundColor: const Color(0xFF111315),
     // bottomNavigationBar
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Color(0xFF1A1D1F),
@@ -115,5 +120,10 @@ class AppTheme {
     splashColor: Colors.transparent,
     // 点击时背景高亮颜色
     highlightColor: Colors.transparent,
+    // Card
+    cardColor: const Color(0xFF202427),
+    // bottomSheet
+    bottomSheetTheme:
+        const BottomSheetThemeData(modalBackgroundColor: Color(0xFF111315)),
   );
 }

@@ -150,11 +150,10 @@ class _MoodBodyState extends State<MoodBody> {
                 children: [
                   Text(
                     "心情",
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 40.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.headline1?.copyWith(
+                          fontSize: 40.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   Image.asset(
                     "assets/images/woolly/woolly-heart.png",
@@ -352,10 +351,10 @@ class _CalendarState extends State<Calendar> {
       margin: EdgeInsets.only(left: 24.w, right: 24.w, top: 12.w, bottom: 12.w),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
+          gradient: LinearGradient(
             colors: [
-              Colors.white,
-              Colors.white,
+              Theme.of(context).cardColor,
+              Theme.of(context).cardColor,
             ],
           ),
           boxShadow: [
@@ -381,10 +380,10 @@ class _CalendarState extends State<Calendar> {
             headerStyle: HeaderStyle(
               formatButtonVisible: false,
               titleCentered: true,
-              titleTextStyle: TextStyle(
-                fontSize: 14.sp,
-                color: Colors.black,
-              ),
+              titleTextStyle: Theme.of(context)
+                  .textTheme
+                  .bodyText1!
+                  .copyWith(fontSize: 14.sp),
               leftChevronIcon: Icon(
                 Remix.arrow_left_s_line,
                 size: 24.sp,
@@ -427,7 +426,9 @@ class _CalendarState extends State<Calendar> {
                 return calenderBuilder(
                   day: day,
                   moodRecordedDate: moodRecordedDate,
-                  textStyle: const TextStyle(color: Colors.black87),
+                  textStyle: TextStyle(
+                      color:
+                          isDarkMode(context) ? Colors.white : Colors.black87),
                 );
               },
               selectedBuilder: (context, day, focusedDay) {
@@ -446,7 +447,10 @@ class _CalendarState extends State<Calendar> {
               outsideBuilder: (context, day, focusedDay) {
                 return calenderBuilder(
                   day: day,
-                  textStyle: const TextStyle(color: AppTheme.subColor),
+                  textStyle: TextStyle(
+                      color: isDarkMode(context)
+                          ? AppTheme.subColor.withOpacity(0.6)
+                          : AppTheme.subColor),
                 );
               },
               todayBuilder: (context, day, focusedDay) {
@@ -460,13 +464,18 @@ class _CalendarState extends State<Calendar> {
                     AppTheme.primaryColor.withOpacity(0.2),
                     AppTheme.primaryColor.withOpacity(0.2),
                   ],
-                  textStyle: const TextStyle(color: Colors.black87),
+                  textStyle: TextStyle(
+                      color:
+                          isDarkMode(context) ? Colors.white : Colors.black87),
                 );
               },
               disabledBuilder: (context, day, focusedDay) {
                 return calenderBuilder(
                   day: day,
-                  textStyle: const TextStyle(color: Color(0x50BFBFBF)),
+                  textStyle: TextStyle(
+                      color: isDarkMode(context)
+                          ? const Color(0x20BFBFBF)
+                          : const Color(0x50BFBFBF)),
                 );
               },
             ),
@@ -688,10 +697,10 @@ class _MoodCardState extends State<MoodCard> {
             ),
             child: DecoratedBox(
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
+                gradient: LinearGradient(
                   colors: [
-                    Colors.white,
-                    Colors.white,
+                    Theme.of(context).cardColor,
+                    Theme.of(context).cardColor,
                   ],
                 ),
                 borderRadius: BorderRadius.circular(18.w),
@@ -714,11 +723,16 @@ class _MoodCardState extends State<MoodCard> {
                                 height: 48.w,
                                 child: DecoratedBox(
                                   decoration: BoxDecoration(
-                                    gradient: const LinearGradient(
-                                      colors: [
-                                        AppTheme.backgroundColor3,
-                                        AppTheme.backgroundColor3,
-                                      ],
+                                    gradient: LinearGradient(
+                                      colors: isDarkMode(context)
+                                          ? [
+                                              const Color(0xFF2B3034),
+                                              const Color(0xFF2B3034),
+                                            ]
+                                          : [
+                                              AppTheme.backgroundColor3,
+                                              AppTheme.backgroundColor3,
+                                            ],
                                     ),
                                     borderRadius: BorderRadius.circular(14.w),
                                   ),
@@ -744,11 +758,13 @@ class _MoodCardState extends State<MoodCard> {
                                         widget.title,
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          color: Colors.black87,
-                                          fontSize: 20.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1!
+                                            .copyWith(
+                                              fontSize: 20.sp,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(top: 4.w),
@@ -770,11 +786,16 @@ class _MoodCardState extends State<MoodCard> {
                         ),
                         DecoratedBox(
                           decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              colors: [
-                                AppTheme.backgroundColor3,
-                                AppTheme.backgroundColor3,
-                              ],
+                            gradient: LinearGradient(
+                              colors: isDarkMode(context)
+                                  ? [
+                                      const Color(0xFF2B3034),
+                                      const Color(0xFF2B3034),
+                                    ]
+                                  : [
+                                      AppTheme.backgroundColor3,
+                                      AppTheme.backgroundColor3,
+                                    ],
                             ),
                             borderRadius: BorderRadius.circular(10.w),
                           ),
@@ -784,11 +805,13 @@ class _MoodCardState extends State<MoodCard> {
                             child: Align(
                               child: Text(
                                 widget.score.toString(),
-                                style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                               ),
                             ),
                           ),
@@ -810,7 +833,7 @@ class _MoodCardState extends State<MoodCard> {
                         softWrap: true,
                         style: TextStyle(
                           color: widget.content != null
-                              ? Colors.black87
+                              ? Theme.of(context).textTheme.bodyText1!.color
                               : AppTheme.subColor,
                           fontSize: 14.sp,
                         ),
@@ -911,9 +934,9 @@ class MoodDetail extends StatelessWidget {
                       ),
                       child: Text(
                         "心情程度",
-                        style: TextStyle(
-                          fontSize: 16.w,
-                        ),
+                        style: Theme.of(context).textTheme.headline1!.copyWith(
+                              fontSize: 16.w,
+                            ),
                       ),
                     ),
                     Padding(
@@ -923,10 +946,10 @@ class MoodDetail extends StatelessWidget {
                       ),
                       child: Text(
                         score.toString(),
-                        style: TextStyle(
-                          fontSize: 24.w,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: 24.w,
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                     ),
                   ],
@@ -946,11 +969,16 @@ class MoodDetail extends StatelessWidget {
           ),
           child: DecoratedBox(
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [
-                  Colors.white,
-                  Colors.white,
-                ],
+              gradient: LinearGradient(
+                colors: isDarkMode(context)
+                    ? [
+                        const Color(0xFF202427),
+                        const Color(0xFF202427),
+                      ]
+                    : [
+                        Colors.white,
+                        Colors.white,
+                      ],
               ),
               borderRadius: BorderRadius.circular(32.w),
             ),
@@ -964,7 +992,11 @@ class MoodDetail extends StatelessWidget {
               child: Text(
                 content ?? "什么都没有说",
                 style: TextStyle(
-                  color: content != null ? Colors.black87 : AppTheme.subColor,
+                  color: content != null
+                      ? isDarkMode(context)
+                          ? Colors.white
+                          : Colors.black87
+                      : AppTheme.subColor,
                   fontSize: 14.sp,
                 ),
               ),

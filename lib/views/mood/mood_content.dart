@@ -88,25 +88,25 @@ class _MoodContentState extends State<MoodContent> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        foregroundColor: Colors.black,
+        foregroundColor: Theme.of(context).textTheme.headline1!.color,
         shadowColor: Colors.transparent,
-        titleTextStyle: TextStyle(
-          color: Colors.black87,
-          fontSize: 14.sp,
-        ),
+        titleTextStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
+              fontSize: 14.sp,
+            ),
         centerTitle: true,
         title: Text(_moodData.createTime ?? ""),
         leading: ActionButton(
           decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [AppTheme.backgroundColor1, AppTheme.backgroundColor1],
+              gradient: LinearGradient(
+                colors: isDarkMode(context)
+                    ? [Theme.of(context).cardColor, Theme.of(context).cardColor]
+                    : [AppTheme.backgroundColor1, AppTheme.backgroundColor1],
               ),
               borderRadius:
                   BorderRadius.only(bottomRight: Radius.circular(18.w))),
           child: Icon(
             Remix.close_fill,
             size: 24.sp,
-            color: Colors.black87,
           ),
           onTap: () {
             onClose(context);
@@ -115,15 +115,22 @@ class _MoodContentState extends State<MoodContent> {
         actions: [
           ActionButton(
             decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFFD6F2E2), Color(0xFFD6F2E2)],
+                gradient: LinearGradient(
+                  colors: isDarkMode(context)
+                      ? [
+                          Theme.of(context).cardColor,
+                          Theme.of(context).cardColor
+                        ]
+                      : [const Color(0xFFD6F2E2), const Color(0xFFD6F2E2)],
                 ),
                 borderRadius:
                     BorderRadius.only(bottomLeft: Radius.circular(18.w))),
             child: Icon(
               Remix.check_fill,
               size: 24.sp,
-              color: const Color(0xFF587966),
+              color: isDarkMode(context)
+                  ? Theme.of(context).textTheme.headline1!.color
+                  : const Color(0xFF587966),
             ),
             onTap: () async {
               MoodViewModel _moodViewModel =
@@ -268,11 +275,16 @@ class MoodChoiceCard extends StatelessWidget {
       height: 128.w,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [
-              Color(0xFFFFFFFF),
-              Color(0xFFFFFFFF),
-            ],
+          gradient: LinearGradient(
+            colors: isDarkMode(context)
+                ? [
+                    const Color(0xFF202427),
+                    const Color(0xFF202427),
+                  ]
+                : [
+                    Colors.white,
+                    Colors.white,
+                  ],
           ),
           borderRadius: BorderRadius.circular(32.w),
         ),
@@ -290,10 +302,10 @@ class MoodChoiceCard extends StatelessWidget {
             ),
             Text(
               title ?? "",
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w400,
-              ),
+              style: Theme.of(context).textTheme.headline1!.copyWith(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
             ),
           ],
         ),
@@ -318,10 +330,10 @@ class _AddContentState extends State<AddContent> {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           colors: [
-            Colors.white,
-            Colors.white,
+            Theme.of(context).cardColor,
+            Theme.of(context).cardColor,
           ],
         ),
         borderRadius: BorderRadius.circular(32.w),
@@ -349,9 +361,19 @@ class _AddContentState extends State<AddContent> {
                 scrollPhysics: const AlwaysScrollableScrollPhysics(
                   parent: BouncingScrollPhysics(),
                 ),
-                decoration: const InputDecoration(
-                  hintText: '跟我说说，发生什么事情？',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .copyWith(fontSize: 14.sp),
+                decoration: InputDecoration(
+                  hintText: "跟我说说，发生什么事情？",
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyText1!
+                      .copyWith(fontSize: 14.sp),
                   border: InputBorder.none,
+                  filled: true,
+                  fillColor: Theme.of(context).cardColor,
                 ),
                 onChanged: (value) {
                   _moodData.content = value;
@@ -389,9 +411,9 @@ class _MoodScoreState extends State<MoodScore> {
           ),
           child: Text(
             "心情程度",
-            style: TextStyle(
-              fontSize: 16.w,
-            ),
+            style: Theme.of(context).textTheme.headline1!.copyWith(
+                  fontSize: 16.w,
+                ),
           ),
         ),
         Padding(
@@ -402,10 +424,10 @@ class _MoodScoreState extends State<MoodScore> {
           ),
           child: Text(
             (_moodScore ~/ 1).toString(),
-            style: TextStyle(
-              fontSize: 24.w,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  fontSize: 24.w,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
         ),
         Slider(

@@ -311,11 +311,10 @@ class OptionCard extends StatelessWidget {
         children: [
           DecoratedBox(
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [
-                  AppTheme.backgroundColor1,
-                  AppTheme.backgroundColor1,
-                ],
+              gradient: LinearGradient(
+                colors: isDarkMode(context)
+                    ? [const Color(0xFF2B3034), const Color(0xFF2B3034)]
+                    : [AppTheme.backgroundColor1, AppTheme.backgroundColor1],
               ),
               borderRadius: BorderRadius.circular(18.w),
             ),
@@ -577,7 +576,7 @@ class _ArticleState extends State<Article> {
             colors: [
               Color(0xFFFFCEBD),
               Color(0xFFFFCEBD),
-              Color(0x99FFCEBD),
+              Color(0xFFFFDCCF),
             ],
           ),
           children: [
@@ -645,7 +644,7 @@ class _ArticleState extends State<Article> {
             colors: [
               Color(0xFFFFD390),
               Color(0xFFFFD390),
-              Color(0x99FFD390),
+              Color(0xFFFFE1B3),
             ],
           ),
           children: [
