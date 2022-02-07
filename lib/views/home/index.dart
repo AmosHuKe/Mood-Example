@@ -84,11 +84,10 @@ class _HomeBodyState extends State<HomeBody> {
                 children: [
                   Text(
                     "Hi~",
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 48.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.headline1?.copyWith(
+                          fontSize: 48.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   Image.asset(
                     "assets/images/woolly/woolly-yellow-star.png",
@@ -149,11 +148,13 @@ class _HomeBodyState extends State<HomeBody> {
                             padding: EdgeInsets.only(bottom: 24.w),
                             child: Text(
                               "帮助",
-                              style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 24.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline1
+                                  ?.copyWith(
+                                    fontSize: 24.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
                           ),
                           const Article(),
@@ -192,11 +193,10 @@ class _HeaderState extends State<Header> {
             children: [
               Text(
                 "现在感觉如何",
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontWeight: FontWeight.normal,
-                  fontSize: 20.sp,
-                ),
+                style: Theme.of(context).textTheme.headline1?.copyWith(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 20.sp,
+                    ),
               ),
               Consumer<MoodViewModel>(
                 builder: (_, moodViewModel, child) {
@@ -336,10 +336,9 @@ class OptionCard extends StatelessWidget {
             padding: EdgeInsets.only(top: 10.w),
             child: Text(
               title,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 14.sp,
-              ),
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    fontSize: 14.sp,
+                  ),
             ),
           ),
         ],

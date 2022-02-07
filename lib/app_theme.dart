@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+/// 是否夜间模式
+bool isDarkMode(BuildContext context) {
+  return MediaQuery.platformBrightnessOf(context) == Brightness.dark;
+}
+
 /// 主题
 class AppTheme {
   // 设备参考大小
@@ -21,12 +26,31 @@ class AppTheme {
   static final lightTheme = ThemeData(
     // 字体
     fontFamily: null,
+    // 文字
+    textTheme: const TextTheme(
+      headline1: TextStyle(color: Colors.black87),
+      bodyText1: TextStyle(color: Colors.black87),
+    ),
     // 主颜色
     primaryColor: primaryColor,
     // scaffold背景颜色
     scaffoldBackgroundColor:
         const Color(0xFFF6F8FA), // 0xFFF7F7F7 0xFFF9F9F9 0xFFF6F8FA 0xFFFCFBFC
-
+    // bottomNavigationBar
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: Colors.white,
+    ),
+    // TabBar
+    tabBarTheme: TabBarTheme(
+      indicator: BoxDecoration(
+        gradient: const LinearGradient(colors: [Colors.white, Colors.white]),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 24),
+        ],
+      ),
+      labelColor: Colors.black,
+      unselectedLabelColor: const Color(0xFFAFB8BF),
+    ),
     // 回弹波浪颜色
     primarySwatch: const MaterialColor(
       0xFF545454,
@@ -53,11 +77,24 @@ class AppTheme {
   static final darkTheme = ThemeData(
     // 字体
     fontFamily: null,
+    // 文字
+    textTheme: const TextTheme(
+      headline1: TextStyle(color: Color(0xFFEFEFEF)),
+      bodyText1: TextStyle(color: Color(0xFFEFEFEF)),
+    ),
     // 主颜色
     primaryColor: primaryColor,
     // scaffold背景颜色
-    scaffoldBackgroundColor: const Color(0xFFF6F8FA),
-
+    scaffoldBackgroundColor: const Color(0xFF101213),
+    // bottomNavigationBar
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: Color(0xFF1A1D1F),
+    ),
+    // TabBar
+    tabBarTheme: const TabBarTheme(
+      labelStyle: TextStyle(color: Colors.white),
+      unselectedLabelColor: Color(0xFF6F767E),
+    ),
     // 回弹波浪颜色
     primarySwatch: const MaterialColor(
       0xFF545454,

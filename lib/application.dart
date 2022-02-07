@@ -57,6 +57,7 @@ class _ApplicationState extends State<Application> {
         showPerformanceOverlay: false,
 
         /// 主题
+        themeMode: ThemeMode.system,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
 
