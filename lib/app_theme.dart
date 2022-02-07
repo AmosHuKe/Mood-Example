@@ -41,15 +41,9 @@ class AppTheme {
       backgroundColor: Colors.white,
     ),
     // TabBar
-    tabBarTheme: TabBarTheme(
-      indicator: BoxDecoration(
-        gradient: const LinearGradient(colors: [Colors.white, Colors.white]),
-        boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 24),
-        ],
-      ),
+    tabBarTheme: const TabBarTheme(
       labelColor: Colors.black,
-      unselectedLabelColor: const Color(0xFFAFB8BF),
+      unselectedLabelColor: Color(0xFFAFB8BF),
     ),
     // 回弹波浪颜色
     primarySwatch: const MaterialColor(
