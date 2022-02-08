@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodexample/db/preferences_db.dart';
 
 /// Package
 import 'package:provider/provider.dart';
@@ -17,6 +18,7 @@ import 'package:moodexample/home_screen.dart';
 import 'package:moodexample/view_models/mood/mood_view_model.dart';
 import 'package:moodexample/services/mood/mood_service.dart';
 import 'package:moodexample/view_models/statistic/statistic_view_model.dart';
+import 'package:moodexample/view_models/application/application_view_model.dart';
 
 /// 页面
 import 'package:moodexample/views/menu_screen/menu_screen_left.dart';
@@ -39,34 +41,33 @@ class _ApplicationState extends State<Application> {
       /// 状态管理
       providers: [
         ChangeNotifierProvider(create: (_) => MoodViewModel()),
-        ChangeNotifierProvider(
-          create: (_) => MoodViewModel(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => StatisticViewModel(),
-        ),
+        ChangeNotifierProvider(create: (_) => StatisticViewModel()),
+        ChangeNotifierProvider(create: (_) => ApplicationViewModel()),
       ],
-      child: MaterialApp(
-        /// 网格
-        debugShowMaterialGrid: false,
+      builder: (context, child) {
+        PreferencesDB().getThemeAPPDarkMode(context);
+        return MaterialApp(
+          /// 网格
+          debugShowMaterialGrid: false,
 
-        /// Debug标志
-        debugShowCheckedModeBanner: false,
+          /// Debug标志
+          debugShowCheckedModeBanner: false,
 
-        /// 打开性能监控，覆盖在屏幕最上面
-        showPerformanceOverlay: false,
+          /// 打开性能监控，覆盖在屏幕最上面
+          showPerformanceOverlay: false,
 
-        /// 主题
-        themeMode: ThemeMode.system,
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
+          /// 主题
+          themeMode: context.watch<ApplicationViewModel>().themeMode,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
 
-        /// 路由钩子
-        onGenerateRoute: router.generator,
+          /// 路由钩子
+          onGenerateRoute: router.generator,
 
-        /// Home
-        home: const WillPopScopeRoute(child: Init()),
-      ),
+          /// Home
+          home: const WillPopScopeRoute(child: Init()),
+        );
+      },
     );
   }
 }
@@ -129,21 +130,28 @@ class _MenuPageState extends State<MenuPage> {
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
       orientation: Orientation.landscape,
     );
-    return ZoomDrawer(
-      controller: _drawerController,
-      menuScreen: const MenuScreenLeft(),
-      mainScreen: const MainScreenBody(),
-      borderRadius: 36.w,
-      showShadow: true,
-      disableGesture: false,
-      openCurve: Curves.easeOut,
-      closeCurve: Curves.fastOutSlowIn,
-      backgroundColor: isDarkMode(context) ? Colors.black26 : Colors.white38,
-      angle: 0,
-      swipeOffset: 3.0,
-      mainScreenScale: 0.3,
-      slideWidth: MediaQuery.of(context).size.width * 0.70,
-      style: DrawerStyle.Style1,
+
+    return Selector<ApplicationViewModel, ThemeMode>(
+      selector: (_, applicationViewModel) => applicationViewModel.themeMode,
+      builder: (_, themeMode, child) {
+        return ZoomDrawer(
+          controller: _drawerController,
+          menuScreen: const MenuScreenLeft(),
+          mainScreen: const MainScreenBody(),
+          borderRadius: 36.w,
+          showShadow: true,
+          disableGesture: false,
+          openCurve: Curves.easeOut,
+          closeCurve: Curves.fastOutSlowIn,
+          backgroundColor:
+              isDarkMode(context) ? Colors.black26 : Colors.white38,
+          angle: 0,
+          swipeOffset: 3.0,
+          mainScreenScale: 0.3,
+          slideWidth: MediaQuery.of(context).size.width * 0.70,
+          style: DrawerStyle.Style1,
+        );
+      },
     );
   }
 }
