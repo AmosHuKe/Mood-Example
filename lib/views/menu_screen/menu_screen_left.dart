@@ -235,13 +235,13 @@ class Menu extends StatelessWidget {
         // ),
 
         /// 插画
-        // Padding(
-        //   padding: EdgeInsets.only(top: 0.w),
-        //   child: Image.asset(
-        //     "assets/images/woolly/woolly-comet-2.png",
-        //     width: 240.w,
-        //   ),
-        // ),
+        Padding(
+          padding: EdgeInsets.only(top: 0.w),
+          child: Image.asset(
+            "assets/images/woolly/woolly-comet-2.png",
+            width: 240.w,
+          ),
+        ),
       ],
     );
   }
