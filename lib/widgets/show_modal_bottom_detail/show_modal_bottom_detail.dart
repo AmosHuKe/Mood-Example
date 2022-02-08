@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+
+///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+///
 import 'package:moodexample/app_theme.dart';
 
 /// 底部详情内容弹出
@@ -18,6 +22,9 @@ Future<T?> showModalBottomDetail<T>({
   );
   return showModalBottomSheet(
     context: context,
+    barrierColor: isDarkMode(context)
+        ? const Color(0xFF262A2D).withOpacity(0.8)
+        : Colors.black54,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(32.w),

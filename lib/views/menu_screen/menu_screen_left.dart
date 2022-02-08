@@ -4,9 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:remixicon/remixicon.dart';
+import 'package:provider/provider.dart';
 
 ///
 import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
+import 'package:moodexample/views/menu_screen/widgets/setting_theme.dart';
+
+///
+import 'package:moodexample/view_models/application/application_view_model.dart';
 
 /// 外层抽屉菜单（左）
 class MenuScreenLeft extends StatelessWidget {
@@ -23,17 +29,23 @@ class MenuScreenLeft extends StatelessWidget {
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
       orientation: Orientation.landscape,
     );
-    return Scaffold(
-      backgroundColor:
-          isDarkMode(context) ? const Color(0xFF282C3A) : AppTheme.primaryColor,
-      body: InkWell(
-        child: const SafeArea(
-          child: MenuScreenLeftBody(),
-        ),
-        onTap: () {
-          ZoomDrawer.of(context)?.toggle.call();
-        },
-      ),
+    return Selector<ApplicationViewModel, ThemeMode>(
+      selector: (_, applicationViewModel) => applicationViewModel.themeMode,
+      builder: (_, themeMode, child) {
+        return Scaffold(
+          backgroundColor: isDarkMode(context)
+              ? const Color(0xFF282C3A)
+              : AppTheme.primaryColor,
+          body: InkWell(
+            child: const SafeArea(
+              child: MenuScreenLeftBody(),
+            ),
+            onTap: () {
+              ZoomDrawer.of(context)?.toggle.call();
+            },
+          ),
+        );
+      },
     );
   }
 }
@@ -145,6 +157,12 @@ class Menu extends StatelessWidget {
           ),
           onTap: () {
             print("主题");
+
+            /// 底部内容弹出
+            showModalBottomDetail(
+              context: context,
+              child: const SettingTheme(),
+            );
           },
         ),
         MenuList(
@@ -217,13 +235,13 @@ class Menu extends StatelessWidget {
         // ),
 
         /// 插画
-        Padding(
-          padding: EdgeInsets.only(top: 0.w),
-          child: Image.asset(
-            "assets/images/woolly/woolly-comet-2.png",
-            width: 240.w,
-          ),
-        ),
+        // Padding(
+        //   padding: EdgeInsets.only(top: 0.w),
+        //   child: Image.asset(
+        //     "assets/images/woolly/woolly-comet-2.png",
+        //     width: 240.w,
+        //   ),
+        // ),
       ],
     );
   }
