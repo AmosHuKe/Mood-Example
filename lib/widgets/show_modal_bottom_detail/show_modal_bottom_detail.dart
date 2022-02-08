@@ -22,9 +22,8 @@ Future<T?> showModalBottomDetail<T>({
   );
   return showModalBottomSheet(
     context: context,
-    barrierColor: isDarkMode(context)
-        ? const Color(0xFF262A2D).withOpacity(0.8)
-        : Colors.black54,
+    barrierColor:
+        isDarkMode(context) ? Colors.grey.withOpacity(0.3) : Colors.black54,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(32.w),

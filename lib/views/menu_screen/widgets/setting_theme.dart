@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
 ///
+import 'package:moodexample/app_theme.dart';
 import 'package:moodexample/db/preferences_db.dart';
 
 ///
@@ -31,11 +32,10 @@ class _SettingThemeState extends State<SettingTheme> {
           padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 14.w),
           child: Text(
             "主题外观设置",
-            style: TextStyle(
-              color: Color(0xFF878787),
-              fontWeight: FontWeight.bold,
-              fontSize: 14.sp,
-            ),
+            style: Theme.of(context).textTheme.headline1!.copyWith(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14.sp,
+                ),
           ),
         ),
 
@@ -44,33 +44,16 @@ class _SettingThemeState extends State<SettingTheme> {
           selector: (_, applicationViewModel) => applicationViewModel.themeMode,
           builder: (_, themeMode, child) {
             return Wrap(
+              alignment: WrapAlignment.center,
               direction: Axis.horizontal,
-              runSpacing: 12.w,
-              spacing: 12.w,
+              runSpacing: 16.w,
+              spacing: 16.w,
               children: [
                 DarkThemeCard(
                   title: "跟随系统",
                   selected: themeMode == ThemeMode.system,
-                  child: Row(
+                  child: Column(
                     children: [
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [Color(0xFF111315), Color(0xFF111315)],
-                            ),
-                          ),
-                          child: Text(
-                            "Aa",
-                            style: TextStyle(
-                              color: const Color(0xFFEFEFEF),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14.sp,
-                            ),
-                          ),
-                        ),
-                      ),
                       Expanded(
                         child: Container(
                           alignment: Alignment.center,
@@ -83,6 +66,24 @@ class _SettingThemeState extends State<SettingTheme> {
                             "Aa",
                             style: TextStyle(
                               color: Colors.black87,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14.sp,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [Color(0xFF111315), Color(0xFF111315)],
+                            ),
+                          ),
+                          child: Text(
+                            "Aa",
+                            style: TextStyle(
+                              color: const Color(0xFFEFEFEF),
                               fontWeight: FontWeight.bold,
                               fontSize: 14.sp,
                             ),
@@ -186,16 +187,25 @@ class DarkThemeCard extends StatelessWidget {
             alignment: AlignmentDirectional.bottomEnd,
             children: [
               Container(
-                width: 100.w,
-                height: 64.w,
+                width: 96.w,
+                height: 78.w,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16.w),
+                  borderRadius: BorderRadius.circular(18.w),
                   border: _selected
-                      ? Border.all(width: 3.w)
-                      : Border.all(width: 3.w, color: Colors.black12),
+                      ? Border.all(
+                          width: 3.w,
+                          color:
+                              isDarkMode(context) ? Colors.white : Colors.black,
+                        )
+                      : Border.all(
+                          width: 3.w,
+                          color: isDarkMode(context)
+                              ? Colors.white12
+                              : Colors.black12,
+                        ),
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12.w),
+                  borderRadius: BorderRadius.circular(14.w),
                   child: child,
                 ),
               ),
@@ -205,23 +215,26 @@ class DarkThemeCard extends StatelessWidget {
                     return const SizedBox();
                   }
                   return Padding(
-                    padding: EdgeInsets.only(right: 6.w, bottom: 6.w),
+                    padding: EdgeInsets.only(right: 8.w, bottom: 8.w),
                     child: Icon(
                       Remix.checkbox_circle_fill,
-                      size: 18.sp,
-                      color: Colors.black,
+                      size: 20.sp,
+                      color: isDarkMode(context) ? Colors.white : Colors.black,
                     ),
                   );
                 },
               ),
             ],
           ),
-          Text(
-            title ?? "",
-            style: Theme.of(context)
-                .textTheme
-                .bodyText1!
-                .copyWith(fontSize: 12.sp, fontWeight: FontWeight.bold),
+          Padding(
+            padding: EdgeInsets.only(top: 4.w),
+            child: Text(
+              title ?? "",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText1!
+                  .copyWith(fontSize: 12.sp, fontWeight: FontWeight.bold),
+            ),
           ),
         ],
       ),
