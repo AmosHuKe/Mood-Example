@@ -52,20 +52,30 @@ class _SettingThemeState extends State<SettingTheme> {
                 DarkThemeCard(
                   title: "跟随系统",
                   selected: themeMode == ThemeMode.system,
-                  child: Column(
+                  child: Row(
                     children: [
                       Expanded(
                         child: Container(
                           alignment: Alignment.center,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [Color(0xFFF6F8FA), Color(0xFFF6F8FA)],
+                              colors: isDarkMode(context)
+                                  ? [
+                                      const Color(0xFFF6F8FA),
+                                      const Color(0xFFF6F8FA)
+                                    ]
+                                  : [
+                                      const Color(0xFF111315),
+                                      const Color(0xFF111315)
+                                    ],
                             ),
                           ),
                           child: Text(
                             "Aa",
                             style: TextStyle(
-                              color: Colors.black87,
+                              color: isDarkMode(context)
+                                  ? Colors.black87
+                                  : const Color(0xFFEFEFEF),
                               fontWeight: FontWeight.bold,
                               fontSize: 14.sp,
                             ),
@@ -75,15 +85,25 @@ class _SettingThemeState extends State<SettingTheme> {
                       Expanded(
                         child: Container(
                           alignment: Alignment.center,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [Color(0xFF111315), Color(0xFF111315)],
+                              colors: isDarkMode(context)
+                                  ? [
+                                      const Color(0xFF111315),
+                                      const Color(0xFF111315)
+                                    ]
+                                  : [
+                                      const Color(0xFFF6F8FA),
+                                      const Color(0xFFF6F8FA)
+                                    ],
                             ),
                           ),
                           child: Text(
                             "Aa",
                             style: TextStyle(
-                              color: const Color(0xFFEFEFEF),
+                              color: isDarkMode(context)
+                                  ? const Color(0xFFEFEFEF)
+                                  : Colors.black87,
                               fontWeight: FontWeight.bold,
                               fontSize: 14.sp,
                             ),
