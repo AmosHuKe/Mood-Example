@@ -40,9 +40,9 @@ class _SettingThemeState extends State<SettingTheme> {
         ),
 
         /// 主题外观设置
-        Selector<ApplicationViewModel, ThemeMode>(
-          selector: (_, applicationViewModel) => applicationViewModel.themeMode,
-          builder: (_, themeMode, child) {
+        Consumer<ApplicationViewModel>(
+          builder: (_, applicationViewModel, child) {
+            final _themeMode = applicationViewModel.themeMode;
             return Wrap(
               alignment: WrapAlignment.center,
               direction: Axis.horizontal,
@@ -51,7 +51,7 @@ class _SettingThemeState extends State<SettingTheme> {
               children: [
                 DarkThemeCard(
                   title: "跟随系统",
-                  selected: themeMode == ThemeMode.system,
+                  selected: _themeMode == ThemeMode.system,
                   child: Row(
                     children: [
                       Expanded(
@@ -120,7 +120,7 @@ class _SettingThemeState extends State<SettingTheme> {
                 ),
                 DarkThemeCard(
                   title: "普通模式",
-                  selected: themeMode == ThemeMode.light,
+                  selected: _themeMode == ThemeMode.light,
                   child: Container(
                     alignment: Alignment.center,
                     decoration: const BoxDecoration(
@@ -144,7 +144,7 @@ class _SettingThemeState extends State<SettingTheme> {
                 ),
                 DarkThemeCard(
                   title: "深色模式",
-                  selected: themeMode == ThemeMode.dark,
+                  selected: _themeMode == ThemeMode.dark,
                   child: Container(
                     alignment: Alignment.center,
                     decoration: const BoxDecoration(

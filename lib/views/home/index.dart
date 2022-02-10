@@ -9,6 +9,7 @@ import 'package:remixicon/remixicon.dart';
 ///
 import 'package:moodexample/app_theme.dart';
 import 'package:moodexample/routes.dart';
+import 'package:moodexample/generated/l10n.dart';
 
 ///
 import 'package:moodexample/models/mood/mood_category_model.dart';
@@ -83,7 +84,7 @@ class _HomeBodyState extends State<HomeBody> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Hi~",
+                    S.of(context).home_hi,
                     style: Theme.of(context).textTheme.headline1?.copyWith(
                           fontSize: 48.sp,
                           fontWeight: FontWeight.bold,
@@ -192,7 +193,7 @@ class _HeaderState extends State<Header> {
           child: Row(
             children: [
               Text(
-                "现在感觉如何",
+                S.of(context).home_moodChoice,
                 style: Theme.of(context).textTheme.headline1?.copyWith(
                       fontWeight: FontWeight.normal,
                       fontSize: 20.sp,

@@ -33,7 +33,7 @@
 
 ## 🔖 功能
 
-- [ ] 国际化  
+- [x] 国际化 i18n  
 - [ ] 多主题  
 - [x] 深色模式  
 - [x] 本地数据管理  
@@ -84,6 +84,9 @@ $ flutter run
 $ flutter run --Debug/Release/Profile/test
 ```
 
+### 国际化  
+书写中
+
 ## 📑 项目结构
 
 ```sh
@@ -98,6 +101,8 @@ $ flutter run --Debug/Release/Profile/test
 │   │   ├── database              # sqflite 数据表配置
 │   │   ├── db.dart               # sqflite 数据库相关
 │   │   └── preferences_db.dart   # shared_preferences 数据相关
+│   ├── generated                 # intl 语言包生成的文件夹（不用编码，使用 Flutter Intl 插件生成）
+│   ├── l10n                      # intl 语言包
 │   ├── models                    # 数据模型
 │   ├── services                  # 数据服务
 │   ├── view_models               # 业务逻辑

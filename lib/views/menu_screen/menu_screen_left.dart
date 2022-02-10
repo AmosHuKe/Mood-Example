@@ -8,8 +8,10 @@ import 'package:provider/provider.dart';
 
 ///
 import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
 import 'package:moodexample/views/menu_screen/widgets/setting_theme.dart';
+import 'package:moodexample/views/menu_screen/widgets/setting_language.dart';
 
 ///
 import 'package:moodexample/view_models/application/application_view_model.dart';
@@ -29,9 +31,8 @@ class MenuScreenLeft extends StatelessWidget {
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
       orientation: Orientation.landscape,
     );
-    return Selector<ApplicationViewModel, ThemeMode>(
-      selector: (_, applicationViewModel) => applicationViewModel.themeMode,
-      builder: (_, themeMode, child) {
+    return Consumer<ApplicationViewModel>(
+      builder: (_, applicationViewModel, child) {
         return Scaffold(
           backgroundColor: isDarkMode(context)
               ? const Color(0xFF282C3A)
@@ -135,7 +136,7 @@ class Menu extends StatelessWidget {
             size: _titleIconSize,
           ),
           title: Text(
-            "数据",
+            S.of(context).app_setting_database,
             style: TextStyle(
               fontSize: _titleTextSize,
             ),
@@ -150,7 +151,7 @@ class Menu extends StatelessWidget {
             size: _titleIconSize,
           ),
           title: Text(
-            "主题",
+            S.of(context).app_setting_theme,
             style: TextStyle(
               fontSize: _titleTextSize,
             ),
@@ -171,13 +172,19 @@ class Menu extends StatelessWidget {
             size: _titleIconSize,
           ),
           title: Text(
-            "语言",
+            S.of(context).app_setting_language,
             style: TextStyle(
               fontSize: _titleTextSize,
             ),
           ),
           onTap: () {
             print("语言");
+
+            /// 底部内容弹出
+            showModalBottomDetail(
+              context: context,
+              child: const SettingLanguage(),
+            );
           },
         ),
         MenuList(
@@ -186,7 +193,7 @@ class Menu extends StatelessWidget {
             size: _titleIconSize,
           ),
           title: Text(
-            "实验室",
+            S.of(context).app_setting_laboratory,
             style: TextStyle(
               fontSize: _titleTextSize,
             ),
@@ -201,7 +208,7 @@ class Menu extends StatelessWidget {
             size: _titleIconSize,
           ),
           title: Text(
-            '关于',
+            S.of(context).app_setting_about,
             style: TextStyle(
               fontSize: _titleTextSize,
             ),

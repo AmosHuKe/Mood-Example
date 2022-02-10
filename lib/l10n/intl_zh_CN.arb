@@ -1,0 +1,9 @@
+{
+    "app_setting_database":"数据",
+    "app_setting_theme":"主题",
+    "app_setting_language":"语言",
+    "app_setting_laboratory":"实验室",
+    "app_setting_about":"关于",
+    "home_hi": "Hi~",
+    "home_moodChoice": "现在感觉如何"
+}

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:moodexample/db/preferences_db.dart';
 
 /// Package
 import 'package:provider/provider.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:moodexample/generated/l10n.dart';
 
 ///
 import 'app_theme.dart';
 import 'package:moodexample/db/db.dart';
+import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/will_pop_scope_route/will_pop_scope_route.dart';
 import 'package:moodexample/home_screen.dart';
@@ -45,7 +47,12 @@ class _ApplicationState extends State<Application> {
         ChangeNotifierProvider(create: (_) => ApplicationViewModel()),
       ],
       builder: (context, child) {
+        final _watchApplicationViewModel =
+            context.watch<ApplicationViewModel>();
+
+        /// 触发获取主题
         PreferencesDB().getThemeAPPDarkMode(context);
+
         return MaterialApp(
           /// 网格
           debugShowMaterialGrid: false,
@@ -57,12 +64,24 @@ class _ApplicationState extends State<Application> {
           showPerformanceOverlay: false,
 
           /// 主题
-          themeMode: context.watch<ApplicationViewModel>().themeMode,
+          themeMode: _watchApplicationViewModel.themeMode,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
 
           /// 路由钩子
           onGenerateRoute: router.generator,
+
+          /// 国际化
+          supportedLocales: S.delegate.supportedLocales,
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          locale: _watchApplicationViewModel.localeSystem
+              ? null
+              : _watchApplicationViewModel.locale,
 
           /// Home
           home: const WillPopScopeRoute(child: Init()),
@@ -131,9 +150,8 @@ class _MenuPageState extends State<MenuPage> {
       orientation: Orientation.landscape,
     );
 
-    return Selector<ApplicationViewModel, ThemeMode>(
-      selector: (_, applicationViewModel) => applicationViewModel.themeMode,
-      builder: (_, themeMode, child) {
+    return Consumer<ApplicationViewModel>(
+      builder: (_, applicationViewModel, child) {
         return ZoomDrawer(
           controller: _drawerController,
           menuScreen: const MenuScreenLeft(),

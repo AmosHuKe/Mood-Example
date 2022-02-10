@@ -1,0 +1,9 @@
+{
+    "app_setting_database":"Database",
+    "app_setting_theme":"Theme",
+    "app_setting_language":"Language",
+    "app_setting_laboratory":"Laboratory",
+    "app_setting_about":"About",
+    "home_hi": "Hi~",
+    "home_moodChoice": "How do you feel now"
+}
