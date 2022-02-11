@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 ///
 import 'package:moodexample/db/preferences_db.dart';
+import 'package:moodexample/config/language.dart';
 
 ///
 import 'package:moodexample/view_models/application/application_view_model.dart';
@@ -20,24 +21,7 @@ class SettingLanguage extends StatefulWidget {
 
 class _SettingLanguageState extends State<SettingLanguage> {
   /// 语言列表
-  static const languageList = [
-    {
-      "language": "简体中文",
-      "locale": Locale('zh', 'CN'),
-    },
-    {
-      "language": "繁體中文（台灣）",
-      "locale": Locale('zh', 'TW'),
-    },
-    {
-      "language": "繁體中文（香港）",
-      "locale": Locale('zh', 'HK'),
-    },
-    {
-      "language": "English",
-      "locale": Locale('en'),
-    }
-  ];
+  static const _languageConfig = languageConfig;
 
   @override
   Widget build(BuildContext context) {
@@ -73,20 +57,20 @@ class _SettingLanguageState extends State<SettingLanguage> {
         Consumer<ApplicationViewModel>(
           builder: (_, applicationViewModel, child) {
             return Column(
-              children: List<Widget>.generate(languageList.length, (index) {
+              children: List<Widget>.generate(_languageConfig.length, (index) {
                 return RadioListTile(
-                  value: languageList[index]["locale"].toString(),
+                  value: _languageConfig[index]["locale"].toString(),
                   groupValue: !applicationViewModel.localeSystem
                       ? applicationViewModel.locale.toString()
                       : false,
                   title: Text(
-                    languageList[index]["language"].toString(),
+                    _languageConfig[index]["language"].toString(),
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontSize: 14.sp, fontWeight: FontWeight.normal),
                   ),
                   onChanged: (value) async {
-                    print(
-                        "语言切换为:" + languageList[index]["language"].toString());
+                    print("语言切换为:" +
+                        _languageConfig[index]["language"].toString());
                     await PreferencesDB()
                         .setAppLocale(context, value.toString());
                   },
