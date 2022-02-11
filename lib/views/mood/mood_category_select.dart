@@ -7,6 +7,8 @@ import 'package:remixicon/remixicon.dart';
 
 ///
 import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/common/utils_intl.dart';
+import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
@@ -126,7 +128,9 @@ class _MoodCategorySelectBodyState extends State<MoodCategorySelectBody> {
           child: Column(
             children: [
               Text(
-                _type == "edit" ? "换一种心情？" : "现在感觉如何",
+                _type == "edit"
+                    ? S.of(context).mood_category_select_title_2
+                    : S.of(context).mood_category_select_title_1,
                 style: Theme.of(context).textTheme.headline1!.copyWith(
                       fontSize: 24.sp,
                       fontWeight: FontWeight.bold,
@@ -135,7 +139,7 @@ class _MoodCategorySelectBodyState extends State<MoodCategorySelectBody> {
               Padding(
                 padding: EdgeInsets.only(top: 4.w),
                 child: Text(
-                  _type == "edit" ? "" : _nowDateTime,
+                  _type == "edit" ? "" : LocaleDatetime().yMMMd(_nowDateTime),
                   style: TextStyle(
                     color: AppTheme.subColor,
                     fontSize: 14.sp,

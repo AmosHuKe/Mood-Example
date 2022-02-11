@@ -10,7 +10,7 @@
 </h1> 
 
 <p align="center">
-<img alt="Mood-Example v1.0.1" src="https://img.shields.io/badge/Mood--Example-v1.0.1-3e4663"/> 
+<img alt="Mood-Example v1.0.2" src="https://img.shields.io/badge/Mood--Example-v1.0.2-3e4663"/> 
 <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v8.0" src="https://img.shields.io/badge/Flutter-v8.0-46D1FD"/></a> 
 <a target="_blank" href="https://dart.dev/"><img alt="Dart v2.15" src="https://img.shields.io/badge/Dart-v2.15-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
@@ -33,7 +33,7 @@
 
 ## 🔖 功能
 
-- [ ] 国际化  
+- [x] 国际化 i18n  
 - [ ] 多主题  
 - [x] 深色模式  
 - [x] 本地数据管理  
@@ -58,12 +58,60 @@
 
 ## 🛠️ 开发环境
 
+### 基本环境  
+
 ```
 [√] Flutter (Channel stable, 2.8.0, on Microsoft Windows [Version 10.0.22000.376], locale zh-CN)  
 [√] Android toolchain - develop for Android devices (Android SDK version 31.0.0)  
 [√] Android Studio (version 2020.3)  
 [√] VS Code (version 1.63.2)  
 ```  
+
+### 国际化支持  
+
+安装编辑器插件：`Flutter Intl`  
+> Visual Studio Code: [Flutter Intl](https://marketplace.visualstudio.com/items?itemName=localizely.flutter-intl)   
+> IntelliJ / Android Studio: [Flutter Intl](https://plugins.jetbrains.com/plugin/13666-flutter-intl)  
+
+```sh
+# 插件指令
+
+# 初始化
+Flutter Intl: Initialize
+
+# 添加 Locale
+Flutter Intl: Add locale
+
+# 删除 Locale
+Flutter Intl: Remove locale
+
+等等...
+```  
+
+使用 `Flutter Intl: Add locale` 输入 `国际化（i18n）地区对照语言码`，如简体中文：`zh_CN`，插件会自动在 `lib/l10n` 目录下生成对应的 `arb` 文件，我们只需要在 `arb` 文件中进行翻译。  
+`arb` 翻译工作完成后，将对应的语言添加到 `lib/config/language.dart` 内。  
+即可 `适配设备首选语言` 以及 `在应用语言设置内进行切换`。  
+
+```sh
+├── lib
+│   ├── config
+│   │   └── language.dart   # 语言配置
+│   ├── generated           # intl 语言包生成的文件夹（不用编码，使用 Flutter Intl 插件自动生成）
+│   ├── l10n                # intl 语言包
+│   │   └──intl_zh_CN.arb   # 如 简体中文：zh_CN
+......
+```
+
+IOS 支持语言本地化还需要在 `ios/Runner/Info.plist` 进行如下编辑。
+```
+<key>CFBundleLocalizations</key>
+<array>
+    <string>en</string>
+    <string>zh_CN</string>
+    ...
+</array>
+```
+  
 
 
 ## 🎉 启动
@@ -93,11 +141,16 @@ $ flutter run --Debug/Release/Profile/test
 ├── ios                           # IOS 工程文件
 ├── lib                           # 工程相关文件（主要编码）
 │   ├── common                    # 公共相关
+│   │   ├── utils_intl.dart       # 国际化工具
 │   │   └── utils.dart            # 工具
+│   ├── config                    # 配置
+│   │   └── language.dart         # 语言配置
 │   ├── db                        # 数据存储相关
 │   │   ├── database              # sqflite 数据表配置
 │   │   ├── db.dart               # sqflite 数据库相关
 │   │   └── preferences_db.dart   # shared_preferences 数据相关
+│   ├── generated                 # intl 语言包生成的文件夹（不用编码，使用 Flutter Intl 插件自动生成）
+│   ├── l10n                      # intl 语言包
 │   ├── models                    # 数据模型
 │   ├── services                  # 数据服务
 │   ├── view_models               # 业务逻辑

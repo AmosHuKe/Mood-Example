@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Application
@@ -26,19 +25,14 @@ void main() async {
             // 在回调中，size仍然有可能是0
             if (!window.physicalSize.isEmpty) {
               window.onMetricsChanged = null;
-
-              /// 国际化
-              initializeDateFormatting()
-                  .then((_) => runApp(const Application()));
+              runApp(const Application());
             }
           }
         }
       else
         {
           // 如果size非0，则直接runApp
-
-          /// 国际化
-          initializeDateFormatting().then((_) => runApp(const Application()))
+          runApp(const Application())
         }
     },
   );

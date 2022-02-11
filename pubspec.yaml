@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.1+1
+version: 1.0.2+1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -29,6 +29,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # 国际化
+  flutter_localizations:
+        sdk: flutter
+  # 国际化
+  intl: ^0.17.0
   # 自适应工具
   flutter_screenutil: ^5.0.0+2
   # 状态管理
@@ -37,8 +42,6 @@ dependencies:
   sqflite: ^2.0.1
   # 共享存储
   shared_preferences: ^2.0.11
-  # 国际化
-  intl: ^0.17.0
   # 路由管理
   fluro: ^2.0.3
   # 缩放抽屉
@@ -75,7 +78,6 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter.
 flutter:
 
@@ -90,13 +92,10 @@ flutter:
     - assets/images/
     - assets/images/onboarding/
     - assets/images/woolly/
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
@@ -116,5 +115,6 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-
-
+flutter_intl:
+  enabled: true
+  

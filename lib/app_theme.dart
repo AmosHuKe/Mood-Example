@@ -103,7 +103,12 @@ class AppTheme {
     cardColor: Colors.white,
     // bottomSheet
     bottomSheetTheme:
-        const BottomSheetThemeData(modalBackgroundColor: Colors.white),
+        const BottomSheetThemeData(modalBackgroundColor: Color(0xFFF6F8FA)),
+    // Radio
+    radioTheme: RadioThemeData(
+      fillColor: MaterialStateProperty.all(const Color(0xFF111315)),
+      overlayColor: MaterialStateProperty.all(const Color(0xFF111315)),
+    ),
   );
 
   /// 深色主题
@@ -153,5 +158,10 @@ class AppTheme {
     // bottomSheet
     bottomSheetTheme:
         const BottomSheetThemeData(modalBackgroundColor: Color(0xFF111315)),
+    // Radio
+    radioTheme: RadioThemeData(
+      fillColor: MaterialStateProperty.all(const Color(0xFFEFEFEF)),
+      overlayColor: MaterialStateProperty.all(const Color(0xFFEFEFEF)),
+    ),
   );
 }

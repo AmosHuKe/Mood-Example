@@ -9,6 +9,7 @@ import 'package:remixicon/remixicon.dart';
 
 ///
 import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/widgets/empty/empty.dart';
 
@@ -113,16 +114,16 @@ class _StatisticBodyState extends State<StatisticBody> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "统计",
+                    S.of(context).statistic_title,
                     style: Theme.of(context).textTheme.headline1!.copyWith(
-                          fontSize: 40.sp,
+                          fontSize: 36.sp,
                           fontWeight: FontWeight.bold,
                         ),
                   ),
                   Row(
                     children: [
                       FilterBottom(
-                        "7日",
+                        S.of(context).statistic_filter_7d,
                         checked: _filterValue == 7,
                         onTap: () {
                           if (_filterValue == 7) return;
@@ -136,7 +137,7 @@ class _StatisticBodyState extends State<StatisticBody> {
                         },
                       ),
                       FilterBottom(
-                        "15日",
+                        S.of(context).statistic_filter_15d,
                         checked: _filterValue == 15,
                         onTap: () {
                           if (_filterValue == 15) return;
@@ -150,7 +151,7 @@ class _StatisticBodyState extends State<StatisticBody> {
                         },
                       ),
                       FilterBottom(
-                        "30日",
+                        S.of(context).statistic_filter_30d,
                         checked: _filterValue == 30,
                         onTap: () {
                           if (_filterValue == 30) return;
@@ -211,8 +212,9 @@ class _StatisticBodyState extends State<StatisticBody> {
                       child: Consumer<StatisticViewModel>(
                         builder: (_, statisticViewModel, child) {
                           return StatisticLayout(
-                            title: "情绪波动",
-                            subTitle: "近${statisticViewModel.moodDays}日情绪波动",
+                            title: S.of(context).statistic_moodScore_title,
+                            subTitle: S.of(context).statistic_moodScore_content(
+                                statisticViewModel.moodDays),
                             height: 180.w,
                             statistic: const StatisticWeekMood(),
                           );
@@ -230,8 +232,11 @@ class _StatisticBodyState extends State<StatisticBody> {
                       child: Consumer<StatisticViewModel>(
                         builder: (_, statisticViewModel, child) {
                           return StatisticLayout(
-                            title: "心情统计",
-                            subTitle: "近${statisticViewModel.moodDays}日心情数量统计",
+                            title: S.of(context).statistic_moodStatistics_title,
+                            subTitle: S
+                                .of(context)
+                                .statistic_moodStatistics_content(
+                                    statisticViewModel.moodDays),
                             height: 320.w,
                             statistic: const StatisticCategoryMood(),
                           );
@@ -274,8 +279,12 @@ class _StatisticMoodLineState extends State<StatisticMoodLine> {
         moodScoreAverage = double.parse(
             (moodScoreSum / statisticViewModel.moodDays).toStringAsFixed(1));
         return StatisticLayout(
-          title: "平均" + moodScoreAverage.toString(),
-          subTitle: "按${statisticViewModel.moodDays}日计算情绪波动",
+          title: S
+              .of(context)
+              .statistic_moodScoreAverage_title(moodScoreAverage.toString()),
+          subTitle: S
+              .of(context)
+              .statistic_moodScoreAverage_content(statisticViewModel.moodDays),
           height: 240.w,
           statistic: const StatisticWeekMoodLine(),
         );
@@ -513,18 +522,27 @@ class OverallStatistics extends StatelessWidget {
                   children: [
                     StatisticsCard(
                       icon: Remix.time_line,
-                      title: "${statisticViewModel.daysCount}天",
-                      subTitle: "累计记录天数",
+                      title: S.of(context).statistic_overall_daysCount_title(
+                          statisticViewModel.daysCount),
+                      subTitle:
+                          S.of(context).statistic_overall_daysCount_subTitle,
                     ),
                     StatisticsCard(
                       icon: Remix.file_list_2_line,
-                      title: "${statisticViewModel.moodCount}条",
-                      subTitle: "累计记录心情",
+                      title: S.of(context).statistic_overall_moodCount_title(
+                          statisticViewModel.moodCount),
+                      subTitle:
+                          S.of(context).statistic_overall_moodCount_subTitle,
                     ),
                     StatisticsCard(
                       icon: Remix.pulse_line,
-                      title: "${statisticViewModel.moodScoreAverage}",
-                      subTitle: "平均全部波动",
+                      title: S
+                          .of(context)
+                          .statistic_overall_moodScoreAverage_title(
+                              statisticViewModel.moodScoreAverage),
+                      subTitle: S
+                          .of(context)
+                          .statistic_overall_moodScoreAverage_subTitle,
                     ),
                   ],
                 );

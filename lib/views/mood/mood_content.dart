@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 
 /// Packages
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moodexample/common/utils_intl.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
 ///
 import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
@@ -50,17 +52,17 @@ class _MoodContentState extends State<MoodContent> {
     showCupertinoDialog<void>(
       context: context,
       builder: (BuildContext context) => CupertinoAlertDialog(
-        title: const Text("确认关闭？"),
-        content: const Text("内容不会保存"),
+        title: Text(S.of(context).mood_content_close_button_title),
+        content: Text(S.of(context).mood_content_close_button_content),
         actions: <CupertinoDialogAction>[
           CupertinoDialogAction(
-            child: const Text('取消'),
+            child: Text(S.of(context).mood_content_close_button_cancel),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
           CupertinoDialogAction(
-            child: const Text('确认'),
+            child: Text(S.of(context).mood_content_close_button_confirm),
             onPressed: () {
               Navigator.pop(context);
               Navigator.pop(context);
@@ -94,7 +96,7 @@ class _MoodContentState extends State<MoodContent> {
               fontSize: 14.sp,
             ),
         centerTitle: true,
-        title: Text(_moodData.createTime ?? ""),
+        title: Text(LocaleDatetime().yMMMd(_moodData.createTime ?? "")),
         leading: ActionButton(
           decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -366,7 +368,7 @@ class _AddContentState extends State<AddContent> {
                     .bodyText1!
                     .copyWith(fontSize: 14.sp),
                 decoration: InputDecoration(
-                  hintText: "跟我说说，发生什么事情？",
+                  hintText: S.of(context).mood_content_hintText,
                   hintStyle: Theme.of(context)
                       .textTheme
                       .bodyText1!
@@ -410,10 +412,9 @@ class _MoodScoreState extends State<MoodScore> {
             right: 24.w,
           ),
           child: Text(
-            "心情程度",
-            style: Theme.of(context).textTheme.headline1!.copyWith(
-                  fontSize: 16.w,
-                ),
+            S.of(context).mood_data_score_title,
+            style:
+                Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 16.w),
           ),
         ),
         Padding(

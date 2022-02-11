@@ -7,6 +7,7 @@ import 'package:card_swiper/card_swiper.dart';
 
 ///
 import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/generated/l10n.dart';
 
 /// 引导页
 class Onboarding extends StatelessWidget {
@@ -108,7 +109,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
     /// Swiper内容
     _swiperList = [
       TextImageSwiper(
-        title: "管理思绪",
+        title: S.of(context).onboarding_title_1,
         image: Image.asset(
           "assets/images/onboarding/onboarding_1.png",
           fit: BoxFit.cover,
@@ -117,18 +118,14 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
         describe: Column(
           children: [
             Text(
-              "释放你的所有心情",
-              style: _textContentStyle,
-            ),
-            Text(
-              "轻松记录你每刻的所见所想",
+              S.of(context).onboarding_content_1_1,
               style: _textContentStyle,
             ),
           ],
         ),
       ),
       TextImageSwiper(
-        title: "精心统计",
+        title: S.of(context).onboarding_title_2,
         image: Image.asset(
           "assets/images/onboarding/onboarding_2.png",
           fit: BoxFit.cover,
@@ -137,25 +134,25 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
         describe: Column(
           children: [
             Text(
-              "统计你的喜怒哀乐",
+              S.of(context).onboarding_content_2_1,
               style: _textContentStyle,
             ),
             Text(
-              "让你了解自己心理活动状况",
+              S.of(context).onboarding_content_2_2,
               style: _textContentStyle,
             ),
           ],
         ),
       ),
       TextImageSwiper(
-        title: "即刻开始",
+        title: S.of(context).onboarding_title_3,
         image: Image.asset(
           "assets/images/onboarding/onboarding_3.png",
           fit: BoxFit.cover,
           height: 320.h,
         ),
         describe: Text(
-          "从现在开始记录更好的自己",
+          S.of(context).onboarding_content_3_1,
           style: _textContentStyle,
         ),
       ),

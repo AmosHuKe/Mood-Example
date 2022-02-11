@@ -7,7 +7,9 @@ import 'package:vibration/vibration.dart';
 /// 工具
 
 /// 获取当前日期时间
+///
 /// @param {String} format 时间格式
+///
 /// @return {String} 日期
 String getDatetimeNow(format) {
   DateTime now = DateTime.now();

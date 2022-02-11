@@ -1,0 +1,75 @@
+{
+    "app_bottomNavigationBar_title_home": "首页",
+    "app_bottomNavigationBar_title_mood": "心情",
+    "app_bottomNavigationBar_title_statistic": "统计",
+
+    "app_setting_database":"数据",
+
+    "app_setting_theme":"主题",
+    "app_setting_theme_appearance":"主题外观",
+    "app_setting_theme_appearance_system":"跟随系统",
+    "app_setting_theme_appearance_light":"普通模式",
+    "app_setting_theme_appearance_dark":"深色模式",
+
+    "app_setting_language":"语言",
+
+    "app_setting_laboratory":"实验室",
+
+    "app_setting_about":"关于",
+
+
+    "onboarding_title_1": "管理思绪",
+    "onboarding_content_1_1": "释放你的所有心情",
+    "onboarding_content_1_2": "轻松记录你每刻的所见所想",
+    "onboarding_title_2": "精心统计",
+    "onboarding_content_2_1": "统计你的喜怒哀乐",
+    "onboarding_content_2_2": "让你了解自己心理活动状况",
+    "onboarding_title_3": "即刻开始",
+    "onboarding_content_3_1": "从现在开始记录更好的自己",
+
+    "home_hi": "Hi~",
+    "home_moodChoice_title": "现在感觉如何",
+    "home_upgrade_title": "功能更新",
+    "home_upgrade_content": "了解最新使用场景",
+    "home_upgrade_button": "查看",
+    "home_help_title": "帮助",
+    "home_help_article_title_1": "自我成长",
+    "home_help_article_content_1": "认知和意识过程产生对外界事物的态度...",
+    "home_help_article_title_2": "情绪管理",
+    "home_help_article_content_2": "如何更好地管理自己的情绪...",
+
+    "mood_title": "心情",
+    "mood_add_button": "记录",
+    "mood_data_delete_button_title": "确认删除？",
+    "mood_data_delete_button_content": "删除后无法恢复",
+    "mood_data_delete_button_cancel": "取消",
+    "mood_data_delete_button_confirm": "删除",
+    "mood_data_content_empty": "什么都没有说",
+    "mood_data_score_title": "心情程度",
+
+    "mood_category_select_title_1": "现在感觉如何",
+    "mood_category_select_title_2": "换一种心情？",
+
+    "mood_content_hintText": "跟我说说，发生什么事情？",
+    "mood_content_close_button_title": "确认关闭？",
+    "mood_content_close_button_content": "内容不会保存",
+    "mood_content_close_button_cancel": "取消",
+    "mood_content_close_button_confirm": "确认",
+
+    "statistic_title": "统计",
+    "statistic_filter_7d": "7天",
+    "statistic_filter_15d": "15天",
+    "statistic_filter_30d": "30天",
+    "statistic_overall_daysCount_title": "{daysCount}天",
+    "statistic_overall_daysCount_subTitle": "累计记录天数",
+    "statistic_overall_moodCount_title": "{moodCount}条",
+    "statistic_overall_moodCount_subTitle": "累计记录心情",
+    "statistic_overall_moodScoreAverage_title": "{moodScoreAverage}",
+    "statistic_overall_moodScoreAverage_subTitle": "平均全部波动",
+    "statistic_moodScoreAverage_title": "平均{moodScoreAverage}",
+    "statistic_moodScoreAverage_content":"按{moodDays}日计算情绪波动",
+    "statistic_moodScore_title":"情绪波动",
+    "statistic_moodScore_content":"近{moodDays}日情绪波动",
+    "statistic_moodStatistics_title":"心情统计",
+    "statistic_moodStatistics_content":"近{moodDays}日心情数量统计"
+}
