@@ -91,6 +91,7 @@ Flutter Intl: Remove locale
 使用 `Flutter Intl: Add locale` 输入 `国际化（i18n）地区对照语言码`，如简体中文：`zh_CN`，插件会自动在 `lib/l10n` 目录下生成对应的 `arb` 文件，我们只需要在 `arb` 文件中进行翻译。  
 `arb` 翻译工作完成后，将对应的语言添加到 `lib/config/language.dart` 内。  
 即可 `适配设备首选语言` 以及 `在应用语言设置内进行切换`。  
+
 ```sh
 ├── lib
 │   ├── config
@@ -101,6 +102,15 @@ Flutter Intl: Remove locale
 ......
 ```
 
+IOS 支持语言本地化还需要在 `ios/Runner/Info.plist` 进行如下编辑。
+```
+<key>CFBundleLocalizations</key>
+<array>
+    <string>en</string>
+    <string>zh_CN</string>
+    ...
+</array>
+```
   
 
 
