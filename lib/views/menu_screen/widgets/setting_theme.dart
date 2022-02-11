@@ -7,6 +7,7 @@ import 'package:remixicon/remixicon.dart';
 
 ///
 import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/db/preferences_db.dart';
 
 ///
@@ -31,7 +32,7 @@ class _SettingThemeState extends State<SettingTheme> {
         Padding(
           padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 14.w),
           child: Text(
-            "主题外观设置",
+            S.of(context).app_setting_theme_appearance,
             style: Theme.of(context).textTheme.headline1!.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 14.sp,
@@ -50,7 +51,7 @@ class _SettingThemeState extends State<SettingTheme> {
               spacing: 16.w,
               children: [
                 DarkThemeCard(
-                  title: "跟随系统",
+                  title: S.of(context).app_setting_theme_appearance_system,
                   selected: _themeMode == ThemeMode.system,
                   child: Row(
                     children: [
@@ -115,11 +116,11 @@ class _SettingThemeState extends State<SettingTheme> {
                   onTap: () async {
                     print("跟随系统");
                     await PreferencesDB()
-                        .setThemeAPPDarkMode(context, "system");
+                        .setAppThemeDarkMode(context, "system");
                   },
                 ),
                 DarkThemeCard(
-                  title: "普通模式",
+                  title: S.of(context).app_setting_theme_appearance_light,
                   selected: _themeMode == ThemeMode.light,
                   child: Container(
                     alignment: Alignment.center,
@@ -139,11 +140,11 @@ class _SettingThemeState extends State<SettingTheme> {
                   ),
                   onTap: () async {
                     print("普通模式");
-                    await PreferencesDB().setThemeAPPDarkMode(context, "light");
+                    await PreferencesDB().setAppThemeDarkMode(context, "light");
                   },
                 ),
                 DarkThemeCard(
-                  title: "深色模式",
+                  title: S.of(context).app_setting_theme_appearance_dark,
                   selected: _themeMode == ThemeMode.dark,
                   child: Container(
                     alignment: Alignment.center,
@@ -163,7 +164,7 @@ class _SettingThemeState extends State<SettingTheme> {
                   ),
                   onTap: () async {
                     print("深色模式");
-                    await PreferencesDB().setThemeAPPDarkMode(context, "dark");
+                    await PreferencesDB().setAppThemeDarkMode(context, "dark");
                   },
                 ),
               ],
@@ -207,8 +208,8 @@ class DarkThemeCard extends StatelessWidget {
             alignment: AlignmentDirectional.bottomEnd,
             children: [
               Container(
-                width: 96.w,
-                height: 78.w,
+                width: 100.w,
+                height: 72.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18.w),
                   border: _selected

@@ -50,9 +50,6 @@ class _ApplicationState extends State<Application> {
         final _watchApplicationViewModel =
             context.watch<ApplicationViewModel>();
 
-        /// 触发获取主题
-        PreferencesDB().getThemeAPPDarkMode(context);
-
         return MaterialApp(
           /// 网格
           debugShowMaterialGrid: false,
@@ -82,6 +79,10 @@ class _ApplicationState extends State<Application> {
           locale: _watchApplicationViewModel.localeSystem
               ? null
               : _watchApplicationViewModel.locale,
+          localeListResolutionCallback: (locales, supportedLocales) {
+            print("当前地区语言" + locales.toString());
+            print("设备支持的地区语言" + supportedLocales.toString());
+          },
 
           /// Home
           home: const WillPopScopeRoute(child: Init()),
@@ -113,6 +114,15 @@ class _InitState extends State<Init> {
       /// 获取所有心情类别
       MoodService.getMoodCategoryAll(_moodViewModel);
     }
+
+    /// 触发获取APP主题深色模式
+    PreferencesDB().getAppThemeDarkMode(context);
+
+    /// 触发获取APP地区语言
+    PreferencesDB().getAppLocale(context);
+
+    /// 触发获取APP地区语言是否跟随系统
+    PreferencesDB().getAppIsLocaleSystem(context);
   }
 
   @override

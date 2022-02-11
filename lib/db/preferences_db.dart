@@ -16,25 +16,26 @@ class PreferencesDB {
     return await SharedPreferences.getInstance();
   }
 
-  /**
-   * APP相关
-   */
+  /*** APP相关 ***/
   /// 打开APP次数
   static const openAPPCount = "openAPPCount";
 
   /// 主题深色模式
+  ///
   /// system(默认)：跟随系统 light：普通 dark：深色
-  static const themeAPPDarkMode = "themeAPPDarkMode";
+  static const appThemeDarkMode = "appThemeDarkMode";
 
-  /**
-   * 数据库相关
-   */
+  /// APP地区语言
+  static const appLocale = "appLocale";
+
+  /// APP地区语言是否跟随系统
+  static const appIsLocaleSystem = "appIsLocaleSystem";
+
+  /*** 数据库相关 ***/
   /// 是否填充完成【心情类别】表默认值
   static const initMoodCategoryDefaultType = "initMoodCategoryDefaultType";
 
-  /**
-   * shared_preferences
-   */
+  /*** shared_preferences ***/
   /// 设置-是否填充完成【心情类别】表默认值
   Future setInitMoodCategoryDefaultType(bool value) async {
     SharedPreferences prefs = await init();
@@ -48,19 +49,58 @@ class PreferencesDB {
   }
 
   /// 设置-主题深色模式
-  Future setThemeAPPDarkMode(BuildContext context, String value) async {
+  Future setAppThemeDarkMode(BuildContext context, String value) async {
     SharedPreferences prefs = await init();
-    prefs.setString(themeAPPDarkMode, value);
+    prefs.setString(appThemeDarkMode, value);
     Provider.of<ApplicationViewModel>(context, listen: false)
         .setThemeMode(darkThemeMode(value));
   }
 
   /// 获取-主题深色模式
-  Future<String> getThemeAPPDarkMode(BuildContext context) async {
+  Future<String> getAppThemeDarkMode(BuildContext context) async {
     SharedPreferences prefs = await init();
-    String themeDarkMode = prefs.getString(themeAPPDarkMode) ?? "system";
+    String themeDarkMode = prefs.getString(appThemeDarkMode) ?? "system";
     Provider.of<ApplicationViewModel>(context, listen: false)
         .setThemeMode(darkThemeMode(themeDarkMode));
     return themeDarkMode;
+  }
+
+  /// 设置-APP地区语言
+  Future setAppLocale(BuildContext context, String? locale) async {
+    SharedPreferences prefs = await init();
+    print(locale);
+    await setAppIsLocaleSystem(context, false);
+    final _appLocale = locale ?? "zh";
+    final _appLocaleList = _appLocale.split('_');
+    prefs.setString(appLocale, _appLocale);
+    Provider.of<ApplicationViewModel>(context, listen: false).setLocale(Locale(
+        _appLocaleList[0], _appLocaleList.length > 1 ? _appLocaleList[1] : ''));
+  }
+
+  /// 获取-APP地区语言
+  Future<String> getAppLocale(BuildContext context) async {
+    SharedPreferences prefs = await init();
+    String _appLocale = prefs.getString(appLocale) ?? "zh";
+    final _appLocaleList = _appLocale.split('_');
+    Provider.of<ApplicationViewModel>(context, listen: false).setLocale(Locale(
+        _appLocaleList[0], _appLocaleList.length > 1 ? _appLocaleList[1] : ''));
+    return _appLocale;
+  }
+
+  /// 设置-APP地区语言是否跟随系统
+  Future setAppIsLocaleSystem(BuildContext context, bool isLocaleSystem) async {
+    SharedPreferences prefs = await init();
+    prefs.setBool(appIsLocaleSystem, isLocaleSystem);
+    Provider.of<ApplicationViewModel>(context, listen: false)
+        .setLocaleSystem(isLocaleSystem);
+  }
+
+  /// 获取-APP地区语言是否跟随系统
+  Future<bool> getAppIsLocaleSystem(BuildContext context) async {
+    SharedPreferences prefs = await init();
+    bool _appIsLocaleSystem = prefs.getBool(appIsLocaleSystem) ?? true;
+    Provider.of<ApplicationViewModel>(context, listen: false)
+        .setLocaleSystem(_appIsLocaleSystem);
+    return _appIsLocaleSystem;
   }
 }

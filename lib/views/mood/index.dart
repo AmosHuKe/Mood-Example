@@ -11,10 +11,12 @@ import 'package:table_calendar/table_calendar.dart';
 
 ///
 import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
 import 'package:moodexample/widgets/empty/empty.dart';
 import 'package:moodexample/common/utils.dart';
+import 'package:moodexample/common/utils_intl.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 import 'package:moodexample/views/mood/mood_content.dart';
 
@@ -76,7 +78,7 @@ class _MoodPageState extends State<MoodPage>
             Padding(
               padding: EdgeInsets.only(left: 4.sp),
               child: Text(
-                "记录",
+                S.of(context).mood_add_button,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 12.sp,
@@ -149,9 +151,9 @@ class _MoodBodyState extends State<MoodBody> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "心情",
+                    S.of(context).mood_title,
                     style: Theme.of(context).textTheme.headline1?.copyWith(
-                          fontSize: 40.sp,
+                          fontSize: 36.sp,
                           fontWeight: FontWeight.bold,
                         ),
                   ),
@@ -365,7 +367,6 @@ class _CalendarState extends State<Calendar> {
         child: Padding(
           padding: EdgeInsets.only(left: 12.w, right: 12.w, bottom: 12.w),
           child: TableCalendar(
-            locale: 'zh_CN',
             firstDay: DateTime.utc(2021, 10, 01),
             lastDay: DateTime.now(),
             focusedDay: _focusedDay,
@@ -654,17 +655,20 @@ class _MoodCardState extends State<MoodCard> {
                   showCupertinoDialog<void>(
                     context: context,
                     builder: (BuildContext context) => CupertinoAlertDialog(
-                      title: const Text("确认删除？"),
-                      content: const Text("删除后无法恢复"),
+                      title: Text(S.of(context).mood_data_delete_button_title),
+                      content:
+                          Text(S.of(context).mood_data_delete_button_content),
                       actions: <CupertinoDialogAction>[
                         CupertinoDialogAction(
-                          child: const Text('取消'),
+                          child: Text(
+                              S.of(context).mood_data_delete_button_cancel),
                           onPressed: () {
                             Navigator.pop(context);
                           },
                         ),
                         CupertinoDialogAction(
-                          child: const Text('删除'),
+                          child: Text(
+                              S.of(context).mood_data_delete_button_confirm),
                           isDestructiveAction: true,
                           onPressed: () async {
                             MoodData _moodData = MoodData();
@@ -827,7 +831,7 @@ class _MoodCardState extends State<MoodCard> {
                         bottom: 20.w,
                       ),
                       child: Text(
-                        widget.content ?? '什么都没有说',
+                        widget.content ?? S.of(context).mood_data_content_empty,
                         maxLines: 5,
                         overflow: TextOverflow.ellipsis,
                         softWrap: true,
@@ -899,7 +903,7 @@ class MoodDetail extends StatelessWidget {
         Align(
           heightFactor: 2.w,
           child: Text(
-            createTime,
+            LocaleDatetime().yMMMd(createTime),
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.bold,
@@ -933,10 +937,11 @@ class MoodDetail extends StatelessWidget {
                         right: 48.w,
                       ),
                       child: Text(
-                        "心情程度",
-                        style: Theme.of(context).textTheme.headline1!.copyWith(
-                              fontSize: 16.w,
-                            ),
+                        S.of(context).mood_data_score_title,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText1!
+                            .copyWith(fontSize: 16.w),
                       ),
                     ),
                     Padding(
@@ -990,7 +995,7 @@ class MoodDetail extends StatelessWidget {
                 right: 24.w,
               ),
               child: Text(
-                content ?? "什么都没有说",
+                content ?? S.of(context).mood_data_content_empty,
                 style: TextStyle(
                   color: content != null
                       ? isDarkMode(context)

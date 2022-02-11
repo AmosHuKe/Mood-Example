@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a zh_CN locale. All the
+// This is a library that provides messages for a zh_TW locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -18,98 +18,98 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'zh_CN';
+  String get localeName => 'zh_TW';
 
-  static String m0(moodDays) => "按${moodDays}日计算情绪波动";
+  static String m0(moodDays) => "按${moodDays}日計算情緒波動";
 
   static String m1(moodScoreAverage) => "平均${moodScoreAverage}";
 
-  static String m2(moodDays) => "近${moodDays}日情绪波动";
+  static String m2(moodDays) => "近${moodDays}日情緒波動";
 
-  static String m3(moodDays) => "近${moodDays}日心情数量统计";
+  static String m3(moodDays) => "近${moodDays}日心情數量統計";
 
   static String m4(daysCount) => "${daysCount}天";
 
-  static String m5(moodCount) => "${moodCount}条";
+  static String m5(moodCount) => "${moodCount}條";
 
   static String m6(moodScoreAverage) => "${moodScoreAverage}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "app_bottomNavigationBar_title_home":
-            MessageLookupByLibrary.simpleMessage("首页"),
+            MessageLookupByLibrary.simpleMessage("首頁"),
         "app_bottomNavigationBar_title_mood":
             MessageLookupByLibrary.simpleMessage("心情"),
         "app_bottomNavigationBar_title_statistic":
-            MessageLookupByLibrary.simpleMessage("统计"),
-        "app_setting_about": MessageLookupByLibrary.simpleMessage("关于"),
-        "app_setting_database": MessageLookupByLibrary.simpleMessage("数据"),
-        "app_setting_laboratory": MessageLookupByLibrary.simpleMessage("实验室"),
-        "app_setting_language": MessageLookupByLibrary.simpleMessage("语言"),
-        "app_setting_theme": MessageLookupByLibrary.simpleMessage("主题"),
+            MessageLookupByLibrary.simpleMessage("統計"),
+        "app_setting_about": MessageLookupByLibrary.simpleMessage("關於"),
+        "app_setting_database": MessageLookupByLibrary.simpleMessage("數據"),
+        "app_setting_laboratory": MessageLookupByLibrary.simpleMessage("實驗室"),
+        "app_setting_language": MessageLookupByLibrary.simpleMessage("語言"),
+        "app_setting_theme": MessageLookupByLibrary.simpleMessage("主題"),
         "app_setting_theme_appearance":
-            MessageLookupByLibrary.simpleMessage("主题外观"),
+            MessageLookupByLibrary.simpleMessage("主題外觀"),
         "app_setting_theme_appearance_dark":
             MessageLookupByLibrary.simpleMessage("深色模式"),
         "app_setting_theme_appearance_light":
             MessageLookupByLibrary.simpleMessage("普通模式"),
         "app_setting_theme_appearance_system":
-            MessageLookupByLibrary.simpleMessage("跟随系统"),
+            MessageLookupByLibrary.simpleMessage("跟隨系統"),
         "home_help_article_content_1":
-            MessageLookupByLibrary.simpleMessage("认知和意识过程产生对外界事物的态度..."),
+            MessageLookupByLibrary.simpleMessage("認知和意識過程產生對外界事物的態度..."),
         "home_help_article_content_2":
-            MessageLookupByLibrary.simpleMessage("如何更好地管理自己的情绪..."),
+            MessageLookupByLibrary.simpleMessage("如何更好地管理自己的情緒..."),
         "home_help_article_title_1":
-            MessageLookupByLibrary.simpleMessage("自我成长"),
+            MessageLookupByLibrary.simpleMessage("自我成長"),
         "home_help_article_title_2":
-            MessageLookupByLibrary.simpleMessage("情绪管理"),
-        "home_help_title": MessageLookupByLibrary.simpleMessage("帮助"),
+            MessageLookupByLibrary.simpleMessage("情緒管理"),
+        "home_help_title": MessageLookupByLibrary.simpleMessage("幫助"),
         "home_hi": MessageLookupByLibrary.simpleMessage("Hi~"),
-        "home_moodChoice_title": MessageLookupByLibrary.simpleMessage("现在感觉如何"),
+        "home_moodChoice_title": MessageLookupByLibrary.simpleMessage("現在感覺如何"),
         "home_upgrade_button": MessageLookupByLibrary.simpleMessage("查看"),
         "home_upgrade_content":
-            MessageLookupByLibrary.simpleMessage("了解最新使用场景"),
+            MessageLookupByLibrary.simpleMessage("了解最新使用場景"),
         "home_upgrade_title": MessageLookupByLibrary.simpleMessage("功能更新"),
-        "mood_add_button": MessageLookupByLibrary.simpleMessage("记录"),
+        "mood_add_button": MessageLookupByLibrary.simpleMessage("記錄"),
         "mood_category_select_title_1":
-            MessageLookupByLibrary.simpleMessage("现在感觉如何"),
+            MessageLookupByLibrary.simpleMessage("現在感覺如何"),
         "mood_category_select_title_2":
-            MessageLookupByLibrary.simpleMessage("换一种心情？"),
+            MessageLookupByLibrary.simpleMessage("換一種心情？"),
         "mood_content_close_button_cancel":
             MessageLookupByLibrary.simpleMessage("取消"),
         "mood_content_close_button_confirm":
-            MessageLookupByLibrary.simpleMessage("确认"),
+            MessageLookupByLibrary.simpleMessage("確認"),
         "mood_content_close_button_content":
-            MessageLookupByLibrary.simpleMessage("内容不会保存"),
+            MessageLookupByLibrary.simpleMessage("內容不會保存"),
         "mood_content_close_button_title":
-            MessageLookupByLibrary.simpleMessage("确认关闭？"),
+            MessageLookupByLibrary.simpleMessage("確認關閉？"),
         "mood_content_hintText":
-            MessageLookupByLibrary.simpleMessage("跟我说说，发生什么事情？"),
+            MessageLookupByLibrary.simpleMessage("跟我說說，發生什麼事情？"),
         "mood_data_content_empty":
-            MessageLookupByLibrary.simpleMessage("什么都没有说"),
+            MessageLookupByLibrary.simpleMessage("什麼都沒有說"),
         "mood_data_delete_button_cancel":
             MessageLookupByLibrary.simpleMessage("取消"),
         "mood_data_delete_button_confirm":
-            MessageLookupByLibrary.simpleMessage("删除"),
+            MessageLookupByLibrary.simpleMessage("刪除"),
         "mood_data_delete_button_content":
-            MessageLookupByLibrary.simpleMessage("删除后无法恢复"),
+            MessageLookupByLibrary.simpleMessage("刪除後無法恢復"),
         "mood_data_delete_button_title":
-            MessageLookupByLibrary.simpleMessage("确认删除？"),
+            MessageLookupByLibrary.simpleMessage("確認刪除？"),
         "mood_data_score_title": MessageLookupByLibrary.simpleMessage("心情程度"),
         "mood_title": MessageLookupByLibrary.simpleMessage("心情"),
         "onboarding_content_1_1":
-            MessageLookupByLibrary.simpleMessage("释放你的所有心情"),
+            MessageLookupByLibrary.simpleMessage("釋放你的所有心情"),
         "onboarding_content_1_2":
-            MessageLookupByLibrary.simpleMessage("轻松记录你每刻的所见所想"),
+            MessageLookupByLibrary.simpleMessage("輕鬆記錄你每刻的所見所想"),
         "onboarding_content_2_1":
-            MessageLookupByLibrary.simpleMessage("统计你的喜怒哀乐"),
+            MessageLookupByLibrary.simpleMessage("統計你的喜怒哀樂"),
         "onboarding_content_2_2":
-            MessageLookupByLibrary.simpleMessage("让你了解自己心理活动状况"),
+            MessageLookupByLibrary.simpleMessage("讓你了解自己心理活動狀況"),
         "onboarding_content_3_1":
-            MessageLookupByLibrary.simpleMessage("从现在开始记录更好的自己"),
-        "onboarding_title_1": MessageLookupByLibrary.simpleMessage("管理思绪"),
-        "onboarding_title_2": MessageLookupByLibrary.simpleMessage("精心统计"),
-        "onboarding_title_3": MessageLookupByLibrary.simpleMessage("即刻开始"),
+            MessageLookupByLibrary.simpleMessage("從現在開始記錄更好的自己"),
+        "onboarding_title_1": MessageLookupByLibrary.simpleMessage("管理思緒"),
+        "onboarding_title_2": MessageLookupByLibrary.simpleMessage("精心統計"),
+        "onboarding_title_3": MessageLookupByLibrary.simpleMessage("即刻開始"),
         "statistic_filter_15d": MessageLookupByLibrary.simpleMessage("15天"),
         "statistic_filter_30d": MessageLookupByLibrary.simpleMessage("30天"),
         "statistic_filter_7d": MessageLookupByLibrary.simpleMessage("7天"),
@@ -117,19 +117,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "statistic_moodScoreAverage_title": m1,
         "statistic_moodScore_content": m2,
         "statistic_moodScore_title":
-            MessageLookupByLibrary.simpleMessage("情绪波动"),
+            MessageLookupByLibrary.simpleMessage("情緒波動"),
         "statistic_moodStatistics_content": m3,
         "statistic_moodStatistics_title":
-            MessageLookupByLibrary.simpleMessage("心情统计"),
+            MessageLookupByLibrary.simpleMessage("心情統計"),
         "statistic_overall_daysCount_subTitle":
-            MessageLookupByLibrary.simpleMessage("累计记录天数"),
+            MessageLookupByLibrary.simpleMessage("累計記錄天數"),
         "statistic_overall_daysCount_title": m4,
         "statistic_overall_moodCount_subTitle":
-            MessageLookupByLibrary.simpleMessage("累计记录心情"),
+            MessageLookupByLibrary.simpleMessage("累計記錄心情"),
         "statistic_overall_moodCount_title": m5,
         "statistic_overall_moodScoreAverage_subTitle":
-            MessageLookupByLibrary.simpleMessage("平均全部波动"),
+            MessageLookupByLibrary.simpleMessage("平均全部波動"),
         "statistic_overall_moodScoreAverage_title": m6,
-        "statistic_title": MessageLookupByLibrary.simpleMessage("统计")
+        "statistic_title": MessageLookupByLibrary.simpleMessage("統計")
       };
 }

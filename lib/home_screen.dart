@@ -9,6 +9,7 @@ import 'package:remixicon/remixicon.dart';
 import 'package:moodexample/app_theme.dart';
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/views/statistic/index.dart' as statistic;
+import 'package:moodexample/generated/l10n.dart';
 
 /// 页面
 import 'package:moodexample/views/home/index.dart';
@@ -138,21 +139,21 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               tabs: [
                 /// 菜单
                 Tab(
-                  text: "首页",
+                  text: S.of(context).app_bottomNavigationBar_title_home,
                   icon: Icon(
                     Remix.home_line,
                     size: _tabIconSize,
                   ),
                 ),
                 Tab(
-                  text: "心情",
+                  text: S.of(context).app_bottomNavigationBar_title_mood,
                   icon: Icon(
                     Remix.heart_3_line,
                     size: _tabIconSize,
                   ),
                 ),
                 Tab(
-                  text: "统计",
+                  text: S.of(context).app_bottomNavigationBar_title_statistic,
                   icon: Icon(
                     Remix.bar_chart_line,
                     size: _tabIconSize,

@@ -148,7 +148,7 @@ class _HomeBodyState extends State<HomeBody> {
                           Padding(
                             padding: EdgeInsets.only(bottom: 24.w),
                             child: Text(
-                              "帮助",
+                              S.of(context).home_help_title,
                               style: Theme.of(context)
                                   .textTheme
                                   .headline1
@@ -193,7 +193,7 @@ class _HeaderState extends State<Header> {
           child: Row(
             children: [
               Text(
-                S.of(context).home_moodChoice,
+                S.of(context).home_moodChoice_title,
                 style: Theme.of(context).textTheme.headline1?.copyWith(
                       fontWeight: FontWeight.normal,
                       fontSize: 20.sp,
@@ -465,7 +465,7 @@ class _ActionCardState extends State<ActionCard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "功能更新",
+                            S.of(context).home_upgrade_title,
                             style: TextStyle(
                               color: Colors.black87,
                               fontSize: 20.sp,
@@ -478,7 +478,7 @@ class _ActionCardState extends State<ActionCard> {
                               bottom: 12.w,
                             ),
                             child: Text(
-                              "了解最新使用场景",
+                              S.of(context).home_upgrade_content,
                               style: TextStyle(
                                 color: Colors.black87,
                                 fontSize: 16.sp,
@@ -498,7 +498,7 @@ class _ActionCardState extends State<ActionCard> {
                             Padding(
                               padding: EdgeInsets.only(right: 4.w),
                               child: Text(
-                                '查看',
+                                S.of(context).home_upgrade_button,
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                 ),
@@ -601,7 +601,7 @@ class _ArticleState extends State<Article> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "自我成长",
+                      S.of(context).home_help_article_title_1,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 14.sp,
@@ -614,7 +614,7 @@ class _ArticleState extends State<Article> {
                         bottom: 6.w,
                       ),
                       child: Text(
-                        "认知和意识过程产生对外界事物的态度...",
+                        S.of(context).home_help_article_content_1,
                         style: TextStyle(
                           color: Colors.black87,
                           fontSize: 12.sp,
@@ -669,7 +669,7 @@ class _ArticleState extends State<Article> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "情绪管理",
+                      S.of(context).home_help_article_title_2,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 14.sp,
@@ -682,7 +682,7 @@ class _ArticleState extends State<Article> {
                         bottom: 6.w,
                       ),
                       child: Text(
-                        "如何更好地管理自己的情绪...",
+                        S.of(context).home_help_article_content_2,
                         style: TextStyle(
                           color: Colors.black87,
                           fontSize: 12.sp,

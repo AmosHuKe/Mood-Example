@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 ///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:remixicon/remixicon.dart';
 
 ///
-import 'package:moodexample/app_theme.dart';
 import 'package:moodexample/db/preferences_db.dart';
 
 ///
@@ -21,6 +19,26 @@ class SettingLanguage extends StatefulWidget {
 }
 
 class _SettingLanguageState extends State<SettingLanguage> {
+  /// 语言列表
+  static const languageList = [
+    {
+      "language": "简体中文",
+      "locale": Locale('zh', 'CN'),
+    },
+    {
+      "language": "繁體中文（台灣）",
+      "locale": Locale('zh', 'TW'),
+    },
+    {
+      "language": "繁體中文（香港）",
+      "locale": Locale('zh', 'HK'),
+    },
+    {
+      "language": "English",
+      "locale": Locale('en'),
+    }
+  ];
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -28,40 +46,53 @@ class _SettingLanguageState extends State<SettingLanguage> {
         parent: BouncingScrollPhysics(),
       ),
       children: [
-        Padding(
-          padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 14.w),
-          child: Text(
-            "语言",
-            style: Theme.of(context).textTheme.headline1!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14.sp,
-                ),
-          ),
+        /// 跟随系统
+        Selector<ApplicationViewModel, bool>(
+          selector: (_, applicationViewModel) =>
+              applicationViewModel.localeSystem,
+          builder: (_, localeSystem, child) {
+            return RadioListTile(
+              value: localeSystem,
+              groupValue: true,
+              title: Text(
+                "跟随系统",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .copyWith(fontSize: 14.sp, fontWeight: FontWeight.normal),
+              ),
+              onChanged: (value) async {
+                print("跟随系统");
+                await PreferencesDB().setAppIsLocaleSystem(context, true);
+              },
+            );
+          },
         ),
 
-        /// 测试
-        InkWell(
-          child: const Text("跟随系统"),
-          onTap: () {
-            print("跟随系统");
-            Provider.of<ApplicationViewModel>(context, listen: false)
-                .setLocaleSystem(true);
-          },
-        ),
-        InkWell(
-          child: const Text("简体中文"),
-          onTap: () {
-            print("简体中文");
-            Provider.of<ApplicationViewModel>(context, listen: false)
-                .setLocale(const Locale('zh', 'CN'));
-          },
-        ),
-        InkWell(
-          child: const Text("English"),
-          onTap: () {
-            print("English");
-            Provider.of<ApplicationViewModel>(context, listen: false)
-                .setLocale(const Locale('en'));
+        /// 语言
+        Consumer<ApplicationViewModel>(
+          builder: (_, applicationViewModel, child) {
+            return Column(
+              children: List<Widget>.generate(languageList.length, (index) {
+                return RadioListTile(
+                  value: languageList[index]["locale"].toString(),
+                  groupValue: !applicationViewModel.localeSystem
+                      ? applicationViewModel.locale.toString()
+                      : false,
+                  title: Text(
+                    languageList[index]["language"].toString(),
+                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        fontSize: 14.sp, fontWeight: FontWeight.normal),
+                  ),
+                  onChanged: (value) async {
+                    print(
+                        "语言切换为:" + languageList[index]["language"].toString());
+                    await PreferencesDB()
+                        .setAppLocale(context, value.toString());
+                  },
+                );
+              }),
+            );
           },
         ),
       ],
