@@ -240,10 +240,10 @@ class S {
     );
   }
 
-  /// `Record yourself better from now on`
+  /// `Start recording a better version of yourself now`
   String get onboarding_content_3_1 {
     return Intl.message(
-      'Record yourself better from now on',
+      'Start recording a better version of yourself now',
       name: 'onboarding_content_3_1',
       desc: '',
       args: [],
@@ -310,10 +310,10 @@ class S {
     );
   }
 
-  /// `Self growth`
+  /// `Self-growth`
   String get home_help_article_title_1 {
     return Intl.message(
-      'Self growth',
+      'Self-growth',
       name: 'home_help_article_title_1',
       desc: '',
       args: [],
@@ -550,10 +550,10 @@ class S {
     );
   }
 
-  /// `Cumulative\nrecording days`
+  /// `Cumulative\nrecord days`
   String get statistic_overall_daysCount_subTitle {
     return Intl.message(
-      'Cumulative\nrecording days',
+      'Cumulative\nrecord days',
       name: 'statistic_overall_daysCount_subTitle',
       desc: '',
       args: [],
