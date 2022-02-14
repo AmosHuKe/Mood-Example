@@ -64,7 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "home_help_article_content_2": MessageLookupByLibrary.simpleMessage(
             "How to better manage your emotions..."),
         "home_help_article_title_1":
-            MessageLookupByLibrary.simpleMessage("Self growth"),
+            MessageLookupByLibrary.simpleMessage("Self-growth"),
         "home_help_article_title_2":
             MessageLookupByLibrary.simpleMessage("Emotion management"),
         "home_help_title": MessageLookupByLibrary.simpleMessage("Help"),
@@ -113,7 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "onboarding_content_2_2": MessageLookupByLibrary.simpleMessage(
             "Let you know your mental activity"),
         "onboarding_content_3_1": MessageLookupByLibrary.simpleMessage(
-            "Record yourself better from now on"),
+            "Start recording a better version of yourself now"),
         "onboarding_title_1":
             MessageLookupByLibrary.simpleMessage("Managing thoughts"),
         "onboarding_title_2":
@@ -131,7 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "statistic_moodStatistics_title":
             MessageLookupByLibrary.simpleMessage("Mood statistics"),
         "statistic_overall_daysCount_subTitle":
-            MessageLookupByLibrary.simpleMessage("Cumulative\nrecording days"),
+            MessageLookupByLibrary.simpleMessage("Cumulative\nrecord days"),
         "statistic_overall_daysCount_title": m4,
         "statistic_overall_moodCount_subTitle":
             MessageLookupByLibrary.simpleMessage("Cumulative\nrecord mood"),
