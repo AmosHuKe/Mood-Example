@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 ///
 import 'package:moodexample/generated/l10n.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:remixicon/remixicon.dart';
 
 /// 数据
 
@@ -30,6 +31,14 @@ class _SettingDatabaseState extends State<SettingDatabase> {
                   fontSize: 14.sp,
                 ),
           ),
+        ),
+        Column(
+          children: [
+            IconButton(
+              icon: Icon(Remix.download_2_fill),
+              onPressed: () {},
+            ),
+          ],
         ),
       ],
     );
