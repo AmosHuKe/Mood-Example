@@ -11,8 +11,8 @@
 
 <p align="center">
 <img alt="Mood-Example v1.0.2" src="https://img.shields.io/badge/Mood--Example-v1.0.2-3e4663"/> 
-<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v8.0" src="https://img.shields.io/badge/Flutter-v8.0-46D1FD"/></a> 
-<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.15" src="https://img.shields.io/badge/Dart-v2.15-04599D"/></a> 
+<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v2.10.4" src="https://img.shields.io/badge/Flutter-v2.10.4-46D1FD"/></a> 
+<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.16.2" src="https://img.shields.io/badge/Dart-v2.16.2-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -61,10 +61,11 @@
 ### 基本环境  
 
 ```
-[√] Flutter (Channel stable, 2.8.0, on Microsoft Windows [Version 10.0.22000.376], locale zh-CN)  
-[√] Android toolchain - develop for Android devices (Android SDK version 31.0.0)  
-[√] Android Studio (version 2020.3)  
-[√] VS Code (version 1.63.2)  
+[√] Flutter (Channel stable, 2.10.4, on Microsoft Windows [Version 10.0.22000.556], locale zh-CN)
+[√] Android toolchain - develop for Android devices (Android SDK version 31.0.0)
+[√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.1.3)
+[√] Android Studio (version 2020.3)
+[√] VS Code (version 1.66.0)
 ```  
 
 ### 国际化支持  
@@ -200,6 +201,7 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 * [card_swiper](https://pub.dev/packages/card_swiper) [[MIT License](https://pub.dev/packages/card_swiper/license)]  
 * [vibration](https://pub.dev/packages/vibration) [[BSD-2-Clause License](https://pub.dev/packages/vibration/license)]  
 * [fl_chart](https://pub.dev/packages/fl_chart) [[BSD-3-Clause License](https://pub.dev/packages/fl_chart/license)]  
+* [excel](https://pub.dev/packages/excel) [[MIT License](https://pub.dev/packages/excel/license)]  
 * [cupertino_icons](https://pub.dev/packages/cupertino_icons) [[MIT License](https://pub.dev/packages/cupertino_icons/license)]  
 * [remixicon](https://pub.dev/packages/remixicon) [[MIT License](https://pub.dev/packages/remixicon/license)]  
 * [flutter_lints](https://pub.dev/packages/flutter_lints) [[BSD-3-Clause License](https://pub.dev/packages/flutter_lints/license)]  

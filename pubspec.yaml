@@ -58,6 +58,8 @@ dependencies:
   vibration: ^1.7.4-nullsafety.0
   # 图表
   fl_chart: ^0.41.0
+  # Excel
+  excel: ^2.0.0-null-safety-3
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
