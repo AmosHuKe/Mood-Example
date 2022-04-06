@@ -12,6 +12,7 @@ import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
 import 'package:moodexample/views/menu_screen/widgets/setting_theme.dart';
 import 'package:moodexample/views/menu_screen/widgets/setting_language.dart';
+import 'package:moodexample/views/menu_screen/widgets/setting_database.dart';
 
 ///
 import 'package:moodexample/view_models/application/application_view_model.dart';
@@ -143,6 +144,12 @@ class Menu extends StatelessWidget {
           ),
           onTap: () {
             print("数据");
+
+            /// 底部内容弹出
+            showModalBottomDetail(
+              context: context,
+              child: const SettingDatabase(),
+            );
           },
         ),
         MenuList(
