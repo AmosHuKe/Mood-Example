@@ -31,9 +31,11 @@ dependencies:
     sdk: flutter
   # 国际化
   flutter_localizations:
-        sdk: flutter
+    sdk: flutter
   # 国际化
   intl: ^0.17.0
+  # 路径
+  path_provider: ^2.0.9
   # 自适应工具
   flutter_screenutil: ^5.0.0+2
   # 状态管理

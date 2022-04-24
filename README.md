@@ -192,6 +192,7 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 * [provider](https://pub.dev/packages/provider) [[MIT License](https://pub.dev/packages/provider/license)]  
 * [sqflite](https://pub.dev/packages/sqflite) [[BSD-2-Clause License](https://pub.dev/packages/sqflite/license)]  
 * [shared_preferences](https://pub.dev/packages/shared_preferences) [[BSD-3-Clause License](https://pub.dev/packages/shared_preferences/license)]  
+* [path_provider](https://pub.dev/packages/path_provider) [[BSD-3-Clause License](https://pub.dev/packages/path_provider/license)]  
 * [intl](https://pub.dev/packages/intl) [[BSD-3-Clause License](https://pub.dev/packages/intl/license)]  
 * [fluro](https://pub.dev/packages/fluro) [[MIT License](https://pub.dev/packages/fluro/license)]  
 * [flutter_zoom_drawer](https://pub.dev/packages/flutter_zoom_drawer) [[MIT License](https://pub.dev/packages/flutter_zoom_drawer/license)]  
