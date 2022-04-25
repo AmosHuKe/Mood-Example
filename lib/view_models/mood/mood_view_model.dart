@@ -31,6 +31,9 @@ class MoodViewModel extends ChangeNotifier {
   /// 心情类别List
   List<MoodCategoryData>? _moodCategoryList = [];
 
+  /// 所有心情数据List
+  List<MoodData>? _moodAllDataList = [];
+
   /// 赋值心情数据
   void setMoodDataList(MoodModel moodModel) {
     _moodDataList = [];
@@ -89,6 +92,13 @@ class MoodViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// 赋值所有心情数据
+  void setMoodAllDataList(MoodModel moodModel) {
+    _moodAllDataList = [];
+    _moodAllDataList = moodModel.moodData;
+    notifyListeners();
+  }
+
   /// 心情数据
   List<MoodData>? get moodDataList => _moodDataList;
   MoodData? get moodData => _moodData;
@@ -97,4 +107,5 @@ class MoodViewModel extends ChangeNotifier {
   List get moodRecordedDate => _moodRecordedDate;
   MoodCategoryData get moodCategoryData => _moodCategoryData;
   List<MoodCategoryData>? get moodCategoryList => _moodCategoryList;
+  List<MoodData>? get moodAllDataList => _moodAllDataList;
 }

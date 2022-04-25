@@ -126,6 +126,16 @@ class DB {
     return list;
   }
 
+  /// 查询所有心情详情
+  Future<List> selectAllMood() async {
+    final db = await database;
+    List list = await db.query(
+      TableMoodInfo.tableName,
+      orderBy: "${TableMoodInfo.fieldMoodId} desc",
+    );
+    return list;
+  }
+
   /// 心情类别
 
   /// 查询所有心情类别

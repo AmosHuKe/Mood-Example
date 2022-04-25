@@ -120,4 +120,15 @@ class MoodService {
     bool result = await DB.db.deleteMood(moodData);
     return result;
   }
+
+  /// 获取所有心情详情数据
+  static Future<void> getMoodAllData(MoodViewModel moodViewModel) async {
+    // 查询心情数据
+    final _moodData = await DB.db.selectAllMood();
+    Map<String, List> _moodDataAll = {"data": _moodData};
+    // 转换模型
+    MoodModel moodModel = moodModelFromJson(json.encode(_moodDataAll));
+    // 更新数据
+    moodViewModel.setMoodAllDataList(moodModel);
+  }
 }
