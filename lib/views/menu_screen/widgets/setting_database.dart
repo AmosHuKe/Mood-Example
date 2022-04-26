@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:excel/excel.dart';
+import 'package:share_plus/share_plus.dart';
 
 ///
 import 'package:moodexample/generated/l10n.dart';
@@ -48,6 +49,13 @@ class _SettingDatabaseState extends State<SettingDatabase> {
               onPressed: () async {
                 MoodViewModel moodViewModel = MoodViewModel();
                 DateTime now = DateTime.now();
+
+                /// 获取APP文件临时根路径
+                final directory = (await getTemporaryDirectory()).path;
+
+                /// 保存文件路径及名称
+                final String fileName =
+                    "$directory/system/database/MoodExample_$now.xlsx";
 
                 /// 创建Excel
                 var excel = Excel.createExcel();
@@ -127,14 +135,13 @@ class _SettingDatabaseState extends State<SettingDatabase> {
                 /// 保存Excel
                 final fileBytes = excel.save();
 
-                /// 获取APP文件根路径
-                final directory =
-                    (await getApplicationDocumentsDirectory()).path;
-
                 /// 存入文件
-                File(join("$directory/system/database/MoodExample_$now.xlsx"))
+                File(join(fileName))
                   ..createSync(recursive: true)
                   ..writeAsBytesSync(fileBytes!);
+
+                /// 分享文件
+                Share.shareFiles([fileName]);
               },
             ),
           ],
