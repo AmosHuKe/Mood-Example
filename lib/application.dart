@@ -82,6 +82,7 @@ class _ApplicationState extends State<Application> {
           localeListResolutionCallback: (locales, supportedLocales) {
             print("当前地区语言" + locales.toString());
             print("设备支持的地区语言" + supportedLocales.toString());
+            return null;
           },
 
           /// Home
