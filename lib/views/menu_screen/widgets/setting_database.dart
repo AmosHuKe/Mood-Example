@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:moodexample/widgets/empty/empty.dart';
 import 'dart:io';
 import 'package:path/path.dart';
 
@@ -26,7 +25,97 @@ class SettingDatabase extends StatefulWidget {
   State<SettingDatabase> createState() => _SettingDatabaseState();
 }
 
-class _SettingDatabaseState extends State<SettingDatabase> {
+class _SettingDatabaseState extends State<SettingDatabase>
+    with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TabBar(
+          controller: _tabController,
+          indicatorColor: Colors.transparent,
+          labelStyle: const TextStyle(fontWeight: FontWeight.w900),
+          unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
+          tabs: [
+            Tab(
+              child: Text(
+                "导出数据",
+                style: TextStyle(
+                  fontSize: 14.sp,
+                ),
+              ),
+            ),
+            Tab(
+              child: Text(
+                "导入数据",
+                style: TextStyle(
+                  fontSize: 14.sp,
+                ),
+              ),
+            )
+          ],
+        ),
+        Expanded(
+          child: TabBarView(
+            controller: _tabController,
+            physics: const AlwaysScrollableScrollPhysics(
+              parent: BouncingScrollPhysics(),
+            ),
+            children: [
+              ListView(
+                physics: const AlwaysScrollableScrollPhysics(
+                  parent: BouncingScrollPhysics(),
+                ),
+                children: [
+                  Center(
+                    heightFactor: 2.h,
+                    child: const ExportDatanaseBody(),
+                  )
+                ],
+              ),
+              ListView(
+                physics: const AlwaysScrollableScrollPhysics(
+                  parent: BouncingScrollPhysics(),
+                ),
+                children: [
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: 6.w, top: 24.w, bottom: 14.w),
+                    child: Text(
+                      "导入数据",
+                      style: Theme.of(context).textTheme.headline1!.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14.sp,
+                          ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// 导出数据
+class ExportDatanaseBody extends StatefulWidget {
+  const ExportDatanaseBody({Key? key}) : super(key: key);
+
+  @override
+  State<ExportDatanaseBody> createState() => _ExportDatanaseBodyState();
+}
+
+class _ExportDatanaseBodyState extends State<ExportDatanaseBody> {
   /// 数据导出位置
   String exportPath = "";
 
@@ -34,79 +123,74 @@ class _SettingDatabaseState extends State<SettingDatabase> {
   bool isExport = false;
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      physics: const AlwaysScrollableScrollPhysics(
-        parent: BouncingScrollPhysics(),
-      ),
+    return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 14.w),
-          child: Text(
-            "导出数据",
-            style: Theme.of(context).textTheme.headline1!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14.sp,
-                ),
-          ),
-        ),
-        Column(
-          children: [
-            Container(
-              width: 96.w,
-              height: 96.w,
-              padding: EdgeInsets.only(top: 24.w),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Theme.of(context).primaryColor,
-                      Theme.of(context).primaryColor,
-                    ],
-                  ),
-                  shape: BoxShape.circle,
-                ),
-                child: isExport
-                    ? const CupertinoActivityIndicator(color: Color(0xFFFFFFFF))
-                    : Material(
-                        color: Colors.transparent,
-                        child: IconButton(
-                          splashColor: Colors.white10,
-                          highlightColor: Colors.white10,
-                          icon: const Icon(Remix.arrow_down_line),
-                          iconSize: 24.sp,
-                          color: const Color(0xFFFFFFFF),
-                          onPressed: () async {
-                            try {
-                              /// 没文件则进行生成
-                              if (exportPath.isEmpty) {
-                                setState(() {
-                                  isExport = true;
-                                });
-                                await Future.delayed(
-                                    const Duration(milliseconds: 1500),
-                                    () async {
-                                  exportPath = await exportDatabase();
-                                });
-                              }
-
-                              /// 有文件则直接分享
-                              if (exportPath.isNotEmpty) {
-                                setState(() {
-                                  isExport = false;
-                                });
-
-                                /// 分享文件
-                                Share.shareFiles([exportPath]);
-                              }
-                            } catch (e) {
-                              print(e);
-                            }
-                          },
-                        ),
-                      ),
+        SizedBox(
+          width: 128.w,
+          height: 128.w,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).primaryColor.withAlpha(140),
+                ],
               ),
+              boxShadow: [
+                BoxShadow(
+                  color: Theme.of(context).primaryColor.withOpacity(0.3),
+                  offset: const Offset(0, 5.0),
+                  blurRadius: 15.0,
+                  spreadRadius: 2.0,
+                )
+              ],
+              shape: BoxShape.circle,
             ),
-          ],
+            child: isExport
+                ? CupertinoActivityIndicator(
+                    radius: 14.sp,
+                    color: const Color(0xFFFFFFFF),
+                  )
+                : Material(
+                    color: Colors.transparent,
+                    child: IconButton(
+                      splashColor: Colors.white10,
+                      highlightColor: Colors.white10,
+                      icon: const Icon(Remix.arrow_down_line),
+                      iconSize: 48.sp,
+                      color: const Color(0xFFFFFFFF),
+                      padding: EdgeInsets.all(22.w),
+                      onPressed: () async {
+                        try {
+                          /// 没文件则进行生成
+                          if (exportPath.isEmpty) {
+                            setState(() {
+                              isExport = true;
+                            });
+                            await Future.delayed(
+                                const Duration(milliseconds: 1500), () async {
+                              exportPath = await exportDatabase();
+                            });
+                          }
+
+                          /// 有文件则直接分享
+                          if (exportPath.isNotEmpty) {
+                            setState(() {
+                              isExport = false;
+                            });
+
+                            /// 分享文件
+                            Share.shareFiles([exportPath]);
+                          }
+                        } catch (e) {
+                          print(e);
+                        }
+                      },
+                    ),
+                  ),
+          ),
         ),
       ],
     );
