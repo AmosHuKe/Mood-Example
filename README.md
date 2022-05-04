@@ -206,7 +206,8 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 * [cupertino_icons](https://pub.dev/packages/cupertino_icons) [[MIT License](https://pub.dev/packages/cupertino_icons/license)]  
 * [remixicon](https://pub.dev/packages/remixicon) [[MIT License](https://pub.dev/packages/remixicon/license)]  
 * [flutter_lints](https://pub.dev/packages/flutter_lints) [[BSD-3-Clause License](https://pub.dev/packages/flutter_lints/license)]  
-* [share_plus](https://pub.flutter-io.cn/packages/share_plus) [[BSD-3-Clause License](https://pub.flutter-io.cn/packages/share_plus/license)]  
+* [share_plus](https://pub.dev/packages/share_plus) [[BSD-3-Clause License](https://pub.dev/packages/share_plus/license)]  
+* [file_picker](https://pub.dev/packages/file_picker) [[MIT License](https://pub.dev/packages/file_picker/license)]  
 
 
 
