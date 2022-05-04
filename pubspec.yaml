@@ -64,6 +64,8 @@ dependencies:
   excel: ^2.0.0-null-safety-3
   # 分享
   share_plus: ^4.0.4
+  # 文件选择
+  file_picker: ^4.5.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
