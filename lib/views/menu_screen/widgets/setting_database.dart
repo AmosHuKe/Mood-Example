@@ -1,14 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
 import 'package:path/path.dart';
+import 'dart:io';
+import 'dart:convert';
 
 ///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:excel/excel.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:intl/intl.dart';
 
 ///
 import 'package:moodexample/generated/l10n.dart';
@@ -16,6 +20,7 @@ import 'package:moodexample/generated/l10n.dart';
 ///
 import 'package:moodexample/view_models/mood/mood_view_model.dart';
 import 'package:moodexample/services/mood/mood_service.dart';
+import 'package:moodexample/models/mood/mood_model.dart';
 
 /// 数据
 class SettingDatabase extends StatefulWidget {
@@ -70,6 +75,7 @@ class _SettingDatabaseState extends State<SettingDatabase>
               parent: BouncingScrollPhysics(),
             ),
             children: [
+              /// 导出数据
               ListView(
                 physics: const AlwaysScrollableScrollPhysics(
                   parent: BouncingScrollPhysics(),
@@ -77,25 +83,20 @@ class _SettingDatabaseState extends State<SettingDatabase>
                 children: [
                   Center(
                     heightFactor: 2.h,
-                    child: const ExportDatanaseBody(),
+                    child: const ExportDatabaseBody(),
                   )
                 ],
               ),
+
+              /// 导入数据
               ListView(
                 physics: const AlwaysScrollableScrollPhysics(
                   parent: BouncingScrollPhysics(),
                 ),
                 children: [
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: 6.w, top: 24.w, bottom: 14.w),
-                    child: Text(
-                      "导入数据",
-                      style: Theme.of(context).textTheme.headline1!.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14.sp,
-                          ),
-                    ),
+                    padding: EdgeInsets.only(top: 24.w, bottom: 14.w),
+                    child: const ImportDatabaseBody(),
                   ),
                 ],
               ),
@@ -107,15 +108,155 @@ class _SettingDatabaseState extends State<SettingDatabase>
   }
 }
 
-/// 导出数据
-class ExportDatanaseBody extends StatefulWidget {
-  const ExportDatanaseBody({Key? key}) : super(key: key);
+/// 导入数据
+class ImportDatabaseBody extends StatefulWidget {
+  const ImportDatabaseBody({Key? key}) : super(key: key);
 
   @override
-  State<ExportDatanaseBody> createState() => _ExportDatanaseBodyState();
+  State<ImportDatabaseBody> createState() => _ImportDatabaseBodyState();
 }
 
-class _ExportDatanaseBodyState extends State<ExportDatanaseBody> {
+class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        InkWell(
+          child: const Text("导入测试"),
+          onTap: () async {
+            await importDatabase(context);
+          },
+        )
+      ],
+    );
+  }
+}
+
+/// 导入数据
+Future importDatabase(BuildContext context) async {
+  print("导入数据");
+  try {
+    /// 心情数据
+    Map<String, dynamic> _moodData = {
+      "icon": "",
+      "title": "",
+      "score": "",
+      "content": "",
+      "createTime": "",
+      "updateTime": ""
+    };
+    int _dataIndex = 0;
+
+    /// 清除选择文件的缓存
+    await FilePicker.platform.clearTemporaryFiles();
+
+    /// 选择文件
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['xlsx', 'xls'],
+      allowMultiple: false,
+    );
+    if (result != null) {
+      /// 文件路径、内容
+      final file = result.files.single.path ?? '';
+      final bytes = File(file).readAsBytesSync();
+      final excel = Excel.decodeBytes(bytes);
+      for (final table in excel.tables.keys) {
+        print(table); // 工作表名
+        print(excel.tables[table]!.maxCols); // 表最大列数
+        print(excel.tables[table]!.maxRows); // 表最大行数
+        /// 判断是否是需要的工作表
+        if (table == "MoodExample") {
+          /// 此处还需要检测导入表是否符合标准，否则导出错误提示的Excel文件
+
+          /// 导入数据操作
+          for (final row in excel.tables['MoodExample']!.rows) {
+            for (final data in row) {
+              _dataIndex++;
+              if (_dataIndex < 3) {
+                break;
+              }
+              print(data);
+              int? colIndex = data?.colIndex;
+              dynamic value = data?.value;
+              switch (colIndex) {
+
+                /// 表情
+                case 0:
+                  _moodData["icon"] = value.toString();
+                  break;
+
+                /// 心情
+                case 1:
+                  _moodData["title"] = value.toString();
+                  break;
+
+                /// 内容
+                case 2:
+                  _moodData["content"] = value.toString();
+                  break;
+
+                /// 心情程度
+                case 3:
+                  _moodData["score"] = value;
+                  break;
+
+                /// 创建日期、修改日期
+                case 4:
+                  final _moodDate = DateFormat("yyyy-MM-dd")
+                      .parse(value)
+                      .toString()
+                      .substring(0, 10);
+                  _moodData["createTime"] = _moodDate;
+                  _moodData["updateTime"] = _moodDate;
+                  break;
+              }
+
+              /// 导入数据（一组数据完成）
+              if (colIndex == 4) {
+                print(moodDataFromJson(json.encode(_moodData)));
+
+                /// 是否操作成功
+                late bool _result = false;
+                _result = await MoodService.addMoodData(
+                    moodDataFromJson(json.encode(_moodData)));
+                print(_result);
+              }
+            }
+          }
+        }
+      }
+
+      /// 更新心情数据
+      MoodViewModel _moodViewModel =
+          Provider.of<MoodViewModel>(context, listen: false);
+
+      /// 获取所有有记录心情的日期
+      MoodService.getMoodRecordedDate(_moodViewModel);
+
+      /// 处理日期
+      String moodDatetime =
+          _moodViewModel.nowDateTime.toString().substring(0, 10);
+
+      /// 获取心情数据
+      MoodService.getMoodData(_moodViewModel, moodDatetime);
+    } else {
+      /// 未选择文件
+    }
+  } catch (e) {
+    print(e);
+  }
+}
+
+/// 导出数据
+class ExportDatabaseBody extends StatefulWidget {
+  const ExportDatabaseBody({Key? key}) : super(key: key);
+
+  @override
+  State<ExportDatabaseBody> createState() => _ExportDatabaseBodyState();
+}
+
+class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
   /// 数据导出位置
   String exportPath = "";
 
@@ -140,7 +281,7 @@ class _ExportDatanaseBodyState extends State<ExportDatanaseBody> {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Theme.of(context).primaryColor.withOpacity(0.3),
+                  color: Theme.of(context).primaryColor.withOpacity(0.2),
                   offset: const Offset(0, 5.0),
                   blurRadius: 15.0,
                   spreadRadius: 2.0,
@@ -170,7 +311,7 @@ class _ExportDatanaseBodyState extends State<ExportDatanaseBody> {
                               isExport = true;
                             });
                             await Future.delayed(
-                                const Duration(milliseconds: 1500), () async {
+                                const Duration(milliseconds: 1000), () async {
                               exportPath = await exportDatabase();
                             });
                           }
@@ -248,7 +389,8 @@ Future<String> exportDatabase() async {
   /// 创建字段标题
   sheetObject.cell(CellIndex.indexByString("A2"))
     ..value = "表情"
-    ..cellStyle = cellStyle;
+    ..cellStyle = cellStyle.copyWith(
+        fontFamilyVal: getFontFamily(FontFamily.Apple_Color_Emoji));
   sheetObject.cell(CellIndex.indexByString("B2"))
     ..value = "心情"
     ..cellStyle = cellStyle;
