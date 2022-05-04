@@ -74,7 +74,8 @@ class DB {
     final db = await database;
     List list = await db.query(
       TableMoodInfo.tableName,
-      orderBy: "${TableMoodInfo.fieldMoodId} desc",
+      orderBy:
+          "${TableMoodInfo.fieldCreateTime} asc, ${TableMoodInfo.fieldMoodId} desc",
       where: '''
         ${TableMoodInfo.fieldCreateTime} like ? 
       ''',
@@ -131,7 +132,7 @@ class DB {
     final db = await database;
     List list = await db.query(
       TableMoodInfo.tableName,
-      orderBy: "${TableMoodInfo.fieldMoodId} desc",
+      orderBy: "${TableMoodInfo.fieldCreateTime} desc",
     );
     return list;
   }
