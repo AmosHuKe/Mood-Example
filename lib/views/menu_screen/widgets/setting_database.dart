@@ -347,7 +347,15 @@ Future<String> exportDatabase() async {
   final directory = (await getTemporaryDirectory()).path;
 
   /// 保存文件路径及名称
-  final String fileName = "$directory/system/database/MoodExample_$now.xlsx";
+  final String filePath = "$directory/system/database/export";
+  final String fileName = "$filePath/MoodExample_$now.xlsx";
+
+  /// 删除之前的缓存
+  try {
+    Directory(filePath).deleteSync(recursive: true);
+  } catch (e) {
+    print(e);
+  }
 
   /// 创建Excel
   Excel excel = Excel.createExcel();
