@@ -136,17 +136,6 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
 Future importDatabase(BuildContext context) async {
   print("导入数据");
   try {
-    /// 心情数据
-    Map<String, dynamic> _moodData = {
-      "icon": "",
-      "title": "",
-      "score": "",
-      "content": "",
-      "createTime": "",
-      "updateTime": ""
-    };
-    int _dataIndex = 0;
-
     /// 清除选择文件的缓存
     await FilePicker.platform.clearTemporaryFiles();
 
@@ -167,62 +156,16 @@ Future importDatabase(BuildContext context) async {
         print(excel.tables[table]!.maxRows); // 表最大行数
         /// 判断是否是需要的工作表
         if (table == "MoodExample") {
-          /// 此处还需要检测导入表是否符合标准，否则导出错误提示的Excel文件
+          /// 检测导入表是否符合标准，否则导出错误提示的Excel文件
+          final _errorPath =
+              await importDatabaseError(excel.tables['MoodExample']!.rows);
+          print("错误文件" + _errorPath);
 
-          /// 导入数据操作
-          for (final row in excel.tables['MoodExample']!.rows) {
-            for (final data in row) {
-              _dataIndex++;
-              if (_dataIndex < 3) {
-                break;
-              }
-              print(data);
-              int? colIndex = data?.colIndex;
-              dynamic value = data?.value;
-              switch (colIndex) {
-
-                /// 表情
-                case 0:
-                  _moodData["icon"] = value.toString();
-                  break;
-
-                /// 心情
-                case 1:
-                  _moodData["title"] = value.toString();
-                  break;
-
-                /// 内容
-                case 2:
-                  _moodData["content"] = value.toString();
-                  break;
-
-                /// 心情程度
-                case 3:
-                  _moodData["score"] = value;
-                  break;
-
-                /// 创建日期、修改日期
-                case 4:
-                  final _moodDate = DateFormat("yyyy-MM-dd")
-                      .parse(value)
-                      .toString()
-                      .substring(0, 10);
-                  _moodData["createTime"] = _moodDate;
-                  _moodData["updateTime"] = _moodDate;
-                  break;
-              }
-
-              /// 导入数据（一组数据完成）
-              if (colIndex == 4) {
-                print(moodDataFromJson(json.encode(_moodData)));
-
-                /// 是否操作成功
-                late bool _result = false;
-                _result = await MoodService.addMoodData(
-                    moodDataFromJson(json.encode(_moodData)));
-                print(_result);
-              }
-            }
+          /// 分享文件
+          Share.shareFiles([_errorPath]);
+          if (_errorPath.isEmpty) {
+            /// 导入数据操作
+            await importDatabaseStart(excel.tables['MoodExample']!.rows);
           }
         }
       }
@@ -246,6 +189,250 @@ Future importDatabase(BuildContext context) async {
   } catch (e) {
     print(e);
   }
+}
+
+/// 正式导入数据
+Future importDatabaseStart(List<List<Data?>> database) async {
+  /// 心情数据
+  Map<String, dynamic> _moodData = {
+    "icon": "",
+    "title": "",
+    "score": "",
+    "content": "",
+    "createTime": "",
+    "updateTime": ""
+  };
+  int _dataIndex = 0;
+  for (final row in database) {
+    for (final data in row) {
+      _dataIndex++;
+      if (_dataIndex < 3) {
+        break;
+      }
+      int? colIndex = data?.colIndex;
+      dynamic value = data?.value;
+      switch (colIndex) {
+
+        /// 表情
+        case 0:
+          _moodData["icon"] = value.toString();
+          break;
+
+        /// 心情
+        case 1:
+          _moodData["title"] = value.toString();
+          break;
+
+        /// 内容
+        case 2:
+          _moodData["content"] = value.toString();
+          break;
+
+        /// 心情程度
+        case 3:
+          _moodData["score"] = value;
+          break;
+
+        /// 创建日期、修改日期
+        case 4:
+          final _moodDate =
+              DateFormat("yyyy-MM-dd").parse(value).toString().substring(0, 10);
+          _moodData["createTime"] = _moodDate;
+          _moodData["updateTime"] = _moodDate;
+          break;
+      }
+
+      /// 导入数据（一组数据完成）
+      if (colIndex == 4) {
+        print(moodDataFromJson(json.encode(_moodData)));
+
+        /// 是否操作成功
+        late bool _result = false;
+        _result = await MoodService.addMoodData(
+            moodDataFromJson(json.encode(_moodData)));
+        print("是否导入成功" + _result.toString());
+      }
+    }
+  }
+}
+
+/// 导入数据错误处理
+Future<String> importDatabaseError(List<List<Data?>> database) async {
+  String _errorPath = "";
+  final _errorData = await importDatabaseErrorCheck(database);
+
+  /// 存在错误就开始存储错误文件
+  if (_errorData.isNotEmpty) {
+    DateTime now = DateTime.now();
+
+    /// 获取APP文件临时根路径
+    final directory = (await getTemporaryDirectory()).path;
+
+    /// 保存文件路径及名称
+    final String filePath = "$directory/system/database/importError";
+    final String fileName = "$filePath/MoodExample导入错误内容_$now.xlsx";
+
+    /// 删除之前的缓存
+    try {
+      Directory(filePath).deleteSync(recursive: true);
+    } catch (e) {
+      print(e);
+    }
+
+    /// 创建Excel
+    Excel excelError = Excel.createExcel();
+
+    /// 创建工作薄
+    Sheet sheetObject = excelError['MoodExample'];
+
+    /// 设置默认工作薄
+    excelError.setDefaultSheet('MoodExample');
+
+    /// 单元格样式
+    CellStyle cellStyle = CellStyle(
+      fontColorHex: "#FFFFFF",
+      fontSize: 10,
+      bold: true,
+      fontFamily: getFontFamily(FontFamily.Microsoft_Sans_Serif),
+      backgroundColorHex: "#3E4663",
+      horizontalAlign: HorizontalAlign.Center,
+      verticalAlign: VerticalAlign.Center,
+    );
+
+    /// 创建大标题
+    sheetObject.merge(
+      CellIndex.indexByString("A1"),
+      CellIndex.indexByString("B1"),
+    );
+    sheetObject.cell(CellIndex.indexByString("A1"))
+      ..value = "MoodExample"
+      ..cellStyle = CellStyle(
+        fontColorHex: "#FFFFFF",
+        fontSize: 10,
+        bold: true,
+        fontFamily: getFontFamily(FontFamily.Microsoft_Sans_Serif),
+        backgroundColorHex: "#3E4663",
+        horizontalAlign: HorizontalAlign.Center,
+        verticalAlign: VerticalAlign.Center,
+      );
+
+    /// 创建字段标题
+    sheetObject.cell(CellIndex.indexByString("A2"))
+      ..value = "错误所在行"
+      ..cellStyle = cellStyle.copyWith(
+          fontFamilyVal: getFontFamily(FontFamily.Apple_Color_Emoji));
+    sheetObject.cell(CellIndex.indexByString("B2"))
+      ..value = "错误内容"
+      ..cellStyle = cellStyle;
+
+    /// 添加Excel数据
+    for (var list in _errorData) {
+      sheetObject.appendRow(list);
+    }
+
+    /// 保存Excel
+    final fileBytes = excelError.save();
+
+    /// 存入文件
+    File(join(fileName))
+      ..createSync(recursive: true)
+      ..writeAsBytesSync(fileBytes!);
+
+    _errorPath = fileName;
+  }
+  return _errorPath;
+}
+
+/// 导入数据错误检测
+Future<List<List>> importDatabaseErrorCheck(List<List<Data?>> database) async {
+  /// 错误内容
+  List<List> _errorData = [];
+
+  /// 错误原因
+  String _errorText = "";
+
+  int _dataIndex = 0;
+  int _rowIndex = 0;
+  for (final row in database) {
+    _dataIndex++;
+    if (_dataIndex < 3) {
+      continue;
+    }
+    for (final data in row) {
+      dynamic value = data?.value;
+      // print(data);
+      // print(value);
+      // print(_rowIndex);
+      switch (_rowIndex) {
+
+        /// 表情
+        case 0:
+          if (value == null) {
+            _errorText += "【表情必填】 ";
+          }
+          break;
+
+        /// 心情
+        case 1:
+          if (value == null) {
+            _errorText += "【心情必填】 ";
+          }
+          break;
+
+        /// 内容
+        case 2:
+          break;
+
+        /// 心情程度
+        case 3:
+          final _tryValue = int.tryParse(value.toString()) == null
+              ? null
+              : int.parse(value.toString());
+          if (_tryValue == null) {
+            _errorText += "【心情程度只能为0-100整数】 ";
+          }
+          if (_tryValue != null && (_tryValue < 0 || _tryValue > 100)) {
+            _errorText += "【心情程度只能为0-100整数】 ";
+          }
+          break;
+
+        /// 创建日期、修改日期
+        case 4:
+          String? _tryValue;
+          try {
+            _tryValue = DateFormat("yyyy-MM-dd")
+                .parse(value)
+                .toString()
+                .substring(0, 10);
+          } catch (e) {
+            _tryValue = null;
+          }
+          print(_tryValue);
+          if (_tryValue == null) {
+            _errorText += "【创建时间只能为文本，如2000-11-03】 ";
+          }
+          break;
+      }
+
+      /// 导入数据（一组数据完成）并且错误内容不为空
+      if (_rowIndex == 4 && _errorText.isNotEmpty) {
+        print("一组数据");
+        _errorData.add(["第$_dataIndex行", _errorText]);
+      }
+
+      /// 重置
+      if (_rowIndex == 4) {
+        _rowIndex = -1;
+
+        /// 错误原因
+        _errorText = "";
+      }
+
+      _rowIndex++;
+    }
+  }
+
+  return _errorData;
 }
 
 /// 导出数据
