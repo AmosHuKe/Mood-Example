@@ -10,8 +10,8 @@
 </h1> 
 
 <p align="center">
-<img alt="Mood-Example v1.0.2" src="https://img.shields.io/badge/Mood--Example-v1.0.2-3e4663"/> 
-<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v2.10.4" src="https://img.shields.io/badge/Flutter-v2.10.4-46D1FD"/></a> 
+<img alt="Mood-Example v1.1.3" src="https://img.shields.io/badge/Mood--Example-v1.1.3-3e4663"/> 
+<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v2.10.5" src="https://img.shields.io/badge/Flutter-v2.10.5-46D1FD"/></a> 
 <a target="_blank" href="https://dart.dev/"><img alt="Dart v2.16.2" src="https://img.shields.io/badge/Dart-v2.16.2-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
@@ -41,7 +41,7 @@
 - [x] 状态管理（MVVM）  
 - [x] 情绪记录  
 - [x] 图表统计    
-- [ ] Excel 导入导出  
+- [x] Excel 导入导出  
 - [ ] 隐私解锁  
 - [ ] 动画  
 - [ ] 通知  
@@ -61,7 +61,7 @@
 ### 基本环境  
 
 ```
-[√] Flutter (Channel stable, 2.10.4, on Microsoft Windows [Version 10.0.22000.556], locale zh-CN)
+[√] Flutter (Channel stable, 2.10.5, on Microsoft Windows [Version 10.0.22000.556], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 31.0.0)
 [√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.1.3)
 [√] Android Studio (version 2020.3)
@@ -130,7 +130,7 @@ $ flutter pub get
 $ flutter run
 
 # 更多启动模式
-$ flutter run --Debug/Release/Profile/test
+$ flutter run --debug/release/profile/test
 ```
 
 ## 📑 项目结构
@@ -192,6 +192,7 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 * [provider](https://pub.dev/packages/provider) [[MIT License](https://pub.dev/packages/provider/license)]  
 * [sqflite](https://pub.dev/packages/sqflite) [[BSD-2-Clause License](https://pub.dev/packages/sqflite/license)]  
 * [shared_preferences](https://pub.dev/packages/shared_preferences) [[BSD-3-Clause License](https://pub.dev/packages/shared_preferences/license)]  
+* [path_provider](https://pub.dev/packages/path_provider) [[BSD-3-Clause License](https://pub.dev/packages/path_provider/license)]  
 * [intl](https://pub.dev/packages/intl) [[BSD-3-Clause License](https://pub.dev/packages/intl/license)]  
 * [fluro](https://pub.dev/packages/fluro) [[MIT License](https://pub.dev/packages/fluro/license)]  
 * [flutter_zoom_drawer](https://pub.dev/packages/flutter_zoom_drawer) [[MIT License](https://pub.dev/packages/flutter_zoom_drawer/license)]  
@@ -205,6 +206,9 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 * [cupertino_icons](https://pub.dev/packages/cupertino_icons) [[MIT License](https://pub.dev/packages/cupertino_icons/license)]  
 * [remixicon](https://pub.dev/packages/remixicon) [[MIT License](https://pub.dev/packages/remixicon/license)]  
 * [flutter_lints](https://pub.dev/packages/flutter_lints) [[BSD-3-Clause License](https://pub.dev/packages/flutter_lints/license)]  
+* [share_plus](https://pub.dev/packages/share_plus) [[BSD-3-Clause License](https://pub.dev/packages/share_plus/license)]  
+* [file_picker](https://pub.dev/packages/file_picker) [[MIT License](https://pub.dev/packages/file_picker/license)]  
+
 
 
 ## License 许可证

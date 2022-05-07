@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/generated/l10n.dart';
 
 /// 导航返回拦截
 class WillPopScopeRoute extends StatefulWidget {
@@ -24,17 +27,14 @@ class _WillPopScopeRouteState extends State<WillPopScopeRoute> {
   Widget build(BuildContext context) {
     //屏幕自适应 设置尺寸（填写设计中设备的屏幕尺寸）如果设计基于360dp * 690dp的屏幕
     ScreenUtil.init(
-      BoxConstraints(
-        maxWidth: MediaQuery.of(context).size.width,
-        maxHeight: MediaQuery.of(context).size.height,
-      ),
+      context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
       orientation: Orientation.portrait,
     );
     return WillPopScope(
       onWillPop: () async {
         Fluttertoast.showToast(
-          msg: "再按一次退出",
+          msg: S.of(context).widgets_will_pop_scope_route_toast,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,

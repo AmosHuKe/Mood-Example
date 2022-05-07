@@ -74,7 +74,8 @@ class DB {
     final db = await database;
     List list = await db.query(
       TableMoodInfo.tableName,
-      orderBy: "${TableMoodInfo.fieldMoodId} desc",
+      orderBy:
+          "${TableMoodInfo.fieldCreateTime} asc, ${TableMoodInfo.fieldMoodId} desc",
       where: '''
         ${TableMoodInfo.fieldCreateTime} like ? 
       ''',
@@ -123,6 +124,16 @@ class DB {
       FROM ${TableMoodInfo.tableName} 
       group by recordedDate 
     ''');
+    return list;
+  }
+
+  /// 查询所有心情详情
+  Future<List> selectAllMood() async {
+    final db = await database;
+    List list = await db.query(
+      TableMoodInfo.tableName,
+      orderBy: "${TableMoodInfo.fieldCreateTime} desc",
+    );
     return list;
   }
 

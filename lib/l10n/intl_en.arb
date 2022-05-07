@@ -4,6 +4,13 @@
     "app_bottomNavigationBar_title_statistic": "Statistic",
     
     "app_setting_database":"Database",
+    "app_setting_database_export_data":"Export data",
+    "app_setting_database_export_data_toast_success":"Export succeeded",
+    "app_setting_database_import_data":"Import data",
+    "app_setting_database_import_data_button_error":"ERR",
+    "app_setting_database_import_data_button_template":"TMPL",
+    "app_setting_database_import_data_toast_error":"Import failed. Please download the wrong data, modify it and try again.",
+    "app_setting_database_import_data_toast_success":"Import succeeded",
     
     "app_setting_theme":"Theme",
     "app_setting_theme_appearance":"Appearance",
@@ -71,5 +78,7 @@
     "statistic_moodScore_title":"Mood swings",
     "statistic_moodScore_content":"Mood swings in recent {moodDays} days",
     "statistic_moodStatistics_title":"Mood statistics",
-    "statistic_moodStatistics_content":"Statistics of mood in recent {moodDays} days"
+    "statistic_moodStatistics_content":"Statistics of mood in recent {moodDays} days",
+
+    "widgets_will_pop_scope_route_toast": "Press again to exit"
 }    
