@@ -13,9 +13,11 @@ import 'package:remixicon/remixicon.dart';
 import 'package:excel/excel.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:intl/intl.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 ///
 import 'package:moodexample/generated/l10n.dart';
+import 'package:moodexample/common/utils.dart';
 
 ///
 import 'package:moodexample/view_models/mood/mood_view_model.dart';
@@ -76,29 +78,15 @@ class _SettingDatabaseState extends State<SettingDatabase>
             ),
             children: [
               /// 导出数据
-              ListView(
-                physics: const AlwaysScrollableScrollPhysics(
-                  parent: BouncingScrollPhysics(),
-                ),
-                children: [
-                  Center(
-                    heightFactor: 2.h,
-                    child: const ExportDatabaseBody(),
-                  )
-                ],
+              Container(
+                margin: EdgeInsets.only(top: 64.h),
+                child: const ExportDatabaseBody(),
               ),
 
               /// 导入数据
-              ListView(
-                physics: const AlwaysScrollableScrollPhysics(
-                  parent: BouncingScrollPhysics(),
-                ),
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 24.w, bottom: 14.w),
-                    child: const ImportDatabaseBody(),
-                  ),
-                ],
+              Container(
+                margin: EdgeInsets.only(top: 64.h),
+                child: const ImportDatabaseBody(),
               ),
             ],
           ),
@@ -117,24 +105,332 @@ class ImportDatabaseBody extends StatefulWidget {
 }
 
 class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
+  /// 数据错误位置
+  String _errorPath = "";
+
+  /// 数据是否正在导入
+  bool _isImport = false;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        InkWell(
-          child: const Text("导入测试"),
-          onTap: () async {
-            await importDatabase(context);
-          },
-        )
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            /// 导入按钮
+            SizedBox(
+              width: 128.h,
+              height: 128.h,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [
+                      Theme.of(context).primaryColor,
+                      Theme.of(context).primaryColor.withAlpha(140),
+                    ],
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Theme.of(context).primaryColor.withOpacity(0.2),
+                      offset: const Offset(0, 5.0),
+                      blurRadius: 15.0,
+                      spreadRadius: 2.0,
+                    )
+                  ],
+                  shape: BoxShape.circle,
+                ),
+                child: _isImport
+                    ? CupertinoActivityIndicator(
+                        radius: 14.sp,
+                        color: const Color(0xFFFFFFFF),
+                      )
+                    : Material(
+                        color: Colors.transparent,
+                        child: IconButton(
+                          splashColor: Colors.white10,
+                          highlightColor: Colors.white10,
+                          icon: const Icon(Remix.arrow_up_line),
+                          iconSize: 48.sp,
+                          color: const Color(0xFFFFFFFF),
+                          padding: EdgeInsets.all(22.w),
+                          onPressed: () async {
+                            vibrate();
+                            setState(() {
+                              _isImport = true;
+                              _errorPath = "";
+                            });
+                            try {
+                              Map results = await importDatabase(context);
+                              setState(() {
+                                _isImport = false;
+                                vibrate();
+                              });
+                              switch (results["state"]) {
+                                case 0:
+                                  _errorPath = results["errorPath"];
+                                  Fluttertoast.showToast(
+                                    msg: "导入失败，请下载错误数据，修改后再试。",
+                                    toastLength: Toast.LENGTH_LONG,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.black54,
+                                    textColor: Colors.white,
+                                    fontSize: 12.sp,
+                                  );
+                                  break;
+                                case 1:
+                                  Fluttertoast.showToast(
+                                    msg: "导入成功",
+                                    toastLength: Toast.LENGTH_LONG,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.black54,
+                                    textColor: Colors.white,
+                                    fontSize: 12.sp,
+                                  );
+
+                                  /// 更新心情数据
+                                  MoodViewModel _moodViewModel =
+                                      Provider.of<MoodViewModel>(context,
+                                          listen: false);
+
+                                  /// 获取所有有记录心情的日期
+                                  MoodService.getMoodRecordedDate(
+                                      _moodViewModel);
+
+                                  /// 处理日期
+                                  String moodDatetime = _moodViewModel
+                                      .nowDateTime
+                                      .toString()
+                                      .substring(0, 10);
+
+                                  /// 获取心情数据
+                                  MoodService.getMoodData(
+                                      _moodViewModel, moodDatetime);
+                                  break;
+                                default:
+                                  break;
+                              }
+                            } catch (e) {
+                              print(e);
+                            }
+                          },
+                        ),
+                      ),
+              ),
+            ),
+            Column(
+              children: [
+                /// 错误文件下载
+                Builder(builder: (context) {
+                  return _errorPath.isNotEmpty
+                      ? Container(
+                          width: 64.h,
+                          height: 64.h,
+                          padding: EdgeInsets.only(left: 12.w),
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                                colors: [
+                                  const Color(0xFFf5222d),
+                                  const Color(0xFFf5222d).withAlpha(140),
+                                ],
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color:
+                                      const Color(0xFFf5222d).withOpacity(0.2),
+                                  offset: const Offset(0, 5.0),
+                                  blurRadius: 15.0,
+                                  spreadRadius: 2.0,
+                                )
+                              ],
+                              shape: BoxShape.circle,
+                            ),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: TextButton(
+                                child: Text(
+                                  "错误",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12.sp,
+                                  ),
+                                ),
+                                style: ButtonStyle(
+                                  shape: MaterialStateProperty.all(
+                                      const CircleBorder()),
+                                ),
+                                onPressed: () async {
+                                  vibrate();
+
+                                  /// 分享文件
+                                  Share.shareFiles([_errorPath]);
+                                },
+                              ),
+                            ),
+                          ),
+                        )
+                      : const SizedBox();
+                }),
+
+                /// 下载模板
+                Container(
+                  width: 64.h,
+                  height: 64.h,
+                  padding: EdgeInsets.only(left: 12.w, top: 12.w),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          Theme.of(context).primaryColor,
+                          Theme.of(context).primaryColor.withAlpha(140),
+                        ],
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color:
+                              Theme.of(context).primaryColor.withOpacity(0.2),
+                          offset: const Offset(0, 5.0),
+                          blurRadius: 15.0,
+                          spreadRadius: 2.0,
+                        )
+                      ],
+                      shape: BoxShape.circle,
+                    ),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: TextButton(
+                        child: Text(
+                          "模板",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12.sp,
+                          ),
+                        ),
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all(const CircleBorder()),
+                        ),
+                        onPressed: () async {
+                          vibrate();
+                          String filePath = await importDatabaseTemplate();
+
+                          /// 分享文件
+                          Share.shareFiles([filePath]);
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ],
     );
   }
 }
 
+/// 导入模板
+Future<String> importDatabaseTemplate() async {
+  /// 获取APP文件临时根路径
+  final directory = (await getTemporaryDirectory()).path;
+
+  /// 保存文件路径及名称
+  final String filePath = "$directory/system/database/importTemplate";
+  final String fileName = "$filePath/MoodExample导入模板.xlsx";
+
+  /// 删除之前的缓存
+  try {
+    Directory(filePath).deleteSync(recursive: true);
+  } catch (e) {
+    print(e);
+  }
+
+  /// 创建Excel
+  Excel excel = Excel.createExcel();
+
+  /// 创建工作薄
+  Sheet sheetObject = excel['MoodExample'];
+
+  /// 设置默认工作薄
+  excel.setDefaultSheet('MoodExample');
+
+  /// 单元格样式
+  CellStyle cellStyle = CellStyle(
+    fontColorHex: "#FFFFFF",
+    fontSize: 10,
+    bold: true,
+    fontFamily: getFontFamily(FontFamily.Microsoft_Sans_Serif),
+    backgroundColorHex: "#3E4663",
+    horizontalAlign: HorizontalAlign.Center,
+    verticalAlign: VerticalAlign.Center,
+  );
+
+  /// 创建大标题
+  sheetObject.merge(
+    CellIndex.indexByString("A1"),
+    CellIndex.indexByString("E1"),
+  );
+  sheetObject.cell(CellIndex.indexByString("A1"))
+    ..value = "MoodExample"
+    ..cellStyle = CellStyle(
+      fontColorHex: "#FFFFFF",
+      fontSize: 10,
+      bold: true,
+      fontFamily: getFontFamily(FontFamily.Microsoft_Sans_Serif),
+      backgroundColorHex: "#3E4663",
+      horizontalAlign: HorizontalAlign.Center,
+      verticalAlign: VerticalAlign.Center,
+    );
+
+  /// 创建字段标题
+  sheetObject.cell(CellIndex.indexByString("A2"))
+    ..value = "表情"
+    ..cellStyle = cellStyle.copyWith(
+        fontFamilyVal: getFontFamily(FontFamily.Apple_Color_Emoji));
+  sheetObject.cell(CellIndex.indexByString("B2"))
+    ..value = "心情"
+    ..cellStyle = cellStyle;
+  sheetObject.cell(CellIndex.indexByString("C2"))
+    ..value = "内容"
+    ..cellStyle = cellStyle;
+  sheetObject.cell(CellIndex.indexByString("D2"))
+    ..value = "心情程度"
+    ..cellStyle = cellStyle;
+  sheetObject.cell(CellIndex.indexByString("E2"))
+    ..value = "创建时间"
+    ..cellStyle = cellStyle;
+
+  /// 添加Excel数据
+  sheetObject.appendRow(["😊", "开心", "今天很开心", 55, "2000-11-03"]);
+
+  /// 保存Excel
+  final fileBytes = excel.save();
+
+  /// 存入文件
+  File(join(fileName))
+    ..createSync(recursive: true)
+    ..writeAsBytesSync(fileBytes!);
+
+  return fileName;
+}
+
 /// 导入数据
-Future importDatabase(BuildContext context) async {
+Future<Map> importDatabase(BuildContext context) async {
   print("导入数据");
+  Map _returnResults = {
+    "state": null, // 状态，0: 有错误 1: 导入成功
+    "errorPath": "", // 错误文件位置
+  };
   try {
     /// 清除选择文件的缓存
     await FilePicker.platform.clearTemporaryFiles();
@@ -161,34 +457,23 @@ Future importDatabase(BuildContext context) async {
               await importDatabaseError(excel.tables['MoodExample']!.rows);
           print("错误文件" + _errorPath);
 
-          /// 分享文件
-          Share.shareFiles([_errorPath]);
-          if (_errorPath.isEmpty) {
+          if (_errorPath.isNotEmpty) {
+            _returnResults["state"] = 0;
+            _returnResults["errorPath"] = _errorPath;
+          } else {
             /// 导入数据操作
             await importDatabaseStart(excel.tables['MoodExample']!.rows);
+            _returnResults["state"] = 1;
           }
         }
       }
-
-      /// 更新心情数据
-      MoodViewModel _moodViewModel =
-          Provider.of<MoodViewModel>(context, listen: false);
-
-      /// 获取所有有记录心情的日期
-      MoodService.getMoodRecordedDate(_moodViewModel);
-
-      /// 处理日期
-      String moodDatetime =
-          _moodViewModel.nowDateTime.toString().substring(0, 10);
-
-      /// 获取心情数据
-      MoodService.getMoodData(_moodViewModel, moodDatetime);
     } else {
       /// 未选择文件
     }
   } catch (e) {
     print(e);
   }
+  return _returnResults;
 }
 
 /// 正式导入数据
@@ -197,8 +482,8 @@ Future importDatabaseStart(List<List<Data?>> database) async {
   Map<String, dynamic> _moodData = {
     "icon": "",
     "title": "",
-    "score": "",
-    "content": "",
+    "score": 50,
+    "content": null,
     "createTime": "",
     "updateTime": ""
   };
@@ -230,7 +515,7 @@ Future importDatabaseStart(List<List<Data?>> database) async {
 
         /// 心情程度
         case 3:
-          _moodData["score"] = value;
+          _moodData["score"] = double.parse(value.toString()).toInt();
           break;
 
         /// 创建日期、修改日期
@@ -385,9 +670,9 @@ Future<List<List>> importDatabaseErrorCheck(List<List<Data?>> database) async {
 
         /// 心情程度
         case 3:
-          final _tryValue = int.tryParse(value.toString()) == null
+          final _tryValue = double.tryParse(value.toString()) == null
               ? null
-              : int.parse(value.toString());
+              : double.parse(value.toString()).toInt();
           if (_tryValue == null) {
             _errorText += "【心情程度只能为0-100整数】 ";
           }
@@ -445,17 +730,17 @@ class ExportDatabaseBody extends StatefulWidget {
 
 class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
   /// 数据导出位置
-  String exportPath = "";
+  String _exportPath = "";
 
   /// 数据是否正在导出
-  bool isExport = false;
+  bool _isExport = false;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(
-          width: 128.w,
-          height: 128.w,
+          width: 128.h,
+          height: 128.h,
           child: DecoratedBox(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -476,7 +761,7 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
               ],
               shape: BoxShape.circle,
             ),
-            child: isExport
+            child: _isExport
                 ? CupertinoActivityIndicator(
                     radius: 14.sp,
                     color: const Color(0xFFFFFFFF),
@@ -491,26 +776,37 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
                       color: const Color(0xFFFFFFFF),
                       padding: EdgeInsets.all(22.w),
                       onPressed: () async {
+                        vibrate();
                         try {
                           /// 没文件则进行生成
-                          if (exportPath.isEmpty) {
+                          if (_exportPath.isEmpty) {
                             setState(() {
-                              isExport = true;
+                              _isExport = true;
                             });
                             await Future.delayed(
                                 const Duration(milliseconds: 1000), () async {
-                              exportPath = await exportDatabase();
+                              _exportPath = await exportDatabase();
                             });
                           }
 
                           /// 有文件则直接分享
-                          if (exportPath.isNotEmpty) {
+                          if (_exportPath.isNotEmpty) {
                             setState(() {
-                              isExport = false;
+                              _isExport = false;
                             });
+                            vibrate();
+                            Fluttertoast.showToast(
+                              msg: "导出成功",
+                              toastLength: Toast.LENGTH_LONG,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.black54,
+                              textColor: Colors.white,
+                              fontSize: 12.sp,
+                            );
 
                             /// 分享文件
-                            Share.shareFiles([exportPath]);
+                            Share.shareFiles([_exportPath]);
                           }
                         } catch (e) {
                           print(e);
