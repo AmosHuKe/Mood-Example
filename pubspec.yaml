@@ -37,7 +37,7 @@ dependencies:
   # 路径
   path_provider: ^2.0.9
   # 自适应工具
-  flutter_screenutil: ^5.0.0+2
+  flutter_screenutil: ^5.5.2
   # 状态管理
   provider: ^6.0.1
   # 数据库
