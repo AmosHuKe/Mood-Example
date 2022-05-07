@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/generated/l10n.dart';
 
 /// 导航返回拦截
 class WillPopScopeRoute extends StatefulWidget {
@@ -31,7 +34,7 @@ class _WillPopScopeRouteState extends State<WillPopScopeRoute> {
     return WillPopScope(
       onWillPop: () async {
         Fluttertoast.showToast(
-          msg: "再按一次退出",
+          msg: S.of(context).widgets_will_pop_scope_route_toast,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
