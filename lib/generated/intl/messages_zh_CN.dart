@@ -44,6 +44,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("统计"),
         "app_setting_about": MessageLookupByLibrary.simpleMessage("关于"),
         "app_setting_database": MessageLookupByLibrary.simpleMessage("数据"),
+        "app_setting_database_export_data":
+            MessageLookupByLibrary.simpleMessage("导出数据"),
+        "app_setting_database_export_data_toast_success":
+            MessageLookupByLibrary.simpleMessage("导出成功"),
+        "app_setting_database_import_data":
+            MessageLookupByLibrary.simpleMessage("导入数据"),
+        "app_setting_database_import_data_button_error":
+            MessageLookupByLibrary.simpleMessage("错误"),
+        "app_setting_database_import_data_button_template":
+            MessageLookupByLibrary.simpleMessage("模板"),
+        "app_setting_database_import_data_toast_error":
+            MessageLookupByLibrary.simpleMessage("导入失败，请下载错误数据，修改后再试。"),
+        "app_setting_database_import_data_toast_success":
+            MessageLookupByLibrary.simpleMessage("导入成功"),
         "app_setting_laboratory": MessageLookupByLibrary.simpleMessage("实验室"),
         "app_setting_language": MessageLookupByLibrary.simpleMessage("语言"),
         "app_setting_theme": MessageLookupByLibrary.simpleMessage("主题"),
@@ -130,6 +144,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "statistic_overall_moodScoreAverage_subTitle":
             MessageLookupByLibrary.simpleMessage("平均全部波动"),
         "statistic_overall_moodScoreAverage_title": m6,
-        "statistic_title": MessageLookupByLibrary.simpleMessage("统计")
+        "statistic_title": MessageLookupByLibrary.simpleMessage("统计"),
+        "widgets_will_pop_scope_route_toast":
+            MessageLookupByLibrary.simpleMessage("再按一次退出")
       };
 }

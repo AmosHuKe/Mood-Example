@@ -46,6 +46,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_setting_about": MessageLookupByLibrary.simpleMessage("About"),
         "app_setting_database":
             MessageLookupByLibrary.simpleMessage("Database"),
+        "app_setting_database_export_data":
+            MessageLookupByLibrary.simpleMessage("Export data"),
+        "app_setting_database_export_data_toast_success":
+            MessageLookupByLibrary.simpleMessage("Export succeeded"),
+        "app_setting_database_import_data":
+            MessageLookupByLibrary.simpleMessage("Import data"),
+        "app_setting_database_import_data_button_error":
+            MessageLookupByLibrary.simpleMessage("ERR"),
+        "app_setting_database_import_data_button_template":
+            MessageLookupByLibrary.simpleMessage("TMPL"),
+        "app_setting_database_import_data_toast_error":
+            MessageLookupByLibrary.simpleMessage(
+                "Import failed. Please download the wrong data, modify it and try again."),
+        "app_setting_database_import_data_toast_success":
+            MessageLookupByLibrary.simpleMessage("Import succeeded"),
         "app_setting_laboratory":
             MessageLookupByLibrary.simpleMessage("Laboratory"),
         "app_setting_language":
@@ -139,6 +154,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "statistic_overall_moodScoreAverage_subTitle":
             MessageLookupByLibrary.simpleMessage("Average\ntotal score"),
         "statistic_overall_moodScoreAverage_title": m6,
-        "statistic_title": MessageLookupByLibrary.simpleMessage("Statistic")
+        "statistic_title": MessageLookupByLibrary.simpleMessage("Statistic"),
+        "widgets_will_pop_scope_route_toast":
+            MessageLookupByLibrary.simpleMessage("Press again to exit")
       };
 }

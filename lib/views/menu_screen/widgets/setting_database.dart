@@ -54,7 +54,7 @@ class _SettingDatabaseState extends State<SettingDatabase>
           tabs: [
             Tab(
               child: Text(
-                "导出数据",
+                S.of(context).app_setting_database_export_data,
                 style: TextStyle(
                   fontSize: 14.sp,
                 ),
@@ -62,7 +62,7 @@ class _SettingDatabaseState extends State<SettingDatabase>
             ),
             Tab(
               child: Text(
-                "导入数据",
+                S.of(context).app_setting_database_import_data,
                 style: TextStyle(
                   fontSize: 14.sp,
                 ),
@@ -172,7 +172,9 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                 case 0:
                                   _errorPath = results["errorPath"];
                                   Fluttertoast.showToast(
-                                    msg: "导入失败，请下载错误数据，修改后再试。",
+                                    msg: S
+                                        .of(context)
+                                        .app_setting_database_import_data_toast_error,
                                     toastLength: Toast.LENGTH_LONG,
                                     gravity: ToastGravity.BOTTOM,
                                     timeInSecForIosWeb: 1,
@@ -183,7 +185,9 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                   break;
                                 case 1:
                                   Fluttertoast.showToast(
-                                    msg: "导入成功",
+                                    msg: S
+                                        .of(context)
+                                        .app_setting_database_import_data_toast_success,
                                     toastLength: Toast.LENGTH_LONG,
                                     gravity: ToastGravity.BOTTOM,
                                     timeInSecForIosWeb: 1,
@@ -256,7 +260,9 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                               color: Colors.transparent,
                               child: TextButton(
                                 child: Text(
-                                  "错误",
+                                  S
+                                      .of(context)
+                                      .app_setting_database_import_data_button_error,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 12.sp,
@@ -309,7 +315,9 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                       color: Colors.transparent,
                       child: TextButton(
                         child: Text(
-                          "模板",
+                          S
+                              .of(context)
+                              .app_setting_database_import_data_button_template,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 12.sp,
@@ -796,7 +804,9 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
                             });
                             vibrate();
                             Fluttertoast.showToast(
-                              msg: "导出成功",
+                              msg: S
+                                  .of(context)
+                                  .app_setting_database_export_data_toast_success,
                               toastLength: Toast.LENGTH_LONG,
                               gravity: ToastGravity.BOTTOM,
                               timeInSecForIosWeb: 1,

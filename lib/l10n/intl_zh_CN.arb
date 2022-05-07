@@ -4,6 +4,13 @@
     "app_bottomNavigationBar_title_statistic": "统计",
 
     "app_setting_database":"数据",
+    "app_setting_database_export_data":"导出数据",
+    "app_setting_database_export_data_toast_success":"导出成功",
+    "app_setting_database_import_data":"导入数据",
+    "app_setting_database_import_data_button_error":"错误",
+    "app_setting_database_import_data_button_template":"模板",
+    "app_setting_database_import_data_toast_error":"导入失败，请下载错误数据，修改后再试。",
+    "app_setting_database_import_data_toast_success":"导入成功",
 
     "app_setting_theme":"主题",
     "app_setting_theme_appearance":"主题外观",
@@ -71,5 +78,7 @@
     "statistic_moodScore_title":"情绪波动",
     "statistic_moodScore_content":"近{moodDays}日情绪波动",
     "statistic_moodStatistics_title":"心情统计",
-    "statistic_moodStatistics_content":"近{moodDays}日心情数量统计"
+    "statistic_moodStatistics_content":"近{moodDays}日心情数量统计",
+
+    "widgets_will_pop_scope_route_toast": "再按一次退出"
 }

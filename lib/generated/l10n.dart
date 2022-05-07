@@ -90,6 +90,76 @@ class S {
     );
   }
 
+  /// `Export data`
+  String get app_setting_database_export_data {
+    return Intl.message(
+      'Export data',
+      name: 'app_setting_database_export_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Export succeeded`
+  String get app_setting_database_export_data_toast_success {
+    return Intl.message(
+      'Export succeeded',
+      name: 'app_setting_database_export_data_toast_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Import data`
+  String get app_setting_database_import_data {
+    return Intl.message(
+      'Import data',
+      name: 'app_setting_database_import_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ERR`
+  String get app_setting_database_import_data_button_error {
+    return Intl.message(
+      'ERR',
+      name: 'app_setting_database_import_data_button_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TMPL`
+  String get app_setting_database_import_data_button_template {
+    return Intl.message(
+      'TMPL',
+      name: 'app_setting_database_import_data_button_template',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Import failed. Please download the wrong data, modify it and try again.`
+  String get app_setting_database_import_data_toast_error {
+    return Intl.message(
+      'Import failed. Please download the wrong data, modify it and try again.',
+      name: 'app_setting_database_import_data_toast_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Import succeeded`
+  String get app_setting_database_import_data_toast_success {
+    return Intl.message(
+      'Import succeeded',
+      name: 'app_setting_database_import_data_toast_success',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Theme`
   String get app_setting_theme {
     return Intl.message(
@@ -657,6 +727,16 @@ class S {
       name: 'statistic_moodStatistics_content',
       desc: '',
       args: [moodDays],
+    );
+  }
+
+  /// `Press again to exit`
+  String get widgets_will_pop_scope_route_toast {
+    return Intl.message(
+      'Press again to exit',
+      name: 'widgets_will_pop_scope_route_toast',
+      desc: '',
+      args: [],
     );
   }
 }
