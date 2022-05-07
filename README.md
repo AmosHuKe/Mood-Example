@@ -10,7 +10,7 @@
 </h1> 
 
 <p align="center">
-<img alt="Mood-Example v1.0.2" src="https://img.shields.io/badge/Mood--Example-v1.0.2-3e4663"/> 
+<img alt="Mood-Example v1.1.3" src="https://img.shields.io/badge/Mood--Example-v1.1.3-3e4663"/> 
 <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v2.10.5" src="https://img.shields.io/badge/Flutter-v2.10.5-46D1FD"/></a> 
 <a target="_blank" href="https://dart.dev/"><img alt="Dart v2.16.2" src="https://img.shields.io/badge/Dart-v2.16.2-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
@@ -41,7 +41,7 @@
 - [x] 状态管理（MVVM）  
 - [x] 情绪记录  
 - [x] 图表统计    
-- [ ] Excel 导入导出  
+- [x] Excel 导入导出  
 - [ ] 隐私解锁  
 - [ ] 动画  
 - [ ] 通知  
