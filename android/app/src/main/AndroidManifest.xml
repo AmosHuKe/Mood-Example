@@ -41,4 +41,8 @@
     </application>
     <!-- 震动 -->
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <!-- 生物特征识别-指纹 -->
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+    <!-- 生物特征识别 -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 </manifest>
