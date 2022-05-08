@@ -1,6 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.moodexample">
-   <application
+
+    <!-- 震动 -->
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <!-- 生物特征识别 begin -->
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <!-- 生物特征识别 end -->
+
+    <application
         android:label="Mood"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -39,6 +47,4 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
-    <!-- 震动 -->
-    <uses-permission android:name="android.permission.VIBRATE"/>
 </manifest>

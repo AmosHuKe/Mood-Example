@@ -51,24 +51,27 @@ class _MoodContentState extends State<MoodContent> {
     FocusScope.of(context).unfocus();
     showCupertinoDialog<void>(
       context: context,
-      builder: (BuildContext context) => CupertinoAlertDialog(
-        title: Text(S.of(context).mood_content_close_button_title),
-        content: Text(S.of(context).mood_content_close_button_content),
-        actions: <CupertinoDialogAction>[
-          CupertinoDialogAction(
-            child: Text(S.of(context).mood_content_close_button_cancel),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          CupertinoDialogAction(
-            child: Text(S.of(context).mood_content_close_button_confirm),
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.pop(context);
-            },
-          )
-        ],
+      builder: (BuildContext context) => Theme(
+        data: isDarkMode(context) ? ThemeData.dark() : ThemeData.light(),
+        child: CupertinoAlertDialog(
+          title: Text(S.of(context).mood_content_close_button_title),
+          content: Text(S.of(context).mood_content_close_button_content),
+          actions: <CupertinoDialogAction>[
+            CupertinoDialogAction(
+              child: Text(S.of(context).mood_content_close_button_cancel),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            CupertinoDialogAction(
+              child: Text(S.of(context).mood_content_close_button_confirm),
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+            )
+          ],
+        ),
       ),
     );
     return null;

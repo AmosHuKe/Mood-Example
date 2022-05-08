@@ -10,7 +10,7 @@
 </h1> 
 
 <p align="center">
-<img alt="Mood-Example v1.1.3" src="https://img.shields.io/badge/Mood--Example-v1.1.3-3e4663"/> 
+<img alt="Mood-Example v1.2.1" src="https://img.shields.io/badge/Mood--Example-v1.2.1-3e4663"/> 
 <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v2.10.5" src="https://img.shields.io/badge/Flutter-v2.10.5-46D1FD"/></a> 
 <a target="_blank" href="https://dart.dev/"><img alt="Dart v2.16.2" src="https://img.shields.io/badge/Dart-v2.16.2-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
@@ -45,6 +45,7 @@
 - [ ] 隐私解锁  
 - [ ] 动画  
 - [ ] 通知  
+- [x] 实验室 - UniApp 小程序（UniMPSDK v3.4.7）  
 ……
 
 
@@ -136,38 +137,52 @@ $ flutter run --debug/release/profile/test
 ## 📑 项目结构
 
 ```sh
-├── android                       # Android 工程文件 
-├── assets                        # 静态资源文件
-├── build                         # 编译或运行后产物
-├── ios                           # IOS 工程文件
-├── lib                           # 工程相关文件（主要编码）
-│   ├── common                    # 公共相关
-│   │   ├── utils_intl.dart       # 国际化工具
-│   │   └── utils.dart            # 工具
-│   ├── config                    # 配置
-│   │   └── language.dart         # 语言配置
-│   ├── db                        # 数据存储相关
-│   │   ├── database              # sqflite 数据表配置
-│   │   ├── db.dart               # sqflite 数据库相关
-│   │   └── preferences_db.dart   # shared_preferences 数据相关
-│   ├── generated                 # intl 语言包生成的文件夹（不用编码，使用 Flutter Intl 插件自动生成）
-│   ├── l10n                      # intl 语言包
-│   ├── models                    # 数据模型
-│   ├── services                  # 数据服务
-│   ├── view_models               # 业务逻辑
-│   ├── views                     # 视图
-│   ├── widgets                   # 组件相关
-│   ├── app_theme.dart            # 主题
-│   ├── application.dart          # 主应用
-│   ├── home_screen.dart          # 主应用导航相关
-│   ├── main.dart                 # 主应用入口
-│   └── routes.dart               # 路由管理
-├── test                          # 工程测试文件
-├── .gitignore                    # Git 提交仓库忽略文件配置
-├── .metadata                     # 当前 workspace 配置记录
-├── analysis_options.yaml         # Dart 语言代码规范
-├── pubspec.lock                  # 依赖生成的文件
-└── pubspec.yaml                  # 核心配置文件（项目配置、依赖等）
+├── android                                         # Android 工程文件 
+│   ├── app                       
+│   │   ├── libs                                    # 包含 UniMPSDK 依赖库
+│   │   └── src 
+│   │   │   └── main                  
+│   │   │   │   ├── assets                          # 包含 UniMPSDK 内容
+│   │   │   │   │   ├── apps                        # 包含 UniMPSDK 的 UniApp 小程序
+│   │   │   │   │   ├── data                        # 包含 UniMPSDK 内容
+│   │   │   │   │   ├── uni-jsframework-vue3.js     # UniMPSDK
+│   │   │   │   │   └── uni-jsframework.js          # UniMPSDK
+│   │   │   │   └── kotlin                          
+│   │   │   │   │   └── com                      
+│   │   │   │   │   │   └── example    
+│   │   │   │   │   │   │   └── moodexample
+│   │   │   │   │   │   │   │   └── MainActivity.kt # Flutter 的 Android 默认入口
+├── assets                                          # 静态资源文件
+├── build                                           # 编译或运行后产物
+├── ios                                             # IOS 工程文件
+├── lib                                             # 工程相关文件（主要编码）
+│   ├── common                                      # 公共相关
+│   │   ├── utils_intl.dart                         # 国际化工具
+│   │   └── utils.dart                              # 工具
+│   ├── config                                      # 配置
+│   │   └── language.dart                           # 语言配置
+│   ├── db                                          # 数据存储相关
+│   │   ├── database                                # sqflite 数据表配置
+│   │   ├── db.dart                                 # sqflite 数据库相关
+│   │   └── preferences_db.dart                     # shared_preferences 数据相关
+│   ├── generated                                   # intl 语言包生成的文件夹（不用编码，使用 Flutter Intl 插件自动生成）
+│   ├── l10n                                        # intl 语言包
+│   ├── models                                      # 数据模型
+│   ├── services                                    # 数据服务
+│   ├── view_models                                 # 业务逻辑
+│   ├── views                                       # 视图
+│   ├── widgets                                     # 组件相关
+│   ├── app_theme.dart                              # 主题
+│   ├── application.dart                            # 主应用
+│   ├── home_screen.dart                            # 主应用导航相关
+│   ├── main.dart                                   # 主应用入口
+│   └── routes.dart                                 # 路由管理
+├── test                                            # 工程测试文件
+├── .gitignore                                      # Git 提交仓库忽略文件配置
+├── .metadata                                       # 当前 workspace 配置记录
+├── analysis_options.yaml                           # Dart 语言代码规范
+├── pubspec.lock                                    # 依赖生成的文件
+└── pubspec.yaml                                    # 核心配置文件（项目配置、依赖等）
 ```
 
 

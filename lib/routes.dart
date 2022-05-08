@@ -15,6 +15,8 @@ import 'package:moodexample/views/home/index.dart';
 import 'package:moodexample/views/onboarding/index.dart';
 import 'package:moodexample/views/mood/mood_category_select.dart';
 import 'package:moodexample/views/mood/mood_content.dart';
+import 'package:moodexample/views/settings/laboratory/index.dart';
+import 'package:moodexample/views/settings/laboratory/unimp_miniapps/index.dart';
 
 /// 路由管理
 class Routes {
@@ -29,6 +31,12 @@ class Routes {
   static String moodContent = "/mood_content";
   // 用户引导页
   static String onboarding = "/onboarding";
+
+  // 设置页-实验室
+  static String settingLaboratory = "/setting_laboratory";
+  // 实验室-UniMP小程序
+  static String settingLaboratoryUniMPMiniapps =
+      "/setting_laboratory_UniMPMiniapps";
 
   /// 定义路由处理函数
   static final Handler _homeHandle = Handler(
@@ -52,6 +60,14 @@ class Routes {
       handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
     return const Onboarding();
   });
+  static final Handler _settingLaboratoryHandle = Handler(
+      handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
+    return const LaboratoryPage();
+  });
+  static final Handler _settingLaboratoryUniMPMiniappsHandle = Handler(
+      handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
+    return const UniMPMiniappsPage();
+  });
 
   /// 关联路由名称和处理函数
   static void configureRoutes(FluroRouter router) {
@@ -69,6 +85,12 @@ class Routes {
         transitionType: TransitionType.cupertinoFullScreenDialog);
     router.define(onboarding,
         handler: _onboardingHandle, transitionType: TransitionType.fadeIn);
+    router.define(settingLaboratory,
+        handler: _settingLaboratoryHandle,
+        transitionType: TransitionType.cupertino);
+    router.define(settingLaboratoryUniMPMiniapps,
+        handler: _settingLaboratoryUniMPMiniappsHandle,
+        transitionType: TransitionType.cupertino);
   }
 
   /// 路由参数转换
