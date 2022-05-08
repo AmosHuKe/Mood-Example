@@ -1,0 +1,79 @@
+<properties>
+	<features>
+		<feature name="Barcode" value="io.dcloud.feature.barcode2.BarcodeFeatureImpl"/>
+        <feature name="Speech" value="io.dcloud.feature.speech.SpeechFeatureImpl">
+            <module name="iFly" value="io.dcloud.feature.speech.IflySpeechEngine"/>
+            <module name="baidu" value="io.dcloud.feature.speech.BaiduSpeechEngine"/>
+        </feature>
+		<feature name="Maps" value="io.dcloud.js.map.amap.JsMapPluginImpl"/>
+        <!--<feature name="Maps" value="io.dcloud.js.map.JsMapPluginImpl"/>-->
+		<feature name="Contacts" value="io.dcloud.feature.contacts.ContactsFeatureImpl"/>
+		<feature name="Messaging" value="io.dcloud.adapter.messaging.MessagingPluginImpl"/>
+		<feature name="Camera" value="io.dcloud.js.camera.CameraFeatureImpl"/>
+		<feature name="Console" value="io.dcloud.feature.pdr.LoggerFeatureImpl"/>
+		<feature name="Device" value="io.dcloud.feature.device.DeviceFeatureImpl"/>
+		<feature name="File" value="io.dcloud.js.file.FileFeatureImpl"/>
+		<feature name="Proximity" value="io.dcloud.feature.sensor.ProximityFeatureImpl"/>
+		<feature name="Storage" value="io.dcloud.feature.pdr.NStorageFeatureImpl"/>
+		<feature name="Cache" value="io.dcloud.feature.pdr.CoreCacheFeatureImpl"/>
+		<feature name="Invocation" value="io.dcloud.invocation.Invocation"/>
+		<feature name="Navigator" value="io.dcloud.feature.ui.navigator.NavigatorUIFeatureImpl"/>
+		<feature name="NativeUI" value="io.dcloud.feature.ui.nativeui.NativeUIFeatureImpl"/>
+		<feature name="UI" value="io.dcloud.feature.ui.UIFeatureImpl">
+			<module name="Navigator" value="io.dcloud.feature.ui.NavView"/>
+		</feature>
+		<feature name="Gallery" value="io.dcloud.js.gallery.GalleryFeatureImpl"/>
+		<feature name="Downloader" value="io.dcloud.net.DownloaderFeatureImpl"/>
+		<feature name="Uploader" value="io.dcloud.net.UploadFeature"/>
+		<feature name="Push" value="io.dcloud.feature.aps.APSFeatureImpl">
+			<module name="igexin" value="io.dcloud.feature.apsGt.GTPushService"/>
+			<!-- mkeypush -->
+		</feature>
+		<feature name="Zip" value="io.dcloud.feature.pdr.ZipFeature"/>
+		<feature name="Audio" value="io.dcloud.feature.audio.AudioFeatureImpl"/>
+		<feature name="Runtime" value="io.dcloud.feature.pdr.RuntimeFeatureImpl"/>
+        <feature name="VideoPlayer" value="io.dcloud.media.MediaFeatureImpl"/>
+        <feature name="LivePusher" value="io.dcloud.media.live.LiveMediaFeatureImpl"/>
+		<feature name="XMLHttpRequest" value="io.dcloud.net.XMLHttpRequestFeature"/>
+		<feature name="Statistic" value="io.dcloud.feature.statistics.StatisticsFeatureImpl"/>
+		<feature name="Accelerometer" value="io.dcloud.feature.sensor.AccelerometerFeatureImpl"/>
+		<feature name="Orientation" value="io.dcloud.feature.sensor.OrientationFeatureImpl"/>
+		<feature name="NativeObj" value="io.dcloud.feature.nativeObj.FeatureImpl"/>		
+		<feature name="Geolocation" value="io.dcloud.js.geolocation.GeolocationFeatureImpl"/>
+		<feature name="Payment" value="io.dcloud.feature.payment.PaymentFeatureImpl">
+			<module name="AliPay" value="io.dcloud.feature.payment.alipay.AliPay"/>
+			<module name="Payment-Weixin" value="io.dcloud.feature.payment.weixin.WeiXinPay"/>
+			<module name="Payment-Qihoo" value="io.dcloud.feature.payment.qihoopay.QihooPay"/>
+		</feature>
+		<feature name="Share" value="io.dcloud.share.ShareFeatureImpl">
+			<module name="Sina" value="io.dcloud.share.sina.SinaWeiboApiManager"/>
+			<module name="Tencent" value="io.dcloud.share.tencent.TencentWeiboApiManager"/>
+			<module name="Weixin" value="io.dcloud.share.mm.WeiXinApiManager"/>
+            <module name="QQ" value="io.dcloud.share.qq.QQApiManager"/>
+		</feature>
+		<feature name="OAuth" value="io.dcloud.feature.oauth.OAuthFeatureImpl">
+			<module name="OAuth-Weixin" value="io.dcloud.feature.oauth.weixin.WeiXinOAuthService"/>
+			<module name="OAuth-QQ" value="io.dcloud.feature.oauth.qq.QQOAuthService"/>
+			<module name="OAuth-Sina" value="io.dcloud.feature.oauth.sina.SinaOAuthService"/>
+			<module name="OAuth-Qihoo" value="io.dcloud.oauth.qihoo.QihooOAuthService"/>
+			<module name="OAuth-MiUi" value="io.dcloud.feature.oauth.miui.MiUiOAuthService"/>
+		</feature>
+		<feature name="Stream" value="io.dcloud.appstream.js.StreamAppFeatureImpl"/>
+		<feature name="Fingerprint" value="io.dcloud.feature.fingerprint.FingerPrintsImpl"/>
+		<feature name="iBeacon" value="io.dcloud.feature.iBeacon.WxBluetoothFeatureImpl"/>
+        <feature name="Bluetooth" value="io.dcloud.feature.bluetooth.BluetoothFeature"/>
+        <feature name="Sqlite" value="io.dcloud.feature.sqlite.DataBaseFeature"/>
+        <feature name="Ad" value="io.dcloud.feature.ad.AdFlowFeatureImpl">
+            <module name="360" value="io.dcloud.feature.ad.juhe360.AD360Module"/>
+            <module name="csj" value="io.dcloud.feature.ad.csj.ADCsjModule"/>
+            <module name="gdt" value="io.dcloud.feature.ad.gdt.ADGdtModule"/>
+        </feature>
+	</features>
+
+	<services>
+		<service name="push" value="io.dcloud.feature.aps.APSFeatureImpl"/>
+		<service name="Statistic" value="io.dcloud.feature.statistics.StatisticsBootImpl"/>
+		<service name="Downloader" value="io.dcloud.net.DownloaderBootImpl"/>
+		<!--<service name="Maps" value="io.dcloud.js.map.MapInitImpl"/>-->
+	</services>
+</properties>

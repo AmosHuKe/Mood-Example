@@ -13,6 +13,7 @@ import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_d
 import 'package:moodexample/views/menu_screen/widgets/setting_theme.dart';
 import 'package:moodexample/views/menu_screen/widgets/setting_language.dart';
 import 'package:moodexample/views/menu_screen/widgets/setting_database.dart';
+import 'package:moodexample/routes.dart';
 
 ///
 import 'package:moodexample/view_models/application/application_view_model.dart';
@@ -204,6 +205,7 @@ class Menu extends StatelessWidget {
           ),
           onTap: () {
             print("实验室");
+            Navigator.pushNamed(context, Routes.settingLaboratory);
           },
         ),
         MenuList(
