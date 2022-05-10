@@ -33,7 +33,7 @@ class _UniMPMiniappsPageState extends State<UniMPMiniappsPage> {
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
           titleTextStyle: TextStyle(color: Colors.black, fontSize: 14.sp),
-          title: const Text("UniApp 小程序"),
+          title: const Text("uniapp 小程序"),
           leading: ActionButton(
             decoration: BoxDecoration(
                 gradient: const LinearGradient(
