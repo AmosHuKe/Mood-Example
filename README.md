@@ -45,7 +45,7 @@
 - [ ] 隐私解锁  
 - [ ] 动画  
 - [ ] 通知  
-- [x] 实验室 - UniApp 小程序（UniMPSDK v3.4.7）  
+- [x] 实验室 - uniapp 小程序（UniMPSDK v3.4.7）  
 ……
 
 
@@ -143,7 +143,7 @@ $ flutter run --debug/release/profile/test
 │   │   └── src 
 │   │   │   └── main                  
 │   │   │   │   ├── assets                          # 包含 UniMPSDK 内容
-│   │   │   │   │   ├── apps                        # 包含 UniMPSDK 的 UniApp 小程序
+│   │   │   │   │   ├── apps                        # 包含 UniMPSDK 的 uniapp 小程序
 │   │   │   │   │   ├── data                        # 包含 UniMPSDK 内容
 │   │   │   │   │   ├── uni-jsframework-vue3.js     # UniMPSDK
 │   │   │   │   │   └── uni-jsframework.js          # UniMPSDK
