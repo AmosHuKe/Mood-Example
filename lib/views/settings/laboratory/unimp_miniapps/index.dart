@@ -33,7 +33,7 @@ class _UniMPMiniappsPageState extends State<UniMPMiniappsPage> {
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
           titleTextStyle: TextStyle(color: Colors.black, fontSize: 14.sp),
-          title: const Text("UniApp 小程序"),
+          title: const Text("uniapp 小程序"),
           leading: ActionButton(
             decoration: BoxDecoration(
                 gradient: const LinearGradient(
@@ -77,8 +77,7 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
     Future callNativeMethod(String appID) async {
       try {
         // 通过渠道，调用原生代码代码的方法
-        final future =
-            await channel.invokeMethod("UniMP_mini_apps", {"AppID": appID});
+        final future = await channel.invokeMethod("open", {"AppID": appID});
         // 打印执行的结果
         print(future.toString());
       } on PlatformException catch (e) {
@@ -161,6 +160,7 @@ class ListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.only(top: 12.w, bottom: 12.w),
+      shadowColor: Colors.black38,
       shape:
           ContinuousRectangleBorder(borderRadius: BorderRadius.circular(48.sp)),
       child: Padding(

@@ -76,8 +76,8 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "UniApp 小程序",
-          subtitle: "集成 UniMPSDK 可在 APP 内打开 UniApp 小程序。",
+          title: "uniapp 小程序",
+          subtitle: "集成 UniMPSDK 可在 APP 内打开 uniapp 小程序。",
           onPressed: () {
             Navigator.pushNamed(context, Routes.settingLaboratoryUniMPMiniapps);
           },
@@ -148,6 +148,7 @@ class ListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.only(top: 12.w, bottom: 12.w),
+      shadowColor: Colors.black38,
       shape:
           ContinuousRectangleBorder(borderRadius: BorderRadius.circular(48.sp)),
       child: Padding(
