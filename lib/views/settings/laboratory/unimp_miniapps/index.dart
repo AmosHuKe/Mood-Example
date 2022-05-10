@@ -160,6 +160,7 @@ class ListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.only(top: 12.w, bottom: 12.w),
+      shadowColor: Colors.black38,
       shape:
           ContinuousRectangleBorder(borderRadius: BorderRadius.circular(48.sp)),
       child: Padding(
