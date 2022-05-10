@@ -21,12 +21,12 @@ class MainActivity: FlutterActivity() {
         val messenger = flutterEngine.dartExecutor.binaryMessenger
         // Channel 对象
         val channel = MethodChannel(messenger, "UniMP_mini_apps")
-        // channel 设置回调
+        // Channel 设置回调
         channel.setMethodCallHandler { call, res ->
             // 根据方法名，分发不同的处理
             when(call.method) {
-                // UniMP小程序
-                "UniMP_mini_apps" -> {
+                // 打开指定的 UniMP 小程序
+                "open" -> {
                     try {
                         // 接收 Flutter 传入的参数
                         val argumentAppID = call.argument<String>("AppID")
