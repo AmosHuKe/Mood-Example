@@ -60,6 +60,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("導入成功"),
         "app_setting_laboratory": MessageLookupByLibrary.simpleMessage("實驗室"),
         "app_setting_language": MessageLookupByLibrary.simpleMessage("語言"),
+        "app_setting_language_system":
+            MessageLookupByLibrary.simpleMessage("跟隨系統"),
         "app_setting_theme": MessageLookupByLibrary.simpleMessage("主題"),
         "app_setting_theme_appearance":
             MessageLookupByLibrary.simpleMessage("主題外觀"),
