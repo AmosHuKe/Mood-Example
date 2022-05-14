@@ -671,7 +671,7 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
                     const TextStyle(),
                     children: [
                       TextSpan(
-                        text: (rod.fromY).toString() + "\n",
+                        text: (rod.toY).toString() + "\n",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 14.sp,
