@@ -220,6 +220,16 @@ class S {
     );
   }
 
+  /// `System`
+  String get app_setting_language_system {
+    return Intl.message(
+      'System',
+      name: 'app_setting_language_system',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Laboratory`
   String get app_setting_laboratory {
     return Intl.message(

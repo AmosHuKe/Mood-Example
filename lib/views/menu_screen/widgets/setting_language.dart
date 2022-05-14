@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 ///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moodexample/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 ///
@@ -39,7 +40,7 @@ class _SettingLanguageState extends State<SettingLanguage> {
               value: localeSystem,
               groupValue: true,
               title: Text(
-                "跟随系统",
+                S.of(context).app_setting_language_system,
                 style: Theme.of(context)
                     .textTheme
                     .bodyText1!

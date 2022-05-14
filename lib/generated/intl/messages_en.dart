@@ -65,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Laboratory"),
         "app_setting_language":
             MessageLookupByLibrary.simpleMessage("Language"),
+        "app_setting_language_system":
+            MessageLookupByLibrary.simpleMessage("System"),
         "app_setting_theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "app_setting_theme_appearance":
             MessageLookupByLibrary.simpleMessage("Appearance"),

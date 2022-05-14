@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.2.1+1
+version: 1.3.1+1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -55,11 +55,11 @@ dependencies:
   # 滑动操作项
   flutter_slidable: ^1.1.0
   # 轮播
-  card_swiper: ^1.0.4
+  card_swiper: ^2.0.3
   # 震动
   vibration: ^1.7.4-nullsafety.0
   # 图表
-  fl_chart: ^0.41.0
+  fl_chart: ^0.50.5
   # Excel
   excel: ^2.0.0-null-safety-3
   # 分享

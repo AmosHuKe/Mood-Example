@@ -10,8 +10,8 @@
 </h1> 
 
 <p align="center">
-<img alt="Mood-Example v1.2.1" src="https://img.shields.io/badge/Mood--Example-v1.2.1-3e4663"/> 
-<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v2.10.5" src="https://img.shields.io/badge/Flutter-v2.10.5-46D1FD"/></a> 
+<img alt="Mood-Example v1.3.1" src="https://img.shields.io/badge/Mood--Example-v1.3.1-3e4663"/> 
+<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.0" src="https://img.shields.io/badge/Flutter-v3.0-46D1FD"/></a> 
 <a target="_blank" href="https://dart.dev/"><img alt="Dart v2.16.2" src="https://img.shields.io/badge/Dart-v2.16.2-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
@@ -62,11 +62,11 @@
 ### 基本环境  
 
 ```
-[√] Flutter (Channel stable, 2.10.5, on Microsoft Windows [Version 10.0.22000.556], locale zh-CN)
+[√] Flutter (Channel stable, 3.0.0, on Microsoft Windows [版本 10.0.22000.613], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 31.0.0)
 [√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.1.3)
 [√] Android Studio (version 2020.3)
-[√] VS Code (version 1.66.0)
+[√] VS Code (version 1.67.1)
 ```  
 
 ### 国际化支持  
