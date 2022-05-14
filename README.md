@@ -12,7 +12,7 @@
 <p align="center">
 <img alt="Mood-Example v1.3.1" src="https://img.shields.io/badge/Mood--Example-v1.3.1-3e4663"/> 
 <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.0" src="https://img.shields.io/badge/Flutter-v3.0-46D1FD"/></a> 
-<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.16.2" src="https://img.shields.io/badge/Dart-v2.16.2-04599D"/></a> 
+<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.17.0" src="https://img.shields.io/badge/Dart-v2.17.0-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
 
