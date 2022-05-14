@@ -368,7 +368,8 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                 isCurved: true,
                 curveSmoothness: 0.4,
                 preventCurveOverShooting: true,
-                colors: gradientColors,
+                gradient: LinearGradient(colors: gradientColors),
+                // colors: gradientColors,
                 barWidth: 2.sp,
                 // shadow: Shadow(
                 //   color: AppTheme.primaryColor.withOpacity(0.4),
@@ -379,12 +380,14 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                 dotData: FlDotData(show: false),
                 belowBarData: BarAreaData(
                   show: true,
-                  gradientTo: Offset.fromDirection(1.56, 1.8),
-                  colors: [
-                    AppTheme.primaryColor.withOpacity(0.1),
-                    Theme.of(context).cardColor,
-                    Theme.of(context).cardColor,
-                  ],
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      AppTheme.primaryColor.withOpacity(0.1),
+                      Theme.of(context).cardColor,
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -453,26 +456,29 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
             ),
             titlesData: FlTitlesData(
               show: true,
-              leftTitles: SideTitles(showTitles: false),
-              rightTitles: SideTitles(showTitles: false),
-              topTitles: SideTitles(showTitles: false),
-              bottomTitles: SideTitles(
-                showTitles: true,
-                reservedSize: 12.w,
-                interval: _days > 7 ? ((_days / 7) + 1) : (_days / 7),
-                getTextStyles: (context, value) {
-                  return TextStyle(
-                    color: AppTheme.subColor,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 12.sp,
-                  );
-                },
-                getTitles: (index) {
-                  final _nowListDate = _listFlSpot[(index).toInt()]['datetime'];
-                  return (_nowListDate.toString() != ""
-                      ? _nowListDate.toString().substring(8, 10) + "日"
-                      : "");
-                },
+              leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              rightTitles:
+                  AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              bottomTitles: AxisTitles(
+                sideTitles: SideTitles(
+                    showTitles: true,
+                    reservedSize: 16.w,
+                    interval: _days > 7 ? ((_days / 7) + 1) : (_days / 7),
+                    getTitlesWidget: (value, titleMeta) {
+                      final _nowListDate =
+                          _listFlSpot[(value).toInt()]['datetime'];
+                      return Text(
+                        (_nowListDate.toString() != ""
+                            ? _nowListDate.toString().substring(8, 10) + "日"
+                            : ""),
+                        style: TextStyle(
+                          color: AppTheme.subColor,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 12.sp,
+                        ),
+                      );
+                    }),
               ),
             ),
             borderData: FlBorderData(
@@ -576,26 +582,29 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
       x: x,
       barRods: [
         BarChartRodData(
-          y: y,
-          colors: isTouched
-              ? [
-                  AppTheme.primaryColor.withOpacity(0.4),
-                  AppTheme.primaryColor,
-                ]
-              : [
-                  AppTheme.primaryColor,
-                  AppTheme.primaryColor.withOpacity(0.4),
-                ],
+          fromY: 0,
+          toY: y,
+          gradient: LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            colors: isTouched
+                ? [
+                    AppTheme.primaryColor.withOpacity(0.4),
+                    AppTheme.primaryColor,
+                  ]
+                : [
+                    AppTheme.primaryColor,
+                    AppTheme.primaryColor.withOpacity(0.4),
+                  ],
+          ),
           width: width ?? 14.w,
           borderRadius: BorderRadius.circular(14.w),
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
-            colors: [
-              isDarkMode(context)
-                  ? const Color(0xFF2B3034)
-                  : AppTheme.backgroundColor1,
-            ],
-            y: 100,
+            color: isDarkMode(context)
+                ? const Color(0xFF2B3034)
+                : AppTheme.backgroundColor1,
+            fromY: 100,
           ),
         ),
       ],
@@ -662,7 +671,7 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
                     const TextStyle(),
                     children: [
                       TextSpan(
-                        text: (rod.y).toString() + "\n",
+                        text: (rod.fromY).toString() + "\n",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 14.sp,
@@ -699,18 +708,21 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
             ),
             maxY: 100,
             titlesData: FlTitlesData(
-              topTitles: SideTitles(showTitles: false),
-              bottomTitles: SideTitles(
-                showTitles: true,
-                getTitles: (index) {
-                  return "";
-                },
-                getTextStyles: (_, value) {
-                  return TextStyle(fontSize: 12.sp);
-                },
+              topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              bottomTitles: AxisTitles(
+                sideTitles: SideTitles(
+                  showTitles: true,
+                  getTitlesWidget: (value, titleMeta) {
+                    return Text(
+                      "",
+                      style: TextStyle(fontSize: 12.sp),
+                    );
+                  },
+                ),
               ),
-              leftTitles: SideTitles(showTitles: false),
-              rightTitles: SideTitles(showTitles: false),
+              leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              rightTitles:
+                  AxisTitles(sideTitles: SideTitles(showTitles: false)),
             ),
             gridData: FlGridData(show: false),
             borderData: FlBorderData(show: false),
