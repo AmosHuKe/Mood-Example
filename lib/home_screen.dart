@@ -175,14 +175,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [
-                      isDarkMode(context)
-                          ? Colors.black12
-                          : AppTheme.backgroundColor1,
-                      isDarkMode(context)
-                          ? Colors.black12
-                          : AppTheme.backgroundColor1,
-                    ],
+                    colors: isDarkMode(context)
+                        ? [
+                            Colors.black12,
+                            Colors.black12,
+                          ]
+                        : [
+                            AppTheme.backgroundColor1,
+                            AppTheme.backgroundColor1,
+                          ],
                   ),
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(14.sp),

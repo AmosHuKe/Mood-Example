@@ -35,7 +35,7 @@ class MenuScreenLeft extends StatelessWidget {
         return Scaffold(
           backgroundColor: isDarkMode(context)
               ? const Color(0xFF282C3A)
-              : AppTheme.primaryColor,
+              : Theme.of(context).primaryColor,
           body: InkWell(
             child: const SafeArea(
               child: MenuScreenLeftBody(),

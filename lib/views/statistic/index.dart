@@ -299,22 +299,21 @@ class StatisticWeekMoodLine extends StatefulWidget {
 }
 
 class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
-  List<Color> gradientColors = [
-    AppTheme.primaryColor.withOpacity(0.1),
-    AppTheme.primaryColor.withOpacity(0.4),
-    AppTheme.primaryColor.withOpacity(0.6),
-    AppTheme.primaryColor,
-    AppTheme.primaryColor,
-    AppTheme.primaryColor,
-    AppTheme.primaryColor,
-    AppTheme.primaryColor,
-    AppTheme.primaryColor.withOpacity(0.6),
-    AppTheme.primaryColor.withOpacity(0.4),
-    AppTheme.primaryColor.withOpacity(0.1),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    List<Color> gradientColors = [
+      Theme.of(context).primaryColor.withOpacity(0.1),
+      Theme.of(context).primaryColor.withOpacity(0.4),
+      Theme.of(context).primaryColor.withOpacity(0.6),
+      Theme.of(context).primaryColor,
+      Theme.of(context).primaryColor,
+      Theme.of(context).primaryColor,
+      Theme.of(context).primaryColor,
+      Theme.of(context).primaryColor,
+      Theme.of(context).primaryColor.withOpacity(0.6),
+      Theme.of(context).primaryColor.withOpacity(0.4),
+      Theme.of(context).primaryColor.withOpacity(0.1),
+    ];
     return Consumer<StatisticViewModel>(
       builder: (_, statisticViewModel, child) {
         /// 获取数据
@@ -372,7 +371,7 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                 // colors: gradientColors,
                 barWidth: 2.sp,
                 // shadow: Shadow(
-                //   color: AppTheme.primaryColor.withOpacity(0.4),
+                //   color:Theme.of(context).primaryColor.withOpacity(0.4),
                 //   blurRadius: 4,
                 //   offset: Offset.fromDirection(0, 0),
                 // ),
@@ -384,7 +383,7 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      AppTheme.primaryColor.withOpacity(0.1),
+                      Theme.of(context).primaryColor.withOpacity(0.1),
                       Theme.of(context).cardColor,
                     ],
                   ),
@@ -396,7 +395,7 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                 fitInsideHorizontally: true,
                 tooltipRoundedRadius: 24.sp,
                 tooltipMargin: 24.w,
-                tooltipBgColor: AppTheme.primaryColor,
+                tooltipBgColor: Theme.of(context).primaryColor,
                 getTooltipItems: (List<LineBarSpot> touchedSpots) {
                   return touchedSpots.map((barSpot) {
                     final flSpot = barSpot;
@@ -484,7 +483,7 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
             borderData: FlBorderData(
               show: true,
               border: Border.all(
-                color: AppTheme.primaryColor.withOpacity(0.1),
+                color: Theme.of(context).primaryColor.withOpacity(0.1),
                 width: 0.2,
               ),
             ),
@@ -589,12 +588,12 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
             end: Alignment.topCenter,
             colors: isTouched
                 ? [
-                    AppTheme.primaryColor.withOpacity(0.4),
-                    AppTheme.primaryColor,
+                    Theme.of(context).primaryColor.withOpacity(0.4),
+                    Theme.of(context).primaryColor,
                   ]
                 : [
-                    AppTheme.primaryColor,
-                    AppTheme.primaryColor.withOpacity(0.4),
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).primaryColor.withOpacity(0.4),
                   ],
           ),
           width: width ?? 14.w,
@@ -664,7 +663,7 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
             barTouchData: BarTouchData(
               touchTooltipData: BarTouchTooltipData(
                 tooltipRoundedRadius: 12.sp,
-                tooltipBgColor: AppTheme.primaryColor,
+                tooltipBgColor: Theme.of(context).primaryColor,
                 getTooltipItem: (group, groupIndex, rod, rodIndex) {
                   return BarTooltipItem(
                     "",
@@ -1045,7 +1044,7 @@ class FilterBottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const Color primaryColor = AppTheme.primaryColor;
+    Color primaryColor = Theme.of(context).primaryColor;
     return InkWell(
       child: Container(
         width: 40.w,
@@ -1068,7 +1067,7 @@ class FilterBottom extends StatelessWidget {
           boxShadow: checked
               ? [
                   BoxShadow(
-                      color: AppTheme.primaryColor.withOpacity(0.2),
+                      color: Theme.of(context).primaryColor.withOpacity(0.2),
                       blurRadius: 6)
                 ]
               : [

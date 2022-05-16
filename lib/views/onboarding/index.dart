@@ -80,7 +80,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
     _stepButtonColorController = AnimationController(
         duration: const Duration(milliseconds: 500), vsync: this);
     _stepButtonColorAnimation =
-        ColorTween(begin: _stepButtonColor, end: AppTheme.primaryColor)
+        ColorTween(begin: _stepButtonColor, end: Theme.of(context).primaryColor)
             .animate(_stepButtonColorController);
   }
 

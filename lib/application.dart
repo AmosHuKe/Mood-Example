@@ -62,8 +62,8 @@ class _ApplicationState extends State<Application> {
 
           /// 主题
           themeMode: _watchApplicationViewModel.themeMode,
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
+          theme: AppTheme().themeLightColorMode(),
+          darkTheme: AppTheme().themeDarkColorMode(),
 
           /// 路由钩子
           onGenerateRoute: router.generator,

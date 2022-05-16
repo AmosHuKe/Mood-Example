@@ -436,8 +436,8 @@ class _MoodScoreState extends State<MoodScore> {
           value: _moodScore,
           min: 0.0,
           max: 100.0,
-          activeColor: AppTheme.primaryColor,
-          thumbColor: AppTheme.primaryColor,
+          activeColor: Theme.of(context).primaryColor,
+          thumbColor: Theme.of(context).primaryColor,
           onChanged: (val) {
             setState(() {
               _moodScore = val;

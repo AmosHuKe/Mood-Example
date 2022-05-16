@@ -432,10 +432,13 @@ class _CalendarState extends State<Calendar> {
               selectedBuilder: (context, day, focusedDay) {
                 return calenderBuilder(
                   day: day,
-                  bodyColors: [AppTheme.primaryColor, AppTheme.primaryColor],
+                  bodyColors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).primaryColor
+                  ],
                   boxShadow: [
                     BoxShadow(
-                      color: AppTheme.primaryColor.withOpacity(0.2),
+                      color: Theme.of(context).primaryColor.withOpacity(0.2),
                       blurRadius: 6,
                     )
                   ],
@@ -459,8 +462,8 @@ class _CalendarState extends State<Calendar> {
                   day: day,
                   moodRecordedDate: moodRecordedDate,
                   bodyColors: [
-                    AppTheme.primaryColor.withOpacity(0.2),
-                    AppTheme.primaryColor.withOpacity(0.2),
+                    Theme.of(context).primaryColor.withOpacity(0.2),
+                    Theme.of(context).primaryColor.withOpacity(0.2),
                   ],
                   textStyle: TextStyle(
                       color:
