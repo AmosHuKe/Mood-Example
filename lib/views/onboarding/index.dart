@@ -6,7 +6,7 @@ import 'package:remixicon/remixicon.dart';
 import 'package:card_swiper/card_swiper.dart';
 
 ///
-import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/theme/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 
 /// 引导页

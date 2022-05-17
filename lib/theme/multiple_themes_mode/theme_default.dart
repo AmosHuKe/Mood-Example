@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// 主题
-class AppThemeBlue {
+class AppThemeDefault {
   // fromRGBO(46, 69, 177, 1) fromRGBO(84, 70, 183, 1)
   // 主颜色
   static const primaryColor =

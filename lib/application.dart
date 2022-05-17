@@ -9,7 +9,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:moodexample/generated/l10n.dart';
 
 ///
-import 'app_theme.dart';
+import 'theme/app_theme.dart';
 import 'package:moodexample/db/db.dart';
 import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/routes.dart';
@@ -62,8 +62,10 @@ class _ApplicationState extends State<Application> {
 
           /// 主题
           themeMode: _watchApplicationViewModel.themeMode,
-          theme: AppTheme().themeLightColorMode(),
-          darkTheme: AppTheme().themeDarkColorMode(),
+          theme: AppTheme(_watchApplicationViewModel.multipleThemesMode)
+              .multipleThemesLightMode(),
+          darkTheme: AppTheme(_watchApplicationViewModel.multipleThemesMode)
+              .multipleThemesDarkMode(),
 
           /// 路由钩子
           onGenerateRoute: router.generator,
@@ -118,6 +120,9 @@ class _InitState extends State<Init> {
 
     /// 触发获取APP主题深色模式
     PreferencesDB().getAppThemeDarkMode(context);
+
+    /// 触发获取APP多主题模式
+    PreferencesDB().getMultipleThemesMode(context);
 
     /// 触发获取APP地区语言
     PreferencesDB().getAppLocale(context);

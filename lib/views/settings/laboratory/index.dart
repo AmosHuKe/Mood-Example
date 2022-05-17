@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:remixicon/remixicon.dart';
 
-import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/theme/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/routes.dart';
 
