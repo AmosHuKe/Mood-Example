@@ -69,9 +69,9 @@ class MoodViewModel extends ChangeNotifier {
   Future<bool> setMoodCategoryDefault() async {
     bool initMoodCategoryDefaultType =
         await PreferencesDB().getInitMoodCategoryDefaultType();
-    print("心情类别默认值初始化:" + initMoodCategoryDefaultType.toString());
+    debugPrint("心情类别默认值初始化:$initMoodCategoryDefaultType");
     if (!initMoodCategoryDefaultType) {
-      print("开始心情类别默认值初始化");
+      debugPrint("开始心情类别默认值初始化");
       MoodService.setCategoryDefault();
 
       /// 已赋值默认值标记

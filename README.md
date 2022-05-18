@@ -10,7 +10,7 @@
 </h1> 
 
 <p align="center">
-<img alt="Mood-Example v1.3.1" src="https://img.shields.io/badge/Mood--Example-v1.3.1-3e4663"/> 
+<img alt="Mood-Example v1.4.3" src="https://img.shields.io/badge/Mood--Example-v1.4.3-3e4663"/> 
 <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.0" src="https://img.shields.io/badge/Flutter-v3.0-46D1FD"/></a> 
 <a target="_blank" href="https://dart.dev/"><img alt="Dart v2.17.0" src="https://img.shields.io/badge/Dart-v2.17.0-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
@@ -34,7 +34,7 @@
 ## 🔖 功能
 
 - [x] 国际化 i18n  
-- [ ] 多主题  
+- [x] 多主题  
 - [x] 深色模式  
 - [x] 本地数据管理  
 - [x] 路由管理  
@@ -160,7 +160,8 @@ $ flutter run --debug/release/profile/test
 │   │   ├── utils_intl.dart                         # 国际化工具
 │   │   └── utils.dart                              # 工具
 │   ├── config                                      # 配置
-│   │   └── language.dart                           # 语言配置
+│   │   ├── language.dart                           # 语言配置
+│   │   └── multiple_themes.dart                    # 多主题配置
 │   ├── db                                          # 数据存储相关
 │   │   ├── database                                # sqflite 数据表配置
 │   │   ├── db.dart                                 # sqflite 数据库相关
@@ -169,10 +170,13 @@ $ flutter run --debug/release/profile/test
 │   ├── l10n                                        # intl 语言包
 │   ├── models                                      # 数据模型
 │   ├── services                                    # 数据服务
+│   ├── themes                                      # 主题相关
+│   │   ├── multiple_themes_mode                    # 多主题配色
+│   │   │   └── theme_default.dart.dart             # 多主题默认配色
+│   │   └── app_theme.dart                          # 主题基础
 │   ├── view_models                                 # 业务逻辑
 │   ├── views                                       # 视图
 │   ├── widgets                                     # 组件相关
-│   ├── app_theme.dart                              # 主题
 │   ├── application.dart                            # 主应用
 │   ├── home_screen.dart                            # 主应用导航相关
 │   ├── main.dart                                   # 主应用入口

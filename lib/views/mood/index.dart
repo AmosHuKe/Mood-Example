@@ -10,7 +10,7 @@ import 'package:remixicon/remixicon.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 ///
-import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
@@ -30,7 +30,7 @@ class MoodPage extends StatefulWidget {
   const MoodPage({Key? key}) : super(key: key);
 
   @override
-  _MoodPageState createState() => _MoodPageState();
+  State<MoodPage> createState() => _MoodPageState();
 }
 
 class _MoodPageState extends State<MoodPage>
@@ -103,17 +103,17 @@ class _MoodPageState extends State<MoodPage>
 
 /// 初始化
 init(BuildContext context) {
-  MoodViewModel _moodViewModel =
+  MoodViewModel moodViewModel =
       Provider.of<MoodViewModel>(context, listen: false);
 
   /// 获取所有有记录心情的日期
-  MoodService.getMoodRecordedDate(_moodViewModel);
+  MoodService.getMoodRecordedDate(moodViewModel);
 
   /// 处理日期
-  String moodDatetime = _moodViewModel.nowDateTime.toString().substring(0, 10);
+  String moodDatetime = moodViewModel.nowDateTime.toString().substring(0, 10);
 
   /// 获取心情数据
-  MoodService.getMoodData(_moodViewModel, moodDatetime);
+  MoodService.getMoodData(moodViewModel, moodDatetime);
 }
 
 /// 主体
@@ -121,7 +121,7 @@ class MoodBody extends StatefulWidget {
   const MoodBody({Key? key}) : super(key: key);
 
   @override
-  _MoodBodyState createState() => _MoodBodyState();
+  State<MoodBody> createState() => _MoodBodyState();
 }
 
 class _MoodBodyState extends State<MoodBody> {
@@ -169,7 +169,6 @@ class _MoodBodyState extends State<MoodBody> {
         /// 下拉加载
         CupertinoSliverRefreshControl(
           onRefresh: () async {
-            print("下拉刷新");
             vibrate();
             init(context);
           },
@@ -183,9 +182,6 @@ class _MoodBodyState extends State<MoodBody> {
         /// 心情数据列表
         Consumer<MoodViewModel>(
           builder: (_, moodViewModel, child) {
-            print("心情数据加载" + moodViewModel.moodDataLoading.toString());
-            print("心情数据加载条数:" + moodViewModel.moodDataList!.length.toString());
-
             /// 加载数据的占位
             if (moodViewModel.moodDataLoading) {
               return SliverFixedExtentList(
@@ -225,17 +221,17 @@ class _MoodBodyState extends State<MoodBody> {
                   (context, index) {
                     moodViewModel
                         .setMoodData(moodViewModel.moodDataList![index]);
-                    MoodData? _moodData = moodViewModel.moodData;
+                    MoodData? moodData = moodViewModel.moodData;
 
                     return MoodCard(
                       key: Key(moodViewModel.moodData?.moodId.toString() ?? ''),
-                      moodId: _moodData?.moodId ?? -1,
-                      icon: _moodData?.icon ?? '',
-                      title: _moodData?.title ?? '',
-                      datetime: _moodData?.createTime ?? '',
-                      score: _moodData?.score ?? 0,
-                      content: _moodData?.content,
-                      createTime: _moodData?.createTime ?? '',
+                      moodId: moodData?.moodId ?? -1,
+                      icon: moodData?.icon ?? '',
+                      title: moodData?.title ?? '',
+                      datetime: moodData?.createTime ?? '',
+                      score: moodData?.score ?? 0,
+                      content: moodData?.content,
+                      createTime: moodData?.createTime ?? '',
                     );
                   },
                   childCount: moodViewModel.moodDataList?.length,
@@ -257,7 +253,7 @@ class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);
 
   @override
-  _CalendarState createState() => _CalendarState();
+  State<Calendar> createState() => _CalendarState();
 }
 
 class _CalendarState extends State<Calendar> {
@@ -283,7 +279,7 @@ class _CalendarState extends State<Calendar> {
     final String nowDate = DateFormat("yyyy-MM-dd").format(day);
 
     /// 所有已记录心情的日期
-    late List _list = moodRecordedDate ?? [];
+    late List list = moodRecordedDate ?? [];
 
     return SizedBox(
       width: 36.w,
@@ -307,8 +303,8 @@ class _CalendarState extends State<Calendar> {
               Builder(
                 builder: (context) {
                   late int recordedIndex = -1;
-                  for (int i = 0; i < _list.length; i++) {
-                    if (_list[i]["recordedDate"] ==
+                  for (int i = 0; i < list.length; i++) {
+                    if (list[i]["recordedDate"] ==
                         DateFormat("yyyy-MM-dd").format(day)) {
                       recordedIndex = i;
                     }
@@ -317,7 +313,7 @@ class _CalendarState extends State<Calendar> {
                     return Container(
                       margin: EdgeInsets.only(top: 28.w),
                       child: Text(
-                        _list[recordedIndex]["icon"],
+                        list[recordedIndex]["icon"],
                         style: TextStyle(
                           fontSize: 8.sp,
                         ),
@@ -341,10 +337,10 @@ class _CalendarState extends State<Calendar> {
         Provider.of<MoodViewModel>(context, listen: false).nowDateTime;
 
     /// 当前选择日期
-    late DateTime _selectedDay = nowDateTime;
+    late DateTime selectedDay = nowDateTime;
 
     /// 选中的日期
-    late DateTime _focusedDay = nowDateTime;
+    late DateTime focusedDay = nowDateTime;
 
     return Container(
       margin: EdgeInsets.only(left: 24.w, right: 24.w, top: 12.w, bottom: 12.w),
@@ -366,7 +362,7 @@ class _CalendarState extends State<Calendar> {
           child: TableCalendar(
             firstDay: DateTime.utc(2021, 10, 01),
             lastDay: DateTime.now(),
-            focusedDay: _focusedDay,
+            focusedDay: focusedDay,
             startingDayOfWeek: StartingDayOfWeek.monday,
             calendarFormat: _calendarFormat,
             formatAnimationCurve: Curves.linearToEaseOut,
@@ -432,10 +428,13 @@ class _CalendarState extends State<Calendar> {
               selectedBuilder: (context, day, focusedDay) {
                 return calenderBuilder(
                   day: day,
-                  bodyColors: [AppTheme.primaryColor, AppTheme.primaryColor],
+                  bodyColors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).primaryColor
+                  ],
                   boxShadow: [
                     BoxShadow(
-                      color: AppTheme.primaryColor.withOpacity(0.2),
+                      color: Theme.of(context).primaryColor.withOpacity(0.2),
                       blurRadius: 6,
                     )
                   ],
@@ -459,8 +458,8 @@ class _CalendarState extends State<Calendar> {
                   day: day,
                   moodRecordedDate: moodRecordedDate,
                   bodyColors: [
-                    AppTheme.primaryColor.withOpacity(0.2),
-                    AppTheme.primaryColor.withOpacity(0.2),
+                    Theme.of(context).primaryColor.withOpacity(0.2),
+                    Theme.of(context).primaryColor.withOpacity(0.2),
                   ],
                   textStyle: TextStyle(
                       color:
@@ -488,39 +487,37 @@ class _CalendarState extends State<Calendar> {
               CalendarFormat.week: '中',
             },
             selectedDayPredicate: (day) {
-              return isSameDay(_selectedDay, day);
+              return isSameDay(selectedDay, day);
             },
             onDaySelected: (selectedDay, focusedDay) {
-              MoodViewModel _moodViewModel =
+              MoodViewModel moodViewModel =
                   Provider.of<MoodViewModel>(context, listen: false);
 
               /// 之前选择的日期
-              DateTime _oldSelectedDay = _moodViewModel.nowDateTime;
+              DateTime oldSelectedDay = moodViewModel.nowDateTime;
 
               /// 选择的日期相同则不操作
-              if (_oldSelectedDay == selectedDay) {
+              if (oldSelectedDay == selectedDay) {
                 return;
               }
 
               /// 赋值
               setState(() {
-                _selectedDay = selectedDay;
-                _focusedDay = focusedDay;
+                selectedDay = selectedDay;
+                focusedDay = focusedDay;
               });
-              print("选择日期:" + selectedDay.toString());
-              print("旧日期:" + _oldSelectedDay.toString());
 
               /// 赋值当前选择的日期
-              _moodViewModel.setNowDateTime(selectedDay);
+              moodViewModel.setNowDateTime(selectedDay);
 
               /// 处理赋值新日期
-              String _moodDatetime = selectedDay.toString().substring(0, 10);
+              String moodDatetime = selectedDay.toString().substring(0, 10);
 
               /// 开启加载
-              _moodViewModel.setMoodDataLoading(true);
+              moodViewModel.setMoodDataLoading(true);
 
               /// 获取心情数据
-              MoodService.getMoodData(_moodViewModel, _moodDatetime);
+              MoodService.getMoodData(moodViewModel, moodDatetime);
             },
             onCalendarCreated: (pageController) {
               /// 初始化触发一次
@@ -577,7 +574,7 @@ class MoodCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _MoodCardState createState() => _MoodCardState();
+  State<MoodCard> createState() => _MoodCardState();
 }
 
 class _MoodCardState extends State<MoodCard> {
@@ -607,22 +604,20 @@ class _MoodCardState extends State<MoodCard> {
                   color: Color(0xFF587966),
                 ),
                 onTap: () {
-                  print("修改");
-
                   /// 赋值编辑心情详细数据
-                  MoodData _moodData = MoodData();
-                  _moodData.moodId = widget.moodId;
-                  _moodData.icon = widget.icon;
-                  _moodData.title = widget.title;
-                  _moodData.score = widget.score;
-                  _moodData.content = widget.content;
-                  _moodData.createTime = widget.createTime;
+                  MoodData moodData = MoodData();
+                  moodData.moodId = widget.moodId;
+                  moodData.icon = widget.icon;
+                  moodData.title = widget.title;
+                  moodData.score = widget.score;
+                  moodData.content = widget.content;
+                  moodData.createTime = widget.createTime;
 
                   /// 跳转输入内容页
                   Navigator.pushNamed(
                     context,
                     Routes.moodContent +
-                        Routes.transformParams([moodDataToJson(_moodData)]),
+                        Routes.transformParams([moodDataToJson(moodData)]),
                   );
                 },
               ),
@@ -648,37 +643,43 @@ class _MoodCardState extends State<MoodCard> {
                   color: Color(0xFFC04A4A),
                 ),
                 onTap: () {
-                  print("删除");
                   showCupertinoDialog<void>(
                     context: context,
-                    builder: (BuildContext context) => CupertinoAlertDialog(
-                      title: Text(S.of(context).mood_data_delete_button_title),
-                      content:
-                          Text(S.of(context).mood_data_delete_button_content),
-                      actions: <CupertinoDialogAction>[
-                        CupertinoDialogAction(
-                          child: Text(
-                              S.of(context).mood_data_delete_button_cancel),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                        CupertinoDialogAction(
-                          child: Text(
-                              S.of(context).mood_data_delete_button_confirm),
-                          isDestructiveAction: true,
-                          onPressed: () async {
-                            MoodData _moodData = MoodData();
-                            _moodData.moodId = widget.moodId;
-                            bool _result = await MoodService.delMood(_moodData);
-                            if (_result) {
-                              // 重新初始化
-                              init(context);
+                    builder: (BuildContext context) => Theme(
+                      data: isDarkMode(context)
+                          ? ThemeData.dark()
+                          : ThemeData.light(),
+                      child: CupertinoAlertDialog(
+                        title:
+                            Text(S.of(context).mood_data_delete_button_title),
+                        content:
+                            Text(S.of(context).mood_data_delete_button_content),
+                        actions: <CupertinoDialogAction>[
+                          CupertinoDialogAction(
+                            child: Text(
+                                S.of(context).mood_data_delete_button_cancel),
+                            onPressed: () {
                               Navigator.pop(context);
-                            }
-                          },
-                        )
-                      ],
+                            },
+                          ),
+                          CupertinoDialogAction(
+                            isDestructiveAction: true,
+                            onPressed: () async {
+                              MoodData moodData = MoodData();
+                              moodData.moodId = widget.moodId;
+                              bool result = await MoodService.delMood(moodData);
+                              if (!mounted) return;
+                              if (result) {
+                                // 重新初始化
+                                init(context);
+                                Navigator.pop(context);
+                              }
+                            },
+                            child: Text(
+                                S.of(context).mood_data_delete_button_confirm),
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },

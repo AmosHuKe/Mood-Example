@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
 ///
-import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
@@ -33,7 +33,7 @@ class MoodContent extends StatefulWidget {
   final MoodData moodData;
 
   @override
-  _MoodContentState createState() => _MoodContentState();
+  State<MoodContent> createState() => _MoodContentState();
 }
 
 class _MoodContentState extends State<MoodContent> {
@@ -136,13 +136,13 @@ class _MoodContentState extends State<MoodContent> {
                   : const Color(0xFF587966),
             ),
             onTap: () async {
-              MoodViewModel _moodViewModel =
+              MoodViewModel moodViewModel =
                   Provider.of<MoodViewModel>(context, listen: false);
 
               /// 是否操作成功
-              late bool _result = false;
-              final String _nowDateTime =
-                  _moodViewModel.nowDateTime.toString().substring(0, 10);
+              late bool result = false;
+              final String nowDateTime =
+                  moodViewModel.nowDateTime.toString().substring(0, 10);
 
               /// 存在ID的操作（代表修改）
               if (_moodData.moodId != null) {
@@ -150,19 +150,19 @@ class _MoodContentState extends State<MoodContent> {
                 /// 赋值修改时间
                 _moodData.updateTime =
                     DateTime.now().toString().substring(0, 10);
-                print("修改心情数据:${moodDataToJson(_moodData)}");
-                _result = await MoodService.editMood(_moodData);
+                result = await MoodService.editMood(_moodData);
               } else {
                 /// 创建心情数据
-                print("创建心情数据:${moodDataToJson(_moodData)}");
-                _result = await MoodService.addMoodData(_moodData);
+                result = await MoodService.addMoodData(_moodData);
               }
-              if (_result) {
+              if (result) {
                 /// 获取心情数据
-                MoodService.getMoodData(_moodViewModel, _nowDateTime);
+                MoodService.getMoodData(moodViewModel, nowDateTime);
 
                 /// 获取所有已记录心情的日期
-                MoodService.getMoodRecordedDate(_moodViewModel);
+                MoodService.getMoodRecordedDate(moodViewModel);
+
+                if (!mounted) return;
 
                 /// 返回
                 Navigator.of(context).pop();
@@ -188,7 +188,7 @@ class MoodContentBody extends StatefulWidget {
   const MoodContentBody({Key? key}) : super(key: key);
 
   @override
-  _MoodContentBodyState createState() => _MoodContentBodyState();
+  State<MoodContentBody> createState() => _MoodContentBodyState();
 }
 
 class _MoodContentBodyState extends State<MoodContentBody> {
@@ -322,7 +322,7 @@ class AddContent extends StatefulWidget {
   const AddContent({Key? key}) : super(key: key);
 
   @override
-  _AddContentState createState() => _AddContentState();
+  State<AddContent> createState() => _AddContentState();
 }
 
 class _AddContentState extends State<AddContent> {
@@ -395,14 +395,14 @@ class MoodScore extends StatefulWidget {
   const MoodScore({Key? key}) : super(key: key);
 
   @override
-  _MoodScoreState createState() => _MoodScoreState();
+  State<MoodScore> createState() => _MoodScoreState();
 }
 
 class _MoodScoreState extends State<MoodScore> {
   @override
   Widget build(BuildContext context) {
     /// 心情分数
-    double _moodScore =
+    double moodScore =
         _moodData.score != null ? double.parse(_moodData.score.toString()) : 50;
     return Column(
       children: [
@@ -425,7 +425,7 @@ class _MoodScoreState extends State<MoodScore> {
             right: 24.w,
           ),
           child: Text(
-            (_moodScore ~/ 1).toString(),
+            (moodScore ~/ 1).toString(),
             style: Theme.of(context).textTheme.bodyText1!.copyWith(
                   fontSize: 24.w,
                   fontWeight: FontWeight.bold,
@@ -433,14 +433,14 @@ class _MoodScoreState extends State<MoodScore> {
           ),
         ),
         Slider(
-          value: _moodScore,
+          value: moodScore,
           min: 0.0,
           max: 100.0,
-          activeColor: AppTheme.primaryColor,
-          thumbColor: AppTheme.primaryColor,
+          activeColor: Theme.of(context).primaryColor,
+          thumbColor: Theme.of(context).primaryColor,
           onChanged: (val) {
             setState(() {
-              _moodScore = val;
+              moodScore = val;
             });
 
             /// 赋值分数

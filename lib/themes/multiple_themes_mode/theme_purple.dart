@@ -1,57 +1,16 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
-///
-import 'package:provider/provider.dart';
-
-///
-import 'package:moodexample/view_models/application/application_view_model.dart';
-
-/// 是否深色模式
-bool isDarkMode(BuildContext context) {
-  final ThemeMode _themeMode =
-      Provider.of<ApplicationViewModel>(context, listen: false).themeMode;
-  if (_themeMode == ThemeMode.system) {
-    return window.platformBrightness == Brightness.dark;
-  } else {
-    return _themeMode == ThemeMode.dark;
-  }
-}
-
-/// 当前深色模式
-/// system(默认)：跟随系统 light：普通 dark：深色
-ThemeMode darkThemeMode(String mode) {
-  ThemeMode themeMode = ThemeMode.system;
-  switch (mode) {
-    case "system":
-      themeMode = ThemeMode.system;
-      break;
-    case "dark":
-      themeMode = ThemeMode.dark;
-      break;
-    case "light":
-      themeMode = ThemeMode.light;
-      break;
-    default:
-      themeMode = ThemeMode.system;
-      break;
-  }
-  return themeMode;
-}
-
 /// 主题
-class AppTheme {
-  // 设备参考大小
-  static const double wdp = 360.0;
-  static const double hdp = 690.0;
+class AppThemePurple {
   // fromRGBO(46, 69, 177, 1) fromRGBO(84, 70, 183, 1)
-  // 主颜色
+  /// 主颜色
   static const primaryColor =
-      Color(0xFF3e4663); // #4d5fb4 #2C3751 #3e4663 #F7C95E
+      Color(0xFF7F7182); // #4d5fb4 #2C3751 #3e4663 #F7C95E
 
-  // 次要颜色
+  /// 次要颜色
   static const subColor = Color(0xFFAFB8BF);
-  // 背景色系列
+
+  /// 背景色系列
   static const backgroundColor1 = Color(0xFFE8ECF0);
   static const backgroundColor2 = Color(0xFFFCFBFC);
   static const backgroundColor3 = Color(0xFFF3F2F3);
@@ -130,7 +89,7 @@ class AppTheme {
     ),
     // TabBar
     tabBarTheme: const TabBarTheme(
-      labelStyle: TextStyle(color: Colors.white),
+      labelColor: Colors.white,
       unselectedLabelColor: Color(0xFF6F767E),
     ),
     // 回弹波浪颜色

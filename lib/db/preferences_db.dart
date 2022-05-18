@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
 ///
-import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/themes/app_theme.dart';
 
 ///
 import 'package:moodexample/view_models/application/application_view_model.dart';
@@ -20,10 +20,15 @@ class PreferencesDB {
   /// 打开APP次数
   static const openAPPCount = "openAPPCount";
 
-  /// 主题深色模式
+  /// 主题外观模式
   ///
   /// system(默认)：跟随系统 light：普通 dark：深色
   static const appThemeDarkMode = "appThemeDarkMode";
+
+  /// 多主题模式
+  ///
+  /// default(默认)
+  static const appMultipleThemesMode = "appMultipleThemesMode";
 
   /// APP地区语言
   static const appLocale = "appLocale";
@@ -48,7 +53,7 @@ class PreferencesDB {
     return prefs.getBool(initMoodCategoryDefaultType) ?? false;
   }
 
-  /// 设置-主题深色模式
+  /// 设置-主题外观模式
   Future setAppThemeDarkMode(BuildContext context, String value) async {
     SharedPreferences prefs = await init();
     prefs.setString(appThemeDarkMode, value);
@@ -56,7 +61,7 @@ class PreferencesDB {
         .setThemeMode(darkThemeMode(value));
   }
 
-  /// 获取-主题深色模式
+  /// 获取-主题外观模式
   Future<String> getAppThemeDarkMode(BuildContext context) async {
     SharedPreferences prefs = await init();
     String themeDarkMode = prefs.getString(appThemeDarkMode) ?? "system";
@@ -65,26 +70,44 @@ class PreferencesDB {
     return themeDarkMode;
   }
 
+  /// 设置-多主题模式
+  Future setMultipleThemesMode(BuildContext context, String value) async {
+    SharedPreferences prefs = await init();
+    prefs.setString(appMultipleThemesMode, value);
+    Provider.of<ApplicationViewModel>(context, listen: false)
+        .setMultipleThemesMode(value);
+  }
+
+  /// 获取-多主题模式
+  Future<String> getMultipleThemesMode(BuildContext context) async {
+    SharedPreferences prefs = await init();
+    String multipleThemesMode =
+        prefs.getString(appMultipleThemesMode) ?? "default";
+    Provider.of<ApplicationViewModel>(context, listen: false)
+        .setMultipleThemesMode(multipleThemesMode);
+    return multipleThemesMode;
+  }
+
   /// 设置-APP地区语言
   Future setAppLocale(BuildContext context, String? locale) async {
     SharedPreferences prefs = await init();
-    print(locale);
+    debugPrint(locale);
     await setAppIsLocaleSystem(context, false);
-    final _appLocale = locale ?? "zh";
-    final _appLocaleList = _appLocale.split('_');
-    prefs.setString(appLocale, _appLocale);
+    final appLocale = locale ?? "zh";
+    final appLocaleList = appLocale.split('_');
+    prefs.setString(appLocale, appLocale);
     Provider.of<ApplicationViewModel>(context, listen: false).setLocale(Locale(
-        _appLocaleList[0], _appLocaleList.length > 1 ? _appLocaleList[1] : ''));
+        appLocaleList[0], appLocaleList.length > 1 ? appLocaleList[1] : ''));
   }
 
   /// 获取-APP地区语言
   Future<String> getAppLocale(BuildContext context) async {
     SharedPreferences prefs = await init();
-    String _appLocale = prefs.getString(appLocale) ?? "zh";
-    final _appLocaleList = _appLocale.split('_');
+    String getAppLocale = prefs.getString(appLocale) ?? "zh";
+    final appLocaleList = getAppLocale.split('_');
     Provider.of<ApplicationViewModel>(context, listen: false).setLocale(Locale(
-        _appLocaleList[0], _appLocaleList.length > 1 ? _appLocaleList[1] : ''));
-    return _appLocale;
+        appLocaleList[0], appLocaleList.length > 1 ? appLocaleList[1] : ''));
+    return getAppLocale;
   }
 
   /// 设置-APP地区语言是否跟随系统
@@ -98,9 +121,9 @@ class PreferencesDB {
   /// 获取-APP地区语言是否跟随系统
   Future<bool> getAppIsLocaleSystem(BuildContext context) async {
     SharedPreferences prefs = await init();
-    bool _appIsLocaleSystem = prefs.getBool(appIsLocaleSystem) ?? true;
+    bool getAppIsLocaleSystem = prefs.getBool(appIsLocaleSystem) ?? true;
     Provider.of<ApplicationViewModel>(context, listen: false)
-        .setLocaleSystem(_appIsLocaleSystem);
-    return _appIsLocaleSystem;
+        .setLocaleSystem(getAppIsLocaleSystem);
+    return getAppIsLocaleSystem;
   }
 }

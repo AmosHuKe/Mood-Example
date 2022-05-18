@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ///
-import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/themes/app_theme.dart';
 
 /// 底部详情内容弹出
 Future<T?> showModalBottomDetail<T>({
@@ -19,8 +19,7 @@ Future<T?> showModalBottomDetail<T>({
   );
   return showModalBottomSheet(
     context: context,
-    barrierColor:
-        isDarkMode(context) ? Colors.grey.withOpacity(0.3) : Colors.black54,
+    barrierColor: isDarkMode(context) ? Colors.black45 : Colors.black54,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(32.w),

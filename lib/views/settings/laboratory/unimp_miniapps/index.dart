@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:remixicon/remixicon.dart';
 
-import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
 class UniMPMiniappsPage extends StatefulWidget {
@@ -79,9 +79,9 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
         // 通过渠道，调用原生代码代码的方法
         final future = await channel.invokeMethod("open", {"AppID": appID});
         // 打印执行的结果
-        print(future.toString());
+        debugPrint(future.toString());
       } on PlatformException catch (e) {
-        print(e.toString());
+        debugPrint(e.toString());
       }
     }
 
@@ -176,8 +176,8 @@ class ListCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  child: const Text('打开'),
                   onPressed: onPressed,
+                  child: const Text('打开'),
                 ),
                 const SizedBox(width: 8),
               ],

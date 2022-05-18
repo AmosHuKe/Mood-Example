@@ -17,7 +17,7 @@ class SettingLanguage extends StatefulWidget {
   const SettingLanguage({Key? key}) : super(key: key);
 
   @override
-  _SettingLanguageState createState() => _SettingLanguageState();
+  State<SettingLanguage> createState() => _SettingLanguageState();
 }
 
 class _SettingLanguageState extends State<SettingLanguage> {
@@ -47,7 +47,6 @@ class _SettingLanguageState extends State<SettingLanguage> {
                     .copyWith(fontSize: 14.sp, fontWeight: FontWeight.normal),
               ),
               onChanged: (value) async {
-                print("跟随系统");
                 await PreferencesDB().setAppIsLocaleSystem(context, true);
               },
             );
@@ -70,8 +69,6 @@ class _SettingLanguageState extends State<SettingLanguage> {
                         fontSize: 14.sp, fontWeight: FontWeight.normal),
                   ),
                   onChanged: (value) async {
-                    print("语言切换为:" +
-                        _languageConfig[index]["language"].toString());
                     await PreferencesDB()
                         .setAppLocale(context, value.toString());
                   },

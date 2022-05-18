@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
 ///
-import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/generated/l10n.dart';
 
@@ -22,7 +22,7 @@ class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage>
@@ -54,7 +54,7 @@ class HomeBody extends StatefulWidget {
   const HomeBody({Key? key}) : super(key: key);
 
   @override
-  _HomeBodyState createState() => _HomeBodyState();
+  State<HomeBody> createState() => _HomeBodyState();
 }
 
 class _HomeBodyState extends State<HomeBody> {
@@ -176,7 +176,7 @@ class Header extends StatefulWidget {
   const Header({Key? key}) : super(key: key);
 
   @override
-  _HeaderState createState() => _HeaderState();
+  State<Header> createState() => _HeaderState();
 }
 
 class _HeaderState extends State<Header> {
@@ -220,18 +220,18 @@ class OptionMood extends StatefulWidget {
   const OptionMood({Key? key}) : super(key: key);
 
   @override
-  _OptionMoodState createState() => _OptionMoodState();
+  State<OptionMood> createState() => _OptionMoodState();
 }
 
 class _OptionMoodState extends State<OptionMood> {
   @override
   void initState() {
     super.initState();
-    MoodViewModel _moodViewModel =
+    MoodViewModel moodViewModel =
         Provider.of<MoodViewModel>(context, listen: false);
 
     /// 获取所有心情类别
-    MoodService.getMoodCategoryAll(_moodViewModel);
+    MoodService.getMoodCategoryAll(moodViewModel);
   }
 
   /// Return
@@ -256,19 +256,19 @@ class _OptionMoodState extends State<OptionMood> {
           Consumer<MoodViewModel>(
             builder: (_, moodViewModel, child) {
               /// 所有心情类型数据
-              List<Widget> _widgetList = [];
+              List<Widget> widgetList = [];
 
               /// 数据渲染
               for (MoodCategoryData list
                   in moodViewModel.moodCategoryList ?? []) {
                 /// 获取所有心情类别
                 moodViewModel.setMoodCategoryData(list);
-                MoodCategoryData _moodCategoryData =
+                MoodCategoryData moodCategoryData =
                     moodViewModel.moodCategoryData;
-                _widgetList.add(
+                widgetList.add(
                   OptionCard(
-                    title: _moodCategoryData.title ?? "",
-                    icon: _moodCategoryData.icon ?? "",
+                    title: moodCategoryData.title ?? "",
+                    icon: moodCategoryData.icon ?? "",
                   ),
                 );
               }
@@ -277,7 +277,7 @@ class _OptionMoodState extends State<OptionMood> {
               return Wrap(
                 spacing: 24.w, // 主轴(水平)方向间距
                 alignment: WrapAlignment.spaceBetween, //沿主轴方向居中
-                children: _widgetList,
+                children: widgetList,
               );
             },
           ),
@@ -342,17 +342,17 @@ class OptionCard extends StatelessWidget {
       ),
       onTap: () {
         // 跳转输入内容页
-        String _nowDateTime = DateTime.now().toString().substring(0, 10);
-        MoodData _moodData = MoodData();
-        _moodData.icon = icon;
-        _moodData.title = title;
-        _moodData.createTime = _nowDateTime;
-        _moodData.updateTime = _nowDateTime;
+        String nowDateTime = DateTime.now().toString().substring(0, 10);
+        MoodData moodData = MoodData();
+        moodData.icon = icon;
+        moodData.title = title;
+        moodData.createTime = nowDateTime;
+        moodData.updateTime = nowDateTime;
         // 跳转输入内容页
         Navigator.pushNamed(
             context,
             Routes.moodContent +
-                Routes.transformParams([moodDataToJson(_moodData)]));
+                Routes.transformParams([moodDataToJson(moodData)]));
       },
     );
   }
@@ -408,7 +408,7 @@ class ActionCard extends StatefulWidget {
   const ActionCard({Key? key}) : super(key: key);
 
   @override
-  _ActionCardState createState() => _ActionCardState();
+  State<ActionCard> createState() => _ActionCardState();
 }
 
 class _ActionCardState extends State<ActionCard> {
@@ -489,24 +489,6 @@ class _ActionCardState extends State<ActionCard> {
                       width: 95.w,
                       height: 45.w,
                       child: OutlinedButton(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(right: 4.w),
-                              child: Text(
-                                S.of(context).home_upgrade_button,
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                ),
-                              ),
-                            ),
-                            Icon(
-                              Remix.play_circle_fill,
-                              size: 24.sp,
-                            ),
-                          ],
-                        ),
                         style: ButtonStyle(
                           padding: MaterialStateProperty.all(
                             EdgeInsets.only(
@@ -536,6 +518,24 @@ class _ActionCardState extends State<ActionCard> {
                           /// 导航到新路由
                           Navigator.pushNamed(context, Routes.onboarding)
                         },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(right: 4.w),
+                              child: Text(
+                                S.of(context).home_upgrade_button,
+                                style: TextStyle(
+                                  fontSize: 14.sp,
+                                ),
+                              ),
+                            ),
+                            Icon(
+                              Remix.play_circle_fill,
+                              size: 24.sp,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -554,7 +554,7 @@ class Article extends StatefulWidget {
   const Article({Key? key}) : super(key: key);
 
   @override
-  _ArticleState createState() => _ArticleState();
+  State<Article> createState() => _ArticleState();
 }
 
 class _ArticleState extends State<Article> {

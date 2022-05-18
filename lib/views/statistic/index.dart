@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
 ///
-import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/widgets/empty/empty.dart';
@@ -22,7 +22,7 @@ class StatisticPage extends StatefulWidget {
   const StatisticPage({Key? key}) : super(key: key);
 
   @override
-  _StatisticPageState createState() => _StatisticPageState();
+  State<StatisticPage> createState() => _StatisticPageState();
 }
 
 class _StatisticPageState extends State<StatisticPage>
@@ -56,34 +56,34 @@ class _StatisticPageState extends State<StatisticPage>
 
 /// 初始化
 init(BuildContext context) {
-  StatisticViewModel _statisticViewModel =
+  StatisticViewModel statisticViewModel =
       Provider.of<StatisticViewModel>(context, listen: false);
 
   /// 统计的天数
-  final int _moodDays = _statisticViewModel.moodDays;
+  final int moodDays = statisticViewModel.moodDays;
 
   /// 统计-APP累计使用天数
-  StatisticService.getAPPUsageDays(_statisticViewModel);
+  StatisticService.getAPPUsageDays(statisticViewModel);
 
   /// 统计-APP累计记录条数
-  StatisticService.getAPPMoodCount(_statisticViewModel);
+  StatisticService.getAPPMoodCount(statisticViewModel);
 
   /// 统计-平均情绪波动
-  StatisticService.getMoodScoreAverage(_statisticViewModel);
+  StatisticService.getMoodScoreAverage(statisticViewModel);
 
   /// 统计-近日情绪波动
-  StatisticService.getMoodScoreAverageRecently(_statisticViewModel,
-      days: _moodDays);
+  StatisticService.getMoodScoreAverageRecently(statisticViewModel,
+      days: moodDays);
 
   /// 统计-近日心情数量统计
-  StatisticService.getDateMoodCount(_statisticViewModel, days: _moodDays);
+  StatisticService.getDateMoodCount(statisticViewModel, days: moodDays);
 }
 
 class StatisticBody extends StatefulWidget {
   const StatisticBody({Key? key}) : super(key: key);
 
   @override
-  _StatisticBodyState createState() => _StatisticBodyState();
+  State<StatisticBody> createState() => _StatisticBodyState();
 }
 
 class _StatisticBodyState extends State<StatisticBody> {
@@ -174,7 +174,6 @@ class _StatisticBodyState extends State<StatisticBody> {
         /// 下拉加载
         CupertinoSliverRefreshControl(
           onRefresh: () async {
-            print("下拉刷新");
             vibrate();
             init(context);
           },
@@ -257,7 +256,7 @@ class StatisticMoodLine extends StatefulWidget {
   const StatisticMoodLine({Key? key}) : super(key: key);
 
   @override
-  _StatisticMoodLineState createState() => _StatisticMoodLineState();
+  State<StatisticMoodLine> createState() => _StatisticMoodLineState();
 }
 
 class _StatisticMoodLineState extends State<StatisticMoodLine> {
@@ -266,12 +265,12 @@ class _StatisticMoodLineState extends State<StatisticMoodLine> {
     return Consumer<StatisticViewModel>(
       builder: (_, statisticViewModel, child) {
         /// 获取数据 计算近日平均
-        List<Map<String, dynamic>> _listData =
+        List<Map<String, dynamic>> listData =
             statisticViewModel.moodScoreAverageRecently;
         double moodScoreAverage = 0;
         double moodScoreSum = 0;
-        for (int i = 0; i < _listData.length; i++) {
-          moodScoreSum += _listData[i]["score"];
+        for (int i = 0; i < listData.length; i++) {
+          moodScoreSum += listData[i]["score"];
         }
         moodScoreAverage = double.parse(
             (moodScoreSum / statisticViewModel.moodDays).toStringAsFixed(1));
@@ -295,47 +294,46 @@ class StatisticWeekMoodLine extends StatefulWidget {
   const StatisticWeekMoodLine({Key? key}) : super(key: key);
 
   @override
-  _StatisticWeekMoodLineState createState() => _StatisticWeekMoodLineState();
+  State<StatisticWeekMoodLine> createState() => _StatisticWeekMoodLineState();
 }
 
 class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
-  List<Color> gradientColors = [
-    AppTheme.primaryColor.withOpacity(0.1),
-    AppTheme.primaryColor.withOpacity(0.4),
-    AppTheme.primaryColor.withOpacity(0.6),
-    AppTheme.primaryColor,
-    AppTheme.primaryColor,
-    AppTheme.primaryColor,
-    AppTheme.primaryColor,
-    AppTheme.primaryColor,
-    AppTheme.primaryColor.withOpacity(0.6),
-    AppTheme.primaryColor.withOpacity(0.4),
-    AppTheme.primaryColor.withOpacity(0.1),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    List<Color> gradientColors = [
+      Theme.of(context).primaryColor.withOpacity(0.1),
+      Theme.of(context).primaryColor.withOpacity(0.4),
+      Theme.of(context).primaryColor.withOpacity(0.6),
+      Theme.of(context).primaryColor,
+      Theme.of(context).primaryColor,
+      Theme.of(context).primaryColor,
+      Theme.of(context).primaryColor,
+      Theme.of(context).primaryColor,
+      Theme.of(context).primaryColor.withOpacity(0.6),
+      Theme.of(context).primaryColor.withOpacity(0.4),
+      Theme.of(context).primaryColor.withOpacity(0.1),
+    ];
     return Consumer<StatisticViewModel>(
       builder: (_, statisticViewModel, child) {
         /// 获取数据
-        late List<Map<String, dynamic>> _listData =
+        late List<Map<String, dynamic>> listData =
             statisticViewModel.moodScoreAverageRecently;
 
         /// 统计的天数
-        final int _moodDays = statisticViewModel.moodDays;
+        final int moodDays = statisticViewModel.moodDays;
 
         /// 数据数量
-        final int _moodCount = _listData.length;
+        final int moodCount = listData.length;
 
         /// 数据是否为空
-        final bool _moodEmpty = _listData.isEmpty;
+        final bool moodEmpty = listData.isEmpty;
 
         /// 启用的数据数量（如果数据为空则启用固定天数）
-        final int _days = _moodEmpty ? _moodDays : _moodCount;
+        final int days = moodEmpty ? moodDays : moodCount;
 
         /// 数据为空的占位
-        if (_moodEmpty) {
-          _listData = List.generate((_days), (i) {
+        if (moodEmpty) {
+          listData = List.generate((days), (i) {
             return {
               "datetime": "",
               "score": 0,
@@ -344,25 +342,25 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
         }
 
         /// 为了数据效果展示首尾填充占位数据
-        List<Map<String, dynamic>> _listFlSpot = [
-          {"datetime": "", "score": _listData.first["score"]},
-          ..._listData,
-          {"datetime": "", "score": _listData.last["score"]},
+        List<Map<String, dynamic>> listFlSpot = [
+          {"datetime": "", "score": listData.first["score"]},
+          ...listData,
+          {"datetime": "", "score": listData.last["score"]},
         ];
 
         ///
         return LineChart(
           LineChartData(
             clipData: FlClipData.vertical(),
-            maxX: (_days + 1),
+            maxX: (days + 1),
             minY: -50,
             maxY: 120,
             lineBarsData: [
               LineChartBarData(
-                spots: List<FlSpot>.generate(_listFlSpot.length, (i) {
+                spots: List<FlSpot>.generate(listFlSpot.length, (i) {
                   return FlSpot(
                     double.parse((i).toString()),
-                    double.parse(_listFlSpot[i]["score"].toString()),
+                    double.parse(listFlSpot[i]["score"].toString()),
                   );
                 }),
                 isCurved: true,
@@ -372,7 +370,7 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                 // colors: gradientColors,
                 barWidth: 2.sp,
                 // shadow: Shadow(
-                //   color: AppTheme.primaryColor.withOpacity(0.4),
+                //   color:Theme.of(context).primaryColor.withOpacity(0.4),
                 //   blurRadius: 4,
                 //   offset: Offset.fromDirection(0, 0),
                 // ),
@@ -384,7 +382,7 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      AppTheme.primaryColor.withOpacity(0.1),
+                      Theme.of(context).primaryColor.withOpacity(0.1),
                       Theme.of(context).cardColor,
                     ],
                   ),
@@ -396,12 +394,12 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                 fitInsideHorizontally: true,
                 tooltipRoundedRadius: 24.sp,
                 tooltipMargin: 24.w,
-                tooltipBgColor: AppTheme.primaryColor,
+                tooltipBgColor: Theme.of(context).primaryColor,
                 getTooltipItems: (List<LineBarSpot> touchedSpots) {
                   return touchedSpots.map((barSpot) {
                     final flSpot = barSpot;
                     final i = flSpot.x.toInt();
-                    if (i == 0 || i == (_days + 1)) {
+                    if (i == 0 || i == (days + 1)) {
                       return null;
                     }
                     return LineTooltipItem(
@@ -409,7 +407,7 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                       const TextStyle(),
                       children: [
                         TextSpan(
-                          text: _listFlSpot[i]["score"].toString() + " ",
+                          text: "${listFlSpot[i]["score"]} ",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 14.sp,
@@ -417,8 +415,8 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                           ),
                         ),
                         TextSpan(
-                          text: (_listFlSpot[i]["datetime"].toString() != ""
-                              ? _listFlSpot[i]["datetime"]
+                          text: (listFlSpot[i]["datetime"].toString() != ""
+                              ? listFlSpot[i]["datetime"]
                                   .toString()
                                   .substring(5, 10)
                               : ""),
@@ -464,13 +462,13 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                 sideTitles: SideTitles(
                     showTitles: true,
                     reservedSize: 16.w,
-                    interval: _days > 7 ? ((_days / 7) + 1) : (_days / 7),
+                    interval: days > 7 ? ((days / 7) + 1) : (days / 7),
                     getTitlesWidget: (value, titleMeta) {
-                      final _nowListDate =
-                          _listFlSpot[(value).toInt()]['datetime'];
+                      final nowListDate =
+                          listFlSpot[(value).toInt()]['datetime'];
                       return Text(
-                        (_nowListDate.toString() != ""
-                            ? _nowListDate.toString().substring(8, 10) + "日"
+                        (nowListDate.toString() != ""
+                            ? "${nowListDate.toString().substring(8, 10)}日"
                             : ""),
                         style: TextStyle(
                           color: AppTheme.subColor,
@@ -484,7 +482,7 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
             borderData: FlBorderData(
               show: true,
               border: Border.all(
-                color: AppTheme.primaryColor.withOpacity(0.1),
+                color: Theme.of(context).primaryColor.withOpacity(0.1),
                 width: 0.2,
               ),
             ),
@@ -563,7 +561,7 @@ class StatisticWeekMood extends StatefulWidget {
   const StatisticWeekMood({Key? key}) : super(key: key);
 
   @override
-  _StatisticWeekMoodState createState() => _StatisticWeekMoodState();
+  State<StatisticWeekMood> createState() => _StatisticWeekMoodState();
 }
 
 class _StatisticWeekMoodState extends State<StatisticWeekMood> {
@@ -589,12 +587,12 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
             end: Alignment.topCenter,
             colors: isTouched
                 ? [
-                    AppTheme.primaryColor.withOpacity(0.4),
-                    AppTheme.primaryColor,
+                    Theme.of(context).primaryColor.withOpacity(0.4),
+                    Theme.of(context).primaryColor,
                   ]
                 : [
-                    AppTheme.primaryColor,
-                    AppTheme.primaryColor.withOpacity(0.4),
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).primaryColor.withOpacity(0.4),
                   ],
           ),
           width: width ?? 14.w,
@@ -617,15 +615,15 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
     return Consumer<StatisticViewModel>(
       builder: (_, statisticViewModel, child) {
         /// 获取数据
-        List<Map<String, dynamic>> _listData =
+        List<Map<String, dynamic>> listData =
             statisticViewModel.moodScoreAverageRecently;
 
         /// 统计的天数
-        final int _moodDays = statisticViewModel.moodDays;
+        final int moodDays = statisticViewModel.moodDays;
 
         /// 数据为空的占位
-        if (_listData.isEmpty) {
-          _listData = List.generate(_moodDays, (i) {
+        if (listData.isEmpty) {
+          listData = List.generate(moodDays, (i) {
             return {
               "datetime": "---------- --------",
               "score": 0,
@@ -634,44 +632,44 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
         }
 
         /// 根据数据适应每条数据宽度
-        late double _barWidth = 14.w;
-        switch (_moodDays) {
+        late double barWidth = 14.w;
+        switch (moodDays) {
           case 7:
-            _barWidth = 14.w;
+            barWidth = 14.w;
             break;
           case 15:
-            _barWidth = 10.w;
+            barWidth = 10.w;
             break;
           case 30:
-            _barWidth = 4.w;
+            barWidth = 4.w;
             break;
           default:
-            _barWidth = 14.w;
+            barWidth = 14.w;
             break;
         }
 
         ///
         return BarChart(
           BarChartData(
-            barGroups: List<BarChartGroupData>.generate(_listData.length, (i) {
+            barGroups: List<BarChartGroupData>.generate(listData.length, (i) {
               return makeGroupData(
                 i,
-                double.parse(_listData[i]['score'].toString()),
+                double.parse(listData[i]['score'].toString()),
                 isTouched: i == _touchedIndex,
-                width: _barWidth,
+                width: barWidth,
               );
             }),
             barTouchData: BarTouchData(
               touchTooltipData: BarTouchTooltipData(
                 tooltipRoundedRadius: 12.sp,
-                tooltipBgColor: AppTheme.primaryColor,
+                tooltipBgColor: Theme.of(context).primaryColor,
                 getTooltipItem: (group, groupIndex, rod, rodIndex) {
                   return BarTooltipItem(
                     "",
                     const TextStyle(),
                     children: [
                       TextSpan(
-                        text: (rod.toY).toString() + "\n",
+                        text: "${rod.toY}\n",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 14.sp,
@@ -679,8 +677,8 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
                         ),
                       ),
                       TextSpan(
-                        text: (_listData[group.x]['datetime'].toString() != ""
-                            ? _listData[group.x]['datetime']
+                        text: (listData[group.x]['datetime'].toString() != ""
+                            ? listData[group.x]['datetime']
                                 .toString()
                                 .substring(5, 10)
                             : ""),
@@ -740,7 +738,7 @@ class StatisticCategoryMood extends StatefulWidget {
   const StatisticCategoryMood({Key? key}) : super(key: key);
 
   @override
-  _StatisticCategoryMoodState createState() => _StatisticCategoryMoodState();
+  State<StatisticCategoryMood> createState() => _StatisticCategoryMoodState();
 }
 
 class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
@@ -802,13 +800,13 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
   Widget build(BuildContext context) {
     return Consumer<StatisticViewModel>(
       builder: (_, statisticViewModel, child) {
-        late List _listData = [];
+        late List listData = [];
 
         /// 获取数据
-        _listData = statisticViewModel.dateMoodCount;
+        listData = statisticViewModel.dateMoodCount;
 
         /// 空占位
-        if (_listData.isEmpty) {
+        if (listData.isEmpty) {
           return Empty(
             padding: EdgeInsets.only(top: 48.w),
             width: 120.w,
@@ -818,9 +816,9 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
 
         return PieChart(
           PieChartData(
-            sections: List<PieChartSectionData>.generate(_listData.length, (i) {
+            sections: List<PieChartSectionData>.generate(listData.length, (i) {
               /// 数据
-              final _item = _listData[i];
+              final item = listData[i];
 
               /// 样式
               final isTouched = i == _touchedIndex;
@@ -828,8 +826,8 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
               final radius = isTouched ? 120.w : 100.w;
 
               return makeSectionData(
-                double.parse(_item['count'].toString()),
-                title: _item['icon'],
+                double.parse(item['count'].toString()),
+                title: item['icon'],
                 radius: radius,
                 fontSize: fontSize,
                 color: statisticColors[i],
@@ -1045,8 +1043,9 @@ class FilterBottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const Color primaryColor = AppTheme.primaryColor;
+    Color primaryColor = Theme.of(context).primaryColor;
     return InkWell(
+      onTap: onTap,
       child: Container(
         width: 40.w,
         height: 40.w,
@@ -1068,7 +1067,7 @@ class FilterBottom extends StatelessWidget {
           boxShadow: checked
               ? [
                   BoxShadow(
-                      color: AppTheme.primaryColor.withOpacity(0.2),
+                      color: Theme.of(context).primaryColor.withOpacity(0.2),
                       blurRadius: 6)
                 ]
               : [
@@ -1088,7 +1087,6 @@ class FilterBottom extends StatelessWidget {
           ),
         ),
       ),
-      onTap: onTap,
     );
   }
 }

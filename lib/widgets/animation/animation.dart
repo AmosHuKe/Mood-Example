@@ -12,7 +12,7 @@ class AnimatedPress extends StatefulWidget {
   final Widget child;
 
   @override
-  _AnimatedPressState createState() => _AnimatedPressState();
+  State<AnimatedPress> createState() => _AnimatedPressState();
 }
 
 class _AnimatedPressState extends State<AnimatedPress>

@@ -6,7 +6,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:remixicon/remixicon.dart';
 
 ///
-import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/views/statistic/index.dart' as statistic;
 import 'package:moodexample/generated/l10n.dart';
@@ -21,7 +21,7 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
@@ -119,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             /// 菜单
             TabBar(
               // 震动或声音反馈
-              enableFeedback: false,
+              enableFeedback: true,
               padding: EdgeInsets.only(left: 40.w, right: 0.w),
               controller: _pageController,
               indicatorColor: Colors.transparent,
@@ -175,14 +175,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [
-                      isDarkMode(context)
-                          ? Colors.black12
-                          : AppTheme.backgroundColor1,
-                      isDarkMode(context)
-                          ? Colors.black12
-                          : AppTheme.backgroundColor1,
-                    ],
+                    colors: isDarkMode(context)
+                        ? [
+                            Colors.black12,
+                            Colors.black12,
+                          ]
+                        : [
+                            AppTheme.backgroundColor1,
+                            AppTheme.backgroundColor1,
+                          ],
                   ),
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(14.sp),

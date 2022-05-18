@@ -7,7 +7,7 @@ import 'package:remixicon/remixicon.dart';
 import 'package:provider/provider.dart';
 
 ///
-import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
 import 'package:moodexample/views/menu_screen/widgets/setting_theme.dart';
@@ -34,8 +34,8 @@ class MenuScreenLeft extends StatelessWidget {
       builder: (_, applicationViewModel, child) {
         return Scaffold(
           backgroundColor: isDarkMode(context)
-              ? const Color(0xFF282C3A)
-              : AppTheme.primaryColor,
+              ? Theme.of(context).primaryColor.withAlpha(155)
+              : Theme.of(context).primaryColor,
           body: InkWell(
             child: const SafeArea(
               child: MenuScreenLeftBody(),
@@ -141,7 +141,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            print("数据");
+            debugPrint("数据");
 
             /// 底部内容弹出
             showModalBottomDetail(
@@ -162,7 +162,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            print("主题");
+            debugPrint("主题");
 
             /// 底部内容弹出
             showModalBottomDetail(
@@ -183,7 +183,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            print("语言");
+            debugPrint("语言");
 
             /// 底部内容弹出
             showModalBottomDetail(
@@ -204,7 +204,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            print("实验室");
+            debugPrint("实验室");
             Navigator.pushNamed(context, Routes.settingLaboratory);
           },
         ),
@@ -220,7 +220,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            print("关于");
+            debugPrint("关于");
           },
         ),
         // Container(

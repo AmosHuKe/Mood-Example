@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
 ///
-import 'package:moodexample/app_theme.dart';
+import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/common/utils_intl.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/routes.dart';
@@ -35,24 +35,24 @@ class MoodCategorySelect extends StatefulWidget {
   final String type;
 
   @override
-  _MoodCategorySelectState createState() => _MoodCategorySelectState();
+  State<MoodCategorySelect> createState() => _MoodCategorySelectState();
 }
 
 class _MoodCategorySelectState extends State<MoodCategorySelect> {
   @override
   void initState() {
     super.initState();
-    MoodViewModel _moodViewModel =
+    MoodViewModel moodViewModel =
         Provider.of<MoodViewModel>(context, listen: false);
 
     /// 状态
     _type = widget.type;
 
     /// 当前选择的时间
-    _nowDateTime = _moodViewModel.nowDateTime.toString().substring(0, 10);
+    _nowDateTime = moodViewModel.nowDateTime.toString().substring(0, 10);
 
     /// 获取所有心情类别
-    MoodService.getMoodCategoryAll(_moodViewModel);
+    MoodService.getMoodCategoryAll(moodViewModel);
   }
 
   @override
@@ -103,7 +103,7 @@ class MoodCategorySelectBody extends StatefulWidget {
   const MoodCategorySelectBody({Key? key}) : super(key: key);
 
   @override
-  _MoodCategorySelectBodyState createState() => _MoodCategorySelectBodyState();
+  State<MoodCategorySelectBody> createState() => _MoodCategorySelectBodyState();
 }
 
 class _MoodCategorySelectBodyState extends State<MoodCategorySelectBody> {
@@ -166,18 +166,17 @@ class MoodChoice extends StatelessWidget {
         padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 48.w),
         child: Consumer<MoodViewModel>(
           builder: (_, moodViewModel, child) {
-            MoodViewModel _moodViewModel = moodViewModel;
             List<Widget> widgetList = [];
-            for (var list in _moodViewModel.moodCategoryList ?? []) {
+            for (var list in moodViewModel.moodCategoryList ?? []) {
               /// 获取所有心情类别
-              _moodViewModel.setMoodCategoryData(list);
-              MoodCategoryData _moodCategoryData =
-                  _moodViewModel.moodCategoryData;
+              moodViewModel.setMoodCategoryData(list);
+              MoodCategoryData moodCategoryData =
+                  moodViewModel.moodCategoryData;
 
               widgetList.add(
                 MoodChoiceCard(
-                  icon: _moodCategoryData.icon ?? "",
-                  title: _moodCategoryData.title ?? "",
+                  icon: moodCategoryData.icon ?? "",
+                  title: moodCategoryData.title ?? "",
                 ),
               );
             }
@@ -252,23 +251,23 @@ class MoodChoiceCard extends StatelessWidget {
         switch (_type) {
           case "add":
             // 关闭当前页并跳转输入内容页
-            MoodData _moodData = MoodData();
-            _moodData.icon = icon;
-            _moodData.title = title;
-            _moodData.createTime = _nowDateTime;
-            _moodData.updateTime = _nowDateTime;
+            MoodData moodData = MoodData();
+            moodData.icon = icon;
+            moodData.title = title;
+            moodData.createTime = _nowDateTime;
+            moodData.updateTime = _nowDateTime;
             // 跳转输入内容页
             Navigator.popAndPushNamed(
                 context,
                 Routes.moodContent +
-                    Routes.transformParams([moodDataToJson(_moodData)]));
+                    Routes.transformParams([moodDataToJson(moodData)]));
             break;
           case "edit":
             // 关闭当前页并返回数据
-            MoodCategoryData _moodCategoryData = MoodCategoryData();
-            _moodCategoryData.icon = icon;
-            _moodCategoryData.title = title;
-            Navigator.pop(context, moodCategoryDataToJson(_moodCategoryData));
+            MoodCategoryData moodCategoryData = MoodCategoryData();
+            moodCategoryData.icon = icon;
+            moodCategoryData.title = title;
+            Navigator.pop(context, moodCategoryDataToJson(moodCategoryData));
             break;
         }
       },

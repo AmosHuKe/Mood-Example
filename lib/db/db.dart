@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 
 ///
@@ -40,7 +41,7 @@ class DB {
 
   /// 创建
   void _onCreate(Database db, int newVersion) async {
-    print("_onCreate 新版本:$newVersion");
+    debugPrint("_onCreate 新版本:$newVersion");
     var batch = db.batch();
 
     /// 心情详细内容表
@@ -55,8 +56,8 @@ class DB {
 
   /// 升级
   void _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    print("_onUpgrade 旧版本:$oldVersion");
-    print("_onUpgrade 新版本:$newVersion");
+    debugPrint("_onUpgrade 旧版本:$oldVersion");
+    debugPrint("_onUpgrade 新版本:$newVersion");
 
     var batch = db.batch();
 
