@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
 ///
-import 'package:moodexample/theme/app_theme.dart';
+import 'package:moodexample/themes/app_theme.dart';
 
 ///
 import 'package:moodexample/view_models/application/application_view_model.dart';

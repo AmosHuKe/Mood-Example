@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
 ///
-import 'package:moodexample/theme/app_theme.dart';
+import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/config/multiple_themes.dart';

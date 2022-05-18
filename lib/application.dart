@@ -9,7 +9,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:moodexample/generated/l10n.dart';
 
 ///
-import 'theme/app_theme.dart';
+import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/db/db.dart';
 import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/routes.dart';

@@ -10,7 +10,7 @@ import 'package:remixicon/remixicon.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 ///
-import 'package:moodexample/theme/app_theme.dart';
+import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
@@ -645,35 +645,41 @@ class _MoodCardState extends State<MoodCard> {
                 onTap: () {
                   showCupertinoDialog<void>(
                     context: context,
-                    builder: (BuildContext context) => CupertinoAlertDialog(
-                      title: Text(S.of(context).mood_data_delete_button_title),
-                      content:
-                          Text(S.of(context).mood_data_delete_button_content),
-                      actions: <CupertinoDialogAction>[
-                        CupertinoDialogAction(
-                          child: Text(
-                              S.of(context).mood_data_delete_button_cancel),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                        CupertinoDialogAction(
-                          isDestructiveAction: true,
-                          onPressed: () async {
-                            MoodData moodData = MoodData();
-                            moodData.moodId = widget.moodId;
-                            bool result = await MoodService.delMood(moodData);
-                            if (!mounted) return;
-                            if (result) {
-                              // 重新初始化
-                              init(context);
+                    builder: (BuildContext context) => Theme(
+                      data: isDarkMode(context)
+                          ? ThemeData.dark()
+                          : ThemeData.light(),
+                      child: CupertinoAlertDialog(
+                        title:
+                            Text(S.of(context).mood_data_delete_button_title),
+                        content:
+                            Text(S.of(context).mood_data_delete_button_content),
+                        actions: <CupertinoDialogAction>[
+                          CupertinoDialogAction(
+                            child: Text(
+                                S.of(context).mood_data_delete_button_cancel),
+                            onPressed: () {
                               Navigator.pop(context);
-                            }
-                          },
-                          child: Text(
-                              S.of(context).mood_data_delete_button_confirm),
-                        )
-                      ],
+                            },
+                          ),
+                          CupertinoDialogAction(
+                            isDestructiveAction: true,
+                            onPressed: () async {
+                              MoodData moodData = MoodData();
+                              moodData.moodId = widget.moodId;
+                              bool result = await MoodService.delMood(moodData);
+                              if (!mounted) return;
+                              if (result) {
+                                // 重新初始化
+                                init(context);
+                                Navigator.pop(context);
+                              }
+                            },
+                            child: Text(
+                                S.of(context).mood_data_delete_button_confirm),
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },

@@ -6,7 +6,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:remixicon/remixicon.dart';
 
 ///
-import 'package:moodexample/theme/app_theme.dart';
+import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/views/statistic/index.dart' as statistic;
 import 'package:moodexample/generated/l10n.dart';
@@ -119,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             /// 菜单
             TabBar(
               // 震动或声音反馈
-              enableFeedback: false,
+              enableFeedback: true,
               padding: EdgeInsets.only(left: 40.w, right: 0.w),
               controller: _pageController,
               indicatorColor: Colors.transparent,
