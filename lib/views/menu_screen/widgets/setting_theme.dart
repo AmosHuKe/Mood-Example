@@ -245,18 +245,96 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
                 },
               ),
               MultipleThemesCard(
-                selected: _multipleThemesMode == "teal",
+                selected: _multipleThemesMode == "red",
                 child: Container(
                   alignment: Alignment.center,
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Colors.teal, Colors.teal],
+                      colors: [Color(0xFF9B545A), Color(0xFF9B545A)],
                     ),
                   ),
                 ),
                 onTap: () async {
-                  print("teal");
-                  await PreferencesDB().setMultipleThemesMode(context, "teal");
+                  print("red");
+                  await PreferencesDB().setMultipleThemesMode(context, "red");
+                },
+              ),
+              MultipleThemesCard(
+                selected: _multipleThemesMode == "orange",
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xFFA77E86), Color(0xFFA77E86)],
+                    ),
+                  ),
+                ),
+                onTap: () async {
+                  print("orange");
+                  await PreferencesDB()
+                      .setMultipleThemesMode(context, "orange");
+                },
+              ),
+              MultipleThemesCard(
+                selected: _multipleThemesMode == "yellow",
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xFFEAA323), Color(0xFFEAA323)],
+                    ),
+                  ),
+                ),
+                onTap: () async {
+                  print("yellow");
+                  await PreferencesDB()
+                      .setMultipleThemesMode(context, "yellow");
+                },
+              ),
+              MultipleThemesCard(
+                selected: _multipleThemesMode == "green",
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xFF6C7A6B), Color(0xFF6C7A6B)],
+                    ),
+                  ),
+                ),
+                onTap: () async {
+                  print("green");
+                  await PreferencesDB().setMultipleThemesMode(context, "green");
+                },
+              ),
+              MultipleThemesCard(
+                selected: _multipleThemesMode == "cyan",
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xFF19686A), Color(0xFF19686A)],
+                    ),
+                  ),
+                ),
+                onTap: () async {
+                  print("cyan");
+                  await PreferencesDB().setMultipleThemesMode(context, "cyan");
+                },
+              ),
+              MultipleThemesCard(
+                selected: _multipleThemesMode == "purple",
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xFF7F7182), Color(0xFF7F7182)],
+                    ),
+                  ),
+                ),
+                onTap: () async {
+                  print("purple");
+                  await PreferencesDB()
+                      .setMultipleThemesMode(context, "purple");
                 },
               ),
             ],
@@ -289,6 +367,7 @@ class MultipleThemesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     bool _selected = selected ?? false;
     return InkWell(
+      onTap: onTap,
       child: Column(
         children: [
           Stack(
@@ -336,7 +415,6 @@ class MultipleThemesCard extends StatelessWidget {
           ),
         ],
       ),
-      onTap: onTap,
     );
   }
 }

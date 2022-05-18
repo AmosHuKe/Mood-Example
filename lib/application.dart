@@ -62,10 +62,10 @@ class _ApplicationState extends State<Application> {
 
           /// 主题
           themeMode: _watchApplicationViewModel.themeMode,
-          theme: AppTheme(_watchApplicationViewModel.multipleThemesMode)
+          theme: AppTheme(getMultipleThemesMode(context))
               .multipleThemesLightMode(),
-          darkTheme: AppTheme(_watchApplicationViewModel.multipleThemesMode)
-              .multipleThemesDarkMode(),
+          darkTheme:
+              AppTheme(getMultipleThemesMode(context)).multipleThemesDarkMode(),
 
           /// 路由钩子
           onGenerateRoute: router.generator,

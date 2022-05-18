@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 /// 主题
-class AppThemeTeal {
+class AppThemePurple {
   // fromRGBO(46, 69, 177, 1) fromRGBO(84, 70, 183, 1)
-  // 主颜色
-  static const primaryColor = Colors.teal; // #4d5fb4 #2C3751 #3e4663 #F7C95E
+  /// 主颜色
+  static const primaryColor =
+      Color(0xFF7F7182); // #4d5fb4 #2C3751 #3e4663 #F7C95E
 
-  // 次要颜色
+  /// 次要颜色
   static const subColor = Color(0xFFAFB8BF);
-  // 背景色系列
+
+  /// 背景色系列
   static const backgroundColor1 = Color(0xFFE8ECF0);
   static const backgroundColor2 = Color(0xFFFCFBFC);
   static const backgroundColor3 = Color(0xFFF3F2F3);

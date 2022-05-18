@@ -43,9 +43,17 @@ ThemeMode darkThemeMode(String mode) {
   return themeMode;
 }
 
+/// 当前多主题
+String getMultipleThemesMode(BuildContext context) {
+  final String multipleThemesMode =
+      Provider.of<ApplicationViewModel>(context, listen: false)
+          .multipleThemesMode;
+  return multipleThemesMode;
+}
+
 /// 主题基础
 class AppTheme {
-  late String multipleThemesMode = "default";
+  String multipleThemesMode = "default";
   AppTheme(this.multipleThemesMode);
 
   /// 设备参考大小
@@ -62,18 +70,22 @@ class AppTheme {
 
   /// 多主题 light
   ThemeData? multipleThemesLightMode() {
-    ThemeData? lightTheme = appMultipleThemesMode["default"]!["light"];
+    ThemeData? lightTheme =
+        appMultipleThemesMode["default"]![AppMultipleThemesMode.light];
     if (appMultipleThemesMode[multipleThemesMode] != null) {
-      lightTheme = appMultipleThemesMode[multipleThemesMode]!["light"];
+      lightTheme = appMultipleThemesMode[multipleThemesMode]![
+          AppMultipleThemesMode.light];
     }
     return lightTheme;
   }
 
   /// 多主题 dark
   ThemeData? multipleThemesDarkMode() {
-    ThemeData? darkTheme = appMultipleThemesMode["default"]!["dark"];
+    ThemeData? darkTheme =
+        appMultipleThemesMode["default"]![AppMultipleThemesMode.dark];
     if (appMultipleThemesMode[multipleThemesMode] != null) {
-      darkTheme = appMultipleThemesMode[multipleThemesMode]!["dark"];
+      darkTheme = appMultipleThemesMode[multipleThemesMode]![
+          AppMultipleThemesMode.dark];
     }
     return darkTheme;
   }
