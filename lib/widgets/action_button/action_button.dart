@@ -37,9 +37,9 @@ class ActionButton extends StatelessWidget {
     );
 
     ///
-    final double _width = width ?? 48.w;
-    final double _height = height ?? 48.w;
-    final Decoration _decoration = decoration ??
+    final double getWidth = width ?? 48.w;
+    final double getHeight = height ?? 48.w;
+    final Decoration getDecoration = decoration ??
         BoxDecoration(
           gradient: const LinearGradient(
             colors: [
@@ -52,17 +52,17 @@ class ActionButton extends StatelessWidget {
 
     ///
     return InkWell(
+      onTap: onTap,
       child: Container(
-        width: _width,
-        height: _height,
+        width: getWidth,
+        height: getHeight,
         margin: margin,
         padding: padding,
         child: DecoratedBox(
-          decoration: _decoration,
+          decoration: getDecoration,
           child: child,
         ),
       ),
-      onTap: onTap,
     );
   }
 }

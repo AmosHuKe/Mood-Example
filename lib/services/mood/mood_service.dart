@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 
 ///
 import 'package:moodexample/db/db.dart';
@@ -12,7 +13,7 @@ class MoodService {
   /// 设置心情类别默认值
   static Future<void> setCategoryDefault() async {
     /// 默认值
-    List<Map<String, String>> _moodCategoryData = [
+    List<Map<String, String>> moodCategoryData = [
       {
         "icon": "😊",
         "title": "开心",
@@ -47,7 +48,7 @@ class MoodService {
       }
     ];
 
-    for (var value in _moodCategoryData) {
+    for (var value in moodCategoryData) {
       MoodCategoryData moodCategoryData =
           moodCategoryDataFromJson(json.encode(value));
       DB.db.insertMoodCategoryDefault(moodCategoryData);
@@ -56,11 +57,11 @@ class MoodService {
 
   /// 获取所有心情类别
   static Future<void> getMoodCategoryAll(MoodViewModel moodViewModel) async {
-    final _moodCategoryData = await DB.db.selectMoodCategoryAll();
-    Map<String, List> _moodCategoryDataAll = {"data": _moodCategoryData};
+    final moodCategoryData = await DB.db.selectMoodCategoryAll();
+    Map<String, List> moodCategoryDataAll = {"data": moodCategoryData};
     // 转换模型
     MoodCategoryModel moodCategoryModel =
-        moodCategoryModelFromJson(json.encode(_moodCategoryDataAll));
+        moodCategoryModelFromJson(json.encode(moodCategoryDataAll));
     // 更新数据
     moodViewModel.setMoodCategory(moodCategoryModel);
   }
@@ -78,10 +79,10 @@ class MoodService {
   static Future<void> getMoodData(
       MoodViewModel moodViewModel, String datetime) async {
     // 查询心情数据
-    final _moodData = await DB.db.selectMood(datetime);
-    Map<String, List> _moodDataAll = {"data": _moodData};
+    final moodData = await DB.db.selectMood(datetime);
+    Map<String, List> moodDataAll = {"data": moodData};
     // 转换模型
-    MoodModel moodModel = moodModelFromJson(json.encode(_moodDataAll));
+    MoodModel moodModel = moodModelFromJson(json.encode(moodDataAll));
     // 更新数据
     moodViewModel.setMoodDataList(moodModel);
   }
@@ -98,7 +99,7 @@ class MoodService {
 
       dataList.add({"recordedDate": recordedDate, "icon": icon});
     }
-    print("已记录的日期" + dataList.toString());
+    debugPrint("已记录的日期$dataList");
     // 更新数据
     moodViewModel.setMoodRecordedDate(dataList);
   }
@@ -124,10 +125,10 @@ class MoodService {
   /// 获取所有心情详情数据
   static Future<void> getMoodAllData(MoodViewModel moodViewModel) async {
     // 查询心情数据
-    final _moodData = await DB.db.selectAllMood();
-    Map<String, List> _moodDataAll = {"data": _moodData};
+    final moodData = await DB.db.selectAllMood();
+    Map<String, List> moodDataAll = {"data": moodData};
     // 转换模型
-    MoodModel moodModel = moodModelFromJson(json.encode(_moodDataAll));
+    MoodModel moodModel = moodModelFromJson(json.encode(moodDataAll));
     // 更新数据
     moodViewModel.setMoodAllDataList(moodModel);
   }

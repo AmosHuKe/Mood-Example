@@ -141,7 +141,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            print("数据");
+            debugPrint("数据");
 
             /// 底部内容弹出
             showModalBottomDetail(
@@ -162,7 +162,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            print("主题");
+            debugPrint("主题");
 
             /// 底部内容弹出
             showModalBottomDetail(
@@ -183,7 +183,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            print("语言");
+            debugPrint("语言");
 
             /// 底部内容弹出
             showModalBottomDetail(
@@ -204,7 +204,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            print("实验室");
+            debugPrint("实验室");
             Navigator.pushNamed(context, Routes.settingLaboratory);
           },
         ),
@@ -220,7 +220,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            print("关于");
+            debugPrint("关于");
           },
         ),
         // Container(

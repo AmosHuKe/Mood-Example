@@ -34,7 +34,7 @@ class SwiperBody extends StatefulWidget {
   const SwiperBody({Key? key}) : super(key: key);
 
   @override
-  _SwiperBodyState createState() => _SwiperBodyState();
+  State<SwiperBody> createState() => _SwiperBodyState();
 }
 
 class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
@@ -98,7 +98,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     /// 内容字体样式
-    final _textContentStyle = Theme.of(context).textTheme.bodyText1!.copyWith(
+    final textContentStyle = Theme.of(context).textTheme.bodyText1!.copyWith(
           fontSize: 18.sp,
           fontWeight: FontWeight.w400,
         );
@@ -116,7 +116,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
           children: [
             Text(
               S.of(context).onboarding_content_1_1,
-              style: _textContentStyle,
+              style: textContentStyle,
             ),
           ],
         ),
@@ -132,11 +132,11 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
           children: [
             Text(
               S.of(context).onboarding_content_2_1,
-              style: _textContentStyle,
+              style: textContentStyle,
             ),
             Text(
               S.of(context).onboarding_content_2_2,
-              style: _textContentStyle,
+              style: textContentStyle,
             ),
           ],
         ),
@@ -150,7 +150,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
         ),
         describe: Text(
           S.of(context).onboarding_content_3_1,
-          style: _textContentStyle,
+          style: textContentStyle,
         ),
       ),
     ];
@@ -206,13 +206,6 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
           child: AnimatedBuilder(
             animation: _stepButtonColorAnimation,
             builder: (context, child) => OutlinedButton(
-              child: Transform.rotate(
-                angle: _stepButtonCurve.value * 1.58,
-                child: Icon(
-                  Remix.arrow_right_line,
-                  size: 24.sp,
-                ),
-              ),
               style: ButtonStyle(
                 padding: MaterialStateProperty.all(EdgeInsets.all(20.w)),
                 foregroundColor: MaterialStateProperty.all(Colors.white),
@@ -244,6 +237,13 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
                     _swiperController.next(animation: true),
                   }
               },
+              child: Transform.rotate(
+                angle: _stepButtonCurve.value * 1.58,
+                child: Icon(
+                  Remix.arrow_right_line,
+                  size: 24.sp,
+                ),
+              ),
             ),
           ),
         ),

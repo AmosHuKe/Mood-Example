@@ -91,23 +91,23 @@ class PreferencesDB {
   /// 设置-APP地区语言
   Future setAppLocale(BuildContext context, String? locale) async {
     SharedPreferences prefs = await init();
-    print(locale);
+    debugPrint(locale);
     await setAppIsLocaleSystem(context, false);
-    final _appLocale = locale ?? "zh";
-    final _appLocaleList = _appLocale.split('_');
-    prefs.setString(appLocale, _appLocale);
+    final appLocale = locale ?? "zh";
+    final appLocaleList = appLocale.split('_');
+    prefs.setString(appLocale, appLocale);
     Provider.of<ApplicationViewModel>(context, listen: false).setLocale(Locale(
-        _appLocaleList[0], _appLocaleList.length > 1 ? _appLocaleList[1] : ''));
+        appLocaleList[0], appLocaleList.length > 1 ? appLocaleList[1] : ''));
   }
 
   /// 获取-APP地区语言
   Future<String> getAppLocale(BuildContext context) async {
     SharedPreferences prefs = await init();
-    String _appLocale = prefs.getString(appLocale) ?? "zh";
-    final _appLocaleList = _appLocale.split('_');
+    String getAppLocale = prefs.getString(appLocale) ?? "zh";
+    final appLocaleList = getAppLocale.split('_');
     Provider.of<ApplicationViewModel>(context, listen: false).setLocale(Locale(
-        _appLocaleList[0], _appLocaleList.length > 1 ? _appLocaleList[1] : ''));
-    return _appLocale;
+        appLocaleList[0], appLocaleList.length > 1 ? appLocaleList[1] : ''));
+    return getAppLocale;
   }
 
   /// 设置-APP地区语言是否跟随系统
@@ -121,9 +121,9 @@ class PreferencesDB {
   /// 获取-APP地区语言是否跟随系统
   Future<bool> getAppIsLocaleSystem(BuildContext context) async {
     SharedPreferences prefs = await init();
-    bool _appIsLocaleSystem = prefs.getBool(appIsLocaleSystem) ?? true;
+    bool getAppIsLocaleSystem = prefs.getBool(appIsLocaleSystem) ?? true;
     Provider.of<ApplicationViewModel>(context, listen: false)
-        .setLocaleSystem(_appIsLocaleSystem);
-    return _appIsLocaleSystem;
+        .setLocaleSystem(getAppIsLocaleSystem);
+    return getAppIsLocaleSystem;
   }
 }

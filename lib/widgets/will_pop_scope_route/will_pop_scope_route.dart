@@ -17,7 +17,7 @@ class WillPopScopeRoute extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _WillPopScopeRouteState createState() => _WillPopScopeRouteState();
+  State<WillPopScopeRoute> createState() => _WillPopScopeRouteState();
 }
 
 class _WillPopScopeRouteState extends State<WillPopScopeRoute> {

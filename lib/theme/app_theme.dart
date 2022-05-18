@@ -12,12 +12,12 @@ import 'package:moodexample/view_models/application/application_view_model.dart'
 
 /// 是否深色模式
 bool isDarkMode(BuildContext context) {
-  final ThemeMode _themeMode =
+  final ThemeMode themeMode =
       Provider.of<ApplicationViewModel>(context, listen: false).themeMode;
-  if (_themeMode == ThemeMode.system) {
+  if (themeMode == ThemeMode.system) {
     return window.platformBrightness == Brightness.dark;
   } else {
-    return _themeMode == ThemeMode.dark;
+    return themeMode == ThemeMode.dark;
   }
 }
 

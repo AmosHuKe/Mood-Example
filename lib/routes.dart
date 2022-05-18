@@ -73,14 +73,14 @@ class Routes {
   static void configureRoutes(FluroRouter router) {
     router.notFoundHandler = Handler(
         handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
-      print("路由不存在!!!");
+      debugPrint("路由不存在!!!");
       return;
     });
     router.define(home, handler: _homeHandle);
     router.define(mood, handler: _moodHandle);
-    router.define(moodCategorySelect + "/:type",
+    router.define("$moodCategorySelect/:type",
         handler: _addMoodHandle, transitionType: TransitionType.fadeIn);
-    router.define(moodContent + "/:moodData",
+    router.define("$moodContent/:moodData",
         handler: _moodContentHandle,
         transitionType: TransitionType.cupertinoFullScreenDialog);
     router.define(onboarding,
@@ -97,10 +97,10 @@ class Routes {
   /// 在路由需要传输参数时，将参数一一对应传入，返回String
   /// 例如：transformParams(["1","2"]) => /1/2
   static String transformParams(List<dynamic> params) {
-    late String _transform = "";
+    late String transform = "";
     for (int i = 0; i < params.length; i++) {
-      _transform += "/" + params[i];
+      transform += "/${params[i]}";
     }
-    return _transform;
+    return transform;
   }
 }

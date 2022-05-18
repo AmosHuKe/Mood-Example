@@ -29,7 +29,7 @@ class Application extends StatefulWidget {
   const Application({Key? key}) : super(key: key);
 
   @override
-  _ApplicationState createState() => _ApplicationState();
+  State<Application> createState() => _ApplicationState();
 }
 
 class _ApplicationState extends State<Application> {
@@ -47,8 +47,7 @@ class _ApplicationState extends State<Application> {
         ChangeNotifierProvider(create: (_) => ApplicationViewModel()),
       ],
       builder: (context, child) {
-        final _watchApplicationViewModel =
-            context.watch<ApplicationViewModel>();
+        final watchApplicationViewModel = context.watch<ApplicationViewModel>();
 
         return MaterialApp(
           /// 网格
@@ -61,7 +60,7 @@ class _ApplicationState extends State<Application> {
           showPerformanceOverlay: false,
 
           /// 主题
-          themeMode: _watchApplicationViewModel.themeMode,
+          themeMode: watchApplicationViewModel.themeMode,
           theme: AppTheme(getMultipleThemesMode(context))
               .multipleThemesLightMode(),
           darkTheme:
@@ -78,12 +77,12 @@ class _ApplicationState extends State<Application> {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          locale: _watchApplicationViewModel.localeSystem
+          locale: watchApplicationViewModel.localeSystem
               ? null
-              : _watchApplicationViewModel.locale,
+              : watchApplicationViewModel.locale,
           localeListResolutionCallback: (locales, supportedLocales) {
-            print("当前地区语言" + locales.toString());
-            print("设备支持的地区语言" + supportedLocales.toString());
+            debugPrint("当前地区语言$locales");
+            debugPrint("设备支持的地区语言$supportedLocales");
             return null;
           },
 
@@ -99,7 +98,7 @@ class Init extends StatefulWidget {
   const Init({Key? key}) : super(key: key);
 
   @override
-  _InitState createState() => _InitState();
+  State<Init> createState() => _InitState();
 }
 
 class _InitState extends State<Init> {
@@ -107,7 +106,7 @@ class _InitState extends State<Init> {
   void init(context) async {
     /// 初始化数据库
     await DB.db.database;
-    MoodViewModel _moodViewModel =
+    MoodViewModel moodViewModel =
         Provider.of<MoodViewModel>(context, listen: false);
 
     /// 设置心情类别默认值
@@ -115,7 +114,7 @@ class _InitState extends State<Init> {
         await MoodViewModel().setMoodCategoryDefault();
     if (setMoodCategoryDefaultresult) {
       /// 获取所有心情类别
-      MoodService.getMoodCategoryAll(_moodViewModel);
+      MoodService.getMoodCategoryAll(moodViewModel);
     }
 
     /// 触发获取APP主题深色模式
@@ -148,7 +147,7 @@ class MenuPage extends StatefulWidget {
   const MenuPage({Key? key}) : super(key: key);
 
   @override
-  _MenuPageState createState() => _MenuPageState();
+  State<MenuPage> createState() => _MenuPageState();
 }
 
 class _MenuPageState extends State<MenuPage> {
@@ -192,7 +191,7 @@ class MainScreenBody extends StatefulWidget {
   const MainScreenBody({Key? key}) : super(key: key);
 
   @override
-  _MainScreenBodyState createState() => _MainScreenBodyState();
+  State<MainScreenBody> createState() => _MainScreenBodyState();
 }
 
 class _MainScreenBodyState extends State<MainScreenBody> {
@@ -204,7 +203,7 @@ class _MainScreenBodyState extends State<MainScreenBody> {
     return ValueListenableBuilder<DrawerState>(
       valueListenable: ZoomDrawer.of(context)!.stateNotifier ?? drawerState,
       builder: (_, state, child) {
-        print("外层菜单状态：" + state.toString());
+        debugPrint("外层菜单状态：$state");
         return AbsorbPointer(
           absorbing: state != DrawerState.closed,
           child: child,

@@ -164,6 +164,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                             });
                             try {
                               Map results = await importDatabase(context);
+                              if (!mounted) return;
                               setState(() {
                                 _isImport = false;
                                 vibrate();
@@ -197,29 +198,29 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                   );
 
                                   /// 更新心情数据
-                                  MoodViewModel _moodViewModel =
+                                  MoodViewModel moodViewModel =
                                       Provider.of<MoodViewModel>(context,
                                           listen: false);
 
                                   /// 获取所有有记录心情的日期
                                   MoodService.getMoodRecordedDate(
-                                      _moodViewModel);
+                                      moodViewModel);
 
                                   /// 处理日期
-                                  String moodDatetime = _moodViewModel
+                                  String moodDatetime = moodViewModel
                                       .nowDateTime
                                       .toString()
                                       .substring(0, 10);
 
                                   /// 获取心情数据
                                   MoodService.getMoodData(
-                                      _moodViewModel, moodDatetime);
+                                      moodViewModel, moodDatetime);
                                   break;
                                 default:
                                   break;
                               }
                             } catch (e) {
-                              print(e);
+                              debugPrint("$e");
                             }
                           },
                         ),
@@ -259,15 +260,6 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                             child: Material(
                               color: Colors.transparent,
                               child: TextButton(
-                                child: Text(
-                                  S
-                                      .of(context)
-                                      .app_setting_database_import_data_button_error,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12.sp,
-                                  ),
-                                ),
                                 style: ButtonStyle(
                                   shape: MaterialStateProperty.all(
                                       const CircleBorder()),
@@ -278,6 +270,15 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                   /// 分享文件
                                   Share.shareFiles([_errorPath]);
                                 },
+                                child: Text(
+                                  S
+                                      .of(context)
+                                      .app_setting_database_import_data_button_error,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12.sp,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -314,15 +315,6 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                     child: Material(
                       color: Colors.transparent,
                       child: TextButton(
-                        child: Text(
-                          S
-                              .of(context)
-                              .app_setting_database_import_data_button_template,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12.sp,
-                          ),
-                        ),
                         style: ButtonStyle(
                           shape:
                               MaterialStateProperty.all(const CircleBorder()),
@@ -334,6 +326,15 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                           /// 分享文件
                           Share.shareFiles([filePath]);
                         },
+                        child: Text(
+                          S
+                              .of(context)
+                              .app_setting_database_import_data_button_template,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12.sp,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -360,7 +361,7 @@ Future<String> importDatabaseTemplate() async {
   try {
     Directory(filePath).deleteSync(recursive: true);
   } catch (e) {
-    print(e);
+    debugPrint("$e");
   }
 
   /// 创建Excel
@@ -434,8 +435,8 @@ Future<String> importDatabaseTemplate() async {
 
 /// 导入数据
 Future<Map> importDatabase(BuildContext context) async {
-  print("导入数据");
-  Map _returnResults = {
+  debugPrint("导入数据");
+  Map returnResults = {
     "state": null, // 状态，0: 有错误 1: 导入成功
     "errorPath": "", // 错误文件位置
   };
@@ -455,23 +456,23 @@ Future<Map> importDatabase(BuildContext context) async {
       final bytes = File(file).readAsBytesSync();
       final excel = Excel.decodeBytes(bytes);
       for (final table in excel.tables.keys) {
-        print(table); // 工作表名
-        print(excel.tables[table]!.maxCols); // 表最大列数
-        print(excel.tables[table]!.maxRows); // 表最大行数
+        debugPrint(table); // 工作表名
+        debugPrint("${excel.tables[table]!.maxCols}"); // 表最大列数
+        debugPrint("${excel.tables[table]!.maxRows}"); // 表最大行数
         /// 判断是否是需要的工作表
         if (table == "MoodExample") {
           /// 检测导入表是否符合标准，否则导出错误提示的Excel文件
-          final _errorPath =
+          final errorPath =
               await importDatabaseError(excel.tables['MoodExample']!.rows);
-          print("错误文件" + _errorPath);
+          debugPrint("错误文件$errorPath");
 
-          if (_errorPath.isNotEmpty) {
-            _returnResults["state"] = 0;
-            _returnResults["errorPath"] = _errorPath;
+          if (errorPath.isNotEmpty) {
+            returnResults["state"] = 0;
+            returnResults["errorPath"] = errorPath;
           } else {
             /// 导入数据操作
             await importDatabaseStart(excel.tables['MoodExample']!.rows);
-            _returnResults["state"] = 1;
+            returnResults["state"] = 1;
           }
         }
       }
@@ -479,15 +480,15 @@ Future<Map> importDatabase(BuildContext context) async {
       /// 未选择文件
     }
   } catch (e) {
-    print(e);
+    debugPrint("$e");
   }
-  return _returnResults;
+  return returnResults;
 }
 
 /// 正式导入数据
 Future importDatabaseStart(List<List<Data?>> database) async {
   /// 心情数据
-  Map<String, dynamic> _moodData = {
+  Map<String, dynamic> moodData = {
     "icon": "",
     "title": "",
     "score": 50,
@@ -495,11 +496,11 @@ Future importDatabaseStart(List<List<Data?>> database) async {
     "createTime": "",
     "updateTime": ""
   };
-  int _dataIndex = 0;
+  int dataIndex = 0;
   for (final row in database) {
     for (final data in row) {
-      _dataIndex++;
-      if (_dataIndex < 3) {
+      dataIndex++;
+      if (dataIndex < 3) {
         break;
       }
       int? colIndex = data?.colIndex;
@@ -508,42 +509,42 @@ Future importDatabaseStart(List<List<Data?>> database) async {
 
         /// 表情
         case 0:
-          _moodData["icon"] = value.toString();
+          moodData["icon"] = value.toString();
           break;
 
         /// 心情
         case 1:
-          _moodData["title"] = value.toString();
+          moodData["title"] = value.toString();
           break;
 
         /// 内容
         case 2:
-          _moodData["content"] = value.toString();
+          moodData["content"] = value.toString();
           break;
 
         /// 心情程度
         case 3:
-          _moodData["score"] = double.parse(value.toString()).toInt();
+          moodData["score"] = double.parse(value.toString()).toInt();
           break;
 
         /// 创建日期、修改日期
         case 4:
-          final _moodDate =
+          final moodDate =
               DateFormat("yyyy-MM-dd").parse(value).toString().substring(0, 10);
-          _moodData["createTime"] = _moodDate;
-          _moodData["updateTime"] = _moodDate;
+          moodData["createTime"] = moodDate;
+          moodData["updateTime"] = moodDate;
           break;
       }
 
       /// 导入数据（一组数据完成）
       if (colIndex == 4) {
-        print(moodDataFromJson(json.encode(_moodData)));
+        debugPrint("${moodDataFromJson(json.encode(moodData))}");
 
         /// 是否操作成功
-        late bool _result = false;
-        _result = await MoodService.addMoodData(
-            moodDataFromJson(json.encode(_moodData)));
-        print("是否导入成功" + _result.toString());
+        late bool result = false;
+        result = await MoodService.addMoodData(
+            moodDataFromJson(json.encode(moodData)));
+        debugPrint("是否导入成功$result");
       }
     }
   }
@@ -551,11 +552,11 @@ Future importDatabaseStart(List<List<Data?>> database) async {
 
 /// 导入数据错误处理
 Future<String> importDatabaseError(List<List<Data?>> database) async {
-  String _errorPath = "";
-  final _errorData = await importDatabaseErrorCheck(database);
+  String errorPath = "";
+  final errorData = await importDatabaseErrorCheck(database);
 
   /// 存在错误就开始存储错误文件
-  if (_errorData.isNotEmpty) {
+  if (errorData.isNotEmpty) {
     DateTime now = DateTime.now();
 
     /// 获取APP文件临时根路径
@@ -569,7 +570,7 @@ Future<String> importDatabaseError(List<List<Data?>> database) async {
     try {
       Directory(filePath).deleteSync(recursive: true);
     } catch (e) {
-      print(e);
+      debugPrint("$e");
     }
 
     /// 创建Excel
@@ -619,7 +620,7 @@ Future<String> importDatabaseError(List<List<Data?>> database) async {
       ..cellStyle = cellStyle;
 
     /// 添加Excel数据
-    for (var list in _errorData) {
+    for (var list in errorData) {
       sheetObject.appendRow(list);
     }
 
@@ -631,24 +632,24 @@ Future<String> importDatabaseError(List<List<Data?>> database) async {
       ..createSync(recursive: true)
       ..writeAsBytesSync(fileBytes!);
 
-    _errorPath = fileName;
+    errorPath = fileName;
   }
-  return _errorPath;
+  return errorPath;
 }
 
 /// 导入数据错误检测
 Future<List<List>> importDatabaseErrorCheck(List<List<Data?>> database) async {
   /// 错误内容
-  List<List> _errorData = [];
+  List<List> errorData = [];
 
   /// 错误原因
-  String _errorText = "";
+  String errorText = "";
 
-  int _dataIndex = 0;
-  int _rowIndex = 0;
+  int dataIndex = 0;
+  int rowIndex = 0;
   for (final row in database) {
-    _dataIndex++;
-    if (_dataIndex < 3) {
+    dataIndex++;
+    if (dataIndex < 3) {
       continue;
     }
     for (final data in row) {
@@ -656,19 +657,19 @@ Future<List<List>> importDatabaseErrorCheck(List<List<Data?>> database) async {
       // print(data);
       // print(value);
       // print(_rowIndex);
-      switch (_rowIndex) {
+      switch (rowIndex) {
 
         /// 表情
         case 0:
           if (value == null) {
-            _errorText += "【表情必填】 ";
+            errorText += "【表情必填】 ";
           }
           break;
 
         /// 心情
         case 1:
           if (value == null) {
-            _errorText += "【心情必填】 ";
+            errorText += "【心情必填】 ";
           }
           break;
 
@@ -678,54 +679,54 @@ Future<List<List>> importDatabaseErrorCheck(List<List<Data?>> database) async {
 
         /// 心情程度
         case 3:
-          final _tryValue = double.tryParse(value.toString()) == null
+          final tryValue = double.tryParse(value.toString()) == null
               ? null
               : double.parse(value.toString()).toInt();
-          if (_tryValue == null) {
-            _errorText += "【心情程度只能为0-100整数】 ";
+          if (tryValue == null) {
+            errorText += "【心情程度只能为0-100整数】 ";
           }
-          if (_tryValue != null && (_tryValue < 0 || _tryValue > 100)) {
-            _errorText += "【心情程度只能为0-100整数】 ";
+          if (tryValue != null && (tryValue < 0 || tryValue > 100)) {
+            errorText += "【心情程度只能为0-100整数】 ";
           }
           break;
 
         /// 创建日期、修改日期
         case 4:
-          String? _tryValue;
+          String? tryValue;
           try {
-            _tryValue = DateFormat("yyyy-MM-dd")
+            tryValue = DateFormat("yyyy-MM-dd")
                 .parse(value)
                 .toString()
                 .substring(0, 10);
           } catch (e) {
-            _tryValue = null;
+            tryValue = null;
           }
-          print(_tryValue);
-          if (_tryValue == null) {
-            _errorText += "【创建时间只能为文本，如2000-11-03】 ";
+          debugPrint(tryValue);
+          if (tryValue == null) {
+            errorText += "【创建时间只能为文本，如2000-11-03】 ";
           }
           break;
       }
 
       /// 导入数据（一组数据完成）并且错误内容不为空
-      if (_rowIndex == 4 && _errorText.isNotEmpty) {
-        print("一组数据");
-        _errorData.add(["第$_dataIndex行", _errorText]);
+      if (rowIndex == 4 && errorText.isNotEmpty) {
+        debugPrint("一组数据");
+        errorData.add(["第$dataIndex行", errorText]);
       }
 
       /// 重置
-      if (_rowIndex == 4) {
-        _rowIndex = -1;
+      if (rowIndex == 4) {
+        rowIndex = -1;
 
         /// 错误原因
-        _errorText = "";
+        errorText = "";
       }
 
-      _rowIndex++;
+      rowIndex++;
     }
   }
 
-  return _errorData;
+  return errorData;
 }
 
 /// 导出数据
@@ -803,6 +804,7 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
                               _isExport = false;
                             });
                             vibrate();
+                            if (!mounted) return;
                             Fluttertoast.showToast(
                               msg: S
                                   .of(context)
@@ -819,7 +821,7 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
                             Share.shareFiles([_exportPath]);
                           }
                         } catch (e) {
-                          print(e);
+                          debugPrint("$e");
                         }
                       },
                     ),
@@ -847,7 +849,7 @@ Future<String> exportDatabase() async {
   try {
     Directory(filePath).deleteSync(recursive: true);
   } catch (e) {
-    print(e);
+    debugPrint("$e");
   }
 
   /// 创建Excel
@@ -910,10 +912,10 @@ Future<String> exportDatabase() async {
 
   /// 获取所有心情数据并赋值
   await MoodService.getMoodAllData(moodViewModel);
-  final _moodAllDataList = moodViewModel.moodAllDataList;
+  final moodAllDataList = moodViewModel.moodAllDataList;
 
   /// 添加Excel数据
-  _moodAllDataList?.forEach((list) {
+  moodAllDataList?.forEach((list) {
     List dataList = [
       list.icon,
       list.title,

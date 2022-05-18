@@ -18,7 +18,7 @@ class SettingTheme extends StatefulWidget {
   const SettingTheme({Key? key}) : super(key: key);
 
   @override
-  _SettingThemeState createState() => _SettingThemeState();
+  State<SettingTheme> createState() => _SettingThemeState();
 }
 
 class _SettingThemeState extends State<SettingTheme> {
@@ -76,7 +76,7 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
   Widget build(BuildContext context) {
     return Consumer<ApplicationViewModel>(
       builder: (_, applicationViewModel, child) {
-        final _themeMode = applicationViewModel.themeMode;
+        final themeMode = applicationViewModel.themeMode;
         return Wrap(
           alignment: WrapAlignment.center,
           direction: Axis.horizontal,
@@ -85,7 +85,7 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
           children: [
             DarkThemeCard(
               title: S.of(context).app_setting_theme_appearance_system,
-              selected: _themeMode == ThemeMode.system,
+              selected: themeMode == ThemeMode.system,
               child: Row(
                 children: [
                   Expanded(
@@ -147,13 +147,12 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
                 ],
               ),
               onTap: () async {
-                print("跟随系统");
                 await PreferencesDB().setAppThemeDarkMode(context, "system");
               },
             ),
             DarkThemeCard(
               title: S.of(context).app_setting_theme_appearance_light,
-              selected: _themeMode == ThemeMode.light,
+              selected: themeMode == ThemeMode.light,
               child: Container(
                 alignment: Alignment.center,
                 decoration: const BoxDecoration(
@@ -171,13 +170,12 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
                 ),
               ),
               onTap: () async {
-                print("普通模式");
                 await PreferencesDB().setAppThemeDarkMode(context, "light");
               },
             ),
             DarkThemeCard(
               title: S.of(context).app_setting_theme_appearance_dark,
-              selected: _themeMode == ThemeMode.dark,
+              selected: themeMode == ThemeMode.dark,
               child: Container(
                 alignment: Alignment.center,
                 decoration: const BoxDecoration(
@@ -195,7 +193,6 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
                 ),
               ),
               onTap: () async {
-                print("深色模式");
                 await PreferencesDB().setAppThemeDarkMode(context, "dark");
               },
             ),
@@ -219,7 +216,7 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
   Widget build(BuildContext context) {
     return Consumer<ApplicationViewModel>(
       builder: (_, applicationViewModel, child) {
-        final _multipleThemesMode = applicationViewModel.multipleThemesMode;
+        final multipleThemesMode = applicationViewModel.multipleThemesMode;
         return Padding(
           padding: EdgeInsets.only(left: 12.w, right: 12.w),
           child: Wrap(
@@ -229,7 +226,7 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
             spacing: 16.w,
             children: [
               MultipleThemesCard(
-                selected: _multipleThemesMode == "default",
+                selected: multipleThemesMode == "default",
                 child: Container(
                   alignment: Alignment.center,
                   decoration: const BoxDecoration(
@@ -239,13 +236,12 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
                   ),
                 ),
                 onTap: () async {
-                  print("default");
                   await PreferencesDB()
                       .setMultipleThemesMode(context, "default");
                 },
               ),
               MultipleThemesCard(
-                selected: _multipleThemesMode == "red",
+                selected: multipleThemesMode == "red",
                 child: Container(
                   alignment: Alignment.center,
                   decoration: const BoxDecoration(
@@ -255,12 +251,11 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
                   ),
                 ),
                 onTap: () async {
-                  print("red");
                   await PreferencesDB().setMultipleThemesMode(context, "red");
                 },
               ),
               MultipleThemesCard(
-                selected: _multipleThemesMode == "orange",
+                selected: multipleThemesMode == "orange",
                 child: Container(
                   alignment: Alignment.center,
                   decoration: const BoxDecoration(
@@ -270,13 +265,12 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
                   ),
                 ),
                 onTap: () async {
-                  print("orange");
                   await PreferencesDB()
                       .setMultipleThemesMode(context, "orange");
                 },
               ),
               MultipleThemesCard(
-                selected: _multipleThemesMode == "yellow",
+                selected: multipleThemesMode == "yellow",
                 child: Container(
                   alignment: Alignment.center,
                   decoration: const BoxDecoration(
@@ -286,13 +280,12 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
                   ),
                 ),
                 onTap: () async {
-                  print("yellow");
                   await PreferencesDB()
                       .setMultipleThemesMode(context, "yellow");
                 },
               ),
               MultipleThemesCard(
-                selected: _multipleThemesMode == "green",
+                selected: multipleThemesMode == "green",
                 child: Container(
                   alignment: Alignment.center,
                   decoration: const BoxDecoration(
@@ -302,12 +295,11 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
                   ),
                 ),
                 onTap: () async {
-                  print("green");
                   await PreferencesDB().setMultipleThemesMode(context, "green");
                 },
               ),
               MultipleThemesCard(
-                selected: _multipleThemesMode == "cyan",
+                selected: multipleThemesMode == "cyan",
                 child: Container(
                   alignment: Alignment.center,
                   decoration: const BoxDecoration(
@@ -317,12 +309,11 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
                   ),
                 ),
                 onTap: () async {
-                  print("cyan");
                   await PreferencesDB().setMultipleThemesMode(context, "cyan");
                 },
               ),
               MultipleThemesCard(
-                selected: _multipleThemesMode == "purple",
+                selected: multipleThemesMode == "purple",
                 child: Container(
                   alignment: Alignment.center,
                   decoration: const BoxDecoration(
@@ -332,7 +323,6 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
                   ),
                 ),
                 onTap: () async {
-                  print("purple");
                   await PreferencesDB()
                       .setMultipleThemesMode(context, "purple");
                 },
@@ -365,7 +355,7 @@ class MultipleThemesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool _selected = selected ?? false;
+    bool isSelected = selected ?? false;
     return InkWell(
       onTap: onTap,
       child: Column(
@@ -378,7 +368,7 @@ class MultipleThemesCard extends StatelessWidget {
                 height: 64.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  border: _selected
+                  border: isSelected
                       ? Border.all(
                           width: 3.w,
                           color:
@@ -398,7 +388,7 @@ class MultipleThemesCard extends StatelessWidget {
               ),
               Builder(
                 builder: (_) {
-                  if (!_selected) {
+                  if (!isSelected) {
                     return const SizedBox();
                   }
                   return Padding(
@@ -443,8 +433,9 @@ class DarkThemeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool _selected = selected ?? false;
+    bool isSelected = selected ?? false;
     return InkWell(
+      onTap: onTap,
       child: Column(
         children: [
           Stack(
@@ -455,7 +446,7 @@ class DarkThemeCard extends StatelessWidget {
                 height: 72.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18.w),
-                  border: _selected
+                  border: isSelected
                       ? Border.all(
                           width: 3.w,
                           color:
@@ -475,7 +466,7 @@ class DarkThemeCard extends StatelessWidget {
               ),
               Builder(
                 builder: (_) {
-                  if (!_selected) {
+                  if (!isSelected) {
                     return const SizedBox();
                   }
                   return Padding(
@@ -502,7 +493,6 @@ class DarkThemeCard extends StatelessWidget {
           ),
         ],
       ),
-      onTap: onTap,
     );
   }
 }

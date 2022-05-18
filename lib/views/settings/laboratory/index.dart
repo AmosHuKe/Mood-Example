@@ -164,8 +164,8 @@ class ListCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  child: const Text('打开'),
                   onPressed: onPressed,
+                  child: const Text('打开'),
                 ),
                 const SizedBox(width: 8),
               ],

@@ -19,7 +19,7 @@ String getDatetimeNow(format) {
 
 /// 震动
 Future<void> vibrate() async {
-  print("~~~ 震动 ~~~");
+  debugPrint("~~~ 震动 ~~~");
   Vibration.vibrate(duration: 10);
 }
 

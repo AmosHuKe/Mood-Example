@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 ///
 import 'package:intl/intl.dart';
 
@@ -15,7 +17,7 @@ class StatisticService {
       StatisticViewModel statisticViewModel) async {
     // 查询
     final list = await DB.db.selectAPPUsageDays();
-    print("获取APP使用天数" + list.toString());
+    debugPrint("获取APP使用天数$list");
     final int count = list[0]['dayCount'] ?? 0;
     // 赋值
     statisticViewModel.setDaysCount(count);
@@ -26,7 +28,7 @@ class StatisticService {
       StatisticViewModel statisticViewModel) async {
     // 查询
     final list = await DB.db.selectAPPMoodCount();
-    print("APP累计记录条数" + list.toString());
+    debugPrint("APP累计记录条数$list");
     final int count = list[0]['moodCount'] ?? 0;
     // 赋值
     statisticViewModel.setMoodCount(count);
@@ -37,7 +39,7 @@ class StatisticService {
       StatisticViewModel statisticViewModel) async {
     // 查询
     final list = await DB.db.selectMoodScoreAverage();
-    print("平均情绪波动" + list.toString());
+    debugPrint("平均情绪波动$list");
     final int count = list[0]['moodScoreAverage'] ?? 0;
     // 赋值
     statisticViewModel.setMoodScoreAverage(count);
@@ -66,7 +68,7 @@ class StatisticService {
         "score": count,
       });
     }
-    print("近$days日情绪波动" + dataList.toString());
+    debugPrint("近$days日情绪波动$dataList");
 
     // 赋值
     statisticViewModel.setMoodScoreAverageRecently(dataList);
@@ -82,14 +84,13 @@ class StatisticService {
     /// 数据
     final nowDate = DateTime.parse(getDatetimeNow("yyyy-MM-dd"));
     // 获取近7日日期
-    final String startTime = DateFormat("yyyy-MM-dd")
-            .format(nowDate.subtract(Duration(days: days))) +
-        " 00:00:00";
+    final String startTime =
+        "${DateFormat("yyyy-MM-dd").format(nowDate.subtract(Duration(days: days)))} 00:00:00";
     final String endTime =
-        DateFormat("yyyy-MM-dd").format(nowDate) + " 23:59:59";
+        "${DateFormat("yyyy-MM-dd").format(nowDate)} 23:59:59";
     // 查询
     final list = await DB.db.selectDateMoodCount(startTime, endTime);
-    print("近$days日心情数量统计" + list.toString());
+    debugPrint("近$days日心情数量统计$list");
 
     // 赋值
     statisticViewModel.setDateMoodCount(list);
