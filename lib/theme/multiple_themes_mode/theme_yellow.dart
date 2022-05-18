@@ -5,7 +5,7 @@ class AppThemeYellow {
   // fromRGBO(46, 69, 177, 1) fromRGBO(84, 70, 183, 1)
   /// 主颜色
   static const primaryColor =
-      Color(0xFFEAA323); // #4d5fb4 #2C3751 #3e4663 #F7C95E
+      Color(0xFFD6A548); // #4d5fb4 #2C3751 #3e4663 #F7C95E
 
   /// 次要颜色
   static const subColor = Color(0xFFAFB8BF);

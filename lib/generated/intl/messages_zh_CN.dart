@@ -71,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("普通模式"),
         "app_setting_theme_appearance_system":
             MessageLookupByLibrary.simpleMessage("跟随系统"),
+        "app_setting_theme_themes": MessageLookupByLibrary.simpleMessage("多主题"),
         "home_help_article_content_1":
             MessageLookupByLibrary.simpleMessage("认知和意识过程产生对外界事物的态度..."),
         "home_help_article_content_2":

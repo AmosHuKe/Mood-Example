@@ -9,6 +9,7 @@ import 'package:remixicon/remixicon.dart';
 import 'package:moodexample/theme/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/db/preferences_db.dart';
+import 'package:moodexample/config/multiple_themes.dart';
 
 ///
 import 'package:moodexample/view_models/application/application_view_model.dart';
@@ -42,13 +43,13 @@ class _SettingThemeState extends State<SettingTheme> {
         ),
 
         const DarkThemeBody(),
-        SizedBox(height: 48.w),
+        SizedBox(height: 36.w),
 
         /// 多主题设置-可浅色、深色模式独立配色方案
         Padding(
           padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 14.w),
           child: Text(
-            "多主题",
+            S.of(context).app_setting_theme_themes,
             style: Theme.of(context).textTheme.headline1!.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 14.sp,
@@ -214,6 +215,10 @@ class MultipleThemesBody extends StatefulWidget {
 class _MultipleThemesBodyState extends State<MultipleThemesBody> {
   @override
   Widget build(BuildContext context) {
+    /// 获取多主题Key
+    List appMultipleThemesModeKey = [];
+    appMultipleThemesMode
+        .forEach((key, value) => appMultipleThemesModeKey.add(key));
     return Consumer<ApplicationViewModel>(
       builder: (_, applicationViewModel, child) {
         final multipleThemesMode = applicationViewModel.multipleThemesMode;
@@ -224,110 +229,32 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
             direction: Axis.horizontal,
             runSpacing: 16.w,
             spacing: 16.w,
-            children: [
-              MultipleThemesCard(
-                selected: multipleThemesMode == "default",
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Color(0xFF3e4663), Color(0xFF3e4663)],
+            children: List.generate(
+              appMultipleThemesModeKey.length,
+              (generator) {
+                String key = appMultipleThemesModeKey[generator];
+                Color primaryColor =
+                    appMultipleThemesMode[key]![AppMultipleThemesMode.light]!
+                        .primaryColor;
+                return MultipleThemesCard(
+                  selected: multipleThemesMode == key,
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [primaryColor, primaryColor.withAlpha(200)],
+                      ),
                     ),
                   ),
-                ),
-                onTap: () async {
-                  await PreferencesDB()
-                      .setMultipleThemesMode(context, "default");
-                },
-              ),
-              MultipleThemesCard(
-                selected: multipleThemesMode == "red",
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Color(0xFF9B545A), Color(0xFF9B545A)],
-                    ),
-                  ),
-                ),
-                onTap: () async {
-                  await PreferencesDB().setMultipleThemesMode(context, "red");
-                },
-              ),
-              MultipleThemesCard(
-                selected: multipleThemesMode == "orange",
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Color(0xFFA77E86), Color(0xFFA77E86)],
-                    ),
-                  ),
-                ),
-                onTap: () async {
-                  await PreferencesDB()
-                      .setMultipleThemesMode(context, "orange");
-                },
-              ),
-              MultipleThemesCard(
-                selected: multipleThemesMode == "yellow",
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Color(0xFFEAA323), Color(0xFFEAA323)],
-                    ),
-                  ),
-                ),
-                onTap: () async {
-                  await PreferencesDB()
-                      .setMultipleThemesMode(context, "yellow");
-                },
-              ),
-              MultipleThemesCard(
-                selected: multipleThemesMode == "green",
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Color(0xFF6C7A6B), Color(0xFF6C7A6B)],
-                    ),
-                  ),
-                ),
-                onTap: () async {
-                  await PreferencesDB().setMultipleThemesMode(context, "green");
-                },
-              ),
-              MultipleThemesCard(
-                selected: multipleThemesMode == "cyan",
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Color(0xFF19686A), Color(0xFF19686A)],
-                    ),
-                  ),
-                ),
-                onTap: () async {
-                  await PreferencesDB().setMultipleThemesMode(context, "cyan");
-                },
-              ),
-              MultipleThemesCard(
-                selected: multipleThemesMode == "purple",
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Color(0xFF7F7182), Color(0xFF7F7182)],
-                    ),
-                  ),
-                ),
-                onTap: () async {
-                  await PreferencesDB()
-                      .setMultipleThemesMode(context, "purple");
-                },
-              ),
-            ],
+                  onTap: () async {
+                    debugPrint("主题:$key");
+                    await PreferencesDB().setMultipleThemesMode(context, key);
+                  },
+                );
+              },
+            ),
           ),
         );
       },

@@ -210,6 +210,16 @@ class S {
     );
   }
 
+  /// `Themes`
+  String get app_setting_theme_themes {
+    return Intl.message(
+      'Themes',
+      name: 'app_setting_theme_themes',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Language`
   String get app_setting_language {
     return Intl.message(
