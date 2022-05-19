@@ -148,7 +148,8 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
                 ],
               ),
               onTap: () async {
-                await PreferencesDB().setAppThemeDarkMode(context, "system");
+                await PreferencesDB()
+                    .setAppThemeDarkMode(applicationViewModel, "system");
               },
             ),
             DarkThemeCard(
@@ -171,7 +172,8 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
                 ),
               ),
               onTap: () async {
-                await PreferencesDB().setAppThemeDarkMode(context, "light");
+                await PreferencesDB()
+                    .setAppThemeDarkMode(applicationViewModel, "light");
               },
             ),
             DarkThemeCard(
@@ -194,7 +196,8 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
                 ),
               ),
               onTap: () async {
-                await PreferencesDB().setAppThemeDarkMode(context, "dark");
+                await PreferencesDB()
+                    .setAppThemeDarkMode(applicationViewModel, "dark");
               },
             ),
           ],
@@ -244,13 +247,14 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
-                        colors: [primaryColor, primaryColor.withAlpha(200)],
+                        colors: [primaryColor, primaryColor],
                       ),
                     ),
                   ),
                   onTap: () async {
                     debugPrint("主题:$key");
-                    await PreferencesDB().setMultipleThemesMode(context, key);
+                    await PreferencesDB()
+                        .setMultipleThemesMode(applicationViewModel, key);
                   },
                 );
               },
