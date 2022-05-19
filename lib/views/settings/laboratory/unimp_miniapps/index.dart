@@ -21,7 +21,6 @@ class _UniMPMiniappsPageState extends State<UniMPMiniappsPage> {
     ScreenUtil.init(
       context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-      orientation: Orientation.portrait,
     );
     return Theme(
       data: ThemeData(),

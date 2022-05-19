@@ -15,7 +15,6 @@ Future<T?> showModalBottomDetail<T>({
   ScreenUtil.init(
     context,
     designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-    orientation: Orientation.portrait,
   );
   return showModalBottomSheet(
     context: context,

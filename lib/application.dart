@@ -162,7 +162,6 @@ class _MenuPageState extends State<MenuPage> {
     ScreenUtil.init(
       context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-      orientation: Orientation.portrait,
     );
 
     return Consumer<ApplicationViewModel>(

@@ -61,7 +61,6 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
     ScreenUtil.init(
       context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-      orientation: Orientation.portrait,
     );
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,

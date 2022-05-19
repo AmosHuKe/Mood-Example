@@ -29,7 +29,6 @@ class _WillPopScopeRouteState extends State<WillPopScopeRoute> {
     ScreenUtil.init(
       context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-      orientation: Orientation.portrait,
     );
     return WillPopScope(
       onWillPop: () async {

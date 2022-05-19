@@ -83,7 +83,6 @@ class _MoodContentState extends State<MoodContent> {
     ScreenUtil.init(
       context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-      orientation: Orientation.portrait,
     );
 
     return Scaffold(

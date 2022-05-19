@@ -21,7 +21,6 @@ class _LaboratoryPageState extends State<LaboratoryPage> {
     ScreenUtil.init(
       context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-      orientation: Orientation.portrait,
     );
     return Theme(
       data: ThemeData(),

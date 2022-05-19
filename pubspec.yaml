@@ -36,25 +36,25 @@ dependencies:
   # 国际化
   intl: ^0.17.0
   # 路径
-  path_provider: ^2.0.9
+  path_provider: ^2.0.10
   # 自适应工具
-  flutter_screenutil: ^5.5.2
+  flutter_screenutil: ^5.5.3+1
   # 状态管理
-  provider: ^6.0.1
+  provider: ^6.0.2
   # 数据库
-  sqflite: ^2.0.1
+  sqflite: ^2.0.2+1
   # 共享存储
-  shared_preferences: ^2.0.11
+  shared_preferences: ^2.0.15
   # 路由管理
   fluro: ^2.0.3
   # 缩放抽屉
   flutter_zoom_drawer: ^2.1.2
   # 轻提示 Toast
-  fluttertoast: ^8.0.8
+  fluttertoast: ^8.0.9
   # 日历
-  table_calendar: ^3.0.3
+  table_calendar: ^3.0.5
   # 滑动操作项
-  flutter_slidable: ^1.1.0
+  flutter_slidable: ^1.2.1
   # 轮播
   card_swiper: ^2.0.3
   # 震动
@@ -72,7 +72,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.4
   # Remixicon
   remixicon: ^1.0.0
 
