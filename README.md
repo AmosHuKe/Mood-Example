@@ -181,7 +181,10 @@ $ flutter run --debug/release/profile/test
 │   ├── home_screen.dart                            # 主应用导航相关
 │   ├── main.dart                                   # 主应用入口
 │   └── routes.dart                                 # 路由管理
-├── test                                            # 工程测试文件
+├── test                                            # 测试
+├── test_driver                                     # 集成测试
+│   ├── app.dart                                    # 集成测试应用启动入口
+│   └── app_test.dart                               # 集成测试
 ├── .gitignore                                      # Git 提交仓库忽略文件配置
 ├── .metadata                                       # 当前 workspace 配置记录
 ├── analysis_options.yaml                           # Dart 语言代码规范
