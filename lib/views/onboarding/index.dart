@@ -78,9 +78,9 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
     /// 进步按钮颜色动画
     _stepButtonColorController = AnimationController(
         duration: const Duration(milliseconds: 500), vsync: this);
-    _stepButtonColorAnimation =
-        ColorTween(begin: _stepButtonColor, end: Theme.of(context).primaryColor)
-            .animate(_stepButtonColorController);
+    _stepButtonColorAnimation = ColorTween(
+            begin: _stepButtonColor, end: _stepButtonColor.withAlpha(200))
+        .animate(_stepButtonColorController);
   }
 
   /// 释放
