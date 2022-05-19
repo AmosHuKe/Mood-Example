@@ -95,6 +95,7 @@ class Header extends StatelessWidget {
     return Row(
       children: [
         ClipRRect(
+          key: const Key("widget_menu_screen_left_logo"),
           borderRadius: BorderRadius.circular(14.sp),
           child: Image.asset(
             "assets/images/logo.png",

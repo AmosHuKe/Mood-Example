@@ -135,6 +135,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               tabs: [
                 /// 菜单
                 Tab(
+                  key: const Key("tab_home"),
                   text: S.of(context).app_bottomNavigationBar_title_home,
                   icon: Icon(
                     Remix.home_line,
@@ -142,6 +143,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                 ),
                 Tab(
+                  key: const Key("tab_mood"),
                   text: S.of(context).app_bottomNavigationBar_title_mood,
                   icon: Icon(
                     Remix.heart_3_line,
@@ -149,6 +151,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                 ),
                 Tab(
+                  key: const Key("tab_statistic"),
                   text: S.of(context).app_bottomNavigationBar_title_statistic,
                   icon: Icon(
                     Remix.bar_chart_line,
@@ -171,6 +174,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
             // 侧栏
             InkWell(
+              key: const Key("tab_screen_left"),
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
