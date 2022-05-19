@@ -26,9 +26,10 @@
 
 ## 🌏 相关网站
 
-> Flutter官网（中文）：<a target="_blank" href="https://flutter.cn/">https://flutter.cn/</a>  
-> Flutter官网（英文）：<a target="_blank" href="https://flutter.dev/">https://flutter.dev/</a>  
-> Packages：<a target="_blank" href="https://pub.dev/">https://pub.dev/</a>  
+> Flutter 官网（中文）：<a target="_blank" href="https://flutter.cn/">https://flutter.cn/</a>  
+> Flutter 官网（英文）：<a target="_blank" href="https://flutter.dev/">https://flutter.dev/</a>  
+> Packages (原始站点) ：<a target="_blank" href="https://pub.dev/">https://pub.dev/</a>  
+> Packages (中国镜像) ：<a target="_blank" href="https://pub.flutter-io.cn/">https://pub.flutter-io.cn/</a>  
 
 
 ## ⭐ 功能
