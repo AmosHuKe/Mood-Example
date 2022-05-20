@@ -98,6 +98,7 @@ class _MoodContentState extends State<MoodContent> {
         centerTitle: true,
         title: Text(LocaleDatetime().yMMMd(_moodData.createTime ?? "")),
         leading: ActionButton(
+          key: const Key("widget_action_button_close"),
           decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: isDarkMode(context)

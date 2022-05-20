@@ -27,6 +27,7 @@ class _LaboratoryPageState extends State<LaboratoryPage> {
       child: const Scaffold(
         backgroundColor: Color(0xFFF6F8FA),
         body: SafeArea(
+          key: Key("widget_laboratory_page"),
           child: LaboratoryBody(),
         ),
       ),

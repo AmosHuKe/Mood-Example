@@ -240,6 +240,7 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
                     appMultipleThemesMode[key]![AppMultipleThemesMode.light]!
                         .primaryColor;
                 return MultipleThemesCard(
+                  key: Key("widget_multiple_themes_card_$key"),
                   selected: multipleThemesMode == key,
                   child: Container(
                     alignment: Alignment.center,

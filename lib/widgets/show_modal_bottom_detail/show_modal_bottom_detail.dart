@@ -34,6 +34,7 @@ Future<T?> showModalBottomDetail<T>({
         child: Column(
           children: [
             Container(
+              key: const Key("widget_move_modal_bottom_sheet"),
               margin: EdgeInsets.all(12.w),
               height: 4.w,
               width: 24.w,
