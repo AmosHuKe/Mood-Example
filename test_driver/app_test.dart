@@ -130,13 +130,16 @@ void main() {
           400, const Duration(milliseconds: 200));
       await driver.waitForAbsent(find.text("简体中文"));
     });
-    // test("实验室操作", () async {
-    //   await driver.tap(find.text("实验室"));
-    //   await driver.waitFor(find.text("实验室"));
-    //   driver.getTopLeft(find.byValueKey("widget_laboratory_page"));
-    //   // await driver.scroll(find.byValueKey("widget_laboratory_page"), 400, 0,
-    //   //     const Duration(milliseconds: 200));
-    // });
+    test("实验室操作", () async {
+      await driver.tap(find.text("实验室"));
+      await driver.waitFor(find.text("实验室"));
+      var finderWidgetLaboratoryPage =
+          find.byValueKey("widget_laboratory_page");
+      await driver.scroll(finderWidgetLaboratoryPage, 0, -500,
+          const Duration(milliseconds: 500));
+      await driver.scroll(finderWidgetLaboratoryPage, 0, 500,
+          const Duration(milliseconds: 500));
+    });
     test("侧栏关闭", () async {
       await driver.tap(find.byValueKey("widget_menu_screen_left_logo"));
     });
