@@ -136,18 +136,9 @@ $ flutter run --debug/release/profile/test
 
 # 清理构建缓存
 $ flutter clean
-```
 
-
-## 🎠 测试  
-
-集成测试，在 `test_driver/app.dart` 启动测试应用，  
-启动测试后，运行测试用例 `test_driver/<name>_test.dart`，如 `test_driver/app_test.dart` 进行测试。  
-或者使用指令：   
-
-```sh
-# 使用模拟器集成测试
-$ flutter drive --target=test_driver/app.dart
+# 集成测试
+$ flutter test integration_test/app_test.dart
 ```
 
 
@@ -171,6 +162,8 @@ $ flutter drive --target=test_driver/app.dart
 │   │   │   │   │   │   │   │   └── MainActivity.kt # Flutter 的 Android 默认入口
 ├── assets                                          # 静态资源文件
 ├── build                                           # 编译或运行后产物
+├── integration_test                                # 集成测试
+│   └── app_test.dart                               # 集成测试入口 用例
 ├── ios                                             # IOS 工程文件
 ├── lib                                             # 工程相关文件（主要编码）
 │   ├── common                                      # 公共相关
@@ -199,9 +192,6 @@ $ flutter drive --target=test_driver/app.dart
 │   ├── main.dart                                   # 主应用入口
 │   └── routes.dart                                 # 路由管理
 ├── test                                            # 测试
-├── test_driver                                     # 集成测试
-│   ├── app.dart                                    # 集成测试应用启动入口
-│   └── app_test.dart                               # 集成测试
 ├── .gitignore                                      # Git 提交仓库忽略文件配置
 ├── .metadata                                       # 当前 workspace 配置记录
 ├── analysis_options.yaml                           # Dart 语言代码规范
