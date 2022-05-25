@@ -120,7 +120,10 @@ void main() {
       Finder widgetTabScreenLeft = find.byKey(const Key("tab_screen_left"));
       Finder widgetMoveModalBottomSheet =
           find.byKey(const Key("widget_move_modal_bottom_sheet"));
-      Finder textLogo = find.text("Mood");
+      Finder widgetLaboratoryPage =
+          find.byKey(const Key("widget_laboratory_page"));
+      Finder widgetMenuScreenLeftLogo =
+          find.byKey(const Key("widget_menu_screen_left_logo"));
       Finder textData = find.text("数据");
       Finder textDataExport = find.text("导出数据");
       Finder textDataImport = find.text("导入数据");
@@ -141,8 +144,6 @@ void main() {
       await tester.tap(widgetTabScreenLeft);
       await tester.pumpAndSettle();
       expect(textAbout, findsOneWidget);
-      // await tester.tap(textLogo);
-      // await tester.pumpAndSettle();
 
       /// 数据操作
       expect(textData, findsOneWidget);
@@ -215,24 +216,21 @@ void main() {
           widgetMoveModalBottomSheet, const Offset(0, 400), 1200.0);
       await tester.pumpAndSettle();
 
+      /// 实验室操作
+      expect(textLaboratory, findsOneWidget);
+      await tester.tap(textLaboratory);
+      await tester.pumpAndSettle();
+      expect(textLaboratory, findsOneWidget);
+      await tester.fling(widgetLaboratoryPage, const Offset(0, -400), 1200.0);
+      await tester.pumpAndSettle();
+      await tester.fling(widgetLaboratoryPage, const Offset(0, 400), 1200.0);
+      await tester.pumpAndSettle();
+      await tester.dragFrom(const Offset(5, 100), const Offset(400, 100));
+      await tester.pumpAndSettle();
+
       /// 侧栏关闭
-      await tester.tap(textLogo);
+      await tester.tap(widgetMenuScreenLeftLogo);
+      await tester.pumpAndSettle();
     });
   });
-
-  // group("侧栏基础操作", () {
-  //   test("实验室操作", () async {
-  //     await driver.tap(find.text("实验室"));
-  //     await driver.waitFor(find.text("实验室"));
-  //     var finderWidgetLaboratoryPage =
-  //         find.byValueKey("widget_laboratory_page");
-  //     await driver.scroll(finderWidgetLaboratoryPage, 0, -500,
-  //         const Duration(milliseconds: 500));
-  //     await driver.scroll(finderWidgetLaboratoryPage, 0, 500,
-  //         const Duration(milliseconds: 500));
-  //   });
-  //   test("侧栏关闭", () async {
-  //     await driver.tap(find.byValueKey("widget_menu_screen_left_logo"));
-  //   });
-  // });
 }
