@@ -41,12 +41,13 @@
 - [x] 路由管理  
 - [x] 状态管理（MVVM）  
 - [x] 情绪记录  
-- [x] 图表统计    
+- [x] 图表统计  
 - [x] Excel 导入导出  
+- [x] 实验室  
+  - [x] uniapp 小程序（UniMPSDK v3.4.7）  
 - [ ] 隐私解锁  
 - [ ] 动画  
 - [ ] 通知  
-- [x] 实验室 - uniapp 小程序（UniMPSDK v3.4.7）  
 ……
 
 
@@ -71,7 +72,7 @@
 ```  
 
 
-### 国际化支持  
+### 国际化环境支持  
 
 安装编辑器插件：`Flutter Intl`  
 > Visual Studio Code: [Flutter Intl](https://marketplace.visualstudio.com/items?itemName=localizely.flutter-intl)   
