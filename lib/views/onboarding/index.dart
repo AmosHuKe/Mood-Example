@@ -205,7 +205,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
           child: AnimatedBuilder(
             animation: _stepButtonColorAnimation,
             builder: (context, child) => OutlinedButton(
-              key: const Key("widget_next_bottom"),
+              key: const Key("widget_next_button"),
               style: ButtonStyle(
                 padding: MaterialStateProperty.all(EdgeInsets.all(20.w)),
                 foregroundColor: MaterialStateProperty.all(Colors.white),

@@ -5,19 +5,21 @@ import 'package:integration_test/integration_test.dart';
 ///
 import 'package:moodexample/main.dart' as app;
 
+///
+import 'package:moodexample/config/language.dart';
+import 'package:moodexample/config/multiple_themes.dart';
+
 void main() {
   /// 集成测试环境的初始化
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   group("基础操作测试", () {
     testWidgets("切换底部菜单 Tab", (WidgetTester tester) async {
       app.main();
-
-      /// 等待数据加载
       await tester.pumpAndSettle();
 
-      final widgetTabHome = find.byKey(const Key("tab_home"));
-      final widgetTabMood = find.byKey(const Key("tab_mood"));
-      final widgetTabStatistic = find.byKey(const Key("tab_statistic"));
+      Finder widgetTabHome = find.byKey(const Key("tab_home"));
+      Finder widgetTabMood = find.byKey(const Key("tab_mood"));
+      Finder widgetTabStatistic = find.byKey(const Key("tab_statistic"));
 
       /// 检查菜单是否存在
       expect(widgetTabHome, findsOneWidget);
@@ -26,174 +28,199 @@ void main() {
 
       /// 测试点击
       await tester.tap(widgetTabHome);
-      await Future.delayed(const Duration(seconds: 1));
+      await tester.pumpAndSettle();
       await tester.tap(widgetTabMood);
-      await Future.delayed(const Duration(seconds: 1));
+      await tester.pumpAndSettle();
       await tester.tap(widgetTabStatistic);
-      await Future.delayed(const Duration(seconds: 1));
+      await tester.pumpAndSettle();
       await tester.tap(widgetTabHome);
-      await Future.delayed(const Duration(seconds: 1));
+      await tester.pumpAndSettle();
     });
 
     testWidgets("首页基础操作", (WidgetTester tester) async {
       app.main();
-
-      /// 等待数据加载
       await tester.pumpAndSettle();
-      final widgetHomeBody = find.byKey(const Key("widget_home_body"));
-      final widgetTabHome = find.byKey(const Key("tab_home"));
-      final textHi = find.text("Hi~");
-      final textHelp = find.text("帮助");
 
-      /// 切换到首页
+      Finder widgetHomeBody = find.byKey(const Key("widget_home_body"));
+      Finder widgetTabHome = find.byKey(const Key("tab_home"));
+      Finder widgetOptionMood = find.byKey(const Key("widget_option_mood"));
+      Finder widgetActionButtonClose =
+          find.byKey(const Key("widget_action_button_close"));
+      Finder widgetNextButton = find.byKey(const Key("widget_next_button"));
+      Finder textHi = find.text("Hi~");
+      Finder textHelp = find.text("帮助");
+      Finder textHappy = find.text("开心");
+      Finder textAngry = find.text("生气");
+      Finder textOK = find.text("确认");
+      Finder textLook = find.text("查看");
+      Finder textGLSX = find.text("管理思绪");
+      Finder textJXTJ = find.text("精心统计");
+      Finder textJKKS = find.text("即刻开始");
+
+      /// 切换到首页，滑动验证内容存在
       await tester.tap(widgetTabHome);
+      await tester.pumpAndSettle();
       expect(textHi, findsOneWidget);
-      await tester.fling(widgetHomeBody, const Offset(0, -400), 1000.0);
+      await tester.fling(widgetHomeBody, const Offset(0, -400), 1200.0);
+      await tester.pumpAndSettle();
       expect(textHelp, findsOneWidget);
-      await Future.delayed(const Duration(seconds: 1));
-      await tester.fling(widgetHomeBody, const Offset(0, 400), 1000.0);
+      await tester.fling(widgetHomeBody, const Offset(0, 400), 1200.0);
+      await tester.pumpAndSettle();
       expect(textHi, findsOneWidget);
-      await Future.delayed(const Duration(seconds: 1));
 
-      // /// 整体页面滑动
-      // await driver.waitFor(find.text("Hi~"));
-      // final finderWidgetHomeBody = find.byValueKey("widget_home_body");
-      // await driver.scroll(
-      //     finderWidgetHomeBody, 0, -800, const Duration(milliseconds: 500));
-      // await driver.waitFor(find.text("情绪管理"));
-      // await driver.scroll(
-      //     finderWidgetHomeBody, 0, 800, const Duration(milliseconds: 500));
-      // await driver.waitFor(find.text("Hi~"));
+      /// 心情操作卡片，首尾滑动触发操作
+      expect(textHappy, findsOneWidget);
+      await tester.tap(textHappy);
+      await tester.pumpAndSettle();
+      expect(textHappy, findsOneWidget);
+      await tester.tap(widgetActionButtonClose);
+      await tester.pumpAndSettle();
+      await tester.tap(textOK);
 
-      // /// 心情操作卡片
-      // final finderWidgetOptionMood = find.byValueKey("widget_option_mood");
-      // await driver.tap(find.text("开心"));
-      // await driver.waitFor(find.text("开心"));
-      // driver.tap(find.byValueKey("widget_action_button_close"));
-      // await driver.tap(find.text("确认"));
-      // await driver.scroll(
-      //     finderWidgetOptionMood, -500, 0, const Duration(milliseconds: 500));
-      // await driver.tap(find.text("生气"));
-      // await driver.waitFor(find.text("生气"));
-      // driver.tap(find.byValueKey("widget_action_button_close"));
-      // await driver.tap(find.text("确认"));
-      // await driver.scroll(
-      //     finderWidgetOptionMood, 500, 0, const Duration(milliseconds: 500));
+      await tester.pumpAndSettle();
+      expect(textHi, findsOneWidget);
+      await tester.fling(widgetOptionMood, const Offset(-400, 0), 1200.0);
+      await tester.pumpAndSettle();
+      expect(textAngry, findsOneWidget);
+      await tester.tap(textAngry);
+      await tester.pumpAndSettle();
+      expect(textAngry, findsOneWidget);
+      await tester.tap(widgetActionButtonClose);
+      await tester.pumpAndSettle();
+      await tester.tap(textOK);
 
-      // /// 通知内容
-      // await driver.tap(find.text("查看"));
-      // await driver.waitFor(find.text("管理思绪"));
-      // await driver.tap(find.byValueKey("widget_next_bottom"));
-      // await driver.waitFor(find.text("精心统计"));
-      // await driver.tap(find.byValueKey("widget_next_bottom"));
-      // await driver.waitFor(find.text("即刻开始"));
-      // await driver.tap(find.byValueKey("widget_next_bottom"));
+      await tester.pumpAndSettle();
+      expect(textHi, findsOneWidget);
+      await tester.fling(widgetOptionMood, const Offset(400, 0), 1200.0);
+      await tester.pumpAndSettle();
+      expect(textHappy, findsOneWidget);
+
+      /// 通知内容操作
+      await tester.pump();
+      await tester.pumpAndSettle();
+      await tester.tap(textLook);
+      await tester.pumpAndSettle();
+      expect(textGLSX, findsOneWidget);
+      await tester.tap(widgetNextButton);
+      await tester.pumpAndSettle();
+      expect(textJXTJ, findsOneWidget);
+      await tester.tap(widgetNextButton);
+      await tester.pumpAndSettle();
+      expect(textJKKS, findsOneWidget);
+      await tester.tap(widgetNextButton);
+      await tester.pumpAndSettle();
+    });
+
+    testWidgets("侧栏基础操作", (WidgetTester tester) async {
+      app.main();
+      await tester.pumpAndSettle();
+
+      List appMultipleThemesModeKey = [];
+      List language = [];
+      Finder widgetTabScreenLeft = find.byKey(const Key("tab_screen_left"));
+      Finder widgetMoveModalBottomSheet =
+          find.byKey(const Key("widget_move_modal_bottom_sheet"));
+      Finder textLogo = find.text("Mood");
+      Finder textData = find.text("数据");
+      Finder textDataExport = find.text("导出数据");
+      Finder textDataImport = find.text("导入数据");
+      Finder textTheme = find.text("主题");
+      Finder textThemeSetting = find.text("主题外观");
+      Finder textThemeSettingSystem = find.text("跟随系统");
+      Finder textThemeSettingLight = find.text("普通模式");
+      Finder textThemeSettingDark = find.text("深色模式");
+      Finder textLanguage = find.text("语言");
+      Finder textLanguageChinese = find.text("简体中文");
+      Finder textLanguageEnglish = find.text("English");
+      Finder textLanguageSystem = find.text("System");
+      Finder textLaboratory = find.text("实验室");
+      Finder textAbout = find.text("关于");
+
+      /// 打开侧栏
+      expect(widgetTabScreenLeft, findsOneWidget);
+      await tester.tap(widgetTabScreenLeft);
+      await tester.pumpAndSettle();
+      expect(textAbout, findsOneWidget);
+      // await tester.tap(textLogo);
+      // await tester.pumpAndSettle();
+
+      /// 数据操作
+      expect(textData, findsOneWidget);
+      await tester.tap(textData);
+      await tester.pumpAndSettle();
+      expect(textDataExport, findsOneWidget);
+      expect(textDataImport, findsOneWidget);
+      await tester.tap(textDataImport);
+      await tester.pumpAndSettle();
+      await tester.tap(textDataExport);
+
+      await tester.fling(
+          widgetMoveModalBottomSheet, const Offset(0, 400), 1200.0);
+      await tester.pumpAndSettle();
+
+      /// 主题操作
+      expect(textTheme, findsOneWidget);
+      await tester.tap(textTheme);
+      await tester.pumpAndSettle();
+      expect(textThemeSetting, findsOneWidget);
+
+      appMultipleThemesMode
+          .forEach((key, value) => appMultipleThemesModeKey.add(key));
+
+      await tester.tap(textThemeSettingLight);
+      await tester.pumpAndSettle();
+      await Future.forEach(appMultipleThemesModeKey, (key) async {
+        await tester.tap(find.byKey(Key("widget_multiple_themes_card_$key")));
+        await tester.pumpAndSettle();
+      });
+
+      await tester.tap(textThemeSettingDark);
+      await tester.pumpAndSettle();
+      await Future.forEach(appMultipleThemesModeKey, (key) async {
+        await tester.tap(find.byKey(Key("widget_multiple_themes_card_$key")));
+        await tester.pumpAndSettle();
+      });
+
+      await tester.tap(textThemeSettingSystem);
+      await tester.pumpAndSettle();
+      await tester
+          .tap(find.byKey(const Key("widget_multiple_themes_card_default")));
+
+      await tester.fling(
+          widgetMoveModalBottomSheet, const Offset(0, 400), 1200.0);
+      await tester.pumpAndSettle();
+
+      /// 语言操作
+      expect(textLanguage, findsOneWidget);
+      await tester.tap(textLanguage);
+      await tester.pumpAndSettle();
+
+      for (var element in languageConfig) {
+        language.add(element["language"]);
+      }
+
+      await Future.forEach(language, (e) async {
+        await tester.tap(find.text(e.toString()));
+        await tester.pumpAndSettle();
+      });
+
+      await tester.tap(textLanguageEnglish);
+      await tester.pumpAndSettle();
+      expect(textLanguageSystem, findsOneWidget);
+      await tester.tap(textLanguageSystem);
+      await tester.pumpAndSettle();
+      expect(textLanguageChinese, findsOneWidget);
+
+      await tester.fling(
+          widgetMoveModalBottomSheet, const Offset(0, 400), 1200.0);
+      await tester.pumpAndSettle();
+
+      /// 侧栏关闭
+      await tester.tap(textLogo);
     });
   });
 
-  // test("首页基础操作", () async {
-  //   await driver.tap(find.byValueKey("tab_home"));
-
-  //   /// 整体页面滑动
-  //   await driver.waitFor(find.text("Hi~"));
-  //   final finderWidgetHomeBody = find.byValueKey("widget_home_body");
-  //   await driver.scroll(
-  //       finderWidgetHomeBody, 0, -800, const Duration(milliseconds: 500));
-  //   await driver.waitFor(find.text("情绪管理"));
-  //   await driver.scroll(
-  //       finderWidgetHomeBody, 0, 800, const Duration(milliseconds: 500));
-  //   await driver.waitFor(find.text("Hi~"));
-
-  //   /// 心情操作卡片
-  //   final finderWidgetOptionMood = find.byValueKey("widget_option_mood");
-  //   await driver.tap(find.text("开心"));
-  //   await driver.waitFor(find.text("开心"));
-  //   driver.tap(find.byValueKey("widget_action_button_close"));
-  //   await driver.tap(find.text("确认"));
-  //   await driver.scroll(
-  //       finderWidgetOptionMood, -500, 0, const Duration(milliseconds: 500));
-  //   await driver.tap(find.text("生气"));
-  //   await driver.waitFor(find.text("生气"));
-  //   driver.tap(find.byValueKey("widget_action_button_close"));
-  //   await driver.tap(find.text("确认"));
-  //   await driver.scroll(
-  //       finderWidgetOptionMood, 500, 0, const Duration(milliseconds: 500));
-
-  //   /// 通知内容
-  //   await driver.tap(find.text("查看"));
-  //   await driver.waitFor(find.text("管理思绪"));
-  //   await driver.tap(find.byValueKey("widget_next_bottom"));
-  //   await driver.waitFor(find.text("精心统计"));
-  //   await driver.tap(find.byValueKey("widget_next_bottom"));
-  //   await driver.waitFor(find.text("即刻开始"));
-  //   await driver.tap(find.byValueKey("widget_next_bottom"));
-  // });
-
   // group("侧栏基础操作", () {
-  //   test("侧栏打开", () async {
-  //     await driver.waitFor(find.byValueKey("tab_screen_left"));
-  //     await driver.tap(find.byValueKey("tab_screen_left"));
-  //     await driver.waitFor(find.text("关于"));
-  //   });
-
-  //   test("数据操作", () async {
-  //     await driver.tap(find.text("数据"));
-  //     await driver.waitFor(find.text("导入数据"));
-  //     await driver.tap(find.text("导入数据"));
-  //     await driver.tap(find.text("导出数据"));
-  //     await driver.scroll(find.byValueKey("widget_move_modal_bottom_sheet"), 0,
-  //         400, const Duration(milliseconds: 200));
-  //     await driver.waitForAbsent(find.text("导入数据"));
-  //   });
-
-  //   test("主题操作", () async {
-  //     await driver.tap(find.text("主题"));
-  //     await driver.waitFor(find.text("主题外观"));
-  //     List appMultipleThemesModeKey = [];
-  //     appMultipleThemesMode
-  //         .forEach((key, value) => appMultipleThemesModeKey.add(key));
-
-  //     await driver.tap(find.text("普通模式"));
-  //     await Future.delayed(const Duration(seconds: 1));
-  //     await Future.forEach(appMultipleThemesModeKey, (key) async {
-  //       await driver.tap(find.byValueKey("widget_multiple_themes_card_$key"),
-  //           timeout: const Duration(seconds: 2));
-  //     });
-  //     await driver.tap(find.text("深色模式"));
-  //     await Future.delayed(const Duration(seconds: 1));
-  //     await Future.forEach(appMultipleThemesModeKey, (key) async {
-  //       await driver.tap(find.byValueKey("widget_multiple_themes_card_$key"),
-  //           timeout: const Duration(seconds: 2));
-  //     });
-  //     await driver.tap(find.text("跟随系统"));
-  //     await Future.delayed(const Duration(seconds: 1));
-  //     await driver.tap(find.byValueKey("widget_multiple_themes_card_default"),
-  //         timeout: const Duration(seconds: 2));
-
-  //     await driver.scroll(find.byValueKey("widget_move_modal_bottom_sheet"), 0,
-  //         400, const Duration(milliseconds: 200));
-  //     await driver.waitForAbsent(find.text("主题外观"));
-  //   });
-
-  //   test("语言操作", () async {
-  //     await driver.tap(find.text("语言"));
-  //     await driver.waitFor(find.text("简体中文"));
-  //     List language = [];
-  //     for (var element in languageConfig) {
-  //       language.add(element["language"]);
-  //     }
-  //     await Future.forEach(language, (e) async {
-  //       await driver.tap(find.text(e.toString()),
-  //           timeout: const Duration(seconds: 2));
-  //     });
-  //     await driver.tap(find.text("English"),
-  //         timeout: const Duration(seconds: 2));
-  //     await driver.tap(find.text("System"),
-  //         timeout: const Duration(seconds: 2));
-  //     await driver.scroll(find.byValueKey("widget_move_modal_bottom_sheet"), 0,
-  //         400, const Duration(milliseconds: 200));
-  //     await driver.waitForAbsent(find.text("简体中文"));
-  //   });
   //   test("实验室操作", () async {
   //     await driver.tap(find.text("实验室"));
   //     await driver.waitFor(find.text("实验室"));
