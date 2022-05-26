@@ -92,7 +92,9 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
         ),
       ),
       body: const SafeArea(
-        child: MoodCategorySelectBody(),
+        child: MoodCategorySelectBody(
+          key: Key("widget_mood_category_select_body"),
+        ),
       ),
     );
   }

@@ -117,6 +117,7 @@ class _MoodContentState extends State<MoodContent> {
         ),
         actions: [
           ActionButton(
+            key: const Key("widget_mood_actions_button"),
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: isDarkMode(context)

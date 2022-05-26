@@ -58,6 +58,7 @@ class _MoodPageState extends State<MoodPage>
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       // 悬浮按钮
       floatingActionButton: FloatingActionButton.extended(
+        key: const Key("widget_add_mood_button"),
         heroTag: "addmood",
         backgroundColor: Theme.of(context).primaryColor,
         hoverElevation: 0,
@@ -94,7 +95,7 @@ class _MoodPageState extends State<MoodPage>
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: const SafeArea(
-        child: MoodBody(),
+        child: MoodBody(key: Key("widget_mood_body")),
       ),
     );
   }
@@ -175,7 +176,7 @@ class _MoodBodyState extends State<MoodBody> {
 
         /// 日历
         const SliverToBoxAdapter(
-          child: Calendar(),
+          child: Calendar(key: Key("widget_mood_body_calendar")),
         ),
 
         /// 心情数据列表
@@ -587,6 +588,7 @@ class _MoodCardState extends State<MoodCard> {
           Expanded(
             child: Align(
               child: ActionButton(
+                key: const Key("widget_mood_card_slidable_action_button_edit"),
                 width: 56.w,
                 height: 56.w,
                 decoration: BoxDecoration(
@@ -625,6 +627,8 @@ class _MoodCardState extends State<MoodCard> {
           Expanded(
             child: Align(
               child: ActionButton(
+                key:
+                    const Key("widget_mood_card_slidable_action_button_delete"),
                 width: 56.w,
                 height: 56.w,
                 margin: EdgeInsets.only(right: 24.w),
