@@ -10,9 +10,9 @@
 </h1> 
 
 <p align="center">
-<img alt="Mood-Example v1.4.3" src="https://img.shields.io/badge/Mood--Example-v1.4.3-3e4663"/> 
-<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.0" src="https://img.shields.io/badge/Flutter-v3.0-46D1FD"/></a> 
-<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.17.0" src="https://img.shields.io/badge/Dart-v2.17.0-04599D"/></a> 
+<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.4.8" src="https://img.shields.io/badge/Mood--Example-v1.4.8-3e4663"/></a> 
+<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.1" src="https://img.shields.io/badge/Flutter-v3.1-46D1FD"/></a> 
+<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.17.1" src="https://img.shields.io/badge/Dart-v2.17.1-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -26,12 +26,13 @@
 
 ## 🌏 相关网站
 
-> Flutter官网（中文）：<a target="_blank" href="https://flutter.cn/">https://flutter.cn/</a>  
-> Flutter官网（英文）：<a target="_blank" href="https://flutter.dev/">https://flutter.dev/</a>  
-> Packages：<a target="_blank" href="https://pub.dev/">https://pub.dev/</a>  
+> Flutter 官网（中文）：<a target="_blank" href="https://flutter.cn/">https://flutter.cn/</a>  
+> Flutter 官网（英文）：<a target="_blank" href="https://flutter.dev/">https://flutter.dev/</a>  
+> Packages (原始站点) ：<a target="_blank" href="https://pub.dev/">https://pub.dev/</a>  
+> Packages (中国镜像) ：<a target="_blank" href="https://pub.flutter-io.cn/">https://pub.flutter-io.cn/</a>  
 
 
-## 🔖 功能
+## ⭐ 功能
 
 - [x] 国际化 i18n  
 - [x] 多主题  
@@ -40,12 +41,13 @@
 - [x] 路由管理  
 - [x] 状态管理（MVVM）  
 - [x] 情绪记录  
-- [x] 图表统计    
+- [x] 图表统计  
 - [x] Excel 导入导出  
+- [x] 实验室  
+  - [x] uniapp 小程序（UniMPSDK v3.4.7）  
 - [ ] 隐私解锁  
 - [ ] 动画  
 - [ ] 通知  
-- [x] 实验室 - uniapp 小程序（UniMPSDK v3.4.7）  
 ……
 
 
@@ -62,14 +64,15 @@
 ### 基本环境  
 
 ```
-[√] Flutter (Channel stable, 3.0.0, on Microsoft Windows [版本 10.0.22000.613], locale zh-CN)
+[√] Flutter (Channel stable, 3.0.1, on Microsoft Windows [版本 10.0.22000.613], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 31.0.0)
 [√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.1.3)
 [√] Android Studio (version 2020.3)
-[√] VS Code (version 1.67.1)
+[√] VS Code (version 1.67.2)
 ```  
 
-### 国际化支持  
+
+### 国际化环境支持  
 
 安装编辑器插件：`Flutter Intl`  
 > Visual Studio Code: [Flutter Intl](https://marketplace.visualstudio.com/items?itemName=localizely.flutter-intl)   
@@ -113,7 +116,6 @@ IOS 支持语言本地化还需要在 `ios/Runner/Info.plist` 进行如下编辑
     ...
 </array>
 ```
-  
 
 
 ## 🎉 启动
@@ -132,7 +134,14 @@ $ flutter run
 
 # 更多启动模式
 $ flutter run --debug/release/profile/test
+
+# 清理构建缓存
+$ flutter clean
+
+# 集成测试
+$ flutter test integration_test/app_test.dart
 ```
+
 
 ## 📑 项目结构
 
@@ -154,6 +163,8 @@ $ flutter run --debug/release/profile/test
 │   │   │   │   │   │   │   │   └── MainActivity.kt # Flutter 的 Android 默认入口
 ├── assets                                          # 静态资源文件
 ├── build                                           # 编译或运行后产物
+├── integration_test                                # 集成测试
+│   └── app_test.dart                               # 集成测试入口 用例
 ├── ios                                             # IOS 工程文件
 ├── lib                                             # 工程相关文件（主要编码）
 │   ├── common                                      # 公共相关
@@ -181,7 +192,7 @@ $ flutter run --debug/release/profile/test
 │   ├── home_screen.dart                            # 主应用导航相关
 │   ├── main.dart                                   # 主应用入口
 │   └── routes.dart                                 # 路由管理
-├── test                                            # 工程测试文件
+├── test                                            # 测试
 ├── .gitignore                                      # Git 提交仓库忽略文件配置
 ├── .metadata                                       # 当前 workspace 配置记录
 ├── analysis_options.yaml                           # Dart 语言代码规范

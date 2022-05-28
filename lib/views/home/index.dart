@@ -38,12 +38,11 @@ class _HomePageState extends State<HomePage>
     ScreenUtil.init(
       context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-      orientation: Orientation.portrait,
     );
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: const SafeArea(
-        child: HomeBody(),
+        child: HomeBody(key: Key("widget_home_body")),
       ),
     );
   }
@@ -118,7 +117,7 @@ class _HomeBodyState extends State<HomeBody> {
                     ),
 
                     /// 情绪选项卡
-                    const OptionMood(),
+                    const OptionMood(key: Key("widget_option_mood")),
 
                     /// 公告卡片
                     Padding(

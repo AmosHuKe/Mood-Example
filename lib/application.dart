@@ -104,10 +104,13 @@ class Init extends StatefulWidget {
 class _InitState extends State<Init> {
   /// 应用初始化
   void init(context) async {
-    /// 初始化数据库
-    await DB.db.database;
     MoodViewModel moodViewModel =
         Provider.of<MoodViewModel>(context, listen: false);
+    ApplicationViewModel applicationViewModel =
+        Provider.of<ApplicationViewModel>(context, listen: false);
+
+    /// 初始化数据库
+    await DB.db.database;
 
     /// 设置心情类别默认值
     final bool setMoodCategoryDefaultresult =
@@ -118,16 +121,16 @@ class _InitState extends State<Init> {
     }
 
     /// 触发获取APP主题深色模式
-    PreferencesDB().getAppThemeDarkMode(context);
+    PreferencesDB().getAppThemeDarkMode(applicationViewModel);
 
     /// 触发获取APP多主题模式
-    PreferencesDB().getMultipleThemesMode(context);
+    PreferencesDB().getMultipleThemesMode(applicationViewModel);
 
     /// 触发获取APP地区语言
-    PreferencesDB().getAppLocale(context);
+    PreferencesDB().getAppLocale(applicationViewModel);
 
     /// 触发获取APP地区语言是否跟随系统
-    PreferencesDB().getAppIsLocaleSystem(context);
+    PreferencesDB().getAppIsLocaleSystem(applicationViewModel);
   }
 
   @override
@@ -159,7 +162,6 @@ class _MenuPageState extends State<MenuPage> {
     ScreenUtil.init(
       context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-      orientation: Orientation.portrait,
     );
 
     return Consumer<ApplicationViewModel>(

@@ -43,12 +43,11 @@ class _StatisticPageState extends State<StatisticPage>
     ScreenUtil.init(
       context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-      orientation: Orientation.portrait,
     );
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: const SafeArea(
-        child: StatisticBody(),
+        child: StatisticBody(key: Key("widget_statistic_body")),
       ),
     );
   }

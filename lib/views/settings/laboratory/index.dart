@@ -21,13 +21,13 @@ class _LaboratoryPageState extends State<LaboratoryPage> {
     ScreenUtil.init(
       context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-      orientation: Orientation.portrait,
     );
     return Theme(
       data: ThemeData(),
       child: const Scaffold(
         backgroundColor: Color(0xFFF6F8FA),
         body: SafeArea(
+          key: Key("widget_laboratory_page"),
           child: LaboratoryBody(),
         ),
       ),

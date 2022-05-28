@@ -15,7 +15,6 @@ Future<T?> showModalBottomDetail<T>({
   ScreenUtil.init(
     context,
     designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-    orientation: Orientation.portrait,
   );
   return showModalBottomSheet(
     context: context,
@@ -35,6 +34,7 @@ Future<T?> showModalBottomDetail<T>({
         child: Column(
           children: [
             Container(
+              key: const Key("widget_move_modal_bottom_sheet"),
               margin: EdgeInsets.all(12.w),
               height: 4.w,
               width: 24.w,

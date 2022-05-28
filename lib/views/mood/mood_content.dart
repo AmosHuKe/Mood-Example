@@ -83,7 +83,6 @@ class _MoodContentState extends State<MoodContent> {
     ScreenUtil.init(
       context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-      orientation: Orientation.portrait,
     );
 
     return Scaffold(
@@ -99,6 +98,7 @@ class _MoodContentState extends State<MoodContent> {
         centerTitle: true,
         title: Text(LocaleDatetime().yMMMd(_moodData.createTime ?? "")),
         leading: ActionButton(
+          key: const Key("widget_action_button_close"),
           decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: isDarkMode(context)
@@ -117,6 +117,7 @@ class _MoodContentState extends State<MoodContent> {
         ),
         actions: [
           ActionButton(
+            key: const Key("widget_mood_actions_button"),
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: isDarkMode(context)

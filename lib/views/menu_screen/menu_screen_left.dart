@@ -28,7 +28,6 @@ class MenuScreenLeft extends StatelessWidget {
     ScreenUtil.init(
       context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-      orientation: Orientation.portrait,
     );
     return Consumer<ApplicationViewModel>(
       builder: (_, applicationViewModel, child) {
@@ -96,6 +95,7 @@ class Header extends StatelessWidget {
     return Row(
       children: [
         ClipRRect(
+          key: const Key("widget_menu_screen_left_logo"),
           borderRadius: BorderRadius.circular(14.sp),
           child: Image.asset(
             "assets/images/logo.png",

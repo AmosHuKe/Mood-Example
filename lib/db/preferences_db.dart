@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 ///
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:provider/provider.dart';
 
 ///
 import 'package:moodexample/themes/app_theme.dart';
@@ -54,76 +53,77 @@ class PreferencesDB {
   }
 
   /// 设置-主题外观模式
-  Future setAppThemeDarkMode(BuildContext context, String value) async {
+  Future setAppThemeDarkMode(
+      ApplicationViewModel applicationViewModel, String value) async {
     SharedPreferences prefs = await init();
     prefs.setString(appThemeDarkMode, value);
-    Provider.of<ApplicationViewModel>(context, listen: false)
-        .setThemeMode(darkThemeMode(value));
+    applicationViewModel.setThemeMode(darkThemeMode(value));
   }
 
   /// 获取-主题外观模式
-  Future<String> getAppThemeDarkMode(BuildContext context) async {
+  Future<String> getAppThemeDarkMode(
+      ApplicationViewModel applicationViewModel) async {
     SharedPreferences prefs = await init();
     String themeDarkMode = prefs.getString(appThemeDarkMode) ?? "system";
-    Provider.of<ApplicationViewModel>(context, listen: false)
-        .setThemeMode(darkThemeMode(themeDarkMode));
+    applicationViewModel.setThemeMode(darkThemeMode(themeDarkMode));
     return themeDarkMode;
   }
 
   /// 设置-多主题模式
-  Future setMultipleThemesMode(BuildContext context, String value) async {
+  Future setMultipleThemesMode(
+      ApplicationViewModel applicationViewModel, String value) async {
     SharedPreferences prefs = await init();
     prefs.setString(appMultipleThemesMode, value);
-    Provider.of<ApplicationViewModel>(context, listen: false)
-        .setMultipleThemesMode(value);
+    applicationViewModel.setMultipleThemesMode(value);
   }
 
   /// 获取-多主题模式
-  Future<String> getMultipleThemesMode(BuildContext context) async {
+  Future<String> getMultipleThemesMode(
+      ApplicationViewModel applicationViewModel) async {
     SharedPreferences prefs = await init();
     String multipleThemesMode =
         prefs.getString(appMultipleThemesMode) ?? "default";
-    Provider.of<ApplicationViewModel>(context, listen: false)
-        .setMultipleThemesMode(multipleThemesMode);
+    applicationViewModel.setMultipleThemesMode(multipleThemesMode);
     return multipleThemesMode;
   }
 
   /// 设置-APP地区语言
-  Future setAppLocale(BuildContext context, String? locale) async {
+  Future setAppLocale(
+      ApplicationViewModel applicationViewModel, String? locale) async {
     SharedPreferences prefs = await init();
     debugPrint(locale);
-    await setAppIsLocaleSystem(context, false);
+    await setAppIsLocaleSystem(applicationViewModel, false);
     final appLocale = locale ?? "zh";
     final appLocaleList = appLocale.split('_');
     prefs.setString(appLocale, appLocale);
-    Provider.of<ApplicationViewModel>(context, listen: false).setLocale(Locale(
+    applicationViewModel.setLocale(Locale(
         appLocaleList[0], appLocaleList.length > 1 ? appLocaleList[1] : ''));
   }
 
   /// 获取-APP地区语言
-  Future<String> getAppLocale(BuildContext context) async {
+  Future<String> getAppLocale(ApplicationViewModel applicationViewModel) async {
     SharedPreferences prefs = await init();
     String getAppLocale = prefs.getString(appLocale) ?? "zh";
     final appLocaleList = getAppLocale.split('_');
-    Provider.of<ApplicationViewModel>(context, listen: false).setLocale(Locale(
+    applicationViewModel.setLocale(Locale(
         appLocaleList[0], appLocaleList.length > 1 ? appLocaleList[1] : ''));
     return getAppLocale;
   }
 
   /// 设置-APP地区语言是否跟随系统
-  Future setAppIsLocaleSystem(BuildContext context, bool isLocaleSystem) async {
+  Future setAppIsLocaleSystem(
+      ApplicationViewModel applicationViewModel, bool isLocaleSystem) async {
     SharedPreferences prefs = await init();
     prefs.setBool(appIsLocaleSystem, isLocaleSystem);
-    Provider.of<ApplicationViewModel>(context, listen: false)
-        .setLocaleSystem(isLocaleSystem);
+    applicationViewModel.setLocaleSystem(isLocaleSystem);
   }
 
   /// 获取-APP地区语言是否跟随系统
-  Future<bool> getAppIsLocaleSystem(BuildContext context) async {
+  Future<bool> getAppIsLocaleSystem(
+      ApplicationViewModel applicationViewModel) async {
     SharedPreferences prefs = await init();
     bool getAppIsLocaleSystem = prefs.getBool(appIsLocaleSystem) ?? true;
-    Provider.of<ApplicationViewModel>(context, listen: false)
-        .setLocaleSystem(getAppIsLocaleSystem);
+    applicationViewModel.setLocaleSystem(getAppIsLocaleSystem);
     return getAppIsLocaleSystem;
   }
 }

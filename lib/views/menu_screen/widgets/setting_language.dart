@@ -36,6 +36,8 @@ class _SettingLanguageState extends State<SettingLanguage> {
           selector: (_, applicationViewModel) =>
               applicationViewModel.localeSystem,
           builder: (_, localeSystem, child) {
+            ApplicationViewModel applicationViewModel =
+                Provider.of<ApplicationViewModel>(context, listen: false);
             return RadioListTile(
               value: localeSystem,
               groupValue: true,
@@ -47,7 +49,8 @@ class _SettingLanguageState extends State<SettingLanguage> {
                     .copyWith(fontSize: 14.sp, fontWeight: FontWeight.normal),
               ),
               onChanged: (value) async {
-                await PreferencesDB().setAppIsLocaleSystem(context, true);
+                await PreferencesDB()
+                    .setAppIsLocaleSystem(applicationViewModel, true);
               },
             );
           },
@@ -70,7 +73,7 @@ class _SettingLanguageState extends State<SettingLanguage> {
                   ),
                   onChanged: (value) async {
                     await PreferencesDB()
-                        .setAppLocale(context, value.toString());
+                        .setAppLocale(applicationViewModel, value.toString());
                   },
                 );
               }),

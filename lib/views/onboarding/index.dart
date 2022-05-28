@@ -19,7 +19,6 @@ class Onboarding extends StatelessWidget {
     ScreenUtil.init(
       context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-      orientation: Orientation.portrait,
     );
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -79,9 +78,9 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
     /// 进步按钮颜色动画
     _stepButtonColorController = AnimationController(
         duration: const Duration(milliseconds: 500), vsync: this);
-    _stepButtonColorAnimation =
-        ColorTween(begin: _stepButtonColor, end: Theme.of(context).primaryColor)
-            .animate(_stepButtonColorController);
+    _stepButtonColorAnimation = ColorTween(
+            begin: _stepButtonColor, end: _stepButtonColor.withAlpha(200))
+        .animate(_stepButtonColorController);
   }
 
   /// 释放
@@ -206,6 +205,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
           child: AnimatedBuilder(
             animation: _stepButtonColorAnimation,
             builder: (context, child) => OutlinedButton(
+              key: const Key("widget_next_button"),
               style: ButtonStyle(
                 padding: MaterialStateProperty.all(EdgeInsets.all(20.w)),
                 foregroundColor: MaterialStateProperty.all(Colors.white),
