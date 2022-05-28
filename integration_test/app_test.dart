@@ -344,5 +344,42 @@ void main() {
       expect(widgetMoodCardSlidableActionButtonEdit, findsNothing);
       expect(widgetMoodCardSlidableActionButtonDelete, findsNothing);
     });
+
+    testWidgets("统计页基础操作", (WidgetTester tester) async {
+      app.main();
+      await tester.pumpAndSettle();
+
+      Finder widgetTabStatistic = find.byKey(const Key("tab_statistic"));
+      Finder widgetStatisticBody =
+          find.byKey(const Key("widget_statistic_body"));
+      Finder textStatistic = find.text("统计");
+      Finder textMoodStatistic = find.text("心情统计");
+      Finder textMoodDays(int day) => find.text("$day天");
+      Finder textMoodDesc(int day) => find.text("按$day日计算情绪波动");
+
+      /// 统计页基础操作
+      await tester.tap(widgetTabStatistic);
+      await tester.pumpAndSettle();
+      expect(textStatistic, findsWidgets);
+      await tester.fling(widgetStatisticBody, const Offset(0, -500), 2400.0);
+      await tester.pumpAndSettle();
+      expect(textMoodStatistic, findsOneWidget);
+      await tester.fling(widgetStatisticBody, const Offset(0, 500), 2400.0);
+      await tester.pumpAndSettle();
+
+      /// 切换统计范围
+      expect(textMoodDays(7), findsOneWidget);
+      expect(textMoodDays(15), findsOneWidget);
+      expect(textMoodDays(30), findsOneWidget);
+      await tester.tap(textMoodDays(15));
+      await tester.pumpAndSettle();
+      expect(textMoodDesc(15), findsWidgets);
+      await tester.tap(textMoodDays(30));
+      await tester.pumpAndSettle();
+      expect(textMoodDesc(30), findsWidgets);
+      await tester.tap(textMoodDays(7));
+      await tester.pumpAndSettle();
+      expect(textMoodDesc(7), findsWidgets);
+    });
   });
 }

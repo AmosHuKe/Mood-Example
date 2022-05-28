@@ -47,7 +47,7 @@ class _StatisticPageState extends State<StatisticPage>
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: const SafeArea(
-        child: StatisticBody(),
+        child: StatisticBody(key: Key("widget_statistic_body")),
       ),
     );
   }
