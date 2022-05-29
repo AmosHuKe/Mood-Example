@@ -68,7 +68,7 @@
 [√] Flutter (Channel stable, 3.0.1, on Microsoft Windows [版本 10.0.22000.613], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 31.0.0)
 [√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.1.3)
-[√] Android Studio (version 2020.3)
+[√] Android Studio (version 2021.2)
 [√] VS Code (version 1.67.2)
 ```  
 
