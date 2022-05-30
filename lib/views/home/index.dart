@@ -306,7 +306,8 @@ class OptionCard extends StatelessWidget {
     return InkWell(
       child: Column(
         children: [
-          DecoratedBox(
+          Container(
+            constraints: BoxConstraints(minWidth: 48.w),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: isDarkMode(context)
@@ -322,9 +323,11 @@ class OptionCard extends StatelessWidget {
                 top: 18.w,
                 bottom: 18.w,
               ),
-              child: Text(
-                icon,
-                style: TextStyle(fontSize: _iconSize),
+              child: Align(
+                child: Text(
+                  icon,
+                  style: TextStyle(fontSize: _iconSize),
+                ),
               ),
             ),
           ),

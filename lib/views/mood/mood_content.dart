@@ -238,8 +238,10 @@ class _MoodContentBodyState extends State<MoodContentBody> {
               ),
 
               /// 打分
-              const Align(
-                child: MoodScore(),
+              const Expanded(
+                child: Align(
+                  child: MoodScore(),
+                ),
               ),
             ],
           ),
