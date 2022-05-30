@@ -55,8 +55,12 @@ dependencies:
   table_calendar: ^3.0.5
   # 滑动操作项
   flutter_slidable: ^1.2.1
-  # 轮播
-  card_swiper: ^2.0.3
+  # 轮播 【Flutter 3.0 该包有警告暂未修复（不影响使用），暂时使用 GitHub 已修复的包】
+  # card_swiper: ^2.0.3
+  card_swiper:
+     git:
+       url: https://github.com/AmosHuKe/card_swiper.git
+       ref: master
   # 震动
   vibration: ^1.7.4-nullsafety.0
   # 图表

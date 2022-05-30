@@ -25,9 +25,11 @@ packages:
   card_swiper:
     dependency: "direct main"
     description:
-      name: card_swiper
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: master
+      resolved-ref: "0de40fa6ea1980e631aae09d3155aaaa53493cc3"
+      url: "https://github.com/AmosHuKe/card_swiper.git"
+    source: git
     version: "2.0.3"
   characters:
     dependency: transitive
