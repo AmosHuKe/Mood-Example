@@ -49,7 +49,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         ndk {
-            abiFilters 'x86','armeabi-v7a',"arm64-v8a" // 不支持armeabi
+            abiFilters 'x86','x86_64','armeabi-v7a','arm64-v8a' // 不支持armeabi
         }
     }
 
