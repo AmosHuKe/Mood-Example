@@ -44,6 +44,7 @@
 - [x] 情绪记录  
 - [x] 图表统计  
 - [x] Excel 导入导出  
+- [x] Web 访问  
 - [x] 实验室  
   - [x] uniapp 小程序（UniMPSDK v3.4.7）  
 - [ ] 隐私解锁  
@@ -239,6 +240,7 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 * [flutter_lints](https://pub.dev/packages/flutter_lints) [[BSD-3-Clause License](https://pub.dev/packages/flutter_lints/license)]  
 * [share_plus](https://pub.dev/packages/share_plus) [[BSD-3-Clause License](https://pub.dev/packages/share_plus/license)]  
 * [file_picker](https://pub.dev/packages/file_picker) [[MIT License](https://pub.dev/packages/file_picker/license)]  
+* [webview_flutter](https://pub.dev/packages/webview_flutter) [[BSD-3-Clause License](https://pub.dev/packages/webview_flutter/license)]  
 
 
 
