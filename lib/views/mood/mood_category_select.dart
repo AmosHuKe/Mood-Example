@@ -259,9 +259,12 @@ class MoodChoiceCard extends StatelessWidget {
             moodData.updateTime = _nowDateTime;
             // 跳转输入内容页
             Navigator.popAndPushNamed(
-                context,
-                Routes.moodContent +
-                    Routes.transformParams([moodDataToJson(moodData)]));
+              context,
+              Routes.transformParams(
+                router: Routes.moodContent,
+                params: [moodDataToJson(moodData)],
+              ),
+            );
             break;
           case "edit":
             // 关闭当前页并返回数据

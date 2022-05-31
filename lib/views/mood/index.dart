@@ -89,8 +89,13 @@ class _MoodPageState extends State<MoodPage>
           vibrate();
 
           /// 添加心情
-          Navigator.pushNamed(context,
-              Routes.moodCategorySelect + Routes.transformParams(["add"]));
+          Navigator.pushNamed(
+            context,
+            Routes.transformParams(
+              router: Routes.moodCategorySelect,
+              params: ["add"],
+            ),
+          );
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -617,8 +622,10 @@ class _MoodCardState extends State<MoodCard> {
                   /// 跳转输入内容页
                   Navigator.pushNamed(
                     context,
-                    Routes.moodContent +
-                        Routes.transformParams([moodDataToJson(moodData)]),
+                    Routes.transformParams(
+                      router: Routes.moodContent,
+                      params: [moodDataToJson(moodData)],
+                    ),
                   );
                 },
               ),

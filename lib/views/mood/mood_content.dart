@@ -222,10 +222,12 @@ class _MoodContentBodyState extends State<MoodContentBody> {
                 onTap: () {
                   /// 切换心情
                   Navigator.pushNamed(
-                          context,
-                          Routes.moodCategorySelect +
-                              Routes.transformParams(["edit"]))
-                      .then((result) {
+                    context,
+                    Routes.transformParams(
+                      router: Routes.moodCategorySelect,
+                      params: ["edit"],
+                    ),
+                  ).then((result) {
                     if (result == null) return;
                     setState(() {
                       MoodCategoryData moodCategoryData =
