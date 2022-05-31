@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 /// Packages
@@ -221,6 +223,16 @@ class Menu extends StatelessWidget {
           ),
           onTap: () {
             debugPrint("关于");
+            Navigator.pushNamed(
+              context,
+              Routes.transformParams(
+                router: Routes.webViewPage,
+                params: [
+                  base64Encode(
+                      utf8.encode("https://github.com/AmosHuKe/Mood-Example"))
+                ],
+              ),
+            );
           },
         ),
         // Container(

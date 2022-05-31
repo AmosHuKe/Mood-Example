@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,7 @@ import 'package:remixicon/remixicon.dart';
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/generated/l10n.dart';
+import 'package:moodexample/common/utils.dart';
 
 ///
 import 'package:moodexample/models/mood/mood_category_model.dart';
@@ -352,9 +354,12 @@ class OptionCard extends StatelessWidget {
         moodData.updateTime = nowDateTime;
         // 跳转输入内容页
         Navigator.pushNamed(
-            context,
-            Routes.moodContent +
-                Routes.transformParams([moodDataToJson(moodData)]));
+          context,
+          Routes.transformParams(
+            router: Routes.moodContent,
+            params: [moodDataToJson(moodData)],
+          ),
+        );
       },
     );
   }
@@ -579,6 +584,19 @@ class _ArticleState extends State<Article> {
               Color(0xFFFFDCCF),
             ],
           ),
+          onTap: () {
+            vibrate();
+            Navigator.pushNamed(
+              context,
+              Routes.transformParams(
+                router: Routes.webViewPage,
+                params: [
+                  base64Encode(
+                      utf8.encode("https://github.com/AmosHuKe/Mood-Example"))
+                ],
+              ),
+            );
+          },
           children: [
             Stack(
               clipBehavior: Clip.none,
@@ -647,6 +665,16 @@ class _ArticleState extends State<Article> {
               Color(0xFFFFE1B3),
             ],
           ),
+          onTap: () {
+            vibrate();
+            Navigator.pushNamed(
+              context,
+              Routes.transformParams(
+                router: Routes.webViewPage,
+                params: [base64Encode(utf8.encode("https://amoshk.top/"))],
+              ),
+            );
+          },
           children: [
             Stack(
               clipBehavior: Clip.none,
@@ -727,6 +755,8 @@ class ArticleCard extends StatelessWidget {
   /// 组件
   final List<Widget> children;
 
+  final Function()? onTap;
+
   const ArticleCard({
     Key? key,
     required this.height,
@@ -735,29 +765,33 @@ class ArticleCard extends StatelessWidget {
     this.crossAxisAlignment = CrossAxisAlignment.start,
     this.mainAxisAlignment = MainAxisAlignment.start,
     required this.children,
+    this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
-      width: width,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: gradient,
-          borderRadius: BorderRadius.circular(17.w),
-        ),
-        child: Padding(
-          padding: EdgeInsets.only(
-            left: 14.w,
-            right: 14.w,
-            top: 14.w,
-            bottom: 14.w,
+    return InkWell(
+      onTap: onTap,
+      child: SizedBox(
+        height: height,
+        width: width,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: gradient,
+            borderRadius: BorderRadius.circular(17.w),
           ),
-          child: Column(
-            mainAxisAlignment: mainAxisAlignment,
-            crossAxisAlignment: crossAxisAlignment,
-            children: children,
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: 14.w,
+              right: 14.w,
+              top: 14.w,
+              bottom: 14.w,
+            ),
+            child: Column(
+              mainAxisAlignment: mainAxisAlignment,
+              crossAxisAlignment: crossAxisAlignment,
+              children: children,
+            ),
           ),
         ),
       ),
