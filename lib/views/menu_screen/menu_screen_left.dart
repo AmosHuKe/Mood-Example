@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 /// Packages
@@ -9,6 +7,7 @@ import 'package:remixicon/remixicon.dart';
 import 'package:provider/provider.dart';
 
 ///
+import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
@@ -228,8 +227,8 @@ class Menu extends StatelessWidget {
               Routes.transformParams(
                 router: Routes.webViewPage,
                 params: [
-                  base64Encode(
-                      utf8.encode("https://github.com/AmosHuKe/Mood-Example"))
+                  ValueConvert("https://github.com/AmosHuKe/Mood-Example")
+                      .encode()
                 ],
               ),
             );

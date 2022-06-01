@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 
 ///
@@ -7,6 +6,7 @@ import 'package:remixicon/remixicon.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 ///
+import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
@@ -34,7 +34,7 @@ class _WebViewPageState extends State<WebViewPage> {
       context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
     );
-    final String url = utf8.decode(base64Decode(widget.url));
+    final String url = ValueConvert(widget.url).decode();
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(

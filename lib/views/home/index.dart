@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -591,8 +590,8 @@ class _ArticleState extends State<Article> {
               Routes.transformParams(
                 router: Routes.webViewPage,
                 params: [
-                  base64Encode(
-                      utf8.encode("https://github.com/AmosHuKe/Mood-Example"))
+                  ValueConvert("https://github.com/AmosHuKe/Mood-Example")
+                      .encode()
                 ],
               ),
             );
@@ -671,7 +670,7 @@ class _ArticleState extends State<Article> {
               context,
               Routes.transformParams(
                 router: Routes.webViewPage,
-                params: [base64Encode(utf8.encode("https://amoshk.top/"))],
+                params: [ValueConvert("https://amoshk.top/").encode()],
               ),
             );
           },

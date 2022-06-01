@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -44,3 +45,11 @@ const List<Color> statisticColors = [
   Color(0xFFdda15e),
   Color(0xFFbc6c25),
 ];
+
+/// 内容基础加密/解密转换
+class ValueConvert {
+  String value;
+  ValueConvert(this.value);
+  String encode() => base64Encode(utf8.encode(value));
+  String decode() => utf8.decode(base64Decode(value));
+}
