@@ -51,6 +51,8 @@ void main() {
           find.byKey(const Key("widget_laboratory_page"));
       Finder widgetMenuScreenLeftLogo =
           find.byKey(const Key("widget_menu_screen_left_logo"));
+      Finder widgetWebViewClose =
+          find.byKey(const Key("widget_web_view_close"));
       Finder textData = find.text("数据");
       Finder textDataExport = find.text("导出数据");
       Finder textDataImport = find.text("导入数据");
@@ -155,6 +157,14 @@ void main() {
       await tester.dragFrom(const Offset(5, 100), const Offset(400, 100));
       await tester.pumpAndSettle();
 
+      /// 关于操作
+      expect(textAbout, findsOneWidget);
+      await tester.tap(textAbout);
+      await tester.pumpAndSettle();
+      expect(widgetWebViewClose, findsOneWidget);
+      await tester.tap(widgetWebViewClose);
+      await tester.pumpAndSettle();
+
       /// 侧栏关闭
       await tester.tap(widgetMenuScreenLeftLogo);
       await tester.pumpAndSettle();
@@ -170,6 +180,12 @@ void main() {
       Finder widgetActionButtonClose =
           find.byKey(const Key("widget_action_button_close"));
       Finder widgetNextButton = find.byKey(const Key("widget_next_button"));
+      Finder widgetWebViewClose =
+          find.byKey(const Key("widget_web_view_close"));
+      Finder widgetHomeArticle1 =
+          find.byKey(const Key("widget_home_article_1"));
+      Finder widgetHomeArticle2 =
+          find.byKey(const Key("widget_home_article_2"));
       Finder textHi = find.text("Hi~");
       Finder textHelp = find.text("帮助");
       Finder textHappy = find.text("开心");
@@ -231,6 +247,22 @@ void main() {
       await tester.pumpAndSettle();
       expect(textJKKS, findsOneWidget);
       await tester.tap(widgetNextButton);
+      await tester.pumpAndSettle();
+
+      /// 帮助文章操作
+      await tester.fling(widgetHomeBody, const Offset(0, -400), 2400.0);
+      await tester.pumpAndSettle();
+      expect(widgetHomeArticle1, findsOneWidget);
+      expect(widgetHomeArticle2, findsOneWidget);
+      await tester.tap(widgetHomeArticle1);
+      await tester.pumpAndSettle();
+      expect(widgetWebViewClose, findsOneWidget);
+      await tester.tap(widgetWebViewClose);
+      await tester.pumpAndSettle();
+      await tester.tap(widgetHomeArticle2);
+      await tester.pumpAndSettle();
+      expect(widgetWebViewClose, findsOneWidget);
+      await tester.tap(widgetWebViewClose);
       await tester.pumpAndSettle();
     });
 

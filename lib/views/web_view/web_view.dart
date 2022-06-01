@@ -49,6 +49,7 @@ class _WebViewPageState extends State<WebViewPage> {
         ),
         title: Text(_pageTitle),
         leading: ActionButton(
+          key: const Key("widget_web_view_close"),
           decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: isDarkMode(context)

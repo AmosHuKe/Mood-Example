@@ -572,6 +572,7 @@ class _ArticleState extends State<Article> {
       crossAxisAlignment: WrapCrossAlignment.end,
       children: [
         ArticleCard(
+          key: const Key("widget_home_article_1"),
           height: 220.w,
           width: 148.w,
           gradient: const LinearGradient(
@@ -652,6 +653,7 @@ class _ArticleState extends State<Article> {
           ],
         ),
         ArticleCard(
+          key: const Key("widget_home_article_2"),
           height: 200.w,
           width: 148.w,
           mainAxisAlignment: MainAxisAlignment.end,
