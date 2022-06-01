@@ -24,6 +24,8 @@ class WebViewPage extends StatefulWidget {
 class _WebViewPageState extends State<WebViewPage> {
   late WebViewController _pageWebViewController;
   String _pageTitle = '';
+  bool _canGoBack = false;
+  bool _canGoForward = false;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class _WebViewPageState extends State<WebViewPage> {
         foregroundColor: Theme.of(context).textTheme.headline1!.color,
         shadowColor: Colors.transparent,
         titleTextStyle: TextStyle(
-          color: Colors.black,
+          color: Theme.of(context).textTheme.headline1!.color,
           fontSize: 14.sp,
         ),
         title: Text(_pageTitle),
@@ -67,33 +69,55 @@ class _WebViewPageState extends State<WebViewPage> {
             onPressed: () async {
               await _pageWebViewController.reload();
             },
-            icon: const Icon(
-              Remix.restart_line,
-            ),
+            icon: const Icon(Remix.refresh_line),
           )
         ],
       ),
-      bottomNavigationBar: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Expanded(
-            child: IconButton(
-              onPressed: () async {
-                await _pageWebViewController.goBack();
-              },
-              icon: const Icon(Remix.arrow_left_s_line),
-            ),
-          ),
-          Expanded(
-            child: IconButton(
-              onPressed: () async {
-                await _pageWebViewController.goForward();
-              },
-              icon: const Icon(Remix.arrow_right_s_line),
-            ),
-          ),
-        ],
-      ),
+      bottomNavigationBar: Builder(builder: (_) {
+        return _canGoBack || _canGoForward
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Builder(builder: (_) {
+                    return _canGoBack
+                        ? Expanded(
+                            child: IconButton(
+                              onPressed: () async {
+                                await _pageWebViewController.goBack();
+                              },
+                              icon: Icon(
+                                Remix.arrow_left_s_line,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .headline1!
+                                    .color,
+                              ),
+                            ),
+                          )
+                        : const SizedBox();
+                  }),
+                  Builder(builder: (_) {
+                    return _canGoForward
+                        ? Expanded(
+                            child: IconButton(
+                              onPressed: () async {
+                                await _pageWebViewController.goForward();
+                              },
+                              icon: Icon(
+                                Remix.arrow_right_s_line,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .headline1!
+                                    .color,
+                              ),
+                            ),
+                          )
+                        : const SizedBox();
+                  }),
+                ],
+              )
+            : const SizedBox();
+      }),
       body: WebView(
         initialUrl: url,
         javascriptMode: JavascriptMode.unrestricted,
@@ -128,8 +152,12 @@ class _WebViewPageState extends State<WebViewPage> {
   /// 网页初始化
   webViewInit() async {
     String pageTitle = await _pageWebViewController.getTitle() ?? '';
+    bool pageCanGoBack = await _pageWebViewController.canGoBack();
+    bool pageCanGoForward = await _pageWebViewController.canGoForward();
     setState(() {
       _pageTitle = pageTitle;
+      _canGoBack = pageCanGoBack;
+      _canGoForward = pageCanGoForward;
     });
   }
 }
