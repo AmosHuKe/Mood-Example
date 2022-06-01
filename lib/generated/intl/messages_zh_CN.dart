@@ -148,6 +148,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("平均全部波动"),
         "statistic_overall_moodScoreAverage_title": m6,
         "statistic_title": MessageLookupByLibrary.simpleMessage("统计"),
+        "web_view_loading_text": MessageLookupByLibrary.simpleMessage("加载中"),
         "widgets_will_pop_scope_route_toast":
             MessageLookupByLibrary.simpleMessage("再按一次退出")
       };

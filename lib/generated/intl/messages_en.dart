@@ -159,6 +159,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Average\ntotal score"),
         "statistic_overall_moodScoreAverage_title": m6,
         "statistic_title": MessageLookupByLibrary.simpleMessage("Statistic"),
+        "web_view_loading_text":
+            MessageLookupByLibrary.simpleMessage("Loading"),
         "widgets_will_pop_scope_route_toast":
             MessageLookupByLibrary.simpleMessage("Press again to exit")
       };

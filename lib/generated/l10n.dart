@@ -759,6 +759,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Loading`
+  String get web_view_loading_text {
+    return Intl.message(
+      'Loading',
+      name: 'web_view_loading_text',
+      desc: 'WebView加载文字',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

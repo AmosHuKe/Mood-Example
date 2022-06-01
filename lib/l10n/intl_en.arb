@@ -82,5 +82,10 @@
     "statistic_moodStatistics_title":"Mood statistics",
     "statistic_moodStatistics_content":"Statistics of mood in recent {moodDays} days",
 
-    "widgets_will_pop_scope_route_toast": "Press again to exit"
+    "widgets_will_pop_scope_route_toast": "Press again to exit",
+
+    "web_view_loading_text": "Loading",
+    "@web_view_loading_text": {
+        "description": "WebView加载文字"
+    }
 }    

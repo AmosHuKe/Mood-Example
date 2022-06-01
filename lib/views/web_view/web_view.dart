@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 ///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moodexample/generated/l10n.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -135,7 +136,8 @@ class _WebViewPageState extends State<WebViewPage> {
         onProgress: (progress) async {
           debugPrint("加载中：$progress");
           setState(() {
-            _pageTitle = "加载中 ${progress - 1}%";
+            _pageTitle =
+                "${S.of(context).web_view_loading_text} ${progress - 1}%";
           });
         },
         onPageFinished: (url) async {

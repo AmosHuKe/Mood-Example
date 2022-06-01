@@ -82,5 +82,10 @@
     "statistic_moodStatistics_title":"心情统计",
     "statistic_moodStatistics_content":"近{moodDays}日心情数量统计",
 
-    "widgets_will_pop_scope_route_toast": "再按一次退出"
+    "widgets_will_pop_scope_route_toast": "再按一次退出",
+
+    "web_view_loading_text": "加载中",
+    "@web_view_loading_text": {
+        "description": "WebView加载文字"
+    }
 }
