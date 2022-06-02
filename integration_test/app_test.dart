@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:intl/intl.dart';
+import 'package:moodexample/generated/l10n.dart';
 
 ///
 import 'package:moodexample/main.dart' as app;
@@ -41,6 +42,9 @@ void main() {
     testWidgets("侧栏基础操作", (WidgetTester tester) async {
       app.main();
       await tester.pumpAndSettle();
+      final BuildContext context =
+          tester.element(find.byKey(const Key("tab_screen_left")));
+      var i18n = S.of(context);
 
       List appMultipleThemesModeKey = [];
       List language = [];
@@ -53,20 +57,23 @@ void main() {
           find.byKey(const Key("widget_menu_screen_left_logo"));
       Finder widgetWebViewClose =
           find.byKey(const Key("widget_web_view_close"));
-      Finder textData = find.text("数据");
-      Finder textDataExport = find.text("导出数据");
-      Finder textDataImport = find.text("导入数据");
-      Finder textTheme = find.text("主题");
-      Finder textThemeSetting = find.text("主题外观");
-      Finder textThemeSettingSystem = find.text("跟随系统");
-      Finder textThemeSettingLight = find.text("普通模式");
-      Finder textThemeSettingDark = find.text("深色模式");
-      Finder textLanguage = find.text("语言");
+      Finder textData = find.text(i18n.app_setting_database);
+      Finder textDataExport = find.text(i18n.app_setting_database_export_data);
+      Finder textDataImport = find.text(i18n.app_setting_database_import_data);
+      Finder textTheme = find.text(i18n.app_setting_theme);
+      Finder textThemeSetting = find.text(i18n.app_setting_theme_appearance);
+      Finder textThemeSettingSystem =
+          find.text(i18n.app_setting_theme_appearance_system);
+      Finder textThemeSettingLight =
+          find.text(i18n.app_setting_theme_appearance_light);
+      Finder textThemeSettingDark =
+          find.text(i18n.app_setting_theme_appearance_dark);
+      Finder textLanguage = find.text(i18n.app_setting_language);
       Finder textLanguageChinese = find.text("简体中文");
       Finder textLanguageEnglish = find.text("English");
       Finder textLanguageSystem = find.text("System");
-      Finder textLaboratory = find.text("实验室");
-      Finder textAbout = find.text("关于");
+      Finder textLaboratory = find.text(i18n.app_setting_laboratory);
+      Finder textAbout = find.text(i18n.app_setting_about);
 
       /// 打开侧栏
       expect(widgetTabScreenLeft, findsOneWidget);
@@ -173,6 +180,9 @@ void main() {
     testWidgets("首页基础操作", (WidgetTester tester) async {
       app.main();
       await tester.pumpAndSettle();
+      final BuildContext context =
+          tester.element(find.byKey(const Key("widget_home_body")));
+      var i18n = S.of(context);
 
       Finder widgetHomeBody = find.byKey(const Key("widget_home_body"));
       Finder widgetTabHome = find.byKey(const Key("tab_home"));
@@ -186,15 +196,15 @@ void main() {
           find.byKey(const Key("widget_home_article_1"));
       Finder widgetHomeArticle2 =
           find.byKey(const Key("widget_home_article_2"));
-      Finder textHi = find.text("Hi~");
-      Finder textHelp = find.text("帮助");
+      Finder textHi = find.text(i18n.home_hi);
+      Finder textHelp = find.text(i18n.home_help_title);
       Finder textHappy = find.text("开心");
       Finder textAngry = find.text("生气");
-      Finder textOK = find.text("确认");
-      Finder textLook = find.text("查看");
-      Finder textGLSX = find.text("管理思绪");
-      Finder textJXTJ = find.text("精心统计");
-      Finder textJKKS = find.text("即刻开始");
+      Finder textOK = find.text(i18n.mood_content_close_button_confirm);
+      Finder textLook = find.text(i18n.home_upgrade_button);
+      Finder textGLSX = find.text(i18n.onboarding_title_1);
+      Finder textJXTJ = find.text(i18n.onboarding_title_2);
+      Finder textJKKS = find.text(i18n.onboarding_title_3);
 
       /// 切换到首页，滑动验证内容存在
       await tester.tap(widgetTabHome);
@@ -269,6 +279,9 @@ void main() {
     testWidgets("心情页基础操作", (WidgetTester tester) async {
       app.main();
       await tester.pumpAndSettle();
+      final BuildContext context =
+          tester.element(find.byKey(const Key("widget_home_body")));
+      var i18n = S.of(context);
 
       String nowDay = DateFormat("dd").format(DateTime.now());
       String nowDay1 = DateFormat("dd")
@@ -289,12 +302,12 @@ void main() {
           find.byKey(const Key("widget_mood_card_slidable_action_button_edit"));
       Finder widgetMoodCardSlidableActionButtonDelete = find
           .byKey(const Key("widget_mood_card_slidable_action_button_delete"));
-      Finder textMood = find.text("心情");
+      Finder textMood = find.text(i18n.mood_title);
       Finder textNowDay = find.text(nowDay);
       Finder textNowDay1 = find.text(nowDay1);
-      Finder textXZGJRH = find.text("现在感觉如何");
-      Finder textHYZXQ = find.text("换一种心情？");
-      Finder textXQCD = find.text("心情程度");
+      Finder textXZGJRH = find.text(i18n.mood_category_select_title_1);
+      Finder textHYZXQ = find.text(i18n.mood_category_select_title_2);
+      Finder textXQCD = find.text(i18n.mood_data_score_title);
       Finder textHappy = find.text("开心");
       Finder textAngry = find.text("生气");
 
@@ -380,14 +393,20 @@ void main() {
     testWidgets("统计页基础操作", (WidgetTester tester) async {
       app.main();
       await tester.pumpAndSettle();
+      final BuildContext context =
+          tester.element(find.byKey(const Key("widget_home_body")));
+      var i18n = S.of(context);
 
       Finder widgetTabStatistic = find.byKey(const Key("tab_statistic"));
       Finder widgetStatisticBody =
           find.byKey(const Key("widget_statistic_body"));
-      Finder textStatistic = find.text("统计");
-      Finder textMoodStatistic = find.text("心情统计");
-      Finder textMoodDays(int day) => find.text("$day天");
-      Finder textMoodDesc(int day) => find.text("按$day日计算情绪波动");
+      Finder textStatistic = find.text(i18n.statistic_title);
+      Finder textMoodStatistic = find.text(i18n.statistic_moodStatistics_title);
+      Finder textMoodDay7 = find.text(i18n.statistic_filter_7d);
+      Finder textMoodDay15 = find.text(i18n.statistic_filter_15d);
+      Finder textMoodDay30 = find.text(i18n.statistic_filter_30d);
+      Finder textMoodDesc(int day) =>
+          find.text(i18n.statistic_moodScoreAverage_content(day));
 
       /// 统计页基础操作
       await tester.tap(widgetTabStatistic);
@@ -400,16 +419,16 @@ void main() {
       await tester.pumpAndSettle();
 
       /// 切换统计范围
-      expect(textMoodDays(7), findsOneWidget);
-      expect(textMoodDays(15), findsOneWidget);
-      expect(textMoodDays(30), findsOneWidget);
-      await tester.tap(textMoodDays(15));
+      expect(textMoodDay7, findsOneWidget);
+      expect(textMoodDay15, findsOneWidget);
+      expect(textMoodDay30, findsOneWidget);
+      await tester.tap(textMoodDay15);
       await tester.pumpAndSettle();
       expect(textMoodDesc(15), findsWidgets);
-      await tester.tap(textMoodDays(30));
+      await tester.tap(textMoodDay30);
       await tester.pumpAndSettle();
       expect(textMoodDesc(30), findsWidgets);
-      await tester.tap(textMoodDays(7));
+      await tester.tap(textMoodDay7);
       await tester.pumpAndSettle();
       expect(textMoodDesc(7), findsWidgets);
     });
