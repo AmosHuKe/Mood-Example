@@ -45,8 +45,10 @@
 - [x] 图表统计  
 - [x] Excel 导入导出  
 - [x] Web 访问  
-- [x] 实验室  
+- [x] 实验室（占用 APP 大部分包体积）  
   - [x] uniapp 小程序（UniMPSDK v3.4.7）  
+  - [x] 3D 城市（obj 格式）  
+  ……  
 - [ ] 隐私解锁  
 - [ ] 动画  
 - [ ] 通知  
@@ -241,6 +243,7 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 * [share_plus](https://pub.dev/packages/share_plus) [[BSD-3-Clause License](https://pub.dev/packages/share_plus/license)]  
 * [file_picker](https://pub.dev/packages/file_picker) [[MIT License](https://pub.dev/packages/file_picker/license)]  
 * [webview_flutter](https://pub.dev/packages/webview_flutter) [[BSD-3-Clause License](https://pub.dev/packages/webview_flutter/license)]  
+* [ditredi](https://pub.dev/packages/ditredi) [[MIT License](https://pub.dev/packages/ditredi/license)]  
 
 
 
