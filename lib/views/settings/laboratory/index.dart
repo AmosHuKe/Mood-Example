@@ -5,7 +5,9 @@ import 'package:remixicon/remixicon.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
-import 'package:moodexample/routes.dart';
+
+import 'package:moodexample/views/settings/laboratory/3d/index.dart';
+import 'package:moodexample/views/settings/laboratory/unimp_miniapps/index.dart';
 
 class LaboratoryPage extends StatefulWidget {
   const LaboratoryPage({Key? key}) : super(key: key);
@@ -72,19 +74,42 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
         ),
         ListCard(
           leading: Icon(
-            Remix.mini_program_fill,
+            Remix.mini_program_line,
             size: 32.sp,
             color: Colors.black87,
           ),
           title: "uniapp 小程序",
           subtitle: "集成 UniMPSDK 可在 APP 内打开 uniapp 小程序。",
           onPressed: () {
-            Navigator.pushNamed(context, Routes.settingLaboratoryUniMPMiniapps);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const UniMPMiniappsPage(),
+              ),
+            );
           },
         ),
         ListCard(
           leading: Icon(
-            Remix.account_box_fill,
+            Remix.building_2_line,
+            size: 32.sp,
+            color: Colors.black87,
+          ),
+          title: "3D 城市",
+          subtitle:
+              "obj 格式，CPU 渲染性能较低，3D 来源 https://github.com/pissang/little-big-city",
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Page3D(),
+              ),
+            );
+          },
+        ),
+        ListCard(
+          leading: Icon(
+            Remix.account_box_line,
             size: 32.sp,
             color: Colors.black87,
           ),
@@ -93,7 +118,7 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
         ),
         ListCard(
           leading: Icon(
-            Remix.account_box_fill,
+            Remix.account_box_line,
             size: 32.sp,
             color: Colors.black87,
           ),
@@ -102,16 +127,7 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
         ),
         ListCard(
           leading: Icon(
-            Remix.account_box_fill,
-            size: 32.sp,
-            color: Colors.black87,
-          ),
-          title: "占位",
-          subtitle: "占位占位占位",
-        ),
-        ListCard(
-          leading: Icon(
-            Remix.account_box_fill,
+            Remix.account_box_line,
             size: 32.sp,
             color: Colors.black87,
           ),

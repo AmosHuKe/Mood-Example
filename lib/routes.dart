@@ -16,7 +16,6 @@ import 'package:moodexample/views/onboarding/index.dart';
 import 'package:moodexample/views/mood/mood_category_select.dart';
 import 'package:moodexample/views/mood/mood_content.dart';
 import 'package:moodexample/views/settings/laboratory/index.dart';
-import 'package:moodexample/views/settings/laboratory/unimp_miniapps/index.dart';
 import 'package:moodexample/views/web_view/web_view.dart';
 
 /// 路由管理
@@ -39,10 +38,6 @@ class Routes {
 
   /// 设置页-实验室
   static String settingLaboratory = "/setting_laboratory";
-
-  /// 实验室-UniMP小程序
-  static String settingLaboratoryUniMPMiniapps =
-      "/setting_laboratory_UniMPMiniapps";
 
   /// WebView
   static String webViewPage = "/web_view_page";
@@ -73,10 +68,6 @@ class Routes {
       handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
     return const LaboratoryPage();
   });
-  static final Handler _settingLaboratoryUniMPMiniappsHandle = Handler(
-      handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
-    return const UniMPMiniappsPage();
-  });
   static final Handler _webViewPage = Handler(
       handlerFunc: (BuildContext? context, Map<String, dynamic> params) {
     return WebViewPage(url: params["url"][0]);
@@ -100,9 +91,6 @@ class Routes {
         handler: _onboardingHandle, transitionType: TransitionType.fadeIn);
     router.define(settingLaboratory,
         handler: _settingLaboratoryHandle,
-        transitionType: TransitionType.cupertino);
-    router.define(settingLaboratoryUniMPMiniapps,
-        handler: _settingLaboratoryUniMPMiniappsHandle,
         transitionType: TransitionType.cupertino);
     router.define("$webViewPage/:url",
         handler: _webViewPage, transitionType: TransitionType.fadeIn);
