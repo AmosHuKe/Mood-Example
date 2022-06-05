@@ -87,5 +87,15 @@
     "web_view_loading_text": "加載中",
     "@web_view_loading_text": {
         "description": "WebView加载文字"
-    }
+    },
+
+    "local_notification_welcome_title": "👋 歡迎來到這裏",
+    "local_notification_welcome_body": "進入給你發送一條通知，證明通知已初始化。",
+    "local_notification_dialog_welcome_title": "通知點擊",
+    "local_notification_dialog_welcome_content": "payload 返回值: {payload}",
+    "local_notification_dialog_welcome_ok": "OK",
+    "local_notification_mood_title": "查看",
+    "local_notification_mood_body": "如果點擊這條通知，那麼將會在 5 秒後通知一條計劃通知。",
+    "local_notification_schedule_mood_title": "Hi~ 我是定時計劃通知",
+    "local_notification_schedule_mood_body": "我就是那位 5 秒後的計劃通知。"
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// Package
@@ -15,6 +16,7 @@ import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/will_pop_scope_route/will_pop_scope_route.dart';
 import 'package:moodexample/home_screen.dart';
+import 'package:moodexample/common/local_notifications.dart';
 
 /// view_model
 import 'package:moodexample/view_models/mood/mood_view_model.dart';
@@ -103,7 +105,7 @@ class Init extends StatefulWidget {
 
 class _InitState extends State<Init> {
   /// 应用初始化
-  void init(context) async {
+  void init(BuildContext context) async {
     MoodViewModel moodViewModel =
         Provider.of<MoodViewModel>(context, listen: false);
     ApplicationViewModel applicationViewModel =
@@ -133,6 +135,46 @@ class _InitState extends State<Init> {
     PreferencesDB().getAppIsLocaleSystem(applicationViewModel);
   }
 
+  /// 发送通知
+  void sendNotification(BuildContext context) {
+    LocalNotifications(
+        onSelectNotification: ({payload}) => onSelectNotification(payload))
+      ..init()
+      ..send(
+        0,
+        S.of(context).local_notification_welcome_title,
+        S.of(context).local_notification_welcome_body,
+        payload: 'localNotificationsInit',
+        channelId: ChannelID.init,
+        channelName: '进入应用',
+      );
+  }
+
+  /// 点击通知时触发
+  void onSelectNotification(String? payload) {
+    showDialog(
+      context: context,
+      builder: (context) => Theme(
+        data: isDarkMode(context) ? ThemeData.dark() : ThemeData.light(),
+        child: CupertinoAlertDialog(
+          title: Text(S.of(context).local_notification_dialog_welcome_title),
+          content: Text(S
+              .of(context)
+              .local_notification_dialog_welcome_content(payload!)),
+          actions: [
+            CupertinoDialogAction(
+              isDefaultAction: true,
+              child: Text(S.of(context).local_notification_dialog_welcome_ok),
+              onPressed: () async {
+                Navigator.of(context, rootNavigator: true).pop();
+              },
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -141,6 +183,7 @@ class _InitState extends State<Init> {
 
   @override
   Widget build(BuildContext context) {
+    sendNotification(context);
     return const MenuPage();
   }
 }

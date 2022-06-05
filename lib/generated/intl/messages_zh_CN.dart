@@ -20,19 +20,21 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'zh_CN';
 
-  static String m0(moodDays) => "按${moodDays}日计算情绪波动";
+  static String m0(payload) => "payload 返回值: ${payload}";
 
-  static String m1(moodScoreAverage) => "平均${moodScoreAverage}";
+  static String m1(moodDays) => "按${moodDays}日计算情绪波动";
 
-  static String m2(moodDays) => "近${moodDays}日情绪波动";
+  static String m2(moodScoreAverage) => "平均${moodScoreAverage}";
 
-  static String m3(moodDays) => "近${moodDays}日心情数量统计";
+  static String m3(moodDays) => "近${moodDays}日情绪波动";
 
-  static String m4(daysCount) => "${daysCount}天";
+  static String m4(moodDays) => "近${moodDays}日心情数量统计";
 
-  static String m5(moodCount) => "${moodCount}条";
+  static String m5(daysCount) => "${daysCount}天";
 
-  static String m6(moodScoreAverage) => "${moodScoreAverage}";
+  static String m6(moodCount) => "${moodCount}条";
+
+  static String m7(moodScoreAverage) => "${moodScoreAverage}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -87,6 +89,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "home_upgrade_content":
             MessageLookupByLibrary.simpleMessage("了解最新使用场景"),
         "home_upgrade_title": MessageLookupByLibrary.simpleMessage("功能更新"),
+        "local_notification_dialog_welcome_content": m0,
+        "local_notification_dialog_welcome_ok":
+            MessageLookupByLibrary.simpleMessage("OK"),
+        "local_notification_dialog_welcome_title":
+            MessageLookupByLibrary.simpleMessage("通知点击"),
+        "local_notification_mood_body": MessageLookupByLibrary.simpleMessage(
+            "如果点击这条通知，那么将会在 5 秒后通知一条计划通知。"),
+        "local_notification_mood_title":
+            MessageLookupByLibrary.simpleMessage("查看"),
+        "local_notification_schedule_mood_body":
+            MessageLookupByLibrary.simpleMessage("我就是那位 5 秒后的计划通知。"),
+        "local_notification_schedule_mood_title":
+            MessageLookupByLibrary.simpleMessage("Hi~ 我是定时计划通知"),
+        "local_notification_welcome_body":
+            MessageLookupByLibrary.simpleMessage("进入给你发送一条通知，证明通知已初始化。"),
+        "local_notification_welcome_title":
+            MessageLookupByLibrary.simpleMessage("👋 欢迎来到这里"),
         "mood_add_button": MessageLookupByLibrary.simpleMessage("记录"),
         "mood_category_select_title_1":
             MessageLookupByLibrary.simpleMessage("现在感觉如何"),
@@ -130,23 +149,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "statistic_filter_15d": MessageLookupByLibrary.simpleMessage("15天"),
         "statistic_filter_30d": MessageLookupByLibrary.simpleMessage("30天"),
         "statistic_filter_7d": MessageLookupByLibrary.simpleMessage("7天"),
-        "statistic_moodScoreAverage_content": m0,
-        "statistic_moodScoreAverage_title": m1,
-        "statistic_moodScore_content": m2,
+        "statistic_moodScoreAverage_content": m1,
+        "statistic_moodScoreAverage_title": m2,
+        "statistic_moodScore_content": m3,
         "statistic_moodScore_title":
             MessageLookupByLibrary.simpleMessage("情绪波动"),
-        "statistic_moodStatistics_content": m3,
+        "statistic_moodStatistics_content": m4,
         "statistic_moodStatistics_title":
             MessageLookupByLibrary.simpleMessage("心情统计"),
         "statistic_overall_daysCount_subTitle":
             MessageLookupByLibrary.simpleMessage("累计记录天数"),
-        "statistic_overall_daysCount_title": m4,
+        "statistic_overall_daysCount_title": m5,
         "statistic_overall_moodCount_subTitle":
             MessageLookupByLibrary.simpleMessage("累计记录心情"),
-        "statistic_overall_moodCount_title": m5,
+        "statistic_overall_moodCount_title": m6,
         "statistic_overall_moodScoreAverage_subTitle":
             MessageLookupByLibrary.simpleMessage("平均全部波动"),
-        "statistic_overall_moodScoreAverage_title": m6,
+        "statistic_overall_moodScoreAverage_title": m7,
         "statistic_title": MessageLookupByLibrary.simpleMessage("统计"),
         "web_view_loading_text": MessageLookupByLibrary.simpleMessage("加载中"),
         "widgets_will_pop_scope_route_toast":

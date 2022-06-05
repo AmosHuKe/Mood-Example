@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 /// Packages
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moodexample/common/local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -420,6 +421,21 @@ class ActionCard extends StatefulWidget {
 class _ActionCardState extends State<ActionCard> {
   @override
   Widget build(BuildContext context) {
+    /// 点击通知时触发
+    void onSelectNotification(String? payload) {
+      LocalNotifications()
+        ..init()
+        ..sendZonedSchedule(
+          1,
+          S.of(context).local_notification_schedule_mood_title,
+          S.of(context).local_notification_schedule_mood_body,
+          payload: 'mood',
+          channelId: ChannelID.defaultMood,
+          channelName: '计划通知',
+          duration: const Duration(seconds: 5),
+        );
+    }
+
     return DecoratedBox(
       decoration: BoxDecoration(
         gradient: const LinearGradient(
@@ -522,7 +538,23 @@ class _ActionCardState extends State<ActionCard> {
                         ),
                         onPressed: () => {
                           /// 导航到新路由
-                          Navigator.pushNamed(context, Routes.onboarding)
+                          Navigator.pushNamed(
+                            context,
+                            Routes.onboarding,
+                          ).then((result) {
+                            LocalNotifications(
+                                onSelectNotification: ({payload}) =>
+                                    onSelectNotification(payload))
+                              ..init()
+                              ..send(
+                                1,
+                                S.of(context).local_notification_mood_title,
+                                S.of(context).local_notification_mood_body,
+                                payload: 'defaultMood',
+                                channelId: ChannelID.defaultMood,
+                                channelName: '默认',
+                              );
+                          })
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

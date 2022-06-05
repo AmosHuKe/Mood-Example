@@ -769,6 +769,96 @@ class S {
       args: [],
     );
   }
+
+  /// `👋 Hi`
+  String get local_notification_welcome_title {
+    return Intl.message(
+      '👋 Hi',
+      name: 'local_notification_welcome_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send you a notification that the notification has been initialized.`
+  String get local_notification_welcome_body {
+    return Intl.message(
+      'Send you a notification that the notification has been initialized.',
+      name: 'local_notification_welcome_body',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notification Click`
+  String get local_notification_dialog_welcome_title {
+    return Intl.message(
+      'Notification Click',
+      name: 'local_notification_dialog_welcome_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `payload: {payload}`
+  String local_notification_dialog_welcome_content(Object payload) {
+    return Intl.message(
+      'payload: $payload',
+      name: 'local_notification_dialog_welcome_content',
+      desc: '',
+      args: [payload],
+    );
+  }
+
+  /// `OK`
+  String get local_notification_dialog_welcome_ok {
+    return Intl.message(
+      'OK',
+      name: 'local_notification_dialog_welcome_ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hi`
+  String get local_notification_mood_title {
+    return Intl.message(
+      'Hi',
+      name: 'local_notification_mood_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you click this notification, a schedule notification will be notified in 5 seconds.`
+  String get local_notification_mood_body {
+    return Intl.message(
+      'If you click this notification, a schedule notification will be notified in 5 seconds.',
+      name: 'local_notification_mood_body',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hi~ I am a scheduled notification`
+  String get local_notification_schedule_mood_title {
+    return Intl.message(
+      'Hi~ I am a scheduled notification',
+      name: 'local_notification_schedule_mood_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get local_notification_schedule_mood_body {
+    return Intl.message(
+      '',
+      name: 'local_notification_schedule_mood_body',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
