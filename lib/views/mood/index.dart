@@ -8,17 +8,19 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:animations/animations.dart';
 
 ///
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
-import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
 import 'package:moodexample/widgets/empty/empty.dart';
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/common/utils_intl.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 import 'package:moodexample/views/mood/mood_content.dart';
+import 'package:moodexample/views/mood/mood_category_select.dart'
+    as mood_category_select;
 
 ///
 import 'package:moodexample/services/mood/mood_service.dart';
@@ -57,45 +59,55 @@ class _MoodPageState extends State<MoodPage>
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       // 悬浮按钮
-      floatingActionButton: FloatingActionButton.extended(
-        key: const Key("widget_add_mood_button"),
-        heroTag: "addmood",
-        backgroundColor: Theme.of(context).primaryColor,
-        hoverElevation: 0,
-        focusElevation: 0,
-        elevation: 0,
-        highlightElevation: 0,
-        label: Row(
-          children: [
-            Icon(
-              Remix.add_fill,
-              color: Colors.white,
-              size: 16.sp,
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 4.sp),
-              child: Text(
-                S.of(context).mood_add_button,
-                style: TextStyle(
+      floatingActionButton: OpenContainer(
+        useRootNavigator: true,
+        clipBehavior: Clip.none,
+        transitionType: ContainerTransitionType.fadeThrough,
+        transitionDuration: const Duration(milliseconds: 400),
+        closedBuilder: (_, openContainer) {
+          return FloatingActionButton.extended(
+            key: const Key("widget_add_mood_button"),
+            heroTag: "addmood",
+            backgroundColor: Theme.of(context).primaryColor,
+            hoverElevation: 0,
+            focusElevation: 0,
+            elevation: 0,
+            highlightElevation: 0,
+            label: Row(
+              children: [
+                Icon(
+                  Remix.add_fill,
                   color: Colors.white,
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.bold,
+                  size: 16.sp,
                 ),
-              ),
-            )
-          ],
-        ),
-        onPressed: () {
-          vibrate();
-
-          /// 添加心情
-          Navigator.pushNamed(
-            context,
-            Routes.transformParams(
-              router: Routes.moodCategorySelect,
-              params: ["add"],
+                Padding(
+                  padding: EdgeInsets.only(left: 4.sp),
+                  child: Text(
+                    S.of(context).mood_add_button,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )
+              ],
             ),
+            onPressed: () {
+              vibrate();
+              openContainer();
+            },
           );
+        },
+        openElevation: 0,
+        openColor: Colors.transparent,
+        middleColor: Colors.transparent,
+        closedElevation: 0,
+        closedShape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(28.w)),
+        closedColor: Colors.transparent,
+        openBuilder: (_, closeContainer) {
+          return const mood_category_select.MoodCategorySelect(type: "add");
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -592,24 +604,42 @@ class _MoodCardState extends State<MoodCard> {
         children: [
           Expanded(
             child: Align(
-              child: ActionButton(
-                key: const Key("widget_mood_card_slidable_action_button_edit"),
-                width: 56.w,
-                height: 56.w,
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [
-                      Color(0xFFD6F2E2),
-                      Color(0xFFD6F2E2),
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(18.w),
-                ),
-                child: const Icon(
-                  Remix.edit_box_line,
-                  color: Color(0xFF587966),
-                ),
-                onTap: () {
+              child: OpenContainer(
+                useRootNavigator: true,
+                transitionType: ContainerTransitionType.fadeThrough,
+                transitionDuration: const Duration(milliseconds: 400),
+                closedBuilder: (_, openContainer) {
+                  return ActionButton(
+                    key: const Key(
+                        "widget_mood_card_slidable_action_button_edit"),
+                    width: 56.w,
+                    height: 56.w,
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [
+                          Color(0xFFD6F2E2),
+                          Color(0xFFD6F2E2),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(18.w),
+                    ),
+                    child: const Icon(
+                      Remix.edit_box_line,
+                      color: Color(0xFF587966),
+                    ),
+                    onTap: () {
+                      openContainer();
+                    },
+                  );
+                },
+                openElevation: 0,
+                openColor: Theme.of(context).scaffoldBackgroundColor,
+                middleColor: Theme.of(context).scaffoldBackgroundColor,
+                closedElevation: 0,
+                closedShape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.w)),
+                closedColor: const Color(0xFFD6F2E2),
+                openBuilder: (_, closeContainer) {
                   /// 赋值编辑心情详细数据
                   MoodData moodData = MoodData();
                   moodData.moodId = widget.moodId;
@@ -618,15 +648,7 @@ class _MoodCardState extends State<MoodCard> {
                   moodData.score = widget.score;
                   moodData.content = widget.content;
                   moodData.createTime = widget.createTime;
-
-                  /// 跳转输入内容页
-                  Navigator.pushNamed(
-                    context,
-                    Routes.transformParams(
-                      router: Routes.moodContent,
-                      params: [moodDataToJson(moodData)],
-                    ),
-                  );
+                  return MoodContent(moodData: moodData);
                 },
               ),
             ),
