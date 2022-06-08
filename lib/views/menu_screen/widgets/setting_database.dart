@@ -18,6 +18,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 ///
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/common/utils.dart';
+import 'package:moodexample/widgets/animation/animation.dart';
 
 ///
 import 'package:moodexample/view_models/mood/mood_view_model.dart';
@@ -119,112 +120,114 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             /// 导入按钮
-            SizedBox(
-              width: 128.h,
-              height: 128.h,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-                      Theme.of(context).primaryColor,
-                      Theme.of(context).primaryColor.withAlpha(140),
-                    ],
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Theme.of(context).primaryColor.withOpacity(0.2),
-                      offset: const Offset(0, 5.0),
-                      blurRadius: 15.0,
-                      spreadRadius: 2.0,
-                    )
-                  ],
-                  shape: BoxShape.circle,
-                ),
-                child: _isImport
-                    ? CupertinoActivityIndicator(
-                        radius: 14.sp,
-                        color: const Color(0xFFFFFFFF),
+            AnimatedPress(
+              child: SizedBox(
+                width: 128.h,
+                height: 128.h,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        Theme.of(context).primaryColor,
+                        Theme.of(context).primaryColor.withAlpha(140),
+                      ],
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Theme.of(context).primaryColor.withOpacity(0.2),
+                        offset: const Offset(0, 5.0),
+                        blurRadius: 15.0,
+                        spreadRadius: 2.0,
                       )
-                    : Material(
-                        color: Colors.transparent,
-                        child: IconButton(
-                          splashColor: Colors.white10,
-                          highlightColor: Colors.white10,
-                          icon: const Icon(Remix.arrow_up_line),
-                          iconSize: 48.sp,
+                    ],
+                    shape: BoxShape.circle,
+                  ),
+                  child: _isImport
+                      ? CupertinoActivityIndicator(
+                          radius: 14.sp,
                           color: const Color(0xFFFFFFFF),
-                          padding: EdgeInsets.all(22.w),
-                          onPressed: () async {
-                            vibrate();
-                            setState(() {
-                              _isImport = true;
-                              _errorPath = "";
-                            });
-                            try {
-                              Map results = await importDatabase(context);
-                              if (!mounted) return;
+                        )
+                      : Material(
+                          color: Colors.transparent,
+                          child: IconButton(
+                            splashColor: Colors.white10,
+                            highlightColor: Colors.white10,
+                            icon: const Icon(Remix.arrow_up_line),
+                            iconSize: 48.sp,
+                            color: const Color(0xFFFFFFFF),
+                            padding: EdgeInsets.all(22.w),
+                            onPressed: () async {
+                              vibrate();
                               setState(() {
-                                _isImport = false;
-                                vibrate();
+                                _isImport = true;
+                                _errorPath = "";
                               });
-                              switch (results["state"]) {
-                                case 0:
-                                  _errorPath = results["errorPath"];
-                                  Fluttertoast.showToast(
-                                    msg: S
-                                        .of(context)
-                                        .app_setting_database_import_data_toast_error,
-                                    toastLength: Toast.LENGTH_LONG,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.black54,
-                                    textColor: Colors.white,
-                                    fontSize: 12.sp,
-                                  );
-                                  break;
-                                case 1:
-                                  Fluttertoast.showToast(
-                                    msg: S
-                                        .of(context)
-                                        .app_setting_database_import_data_toast_success,
-                                    toastLength: Toast.LENGTH_LONG,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.black54,
-                                    textColor: Colors.white,
-                                    fontSize: 12.sp,
-                                  );
+                              try {
+                                Map results = await importDatabase(context);
+                                if (!mounted) return;
+                                setState(() {
+                                  _isImport = false;
+                                  vibrate();
+                                });
+                                switch (results["state"]) {
+                                  case 0:
+                                    _errorPath = results["errorPath"];
+                                    Fluttertoast.showToast(
+                                      msg: S
+                                          .of(context)
+                                          .app_setting_database_import_data_toast_error,
+                                      toastLength: Toast.LENGTH_LONG,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.black54,
+                                      textColor: Colors.white,
+                                      fontSize: 12.sp,
+                                    );
+                                    break;
+                                  case 1:
+                                    Fluttertoast.showToast(
+                                      msg: S
+                                          .of(context)
+                                          .app_setting_database_import_data_toast_success,
+                                      toastLength: Toast.LENGTH_LONG,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.black54,
+                                      textColor: Colors.white,
+                                      fontSize: 12.sp,
+                                    );
 
-                                  /// 更新心情数据
-                                  MoodViewModel moodViewModel =
-                                      Provider.of<MoodViewModel>(context,
-                                          listen: false);
+                                    /// 更新心情数据
+                                    MoodViewModel moodViewModel =
+                                        Provider.of<MoodViewModel>(context,
+                                            listen: false);
 
-                                  /// 获取所有有记录心情的日期
-                                  MoodService.getMoodRecordedDate(
-                                      moodViewModel);
+                                    /// 获取所有有记录心情的日期
+                                    MoodService.getMoodRecordedDate(
+                                        moodViewModel);
 
-                                  /// 处理日期
-                                  String moodDatetime = moodViewModel
-                                      .nowDateTime
-                                      .toString()
-                                      .substring(0, 10);
+                                    /// 处理日期
+                                    String moodDatetime = moodViewModel
+                                        .nowDateTime
+                                        .toString()
+                                        .substring(0, 10);
 
-                                  /// 获取心情数据
-                                  MoodService.getMoodData(
-                                      moodViewModel, moodDatetime);
-                                  break;
-                                default:
-                                  break;
+                                    /// 获取心情数据
+                                    MoodService.getMoodData(
+                                        moodViewModel, moodDatetime);
+                                    break;
+                                  default:
+                                    break;
+                                }
+                              } catch (e) {
+                                debugPrint("$e");
                               }
-                            } catch (e) {
-                              debugPrint("$e");
-                            }
-                          },
+                            },
+                          ),
                         ),
-                      ),
+                ),
               ),
             ),
             Column(
@@ -232,51 +235,53 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                 /// 错误文件下载
                 Builder(builder: (context) {
                   return _errorPath.isNotEmpty
-                      ? Container(
-                          width: 64.h,
-                          height: 64.h,
-                          padding: EdgeInsets.only(left: 12.w),
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.bottomCenter,
-                                end: Alignment.topCenter,
-                                colors: [
-                                  const Color(0xFFf5222d),
-                                  const Color(0xFFf5222d).withAlpha(140),
-                                ],
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color:
-                                      const Color(0xFFf5222d).withOpacity(0.2),
-                                  offset: const Offset(0, 5.0),
-                                  blurRadius: 15.0,
-                                  spreadRadius: 2.0,
-                                )
-                              ],
-                              shape: BoxShape.circle,
-                            ),
-                            child: Material(
-                              color: Colors.transparent,
-                              child: TextButton(
-                                style: ButtonStyle(
-                                  shape: MaterialStateProperty.all(
-                                      const CircleBorder()),
+                      ? AnimatedPress(
+                          child: Container(
+                            width: 64.h,
+                            height: 64.h,
+                            padding: EdgeInsets.only(left: 12.w),
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  colors: [
+                                    const Color(0xFFf5222d),
+                                    const Color(0xFFf5222d).withAlpha(140),
+                                  ],
                                 ),
-                                onPressed: () async {
-                                  vibrate();
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: const Color(0xFFf5222d)
+                                        .withOpacity(0.2),
+                                    offset: const Offset(0, 5.0),
+                                    blurRadius: 15.0,
+                                    spreadRadius: 2.0,
+                                  )
+                                ],
+                                shape: BoxShape.circle,
+                              ),
+                              child: Material(
+                                color: Colors.transparent,
+                                child: TextButton(
+                                  style: ButtonStyle(
+                                    shape: MaterialStateProperty.all(
+                                        const CircleBorder()),
+                                  ),
+                                  onPressed: () async {
+                                    vibrate();
 
-                                  /// 分享文件
-                                  Share.shareFiles([_errorPath]);
-                                },
-                                child: Text(
-                                  S
-                                      .of(context)
-                                      .app_setting_database_import_data_button_error,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12.sp,
+                                    /// 分享文件
+                                    Share.shareFiles([_errorPath]);
+                                  },
+                                  child: Text(
+                                    S
+                                        .of(context)
+                                        .app_setting_database_import_data_button_error,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12.sp,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -287,52 +292,54 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                 }),
 
                 /// 下载模板
-                Container(
-                  width: 64.h,
-                  height: 64.h,
-                  padding: EdgeInsets.only(left: 12.w, top: 12.w),
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                        colors: [
-                          Theme.of(context).primaryColor,
-                          Theme.of(context).primaryColor.withAlpha(140),
-                        ],
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color:
-                              Theme.of(context).primaryColor.withOpacity(0.2),
-                          offset: const Offset(0, 5.0),
-                          blurRadius: 15.0,
-                          spreadRadius: 2.0,
-                        )
-                      ],
-                      shape: BoxShape.circle,
-                    ),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: TextButton(
-                        style: ButtonStyle(
-                          shape:
-                              MaterialStateProperty.all(const CircleBorder()),
+                AnimatedPress(
+                  child: Container(
+                    width: 64.h,
+                    height: 64.h,
+                    padding: EdgeInsets.only(left: 12.w, top: 12.w),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          colors: [
+                            Theme.of(context).primaryColor,
+                            Theme.of(context).primaryColor.withAlpha(140),
+                          ],
                         ),
-                        onPressed: () async {
-                          vibrate();
-                          String filePath = await importDatabaseTemplate();
+                        boxShadow: [
+                          BoxShadow(
+                            color:
+                                Theme.of(context).primaryColor.withOpacity(0.2),
+                            offset: const Offset(0, 5.0),
+                            blurRadius: 15.0,
+                            spreadRadius: 2.0,
+                          )
+                        ],
+                        shape: BoxShape.circle,
+                      ),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: TextButton(
+                          style: ButtonStyle(
+                            shape:
+                                MaterialStateProperty.all(const CircleBorder()),
+                          ),
+                          onPressed: () async {
+                            vibrate();
+                            String filePath = await importDatabaseTemplate();
 
-                          /// 分享文件
-                          Share.shareFiles([filePath]);
-                        },
-                        child: Text(
-                          S
-                              .of(context)
-                              .app_setting_database_import_data_button_template,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12.sp,
+                            /// 分享文件
+                            Share.shareFiles([filePath]);
+                          },
+                          child: Text(
+                            S
+                                .of(context)
+                                .app_setting_database_import_data_button_template,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                       ),
@@ -747,85 +754,87 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          width: 128.h,
-          height: 128.h,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Theme.of(context).primaryColor,
-                  Theme.of(context).primaryColor.withAlpha(140),
-                ],
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Theme.of(context).primaryColor.withOpacity(0.2),
-                  offset: const Offset(0, 5.0),
-                  blurRadius: 15.0,
-                  spreadRadius: 2.0,
-                )
-              ],
-              shape: BoxShape.circle,
-            ),
-            child: _isExport
-                ? CupertinoActivityIndicator(
-                    radius: 14.sp,
-                    color: const Color(0xFFFFFFFF),
+        AnimatedPress(
+          child: SizedBox(
+            width: 128.h,
+            height: 128.h,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).primaryColor.withAlpha(140),
+                  ],
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Theme.of(context).primaryColor.withOpacity(0.2),
+                    offset: const Offset(0, 5.0),
+                    blurRadius: 15.0,
+                    spreadRadius: 2.0,
                   )
-                : Material(
-                    color: Colors.transparent,
-                    child: IconButton(
-                      splashColor: Colors.white10,
-                      highlightColor: Colors.white10,
-                      icon: const Icon(Remix.arrow_down_line),
-                      iconSize: 48.sp,
+                ],
+                shape: BoxShape.circle,
+              ),
+              child: _isExport
+                  ? CupertinoActivityIndicator(
+                      radius: 14.sp,
                       color: const Color(0xFFFFFFFF),
-                      padding: EdgeInsets.all(22.w),
-                      onPressed: () async {
-                        vibrate();
-                        try {
-                          /// 没文件则进行生成
-                          if (_exportPath.isEmpty) {
-                            setState(() {
-                              _isExport = true;
-                            });
-                            await Future.delayed(
-                                const Duration(milliseconds: 1000), () async {
-                              _exportPath = await exportDatabase();
-                            });
-                          }
+                    )
+                  : Material(
+                      color: Colors.transparent,
+                      child: IconButton(
+                        splashColor: Colors.white10,
+                        highlightColor: Colors.white10,
+                        icon: const Icon(Remix.arrow_down_line),
+                        iconSize: 48.sp,
+                        color: const Color(0xFFFFFFFF),
+                        padding: EdgeInsets.all(22.w),
+                        onPressed: () async {
+                          vibrate();
+                          try {
+                            /// 没文件则进行生成
+                            if (_exportPath.isEmpty) {
+                              setState(() {
+                                _isExport = true;
+                              });
+                              await Future.delayed(
+                                  const Duration(milliseconds: 1000), () async {
+                                _exportPath = await exportDatabase();
+                              });
+                            }
 
-                          /// 有文件则直接分享
-                          if (_exportPath.isNotEmpty) {
-                            setState(() {
-                              _isExport = false;
-                            });
-                            vibrate();
-                            if (!mounted) return;
-                            Fluttertoast.showToast(
-                              msg: S
-                                  .of(context)
-                                  .app_setting_database_export_data_toast_success,
-                              toastLength: Toast.LENGTH_LONG,
-                              gravity: ToastGravity.BOTTOM,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.black54,
-                              textColor: Colors.white,
-                              fontSize: 12.sp,
-                            );
+                            /// 有文件则直接分享
+                            if (_exportPath.isNotEmpty) {
+                              setState(() {
+                                _isExport = false;
+                              });
+                              vibrate();
+                              if (!mounted) return;
+                              Fluttertoast.showToast(
+                                msg: S
+                                    .of(context)
+                                    .app_setting_database_export_data_toast_success,
+                                toastLength: Toast.LENGTH_LONG,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.black54,
+                                textColor: Colors.white,
+                                fontSize: 12.sp,
+                              );
 
-                            /// 分享文件
-                            Share.shareFiles([_exportPath]);
+                              /// 分享文件
+                              Share.shareFiles([_exportPath]);
+                            }
+                          } catch (e) {
+                            debugPrint("$e");
                           }
-                        } catch (e) {
-                          debugPrint("$e");
-                        }
-                      },
+                        },
+                      ),
                     ),
-                  ),
+            ),
           ),
         ),
       ],

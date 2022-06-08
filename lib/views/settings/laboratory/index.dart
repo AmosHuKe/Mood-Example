@@ -5,6 +5,7 @@ import 'package:remixicon/remixicon.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
+import 'package:moodexample/widgets/animation/animation.dart';
 
 import 'package:moodexample/views/settings/laboratory/3d/index.dart';
 import 'package:moodexample/views/settings/laboratory/unimp_miniapps/index.dart';
@@ -162,31 +163,34 @@ class ListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.only(top: 12.w, bottom: 12.w),
-      shadowColor: Colors.black38,
-      shape:
-          ContinuousRectangleBorder(borderRadius: BorderRadius.circular(48.sp)),
-      child: Padding(
-        padding: EdgeInsets.all(14.w),
-        child: Column(
-          children: [
-            ListTile(
-              leading: leading,
-              title: Text(title),
-              subtitle: Text(subtitle),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                  onPressed: onPressed,
-                  child: const Text('打开'),
-                ),
-                const SizedBox(width: 8),
-              ],
-            ),
-          ],
+    return AnimatedPress(
+      scaleEnd: 0.95,
+      child: Card(
+        margin: EdgeInsets.only(top: 12.w, bottom: 12.w),
+        shadowColor: Colors.black38,
+        shape: ContinuousRectangleBorder(
+            borderRadius: BorderRadius.circular(48.sp)),
+        child: Padding(
+          padding: EdgeInsets.all(14.w),
+          child: Column(
+            children: [
+              ListTile(
+                leading: leading,
+                title: Text(title),
+                subtitle: Text(subtitle),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: onPressed,
+                    child: const Text('打开'),
+                  ),
+                  const SizedBox(width: 8),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

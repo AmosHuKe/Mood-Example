@@ -13,6 +13,7 @@ import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/common/utils.dart';
+import 'package:moodexample/widgets/animation/animation.dart';
 import 'package:moodexample/views/mood/mood_content.dart';
 import 'package:moodexample/views/web_view/web_view.dart';
 
@@ -312,35 +313,37 @@ class OptionCard extends StatelessWidget {
       useRootNavigator: true,
       clipBehavior: Clip.none,
       transitionType: ContainerTransitionType.fadeThrough,
-      transitionDuration: const Duration(milliseconds: 400),
+      transitionDuration: const Duration(milliseconds: 450),
       closedBuilder: (_, openContainer) {
         return InkWell(
           child: Column(
             children: [
-              Container(
-                constraints: BoxConstraints(minWidth: 48.w),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: isDarkMode(context)
-                        ? [const Color(0xFF2B3034), const Color(0xFF2B3034)]
-                        : [
-                            AppTheme.backgroundColor1,
-                            AppTheme.backgroundColor1
-                          ],
+              AnimatedPress(
+                child: Container(
+                  constraints: BoxConstraints(minWidth: 48.w),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: isDarkMode(context)
+                          ? [const Color(0xFF2B3034), const Color(0xFF2B3034)]
+                          : [
+                              AppTheme.backgroundColor1,
+                              AppTheme.backgroundColor1
+                            ],
+                    ),
+                    borderRadius: BorderRadius.circular(18.w),
                   ),
-                  borderRadius: BorderRadius.circular(18.w),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: 8.w,
-                    right: 8.w,
-                    top: 18.w,
-                    bottom: 18.w,
-                  ),
-                  child: Align(
-                    child: Text(
-                      icon,
-                      style: TextStyle(fontSize: _iconSize),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: 8.w,
+                      right: 8.w,
+                      top: 18.w,
+                      bottom: 18.w,
+                    ),
+                    child: Align(
+                      child: Text(
+                        icon,
+                        style: TextStyle(fontSize: _iconSize),
+                      ),
                     ),
                   ),
                 ),
@@ -478,7 +481,7 @@ class _ActionCardState extends State<ActionCard> {
           children: [
             Stack(
               clipBehavior: Clip.none,
-              alignment: Alignment.centerLeft, //指定未定位或部分定位widget的对齐方式
+              alignment: Alignment.centerLeft,
               children: [
                 /// 图片或装饰
                 Positioned(
@@ -527,69 +530,71 @@ class _ActionCardState extends State<ActionCard> {
                     SizedBox(
                       width: 95.w,
                       height: 45.w,
-                      child: OutlinedButton(
-                        style: ButtonStyle(
-                          padding: MaterialStateProperty.all(
-                            EdgeInsets.only(
-                              top: 10.w,
-                              bottom: 10.w,
-                            ),
-                          ),
-                          foregroundColor:
-                              MaterialStateProperty.all(Colors.white),
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.black87),
-                          textStyle: MaterialStateProperty.all(
-                            TextStyle(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14.sp),
-                            ),
-                          ),
-                          overlayColor:
-                              MaterialStateProperty.all(Colors.white10),
-                        ),
-                        onPressed: () => {
-                          /// 导航到新路由
-                          Navigator.pushNamed(
-                            context,
-                            Routes.onboarding,
-                          ).then((result) {
-                            LocalNotifications(
-                                onSelectNotification: ({payload}) =>
-                                    onSelectNotification(payload))
-                              ..init()
-                              ..send(
-                                1,
-                                S.of(context).local_notification_mood_title,
-                                S.of(context).local_notification_mood_body,
-                                payload: 'defaultMood',
-                                channelId: ChannelID.defaultMood,
-                                channelName: '默认',
-                              );
-                          })
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(right: 4.w),
-                              child: Text(
-                                S.of(context).home_upgrade_button,
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                ),
+                      child: AnimatedPress(
+                        child: OutlinedButton(
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all(
+                              EdgeInsets.only(
+                                top: 10.w,
+                                bottom: 10.w,
                               ),
                             ),
-                            Icon(
-                              Remix.play_circle_fill,
-                              size: 24.sp,
+                            foregroundColor:
+                                MaterialStateProperty.all(Colors.white),
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.black87),
+                            textStyle: MaterialStateProperty.all(
+                              TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
-                          ],
+                            shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(14.sp),
+                              ),
+                            ),
+                            overlayColor:
+                                MaterialStateProperty.all(Colors.white10),
+                          ),
+                          onPressed: () => {
+                            /// 导航到新路由
+                            Navigator.pushNamed(
+                              context,
+                              Routes.onboarding,
+                            ).then((result) {
+                              LocalNotifications(
+                                  onSelectNotification: ({payload}) =>
+                                      onSelectNotification(payload))
+                                ..init()
+                                ..send(
+                                  1,
+                                  S.of(context).local_notification_mood_title,
+                                  S.of(context).local_notification_mood_body,
+                                  payload: 'defaultMood',
+                                  channelId: ChannelID.defaultMood,
+                                  channelName: '默认',
+                                );
+                            })
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(right: 4.w),
+                                child: Text(
+                                  S.of(context).home_upgrade_button,
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                  ),
+                                ),
+                              ),
+                              Icon(
+                                Remix.play_circle_fill,
+                                size: 24.sp,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -624,7 +629,7 @@ class _ArticleState extends State<Article> {
           useRootNavigator: true,
           clipBehavior: Clip.none,
           transitionType: ContainerTransitionType.fadeThrough,
-          transitionDuration: const Duration(milliseconds: 400),
+          transitionDuration: const Duration(milliseconds: 450),
           closedBuilder: (_, openContainer) {
             return ArticleCard(
               key: const Key("widget_home_article_1"),
@@ -646,7 +651,7 @@ class _ArticleState extends State<Article> {
               children: [
                 Stack(
                   clipBehavior: Clip.none,
-                  alignment: Alignment.bottomCenter, //指定未定位或部分定位widget的对齐方式
+                  alignment: Alignment.bottomCenter,
                   children: [
                     /// 图片或装饰
                     Positioned(
@@ -717,7 +722,7 @@ class _ArticleState extends State<Article> {
           useRootNavigator: true,
           clipBehavior: Clip.none,
           transitionType: ContainerTransitionType.fadeThrough,
-          transitionDuration: const Duration(milliseconds: 400),
+          transitionDuration: const Duration(milliseconds: 450),
           closedBuilder: (_, openContainer) {
             return ArticleCard(
               key: const Key("widget_home_article_2"),
@@ -740,7 +745,7 @@ class _ArticleState extends State<Article> {
               children: [
                 Stack(
                   clipBehavior: Clip.none,
-                  alignment: Alignment.topCenter, //指定未定位或部分定位widget的对齐方式
+                  alignment: Alignment.topCenter,
                   children: [
                     /// 图片或装饰
                     Positioned(
@@ -846,27 +851,30 @@ class ArticleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: SizedBox(
-        height: height,
-        width: width,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: gradient,
-            borderRadius: BorderRadius.circular(17.w),
-          ),
-          child: Padding(
-            padding: EdgeInsets.only(
-              left: 14.w,
-              right: 14.w,
-              top: 14.w,
-              bottom: 14.w,
+    return AnimatedPress(
+      scaleEnd: 0.9,
+      child: InkWell(
+        onTap: onTap,
+        child: SizedBox(
+          height: height,
+          width: width,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: gradient,
+              borderRadius: BorderRadius.circular(17.w),
             ),
-            child: Column(
-              mainAxisAlignment: mainAxisAlignment,
-              crossAxisAlignment: crossAxisAlignment,
-              children: children,
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: 14.w,
+                right: 14.w,
+                top: 14.w,
+                bottom: 14.w,
+              ),
+              child: Column(
+                mainAxisAlignment: mainAxisAlignment,
+                crossAxisAlignment: crossAxisAlignment,
+                children: children,
+              ),
             ),
           ),
         ),

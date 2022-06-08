@@ -18,6 +18,7 @@ import 'package:moodexample/widgets/empty/empty.dart';
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/common/utils_intl.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
+import 'package:moodexample/widgets/animation/animation.dart';
 import 'package:moodexample/views/mood/mood_content.dart';
 import 'package:moodexample/views/mood/mood_category_select.dart'
     as mood_category_select;
@@ -59,56 +60,58 @@ class _MoodPageState extends State<MoodPage>
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       // 悬浮按钮
-      floatingActionButton: OpenContainer(
-        useRootNavigator: true,
-        clipBehavior: Clip.none,
-        transitionType: ContainerTransitionType.fadeThrough,
-        transitionDuration: const Duration(milliseconds: 400),
-        closedBuilder: (_, openContainer) {
-          return FloatingActionButton.extended(
-            key: const Key("widget_add_mood_button"),
-            heroTag: "addmood",
-            backgroundColor: Theme.of(context).primaryColor,
-            hoverElevation: 0,
-            focusElevation: 0,
-            elevation: 0,
-            highlightElevation: 0,
-            label: Row(
-              children: [
-                Icon(
-                  Remix.add_fill,
-                  color: Colors.white,
-                  size: 16.sp,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 4.sp),
-                  child: Text(
-                    S.of(context).mood_add_button,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
+      floatingActionButton: AnimatedPress(
+        child: OpenContainer(
+          useRootNavigator: true,
+          clipBehavior: Clip.none,
+          transitionType: ContainerTransitionType.fadeThrough,
+          transitionDuration: const Duration(milliseconds: 450),
+          closedBuilder: (_, openContainer) {
+            return FloatingActionButton.extended(
+              key: const Key("widget_add_mood_button"),
+              heroTag: "addmood",
+              backgroundColor: Theme.of(context).primaryColor,
+              hoverElevation: 0,
+              focusElevation: 0,
+              elevation: 0,
+              highlightElevation: 0,
+              label: Row(
+                children: [
+                  Icon(
+                    Remix.add_fill,
+                    color: Colors.white,
+                    size: 16.sp,
                   ),
-                )
-              ],
-            ),
-            onPressed: () {
-              vibrate();
-              openContainer();
-            },
-          );
-        },
-        openElevation: 0,
-        openColor: Colors.transparent,
-        middleColor: Colors.transparent,
-        closedElevation: 0,
-        closedShape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(28.w)),
-        closedColor: Colors.transparent,
-        openBuilder: (_, closeContainer) {
-          return const mood_category_select.MoodCategorySelect(type: "add");
-        },
+                  Padding(
+                    padding: EdgeInsets.only(left: 4.sp),
+                    child: Text(
+                      S.of(context).mood_add_button,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              onPressed: () {
+                vibrate();
+                openContainer();
+              },
+            );
+          },
+          openElevation: 0,
+          openColor: Theme.of(context).scaffoldBackgroundColor,
+          middleColor: Theme.of(context).primaryColor.withOpacity(0.2),
+          closedElevation: 0,
+          closedShape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(28.w)),
+          closedColor: Theme.of(context).primaryColor,
+          openBuilder: (_, closeContainer) {
+            return const mood_category_select.MoodCategorySelect(type: "add");
+          },
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: const SafeArea(
@@ -607,7 +610,7 @@ class _MoodCardState extends State<MoodCard> {
               child: OpenContainer(
                 useRootNavigator: true,
                 transitionType: ContainerTransitionType.fadeThrough,
-                transitionDuration: const Duration(milliseconds: 400),
+                transitionDuration: const Duration(milliseconds: 450),
                 closedBuilder: (_, openContainer) {
                   return ActionButton(
                     key: const Key(
@@ -721,176 +724,179 @@ class _MoodCardState extends State<MoodCard> {
         ],
       ),
       // 内容
-      child: Container(
-        margin:
-            EdgeInsets.only(left: 24.w, right: 24.w, top: 12.w, bottom: 12.w),
-        child: InkWell(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: 120.w,
-            ),
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Theme.of(context).cardColor,
-                    Theme.of(context).cardColor,
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(18.w),
+      child: AnimatedPress(
+        child: Container(
+          margin:
+              EdgeInsets.only(left: 24.w, right: 24.w, top: 12.w, bottom: 12.w),
+          child: InkWell(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: 120.w,
               ),
-              child: Padding(
-                padding: EdgeInsets.all(12.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    /// 头部
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        /// 标题
-                        Expanded(
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 48.w,
-                                height: 48.w,
-                                child: DecoratedBox(
-                                  decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                      colors: isDarkMode(context)
-                                          ? [
-                                              const Color(0xFF2B3034),
-                                              const Color(0xFF2B3034),
-                                            ]
-                                          : [
-                                              AppTheme.backgroundColor3,
-                                              AppTheme.backgroundColor3,
-                                            ],
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Theme.of(context).cardColor,
+                      Theme.of(context).cardColor,
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(18.w),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(12.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      /// 头部
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          /// 标题
+                          Expanded(
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 48.w,
+                                  height: 48.w,
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        colors: isDarkMode(context)
+                                            ? [
+                                                const Color(0xFF2B3034),
+                                                const Color(0xFF2B3034),
+                                              ]
+                                            : [
+                                                AppTheme.backgroundColor3,
+                                                AppTheme.backgroundColor3,
+                                              ],
+                                      ),
+                                      borderRadius: BorderRadius.circular(14.w),
                                     ),
-                                    borderRadius: BorderRadius.circular(14.w),
-                                  ),
-                                  child: Align(
-                                    child: Text(
-                                      widget.icon,
-                                      style: TextStyle(fontSize: 20.w),
+                                    child: Align(
+                                      child: Text(
+                                        widget.icon,
+                                        style: TextStyle(fontSize: 20.w),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                    left: 12.w,
-                                    right: 12.w,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        widget.title,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1!
-                                            .copyWith(
-                                              fontSize: 20.sp,
-                                              fontWeight: FontWeight.bold,
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                      left: 12.w,
+                                      right: 12.w,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          widget.title,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline1!
+                                              .copyWith(
+                                                fontSize: 20.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 4.w),
+                                          child: Text(
+                                            widget.datetime,
+                                            style: TextStyle(
+                                              color: AppTheme.subColor,
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.normal,
                                             ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 4.w),
-                                        child: Text(
-                                          widget.datetime,
-                                          style: TextStyle(
-                                            color: AppTheme.subColor,
-                                            fontSize: 12.sp,
-                                            fontWeight: FontWeight.normal,
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        DecoratedBox(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: isDarkMode(context)
-                                  ? [
-                                      const Color(0xFF2B3034),
-                                      const Color(0xFF2B3034),
-                                    ]
-                                  : [
-                                      AppTheme.backgroundColor3,
-                                      AppTheme.backgroundColor3,
-                                    ],
-                            ),
-                            borderRadius: BorderRadius.circular(10.w),
-                          ),
-                          child: SizedBox(
-                            width: 42.w,
-                            height: 24.w,
-                            child: Align(
-                              child: Text(
-                                widget.score.toString(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
+                              ],
                             ),
                           ),
-                        ),
-                      ],
-                    ),
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: isDarkMode(context)
+                                    ? [
+                                        const Color(0xFF2B3034),
+                                        const Color(0xFF2B3034),
+                                      ]
+                                    : [
+                                        AppTheme.backgroundColor3,
+                                        AppTheme.backgroundColor3,
+                                      ],
+                              ),
+                              borderRadius: BorderRadius.circular(10.w),
+                            ),
+                            child: SizedBox(
+                              width: 42.w,
+                              height: 24.w,
+                              child: Align(
+                                child: Text(
+                                  widget.score.toString(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
 
-                    /// 内容
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: 60.w,
-                        top: 20.w,
-                        bottom: 20.w,
-                      ),
-                      child: Text(
-                        widget.content ?? S.of(context).mood_data_content_empty,
-                        maxLines: 5,
-                        overflow: TextOverflow.ellipsis,
-                        softWrap: true,
-                        style: TextStyle(
-                          color: widget.content != null
-                              ? Theme.of(context).textTheme.bodyText1!.color
-                              : AppTheme.subColor,
-                          fontSize: 14.sp,
+                      /// 内容
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 60.w,
+                          top: 20.w,
+                          bottom: 20.w,
+                        ),
+                        child: Text(
+                          widget.content ??
+                              S.of(context).mood_data_content_empty,
+                          maxLines: 5,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: true,
+                          style: TextStyle(
+                            color: widget.content != null
+                                ? Theme.of(context).textTheme.bodyText1!.color
+                                : AppTheme.subColor,
+                            fontSize: 14.sp,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
+            onTap: () {
+              /// 底部详情内容弹出
+              showModalBottomDetail(
+                context: context,
+                child: MoodDetail(
+                  icon: widget.icon,
+                  title: widget.title,
+                  score: widget.score,
+                  content: widget.content,
+                  createTime: widget.createTime,
+                ),
+              );
+            },
           ),
-          onTap: () {
-            /// 底部详情内容弹出
-            showModalBottomDetail(
-              context: context,
-              child: MoodDetail(
-                icon: widget.icon,
-                title: widget.title,
-                score: widget.score,
-                content: widget.content,
-                createTime: widget.createTime,
-              ),
-            );
-          },
         ),
       ),
     );

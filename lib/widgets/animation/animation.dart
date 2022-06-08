@@ -7,9 +7,13 @@ class AnimatedPress extends StatefulWidget {
   const AnimatedPress({
     Key? key,
     required this.child,
+    this.scaleEnd = 0.9,
   }) : super(key: key);
 
   final Widget child;
+
+  /// 按下结束后缩放的比例，最大[1.0]
+  final double scaleEnd;
 
   @override
   State<AnimatedPress> createState() => _AnimatedPressState();
@@ -17,20 +21,24 @@ class AnimatedPress extends StatefulWidget {
 
 class _AnimatedPressState extends State<AnimatedPress>
     with SingleTickerProviderStateMixin {
-  late double _scale;
   late AnimationController _controller;
+  late CurvedAnimation _curve;
+  late Animation<double> _scale;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 200),
-      lowerBound: 0.0,
-      upperBound: 0.1,
-    )..addListener(() {
-        setState(() {});
-      });
+      duration: const Duration(milliseconds: 300),
+    )..addListener(() {});
+
+    _curve = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.decelerate,
+      reverseCurve: Curves.easeIn,
+    );
+    _scale = Tween(begin: 1.0, end: widget.scaleEnd).animate(_curve);
   }
 
   @override
@@ -39,22 +47,48 @@ class _AnimatedPressState extends State<AnimatedPress>
     super.dispose();
   }
 
+  /// 开始动画
+  void controllerForward() {
+    AnimationStatus status = _controller.status;
+    if (status != AnimationStatus.forward &&
+        status != AnimationStatus.completed) {
+      debugPrint("开始动画");
+      _controller.forward();
+    }
+  }
+
+  /// 结束动画
+  void controllerReverse() {
+    debugPrint("结束动画");
+    _controller.reverse();
+  }
+
   @override
   Widget build(BuildContext context) {
-    _scale = 1 - _controller.value;
-
-    return GestureDetector(
-      onTapDown: (_) {
-        _controller.forward();
+    return Listener(
+      onPointerDown: (_) {
+        controllerForward();
       },
-      onTapUp: (_) {
-        _controller.reverse();
+      onPointerHover: (_) {
+        controllerForward();
       },
-      onLongPressEnd: (_) {
-        _controller.reverse();
+      onPointerMove: (_) {
+        controllerForward();
       },
-      child: Transform.scale(
-        scale: _scale,
+      onPointerCancel: (_) {
+        controllerReverse();
+      },
+      onPointerUp: (_) {
+        controllerReverse();
+      },
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) {
+          return Transform.scale(
+            scale: _scale.value,
+            child: child,
+          );
+        },
         child: widget.child,
       ),
     );

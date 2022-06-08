@@ -12,6 +12,7 @@ import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/widgets/empty/empty.dart';
+import 'package:moodexample/widgets/animation/animation.dart';
 
 ///
 import 'package:moodexample/view_models/statistic/statistic_view_model.dart';
@@ -1043,46 +1044,48 @@ class FilterBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color primaryColor = Theme.of(context).primaryColor;
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        width: 40.w,
-        height: 40.w,
-        margin: EdgeInsets.only(left: 6.w, right: 6.w),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: checked
+    return AnimatedPress(
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          width: 40.w,
+          height: 40.w,
+          margin: EdgeInsets.only(left: 6.w, right: 6.w),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: checked
+                  ? [
+                      primaryColor,
+                      primaryColor,
+                    ]
+                  : [
+                      Theme.of(context).cardColor,
+                      Theme.of(context).cardColor,
+                    ],
+            ),
+            borderRadius: BorderRadius.circular(14.sp),
+            boxShadow: checked
                 ? [
-                    primaryColor,
-                    primaryColor,
+                    BoxShadow(
+                        color: Theme.of(context).primaryColor.withOpacity(0.2),
+                        blurRadius: 6)
                   ]
                 : [
-                    Theme.of(context).cardColor,
-                    Theme.of(context).cardColor,
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.02), blurRadius: 6)
                   ],
           ),
-          borderRadius: BorderRadius.circular(14.sp),
-          boxShadow: checked
-              ? [
-                  BoxShadow(
-                      color: Theme.of(context).primaryColor.withOpacity(0.2),
-                      blurRadius: 6)
-                ]
-              : [
-                  BoxShadow(
-                      color: Colors.black.withOpacity(0.02), blurRadius: 6)
-                ],
-        ),
-        child: Text(
-          text,
-          style: TextStyle(
-            color: checked
-                ? Colors.white
-                : isDarkMode(context)
-                    ? Colors.white
-                    : Colors.black87,
-            fontSize: 12.sp,
+          child: Text(
+            text,
+            style: TextStyle(
+              color: checked
+                  ? Colors.white
+                  : isDarkMode(context)
+                      ? Colors.white
+                      : Colors.black87,
+              fontSize: 12.sp,
+            ),
           ),
         ),
       ),

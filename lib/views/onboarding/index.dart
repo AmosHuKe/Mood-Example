@@ -8,6 +8,7 @@ import 'package:card_swiper/card_swiper.dart';
 ///
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
+import 'package:moodexample/widgets/animation/animation.dart';
 
 /// 引导页
 class Onboarding extends StatelessWidget {
@@ -202,46 +203,48 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
             top: 24.h,
             bottom: 24.h,
           ),
-          child: AnimatedBuilder(
-            animation: _stepButtonColorAnimation,
-            builder: (context, child) => OutlinedButton(
-              key: const Key("widget_next_button"),
-              style: ButtonStyle(
-                padding: MaterialStateProperty.all(EdgeInsets.all(20.w)),
-                foregroundColor: MaterialStateProperty.all(Colors.white),
-                backgroundColor:
-                    MaterialStateProperty.all(_stepButtonColorAnimation.value),
-                textStyle: MaterialStateProperty.all(
-                  TextStyle(
-                    fontSize: 240.sp,
-                  ),
-                ),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50.h),
-                    side: const BorderSide(
-                      width: 0,
+          child: AnimatedPress(
+            child: AnimatedBuilder(
+              animation: _stepButtonColorAnimation,
+              builder: (context, child) => OutlinedButton(
+                key: const Key("widget_next_button"),
+                style: ButtonStyle(
+                  padding: MaterialStateProperty.all(EdgeInsets.all(20.w)),
+                  foregroundColor: MaterialStateProperty.all(Colors.white),
+                  backgroundColor: MaterialStateProperty.all(
+                      _stepButtonColorAnimation.value),
+                  textStyle: MaterialStateProperty.all(
+                    TextStyle(
+                      fontSize: 240.sp,
                     ),
                   ),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.h),
+                      side: const BorderSide(
+                        width: 0,
+                      ),
+                    ),
+                  ),
+                  overlayColor: MaterialStateProperty.all(Colors.white10),
                 ),
-                overlayColor: MaterialStateProperty.all(Colors.white10),
-              ),
-              onPressed: () => {
-                if (swiperIndex == _swiperList.length - 1)
-                  {
-                    /// 导航到新路由
-                    Navigator.of(context).pop(),
-                  }
-                else
-                  {
-                    _swiperController.next(animation: true),
-                  }
-              },
-              child: Transform.rotate(
-                angle: _stepButtonCurve.value * 1.58,
-                child: Icon(
-                  Remix.arrow_right_line,
-                  size: 24.sp,
+                onPressed: () => {
+                  if (swiperIndex == _swiperList.length - 1)
+                    {
+                      /// 导航到新路由
+                      Navigator.of(context).pop(),
+                    }
+                  else
+                    {
+                      _swiperController.next(animation: true),
+                    }
+                },
+                child: Transform.rotate(
+                  angle: _stepButtonCurve.value * 1.58,
+                  child: Icon(
+                    Remix.arrow_right_line,
+                    size: 24.sp,
+                  ),
                 ),
               ),
             ),

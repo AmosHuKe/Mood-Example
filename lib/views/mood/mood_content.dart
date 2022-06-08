@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 /// Packages
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moodexample/common/utils_intl.dart';
+import 'package:moodexample/widgets/animation/animation.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -278,44 +279,46 @@ class MoodChoiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 128.w,
-      height: 128.w,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: isDarkMode(context)
-                ? [
-                    const Color(0xFF202427),
-                    const Color(0xFF202427),
-                  ]
-                : [
-                    Colors.white,
-                    Colors.white,
-                  ],
+    return AnimatedPress(
+      child: SizedBox(
+        width: 128.w,
+        height: 128.w,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: isDarkMode(context)
+                  ? [
+                      const Color(0xFF202427),
+                      const Color(0xFF202427),
+                    ]
+                  : [
+                      Colors.white,
+                      Colors.white,
+                    ],
+            ),
+            borderRadius: BorderRadius.circular(32.w),
           ),
-          borderRadius: BorderRadius.circular(32.w),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(bottom: 6.w),
-              child: Text(
-                icon ?? "",
-                style: TextStyle(
-                  fontSize: 32.sp,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(bottom: 6.w),
+                child: Text(
+                  icon ?? "",
+                  style: TextStyle(
+                    fontSize: 32.sp,
+                  ),
                 ),
               ),
-            ),
-            Text(
-              title ?? "",
-              style: Theme.of(context).textTheme.headline1!.copyWith(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w400,
-                  ),
-            ),
-          ],
+              Text(
+                title ?? "",
+                style: Theme.of(context).textTheme.headline1!.copyWith(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
+              ),
+            ],
+          ),
         ),
       ),
     );

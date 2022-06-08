@@ -10,6 +10,7 @@ import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/config/multiple_themes.dart';
+import 'package:moodexample/widgets/animation/animation.dart';
 
 ///
 import 'package:moodexample/view_models/application/application_view_model.dart';
@@ -288,54 +289,58 @@ class MultipleThemesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isSelected = selected ?? false;
-    return InkWell(
-      onTap: onTap,
-      child: Column(
-        children: [
-          Stack(
-            alignment: AlignmentDirectional.bottomEnd,
-            children: [
-              Container(
-                width: 64.w,
-                height: 64.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  border: isSelected
-                      ? Border.all(
-                          width: 3.w,
-                          color:
-                              isDarkMode(context) ? Colors.white : Colors.black,
-                        )
-                      : Border.all(
-                          width: 3.w,
-                          color: isDarkMode(context)
-                              ? Colors.white12
-                              : Colors.black12,
-                        ),
+    return AnimatedPress(
+      child: InkWell(
+        onTap: onTap,
+        child: Column(
+          children: [
+            Stack(
+              alignment: AlignmentDirectional.bottomEnd,
+              children: [
+                Container(
+                  width: 64.w,
+                  height: 64.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: isSelected
+                        ? Border.all(
+                            width: 3.w,
+                            color: isDarkMode(context)
+                                ? Colors.white
+                                : Colors.black,
+                          )
+                        : Border.all(
+                            width: 3.w,
+                            color: isDarkMode(context)
+                                ? Colors.white12
+                                : Colors.black12,
+                          ),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: child,
+                  ),
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: child,
+                Builder(
+                  builder: (_) {
+                    if (!isSelected) {
+                      return const SizedBox();
+                    }
+                    return Padding(
+                      padding: EdgeInsets.only(right: 12.w, bottom: 12.w),
+                      child: Icon(
+                        Remix.checkbox_circle_fill,
+                        size: 20.sp,
+                        color:
+                            isDarkMode(context) ? Colors.white : Colors.black,
+                      ),
+                    );
+                  },
                 ),
-              ),
-              Builder(
-                builder: (_) {
-                  if (!isSelected) {
-                    return const SizedBox();
-                  }
-                  return Padding(
-                    padding: EdgeInsets.only(right: 12.w, bottom: 12.w),
-                    child: Icon(
-                      Remix.checkbox_circle_fill,
-                      size: 20.sp,
-                      color: isDarkMode(context) ? Colors.white : Colors.black,
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -366,64 +371,68 @@ class DarkThemeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isSelected = selected ?? false;
-    return InkWell(
-      onTap: onTap,
-      child: Column(
-        children: [
-          Stack(
-            alignment: AlignmentDirectional.bottomEnd,
-            children: [
-              Container(
-                width: 100.w,
-                height: 72.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18.w),
-                  border: isSelected
-                      ? Border.all(
-                          width: 3.w,
-                          color:
-                              isDarkMode(context) ? Colors.white : Colors.black,
-                        )
-                      : Border.all(
-                          width: 3.w,
-                          color: isDarkMode(context)
-                              ? Colors.white12
-                              : Colors.black12,
-                        ),
+    return AnimatedPress(
+      child: InkWell(
+        onTap: onTap,
+        child: Column(
+          children: [
+            Stack(
+              alignment: AlignmentDirectional.bottomEnd,
+              children: [
+                Container(
+                  width: 100.w,
+                  height: 72.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18.w),
+                    border: isSelected
+                        ? Border.all(
+                            width: 3.w,
+                            color: isDarkMode(context)
+                                ? Colors.white
+                                : Colors.black,
+                          )
+                        : Border.all(
+                            width: 3.w,
+                            color: isDarkMode(context)
+                                ? Colors.white12
+                                : Colors.black12,
+                          ),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(14.w),
+                    child: child,
+                  ),
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(14.w),
-                  child: child,
+                Builder(
+                  builder: (_) {
+                    if (!isSelected) {
+                      return const SizedBox();
+                    }
+                    return Padding(
+                      padding: EdgeInsets.only(right: 8.w, bottom: 8.w),
+                      child: Icon(
+                        Remix.checkbox_circle_fill,
+                        size: 20.sp,
+                        color:
+                            isDarkMode(context) ? Colors.white : Colors.black,
+                      ),
+                    );
+                  },
                 ),
-              ),
-              Builder(
-                builder: (_) {
-                  if (!isSelected) {
-                    return const SizedBox();
-                  }
-                  return Padding(
-                    padding: EdgeInsets.only(right: 8.w, bottom: 8.w),
-                    child: Icon(
-                      Remix.checkbox_circle_fill,
-                      size: 20.sp,
-                      color: isDarkMode(context) ? Colors.white : Colors.black,
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 4.w),
-            child: Text(
-              title ?? "",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(fontSize: 12.sp, fontWeight: FontWeight.bold),
+              ],
             ),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsets.only(top: 4.w),
+              child: Text(
+                title ?? "",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .copyWith(fontSize: 12.sp, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -10,6 +10,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
+import 'package:moodexample/widgets/animation/animation.dart';
 
 class WebViewPage extends StatefulWidget {
   final String url;
@@ -67,12 +68,14 @@ class _WebViewPageState extends State<WebViewPage> {
           },
         ),
         actions: [
-          IconButton(
-            onPressed: () async {
-              await _pageWebViewController.reload();
-            },
-            icon: const Icon(Remix.refresh_line),
-          )
+          AnimatedPress(
+            child: IconButton(
+              onPressed: () async {
+                await _pageWebViewController.reload();
+              },
+              icon: const Icon(Remix.refresh_line),
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: Builder(builder: (_) {

@@ -11,6 +11,7 @@ import 'package:moodexample/common/utils_intl.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
+import 'package:moodexample/widgets/animation/animation.dart';
 
 ///
 import 'package:moodexample/models/mood/mood_category_model.dart';
@@ -211,70 +212,72 @@ class MoodChoiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      child: SizedBox(
-        width: 128.w,
-        height: 128.w,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Theme.of(context).cardColor,
-                Theme.of(context).cardColor,
-              ],
+    return AnimatedPress(
+      child: InkWell(
+        child: SizedBox(
+          width: 128.w,
+          height: 128.w,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Theme.of(context).cardColor,
+                  Theme.of(context).cardColor,
+                ],
+              ),
+              borderRadius: BorderRadius.circular(32.w),
             ),
-            borderRadius: BorderRadius.circular(32.w),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(bottom: 6.w),
-                child: Text(
-                  icon,
-                  style: TextStyle(
-                    fontSize: 32.sp,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(bottom: 6.w),
+                  child: Text(
+                    icon,
+                    style: TextStyle(
+                      fontSize: 32.sp,
+                    ),
                   ),
                 ),
-              ),
-              Text(
-                title,
-                style: Theme.of(context).textTheme.headline1!.copyWith(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w400,
-                    ),
-              ),
-            ],
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.headline1!.copyWith(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                ),
+              ],
+            ),
           ),
         ),
+        onTap: () {
+          switch (_type) {
+            case "add":
+              // 关闭当前页并跳转输入内容页
+              MoodData moodData = MoodData();
+              moodData.icon = icon;
+              moodData.title = title;
+              moodData.createTime = _nowDateTime;
+              moodData.updateTime = _nowDateTime;
+              // 跳转输入内容页
+              Navigator.popAndPushNamed(
+                context,
+                Routes.transformParams(
+                  router: Routes.moodContent,
+                  params: [moodDataToJson(moodData)],
+                ),
+              );
+              break;
+            case "edit":
+              // 关闭当前页并返回数据
+              MoodCategoryData moodCategoryData = MoodCategoryData();
+              moodCategoryData.icon = icon;
+              moodCategoryData.title = title;
+              Navigator.pop(context, moodCategoryDataToJson(moodCategoryData));
+              break;
+          }
+        },
       ),
-      onTap: () {
-        switch (_type) {
-          case "add":
-            // 关闭当前页并跳转输入内容页
-            MoodData moodData = MoodData();
-            moodData.icon = icon;
-            moodData.title = title;
-            moodData.createTime = _nowDateTime;
-            moodData.updateTime = _nowDateTime;
-            // 跳转输入内容页
-            Navigator.popAndPushNamed(
-              context,
-              Routes.transformParams(
-                router: Routes.moodContent,
-                params: [moodDataToJson(moodData)],
-              ),
-            );
-            break;
-          case "edit":
-            // 关闭当前页并返回数据
-            MoodCategoryData moodCategoryData = MoodCategoryData();
-            moodCategoryData.icon = icon;
-            moodCategoryData.title = title;
-            Navigator.pop(context, moodCategoryDataToJson(moodCategoryData));
-            break;
-        }
-      },
     );
   }
 }
