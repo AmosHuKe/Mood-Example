@@ -46,12 +46,13 @@
 - [x] Excel 导入导出  
 - [x] Web 访问  
 - [x] 本地通知  
+- [x] 动画  
 - [x] 实验室（占用 APP 大部分包体积）  
   - [x] uniapp 小程序（UniMPSDK v3.4.7）  
   - [x] 3D 城市（obj 格式）  
   ……  
 - [ ] 隐私解锁  
-- [ ] 动画  
+- [ ] 无障碍支持  
 ……
 
 
@@ -247,7 +248,7 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 * [ditredi](https://pub.dev/packages/ditredi) [[MIT License](https://pub.dev/packages/ditredi/license)]  
 * [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) [[BSD-3-Clause License](https://pub.dev/packages/flutter_local_notifications/license)]  
 * [flutter_native_timezone](https://pub.dev/packages/flutter_native_timezone) [[Apache-2.0 License](https://pub.dev/packages/flutter_native_timezone/license)]  
-
+* [animations](https://pub.dev/packages/animations) [[BSD-3-Clause License](https://pub.dev/packages/animations/license)]  
 
 
 ## License 许可证
