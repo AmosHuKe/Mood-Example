@@ -6,6 +6,7 @@ import 'package:remixicon/remixicon.dart';
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
+import 'package:moodexample/widgets/action_button/action_button.dart';
 
 import 'package:moodexample/views/settings/laboratory/3d/index.dart';
 import 'package:moodexample/views/settings/laboratory/unimp_miniapps/index.dart';
@@ -27,9 +28,32 @@ class _LaboratoryPageState extends State<LaboratoryPage> {
     );
     return Theme(
       data: ThemeData(),
-      child: const Scaffold(
-        backgroundColor: Color(0xFFF6F8FA),
-        body: SafeArea(
+      child: Scaffold(
+        backgroundColor: const Color(0xFFF6F8FA),
+        floatingActionButton: ActionButton(
+          key: const Key("widget_laboratory_back_button"),
+          width: 48.w,
+          height: 48.w,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Theme.of(context).primaryColor,
+                Theme.of(context).primaryColor,
+              ],
+            ),
+            borderRadius: BorderRadius.circular(18.w),
+          ),
+          child: Icon(
+            Remix.arrow_left_line,
+            size: 18.sp,
+            color: Colors.white,
+          ),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+        body: const SafeArea(
           key: Key("widget_laboratory_page"),
           child: LaboratoryBody(),
         ),
@@ -50,7 +74,7 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
   Widget build(BuildContext context) {
     return ListView(
       padding:
-          EdgeInsets.only(left: 24.w, right: 24.w, top: 24.w, bottom: 20.h),
+          EdgeInsets.only(left: 14.w, right: 14.w, top: 24.w, bottom: 20.h),
       physics: const AlwaysScrollableScrollPhysics(
         parent: BouncingScrollPhysics(),
       ),
