@@ -61,6 +61,9 @@ class _ApplicationState extends State<Application> {
           /// 打开性能监控，覆盖在屏幕最上面
           showPerformanceOverlay: false,
 
+          /// 语义视图（无障碍）
+          showSemanticsDebugger: true,
+
           /// 主题
           themeMode: watchApplicationViewModel.themeMode,
           theme: AppTheme(getMultipleThemesMode(context))
