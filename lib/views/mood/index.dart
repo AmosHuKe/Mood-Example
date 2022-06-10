@@ -728,7 +728,7 @@ class _MoodCardState extends State<MoodCard> {
         child: Container(
           margin:
               EdgeInsets.only(left: 24.w, right: 24.w, top: 12.w, bottom: 12.w),
-          child: InkWell(
+          child: GestureDetector(
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 minHeight: 120.w,

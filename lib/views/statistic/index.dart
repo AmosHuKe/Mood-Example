@@ -1045,7 +1045,7 @@ class FilterBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     Color primaryColor = Theme.of(context).primaryColor;
     return AnimatedPress(
-      child: InkWell(
+      child: GestureDetector(
         onTap: onTap,
         child: Container(
           width: 40.w,

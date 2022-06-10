@@ -213,7 +213,7 @@ class MoodChoiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedPress(
-      child: InkWell(
+      child: GestureDetector(
         child: SizedBox(
           width: 128.w,
           height: 128.w,

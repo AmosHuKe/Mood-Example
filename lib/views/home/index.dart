@@ -315,7 +315,7 @@ class OptionCard extends StatelessWidget {
       transitionType: ContainerTransitionType.fadeThrough,
       transitionDuration: const Duration(milliseconds: 450),
       closedBuilder: (_, openContainer) {
-        return InkWell(
+        return GestureDetector(
           child: Column(
             children: [
               AnimatedPress(
@@ -853,7 +853,7 @@ class ArticleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedPress(
       scaleEnd: 0.9,
-      child: InkWell(
+      child: GestureDetector(
         onTap: onTap,
         child: SizedBox(
           height: height,

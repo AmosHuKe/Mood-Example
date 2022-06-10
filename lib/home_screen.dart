@@ -173,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             ),
 
             // 侧栏
-            InkWell(
+            GestureDetector(
               key: const Key("tab_screen_left"),
               child: DecoratedBox(
                 decoration: BoxDecoration(

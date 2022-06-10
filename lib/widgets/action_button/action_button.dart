@@ -50,7 +50,7 @@ class ActionButton extends StatelessWidget {
         );
 
     ///
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
       child: Container(
         width: getWidth,

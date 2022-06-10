@@ -210,7 +210,7 @@ class _MoodContentBodyState extends State<MoodContentBody> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              InkWell(
+              GestureDetector(
                 child: Consumer<MoodViewModel>(
                   builder: (_, moodViewModel, child) {
                     /// 心情卡片
