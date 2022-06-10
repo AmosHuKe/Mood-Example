@@ -259,7 +259,7 @@ class Menu extends StatelessWidget {
         // ),
 
         /// 插画
-        Padding(
+        Container(
           padding: EdgeInsets.only(top: 0.w),
           child: Image.asset(
             "assets/images/woolly/woolly-comet-2.png",
@@ -289,14 +289,25 @@ class MenuList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: icon,
-      title: title,
-      textColor: Colors.white,
-      iconColor: Colors.white,
-      minLeadingWidth: 0.w,
-      horizontalTitleGap: 28.w,
-      onTap: onTap,
+    /// 默认状态 为关闭
+    ValueNotifier<DrawerState> drawerState = ValueNotifier(DrawerState.closed);
+    return ValueListenableBuilder<DrawerState>(
+      valueListenable: ZoomDrawer.of(context)!.stateNotifier ?? drawerState,
+      builder: (_, state, child) {
+        return BlockSemantics(
+          blocking: state == DrawerState.closed,
+          child: child,
+        );
+      },
+      child: ListTile(
+        leading: icon,
+        title: title,
+        textColor: Colors.white,
+        iconColor: Colors.white,
+        minLeadingWidth: 0.w,
+        horizontalTitleGap: 28.w,
+        onTap: onTap,
+      ),
     );
   }
 }
