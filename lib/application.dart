@@ -62,7 +62,7 @@ class _ApplicationState extends State<Application> {
           showPerformanceOverlay: false,
 
           /// 语义视图（无障碍）
-          showSemanticsDebugger: true,
+          showSemanticsDebugger: false,
 
           /// 主题
           themeMode: watchApplicationViewModel.themeMode,
