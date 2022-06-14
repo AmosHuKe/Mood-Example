@@ -10,6 +10,7 @@ import 'package:moodexample/themes/app_theme.dart';
 class ActionButton extends StatelessWidget {
   const ActionButton({
     Key? key,
+    this.semanticsLabel,
     this.width,
     this.height,
     this.margin,
@@ -19,6 +20,8 @@ class ActionButton extends StatelessWidget {
     this.onTap,
   }) : super(key: key);
 
+  /// 语义描述
+  final String? semanticsLabel;
   final double? width;
   final double? height;
   final EdgeInsetsGeometry? margin;
@@ -50,16 +53,20 @@ class ActionButton extends StatelessWidget {
         );
 
     ///
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: getWidth,
-        height: getHeight,
-        margin: margin,
-        padding: padding,
-        child: DecoratedBox(
-          decoration: getDecoration,
-          child: child,
+    return Semantics(
+      button: true,
+      label: semanticsLabel,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          width: getWidth,
+          height: getHeight,
+          margin: margin,
+          padding: padding,
+          child: DecoratedBox(
+            decoration: getDecoration,
+            child: child,
+          ),
         ),
       ),
     );
