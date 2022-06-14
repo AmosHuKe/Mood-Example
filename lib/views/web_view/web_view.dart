@@ -51,6 +51,7 @@ class _WebViewPageState extends State<WebViewPage> {
         title: Text(_pageTitle),
         leading: ActionButton(
           key: const Key("widget_web_view_close"),
+          semanticsLabel: "返回",
           decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: isDarkMode(context)
@@ -70,6 +71,7 @@ class _WebViewPageState extends State<WebViewPage> {
         actions: [
           AnimatedPress(
             child: IconButton(
+              tooltip: "刷新",
               onPressed: () async {
                 await _pageWebViewController.reload();
               },
