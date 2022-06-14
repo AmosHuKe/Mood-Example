@@ -32,6 +32,7 @@ class _LaboratoryPageState extends State<LaboratoryPage> {
         backgroundColor: const Color(0xFFF6F8FA),
         floatingActionButton: ActionButton(
           key: const Key("widget_laboratory_back_button"),
+          semanticsLabel: "返回",
           width: 48.w,
           height: 48.w,
           decoration: BoxDecoration(

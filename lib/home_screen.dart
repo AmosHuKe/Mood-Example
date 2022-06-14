@@ -173,61 +173,65 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             ),
 
             // 侧栏
-            GestureDetector(
-              key: const Key("tab_screen_left"),
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: isDarkMode(context)
-                        ? [
-                            Colors.black12,
-                            Colors.black12,
-                          ]
-                        : [
-                            AppTheme.backgroundColor1,
-                            AppTheme.backgroundColor1,
-                          ],
+            Semantics(
+              button: true,
+              label: "打开设置",
+              child: GestureDetector(
+                key: const Key("tab_screen_left"),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: isDarkMode(context)
+                          ? [
+                              Colors.black12,
+                              Colors.black12,
+                            ]
+                          : [
+                              AppTheme.backgroundColor1,
+                              AppTheme.backgroundColor1,
+                            ],
+                    ),
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(14.sp),
+                      bottomRight: Radius.circular(14.sp),
+                    ),
                   ),
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(14.sp),
-                    bottomRight: Radius.circular(14.sp),
+                  child: SizedBox(
+                    width: 36.w,
+                    height: 42.w,
+                    child: ValueListenableBuilder<DrawerState>(
+                      valueListenable:
+                          ZoomDrawer.of(context)!.stateNotifier ?? drawerState,
+                      builder: (_, state, child) {
+                        if (state == DrawerState.closed) {
+                          _stepButtonController.reverse();
+                        } else {
+                          _stepButtonController.forward();
+                        }
+                        return AnimatedBuilder(
+                          animation: _stepButtonAnimation,
+                          builder: (context, child) => Transform.rotate(
+                            angle: _stepButtonCurve.value * 3.14,
+                            child: child,
+                          ),
+                          child: Icon(
+                            Remix.arrow_right_line,
+                            size: 14.sp,
+                            color: isDarkMode(context)
+                                ? const Color(0xFFEFEFEF)
+                                : Colors.black,
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
-                child: SizedBox(
-                  width: 36.w,
-                  height: 42.w,
-                  child: ValueListenableBuilder<DrawerState>(
-                    valueListenable:
-                        ZoomDrawer.of(context)!.stateNotifier ?? drawerState,
-                    builder: (_, state, child) {
-                      if (state == DrawerState.closed) {
-                        _stepButtonController.reverse();
-                      } else {
-                        _stepButtonController.forward();
-                      }
-                      return AnimatedBuilder(
-                        animation: _stepButtonAnimation,
-                        builder: (context, child) => Transform.rotate(
-                          angle: _stepButtonCurve.value * 3.14,
-                          child: child,
-                        ),
-                        child: Icon(
-                          Remix.arrow_right_line,
-                          size: 14.sp,
-                          color: isDarkMode(context)
-                              ? const Color(0xFFEFEFEF)
-                              : Colors.black,
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                onTap: () {
+                  /// 侧栏
+                  vibrate();
+                  ZoomDrawer.of(context)?.toggle.call();
+                },
               ),
-              onTap: () {
-                /// 侧栏
-                vibrate();
-                ZoomDrawer.of(context)?.toggle.call();
-              },
             ),
           ],
         ),

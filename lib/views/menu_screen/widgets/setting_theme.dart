@@ -400,7 +400,7 @@ class DarkThemeCard extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(14.w),
-                    child: child,
+                    child: ExcludeSemantics(child: child),
                   ),
                 ),
                 Builder(

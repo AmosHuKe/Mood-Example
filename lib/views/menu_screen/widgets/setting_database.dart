@@ -152,6 +152,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                       : Material(
                           color: Colors.transparent,
                           child: IconButton(
+                            tooltip: "导入数据按钮",
                             splashColor: Colors.white10,
                             highlightColor: Colors.white10,
                             icon: const Icon(Remix.arrow_up_line),
@@ -282,6 +283,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                       color: Colors.white,
                                       fontSize: 12.sp,
                                     ),
+                                    semanticsLabel: "导入错误原因下载",
                                   ),
                                 ),
                               ),
@@ -340,6 +342,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                               color: Colors.white,
                               fontSize: 12.sp,
                             ),
+                            semanticsLabel: "导入模板下载",
                           ),
                         ),
                       ),
@@ -786,6 +789,7 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
                   : Material(
                       color: Colors.transparent,
                       child: IconButton(
+                        tooltip: "导出数据按钮",
                         splashColor: Colors.white10,
                         highlightColor: Colors.white10,
                         icon: const Icon(Remix.arrow_down_line),

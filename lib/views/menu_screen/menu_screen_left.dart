@@ -93,29 +93,34 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        ClipRRect(
-          key: const Key("widget_menu_screen_left_logo"),
-          borderRadius: BorderRadius.circular(14.sp),
-          child: Image.asset(
-            "assets/images/logo.png",
-            width: 42.w,
-            height: 42.w,
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(left: 12.w),
-          child: Text(
-            "Mood",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 28.sp,
-              fontWeight: FontWeight.bold,
+    return Semantics(
+      button: true,
+      label: "关闭设置",
+      child: Row(
+        children: [
+          ClipRRect(
+            key: const Key("widget_menu_screen_left_logo"),
+            borderRadius: BorderRadius.circular(14.sp),
+            child: Image.asset(
+              "assets/images/logo.png",
+              width: 42.w,
+              height: 42.w,
             ),
           ),
-        ),
-      ],
+          Padding(
+            padding: EdgeInsets.only(left: 12.w),
+            child: Text(
+              "Mood",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 28.sp,
+                fontWeight: FontWeight.bold,
+              ),
+              semanticsLabel: "",
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -125,6 +130,7 @@ class Menu extends StatelessWidget {
   const Menu({Key? key}) : super(key: key);
   static final _titleTextSize = 14.sp;
   static final _titleIconSize = 20.sp;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -234,36 +240,15 @@ class Menu extends StatelessWidget {
             );
           },
         ),
-        // Container(
-        //   width: 48.w,
-        //   margin: EdgeInsets.only(left: 12.w),
-        //   child: Divider(
-        //     height: 24.w,
-        //     color: Colors.black12,
-        //   ),
-        // ),
-        // MenuList(
-        //   icon: Icon(
-        //     Remix.logout_circle_line,
-        //     size: _titleIconSize,
-        //   ),
-        //   title: Text(
-        //     '账户退出',
-        //     style: TextStyle(
-        //       fontSize: _titleTextSize,
-        //     ),
-        //   ),
-        //   onTap: () {
-        //     print("账户退出");
-        //   },
-        // ),
 
         /// 插画
-        Container(
-          padding: EdgeInsets.only(top: 0.w),
-          child: Image.asset(
-            "assets/images/woolly/woolly-comet-2.png",
-            width: 240.w,
+        BlockSemanticsToDrawerClosed(
+          child: Container(
+            padding: EdgeInsets.only(top: 0.w),
+            child: Image.asset(
+              "assets/images/woolly/woolly-comet-2.png",
+              width: 240.w,
+            ),
           ),
         ),
       ],
@@ -289,6 +274,29 @@ class MenuList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlockSemanticsToDrawerClosed(
+      child: ListTile(
+        leading: icon,
+        title: title,
+        textColor: Colors.white,
+        iconColor: Colors.white,
+        minLeadingWidth: 0.w,
+        horizontalTitleGap: 28.w,
+        onTap: onTap,
+      ),
+    );
+  }
+}
+
+/// 侧栏关闭状态下就不显示语义
+class BlockSemanticsToDrawerClosed extends StatelessWidget {
+  const BlockSemanticsToDrawerClosed({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
+  final Widget child;
+  @override
+  Widget build(BuildContext context) {
     /// 默认状态 为关闭
     ValueNotifier<DrawerState> drawerState = ValueNotifier(DrawerState.closed);
     return ValueListenableBuilder<DrawerState>(
@@ -299,15 +307,7 @@ class MenuList extends StatelessWidget {
           child: child,
         );
       },
-      child: ListTile(
-        leading: icon,
-        title: title,
-        textColor: Colors.white,
-        iconColor: Colors.white,
-        minLeadingWidth: 0.w,
-        horizontalTitleGap: 28.w,
-        onTap: onTap,
-      ),
+      child: child,
     );
   }
 }
