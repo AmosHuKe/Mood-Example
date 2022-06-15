@@ -220,10 +220,10 @@ void main() {
       expect(textHi, findsOneWidget);
 
       /// 心情操作卡片，首尾滑动触发操作
-      expect(textHappy, findsOneWidget);
+      expect(textHappy, findsWidgets);
       await tester.tap(textHappy);
       await tester.pumpAndSettle();
-      expect(textHappy, findsOneWidget);
+      expect(textHappy, findsWidgets);
       await tester.tap(widgetActionButtonClose);
       await tester.pumpAndSettle();
       await tester.tap(textOK);
