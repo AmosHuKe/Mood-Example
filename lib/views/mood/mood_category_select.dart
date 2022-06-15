@@ -75,6 +75,7 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
           fontSize: 14.sp,
         ),
         leading: ActionButton(
+          semanticsLabel: "关闭",
           decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: isDarkMode(context)

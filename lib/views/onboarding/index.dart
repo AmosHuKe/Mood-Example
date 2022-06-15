@@ -231,7 +231,6 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
                 onPressed: () => {
                   if (swiperIndex == _swiperList.length - 1)
                     {
-                      /// 导航到新路由
                       Navigator.of(context).pop(),
                     }
                   else
@@ -244,6 +243,8 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
                   child: Icon(
                     Remix.arrow_right_line,
                     size: 24.sp,
+                    semanticLabel:
+                        swiperIndex == _swiperList.length - 1 ? "开始" : "下一页",
                   ),
                 ),
               ),

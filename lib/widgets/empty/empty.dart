@@ -24,6 +24,7 @@ class Empty extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       child: Opacity(
+        alwaysIncludeSemantics: true,
         opacity: opacity,
         child: Column(
           children: [
@@ -33,6 +34,7 @@ class Empty extends StatelessWidget {
                 "assets/images/woolly/woolly-password-1.png",
                 height: height,
                 width: width,
+                semanticLabel: "空",
               ),
             ),
           ],

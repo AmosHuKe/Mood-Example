@@ -112,14 +112,17 @@ class _HomeBodyState extends State<HomeBody> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     /// 头部
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: 24.w,
-                        right: 24.w,
-                        top: 0.w,
-                        bottom: 12.w,
+                    Semantics(
+                      container: true,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: 24.w,
+                          right: 24.w,
+                          top: 0.w,
+                          bottom: 12.w,
+                        ),
+                        child: const Header(),
                       ),
-                      child: const Header(),
                     ),
 
                     /// 情绪选项卡
@@ -133,7 +136,7 @@ class _HomeBodyState extends State<HomeBody> {
                         top: 24.w,
                         bottom: 24.w,
                       ),
-                      child: const NoticeCard(),
+                      child: const MergeSemantics(child: NoticeCard()),
                     ),
 
                     /// 相关文章
@@ -147,17 +150,20 @@ class _HomeBodyState extends State<HomeBody> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 24.w),
-                            child: Text(
-                              S.of(context).home_help_title,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline1
-                                  ?.copyWith(
-                                    fontSize: 24.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          Semantics(
+                            container: true,
+                            child: Padding(
+                              padding: EdgeInsets.only(bottom: 24.w),
+                              child: Text(
+                                S.of(context).home_help_title,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline1
+                                    ?.copyWith(
+                                      fontSize: 24.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
                             ),
                           ),
                           const Article(),

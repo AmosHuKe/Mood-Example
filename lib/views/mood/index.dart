@@ -402,11 +402,13 @@ class _CalendarState extends State<Calendar> {
                 Remix.arrow_left_s_line,
                 size: 24.sp,
                 color: AppTheme.subColor,
+                semanticLabel: "日历向前翻页",
               ),
               rightChevronIcon: Icon(
                 Remix.arrow_right_s_line,
                 size: 24.sp,
                 color: AppTheme.subColor,
+                semanticLabel: "日历向后翻页",
               ),
               formatButtonTextStyle: TextStyle(
                 fontSize: 10.sp,
@@ -615,6 +617,7 @@ class _MoodCardState extends State<MoodCard> {
                   return ActionButton(
                     key: const Key(
                         "widget_mood_card_slidable_action_button_edit"),
+                    semanticsLabel: "编辑",
                     width: 56.w,
                     height: 56.w,
                     decoration: BoxDecoration(
@@ -661,6 +664,7 @@ class _MoodCardState extends State<MoodCard> {
               child: ActionButton(
                 key:
                     const Key("widget_mood_card_slidable_action_button_delete"),
+                semanticsLabel: "删除",
                 width: 56.w,
                 height: 56.w,
                 margin: EdgeInsets.only(right: 24.w),
@@ -775,9 +779,11 @@ class _MoodCardState extends State<MoodCard> {
                                       borderRadius: BorderRadius.circular(14.w),
                                     ),
                                     child: Align(
-                                      child: Text(
-                                        widget.icon,
-                                        style: TextStyle(fontSize: 20.w),
+                                      child: ExcludeSemantics(
+                                        child: Text(
+                                          widget.icon,
+                                          style: TextStyle(fontSize: 20.w),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -792,17 +798,19 @@ class _MoodCardState extends State<MoodCard> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          widget.title,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline1!
-                                              .copyWith(
-                                                fontSize: 20.sp,
-                                                fontWeight: FontWeight.bold,
-                                              ),
+                                        ExcludeSemantics(
+                                          child: Text(
+                                            widget.title,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1!
+                                                .copyWith(
+                                                  fontSize: 20.sp,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
                                         ),
                                         Padding(
                                           padding: EdgeInsets.only(top: 4.w),
@@ -813,6 +821,8 @@ class _MoodCardState extends State<MoodCard> {
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.normal,
                                             ),
+                                            semanticsLabel:
+                                                "${LocaleDatetime().yMMMd(widget.datetime)} 心情：${widget.title}",
                                           ),
                                         ),
                                       ],
@@ -850,6 +860,8 @@ class _MoodCardState extends State<MoodCard> {
                                         fontSize: 12.sp,
                                         fontWeight: FontWeight.bold,
                                       ),
+                                  semanticsLabel:
+                                      "${S.of(context).mood_data_score_title}：${widget.score}",
                                 ),
                               ),
                             ),
@@ -876,6 +888,9 @@ class _MoodCardState extends State<MoodCard> {
                                 : AppTheme.subColor,
                             fontSize: 14.sp,
                           ),
+                          semanticsLabel: widget.content != null
+                              ? "记录内容：${widget.content}"
+                              : "没有记录内容",
                         ),
                       ),
                     ],
@@ -945,6 +960,7 @@ class MoodDetail extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: AppTheme.subColor,
             ),
+            semanticsLabel: "${LocaleDatetime().yMMMd(createTime)} 心情：$title",
           ),
         ),
         Padding(
@@ -957,9 +973,11 @@ class MoodDetail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               /// 心情卡片
-              MoodChoiceCard(
-                icon: icon,
-                title: title,
+              ExcludeSemantics(
+                child: MoodChoiceCard(
+                  icon: icon,
+                  title: title,
+                ),
               ),
 
               /// 打分
@@ -1040,6 +1058,7 @@ class MoodDetail extends StatelessWidget {
                       : AppTheme.subColor,
                   fontSize: 14.sp,
                 ),
+                semanticsLabel: content != null ? "记录内容：$content" : "没有记录内容",
               ),
             ),
           ),

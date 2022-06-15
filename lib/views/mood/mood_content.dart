@@ -100,6 +100,7 @@ class _MoodContentState extends State<MoodContent> {
         title: Text(LocaleDatetime().yMMMd(_moodData.createTime ?? "")),
         leading: ActionButton(
           key: const Key("widget_action_button_close"),
+          semanticsLabel: "关闭",
           decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: isDarkMode(context)
@@ -119,6 +120,7 @@ class _MoodContentState extends State<MoodContent> {
         actions: [
           ActionButton(
             key: const Key("widget_mood_actions_button"),
+            semanticsLabel: "确认记录",
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: isDarkMode(context)
@@ -214,9 +216,14 @@ class _MoodContentBodyState extends State<MoodContentBody> {
                 child: Consumer<MoodViewModel>(
                   builder: (_, moodViewModel, child) {
                     /// 心情卡片
-                    return MoodChoiceCard(
-                      icon: _moodData.icon,
-                      title: _moodData.title,
+                    return Semantics(
+                      button: true,
+                      label: "当前选择心情：${_moodData.title}，再次选择换一种心情",
+                      excludeSemantics: true,
+                      child: MoodChoiceCard(
+                        icon: _moodData.icon,
+                        title: _moodData.title,
+                      ),
                     );
                   },
                 ),
@@ -442,10 +449,12 @@ class _MoodScoreState extends State<MoodScore> {
         ),
         Slider(
           value: moodScore,
+          label: "心情程度调整",
           min: 0.0,
           max: 100.0,
           activeColor: Theme.of(context).primaryColor,
           thumbColor: Theme.of(context).primaryColor,
+          semanticFormatterCallback: (val) => "当前心情程度：$val",
           onChanged: (val) {
             setState(() {
               moodScore = val;
