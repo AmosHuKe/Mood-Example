@@ -77,6 +77,8 @@ dependencies:
   flutter_native_timezone: ^2.0.0
   # 动画
   animations: ^2.0.3
+  # 游戏引擎
+  flame: ^1.2.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
