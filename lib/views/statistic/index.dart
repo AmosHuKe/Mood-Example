@@ -116,12 +116,15 @@ class _StatisticBodyState extends State<StatisticBody> {
                           fontSize: 36.sp,
                           fontWeight: FontWeight.bold,
                         ),
+                    semanticsLabel:
+                        S.of(context).app_bottomNavigationBar_title_statistic,
                   ),
                   Row(
                     children: [
                       FilterBottom(
                         S.of(context).statistic_filter_7d,
                         checked: _filterValue == 7,
+                        semanticsLabel: "筛选7日统计数据",
                         onTap: () {
                           if (_filterValue == 7) return;
                           setState(() {
@@ -136,6 +139,7 @@ class _StatisticBodyState extends State<StatisticBody> {
                       FilterBottom(
                         S.of(context).statistic_filter_15d,
                         checked: _filterValue == 15,
+                        semanticsLabel: "筛选15日统计数据",
                         onTap: () {
                           if (_filterValue == 15) return;
                           setState(() {
@@ -150,6 +154,7 @@ class _StatisticBodyState extends State<StatisticBody> {
                       FilterBottom(
                         S.of(context).statistic_filter_30d,
                         checked: _filterValue == 30,
+                        semanticsLabel: "筛选30日统计数据",
                         onTap: () {
                           if (_filterValue == 30) return;
                           setState(() {
@@ -887,61 +892,67 @@ class StatisticsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.sp)),
-      child: Container(
-        constraints: BoxConstraints(
-          minWidth: 72.w,
-          minHeight: 110.w,
-        ),
-        margin: EdgeInsets.only(
-          left: 12.w,
-          right: 12.w,
-          top: 12.w,
-          bottom: 12.w,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            DecoratedBox(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.black, Colors.black],
+    return Semantics(
+      container: true,
+      label: "$subTitle$title",
+      excludeSemantics: true,
+      child: Card(
+        elevation: 0,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.sp)),
+        child: Container(
+          constraints: BoxConstraints(
+            minWidth: 72.w,
+            minHeight: 110.w,
+          ),
+          margin: EdgeInsets.only(
+            left: 12.w,
+            right: 12.w,
+            top: 12.w,
+            bottom: 12.w,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DecoratedBox(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.black, Colors.black],
+                  ),
+                  shape: BoxShape.circle,
                 ),
-                shape: BoxShape.circle,
-              ),
-              child: SizedBox(
-                width: 36.w,
-                height: 36.w,
-                child: Icon(
-                  icon,
-                  size: 18.sp,
-                  color: Colors.white,
+                child: SizedBox(
+                  width: 36.w,
+                  height: 36.w,
+                  child: Icon(
+                    icon,
+                    size: 18.sp,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: 20.w,
-                bottom: 10.w,
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 20.w,
+                  bottom: 10.w,
+                ),
+                child: Text(
+                  title,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1!
+                      .copyWith(fontSize: 14.sp),
+                ),
               ),
-              child: Text(
-                title,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(fontSize: 14.sp),
+              Text(
+                subTitle,
+                style: TextStyle(
+                  color: AppTheme.subColor,
+                  fontSize: 12.sp,
+                ),
               ),
-            ),
-            Text(
-              subTitle,
-              style: TextStyle(
-                color: AppTheme.subColor,
-                fontSize: 12.sp,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -972,51 +983,57 @@ class StatisticLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.sp)),
-      child: Container(
-        height: height,
-        margin: EdgeInsets.only(
-          left: 24.w,
-          right: 24.w,
-          top: 24.w,
-          bottom: 24.w,
-        ),
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.headline1!.copyWith(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                SizedBox(
-                  height: 4.w,
-                ),
-                Text(
-                  subTitle,
-                  style: TextStyle(
-                    color: AppTheme.subColor,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.normal,
+    return Semantics(
+      container: true,
+      label: "$title$subTitle",
+      excludeSemantics: true,
+      child: Card(
+        elevation: 0,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.sp)),
+        child: Container(
+          height: height,
+          margin: EdgeInsets.only(
+            left: 24.w,
+            right: 24.w,
+            top: 24.w,
+            bottom: 24.w,
+          ),
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Text(
+                    title,
+                    style: Theme.of(context).textTheme.headline1!.copyWith(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
-                ),
-                SizedBox(
-                  height: 38.w,
-                ),
-                Expanded(
-                  child: statistic,
-                ),
-              ],
-            ),
-          ],
+                  SizedBox(
+                    height: 4.w,
+                  ),
+                  Text(
+                    subTitle,
+                    style: TextStyle(
+                      color: AppTheme.subColor,
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 38.w,
+                  ),
+                  Expanded(
+                    child: statistic,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -1029,6 +1046,7 @@ class FilterBottom extends StatelessWidget {
     this.text, {
     Key? key,
     required this.checked,
+    this.semanticsLabel,
     this.onTap,
   }) : super(key: key);
 
@@ -1038,6 +1056,9 @@ class FilterBottom extends StatelessWidget {
   /// 内容
   final String text;
 
+  ///
+  final String? semanticsLabel;
+
   /// onTap
   final Function()? onTap;
 
@@ -1045,46 +1066,52 @@ class FilterBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     Color primaryColor = Theme.of(context).primaryColor;
     return AnimatedPress(
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          width: 40.w,
-          height: 40.w,
-          margin: EdgeInsets.only(left: 6.w, right: 6.w),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: checked
+      child: Semantics(
+        button: true,
+        label: semanticsLabel,
+        excludeSemantics: true,
+        child: GestureDetector(
+          onTap: onTap,
+          child: Container(
+            width: 40.w,
+            height: 40.w,
+            margin: EdgeInsets.only(left: 6.w, right: 6.w),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: checked
+                    ? [
+                        primaryColor,
+                        primaryColor,
+                      ]
+                    : [
+                        Theme.of(context).cardColor,
+                        Theme.of(context).cardColor,
+                      ],
+              ),
+              borderRadius: BorderRadius.circular(14.sp),
+              boxShadow: checked
                   ? [
-                      primaryColor,
-                      primaryColor,
+                      BoxShadow(
+                          color:
+                              Theme.of(context).primaryColor.withOpacity(0.2),
+                          blurRadius: 6)
                     ]
                   : [
-                      Theme.of(context).cardColor,
-                      Theme.of(context).cardColor,
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.02), blurRadius: 6)
                     ],
             ),
-            borderRadius: BorderRadius.circular(14.sp),
-            boxShadow: checked
-                ? [
-                    BoxShadow(
-                        color: Theme.of(context).primaryColor.withOpacity(0.2),
-                        blurRadius: 6)
-                  ]
-                : [
-                    BoxShadow(
-                        color: Colors.black.withOpacity(0.02), blurRadius: 6)
-                  ],
-          ),
-          child: Text(
-            text,
-            style: TextStyle(
-              color: checked
-                  ? Colors.white
-                  : isDarkMode(context)
-                      ? Colors.white
-                      : Colors.black87,
-              fontSize: 12.sp,
+            child: Text(
+              text,
+              style: TextStyle(
+                color: checked
+                    ? Colors.white
+                    : isDarkMode(context)
+                        ? Colors.white
+                        : Colors.black87,
+                fontSize: 12.sp,
+              ),
             ),
           ),
         ),

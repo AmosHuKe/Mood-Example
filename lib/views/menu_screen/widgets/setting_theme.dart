@@ -268,7 +268,7 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
   }
 }
 
-/// 深色模式卡片
+/// 多主题卡片
 class MultipleThemesCard extends StatelessWidget {
   /// 卡片内容
   final Widget? child;
@@ -290,7 +290,7 @@ class MultipleThemesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isSelected = selected ?? false;
     return AnimatedPress(
-      child: InkWell(
+      child: GestureDetector(
         onTap: onTap,
         child: Column(
           children: [
@@ -372,7 +372,7 @@ class DarkThemeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isSelected = selected ?? false;
     return AnimatedPress(
-      child: InkWell(
+      child: GestureDetector(
         onTap: onTap,
         child: Column(
           children: [
@@ -400,7 +400,7 @@ class DarkThemeCard extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(14.w),
-                    child: child,
+                    child: ExcludeSemantics(child: child),
                   ),
                 ),
                 Builder(

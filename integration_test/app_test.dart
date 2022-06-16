@@ -53,6 +53,8 @@ void main() {
           find.byKey(const Key("widget_move_modal_bottom_sheet"));
       Finder widgetLaboratoryPage =
           find.byKey(const Key("widget_laboratory_page"));
+      Finder widgetLaboratoryBackButton =
+          find.byKey(const Key("widget_laboratory_back_button"));
       Finder widgetMenuScreenLeftLogo =
           find.byKey(const Key("widget_menu_screen_left_logo"));
       Finder widgetWebViewClose =
@@ -161,7 +163,7 @@ void main() {
       await tester.pumpAndSettle();
       await tester.fling(widgetLaboratoryPage, const Offset(0, 400), 2400.0);
       await tester.pumpAndSettle();
-      await tester.dragFrom(const Offset(5, 100), const Offset(400, 100));
+      await tester.tap(widgetLaboratoryBackButton);
       await tester.pumpAndSettle();
 
       /// 关于操作
@@ -218,10 +220,10 @@ void main() {
       expect(textHi, findsOneWidget);
 
       /// 心情操作卡片，首尾滑动触发操作
-      expect(textHappy, findsOneWidget);
+      expect(textHappy, findsWidgets);
       await tester.tap(textHappy);
       await tester.pumpAndSettle();
-      expect(textHappy, findsOneWidget);
+      expect(textHappy, findsWidgets);
       await tester.tap(widgetActionButtonClose);
       await tester.pumpAndSettle();
       await tester.tap(textOK);

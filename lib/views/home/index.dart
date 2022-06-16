@@ -91,10 +91,13 @@ class _HomeBodyState extends State<HomeBody> {
                           fontSize: 48.sp,
                           fontWeight: FontWeight.bold,
                         ),
+                    semanticsLabel:
+                        S.of(context).app_bottomNavigationBar_title_home,
                   ),
                   Image.asset(
                     "assets/images/woolly/woolly-yellow-star.png",
                     height: 60.w,
+                    excludeFromSemantics: true,
                   ),
                 ],
               ),
@@ -112,14 +115,17 @@ class _HomeBodyState extends State<HomeBody> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     /// 头部
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: 24.w,
-                        right: 24.w,
-                        top: 0.w,
-                        bottom: 12.w,
+                    Semantics(
+                      container: true,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: 24.w,
+                          right: 24.w,
+                          top: 0.w,
+                          bottom: 12.w,
+                        ),
+                        child: const Header(),
                       ),
-                      child: const Header(),
                     ),
 
                     /// 情绪选项卡
@@ -133,7 +139,7 @@ class _HomeBodyState extends State<HomeBody> {
                         top: 24.w,
                         bottom: 24.w,
                       ),
-                      child: const NoticeCard(),
+                      child: const MergeSemantics(child: NoticeCard()),
                     ),
 
                     /// 相关文章
@@ -147,17 +153,20 @@ class _HomeBodyState extends State<HomeBody> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 24.w),
-                            child: Text(
-                              S.of(context).home_help_title,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline1
-                                  ?.copyWith(
-                                    fontSize: 24.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          Semantics(
+                            container: true,
+                            child: Padding(
+                              padding: EdgeInsets.only(bottom: 24.w),
+                              child: Text(
+                                S.of(context).home_help_title,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline1
+                                    ?.copyWith(
+                                      fontSize: 24.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
                             ),
                           ),
                           const Article(),
@@ -315,7 +324,7 @@ class OptionCard extends StatelessWidget {
       transitionType: ContainerTransitionType.fadeThrough,
       transitionDuration: const Duration(milliseconds: 450),
       closedBuilder: (_, openContainer) {
-        return InkWell(
+        return GestureDetector(
           child: Column(
             children: [
               AnimatedPress(
@@ -853,7 +862,7 @@ class ArticleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedPress(
       scaleEnd: 0.9,
-      child: InkWell(
+      child: GestureDetector(
         onTap: onTap,
         child: SizedBox(
           height: height,

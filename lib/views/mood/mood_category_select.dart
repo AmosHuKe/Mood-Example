@@ -75,6 +75,7 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
           fontSize: 14.sp,
         ),
         leading: ActionButton(
+          semanticsLabel: "关闭",
           decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: isDarkMode(context)
@@ -213,7 +214,7 @@ class MoodChoiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedPress(
-      child: InkWell(
+      child: GestureDetector(
         child: SizedBox(
           width: 128.w,
           height: 128.w,
