@@ -107,7 +107,7 @@ class _MoodPageState extends State<MoodPage>
           closedElevation: 0,
           closedShape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(28.w)),
-          closedColor: Theme.of(context).primaryColor,
+          closedColor: Theme.of(context).scaffoldBackgroundColor,
           openBuilder: (_, closeContainer) {
             return const mood_category_select.MoodCategorySelect(type: "add");
           },
@@ -173,10 +173,13 @@ class _MoodBodyState extends State<MoodBody> {
                           fontSize: 36.sp,
                           fontWeight: FontWeight.bold,
                         ),
+                    semanticsLabel:
+                        S.of(context).app_bottomNavigationBar_title_mood,
                   ),
                   Image.asset(
                     "assets/images/woolly/woolly-heart.png",
                     height: 60.w,
+                    excludeFromSemantics: true,
                   ),
                 ],
               ),

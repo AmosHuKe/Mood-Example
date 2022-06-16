@@ -454,7 +454,7 @@ class _MoodScoreState extends State<MoodScore> {
           max: 100.0,
           activeColor: Theme.of(context).primaryColor,
           thumbColor: Theme.of(context).primaryColor,
-          semanticFormatterCallback: (val) => "当前心情程度：$val",
+          semanticFormatterCallback: (val) => "当前心情程度：${val ~/ 1}",
           onChanged: (val) {
             setState(() {
               moodScore = val;

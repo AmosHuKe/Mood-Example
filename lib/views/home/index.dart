@@ -91,10 +91,13 @@ class _HomeBodyState extends State<HomeBody> {
                           fontSize: 48.sp,
                           fontWeight: FontWeight.bold,
                         ),
+                    semanticsLabel:
+                        S.of(context).app_bottomNavigationBar_title_home,
                   ),
                   Image.asset(
                     "assets/images/woolly/woolly-yellow-star.png",
                     height: 60.w,
+                    excludeFromSemantics: true,
                   ),
                 ],
               ),
