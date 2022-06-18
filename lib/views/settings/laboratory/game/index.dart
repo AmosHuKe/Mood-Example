@@ -1,15 +1,17 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moodexample/views/settings/laboratory/game/sprite_sheet/sprite_sheet_orc.dart';
 import 'package:remixicon/remixicon.dart';
-import 'package:flame/game.dart';
-import 'package:flame/input.dart';
-import 'package:flame/components.dart';
-import 'package:flame/collisions.dart';
+import 'package:bonfire/bonfire.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
+
+import 'components/orc.dart';
 
 class GamePage extends StatefulWidget {
   const GamePage({Key? key}) : super(key: key);
@@ -26,6 +28,7 @@ class _GamePageState extends State<GamePage> {
       context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
     );
+    SpriteSheetOrc.load();
     return Theme(
       data: ThemeData(),
       child: Scaffold(
@@ -56,144 +59,112 @@ class _GamePageState extends State<GamePage> {
             },
           ),
         ),
-        body: SafeArea(
-          child: GameWidget(
-            game: SpaceShooterGame()..paused = true,
-            overlayBuilderMap: {
-              'Paused': (BuildContext context, SpaceShooterGame game) {
-                return const Text(
-                  '暂停',
-                  style: TextStyle(color: Colors.white),
-                );
-              },
-            },
-            initialActiveOverlays: const ['Paused'],
-          ),
+        body: const SafeArea(
+          child: Game(),
         ),
       ),
     );
   }
 }
 
-class SpaceShooterGame extends FlameGame with TapDetector,KeyboardEvents,HasCollisionDetection {
-  late final Monster monster;
-  final double step = 1.5;
-  final someVector = Vector2(200, 200);
+class Game extends StatelessWidget {
+  const Game({Key? key}) : super(key: key);
 
   @override
-  bool debugMode =  true ;
-
-  @override
-  Future<void> onLoad()  async{
-    await super.onLoad();
-    const String src = 'game/human_run.png';
-    await images.load(src);
-    var image = images.fromCache(src);
-    const int rowCount = 4;
-    const int columnCount = 4;
-    final Vector2 textureSize = Vector2(
-      image.width / columnCount,
-      image.height / rowCount,
-    );
-    SpriteAnimation animation = SpriteAnimation.fromFrameData(
-      image,
-      SpriteAnimationData.sequenced(
-        amount: rowCount * columnCount,
-        amountPerRow: columnCount,
-        stepTime: 1 / 8,
-        textureSize: textureSize,
-      ),
-    );
-    Vector2 monsterSize = Vector2(64.w, 64.w);
-    final double pY = size.y / 2;
-    final double pX = size.x / 2;
-    monster = Monster(
-        animation: animation, size: monsterSize, position: Vector2(pX, pY));
-    add(monster);
-    add(Player()
-      ..position = size / 2
-      ..width = 50.w
-      ..height = 50.w
-      ..anchor = Anchor.center
-      ..priority = 1
-    );
-    // FPS
-    add(FpsTextComponent());
-    camera.followComponent(monster);
-  }
-
-  @override
-  void onTap() {
-    if (overlays.isActive('Paused')) {
-      overlays.remove('Paused');
-      // 开始游戏运行（循环）
-      resumeEngine();
-    } else {
-      overlays.add('Paused');
-      // 暂停游戏运行（循环）
-      pauseEngine();
-    }
-  }
-
-  @override
-  KeyEventResult onKeyEvent(
-      RawKeyEvent event,
-      Set<LogicalKeyboardKey> keysPressed,
-      ) {
-    print(event);
-    final isKeyDown = event is RawKeyDownEvent;
-    if (event.logicalKey == LogicalKeyboardKey.arrowUp ||
-        event.logicalKey == LogicalKeyboardKey.keyW) {
-      monster.move(Vector2(0, -step));
-    }
-    if (event.logicalKey == LogicalKeyboardKey.arrowDown ||
-        event.logicalKey == LogicalKeyboardKey.keyS && isKeyDown) {
-      monster.move(Vector2(0, step));
-    }
-    if (event.logicalKey == LogicalKeyboardKey.arrowLeft ||
-        event.logicalKey == LogicalKeyboardKey.keyA && isKeyDown) {
-      monster.move(Vector2(-step, 0));
-    }
-    if (event.logicalKey == LogicalKeyboardKey.arrowRight ||
-        event.logicalKey == LogicalKeyboardKey.keyD && isKeyDown) {
-      monster.move(Vector2(step, 0));
-    }
-    return super.onKeyEvent(event, keysPressed);
+  Widget build(BuildContext context) {
+    return LayoutBuilder(builder: (context, constraints) {
+      final tileSize = max(constraints.maxHeight, constraints.maxWidth) / 20;
+      return BonfireTiledWidget(
+        constructionMode: true,
+        showCollisionArea: true,
+        joystick: Joystick(
+          keyboardConfig: KeyboardConfig(
+            acceptedKeys: [
+              LogicalKeyboardKey.space,
+            ],
+          ),
+          directional: JoystickDirectional(),
+          actions: [
+            JoystickAction(
+              actionId: 1,
+              margin: const EdgeInsets.all(65),
+            )
+          ],
+        ), // required
+        map: TiledWorldMap('game/tiles/map.json', forceTileSize: Size(tileSize,tileSize),objectsBuilder: {
+          'orc': (properties) => Orc(properties.position),
+        },),
+        player: Kinght(Vector2(4 * tileSize,4 * tileSize)),
+        lightingColorGame: Colors.black.withOpacity(0.0),
+        progress: Container(
+          color: Colors.black,
+          child: const Center(
+            child: Text(
+              '载入中...',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+        overlayBuilderMap: {
+          'miniMap': (context, game) => MiniMap(
+            game: game,
+            margin: EdgeInsets.all(20),
+            borderRadius: BorderRadius.circular(100),
+            size: Vector2.all(constraints.maxHeight / 5),
+            border: Border.all(color: Colors.white.withOpacity(0.5)),
+            // backgroundColor: Color(),
+            // tileCollisionColor: Color(),
+            // tileColor: Color(),
+            playerColor: Colors.red,
+            // enemyColor: Color(),
+            // npcColor: Color(),
+            // allyColor: Color(),
+            // decorationColor: Color(),
+          ),
+        },
+        initialActiveOverlays: [
+          'miniMap',
+        ],
+      );
+    });
   }
 }
 
-class Monster extends SpriteAnimationComponent {
-  Monster({
-    required SpriteAnimation animation,
-    required Vector2 size,
-    required Vector2 position,
-  }) : super(
-    animation: animation,
-    size: size,
-    position: position,
-    anchor: Anchor.center,
-    priority: 2,
+class PlayerSpriteSheet {
+
+  static Future<SpriteAnimation> get idleRight => SpriteAnimation.load(
+    "game/human_idle.png",
+    SpriteAnimationData.sequenced(
+      amount: 16,
+      amountPerRow: 4,
+      stepTime: 0.1,
+      textureSize: Vector2(21, 21),
+    ),
   );
 
-  @override
-  Future<void> onLoad() async {
-    add(RectangleHitbox()..debugMode = true);
-  }
+  static Future<SpriteAnimation> get runRight => SpriteAnimation.load(
+    "game/human_run.png",
+    SpriteAnimationData.sequenced(
+      amount: 4,
+      amountPerRow: 4,
+      stepTime: 0.1,
+      textureSize: Vector2(21, 21),
+    ),
+  );
 
-  void move(Vector2 ds) {
-    position.add(ds);
-  }
+  static SimpleDirectionAnimation get simpleDirectionAnimation =>
+      SimpleDirectionAnimation(
+        idleRight: idleRight,
+        runRight: runRight,
+      );
 }
 
-class Player extends PositionComponent {
-  static final _paint = Paint()
-    ..color = Colors.white;
-  void render(Canvas canvas) {
-    super.render(canvas);
-    canvas.drawRect(size.toRect(), _paint);
-  }
-  @override
-  Future<void> onLoad() async {
-    add(RectangleHitbox()..debugMode = true);
-  }
+class Kinght extends SimplePlayer {
+
+  Kinght(Vector2 position)
+      : super(
+    position: position,
+    size: Vector2(32,32),
+    animation: PlayerSpriteSheet.simpleDirectionAnimation,
+  );
 }

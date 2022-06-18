@@ -78,7 +78,7 @@ dependencies:
   # 动画
   animations: ^2.0.3
   # 游戏引擎
-  flame: ^1.2.0
+  bonfire: ^2.6.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -117,7 +117,7 @@ flutter:
     - assets/images/woolly/
     - assets/3d/city/
     - assets/images/game/
-    - assets/tiles/
+    - assets/images/game/tiles/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
