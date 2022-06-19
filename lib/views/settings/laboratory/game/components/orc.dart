@@ -4,31 +4,31 @@ import 'package:bonfire/bonfire.dart';
 
 import '../sprite_sheet/sprite_sheet_orc.dart';
 
-
 double tileSize = 20.0;
+
 class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
   bool canMove = true;
 
   Orc(Vector2 position)
       : super(
-    position: position,
-    animation: SimpleDirectionAnimation(
-      idleLeft: SpriteSheetOrc.getIdleBottomLeft(),
-      idleRight: SpriteSheetOrc.getIdleBottomRight(),
-      idleDownRight: SpriteSheetOrc.getIdleBottomRight(),
-      idleDownLeft: SpriteSheetOrc.getIdleBottomLeft(),
-      idleUpRight: SpriteSheetOrc.getIdleTopRight(),
-      idleUpLeft: SpriteSheetOrc.getIdleTopLeft(),
-      idleUp: SpriteSheetOrc.getIdleTopRight(),
-      idleDown: SpriteSheetOrc.getIdleBottomRight(),
-      runLeft: SpriteSheetOrc.getRunBottomLeft(),
-      runRight: SpriteSheetOrc.getRunBottomRight(),
-      runUpLeft: SpriteSheetOrc.getRunTopLeft(),
-      runUpRight: SpriteSheetOrc.getRunTopRight(),
-    ),
-    speed: tileSize * 3,
-    size: Vector2.all(tileSize * 2.9),
-  ) {
+          position: position,
+          animation: SimpleDirectionAnimation(
+            idleLeft: SpriteSheetOrc.getIdleBottomLeft(),
+            idleRight: SpriteSheetOrc.getIdleBottomRight(),
+            idleDownRight: SpriteSheetOrc.getIdleBottomRight(),
+            idleDownLeft: SpriteSheetOrc.getIdleBottomLeft(),
+            idleUpRight: SpriteSheetOrc.getIdleTopRight(),
+            idleUpLeft: SpriteSheetOrc.getIdleTopLeft(),
+            idleUp: SpriteSheetOrc.getIdleTopRight(),
+            idleDown: SpriteSheetOrc.getIdleBottomRight(),
+            runLeft: SpriteSheetOrc.getRunBottomLeft(),
+            runRight: SpriteSheetOrc.getRunBottomRight(),
+            runUpLeft: SpriteSheetOrc.getRunTopLeft(),
+            runUpRight: SpriteSheetOrc.getRunTopRight(),
+          ),
+          speed: tileSize * 3,
+          size: Vector2.all(tileSize * 2.9),
+        ) {
     setupCollision(
       CollisionConfig(
         collisions: [
@@ -48,7 +48,7 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
   void update(double dt) {
     if (canMove) {
       seePlayer(
-        radiusVision: tileSize * 12,
+        radiusVision: tileSize * 4,
         observed: (player) {
           followComponent(
             player,

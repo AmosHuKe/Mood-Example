@@ -2,102 +2,91 @@ import 'dart:ui';
 
 import 'package:bonfire/bonfire.dart';
 
-class SpriteSheetOrc {
+class SpriteSheetPlayer {
   static double animSpeed = 0.05;
-  static late Image spriteSheetOrcRun;
-  static late Image spriteSheetOrcAttack;
-  static late Image spriteSheetOrcIdle;
-  static late Image spriteSheetOrcDamage;
-  static late Image spriteSheetOrcDie;
+  static late Image spriteSheetPlayerRun;
+  static late Image spriteSheetPlayerAttack;
+  static late Image spriteSheetPlayerIdle;
+  static late Image spriteSheetPlayerDie;
+  static late Image spriteSheetPlayerDamage;
+  static late Future<SpriteAnimation> runTopLeft;
+  static late Future<SpriteAnimation> runTopRight;
+  static late Future<SpriteAnimation> runBottomRight;
+  static late Future<SpriteAnimation> runBottomLeft;
+  static late Future<SpriteAnimation> idleBottomRight;
+  static late Future<SpriteAnimation> idleBottomLeft;
+  static late Future<SpriteAnimation> idleTopRight;
+  static late Future<SpriteAnimation> idleTopLeft;
 
   static Future load() async {
-    spriteSheetOrcRun = await Flame.images.load('game/orc_run.png');
-    spriteSheetOrcAttack = await Flame.images.load('game/orc_attack.png');
-    spriteSheetOrcIdle = await Flame.images.load('game/orc_idle.png');
-    spriteSheetOrcDamage = await Flame.images.load('game/orc_damage.png');
-    spriteSheetOrcDie = await Flame.images.load('game/orc_die.png');
-  }
-
-  static Future<SpriteAnimation> getRunBottomRight() {
-    return spriteSheetOrcRun
+    spriteSheetPlayerRun = await Flame.images.load('game/human_run.png');
+    spriteSheetPlayerAttack = await Flame.images.load('game/human_attack.png');
+    spriteSheetPlayerIdle = await Flame.images.load('game/human_idle.png');
+    spriteSheetPlayerDie = await Flame.images.load('game/human_die.png');
+    spriteSheetPlayerDamage = await Flame.images.load('game/human_damage.png');
+    runBottomRight = spriteSheetPlayerRun
         .getAnimation(
           size: Vector2.all(21),
           count: 4,
         )
         .asFuture();
-  }
-
-  static Future<SpriteAnimation> getRunBottomLeft() {
-    return spriteSheetOrcRun
+    runBottomLeft = spriteSheetPlayerRun
         .getAnimation(
           size: Vector2.all(21),
           count: 4,
           startDy: 21,
         )
         .asFuture();
-  }
-
-  static Future<SpriteAnimation> getRunTopRight() {
-    return spriteSheetOrcRun
+    runTopRight = spriteSheetPlayerRun
         .getAnimation(
           size: Vector2.all(21),
           count: 4,
           startDy: 42,
         )
         .asFuture();
-  }
-
-  static Future<SpriteAnimation> getRunTopLeft() {
-    return spriteSheetOrcRun
+    runTopLeft = spriteSheetPlayerRun
         .getAnimation(
           size: Vector2.all(21),
           count: 4,
           startDy: 63,
         )
         .asFuture();
-  }
 
-  static Future<SpriteAnimation> getIdleBottomRight() {
-    return spriteSheetOrcIdle
+    idleBottomRight = spriteSheetPlayerIdle
         .getAnimation(
           size: Vector2.all(21),
           count: 16,
         )
         .asFuture();
-  }
-
-  static Future<SpriteAnimation> getIdleBottomLeft() {
-    return spriteSheetOrcIdle
+    idleBottomLeft = spriteSheetPlayerIdle
         .getAnimation(
           size: Vector2.all(21),
           count: 16,
           startDy: 21,
         )
         .asFuture();
-  }
 
-  static Future<SpriteAnimation> getIdleTopRight() {
-    return spriteSheetOrcIdle
+    idleTopRight = spriteSheetPlayerIdle
         .getAnimation(
           size: Vector2.all(21),
           count: 16,
           startDy: 42,
         )
         .asFuture();
-  }
 
-  static Future<SpriteAnimation> getIdleTopLeft() {
-    return spriteSheetOrcIdle
+    idleTopLeft = spriteSheetPlayerIdle
         .getAnimation(
           size: Vector2.all(21),
           count: 16,
           startDy: 63,
         )
         .asFuture();
+
+    return Future.value();
   }
 
   static Future<SpriteAnimation> getAttackBottomRight() {
-    return spriteSheetOrcAttack
+    return spriteSheetPlayerAttack
         .getAnimation(
           size: Vector2.all(21),
           count: 4,
@@ -108,7 +97,7 @@ class SpriteSheetOrc {
   }
 
   static Future<SpriteAnimation> getAttackBottomLeft() {
-    return spriteSheetOrcAttack
+    return spriteSheetPlayerAttack
         .getAnimation(
           size: Vector2.all(21),
           count: 4,
@@ -120,7 +109,7 @@ class SpriteSheetOrc {
   }
 
   static Future<SpriteAnimation> getAttackTopRight() {
-    return spriteSheetOrcAttack
+    return spriteSheetPlayerAttack
         .getAnimation(
           size: Vector2.all(21),
           count: 4,
@@ -132,7 +121,7 @@ class SpriteSheetOrc {
   }
 
   static Future<SpriteAnimation> getAttackTopLeft() {
-    return spriteSheetOrcAttack
+    return spriteSheetPlayerAttack
         .getAnimation(
           size: Vector2.all(21),
           count: 4,
@@ -143,8 +132,18 @@ class SpriteSheetOrc {
         .asFuture();
   }
 
-  static Future<SpriteAnimation> getDamageBottomRight() {
-    return spriteSheetOrcDamage
+  static Future<SpriteAnimation> getDie() {
+    return spriteSheetPlayerDie
+        .getAnimation(
+          size: Vector2.all(21),
+          count: 12,
+          loop: false,
+        )
+        .asFuture();
+  }
+
+  static Future<SpriteAnimation> getDamageTopRight() {
+    return spriteSheetPlayerDamage
         .getAnimation(
           size: Vector2.all(21),
           count: 4,
@@ -153,8 +152,8 @@ class SpriteSheetOrc {
         .asFuture();
   }
 
-  static Future<SpriteAnimation> getDamageBottomLeft() {
-    return spriteSheetOrcDamage
+  static Future<SpriteAnimation> getDamageTopLeft() {
+    return spriteSheetPlayerDamage
         .getAnimation(
           size: Vector2.all(21),
           count: 4,
@@ -164,8 +163,8 @@ class SpriteSheetOrc {
         .asFuture();
   }
 
-  static Future<SpriteAnimation> getDamageTopRight() {
-    return spriteSheetOrcDamage
+  static Future<SpriteAnimation> getDamageBottomRight() {
+    return spriteSheetPlayerDamage
         .getAnimation(
           size: Vector2.all(21),
           count: 4,
@@ -175,22 +174,12 @@ class SpriteSheetOrc {
         .asFuture();
   }
 
-  static Future<SpriteAnimation> getDamageTopLeft() {
-    return spriteSheetOrcDamage
+  static Future<SpriteAnimation> getDamageBottomLeft() {
+    return spriteSheetPlayerDamage
         .getAnimation(
           size: Vector2.all(21),
           count: 4,
           startDy: 63,
-          loop: false,
-        )
-        .asFuture();
-  }
-
-  static Future<SpriteAnimation> getDie() {
-    return spriteSheetOrcDie
-        .getAnimation(
-          size: Vector2.all(21),
-          count: 12,
           loop: false,
         )
         .asFuture();

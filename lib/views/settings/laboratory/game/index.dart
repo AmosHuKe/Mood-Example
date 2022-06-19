@@ -1,17 +1,19 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moodexample/views/settings/laboratory/game/sprite_sheet/sprite_sheet_orc.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:bonfire/bonfire.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
-import 'components/orc.dart';
+import 'package:moodexample/views/settings/laboratory/game/components/human_player.dart';
+import 'package:moodexample/views/settings/laboratory/game/components/light.dart';
+import 'package:moodexample/views/settings/laboratory/game/components/orc.dart';
+import 'package:moodexample/views/settings/laboratory/game/sprite_sheet/sprite_sheet_orc.dart';
+import 'package:moodexample/views/settings/laboratory/game/sprite_sheet/sprite_sheet_player.dart';
 
 class GamePage extends StatefulWidget {
   const GamePage({Key? key}) : super(key: key);
@@ -22,13 +24,19 @@ class GamePage extends StatefulWidget {
 
 class _GamePageState extends State<GamePage> {
   @override
+  void initState() {
+    super.initState();
+    SpriteSheetOrc.load();
+    SpriteSheetPlayer.load();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // 屏幕自适应 设置尺寸（填写设计中设备的屏幕尺寸）如果设计基于360dp * 690dp的屏幕
     ScreenUtil.init(
       context,
       designSize: const Size(AppTheme.wdp, AppTheme.hdp),
     );
-    SpriteSheetOrc.load();
     return Theme(
       data: ThemeData(),
       child: Scaffold(
@@ -75,8 +83,8 @@ class Game extends StatelessWidget {
     return LayoutBuilder(builder: (context, constraints) {
       final tileSize = max(constraints.maxHeight, constraints.maxWidth) / 20;
       return BonfireTiledWidget(
-        constructionMode: true,
-        showCollisionArea: true,
+        constructionMode: false,
+        showCollisionArea: false,
         joystick: Joystick(
           keyboardConfig: KeyboardConfig(
             acceptedKeys: [
@@ -91,11 +99,19 @@ class Game extends StatelessWidget {
             )
           ],
         ), // required
-        map: TiledWorldMap('game/tiles/map.json', forceTileSize: Size(tileSize,tileSize),objectsBuilder: {
-          'orc': (properties) => Orc(properties.position),
-        },),
-        player: Kinght(Vector2(4 * tileSize,4 * tileSize)),
-        lightingColorGame: Colors.black.withOpacity(0.0),
+        map: TiledWorldMap(
+          'game/tiles/map.json',
+          forceTileSize: Size(tileSize, tileSize),
+          objectsBuilder: {
+            'light': (properties) => Light(
+              properties.position,
+              properties.size,
+            ),
+            'orc': (properties) => Orc(properties.position),
+          },
+        ),
+        player: HumanPlayer(Vector2(4 * tileSize, 4 * tileSize)),
+        lightingColorGame: Colors.black.withOpacity(0.7),
         progress: Container(
           color: Colors.black,
           child: const Center(
@@ -107,64 +123,19 @@ class Game extends StatelessWidget {
         ),
         overlayBuilderMap: {
           'miniMap': (context, game) => MiniMap(
-            game: game,
-            margin: EdgeInsets.all(20),
-            borderRadius: BorderRadius.circular(100),
-            size: Vector2.all(constraints.maxHeight / 5),
-            border: Border.all(color: Colors.white.withOpacity(0.5)),
-            // backgroundColor: Color(),
-            // tileCollisionColor: Color(),
-            // tileColor: Color(),
-            playerColor: Colors.red,
-            // enemyColor: Color(),
-            // npcColor: Color(),
-            // allyColor: Color(),
-            // decorationColor: Color(),
-          ),
+                game: game,
+                margin: const EdgeInsets.all(20),
+                borderRadius: BorderRadius.circular(100),
+                size: Vector2.all(constraints.maxHeight / 5),
+                border: Border.all(color: Colors.white.withOpacity(0.5)),
+                playerColor: Colors.green,
+                enemyColor: Colors.red,
+              ),
         },
-        initialActiveOverlays: [
+        initialActiveOverlays: const [
           'miniMap',
         ],
       );
     });
   }
-}
-
-class PlayerSpriteSheet {
-
-  static Future<SpriteAnimation> get idleRight => SpriteAnimation.load(
-    "game/human_idle.png",
-    SpriteAnimationData.sequenced(
-      amount: 16,
-      amountPerRow: 4,
-      stepTime: 0.1,
-      textureSize: Vector2(21, 21),
-    ),
-  );
-
-  static Future<SpriteAnimation> get runRight => SpriteAnimation.load(
-    "game/human_run.png",
-    SpriteAnimationData.sequenced(
-      amount: 4,
-      amountPerRow: 4,
-      stepTime: 0.1,
-      textureSize: Vector2(21, 21),
-    ),
-  );
-
-  static SimpleDirectionAnimation get simpleDirectionAnimation =>
-      SimpleDirectionAnimation(
-        idleRight: idleRight,
-        runRight: runRight,
-      );
-}
-
-class Kinght extends SimplePlayer {
-
-  Kinght(Vector2 position)
-      : super(
-    position: position,
-    size: Vector2(32,32),
-    animation: PlayerSpriteSheet.simpleDirectionAnimation,
-  );
 }
