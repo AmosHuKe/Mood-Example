@@ -1,8 +1,11 @@
-import 'package:bonfire/bonfire.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:bonfire/bonfire.dart';
+
 import '../sprite_sheet/sprite_sheet_player.dart';
+import 'orc.dart';
 
 double tileSize = 20.0;
 
@@ -28,6 +31,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
             runDownRight: SpriteSheetPlayer.runBottomRight,
           ),
           speed: maxSpeed,
+          life: 1000,
           size: Vector2.all(tileSize * 2.9),
         ) {
     setupLighting(
@@ -54,13 +58,55 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
   }
 
   @override
+  void render(Canvas canvas) {
+    if (!isDead) {
+      /// 生命条
+      drawDefaultLifeBar(
+        canvas,
+        drawInBottom: true,
+        margin: 0,
+        width: tileSize * 1.5,
+        borderWidth: tileSize / 5,
+        height: tileSize / 5,
+        borderColor: Colors.white.withOpacity(0.5),
+        borderRadius: BorderRadius.circular(2),
+        align: Offset(
+          tileSize * 0.7,
+          tileSize * 0.7,
+        ),
+      );
+    }
+    super.render(canvas);
+  }
+
+  /// 碰撞触发
+  @override
+  bool onCollision(GameComponent component, bool active) {
+    bool active = true;
+
+    /// 碰撞 Orc 不发生碰撞
+    if (component is Orc) {
+      debugPrint("碰撞 Orc");
+      active = false;
+    }
+    return active;
+  }
+
+  /// 操纵手柄操作控制
+  @override
   void joystickAction(JoystickActionEvent event) {
+    /// 死亡 || 锁住移动
     if (isDead || lockMove) return;
+
+    /// 攻击
     if ((event.id == LogicalKeyboardKey.space.keyId ||
             event.id == LogicalKeyboardKey.select.keyId ||
             event.id == 1) &&
         event.event == ActionEvent.DOWN) {
+      /// 攻击动画
       _addAttackAnimation();
+
+      /// 攻击范围
       simpleAttackMelee(
         damage: 10,
         size: Vector2.all(tileSize * 1.5),
@@ -79,6 +125,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     super.joystickChangeDirectional(event);
   }
 
+  /// 受伤触发
   @override
   void receiveDamage(AttackFromEnum attacker, double damage, dynamic from) {
     if (!isDead) {
@@ -87,11 +134,22 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
         initVelocityTop: -2,
         config: TextStyle(color: Colors.white, fontSize: tileSize / 2),
       );
-
-      lockMove = true;
+      // lockMove = true;
+      /// 屏幕变红
+      gameRef.lighting
+          ?.animateToColor(const Color(0xFF630000).withOpacity(0.7));
+      gameRef.add(
+        Orc(
+          Vector2(
+            (gameRef.player?.position.x ?? 0) - Random().nextInt(20),
+            (gameRef.player?.position.y ?? 0) - Random().nextInt(20),
+          ),
+        ),
+      );
       idle();
       _addDamageAnimation(() {
         lockMove = false;
+        gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.7));
       });
     }
     super.receiveDamage(attacker, damage, from);

@@ -12,8 +12,6 @@ import 'package:moodexample/widgets/action_button/action_button.dart';
 import 'package:moodexample/views/settings/laboratory/game/components/human_player.dart';
 import 'package:moodexample/views/settings/laboratory/game/components/light.dart';
 import 'package:moodexample/views/settings/laboratory/game/components/orc.dart';
-import 'package:moodexample/views/settings/laboratory/game/sprite_sheet/sprite_sheet_orc.dart';
-import 'package:moodexample/views/settings/laboratory/game/sprite_sheet/sprite_sheet_player.dart';
 
 class GamePage extends StatefulWidget {
   const GamePage({Key? key}) : super(key: key);
@@ -23,13 +21,6 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
-  @override
-  void initState() {
-    super.initState();
-    SpriteSheetOrc.load();
-    SpriteSheetPlayer.load();
-  }
-
   @override
   Widget build(BuildContext context) {
     // 屏幕自适应 设置尺寸（填写设计中设备的屏幕尺寸）如果设计基于360dp * 690dp的屏幕
@@ -95,6 +86,7 @@ class Game extends StatelessWidget {
           actions: [
             JoystickAction(
               actionId: 1,
+              color: Colors.deepOrange,
               margin: const EdgeInsets.all(65),
             )
           ],
@@ -104,9 +96,9 @@ class Game extends StatelessWidget {
           forceTileSize: Size(tileSize, tileSize),
           objectsBuilder: {
             'light': (properties) => Light(
-              properties.position,
-              properties.size,
-            ),
+                  properties.position,
+                  properties.size,
+                ),
             'orc': (properties) => Orc(properties.position),
           },
         ),
@@ -130,6 +122,7 @@ class Game extends StatelessWidget {
                 border: Border.all(color: Colors.white.withOpacity(0.5)),
                 playerColor: Colors.green,
                 enemyColor: Colors.red,
+                npcColor: Colors.red,
               ),
         },
         initialActiveOverlays: const [

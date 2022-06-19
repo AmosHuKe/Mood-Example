@@ -11,6 +11,8 @@ import 'package:moodexample/widgets/action_button/action_button.dart';
 import 'package:moodexample/views/settings/laboratory/3d/index.dart';
 import 'package:moodexample/views/settings/laboratory/unimp_miniapps/index.dart';
 import 'package:moodexample/views/settings/laboratory/game/index.dart';
+import 'package:moodexample/views/settings/laboratory/game/sprite_sheet/sprite_sheet_orc.dart';
+import 'package:moodexample/views/settings/laboratory/game/sprite_sheet/sprite_sheet_player.dart';
 
 class LaboratoryPage extends StatefulWidget {
   const LaboratoryPage({Key? key}) : super(key: key);
@@ -142,7 +144,10 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
           ),
           title: "游戏",
           subtitle: "2D 游戏",
-          onPressed: () {
+          onPressed: () async {
+            await SpriteSheetOrc.load();
+            await SpriteSheetPlayer.load();
+            if (!mounted) return;
             Navigator.push(
               context,
               MaterialPageRoute(

@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'package:bonfire/bonfire.dart';
@@ -26,39 +27,78 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
             runUpLeft: SpriteSheetOrc.getRunTopLeft(),
             runUpRight: SpriteSheetOrc.getRunTopRight(),
           ),
-          speed: tileSize * 3,
+          speed: tileSize * 3 + Random().nextInt(20),
           size: Vector2.all(tileSize * 2.9),
         ) {
+    /// 设置碰撞系统
     setupCollision(
       CollisionConfig(
         collisions: [
+          /// 碰撞形状及体积
           CollisionArea.rectangle(
             size: Vector2(
-              size.x * 0.2,
-              size.y * 0.15,
+              size.x * 0.3,
+              size.y * 0.2,
             ),
-            align: Vector2(tileSize * 1.15, tileSize * 1.5),
+            align: Vector2(tileSize * 1, tileSize * 1.5),
           ),
         ],
       ),
     );
   }
 
+  /// 碰撞触发
+  @override
+  bool onCollision(GameComponent component, bool active) {
+    bool active = true;
+
+    /// 碰撞 Orc 不发生碰撞
+    if (component is Orc) {
+      debugPrint("碰撞 Orc");
+      active = false;
+    }
+    return active;
+  }
+
   @override
   void update(double dt) {
     if (canMove) {
+      /// 发现玩家
       seePlayer(
         radiusVision: tileSize * 4,
+
+        /// 发现
         observed: (player) {
+          /// 相机跟随玩家放大
+          gameRef.camera.moveToPlayerAnimated(
+            zoom: 1.5,
+            finish: () {},
+            duration: const Duration(seconds: 1),
+            curve: Curves.decelerate,
+          );
+
+          /// 跟随玩家
           followComponent(
             player,
             dt,
             closeComponent: (comp) {
+              /// 抵达玩家，开始攻击
               _execAttack();
             },
           );
         },
+
+        /// 未发现
         notObserved: () {
+          /// 相机跟随玩家变为正常
+          gameRef.camera.moveToPlayerAnimated(
+            zoom: 1,
+            finish: () {},
+            duration: const Duration(seconds: 1),
+            curve: Curves.decelerate,
+          );
+
+          /// 随机移动
           runRandomMovement(
             dt,
             speed: speed / 3,
@@ -70,12 +110,16 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
     super.update(dt);
   }
 
+  /// 死亡
   @override
   void die() {
     canMove = false;
+
+    /// 死亡动画
     animation?.playOnce(
       SpriteSheetOrc.getDie(),
       onFinish: () {
+        /// 动画完成后从父类移除
         removeFromParent();
       },
       runToTheEnd: true,
@@ -83,19 +127,24 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
     super.die();
   }
 
+  /// 受伤触发
   @override
   void receiveDamage(AttackFromEnum attacker, double damage, identify) {
     if (!isDead) {
+      /// 伤害显示
       showDamage(
         damage,
         initVelocityTop: -2,
-        config: TextStyle(color: Colors.white, fontSize: tileSize / 2),
+        config: TextStyle(color: Colors.amberAccent, fontSize: tileSize / 2),
       );
+
+      /// 受伤动画
       _addDamageAnimation();
     }
     super.receiveDamage(attacker, damage, identify);
   }
 
+  /// 攻击动画
   void _addAttackAnimation() {
     Future<SpriteAnimation> newAnimation;
     switch (lastDirection) {
@@ -138,6 +187,7 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
     );
   }
 
+  /// 受伤动画
   void _addDamageAnimation() {
     canMove = false;
     Future<SpriteAnimation> newAnimation;
@@ -187,6 +237,7 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
   @override
   void render(Canvas canvas) {
     if (!isDead) {
+      /// 生命条
       drawDefaultLifeBar(
         canvas,
         drawInBottom: true,
@@ -205,6 +256,7 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
     super.render(canvas);
   }
 
+  /// 攻击
   void _execAttack() {
     simpleAttackMelee(
       damage: 10,

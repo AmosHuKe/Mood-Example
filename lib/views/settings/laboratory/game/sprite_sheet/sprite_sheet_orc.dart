@@ -186,6 +186,7 @@ class SpriteSheetOrc {
         .asFuture();
   }
 
+  /// 死亡动画
   static Future<SpriteAnimation> getDie() {
     return spriteSheetOrcDie
         .getAnimation(
