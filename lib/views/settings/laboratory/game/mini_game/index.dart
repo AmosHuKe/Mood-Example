@@ -78,8 +78,8 @@ class Game extends StatelessWidget {
     return LayoutBuilder(builder: (context, constraints) {
       final tileSize = max(constraints.maxHeight, constraints.maxWidth) / 20;
       return BonfireTiledWidget(
-        constructionMode: true,
-        showCollisionArea: true,
+        constructionMode: false,
+        showCollisionArea: false,
         joystick: Joystick(
           keyboardConfig: KeyboardConfig(
             acceptedKeys: [

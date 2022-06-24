@@ -115,8 +115,8 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "远程射击、怪物生成包围",
-          subtitle: "灵感来源：《20 Minutes Till Dawn》，素材来源：Mini Fantasy",
+          title: "远程射击、怪物生成",
+          subtitle: "素材来源：Mini Fantasy",
           onPressed: () async {
             /// 载入游戏静态资源
             await mini_game.SpriteSheetOrc.load();
