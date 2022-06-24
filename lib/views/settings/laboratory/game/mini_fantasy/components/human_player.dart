@@ -34,6 +34,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
           life: 1000,
           size: Vector2.all(tileSize * 2.9),
         ) {
+    /// 发光
     setupLighting(
       LightingConfig(
         radius: width / 2,
@@ -42,6 +43,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       ),
     );
 
+    /// 碰撞
     setupCollision(
       CollisionConfig(
         collisions: [
@@ -167,6 +169,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     super.die();
   }
 
+  /// 攻击动画
   void _addAttackAnimation() {
     Future<SpriteAnimation> newAnimation;
     switch (lastDirection) {
@@ -207,6 +210,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     animation?.playOnce(newAnimation);
   }
 
+  /// 受伤动画
   void _addDamageAnimation(VoidCallback onFinish) {
     Future<SpriteAnimation> newAnimation;
     switch (lastDirection) {

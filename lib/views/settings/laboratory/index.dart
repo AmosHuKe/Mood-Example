@@ -11,8 +11,6 @@ import 'package:moodexample/widgets/action_button/action_button.dart';
 import 'package:moodexample/views/settings/laboratory/3d/index.dart';
 import 'package:moodexample/views/settings/laboratory/unimp_miniapps/index.dart';
 import 'package:moodexample/views/settings/laboratory/game/index.dart';
-import 'package:moodexample/views/settings/laboratory/game/sprite_sheet/sprite_sheet_orc.dart';
-import 'package:moodexample/views/settings/laboratory/game/sprite_sheet/sprite_sheet_player.dart';
 
 class LaboratoryPage extends StatefulWidget {
   const LaboratoryPage({Key? key}) : super(key: key);
@@ -142,12 +140,9 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "游戏",
-          subtitle: "2D 游戏",
-          onPressed: () async {
-            await SpriteSheetOrc.load();
-            await SpriteSheetPlayer.load();
-            if (!mounted) return;
+          title: "游戏合集",
+          subtitle: "基于 Flame、Bonfire 的 2D 游戏。",
+          onPressed: () {
             Navigator.push(
               context,
               MaterialPageRoute(

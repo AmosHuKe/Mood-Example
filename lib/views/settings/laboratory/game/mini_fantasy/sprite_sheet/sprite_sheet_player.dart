@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:bonfire/bonfire.dart';
 
 class SpriteSheetPlayer {
+  static const assetsPath = 'game/mini_fantasy';
   static double animSpeed = 0.05;
   static late Image spriteSheetPlayerRun;
   static late Image spriteSheetPlayerAttack;
@@ -19,11 +20,14 @@ class SpriteSheetPlayer {
   static late Future<SpriteAnimation> idleTopLeft;
 
   static Future load() async {
-    spriteSheetPlayerRun = await Flame.images.load('game/human_run.png');
-    spriteSheetPlayerAttack = await Flame.images.load('game/human_attack.png');
-    spriteSheetPlayerIdle = await Flame.images.load('game/human_idle.png');
-    spriteSheetPlayerDie = await Flame.images.load('game/human_die.png');
-    spriteSheetPlayerDamage = await Flame.images.load('game/human_damage.png');
+    spriteSheetPlayerRun = await Flame.images.load('$assetsPath/human_run.png');
+    spriteSheetPlayerAttack =
+        await Flame.images.load('$assetsPath/human_attack.png');
+    spriteSheetPlayerIdle =
+        await Flame.images.load('$assetsPath/human_idle.png');
+    spriteSheetPlayerDie = await Flame.images.load('$assetsPath/human_die.png');
+    spriteSheetPlayerDamage =
+        await Flame.images.load('$assetsPath/human_damage.png');
     runBottomRight = spriteSheetPlayerRun
         .getAnimation(
           size: Vector2.all(21),

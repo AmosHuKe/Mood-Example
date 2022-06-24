@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:bonfire/bonfire.dart';
 
 class SpriteSheetOrc {
+  static const assetsPath = 'game/mini_fantasy';
   static double animSpeed = 0.05;
   static late Image spriteSheetOrcRun;
   static late Image spriteSheetOrcAttack;
@@ -11,11 +12,13 @@ class SpriteSheetOrc {
   static late Image spriteSheetOrcDie;
 
   static Future load() async {
-    spriteSheetOrcRun = await Flame.images.load('game/orc_run.png');
-    spriteSheetOrcAttack = await Flame.images.load('game/orc_attack.png');
-    spriteSheetOrcIdle = await Flame.images.load('game/orc_idle.png');
-    spriteSheetOrcDamage = await Flame.images.load('game/orc_damage.png');
-    spriteSheetOrcDie = await Flame.images.load('game/orc_die.png');
+    spriteSheetOrcRun = await Flame.images.load('$assetsPath/orc_run.png');
+    spriteSheetOrcAttack =
+        await Flame.images.load('$assetsPath/orc_attack.png');
+    spriteSheetOrcIdle = await Flame.images.load('$assetsPath/orc_idle.png');
+    spriteSheetOrcDamage =
+        await Flame.images.load('$assetsPath/orc_damage.png');
+    spriteSheetOrcDie = await Flame.images.load('$assetsPath/orc_die.png');
   }
 
   static Future<SpriteAnimation> getRunBottomRight() {

@@ -1,17 +1,14 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:remixicon/remixicon.dart';
-import 'package:bonfire/bonfire.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
-import 'package:moodexample/views/settings/laboratory/game/components/human_player.dart';
-import 'package:moodexample/views/settings/laboratory/game/components/light.dart';
-import 'package:moodexample/views/settings/laboratory/game/components/orc.dart';
+import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/index.dart';
+import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/sprite_sheet/sprite_sheet_orc.dart';
+import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/sprite_sheet/sprite_sheet_player.dart';
 
 class GamePage extends StatefulWidget {
   const GamePage({Key? key}) : super(key: key);
@@ -38,7 +35,7 @@ class _GamePageState extends State<GamePage> {
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
           titleTextStyle: TextStyle(color: Colors.black, fontSize: 14.sp),
-          title: const Text("游戏"),
+          title: const Text("游戏合集"),
           leading: ActionButton(
             decoration: BoxDecoration(
                 gradient: const LinearGradient(
@@ -59,76 +56,124 @@ class _GamePageState extends State<GamePage> {
           ),
         ),
         body: const SafeArea(
-          child: Game(),
+          child: UniMPMiniappsBody(),
         ),
       ),
     );
   }
 }
 
-class Game extends StatelessWidget {
-  const Game({Key? key}) : super(key: key);
+class UniMPMiniappsBody extends StatefulWidget {
+  const UniMPMiniappsBody({Key? key}) : super(key: key);
+
+  @override
+  State<UniMPMiniappsBody> createState() => _UniMPMiniappsBodyState();
+}
+
+class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding:
+          EdgeInsets.only(left: 24.w, right: 24.w, top: 24.w, bottom: 20.h),
+      physics: const AlwaysScrollableScrollPhysics(
+        parent: BouncingScrollPhysics(),
+      ),
+      children: [
+        /// 小程序
+        ListCard(
+          leading: Icon(
+            Remix.gamepad_line,
+            size: 32.sp,
+            color: Colors.black87,
+          ),
+          title: "Mini Fantasy",
+          subtitle: "2D 地牢风格游戏，基于 Mini Fantasy 示例，修改了一些奇怪的东西。",
+          onPressed: () async {
+            /// 载入游戏静态资源
+            await SpriteSheetOrc.load();
+            await SpriteSheetPlayer.load();
+            if (!mounted) return;
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MiniFantasyPage(),
+              ),
+            );
+          },
+        ),
+        ListCard(
+          leading: Icon(
+            Remix.gamepad_line,
+            size: 32.sp,
+            color: Colors.black87,
+          ),
+          title: "远程射击、怪物生成包围",
+          subtitle: "灵感来源：《20 Minutes Till Dawn》，素材来源：Mini Fantasy",
+          onPressed: () async {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SizedBox(),
+              ),
+            );
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class ListCard extends StatelessWidget {
+  const ListCard({
+    required this.title,
+    required this.subtitle,
+    required this.leading,
+    this.onPressed,
+    Key? key,
+  }) : super(key: key);
+
+  /// 标题
+  final String title;
+
+  /// 描述
+  final String subtitle;
+
+  /// 图标
+  final Widget leading;
+
+  /// 点击打开触发
+  final Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      final tileSize = max(constraints.maxHeight, constraints.maxWidth) / 20;
-      return BonfireTiledWidget(
-        constructionMode: false,
-        showCollisionArea: false,
-        joystick: Joystick(
-          keyboardConfig: KeyboardConfig(
-            acceptedKeys: [
-              LogicalKeyboardKey.space,
-            ],
-          ),
-          directional: JoystickDirectional(),
-          actions: [
-            JoystickAction(
-              actionId: 1,
-              color: Colors.deepOrange,
-              margin: const EdgeInsets.all(65),
-            )
-          ],
-        ), // required
-        map: TiledWorldMap(
-          'game/tiles/map.json',
-          forceTileSize: Size(tileSize, tileSize),
-          objectsBuilder: {
-            'light': (properties) => Light(
-                  properties.position,
-                  properties.size,
-                ),
-            'orc': (properties) => Orc(properties.position),
-          },
-        ),
-        player: HumanPlayer(Vector2(4 * tileSize, 4 * tileSize)),
-        lightingColorGame: Colors.black.withOpacity(0.7),
-        progress: Container(
-          color: Colors.black,
-          child: const Center(
-            child: Text(
-              '载入中...',
-              style: TextStyle(color: Colors.white),
+    return Card(
+      margin: EdgeInsets.only(top: 12.w, bottom: 12.w),
+      shadowColor: Colors.black38,
+      shape:
+          ContinuousRectangleBorder(borderRadius: BorderRadius.circular(48.sp)),
+      child: Padding(
+        padding: EdgeInsets.all(14.w),
+        child: Column(
+          children: [
+            ListTile(
+              leading: leading,
+              title: Text(title),
+              subtitle: Text(subtitle),
             ),
-          ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  onPressed: onPressed,
+                  child: const Text('打开'),
+                ),
+                const SizedBox(width: 8),
+              ],
+            ),
+          ],
         ),
-        overlayBuilderMap: {
-          'miniMap': (context, game) => MiniMap(
-                game: game,
-                margin: const EdgeInsets.all(20),
-                borderRadius: BorderRadius.circular(100),
-                size: Vector2.all(constraints.maxHeight / 5),
-                border: Border.all(color: Colors.white.withOpacity(0.5)),
-                playerColor: Colors.green,
-                enemyColor: Colors.red,
-                npcColor: Colors.red,
-              ),
-        },
-        initialActiveOverlays: const [
-          'miniMap',
-        ],
-      );
-    });
+      ),
+    );
   }
 }
