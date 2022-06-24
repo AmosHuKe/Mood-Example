@@ -46,8 +46,8 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     /// 发光
     setupLighting(
       LightingConfig(
-        radius: width,
-        blurBorder: width,
+        radius: width * 2,
+        blurBorder: width * 10,
         color: Colors.transparent,
       ),
     );
@@ -99,7 +99,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       notObserved: () {
         /// 相机操作
         gameRef.camera.moveToPlayerAnimated(
-          zoom: 1,
+          zoom: 0.5,
           finish: () {},
           duration: const Duration(seconds: 1),
           curve: Curves.decelerate,
@@ -108,7 +108,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       observed: (enemies) {
         /// 相机操作
         gameRef.camera.moveToPlayerAnimated(
-          zoom: 1.5,
+          zoom: 0.6,
           finish: () {},
           duration: const Duration(seconds: 1),
           curve: Curves.decelerate,
@@ -204,8 +204,8 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       );
       // lockMove = true;
       /// 屏幕变红
-      gameRef.lighting
-          ?.animateToColor(const Color(0xFF630000).withOpacity(0.7));
+      gameRef.lighting?.animateToColor(
+          const Color.fromARGB(255, 26, 0, 0).withOpacity(0.95));
       idle();
       _addDamageAnimation(() {
         lockMove = false;
@@ -225,7 +225,8 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
         gameRef.add(
           GameDecoration.withSprite(
             sprite: Sprite.load('$assetsPath/crypt.png'),
-            position: gameRef.player?.position ?? Vector2(position.x, position.y),
+            position:
+                gameRef.player?.position ?? Vector2(position.x, position.y),
             size: Vector2.all(tileSize * 3.2),
           ),
         );
@@ -238,23 +239,25 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
   /// 远程攻击
   void _actionAttackRange() {
     simpleAttackRange(
+      id: "player_fire_ball",
       animationRight: SpriteSheetFireBall.fireBallAttackRight(),
       animationLeft: SpriteSheetFireBall.fireBallAttackLeft(),
       animationUp: SpriteSheetFireBall.fireBallAttackTop(),
       animationDown: SpriteSheetFireBall.fireBallAttackBottom(),
       animationDestroy: SpriteSheetFireBall.fireBallExplosion(),
-      size: Vector2(tileSize * 0.65, tileSize * 0.65),
-      damage: 10,
-      speed: maxSpeed * (tileSize / 24),
-      enableDiagonal: false,
+      size: Vector2(tileSize * 2, tileSize * 2),
+      damage: 10.0 + Random().nextInt(10),
+      speed: maxSpeed * (tileSize / 12),
+      enableDiagonal: true,
+      withCollision: false,
       onDestroy: () {
         debugPrint('火球消失');
       },
-      collision: CollisionConfig(
-        collisions: [
-          CollisionArea.rectangle(size: Vector2(tileSize / 2, tileSize / 2)),
-        ],
-      ),
+      // collision: CollisionConfig(
+      //   collisions: [
+      //     CollisionArea.rectangle(size: Vector2(tileSize / 2, tileSize / 2)),
+      //   ],
+      // ),
       lightingConfig: LightingConfig(
         radius: tileSize * 0.9,
         blurBorder: tileSize / 2,

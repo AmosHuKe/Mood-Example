@@ -58,8 +58,11 @@ class _MiniGamePageState extends State<MiniGamePage> {
             },
           ),
         ),
-        body: const SafeArea(
-          child: Game(),
+        body: const RotatedBox(
+          quarterTurns: -1,
+          child: SafeArea(
+            child: Game(),
+          ),
         ),
       ),
     );
@@ -75,8 +78,8 @@ class Game extends StatelessWidget {
     return LayoutBuilder(builder: (context, constraints) {
       final tileSize = max(constraints.maxHeight, constraints.maxWidth) / 20;
       return BonfireTiledWidget(
-        constructionMode: false,
-        showCollisionArea: false,
+        constructionMode: true,
+        showCollisionArea: true,
         joystick: Joystick(
           keyboardConfig: KeyboardConfig(
             acceptedKeys: [
@@ -121,7 +124,7 @@ class Game extends StatelessWidget {
           },
         ),
         player: HumanPlayer(Vector2(48 * tileSize, 42 * tileSize)),
-        lightingColorGame: Colors.black.withOpacity(0.95),
+        lightingColorGame: Colors.black.withOpacity(0.9),
         progress: Container(
           color: Colors.black,
           child: const Center(

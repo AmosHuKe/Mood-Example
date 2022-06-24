@@ -1,3 +1,4 @@
+import 'dart:async' as async;
 import 'dart:math';
 import 'package:flutter/material.dart';
 
@@ -7,8 +8,12 @@ import '../sprite_sheet/sprite_sheet_orc.dart';
 
 double tileSize = 20.0;
 
-class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
+class Orc extends SimpleEnemy
+    with ObjectCollision, AutomaticRandomMovement, MoveToPositionAlongThePath {
   bool canMove = true;
+
+  /// 敌对生物生成延迟时间
+  async.Timer? _timerEnemy;
 
   Orc(Vector2 position)
       : super(
@@ -27,7 +32,7 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
             runUpLeft: SpriteSheetOrc.getRunTopLeft(),
             runUpRight: SpriteSheetOrc.getRunTopRight(),
           ),
-          speed: tileSize * 3 + Random().nextInt(100),
+          speed: tileSize * 1 + Random().nextInt(100),
           size: Vector2.all(tileSize * 5),
         ) {
     /// 设置碰撞系统
@@ -45,12 +50,23 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
         ],
       ),
     );
+    setupMoveToPositionAlongThePath(
+      pathLineColor: Colors.lightBlueAccent.withOpacity(0.5),
+      barriersCalculatedColor: Colors.blue.withOpacity(0.5),
+      pathLineStrokeWidth: 4,
+      showBarriersCalculated:
+          false, // uses this to debug. This enable show in the map the tiles considered collision by algorithm.
+      gridSizeIsCollisionSize: true,
+    );
   }
 
   /// 碰撞触发
   @override
   bool onCollision(GameComponent component, bool active) {
     bool active = true;
+    if (component is FlyingAttackObject) {
+      active = false;
+    }
     return active;
   }
 
@@ -72,6 +88,18 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
       );
     }
     super.render(canvas);
+  }
+
+  /// 自动寻路
+  void _moveToPositionAlongThePath(Vector2 position, {int delay = 3000}) {
+    if (_timerEnemy == null) {
+      _timerEnemy = async.Timer(Duration(milliseconds: delay), () {
+        _timerEnemy = null;
+      });
+    } else {
+      return;
+    }
+    moveToPositionAlongThePath(position);
   }
 
   @override
@@ -100,7 +128,7 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
           runRandomMovement(
             dt,
             speed: speed / 3,
-            maxDistance: (tileSize * 2).toInt(),
+            maxDistance: (tileSize * 4).toInt(),
           );
         },
       );
