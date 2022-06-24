@@ -18,7 +18,7 @@
 
 
 `情绪记录` 样例工程  
-管理自己的情绪，记录当下所见所想，以及其他`实验室`功能  
+管理自己的情绪，记录当下所见所想，以及其他`实验室`功能（不定时的更新一些小实验）  
 运用 `Flutter` 的实践工程，主要目的是学习、实践。  
 > 注意：由于是学习实践工程，所以重点在于学习，许多业务逻辑可能并不符合现实。  
 > Emoji因设备缘故，会存在不同样式。  
@@ -48,10 +48,10 @@
 - [x] Web 访问  
 - [x] 本地通知  
 - [x] 动画  
-- [x] 实验室（占用 APP 大部分包体积）  
+- [x] 实验室（占用 APP 大部分包体积，源码位置查看项目结构）  
   - [x] uniapp 小程序（UniMPSDK v3.4.7）  
   - [x] 3D 城市（obj 格式）  
-  - [x] 2D 游戏  
+  - [x] 游戏合集（Flame、Bonfire）  
   ……  
 - [ ] 隐私解锁  
 ……
@@ -62,19 +62,25 @@
 | 环境 | 支持版本 |  
 | --- | --- |  
 | Android | 最低：Android 5.0 (API 21) |  
-| IOS | 未测试 |  
+| IOS | 未测试，正在适配中... |  
 
 
 ## 🛠️ 开发环境
 
 ### 基本环境  
 
+> Windows  
 ```
 [√] Flutter (Channel stable, 3.0.2, on Microsoft Windows [版本 10.0.22000.675], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 31.0.0)
 [√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.1.3)
 [√] Android Studio (version 2021.2)
 [√] VS Code (version 1.68.0)
+```  
+
+> macOS  
+```
+正在适配中...
 ```  
 
 
@@ -194,7 +200,19 @@ $ flutter test integration_test/app_test.dart
 │   │   └── app_theme.dart                          # 主题基础
 │   ├── view_models                                 # 业务逻辑
 │   ├── views                                       # 视图
-│   ├── widgets                                     # 组件相关
+│   │   ├── home                                    # 首页
+│   │   ├── menu_screen                             # 侧边设置栏
+│   │   ├── mood                                    # 心情页
+│   │   ├── onboarding                              # 用户引导页
+│   │   ├── settings                                # 侧边设置栏-其他页面组件（实验室等）
+│   │   │   └── laboratory                          # 实验室
+│   │   │   │   ├── 3d                              # 3D 城市
+│   │   │   │   ├── game                            # 游戏合集
+│   │   │   │   ├── unimp_miniapps                  # uniapp 小程序
+│   │   │   │   └── index.dart                      # 实验室首页
+│   │   ├── statistic                               # 统计页
+│   │   └── web_view                                # WebView
+│   ├── widgets                                     # 通用组件相关
 │   ├── application.dart                            # 主应用
 │   ├── home_screen.dart                            # 主应用导航相关
 │   ├── main.dart                                   # 主应用入口
@@ -250,6 +268,7 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 * [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) [[BSD-3-Clause License](https://pub.dev/packages/flutter_local_notifications/license)]  
 * [flutter_native_timezone](https://pub.dev/packages/flutter_native_timezone) [[Apache-2.0 License](https://pub.dev/packages/flutter_native_timezone/license)]  
 * [animations](https://pub.dev/packages/animations) [[BSD-3-Clause License](https://pub.dev/packages/animations/license)]  
+* [bonfire](https://pub.dev/packages/bonfire) [[MIT License](https://pub.dev/packages/bonfire/license)]  
 
 
 ## License 许可证
