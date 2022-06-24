@@ -7,8 +7,15 @@ import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
 import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/index.dart';
-import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/sprite_sheet/sprite_sheet_orc.dart';
-import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/sprite_sheet/sprite_sheet_player.dart';
+import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/sprite_sheet/sprite_sheet_orc.dart'
+    as mini_fantasy;
+import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/sprite_sheet/sprite_sheet_player.dart'
+    as mini_fantasy;
+import 'package:moodexample/views/settings/laboratory/game/mini_game/index.dart';
+import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_sheet/sprite_sheet_orc.dart'
+    as mini_game;
+import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_sheet/sprite_sheet_player.dart'
+    as mini_game;
 
 class GamePage extends StatefulWidget {
   const GamePage({Key? key}) : super(key: key);
@@ -91,8 +98,8 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
           subtitle: "2D 地牢风格游戏，基于 Mini Fantasy 示例，修改了一些奇怪的东西。",
           onPressed: () async {
             /// 载入游戏静态资源
-            await SpriteSheetOrc.load();
-            await SpriteSheetPlayer.load();
+            await mini_fantasy.SpriteSheetOrc.load();
+            await mini_fantasy.SpriteSheetPlayer.load();
             if (!mounted) return;
             Navigator.push(
               context,
@@ -111,10 +118,14 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
           title: "远程射击、怪物生成包围",
           subtitle: "灵感来源：《20 Minutes Till Dawn》，素材来源：Mini Fantasy",
           onPressed: () async {
+            /// 载入游戏静态资源
+            await mini_game.SpriteSheetOrc.load();
+            await mini_game.SpriteSheetPlayer.load();
+            if (!mounted) return;
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const SizedBox(),
+                builder: (context) => const MiniGamePage(),
               ),
             );
           },

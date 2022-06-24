@@ -9,18 +9,18 @@ import 'package:bonfire/bonfire.dart';
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
-import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/components/human_player.dart';
-import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/components/light.dart';
-import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/components/orc.dart';
+import 'package:moodexample/views/settings/laboratory/game/mini_game/components/human_player.dart';
+import 'package:moodexample/views/settings/laboratory/game/mini_game/components/light.dart';
+import 'package:moodexample/views/settings/laboratory/game/mini_game/components/orc.dart';
 
-class MiniFantasyPage extends StatefulWidget {
-  const MiniFantasyPage({Key? key}) : super(key: key);
+class MiniGamePage extends StatefulWidget {
+  const MiniGamePage({Key? key}) : super(key: key);
 
   @override
-  State<MiniFantasyPage> createState() => _MiniFantasyPageState();
+  State<MiniGamePage> createState() => _MiniGamePageState();
 }
 
-class _MiniFantasyPageState extends State<MiniFantasyPage> {
+class _MiniGamePageState extends State<MiniGamePage> {
   @override
   Widget build(BuildContext context) {
     // 屏幕自适应 设置尺寸（填写设计中设备的屏幕尺寸）如果设计基于360dp * 690dp的屏幕
@@ -38,7 +38,7 @@ class _MiniFantasyPageState extends State<MiniFantasyPage> {
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
           titleTextStyle: TextStyle(color: Colors.black, fontSize: 14.sp),
-          title: const Text("MiniFantasy"),
+          title: const Text("MiniGame"),
           leading: ActionButton(
             decoration: BoxDecoration(
                 gradient: const LinearGradient(
@@ -68,7 +68,7 @@ class _MiniFantasyPageState extends State<MiniFantasyPage> {
 
 class Game extends StatelessWidget {
   const Game({Key? key}) : super(key: key);
-  static const assetsPath = 'game/mini_fantasy';
+  static const assetsPath = 'game/mini_game';
 
   @override
   Widget build(BuildContext context) {
@@ -83,17 +83,34 @@ class Game extends StatelessWidget {
               LogicalKeyboardKey.space,
             ],
           ),
-          directional: JoystickDirectional(),
+          directional: JoystickDirectional(
+            spriteBackgroundDirectional:
+                Sprite.load('$assetsPath/joystick_background.png'),
+            spriteKnobDirectional: Sprite.load('$assetsPath/joystick_knob.png'),
+            size: 100,
+            isFixed: false,
+          ),
           actions: [
             JoystickAction(
               actionId: 1,
-              color: Colors.deepOrange,
-              margin: const EdgeInsets.all(65),
+              sprite: Sprite.load('$assetsPath/joystick_atack.png'),
+              spritePressed:
+                  Sprite.load('$assetsPath/joystick_atack_selected.png'),
+              size: 80,
+              margin: EdgeInsets.only(bottom: 40.w, right: 40.w),
+            ),
+            JoystickAction(
+              actionId: 2,
+              sprite: Sprite.load('$assetsPath/joystick_atack_range.png'),
+              spritePressed:
+                  Sprite.load('$assetsPath/joystick_atack_range_selected.png'),
+              size: 50,
+              margin: EdgeInsets.only(bottom: 40.w, right: 120.w),
             )
           ],
         ), // required
         map: TiledWorldMap(
-          '$assetsPath/tiles/map.json',
+          '$assetsPath/tiles/mini_game_map.json',
           forceTileSize: Size(tileSize, tileSize),
           objectsBuilder: {
             'light': (properties) => Light(
@@ -103,8 +120,8 @@ class Game extends StatelessWidget {
             'orc': (properties) => Orc(properties.position),
           },
         ),
-        player: HumanPlayer(Vector2(4 * tileSize, 4 * tileSize)),
-        lightingColorGame: Colors.black.withOpacity(0.7),
+        player: HumanPlayer(Vector2(48 * tileSize, 42 * tileSize)),
+        lightingColorGame: Colors.black.withOpacity(0.95),
         progress: Container(
           color: Colors.black,
           child: const Center(

@@ -118,6 +118,10 @@ flutter:
     - assets/3d/city/
     - assets/images/game/mini_fantasy/
     - assets/images/game/mini_fantasy/tiles/
+    - assets/images/game/mini_game/
+    - assets/images/game/mini_game/tiles/
+    - assets/images/game/mini_game/enemy/orc/
+    - assets/images/game/mini_game/player/human/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
