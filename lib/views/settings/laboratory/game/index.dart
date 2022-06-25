@@ -1,3 +1,4 @@
+import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -116,16 +117,27 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
             color: Colors.black87,
           ),
           title: "远程射击、怪物生成",
-          subtitle: "素材来源：Mini Fantasy",
+          subtitle:
+              "素材来源：https://github.com/RafaelBarbosatec/mini_fantasy、https://0x72.itch.io/dungeontileset-ii",
           onPressed: () async {
+            /// 横屏
+            await Flame.device.setLandscape();
+
             /// 载入游戏静态资源
-            await mini_game.SpriteSheetOrc.load();
             await mini_game.SpriteSheetPlayer.load();
+            await mini_game.SpriteSheetOrc.load();
             if (!mounted) return;
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const MiniGamePage(),
+                builder: (context) => WillPopScope(
+                  onWillPop: () async {
+                    /// 竖屏
+                    await Flame.device.setPortrait();
+                    return true;
+                  },
+                  child: const MiniGamePage(),
+                ),
               ),
             );
           },

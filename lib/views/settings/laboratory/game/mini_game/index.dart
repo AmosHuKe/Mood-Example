@@ -11,7 +11,6 @@ import 'package:moodexample/widgets/action_button/action_button.dart';
 
 import 'package:moodexample/views/settings/laboratory/game/mini_game/components/human_player.dart';
 import 'package:moodexample/views/settings/laboratory/game/mini_game/components/light.dart';
-import 'package:moodexample/views/settings/laboratory/game/mini_game/components/orc.dart';
 
 class MiniGamePage extends StatefulWidget {
   const MiniGamePage({Key? key}) : super(key: key);
@@ -23,10 +22,11 @@ class MiniGamePage extends StatefulWidget {
 class _MiniGamePageState extends State<MiniGamePage> {
   @override
   Widget build(BuildContext context) {
-    // 屏幕自适应 设置尺寸（填写设计中设备的屏幕尺寸）如果设计基于360dp * 690dp的屏幕
+    // 屏幕自适应 设置尺寸（填写设计中设备的屏幕尺寸）
+    // 按横屏计算
     ScreenUtil.init(
       context,
-      designSize: const Size(AppTheme.wdp, AppTheme.hdp),
+      designSize: const Size(AppTheme.hdp, AppTheme.wdp),
     );
     return Theme(
       data: ThemeData(),
@@ -53,16 +53,15 @@ class _MiniGamePageState extends State<MiniGamePage> {
               Remix.arrow_left_line,
               size: 24.sp,
             ),
-            onTap: () {
+            onTap: () async {
+              await Flame.device.setPortrait();
+              if (!mounted) return;
               Navigator.of(context).pop();
             },
           ),
         ),
-        body: const RotatedBox(
-          quarterTurns: -1,
-          child: SafeArea(
-            child: Game(),
-          ),
+        body: const SafeArea(
+          child: Game(),
         ),
       ),
     );
@@ -100,7 +99,7 @@ class Game extends StatelessWidget {
               spritePressed:
                   Sprite.load('$assetsPath/joystick_atack_selected.png'),
               size: 80,
-              margin: EdgeInsets.only(bottom: 40.w, right: 40.w),
+              margin: const EdgeInsets.only(bottom: 50, right: 50),
             ),
             JoystickAction(
               actionId: 2,
@@ -108,7 +107,8 @@ class Game extends StatelessWidget {
               spritePressed:
                   Sprite.load('$assetsPath/joystick_atack_range_selected.png'),
               size: 50,
-              margin: EdgeInsets.only(bottom: 40.w, right: 120.w),
+                enableDirection: true,
+              margin: const EdgeInsets.only(bottom: 50, right: 200),
             )
           ],
         ), // required
@@ -120,11 +120,16 @@ class Game extends StatelessWidget {
                   properties.position,
                   properties.size,
                 ),
-            'orc': (properties) => Orc(properties.position),
           },
         ),
-        player: HumanPlayer(Vector2(48 * tileSize, 42 * tileSize)),
-        lightingColorGame: Colors.black.withOpacity(0.9),
+        cameraConfig: CameraConfig(
+          zoom: 0.6,
+          moveOnlyMapArea: true,
+          smoothCameraEnabled: true,
+          smoothCameraSpeed: 2,
+        ),
+        player: HumanPlayer(Vector2(tileSize * 20, tileSize * 11)),
+        lightingColorGame: Colors.black.withOpacity(0.8),
         progress: Container(
           color: Colors.black,
           child: const Center(
@@ -139,11 +144,8 @@ class Game extends StatelessWidget {
                 game: game,
                 margin: const EdgeInsets.all(20),
                 borderRadius: BorderRadius.circular(100),
-                size: Vector2.all(constraints.maxHeight / 5),
+                size: Vector2.all(constraints.maxHeight / 3),
                 border: Border.all(color: Colors.white.withOpacity(0.5)),
-                playerColor: Colors.green,
-                enemyColor: Colors.red,
-                npcColor: Colors.red,
               ),
         },
         initialActiveOverlays: const [

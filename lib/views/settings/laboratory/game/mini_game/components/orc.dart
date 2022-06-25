@@ -1,19 +1,15 @@
-import 'dart:async' as async;
 import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'package:bonfire/bonfire.dart';
 
 import '../sprite_sheet/sprite_sheet_orc.dart';
+import 'package:moodexample/views/settings/laboratory/game/mini_game/components/boss.dart';
 
 double tileSize = 20.0;
 
-class Orc extends SimpleEnemy
-    with ObjectCollision, AutomaticRandomMovement, MoveToPositionAlongThePath {
+class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
   bool canMove = true;
-
-  /// 敌对生物生成延迟时间
-  async.Timer? _timerEnemy;
 
   Orc(Vector2 position)
       : super(
@@ -32,7 +28,7 @@ class Orc extends SimpleEnemy
             runUpLeft: SpriteSheetOrc.getRunTopLeft(),
             runUpRight: SpriteSheetOrc.getRunTopRight(),
           ),
-          speed: tileSize * 1 + Random().nextInt(100),
+          speed: tileSize * 0.3 + Random().nextInt(100),
           size: Vector2.all(tileSize * 5),
         ) {
     /// 设置碰撞系统
@@ -43,20 +39,12 @@ class Orc extends SimpleEnemy
           CollisionArea.rectangle(
             size: Vector2(
               size.x * 0.3,
-              size.y * 0.2,
+              size.y * 0.4,
             ),
-            align: Vector2(tileSize * 1.7, tileSize * 2.5),
+            align: Vector2(tileSize * 1.7, tileSize * 1.5),
           ),
         ],
       ),
-    );
-    setupMoveToPositionAlongThePath(
-      pathLineColor: Colors.lightBlueAccent.withOpacity(0.5),
-      barriersCalculatedColor: Colors.blue.withOpacity(0.5),
-      pathLineStrokeWidth: 4,
-      showBarriersCalculated:
-          false, // uses this to debug. This enable show in the map the tiles considered collision by algorithm.
-      gridSizeIsCollisionSize: true,
     );
   }
 
@@ -64,7 +52,7 @@ class Orc extends SimpleEnemy
   @override
   bool onCollision(GameComponent component, bool active) {
     bool active = true;
-    if (component is FlyingAttackObject) {
+    if (component is Boss) {
       active = false;
     }
     return active;
@@ -76,30 +64,17 @@ class Orc extends SimpleEnemy
       /// 生命条
       drawDefaultLifeBar(
         canvas,
-        drawInBottom: true,
         margin: 0,
         width: tileSize * 1.5,
         height: tileSize / 5,
         borderRadius: BorderRadius.circular(2),
         align: Offset(
           tileSize * 1.7,
-          tileSize * 4,
+          tileSize / 4,
         ),
       );
     }
     super.render(canvas);
-  }
-
-  /// 自动寻路
-  void _moveToPositionAlongThePath(Vector2 position, {int delay = 3000}) {
-    if (_timerEnemy == null) {
-      _timerEnemy = async.Timer(Duration(milliseconds: delay), () {
-        _timerEnemy = null;
-      });
-    } else {
-      return;
-    }
-    moveToPositionAlongThePath(position);
   }
 
   @override

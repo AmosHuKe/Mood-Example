@@ -4,21 +4,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:bonfire/bonfire.dart';
-import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_sheet/sprite_sheet_fire_ball.dart';
 
 import '../sprite_sheet/sprite_sheet_player.dart';
+import 'boss.dart';
 import 'orc.dart';
+import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_sheet/sprite_sheet_fire_ball.dart';
+import 'package:moodexample/views/settings/laboratory/game/mini_game/util/custom_sprite_animation_widget.dart';
 
 double tileSize = 20.0;
 
 class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
   static const assetsPath = 'game/mini_game/player/human';
 
+  /// 第一次游玩
+  bool firstPlayer = false;
+
   /// 最大速度
   static double maxSpeed = tileSize * 10;
 
-  /// 敌对生物生成延迟时间
-  async.Timer? _timerEnemy;
+  /// Orc 敌对生物生成延迟时间
+  async.Timer? _timerEnemyOrc;
+
+  /// Boss 敌对生物生成延迟时间
+  async.Timer? _timerEnemyBoss;
+
+  /// 火球发射间隔
+  async.Timer? _timerFireBall;
 
   /// 移动锁
   bool lockMove = false;
@@ -40,7 +51,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
             runDownRight: SpriteSheetPlayer.runBottomRight,
           ),
           speed: maxSpeed,
-          life: 1000,
+          life: 500,
           size: Vector2.all(tileSize * 3.2),
         ) {
     /// 发光
@@ -59,7 +70,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
           CollisionArea.rectangle(
             size: Vector2(
               size.x * 0.2,
-              size.y * 0.15,
+              size.y * 0.2,
             ),
             align: Vector2(tileSize * 1.25, tileSize * 1.5),
           ),
@@ -91,30 +102,9 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
   @override
   void update(double dt) {
     if (isDead) return;
-    _enemyCreate();
-
-    /// 看见敌对
-    seeEnemy(
-      radiusVision: tileSize * 6,
-      notObserved: () {
-        /// 相机操作
-        gameRef.camera.moveToPlayerAnimated(
-          zoom: 0.5,
-          finish: () {},
-          duration: const Duration(seconds: 1),
-          curve: Curves.decelerate,
-        );
-      },
-      observed: (enemies) {
-        /// 相机操作
-        gameRef.camera.moveToPlayerAnimated(
-          zoom: 0.6,
-          finish: () {},
-          duration: const Duration(seconds: 1),
-          curve: Curves.decelerate,
-        );
-      },
-    );
+    _enemyOrcCreate();
+    _enemyBossCreate();
+    _firstPlayerSay();
     super.update(dt);
   }
 
@@ -154,11 +144,9 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     }
 
     /// 远程攻击
-    if ((event.id == LogicalKeyboardKey.space.keyId ||
-            event.id == LogicalKeyboardKey.select.keyId ||
-            event.id == 2) &&
-        event.event == ActionEvent.DOWN) {
-      _actionAttackRange();
+    if ((event.id == LogicalKeyboardKey.select.keyId || event.id == 2) &&
+        event.event == ActionEvent.MOVE) {
+      _actionAttackRange(event.radAngle);
     }
     super.joystickAction(event);
   }
@@ -173,18 +161,70 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     super.joystickChangeDirectional(event);
   }
 
-  /// 敌对生物生成
-  void _enemyCreate() {
-    if (_timerEnemy == null) {
-      _timerEnemy = async.Timer(const Duration(milliseconds: 2000), () {
-        _timerEnemy = null;
+  /// 第一次游玩对话
+  void _firstPlayerSay() {
+    if (!firstPlayer) {
+      firstPlayer = true;
+      TalkDialog.show(
+        gameRef.context,
+        [
+          Say(
+            text: [
+              const TextSpan(text: "你...好...陌...生...人..."),
+              const TextSpan(
+                text: "  怪物已经向你冲来！！！",
+                style: TextStyle(
+                  color: Colors.red,
+                ),
+              ),
+            ],
+            person: CustomSpriteAnimationWidget(
+              animation: SpriteSheetPlayer.idleBottomLeft,
+            ),
+            personSayDirection: PersonSayDirection.RIGHT,
+            speed: 100,
+          ),
+        ],
+      );
+    }
+  }
+
+  /// 敌对生物生成 Orc
+  void _enemyOrcCreate() {
+    if (_timerEnemyOrc == null) {
+      _timerEnemyOrc = async.Timer(const Duration(milliseconds: 2000), () {
+        _timerEnemyOrc = null;
       });
     } else {
       return;
     }
-    debugPrint('怪物生成了');
+    debugPrint('Orc 生成了');
+
+    /// 生成
     gameRef.add(
       Orc(
+        Vector2(
+          Random().nextInt(3000) + 100,
+          Random().nextInt(3000) + 100,
+        ),
+      ),
+    );
+  }
+
+  /// 敌对生物生成 Boss
+  void _enemyBossCreate() {
+    if (_timerEnemyBoss == null) {
+      _timerEnemyBoss = async.Timer(const Duration(milliseconds: 12000), () {
+        _timerEnemyBoss = null;
+      });
+    } else {
+      return;
+    }
+    debugPrint('Boss 生成了');
+
+    /// 生成
+    gameRef.add(
+      Boss(
         Vector2(
           Random().nextInt(3700) + 100,
           Random().nextInt(3700) + 100,
@@ -205,11 +245,11 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       // lockMove = true;
       /// 屏幕变红
       gameRef.lighting?.animateToColor(
-          const Color.fromARGB(255, 26, 0, 0).withOpacity(0.95));
+          const Color.fromARGB(255, 26, 0, 0).withOpacity(0.8));
       idle();
       _addDamageAnimation(() {
         lockMove = false;
-        gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.95));
+        gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.8));
       });
     }
     super.receiveDamage(attacker, damage, from);
@@ -218,18 +258,34 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
   /// 死亡
   @override
   void die() {
+    Vector2 playerPosition =
+        gameRef.player?.position ?? Vector2(position.x, position.y);
+    TalkDialog.show(
+      gameRef.context,
+      [
+        Say(
+          text: [
+            const TextSpan(text: "恩... 好像失败了..."),
+          ],
+          person: CustomSpriteAnimationWidget(
+            animation: SpriteSheetPlayer.getDamageTopLeft(),
+          ),
+          personSayDirection: PersonSayDirection.RIGHT,
+          speed: 100,
+        ),
+      ],
+    );
+    gameRef.add(
+      GameDecoration.withSprite(
+        sprite: Sprite.load('$assetsPath/crypt.png'),
+        position: playerPosition,
+        size: Vector2.all(tileSize * 3.2),
+      ),
+    );
     animation?.playOnce(
       SpriteSheetPlayer.getDie(),
       onFinish: () {
         removeFromParent();
-        gameRef.add(
-          GameDecoration.withSprite(
-            sprite: Sprite.load('$assetsPath/crypt.png'),
-            position:
-                gameRef.player?.position ?? Vector2(position.x, position.y),
-            size: Vector2.all(tileSize * 3.2),
-          ),
-        );
       },
       runToTheEnd: true,
     );
@@ -237,33 +293,59 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
   }
 
   /// 远程攻击
-  void _actionAttackRange() {
-    simpleAttackRange(
-      id: "player_fire_ball",
-      animationRight: SpriteSheetFireBall.fireBallAttackRight(),
-      animationLeft: SpriteSheetFireBall.fireBallAttackLeft(),
-      animationUp: SpriteSheetFireBall.fireBallAttackTop(),
-      animationDown: SpriteSheetFireBall.fireBallAttackBottom(),
+  void _actionAttackRange(double fireAngle) {
+    if (_timerFireBall == null) {
+      _timerFireBall = async.Timer(const Duration(milliseconds: 50), () {
+        _timerFireBall = null;
+      });
+    } else {
+      return;
+    }
+    simpleAttackRangeByAngle(
+      animation: SpriteSheetFireBall.fireBallAttackRight(),
       animationDestroy: SpriteSheetFireBall.fireBallExplosion(),
       size: Vector2(tileSize * 2, tileSize * 2),
-      damage: 10.0 + Random().nextInt(10),
-      speed: maxSpeed * (tileSize / 12),
-      enableDiagonal: true,
-      withCollision: false,
-      onDestroy: () {
-        debugPrint('火球消失');
-      },
-      // collision: CollisionConfig(
-      //   collisions: [
-      //     CollisionArea.rectangle(size: Vector2(tileSize / 2, tileSize / 2)),
-      //   ],
-      // ),
+      angle: fireAngle,
+      withDecorationCollision: false,
+      speed: maxSpeed * (tileSize / 10),
+      damage: 25.0 + Random().nextInt(10),
+      attackFrom: AttackFromEnum.PLAYER_OR_ALLY,
+      collision: CollisionConfig(
+        collisions: [
+          CollisionArea.rectangle(size: Vector2(tileSize / 2, tileSize / 2)),
+        ],
+      ),
       lightingConfig: LightingConfig(
         radius: tileSize * 0.9,
         blurBorder: tileSize / 2,
         color: Colors.deepOrangeAccent.withOpacity(0.4),
       ),
     );
+    // simpleAttackRange(
+    //   animationRight: SpriteSheetFireBall.fireBallAttackRight(),
+    //   animationLeft: SpriteSheetFireBall.fireBallAttackLeft(),
+    //   animationUp: SpriteSheetFireBall.fireBallAttackTop(),
+    //   animationDown: SpriteSheetFireBall.fireBallAttackBottom(),
+    //   animationDestroy: SpriteSheetFireBall.fireBallExplosion(),
+    //   size: Vector2(tileSize * 2, tileSize * 2),
+    //   damage: 25.0 + Random().nextInt(10),
+    //   speed: maxSpeed * (tileSize / 10),
+    //   enableDiagonal: false,
+    //   withCollision: true,
+    //   onDestroy: () {
+    //     debugPrint('火球消失');
+    //   },
+    //   collision: CollisionConfig(
+    //     collisions: [
+    //       CollisionArea.rectangle(size: Vector2(tileSize / 2, tileSize / 2)),
+    //     ],
+    //   ),
+    //   lightingConfig: LightingConfig(
+    //     radius: tileSize * 0.9,
+    //     blurBorder: tileSize / 2,
+    //     color: Colors.deepOrangeAccent.withOpacity(0.4),
+    //   ),
+    // );
   }
 
   /// 攻击动画

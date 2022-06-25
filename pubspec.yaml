@@ -121,6 +121,7 @@ flutter:
     - assets/images/game/mini_game/
     - assets/images/game/mini_game/tiles/
     - assets/images/game/mini_game/enemy/orc/
+    - assets/images/game/mini_game/enemy/boss/
     - assets/images/game/mini_game/player/human/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
