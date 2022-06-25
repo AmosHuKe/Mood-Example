@@ -116,7 +116,7 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "远程射击、怪物生成",
+          title: "疯狂射击、怪物生成",
           subtitle:
               "素材来源：https://github.com/RafaelBarbosatec/mini_fantasy、https://0x72.itch.io/dungeontileset-ii",
           onPressed: () async {
