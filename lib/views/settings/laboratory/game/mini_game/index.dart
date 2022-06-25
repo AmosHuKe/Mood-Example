@@ -68,8 +68,14 @@ class _MiniGamePageState extends State<MiniGamePage> {
   }
 }
 
-class Game extends StatelessWidget {
+class Game extends StatefulWidget {
   const Game({Key? key}) : super(key: key);
+
+  @override
+  State<Game> createState() => _GameState();
+}
+
+class _GameState extends State<Game> {
   static const assetsPath = 'game/mini_game';
 
   @override
@@ -106,8 +112,10 @@ class Game extends StatelessWidget {
               sprite: Sprite.load('$assetsPath/joystick_atack_range.png'),
               spritePressed:
                   Sprite.load('$assetsPath/joystick_atack_range_selected.png'),
+              spriteBackgroundDirection:
+                  Sprite.load('$assetsPath/joystick_background.png'),
               size: 50,
-                enableDirection: true,
+              enableDirection: true,
               margin: const EdgeInsets.only(bottom: 50, right: 200),
             )
           ],
@@ -129,7 +137,7 @@ class Game extends StatelessWidget {
           smoothCameraSpeed: 2,
         ),
         player: HumanPlayer(Vector2(tileSize * 20, tileSize * 11)),
-        lightingColorGame: Colors.black.withOpacity(0.8),
+        lightingColorGame: Colors.black.withOpacity(0.7),
         progress: Container(
           color: Colors.black,
           child: const Center(
@@ -140,13 +148,15 @@ class Game extends StatelessWidget {
           ),
         ),
         overlayBuilderMap: {
-          'miniMap': (context, game) => MiniMap(
-                game: game,
-                margin: const EdgeInsets.all(20),
-                borderRadius: BorderRadius.circular(100),
-                size: Vector2.all(constraints.maxHeight / 3),
-                border: Border.all(color: Colors.white.withOpacity(0.5)),
-              ),
+          'miniMap': (context, game) {
+            return MiniMap(
+              game: game,
+              margin: const EdgeInsets.all(20),
+              borderRadius: BorderRadius.circular(100),
+              size: Vector2.all(constraints.maxHeight / 3),
+              border: Border.all(color: Colors.white.withOpacity(0.5)),
+            );
+          },
         },
         initialActiveOverlays: const [
           'miniMap',

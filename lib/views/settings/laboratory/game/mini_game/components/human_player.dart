@@ -68,11 +68,8 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       CollisionConfig(
         collisions: [
           CollisionArea.rectangle(
-            size: Vector2(
-              size.x * 0.2,
-              size.y * 0.2,
-            ),
-            align: Vector2(tileSize * 1.25, tileSize * 1.5),
+            size: Vector2(size.x * 0.2, size.y * 0.2),
+            align: Vector2(tileSize * 1.3, tileSize * 1.4),
           ),
         ],
       ),
@@ -113,9 +110,11 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
   bool onCollision(GameComponent component, bool active) {
     bool active = true;
 
-    /// 碰撞 Orc 不发生碰撞
+    /// Orc 不发生碰撞
     if (component is Orc) {
-      debugPrint("碰撞 Orc");
+      active = false;
+    }
+    if (component is FlyingAttackObject) {
       active = false;
     }
     return active;
@@ -165,26 +164,31 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
   void _firstPlayerSay() {
     if (!firstPlayer) {
       firstPlayer = true;
-      TalkDialog.show(
-        gameRef.context,
-        [
-          Say(
-            text: [
-              const TextSpan(text: "你...好...陌...生...人..."),
-              const TextSpan(
-                text: "  怪物已经向你冲来！！！",
-                style: TextStyle(
-                  color: Colors.red,
+      gameRef.camera.moveToTargetAnimated(
+        this,
+        finish: () {
+          TalkDialog.show(
+            gameRef.context,
+            [
+              Say(
+                text: [
+                  const TextSpan(text: "你...好...陌...生...人..."),
+                  const TextSpan(
+                    text: "  怪物已经向你冲来！！！",
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                  ),
+                ],
+                person: CustomSpriteAnimationWidget(
+                  animation: SpriteSheetPlayer.idleBottomRight,
                 ),
+                personSayDirection: PersonSayDirection.LEFT,
+                speed: 100,
               ),
             ],
-            person: CustomSpriteAnimationWidget(
-              animation: SpriteSheetPlayer.idleBottomLeft,
-            ),
-            personSayDirection: PersonSayDirection.RIGHT,
-            speed: 100,
-          ),
-        ],
+          );
+        },
       );
     }
   }
@@ -192,7 +196,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
   /// 敌对生物生成 Orc
   void _enemyOrcCreate() {
     if (_timerEnemyOrc == null) {
-      _timerEnemyOrc = async.Timer(const Duration(milliseconds: 2000), () {
+      _timerEnemyOrc = async.Timer(const Duration(milliseconds: 500), () {
         _timerEnemyOrc = null;
       });
     } else {
@@ -204,8 +208,8 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     gameRef.add(
       Orc(
         Vector2(
-          Random().nextInt(3000) + 100,
-          Random().nextInt(3000) + 100,
+          Random().nextInt(300) + 100,
+          Random().nextInt(300) + 100,
         ),
       ),
     );
@@ -245,11 +249,11 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       // lockMove = true;
       /// 屏幕变红
       gameRef.lighting?.animateToColor(
-          const Color.fromARGB(255, 26, 0, 0).withOpacity(0.8));
+          const Color.fromARGB(255, 26, 0, 0).withOpacity(0.7));
       idle();
       _addDamageAnimation(() {
         lockMove = false;
-        gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.8));
+        gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.7));
       });
     }
     super.receiveDamage(attacker, damage, from);
@@ -260,6 +264,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
   void die() {
     Vector2 playerPosition =
         gameRef.player?.position ?? Vector2(position.x, position.y);
+    gameRef.camera.moveToTargetAnimated(this, finish: () {});
     TalkDialog.show(
       gameRef.context,
       [
@@ -268,9 +273,9 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
             const TextSpan(text: "恩... 好像失败了..."),
           ],
           person: CustomSpriteAnimationWidget(
-            animation: SpriteSheetPlayer.getDamageTopLeft(),
+            animation: SpriteSheetPlayer.getDamageTopRight(),
           ),
-          personSayDirection: PersonSayDirection.RIGHT,
+          personSayDirection: PersonSayDirection.LEFT,
           speed: 100,
         ),
       ],
@@ -305,14 +310,17 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       animation: SpriteSheetFireBall.fireBallAttackRight(),
       animationDestroy: SpriteSheetFireBall.fireBallExplosion(),
       size: Vector2(tileSize * 2, tileSize * 2),
-      angle: fireAngle,
+      angle: fireAngle + Random().nextDouble() * 0.3,
       withDecorationCollision: false,
       speed: maxSpeed * (tileSize / 10),
       damage: 25.0 + Random().nextInt(10),
       attackFrom: AttackFromEnum.PLAYER_OR_ALLY,
       collision: CollisionConfig(
         collisions: [
-          CollisionArea.rectangle(size: Vector2(tileSize / 2, tileSize / 2)),
+          CollisionArea.rectangle(
+            size: Vector2(tileSize / 1.1, tileSize / 1.1),
+            align: Vector2(tileSize * 1, tileSize / (4 - fireAngle)),
+          ),
         ],
       ),
       lightingConfig: LightingConfig(

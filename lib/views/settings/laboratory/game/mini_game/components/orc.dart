@@ -55,6 +55,9 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
     if (component is Boss) {
       active = false;
     }
+    if (isDead && component is FlyingAttackObject) {
+      active = false;
+    }
     return active;
   }
 
