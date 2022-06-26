@@ -95,7 +95,7 @@ class _GameState extends State<Game> {
             spriteBackgroundDirectional:
                 Sprite.load('$assetsPath/joystick_background.png'),
             spriteKnobDirectional: Sprite.load('$assetsPath/joystick_knob.png'),
-            size: 100,
+            size: 80,
             isFixed: false,
           ),
           actions: [
@@ -104,7 +104,7 @@ class _GameState extends State<Game> {
               sprite: Sprite.load('$assetsPath/joystick_atack.png'),
               spritePressed:
                   Sprite.load('$assetsPath/joystick_atack_selected.png'),
-              size: 80,
+              size: 70,
               margin: const EdgeInsets.only(bottom: 50, right: 50),
             ),
             JoystickAction(
@@ -114,9 +114,20 @@ class _GameState extends State<Game> {
                   Sprite.load('$assetsPath/joystick_atack_range_selected.png'),
               spriteBackgroundDirection:
                   Sprite.load('$assetsPath/joystick_background.png'),
-              size: 50,
+              size: 40,
               enableDirection: true,
-              margin: const EdgeInsets.only(bottom: 50, right: 200),
+              margin: const EdgeInsets.only(bottom: 30, right: 150),
+            ),
+            JoystickAction(
+              actionId: 3,
+              sprite: Sprite.load('$assetsPath/joystick_atack_range.png'),
+              spritePressed:
+                  Sprite.load('$assetsPath/joystick_atack_range_selected.png'),
+              spriteBackgroundDirection:
+                  Sprite.load('$assetsPath/joystick_background.png'),
+              size: 40,
+              enableDirection: true,
+              margin: const EdgeInsets.only(bottom: 90, right: 150),
             )
           ],
         ), // required
@@ -131,12 +142,12 @@ class _GameState extends State<Game> {
           },
         ),
         cameraConfig: CameraConfig(
-          zoom: 0.6,
+          zoom: 1,
           moveOnlyMapArea: true,
           smoothCameraEnabled: true,
           smoothCameraSpeed: 2,
         ),
-        player: HumanPlayer(Vector2(tileSize * 20, tileSize * 11)),
+        player: HumanPlayer(Vector2(tileSize * 15, tileSize * 13)),
         lightingColorGame: Colors.black.withOpacity(0.7),
         progress: Container(
           color: Colors.black,

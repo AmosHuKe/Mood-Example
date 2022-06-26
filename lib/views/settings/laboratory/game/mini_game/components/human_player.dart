@@ -20,7 +20,10 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
   bool firstPlayer = false;
 
   /// 最大速度
-  static double maxSpeed = tileSize * 10;
+  static double maxSpeed = tileSize * 5;
+
+  /// 最大地图大小
+  static int maxMapSize = 1200;
 
   /// Orc 敌对生物生成延迟时间
   async.Timer? _timerEnemyOrc;
@@ -30,6 +33,9 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
 
   /// 火球发射间隔
   async.Timer? _timerFireBall;
+
+  /// 火球混乱发射间隔
+  async.Timer? _timerFireBallShotguns;
 
   /// 移动锁
   bool lockMove = false;
@@ -58,7 +64,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     setupLighting(
       LightingConfig(
         radius: width * 2,
-        blurBorder: width * 10,
+        blurBorder: width * 6,
         color: Colors.transparent,
       ),
     );
@@ -114,6 +120,10 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     if (component is Orc) {
       active = false;
     }
+    /// Boss 不发生碰撞
+    if (component is Boss) {
+      active = false;
+    }
     if (component is FlyingAttackObject) {
       active = false;
     }
@@ -136,7 +146,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
 
       /// 攻击范围
       simpleAttackMelee(
-        damage: 10,
+        damage: 50,
         size: Vector2.all(tileSize * 1.5),
         withPush: false,
       );
@@ -146,6 +156,12 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     if ((event.id == LogicalKeyboardKey.select.keyId || event.id == 2) &&
         event.event == ActionEvent.MOVE) {
       _actionAttackRange(event.radAngle);
+    }
+
+    /// 远程混乱攻击
+    if ((event.id == LogicalKeyboardKey.select.keyId || event.id == 3) &&
+        event.event == ActionEvent.MOVE) {
+      _actionAttackRangeShotguns(event.radAngle);
     }
     super.joystickAction(event);
   }
@@ -195,21 +211,51 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
 
   /// 敌对生物生成 Orc
   void _enemyOrcCreate() {
+    /// 延迟
     if (_timerEnemyOrc == null) {
-      _timerEnemyOrc = async.Timer(const Duration(milliseconds: 500), () {
+      _timerEnemyOrc = async.Timer(const Duration(milliseconds: 2000), () {
         _timerEnemyOrc = null;
       });
     } else {
       return;
     }
+
+    debugPrint("怪物数量：${gameRef.enemies().length}");
+
+    /// 限制数量
+    if (gameRef.enemies().length >= 100) return;
     debugPrint('Orc 生成了');
 
     /// 生成
     gameRef.add(
       Orc(
         Vector2(
-          Random().nextInt(300) + 100,
-          Random().nextInt(300) + 100,
+          maxMapSize + 1000,
+          Random().nextDouble() * 1000,
+        ),
+      ),
+    );
+    gameRef.add(
+      Orc(
+        Vector2(
+          -1000,
+          Random().nextDouble() * 1000,
+        ),
+      ),
+    );
+    gameRef.add(
+      Orc(
+        Vector2(
+          Random().nextDouble() * 1000,
+          maxMapSize + 1000,
+        ),
+      ),
+    );
+    gameRef.add(
+      Orc(
+        Vector2(
+          Random().nextDouble() * 1000,
+          -1000,
         ),
       ),
     );
@@ -218,20 +264,32 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
   /// 敌对生物生成 Boss
   void _enemyBossCreate() {
     if (_timerEnemyBoss == null) {
-      _timerEnemyBoss = async.Timer(const Duration(milliseconds: 12000), () {
+      _timerEnemyBoss = async.Timer(const Duration(milliseconds: 10000), () {
         _timerEnemyBoss = null;
       });
     } else {
       return;
     }
+    debugPrint("怪物数量：${gameRef.enemies().length}");
+
+    /// 限制数量
+    if (gameRef.enemies().length >= 100) return;
     debugPrint('Boss 生成了');
 
     /// 生成
     gameRef.add(
       Boss(
         Vector2(
-          Random().nextInt(3700) + 100,
-          Random().nextInt(3700) + 100,
+          maxMapSize + 1000,
+          Random().nextDouble() * 1000,
+        ),
+      ),
+    );
+    gameRef.add(
+      Boss(
+        Vector2(
+          -1000,
+          Random().nextDouble() * 1000,
         ),
       ),
     );
@@ -313,13 +371,14 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       angle: fireAngle + Random().nextDouble() * 0.3,
       withDecorationCollision: false,
       speed: maxSpeed * (tileSize / 10),
-      damage: 25.0 + Random().nextInt(10),
+      damage: 50.0 + Random().nextInt(10),
       attackFrom: AttackFromEnum.PLAYER_OR_ALLY,
+      marginFromOrigin: 30,
       collision: CollisionConfig(
         collisions: [
           CollisionArea.rectangle(
             size: Vector2(tileSize / 1.1, tileSize / 1.1),
-            align: Vector2(tileSize * 1, tileSize / (4 - fireAngle)),
+            align: Vector2(tileSize * 1, tileSize / 4),
           ),
         ],
       ),
@@ -354,6 +413,42 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     //     color: Colors.deepOrangeAccent.withOpacity(0.4),
     //   ),
     // );
+  }
+
+  /// 远程混乱攻击
+  void _actionAttackRangeShotguns(double fireAngle) {
+    if (_timerFireBallShotguns == null) {
+      _timerFireBallShotguns =
+          async.Timer(const Duration(milliseconds: 10), () {
+        _timerFireBallShotguns = null;
+      });
+    } else {
+      return;
+    }
+    simpleAttackRangeByAngle(
+      animation: SpriteSheetFireBall.fireBallAttackRight(),
+      animationDestroy: SpriteSheetFireBall.fireBallExplosion(),
+      size: Vector2(tileSize * 2, tileSize * 2),
+      angle: fireAngle + Random().nextDouble() * 1000,
+      withDecorationCollision: false,
+      speed: maxSpeed * (tileSize / 10),
+      damage: 50.0 + Random().nextInt(20),
+      attackFrom: AttackFromEnum.PLAYER_OR_ALLY,
+      marginFromOrigin: 35,
+      collision: CollisionConfig(
+        collisions: [
+          CollisionArea.rectangle(
+            size: Vector2(tileSize / 1.1, tileSize / 1.1),
+            align: Vector2(tileSize * 1, tileSize / 4),
+          ),
+        ],
+      ),
+      lightingConfig: LightingConfig(
+        radius: tileSize * 0.9,
+        blurBorder: tileSize / 2,
+        color: Colors.deepOrangeAccent.withOpacity(0.4),
+      ),
+    );
   }
 
   /// 攻击动画

@@ -28,7 +28,7 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
             runUpLeft: SpriteSheetOrc.getRunTopLeft(),
             runUpRight: SpriteSheetOrc.getRunTopRight(),
           ),
-          speed: tileSize * 0.3 + Random().nextInt(100),
+          speed: tileSize * 0.1 + Random().nextInt(60),
           size: Vector2.all(tileSize * 5),
         ) {
     /// 设置碰撞系统

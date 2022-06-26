@@ -16,7 +16,7 @@ class Boss extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
           position: position,
           animation: SpriteSheetBoss.bossAnimations(),
           life: 150,
-          speed: tileSize * 1 + Random().nextInt(100),
+          speed: tileSize * 0.5 + Random().nextInt(60),
           size: Vector2.all(tileSize * 5),
         ) {
     /// 设置碰撞系统
@@ -27,7 +27,7 @@ class Boss extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
           CollisionArea.rectangle(
             size: Vector2(
               size.x * 0.6,
-              size.y * 0.6,
+              size.y * 0.5,
             ),
             align: Vector2(tileSize * 1.2, tileSize * 1.5),
           ),
