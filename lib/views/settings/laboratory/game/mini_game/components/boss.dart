@@ -15,7 +15,7 @@ class Boss extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
       : super(
           position: position,
           animation: SpriteSheetBoss.bossAnimations(),
-          life: 150,
+          life: 400,
           speed: tileSize * 0.5 + Random().nextInt(60),
           size: Vector2.all(tileSize * 5),
         ) {
