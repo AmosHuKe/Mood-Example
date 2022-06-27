@@ -10,6 +10,7 @@ import 'package:moodexample/widgets/action_button/action_button.dart';
 
 import 'package:moodexample/views/settings/laboratory/3d/index.dart';
 import 'package:moodexample/views/settings/laboratory/unimp_miniapps/index.dart';
+import 'package:moodexample/views/settings/laboratory/game/index.dart';
 
 class LaboratoryPage extends StatefulWidget {
   const LaboratoryPage({Key? key}) : super(key: key);
@@ -135,12 +136,20 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
         ),
         ListCard(
           leading: Icon(
-            Remix.account_box_line,
+            Remix.gamepad_line,
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "占位",
-          subtitle: "占位占位占位",
+          title: "游戏合集",
+          subtitle: "基于 Flame、Bonfire 的 2D 游戏。",
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const GamePage(),
+              ),
+            );
+          },
         ),
         ListCard(
           leading: Icon(

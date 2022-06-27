@@ -40,13 +40,13 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<key>CFBundleLocalizations</key>
-<array>
-    <string>en</string>
-    <string>zh_CN</string>
-    <string>zh_HK</string>
-    <string>zh_TW</string>
-</array>
 	<false/>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>zh_CN</string>
+		<string>zh_HK</string>
+		<string>zh_TW</string>
+	</array>
 </dict>
 </plist>
