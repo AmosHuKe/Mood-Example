@@ -120,6 +120,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     if (component is Orc) {
       active = false;
     }
+
     /// Boss 不发生碰撞
     if (component is Boss) {
       active = false;
@@ -209,6 +210,66 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     }
   }
 
+  /// 受伤触发
+  @override
+  void receiveDamage(AttackFromEnum attacker, double damage, dynamic from) {
+    if (!isDead) {
+      showDamage(
+        damage,
+        initVelocityTop: -2,
+        config: TextStyle(color: Colors.white, fontSize: tileSize / 2),
+      );
+      // lockMove = true;
+      /// 屏幕变红
+      gameRef.lighting?.animateToColor(
+          const Color.fromARGB(255, 26, 0, 0).withOpacity(0.7));
+      idle();
+      _addDamageAnimation(() {
+        lockMove = false;
+        gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.7));
+      });
+    }
+    super.receiveDamage(attacker, damage, from);
+  }
+
+  /// 死亡
+  @override
+  void die() {
+    Vector2 playerPosition =
+        gameRef.player?.position ?? Vector2(position.x, position.y);
+    gameRef.camera.moveToTargetAnimated(this, finish: () {});
+    TalkDialog.show(
+      gameRef.context,
+      [
+        Say(
+          text: [
+            const TextSpan(text: "恩... 好像失败了..."),
+          ],
+          person: CustomSpriteAnimationWidget(
+            animation: SpriteSheetPlayer.getDamageTopRight(),
+          ),
+          personSayDirection: PersonSayDirection.LEFT,
+          speed: 100,
+        ),
+      ],
+    );
+    gameRef.add(
+      GameDecoration.withSprite(
+        sprite: Sprite.load('$assetsPath/crypt.png'),
+        position: playerPosition,
+        size: Vector2.all(tileSize * 3.2),
+      ),
+    );
+    animation?.playOnce(
+      SpriteSheetPlayer.getDie(),
+      onFinish: () {
+        removeFromParent();
+      },
+      runToTheEnd: true,
+    );
+    super.die();
+  }
+
   /// 敌对生物生成 Orc
   void _enemyOrcCreate() {
     /// 延迟
@@ -295,66 +356,6 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     );
   }
 
-  /// 受伤触发
-  @override
-  void receiveDamage(AttackFromEnum attacker, double damage, dynamic from) {
-    if (!isDead) {
-      showDamage(
-        damage,
-        initVelocityTop: -2,
-        config: TextStyle(color: Colors.white, fontSize: tileSize / 2),
-      );
-      // lockMove = true;
-      /// 屏幕变红
-      gameRef.lighting?.animateToColor(
-          const Color.fromARGB(255, 26, 0, 0).withOpacity(0.7));
-      idle();
-      _addDamageAnimation(() {
-        lockMove = false;
-        gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.7));
-      });
-    }
-    super.receiveDamage(attacker, damage, from);
-  }
-
-  /// 死亡
-  @override
-  void die() {
-    Vector2 playerPosition =
-        gameRef.player?.position ?? Vector2(position.x, position.y);
-    gameRef.camera.moveToTargetAnimated(this, finish: () {});
-    TalkDialog.show(
-      gameRef.context,
-      [
-        Say(
-          text: [
-            const TextSpan(text: "恩... 好像失败了..."),
-          ],
-          person: CustomSpriteAnimationWidget(
-            animation: SpriteSheetPlayer.getDamageTopRight(),
-          ),
-          personSayDirection: PersonSayDirection.LEFT,
-          speed: 100,
-        ),
-      ],
-    );
-    gameRef.add(
-      GameDecoration.withSprite(
-        sprite: Sprite.load('$assetsPath/crypt.png'),
-        position: playerPosition,
-        size: Vector2.all(tileSize * 3.2),
-      ),
-    );
-    animation?.playOnce(
-      SpriteSheetPlayer.getDie(),
-      onFinish: () {
-        removeFromParent();
-      },
-      runToTheEnd: true,
-    );
-    super.die();
-  }
-
   /// 远程攻击
   void _actionAttackRange(double fireAngle) {
     if (_timerFireBall == null) {
@@ -388,6 +389,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
         color: Colors.deepOrangeAccent.withOpacity(0.4),
       ),
     );
+    // 固定角度的远程攻击
     // simpleAttackRange(
     //   animationRight: SpriteSheetFireBall.fireBallAttackRight(),
     //   animationLeft: SpriteSheetFireBall.fireBallAttackLeft(),

@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:bonfire/bonfire.dart';
 
 class Light extends GameDecoration with Lighting {
-  Light(
-    Vector2 position,
-    Vector2 size,
-  ) : super(
-          position: position,
-          size: size,
-        ) {
+  Light({
+    required super.position,
+    required super.size,
+  }) {
     setupLighting(
       LightingConfig(
         radius: width * 2,

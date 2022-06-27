@@ -136,8 +136,8 @@ class _GameState extends State<Game> {
           forceTileSize: Size(tileSize, tileSize),
           objectsBuilder: {
             'light': (properties) => Light(
-                  properties.position,
-                  properties.size,
+                  position: properties.position,
+                  size: properties.size,
                 ),
           },
         ),
