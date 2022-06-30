@@ -62,7 +62,7 @@
 | 环境 | 支持版本 |  
 | --- | --- |  
 | Android | 最低：Android 5.0 (API 21) |  
-| IOS | 未测试，正在适配中... |  
+| iOS | 最低：12.1 |  
 
 
 ## 🛠️ 开发环境
@@ -80,7 +80,10 @@
 
 > macOS  
 ```
-正在适配中...
+[✓] Flutter (Channel stable, 3.0.3, on macOS 12.4 21F79 darwin-x64, locale zh-Hans-CN)
+[✓] Xcode - develop for iOS and macOS (Xcode 13.4.1)
+[✓] Chrome - develop for the web
+[✓] VS Code (version 1.68.1)
 ```  
 
 
@@ -119,7 +122,7 @@ Flutter Intl: Remove locale
 ......
 ```
 
-IOS 支持语言本地化还需要在 `ios/Runner/Info.plist` 进行如下编辑。
+iOS 支持语言本地化还需要在 `ios/Runner/Info.plist` 进行如下编辑。
 ```
 <key>CFBundleLocalizations</key>
 <array>
@@ -177,7 +180,7 @@ $ flutter test integration_test/app_test.dart
 ├── build                                           # 编译或运行后产物
 ├── integration_test                                # 集成测试
 │   └── app_test.dart                               # 集成测试入口 用例
-├── ios                                             # IOS 工程文件
+├── ios                                             # iOS 工程文件
 ├── lib                                             # 工程相关文件（主要编码）
 │   ├── common                                      # 公共相关
 │   │   ├── local_notifications.dart                # 本地通知
