@@ -251,51 +251,42 @@ class _OptionMoodState extends State<OptionMood> {
   /// Return
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 128.w,
-      child: ListView(
-        padding: EdgeInsets.only(
-          left: 24.w,
-          right: 24.w,
-          top: 12.w,
-          bottom: 12.w,
-        ),
-        scrollDirection: Axis.horizontal,
-        physics: const AlwaysScrollableScrollPhysics(
-          parent: BouncingScrollPhysics(),
-        ),
-        primary: false,
-        shrinkWrap: false,
-        children: [
-          Consumer<MoodViewModel>(
-            builder: (_, moodViewModel, child) {
-              /// 所有心情类型数据
-              List<Widget> widgetList = [];
+    return SingleChildScrollView(
+      padding: EdgeInsets.only(
+        left: 24.w,
+        right: 24.w,
+        top: 12.w,
+        bottom: 12.w,
+      ),
+      scrollDirection: Axis.horizontal,
+      physics: const AlwaysScrollableScrollPhysics(
+        parent: BouncingScrollPhysics(),
+      ),
+      child: Consumer<MoodViewModel>(
+        builder: (_, moodViewModel, child) {
+          /// 所有心情类型数据
+          List<Widget> widgetList = [];
 
-              /// 数据渲染
-              for (MoodCategoryData list
-                  in moodViewModel.moodCategoryList ?? []) {
-                /// 获取所有心情类别
-                moodViewModel.setMoodCategoryData(list);
-                MoodCategoryData moodCategoryData =
-                    moodViewModel.moodCategoryData;
-                widgetList.add(
-                  OptionCard(
-                    title: moodCategoryData.title ?? "",
-                    icon: moodCategoryData.icon ?? "",
-                  ),
-                );
-              }
+          /// 数据渲染
+          for (MoodCategoryData list in moodViewModel.moodCategoryList ?? []) {
+            /// 获取所有心情类别
+            moodViewModel.setMoodCategoryData(list);
+            MoodCategoryData moodCategoryData = moodViewModel.moodCategoryData;
+            widgetList.add(
+              OptionCard(
+                title: moodCategoryData.title ?? "",
+                icon: moodCategoryData.icon ?? "",
+              ),
+            );
+          }
 
-              /// 显示
-              return Wrap(
-                spacing: 24.w, // 主轴(水平)方向间距
-                alignment: WrapAlignment.spaceBetween, //沿主轴方向居中
-                children: widgetList,
-              );
-            },
-          ),
-        ],
+          /// 显示
+          return Wrap(
+            spacing: 24.w, // 主轴(水平)方向间距
+            alignment: WrapAlignment.spaceBetween, //沿主轴方向居中
+            children: widgetList,
+          );
+        },
       ),
     );
   }
@@ -314,7 +305,7 @@ class OptionCard extends StatelessWidget {
   final String icon;
 
   /// 图标大小
-  static final double _iconSize = 32.w;
+  static final double _iconSize = 32.sp;
 
   @override
   Widget build(BuildContext context) {
@@ -508,7 +499,6 @@ class _ActionCardState extends State<ActionCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
-                      flex: 1,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -522,8 +512,7 @@ class _ActionCardState extends State<ActionCard> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                              top: 12.w,
-                              bottom: 12.w,
+                              top: 8.w,
                             ),
                             child: Text(
                               S.of(context).home_upgrade_content,
@@ -536,18 +525,12 @@ class _ActionCardState extends State<ActionCard> {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      width: 95.w,
-                      height: 45.w,
+                    Container(
+                      constraints:
+                          BoxConstraints(minHeight: 45.w, minWidth: 95.w),
                       child: AnimatedPress(
                         child: OutlinedButton(
                           style: ButtonStyle(
-                            padding: MaterialStateProperty.all(
-                              EdgeInsets.only(
-                                top: 10.w,
-                                bottom: 10.w,
-                              ),
-                            ),
                             foregroundColor:
                                 MaterialStateProperty.all(Colors.white),
                             backgroundColor:
@@ -573,8 +556,10 @@ class _ActionCardState extends State<ActionCard> {
                               Routes.onboarding,
                             ).then((result) {
                               LocalNotifications(
-                                  onSelectNotification: ({payload}) =>
-                                      onSelectNotification(payload))
+                                onSelectNotification: ({payload}) {
+                                  return onSelectNotification(payload);
+                                },
+                              )
                                 ..init()
                                 ..send(
                                   1,
@@ -590,9 +575,13 @@ class _ActionCardState extends State<ActionCard> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(right: 4.w),
+                                padding: EdgeInsets.only(top: 0.w, right: 4.w),
                                 child: Text(
                                   S.of(context).home_upgrade_button,
+                                  strutStyle: const StrutStyle(
+                                    forceStrutHeight: false,
+                                    leading: 1,
+                                  ),
                                   style: TextStyle(
                                     fontSize: 14.sp,
                                   ),
@@ -664,12 +653,12 @@ class _ArticleState extends State<Article> {
                   children: [
                     /// 图片或装饰
                     Positioned(
-                      top: 90.w,
+                      bottom: -12.w,
                       left: 0.w,
                       child: Image.asset(
                         'assets/images/onboarding/onboarding_2.png',
                         fit: BoxFit.contain,
-                        width: 120.w,
+                        height: 120.w,
                       ),
                     ),
 
@@ -705,7 +694,8 @@ class _ArticleState extends State<Article> {
                             size: 24.sp,
                             color: Colors.black87,
                           ),
-                        )
+                        ),
+                        SizedBox(height: 100.w),
                       ],
                     ),
                   ],
@@ -758,12 +748,12 @@ class _ArticleState extends State<Article> {
                   children: [
                     /// 图片或装饰
                     Positioned(
-                      bottom: 100.w,
+                      top: -48.w,
                       left: 0.w,
                       child: Image.asset(
                         'assets/images/onboarding/onboarding_1.png',
                         fit: BoxFit.contain,
-                        width: 120.w,
+                        height: 120.w,
                       ),
                     ),
 
@@ -771,6 +761,7 @@ class _ArticleState extends State<Article> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        SizedBox(height: 72.w),
                         Text(
                           S.of(context).home_help_article_title_2,
                           style: TextStyle(
@@ -865,7 +856,6 @@ class ArticleCard extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: SizedBox(
-          height: height,
           width: width,
           child: DecoratedBox(
             decoration: BoxDecoration(

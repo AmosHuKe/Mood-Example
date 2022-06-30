@@ -984,37 +984,29 @@ class MoodDetail extends StatelessWidget {
               ),
 
               /// 打分
-              Align(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                        bottom: 12.w,
-                        left: 0.w,
-                        right: 48.w,
+              Expanded(
+                child: Align(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 12.w),
+                        child: Text(
+                          S.of(context).mood_data_score_title,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1!
+                              .copyWith(fontSize: 16.w),
+                        ),
                       ),
-                      child: Text(
-                        S.of(context).mood_data_score_title,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText1!
-                            .copyWith(fontSize: 16.w),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: 0.w,
-                        right: 48.w,
-                      ),
-                      child: Text(
+                      Text(
                         score.toString(),
                         style: Theme.of(context).textTheme.bodyText1!.copyWith(
                               fontSize: 24.w,
                               fontWeight: FontWeight.bold,
                             ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

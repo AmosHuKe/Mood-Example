@@ -103,12 +103,14 @@ class _StatisticBodyState extends State<StatisticBody> {
           backgroundColor: Colors.transparent,
           flexibleSpace: Align(
             child: Container(
+              width: double.maxFinite,
               margin: EdgeInsets.only(
                 left: 24.w,
                 right: 24.w,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
                   Text(
                     S.of(context).statistic_title,
@@ -120,6 +122,7 @@ class _StatisticBodyState extends State<StatisticBody> {
                         S.of(context).app_bottomNavigationBar_title_statistic,
                   ),
                   Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       FilterBottom(
                         S.of(context).statistic_filter_7d,
@@ -466,14 +469,14 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
               bottomTitles: AxisTitles(
                 sideTitles: SideTitles(
                     showTitles: true,
-                    reservedSize: 16.w,
+                    reservedSize: 18.w,
                     interval: days > 7 ? ((days / 7) + 1) : (days / 7),
                     getTitlesWidget: (value, titleMeta) {
                       final nowListDate =
                           listFlSpot[(value).toInt()]['datetime'];
                       return Text(
                         (nowListDate.toString() != ""
-                            ? "${nowListDate.toString().substring(8, 10)}日"
+                            ? nowListDate.toString().substring(8, 10)
                             : ""),
                         style: TextStyle(
                           color: AppTheme.subColor,
@@ -506,56 +509,51 @@ class OverallStatistics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 164.w,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        physics: const AlwaysScrollableScrollPhysics(
-          parent: BouncingScrollPhysics(),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      physics: const AlwaysScrollableScrollPhysics(
+        parent: BouncingScrollPhysics(),
+      ),
+      child: Padding(
+        padding: EdgeInsets.only(
+          top: 24.w,
+          left: 24.w,
+          right: 24.w,
         ),
-        children: [
-          Padding(
-            padding: EdgeInsets.only(
-              top: 24.w,
-              left: 24.w,
-              right: 24.w,
-            ),
-            child: Consumer<StatisticViewModel>(
-              builder: (_, statisticViewModel, child) {
-                return Wrap(
-                  alignment: WrapAlignment.center,
-                  spacing: 0.w,
-                  children: [
-                    StatisticsCard(
-                      icon: Remix.time_line,
-                      title: S.of(context).statistic_overall_daysCount_title(
-                          statisticViewModel.daysCount),
-                      subTitle:
-                          S.of(context).statistic_overall_daysCount_subTitle,
-                    ),
-                    StatisticsCard(
-                      icon: Remix.file_list_2_line,
-                      title: S.of(context).statistic_overall_moodCount_title(
-                          statisticViewModel.moodCount),
-                      subTitle:
-                          S.of(context).statistic_overall_moodCount_subTitle,
-                    ),
-                    StatisticsCard(
-                      icon: Remix.pulse_line,
-                      title: S
-                          .of(context)
-                          .statistic_overall_moodScoreAverage_title(
-                              statisticViewModel.moodScoreAverage),
-                      subTitle: S
-                          .of(context)
-                          .statistic_overall_moodScoreAverage_subTitle,
-                    ),
-                  ],
-                );
-              },
-            ),
-          ),
-        ],
+        child: Consumer<StatisticViewModel>(
+          builder: (_, statisticViewModel, child) {
+            return IntrinsicHeight(
+              child: Row(
+                children: [
+                  StatisticsCard(
+                    icon: Remix.time_line,
+                    title: S.of(context).statistic_overall_daysCount_title(
+                        statisticViewModel.daysCount),
+                    subTitle:
+                        S.of(context).statistic_overall_daysCount_subTitle,
+                  ),
+                  StatisticsCard(
+                    icon: Remix.file_list_2_line,
+                    title: S.of(context).statistic_overall_moodCount_title(
+                        statisticViewModel.moodCount),
+                    subTitle:
+                        S.of(context).statistic_overall_moodCount_subTitle,
+                  ),
+                  StatisticsCard(
+                    icon: Remix.pulse_line,
+                    title: S
+                        .of(context)
+                        .statistic_overall_moodScoreAverage_title(
+                            statisticViewModel.moodScoreAverage),
+                    subTitle: S
+                        .of(context)
+                        .statistic_overall_moodScoreAverage_subTitle,
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -942,6 +940,10 @@ class StatisticsCard extends StatelessWidget {
                       .textTheme
                       .bodyText1!
                       .copyWith(fontSize: 14.sp),
+                  strutStyle: const StrutStyle(
+                    forceStrutHeight: false,
+                    leading: 1.5,
+                  ),
                 ),
               ),
               Text(
@@ -1073,8 +1075,8 @@ class FilterBottom extends StatelessWidget {
         child: GestureDetector(
           onTap: onTap,
           child: Container(
-            width: 40.w,
-            height: 40.w,
+            width: 42.w,
+            height: 42.w,
             margin: EdgeInsets.only(left: 6.w, right: 6.w),
             alignment: Alignment.center,
             decoration: BoxDecoration(
