@@ -112,128 +112,131 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 24),
           ],
         ),
-        child: Stack(
-          alignment: Alignment.centerLeft,
-          children: [
-            /// 菜单
-            TabBar(
-              // 震动或声音反馈
-              enableFeedback: true,
-              padding: EdgeInsets.only(left: 40.w, right: 0.w),
-              controller: _pageController,
-              indicatorColor: Colors.transparent,
-              labelStyle: TextStyle(
-                height: 0.5.h,
-                fontSize: 10.sp,
-                fontWeight: FontWeight.bold,
-              ),
-              unselectedLabelStyle: TextStyle(
-                height: 0.5.h,
-                fontSize: 10.sp,
-                fontWeight: FontWeight.bold,
-              ),
-              tabs: [
-                /// 菜单
-                Tab(
-                  key: const Key("tab_home"),
-                  text: S.of(context).app_bottomNavigationBar_title_home,
-                  icon: Icon(
-                    Remix.home_line,
-                    size: _tabIconSize,
-                  ),
+        child: SafeArea(
+          child: Stack(
+            alignment: Alignment.centerLeft,
+            children: [
+              /// 菜单
+              TabBar(
+                // 震动或声音反馈
+                enableFeedback: true,
+                padding: EdgeInsets.only(left: 40.w, right: 0.w),
+                controller: _pageController,
+                indicatorColor: Colors.transparent,
+                labelStyle: TextStyle(
+                  height: 0.5.h,
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.bold,
                 ),
-                Tab(
-                  key: const Key("tab_mood"),
-                  text: S.of(context).app_bottomNavigationBar_title_mood,
-                  icon: Icon(
-                    Remix.heart_3_line,
-                    size: _tabIconSize,
-                  ),
+                unselectedLabelStyle: TextStyle(
+                  height: 0.5.h,
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.bold,
                 ),
-                Tab(
-                  key: const Key("tab_statistic"),
-                  text: S.of(context).app_bottomNavigationBar_title_statistic,
-                  icon: Icon(
-                    Remix.bar_chart_line,
-                    size: _tabIconSize,
-                  ),
-                ),
-              ],
-              onTap: (value) {
-                switch (value) {
-                  case 2:
-                    // 统计菜单触发
-                    statistic.init(context);
-                    break;
-                }
-                setState(() {
-                  _currentPage = value;
-                });
-              },
-            ),
-
-            // 侧栏
-            Semantics(
-              button: true,
-              label: "打开设置",
-              child: GestureDetector(
-                key: const Key("tab_screen_left"),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: isDarkMode(context)
-                          ? [
-                              Colors.black12,
-                              Colors.black12,
-                            ]
-                          : [
-                              AppTheme.backgroundColor1,
-                              AppTheme.backgroundColor1,
-                            ],
-                    ),
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(14.sp),
-                      bottomRight: Radius.circular(14.sp),
+                tabs: [
+                  /// 菜单
+                  Tab(
+                    key: const Key("tab_home"),
+                    text: S.of(context).app_bottomNavigationBar_title_home,
+                    icon: Icon(
+                      Remix.home_line,
+                      size: _tabIconSize,
                     ),
                   ),
-                  child: SizedBox(
-                    width: 36.w,
-                    height: 42.w,
-                    child: ValueListenableBuilder<DrawerState>(
-                      valueListenable:
-                          ZoomDrawer.of(context)!.stateNotifier ?? drawerState,
-                      builder: (_, state, child) {
-                        if (state == DrawerState.closed) {
-                          _stepButtonController.reverse();
-                        } else {
-                          _stepButtonController.forward();
-                        }
-                        return AnimatedBuilder(
-                          animation: _stepButtonAnimation,
-                          builder: (context, child) => Transform.rotate(
-                            angle: _stepButtonCurve.value * 3.14,
-                            child: child,
-                          ),
-                          child: Icon(
-                            Remix.arrow_right_line,
-                            size: 14.sp,
-                            color: isDarkMode(context)
-                                ? const Color(0xFFEFEFEF)
-                                : Colors.black,
-                          ),
-                        );
-                      },
+                  Tab(
+                    key: const Key("tab_mood"),
+                    text: S.of(context).app_bottomNavigationBar_title_mood,
+                    icon: Icon(
+                      Remix.heart_3_line,
+                      size: _tabIconSize,
                     ),
                   ),
-                ),
-                onTap: () {
-                  /// 侧栏
-                  vibrate();
-                  ZoomDrawer.of(context)?.toggle.call();
+                  Tab(
+                    key: const Key("tab_statistic"),
+                    text: S.of(context).app_bottomNavigationBar_title_statistic,
+                    icon: Icon(
+                      Remix.bar_chart_line,
+                      size: _tabIconSize,
+                    ),
+                  ),
+                ],
+                onTap: (value) {
+                  switch (value) {
+                    case 2:
+                      // 统计菜单触发
+                      statistic.init(context);
+                      break;
+                  }
+                  setState(() {
+                    _currentPage = value;
+                  });
                 },
               ),
-            ),
-          ],
+
+              // 侧栏
+              Semantics(
+                button: true,
+                label: "打开设置",
+                child: GestureDetector(
+                  key: const Key("tab_screen_left"),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: isDarkMode(context)
+                            ? [
+                                Colors.black12,
+                                Colors.black12,
+                              ]
+                            : [
+                                AppTheme.backgroundColor1,
+                                AppTheme.backgroundColor1,
+                              ],
+                      ),
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(14.sp),
+                        bottomRight: Radius.circular(14.sp),
+                      ),
+                    ),
+                    child: SizedBox(
+                      width: 36.w,
+                      height: 42.w,
+                      child: ValueListenableBuilder<DrawerState>(
+                        valueListenable:
+                            ZoomDrawer.of(context)!.stateNotifier ??
+                                drawerState,
+                        builder: (_, state, child) {
+                          if (state == DrawerState.closed) {
+                            _stepButtonController.reverse();
+                          } else {
+                            _stepButtonController.forward();
+                          }
+                          return AnimatedBuilder(
+                            animation: _stepButtonAnimation,
+                            builder: (context, child) => Transform.rotate(
+                              angle: _stepButtonCurve.value * 3.14,
+                              child: child,
+                            ),
+                            child: Icon(
+                              Remix.arrow_right_line,
+                              size: 14.sp,
+                              color: isDarkMode(context)
+                                  ? const Color(0xFFEFEFEF)
+                                  : Colors.black,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+                    /// 侧栏
+                    vibrate();
+                    ZoomDrawer.of(context)?.toggle.call();
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
