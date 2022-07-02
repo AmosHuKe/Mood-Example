@@ -85,14 +85,16 @@ class _HomeBodyState extends State<HomeBody> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    S.of(context).home_hi,
-                    style: Theme.of(context).textTheme.headline1?.copyWith(
-                          fontSize: 48.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                    semanticsLabel:
-                        S.of(context).app_bottomNavigationBar_title_home,
+                  Flexible(
+                    child: Text(
+                      S.of(context).home_hi,
+                      style: Theme.of(context).textTheme.headline1?.copyWith(
+                            fontSize: 48.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                      semanticsLabel:
+                          S.of(context).app_bottomNavigationBar_title_home,
+                    ),
                   ),
                   Image.asset(
                     "assets/images/woolly/woolly-yellow-star.png",
@@ -203,12 +205,14 @@ class _HeaderState extends State<Header> {
           padding: EdgeInsets.only(top: 12.w),
           child: Row(
             children: [
-              Text(
-                S.of(context).home_moodChoice_title,
-                style: Theme.of(context).textTheme.headline1?.copyWith(
-                      fontWeight: FontWeight.normal,
-                      fontSize: 20.sp,
-                    ),
+              Flexible(
+                child: Text(
+                  S.of(context).home_moodChoice_title,
+                  style: Theme.of(context).textTheme.headline1?.copyWith(
+                        fontWeight: FontWeight.normal,
+                        fontSize: 20.sp,
+                      ),
+                ),
               ),
               Consumer<MoodViewModel>(
                 builder: (_, moodViewModel, child) {

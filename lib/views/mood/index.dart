@@ -167,14 +167,16 @@ class _MoodBodyState extends State<MoodBody> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    S.of(context).mood_title,
-                    style: Theme.of(context).textTheme.headline1?.copyWith(
-                          fontSize: 36.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                    semanticsLabel:
-                        S.of(context).app_bottomNavigationBar_title_mood,
+                  Flexible(
+                    child: Text(
+                      S.of(context).mood_title,
+                      style: Theme.of(context).textTheme.headline1?.copyWith(
+                            fontSize: 36.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                      semanticsLabel:
+                          S.of(context).app_bottomNavigationBar_title_mood,
+                    ),
                   ),
                   Image.asset(
                     "assets/images/woolly/woolly-heart.png",
