@@ -1075,8 +1075,8 @@ class FilterBottom extends StatelessWidget {
         child: GestureDetector(
           onTap: onTap,
           child: Container(
-            width: 42.w,
-            height: 42.w,
+            width: 40.w,
+            height: 40.w,
             margin: EdgeInsets.only(left: 6.w, right: 6.w),
             alignment: Alignment.center,
             decoration: BoxDecoration(
