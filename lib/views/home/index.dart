@@ -324,7 +324,7 @@ class OptionCard extends StatelessWidget {
             children: [
               AnimatedPress(
                 child: Container(
-                  constraints: BoxConstraints(minWidth: 48.w),
+                  constraints: BoxConstraints(minWidth: 52.w),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: isDarkMode(context)
