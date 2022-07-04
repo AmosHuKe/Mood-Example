@@ -112,16 +112,14 @@ class _StatisticBodyState extends State<StatisticBody> {
                 alignment: WrapAlignment.spaceBetween,
                 crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
-                  Flexible(
-                    child: Text(
-                      S.of(context).statistic_title,
-                      style: Theme.of(context).textTheme.headline1!.copyWith(
-                            fontSize: 36.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                      semanticsLabel:
-                          S.of(context).app_bottomNavigationBar_title_statistic,
-                    ),
+                  Text(
+                    S.of(context).statistic_title,
+                    style: Theme.of(context).textTheme.headline1!.copyWith(
+                          fontSize: 36.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                    semanticsLabel:
+                        S.of(context).app_bottomNavigationBar_title_statistic,
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.min,
