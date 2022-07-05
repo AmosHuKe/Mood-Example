@@ -8,12 +8,48 @@
 
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
+		34DF611FCE6441CA8C286EB4 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA89B5BD328A1B088196365 /* Pods_Runner.framework */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
-		77DB83A341792E0D1C0E9126 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA89B5BD328A1B088196365 /* Pods_Runner.framework */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		B050DF5E2873418A00A346E3 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF5D2873418A00A346E3 /* JavaScriptCore.framework */; };
+		B050DF60287341A500A346E3 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF5F287341A500A346E3 /* CoreMedia.framework */; };
+		B050DF62287341B200A346E3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF61287341B200A346E3 /* MediaPlayer.framework */; };
+		B050DF64287341BE00A346E3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF63287341BE00A346E3 /* AVFoundation.framework */; };
+		B050DF66287341CE00A346E3 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF65287341CE00A346E3 /* AVKit.framework */; };
+		B050DF68287341DD00A346E3 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF67287341DD00A346E3 /* GLKit.framework */; };
+		B050DF6A287341EB00A346E3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF69287341EB00A346E3 /* OpenGLES.framework */; };
+		B050DF6C287341F300A346E3 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF6B287341F300A346E3 /* CoreText.framework */; };
+		B050DF6E287341FD00A346E3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF6D287341FD00A346E3 /* QuartzCore.framework */; };
+		B050DF702873420900A346E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF6F2873420800A346E3 /* CoreGraphics.framework */; };
+		B050DF722873421200A346E3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF712873421200A346E3 /* libc++.tbd */; };
+		B050DF742873421A00A346E3 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF732873421A00A346E3 /* QuickLook.framework */; };
+		B050DF762873422400A346E3 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF752873422300A346E3 /* CoreTelephony.framework */; };
+		B050DF782873422D00A346E3 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF772873422C00A346E3 /* AssetsLibrary.framework */; };
+		B050DF7A2873423500A346E3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF792873423500A346E3 /* CoreLocation.framework */; };
+		B050DF7C2873423F00A346E3 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF7B2873423F00A346E3 /* AddressBook.framework */; };
+		B050DF7E2873424800A346E3 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF7D2873424800A346E3 /* libiconv.tbd */; };
+		B050E0552874837400A346E3 /* __uniappes6.js in Resources */ = {isa = PBXBuildFile; fileRef = B050DFF62874837400A346E3 /* __uniappes6.js */; };
+		B050E0562874837400A346E3 /* uni-jsframework.js in Resources */ = {isa = PBXBuildFile; fileRef = B050DFF72874837400A346E3 /* uni-jsframework.js */; };
+		B050E0572874837400A346E3 /* PandoraApi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B050DFF82874837400A346E3 /* PandoraApi.bundle */; };
+		B050E0582874837400A346E3 /* uni-jsframework-vue3.js in Resources */ = {isa = PBXBuildFile; fileRef = B050DFF92874837400A346E3 /* uni-jsframework-vue3.js */; };
+		B050E0592874837400A346E3 /* unincomponents.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B050DFFA2874837400A346E3 /* unincomponents.ttf */; };
+		B050E05A2874837400A346E3 /* weex-polyfill.js in Resources */ = {isa = PBXBuildFile; fileRef = B050DFFB2874837400A346E3 /* weex-polyfill.js */; };
+		B050E05B2874837400A346E3 /* weexUniJs.js in Resources */ = {isa = PBXBuildFile; fileRef = B050DFFC2874837400A346E3 /* weexUniJs.js */; };
+		B050E0682874883A00A346E3 /* libcoreSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0042874837400A346E3 /* libcoreSupport.a */; };
+		B050E0692874883A00A346E3 /* liblibIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DFFF2874837400A346E3 /* liblibIO.a */; };
+		B050E06A2874883A00A346E3 /* liblibNativeObj.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0082874837400A346E3 /* liblibNativeObj.a */; };
+		B050E06B2874883A00A346E3 /* liblibNativeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0022874837400A346E3 /* liblibNativeUI.a */; };
+		B050E06C2874883A00A346E3 /* liblibNavigator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0062874837400A346E3 /* liblibNavigator.a */; };
+		B050E06D2874883A00A346E3 /* liblibPDRCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0012874837400A346E3 /* liblibPDRCore.a */; };
+		B050E06E2874883A00A346E3 /* liblibStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0052874837400A346E3 /* liblibStorage.a */; };
+		B050E06F2874883A00A346E3 /* liblibUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0032874837400A346E3 /* liblibUI.a */; };
+		B050E0702874883A00A346E3 /* liblibWeex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0002874837400A346E3 /* liblibWeex.a */; };
+		B050E0712874883A00A346E3 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DFFE2874837400A346E3 /* libSDWebImage.a */; };
+		B050E0722874883A00A346E3 /* storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0072874837400A346E3 /* storage.framework */; };
+		B050E0742874908500A346E3 /* __UNI__11E9B73.wgt in Resources */ = {isa = PBXBuildFile; fileRef = B050E0732874908500A346E3 /* __UNI__11E9B73.wgt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +82,116 @@
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CA89B5BD328A1B088196365 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA288070BA7FE43020483E1C /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
+		B050DF5D2873418A00A346E3 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		B050DF5F287341A500A346E3 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		B050DF61287341B200A346E3 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		B050DF63287341BE00A346E3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B050DF65287341CE00A346E3 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		B050DF67287341DD00A346E3 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		B050DF69287341EB00A346E3 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		B050DF6B287341F300A346E3 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		B050DF6D287341FD00A346E3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B050DF6F2873420800A346E3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B050DF712873421200A346E3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		B050DF732873421A00A346E3 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
+		B050DF752873422300A346E3 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		B050DF772873422C00A346E3 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		B050DF792873423500A346E3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B050DF7B2873423F00A346E3 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		B050DF7D2873424800A346E3 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		B050DFF62874837400A346E3 /* __uniappes6.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = __uniappes6.js; sourceTree = "<group>"; };
+		B050DFF72874837400A346E3 /* uni-jsframework.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "uni-jsframework.js"; sourceTree = "<group>"; };
+		B050DFF82874837400A346E3 /* PandoraApi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PandoraApi.bundle; sourceTree = "<group>"; };
+		B050DFF92874837400A346E3 /* uni-jsframework-vue3.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "uni-jsframework-vue3.js"; sourceTree = "<group>"; };
+		B050DFFA2874837400A346E3 /* unincomponents.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = unincomponents.ttf; sourceTree = "<group>"; };
+		B050DFFB2874837400A346E3 /* weex-polyfill.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "weex-polyfill.js"; sourceTree = "<group>"; };
+		B050DFFC2874837400A346E3 /* weexUniJs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = weexUniJs.js; sourceTree = "<group>"; };
+		B050DFFE2874837400A346E3 /* libSDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSDWebImage.a; sourceTree = "<group>"; };
+		B050DFFF2874837400A346E3 /* liblibIO.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibIO.a; sourceTree = "<group>"; };
+		B050E0002874837400A346E3 /* liblibWeex.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibWeex.a; sourceTree = "<group>"; };
+		B050E0012874837400A346E3 /* liblibPDRCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibPDRCore.a; sourceTree = "<group>"; };
+		B050E0022874837400A346E3 /* liblibNativeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNativeUI.a; sourceTree = "<group>"; };
+		B050E0032874837400A346E3 /* liblibUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibUI.a; sourceTree = "<group>"; };
+		B050E0042874837400A346E3 /* libcoreSupport.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcoreSupport.a; sourceTree = "<group>"; };
+		B050E0052874837400A346E3 /* liblibStorage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibStorage.a; sourceTree = "<group>"; };
+		B050E0062874837400A346E3 /* liblibNavigator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNavigator.a; sourceTree = "<group>"; };
+		B050E0072874837400A346E3 /* storage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = storage.framework; sourceTree = "<group>"; };
+		B050E0082874837400A346E3 /* liblibNativeObj.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNativeObj.a; sourceTree = "<group>"; };
+		B050E00A2874837400A346E3 /* DCUniMPSDKEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPSDKEngine.h; sourceTree = "<group>"; };
+		B050E00B2874837400A346E3 /* DCUniMP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMP.h; sourceTree = "<group>"; };
+		B050E00C2874837400A346E3 /* DCUniMPConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPConfiguration.h; sourceTree = "<group>"; };
+		B050E00D2874837400A346E3 /* DCUniMPInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPInstance.h; sourceTree = "<group>"; };
+		B050E00F2874837400A346E3 /* WXModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXModuleProtocol.h; sourceTree = "<group>"; };
+		B050E0102874837400A346E3 /* WXResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXResourceLoader.h; sourceTree = "<group>"; };
+		B050E0112874837400A346E3 /* WXApmForInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApmForInstance.h; sourceTree = "<group>"; };
+		B050E0122874837400A346E3 /* WXWebSocketHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXWebSocketHandler.h; sourceTree = "<group>"; };
+		B050E0132874837400A346E3 /* WXImgLoaderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXImgLoaderProtocol.h; sourceTree = "<group>"; };
+		B050E0142874837400A346E3 /* WXComponentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXComponentManager.h; sourceTree = "<group>"; };
+		B050E0152874837400A346E3 /* WXScrollerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXScrollerProtocol.h; sourceTree = "<group>"; };
+		B050E0162874837400A346E3 /* WXRichText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXRichText.h; sourceTree = "<group>"; };
+		B050E0172874837400A346E3 /* WXView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXView.h; sourceTree = "<group>"; };
+		B050E0182874837400A346E3 /* WXValidateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXValidateProtocol.h; sourceTree = "<group>"; };
+		B050E0192874837400A346E3 /* WXDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXDefine.h; sourceTree = "<group>"; };
+		B050E01A2874837400A346E3 /* JSContext+Weex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSContext+Weex.h"; sourceTree = "<group>"; };
+		B050E01B2874837400A346E3 /* WXExtendCallNativeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXExtendCallNativeProtocol.h; sourceTree = "<group>"; };
+		B050E01C2874837400A346E3 /* WXSDKEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSDKEngine.h; sourceTree = "<group>"; };
+		B050E01D2874837400A346E3 /* style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = style.h; sourceTree = "<group>"; };
+		B050E01E2874837400A346E3 /* WXResourceRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXResourceRequestHandler.h; sourceTree = "<group>"; };
+		B050E01F2874837400A346E3 /* WXDisplayLinkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXDisplayLinkManager.h; sourceTree = "<group>"; };
+		B050E0202874837400A346E3 /* WXUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUtility.h; sourceTree = "<group>"; };
+		B050E0212874837400A346E3 /* WXResourceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXResourceRequest.h; sourceTree = "<group>"; };
+		B050E0222874837400A346E3 /* WXConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXConvert.h; sourceTree = "<group>"; };
+		B050E0232874837400A346E3 /* WXPageEventNotifyEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXPageEventNotifyEvent.h; sourceTree = "<group>"; };
+		B050E0242874837400A346E3 /* WXSDKInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSDKInstance.h; sourceTree = "<group>"; };
+		B050E0252874837400A346E3 /* WXSDKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSDKManager.h; sourceTree = "<group>"; };
+		B050E0262874837400A346E3 /* WXDebugTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXDebugTool.h; sourceTree = "<group>"; };
+		B050E0272874837400A346E3 /* WXType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXType.h; sourceTree = "<group>"; };
+		B050E0282874837400A346E3 /* WXApmProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApmProtocol.h; sourceTree = "<group>"; };
+		B050E0292874837400A346E3 /* WXJSFrameworkLoadProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXJSFrameworkLoadProtocol.h; sourceTree = "<group>"; };
+		B050E02A2874837400A346E3 /* WXExceptionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXExceptionUtils.h; sourceTree = "<group>"; };
+		B050E02B2874837400A346E3 /* WXIndicatorComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXIndicatorComponent.h; sourceTree = "<group>"; };
+		B050E02C2874837400A346E3 /* WXErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXErrorView.h; sourceTree = "<group>"; };
+		B050E02D2874837400A346E3 /* NSObject+WXSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WXSwizzle.h"; sourceTree = "<group>"; };
+		B050E02E2874837400A346E3 /* WXMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMonitor.h; sourceTree = "<group>"; };
+		B050E02F2874837400A346E3 /* WXSDKInstance+DCExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WXSDKInstance+DCExtend.h"; sourceTree = "<group>"; };
+		B050E0302874837400A346E3 /* WXRecyclerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXRecyclerComponent.h; sourceTree = "<group>"; };
+		B050E0312874837400A346E3 /* WXScrollerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXScrollerComponent.h; sourceTree = "<group>"; };
+		B050E0322874837400A346E3 /* WXNetworkProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNetworkProtocol.h; sourceTree = "<group>"; };
+		B050E0332874837400A346E3 /* WXTracingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTracingManager.h; sourceTree = "<group>"; };
+		B050E0342874837400A346E3 /* WXComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXComponent.h; sourceTree = "<group>"; };
+		B050E0352874837400A346E3 /* WXPrerenderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXPrerenderManager.h; sourceTree = "<group>"; };
+		B050E0362874837400A346E3 /* WXComponent+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WXComponent+Layout.h"; sourceTree = "<group>"; };
+		B050E0372874837400A346E3 /* layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layout.h; sourceTree = "<group>"; };
+		B050E0382874837400A346E3 /* WXSDKInstance+Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WXSDKInstance+Bridge.h"; sourceTree = "<group>"; };
+		B050E0392874837400A346E3 /* UniPluginProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniPluginProtocol.h; sourceTree = "<group>"; };
+		B050E03A2874837400A346E3 /* WXModalUIModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXModalUIModule.h; sourceTree = "<group>"; };
+		B050E03B2874837400A346E3 /* WXAnalyzerCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAnalyzerCenter.h; sourceTree = "<group>"; };
+		B050E03C2874837400A346E3 /* WXVoiceOverModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXVoiceOverModule.h; sourceTree = "<group>"; };
+		B050E03D2874837400A346E3 /* WXRootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXRootView.h; sourceTree = "<group>"; };
+		B050E03E2874837400A346E3 /* WXAppConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAppConfiguration.h; sourceTree = "<group>"; };
+		B050E03F2874837400A346E3 /* WXListComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXListComponent.h; sourceTree = "<group>"; };
+		B050E0402874837400A346E3 /* WXSDKError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSDKError.h; sourceTree = "<group>"; };
+		B050E0412874837400A346E3 /* WXRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXRootViewController.h; sourceTree = "<group>"; };
+		B050E0422874837400A346E3 /* WXNavigationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNavigationProtocol.h; sourceTree = "<group>"; };
+		B050E0432874837400A346E3 /* WXAnalyzerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAnalyzerProtocol.h; sourceTree = "<group>"; };
+		B050E0442874837400A346E3 /* WeexSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeexSDK.h; sourceTree = "<group>"; };
+		B050E0452874837400A346E3 /* WXBridgeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBridgeManager.h; sourceTree = "<group>"; };
+		B050E0462874837400A346E3 /* WXResourceResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXResourceResponse.h; sourceTree = "<group>"; };
+		B050E0472874837400A346E3 /* WXBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBaseViewController.h; sourceTree = "<group>"; };
+		B050E0482874837400A346E3 /* WXAppMonitorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAppMonitorProtocol.h; sourceTree = "<group>"; };
+		B050E0492874837400A346E3 /* WeexProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeexProtocol.h; sourceTree = "<group>"; };
+		B050E04A2874837400A346E3 /* WXJSExceptionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXJSExceptionProtocol.h; sourceTree = "<group>"; };
+		B050E04B2874837400A346E3 /* WXJSExceptionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXJSExceptionInfo.h; sourceTree = "<group>"; };
+		B050E04C2874837400A346E3 /* WXTracingProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTracingProtocol.h; sourceTree = "<group>"; };
+		B050E04D2874837400A346E3 /* flex_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flex_enum.h; sourceTree = "<group>"; };
+		B050E04E2874837400A346E3 /* WXConfigCenterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXConfigCenterProtocol.h; sourceTree = "<group>"; };
+		B050E04F2874837400A346E3 /* WXEventModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXEventModuleProtocol.h; sourceTree = "<group>"; };
+		B050E0502874837400A346E3 /* WXURLRewriteProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXURLRewriteProtocol.h; sourceTree = "<group>"; };
+		B050E0512874837400A346E3 /* WXAComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAComponent.h; sourceTree = "<group>"; };
+		B050E0522874837400A346E3 /* WXBridgeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBridgeProtocol.h; sourceTree = "<group>"; };
+		B050E0532874837400A346E3 /* DCUniMPError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPError.h; sourceTree = "<group>"; };
+		B050E0542874837400A346E3 /* DCUniMPMenuActionSheetStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPMenuActionSheetStyle.h; sourceTree = "<group>"; };
+		B050E0732874908500A346E3 /* __UNI__11E9B73.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__11E9B73.wgt; sourceTree = "<group>"; };
 		F4C8517F1DEB8F4038F41C1B /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -54,7 +200,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77DB83A341792E0D1C0E9126 /* Pods_Runner.framework in Frameworks */,
+				B050E0682874883A00A346E3 /* libcoreSupport.a in Frameworks */,
+				B050E0692874883A00A346E3 /* liblibIO.a in Frameworks */,
+				B050E06A2874883A00A346E3 /* liblibNativeObj.a in Frameworks */,
+				B050E06B2874883A00A346E3 /* liblibNativeUI.a in Frameworks */,
+				B050E06C2874883A00A346E3 /* liblibNavigator.a in Frameworks */,
+				B050E06D2874883A00A346E3 /* liblibPDRCore.a in Frameworks */,
+				B050E06E2874883A00A346E3 /* liblibStorage.a in Frameworks */,
+				B050E06F2874883A00A346E3 /* liblibUI.a in Frameworks */,
+				B050E0702874883A00A346E3 /* liblibWeex.a in Frameworks */,
+				B050E0712874883A00A346E3 /* libSDWebImage.a in Frameworks */,
+				B050E0722874883A00A346E3 /* storage.framework in Frameworks */,
+				B050DF7E2873424800A346E3 /* libiconv.tbd in Frameworks */,
+				B050DF7C2873423F00A346E3 /* AddressBook.framework in Frameworks */,
+				B050DF7A2873423500A346E3 /* CoreLocation.framework in Frameworks */,
+				B050DF782873422D00A346E3 /* AssetsLibrary.framework in Frameworks */,
+				B050DF762873422400A346E3 /* CoreTelephony.framework in Frameworks */,
+				B050DF742873421A00A346E3 /* QuickLook.framework in Frameworks */,
+				B050DF722873421200A346E3 /* libc++.tbd in Frameworks */,
+				B050DF702873420900A346E3 /* CoreGraphics.framework in Frameworks */,
+				B050DF6E287341FD00A346E3 /* QuartzCore.framework in Frameworks */,
+				B050DF6C287341F300A346E3 /* CoreText.framework in Frameworks */,
+				B050DF6A287341EB00A346E3 /* OpenGLES.framework in Frameworks */,
+				B050DF68287341DD00A346E3 /* GLKit.framework in Frameworks */,
+				B050DF66287341CE00A346E3 /* AVKit.framework in Frameworks */,
+				B050DF64287341BE00A346E3 /* AVFoundation.framework in Frameworks */,
+				B050DF62287341B200A346E3 /* MediaPlayer.framework in Frameworks */,
+				B050DF5E2873418A00A346E3 /* JavaScriptCore.framework in Frameworks */,
+				B050DF60287341A500A346E3 /* CoreMedia.framework in Frameworks */,
+				34DF611FCE6441CA8C286EB4 /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +238,23 @@
 		58B136A49ECE204E1D5D5324 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B050DF7D2873424800A346E3 /* libiconv.tbd */,
+				B050DF7B2873423F00A346E3 /* AddressBook.framework */,
+				B050DF792873423500A346E3 /* CoreLocation.framework */,
+				B050DF772873422C00A346E3 /* AssetsLibrary.framework */,
+				B050DF752873422300A346E3 /* CoreTelephony.framework */,
+				B050DF732873421A00A346E3 /* QuickLook.framework */,
+				B050DF712873421200A346E3 /* libc++.tbd */,
+				B050DF6F2873420800A346E3 /* CoreGraphics.framework */,
+				B050DF6D287341FD00A346E3 /* QuartzCore.framework */,
+				B050DF6B287341F300A346E3 /* CoreText.framework */,
+				B050DF69287341EB00A346E3 /* OpenGLES.framework */,
+				B050DF67287341DD00A346E3 /* GLKit.framework */,
+				B050DF65287341CE00A346E3 /* AVKit.framework */,
+				B050DF63287341BE00A346E3 /* AVFoundation.framework */,
+				B050DF61287341B200A346E3 /* MediaPlayer.framework */,
+				B050DF5F287341A500A346E3 /* CoreMedia.framework */,
+				B050DF5D2873418A00A346E3 /* JavaScriptCore.framework */,
 				9CA89B5BD328A1B088196365 /* Pods_Runner.framework */,
 			);
 			name = Frameworks;
@@ -112,6 +303,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				B050DFF32874834400A346E3 /* UniMPSDK */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -122,6 +314,154 @@
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
 			);
 			path = Runner;
+			sourceTree = "<group>";
+		};
+		B050DFF32874834400A346E3 /* UniMPSDK */ = {
+			isa = PBXGroup;
+			children = (
+				B050E0672874859800A346E3 /* Apps */,
+				B050DFF42874837400A346E3 /* Core */,
+			);
+			path = UniMPSDK;
+			sourceTree = "<group>";
+		};
+		B050DFF42874837400A346E3 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B050DFF52874837400A346E3 /* Resources */,
+				B050DFFD2874837400A346E3 /* Libs */,
+				B050E0092874837400A346E3 /* Headers */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B050DFF52874837400A346E3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B050DFF62874837400A346E3 /* __uniappes6.js */,
+				B050DFF72874837400A346E3 /* uni-jsframework.js */,
+				B050DFF82874837400A346E3 /* PandoraApi.bundle */,
+				B050DFF92874837400A346E3 /* uni-jsframework-vue3.js */,
+				B050DFFA2874837400A346E3 /* unincomponents.ttf */,
+				B050DFFB2874837400A346E3 /* weex-polyfill.js */,
+				B050DFFC2874837400A346E3 /* weexUniJs.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B050DFFD2874837400A346E3 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				B050DFFE2874837400A346E3 /* libSDWebImage.a */,
+				B050DFFF2874837400A346E3 /* liblibIO.a */,
+				B050E0002874837400A346E3 /* liblibWeex.a */,
+				B050E0012874837400A346E3 /* liblibPDRCore.a */,
+				B050E0022874837400A346E3 /* liblibNativeUI.a */,
+				B050E0032874837400A346E3 /* liblibUI.a */,
+				B050E0042874837400A346E3 /* libcoreSupport.a */,
+				B050E0052874837400A346E3 /* liblibStorage.a */,
+				B050E0062874837400A346E3 /* liblibNavigator.a */,
+				B050E0072874837400A346E3 /* storage.framework */,
+				B050E0082874837400A346E3 /* liblibNativeObj.a */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		B050E0092874837400A346E3 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				B050E00A2874837400A346E3 /* DCUniMPSDKEngine.h */,
+				B050E00B2874837400A346E3 /* DCUniMP.h */,
+				B050E00C2874837400A346E3 /* DCUniMPConfiguration.h */,
+				B050E00D2874837400A346E3 /* DCUniMPInstance.h */,
+				B050E00E2874837400A346E3 /* weexHeader */,
+				B050E0532874837400A346E3 /* DCUniMPError.h */,
+				B050E0542874837400A346E3 /* DCUniMPMenuActionSheetStyle.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		B050E00E2874837400A346E3 /* weexHeader */ = {
+			isa = PBXGroup;
+			children = (
+				B050E00F2874837400A346E3 /* WXModuleProtocol.h */,
+				B050E0102874837400A346E3 /* WXResourceLoader.h */,
+				B050E0112874837400A346E3 /* WXApmForInstance.h */,
+				B050E0122874837400A346E3 /* WXWebSocketHandler.h */,
+				B050E0132874837400A346E3 /* WXImgLoaderProtocol.h */,
+				B050E0142874837400A346E3 /* WXComponentManager.h */,
+				B050E0152874837400A346E3 /* WXScrollerProtocol.h */,
+				B050E0162874837400A346E3 /* WXRichText.h */,
+				B050E0172874837400A346E3 /* WXView.h */,
+				B050E0182874837400A346E3 /* WXValidateProtocol.h */,
+				B050E0192874837400A346E3 /* WXDefine.h */,
+				B050E01A2874837400A346E3 /* JSContext+Weex.h */,
+				B050E01B2874837400A346E3 /* WXExtendCallNativeProtocol.h */,
+				B050E01C2874837400A346E3 /* WXSDKEngine.h */,
+				B050E01D2874837400A346E3 /* style.h */,
+				B050E01E2874837400A346E3 /* WXResourceRequestHandler.h */,
+				B050E01F2874837400A346E3 /* WXDisplayLinkManager.h */,
+				B050E0202874837400A346E3 /* WXUtility.h */,
+				B050E0212874837400A346E3 /* WXResourceRequest.h */,
+				B050E0222874837400A346E3 /* WXConvert.h */,
+				B050E0232874837400A346E3 /* WXPageEventNotifyEvent.h */,
+				B050E0242874837400A346E3 /* WXSDKInstance.h */,
+				B050E0252874837400A346E3 /* WXSDKManager.h */,
+				B050E0262874837400A346E3 /* WXDebugTool.h */,
+				B050E0272874837400A346E3 /* WXType.h */,
+				B050E0282874837400A346E3 /* WXApmProtocol.h */,
+				B050E0292874837400A346E3 /* WXJSFrameworkLoadProtocol.h */,
+				B050E02A2874837400A346E3 /* WXExceptionUtils.h */,
+				B050E02B2874837400A346E3 /* WXIndicatorComponent.h */,
+				B050E02C2874837400A346E3 /* WXErrorView.h */,
+				B050E02D2874837400A346E3 /* NSObject+WXSwizzle.h */,
+				B050E02E2874837400A346E3 /* WXMonitor.h */,
+				B050E02F2874837400A346E3 /* WXSDKInstance+DCExtend.h */,
+				B050E0302874837400A346E3 /* WXRecyclerComponent.h */,
+				B050E0312874837400A346E3 /* WXScrollerComponent.h */,
+				B050E0322874837400A346E3 /* WXNetworkProtocol.h */,
+				B050E0332874837400A346E3 /* WXTracingManager.h */,
+				B050E0342874837400A346E3 /* WXComponent.h */,
+				B050E0352874837400A346E3 /* WXPrerenderManager.h */,
+				B050E0362874837400A346E3 /* WXComponent+Layout.h */,
+				B050E0372874837400A346E3 /* layout.h */,
+				B050E0382874837400A346E3 /* WXSDKInstance+Bridge.h */,
+				B050E0392874837400A346E3 /* UniPluginProtocol.h */,
+				B050E03A2874837400A346E3 /* WXModalUIModule.h */,
+				B050E03B2874837400A346E3 /* WXAnalyzerCenter.h */,
+				B050E03C2874837400A346E3 /* WXVoiceOverModule.h */,
+				B050E03D2874837400A346E3 /* WXRootView.h */,
+				B050E03E2874837400A346E3 /* WXAppConfiguration.h */,
+				B050E03F2874837400A346E3 /* WXListComponent.h */,
+				B050E0402874837400A346E3 /* WXSDKError.h */,
+				B050E0412874837400A346E3 /* WXRootViewController.h */,
+				B050E0422874837400A346E3 /* WXNavigationProtocol.h */,
+				B050E0432874837400A346E3 /* WXAnalyzerProtocol.h */,
+				B050E0442874837400A346E3 /* WeexSDK.h */,
+				B050E0452874837400A346E3 /* WXBridgeManager.h */,
+				B050E0462874837400A346E3 /* WXResourceResponse.h */,
+				B050E0472874837400A346E3 /* WXBaseViewController.h */,
+				B050E0482874837400A346E3 /* WXAppMonitorProtocol.h */,
+				B050E0492874837400A346E3 /* WeexProtocol.h */,
+				B050E04A2874837400A346E3 /* WXJSExceptionProtocol.h */,
+				B050E04B2874837400A346E3 /* WXJSExceptionInfo.h */,
+				B050E04C2874837400A346E3 /* WXTracingProtocol.h */,
+				B050E04D2874837400A346E3 /* flex_enum.h */,
+				B050E04E2874837400A346E3 /* WXConfigCenterProtocol.h */,
+				B050E04F2874837400A346E3 /* WXEventModuleProtocol.h */,
+				B050E0502874837400A346E3 /* WXURLRewriteProtocol.h */,
+				B050E0512874837400A346E3 /* WXAComponent.h */,
+				B050E0522874837400A346E3 /* WXBridgeProtocol.h */,
+			);
+			path = weexHeader;
+			sourceTree = "<group>";
+		};
+		B050E0672874859800A346E3 /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+				B050E0732874908500A346E3 /* __UNI__11E9B73.wgt */,
+			);
+			path = Apps;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,9 +528,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
+				B050E0552874837400A346E3 /* __uniappes6.js in Resources */,
+				B050E0742874908500A346E3 /* __UNI__11E9B73.wgt in Resources */,
+				B050E05A2874837400A346E3 /* weex-polyfill.js in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
+				B050E0572874837400A346E3 /* PandoraApi.bundle in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
+				B050E0592874837400A346E3 /* unincomponents.ttf in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
+				B050E0582874837400A346E3 /* uni-jsframework-vue3.js in Resources */,
+				B050E05B2874837400A346E3 /* weexUniJs.js in Resources */,
+				B050E0562874837400A346E3 /* uni-jsframework.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +610,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build";
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -340,7 +688,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
@@ -355,15 +703,87 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = VZ42G9NTTN;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UniMP/Core/Libs",
+					"$(PROJECT_DIR)/Runner/UniMPSDK/Core/Libs",
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UniMP/Core/Libs",
+					"$(PROJECT_DIR)/Runner/UniMPSDK/Core/Libs",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"sqlite3\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AVKit\"",
+					"-framework",
+					"\"DKImagePickerController\"",
+					"-framework",
+					"\"DKPhotoGallery\"",
+					"-framework",
+					"\"FMDB\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"Photos\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SwiftyGif\"",
+					"-framework",
+					"\"Toast\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"file_picker\"",
+					"-framework",
+					"\"flutter_local_notifications\"",
+					"-framework",
+					"\"flutter_native_timezone\"",
+					"-framework",
+					"\"fluttertoast\"",
+					"-framework",
+					"\"integration_test\"",
+					"-framework",
+					"\"path_provider_ios\"",
+					"-framework",
+					"\"share_plus\"",
+					"-framework",
+					"\"shared_preferences_ios\"",
+					"-framework",
+					"\"sqflite\"",
+					"-framework",
+					"\"url_launcher_ios\"",
+					"-framework",
+					"\"vibration\"",
+					"-framework",
+					"\"webview_flutter_wkwebview\"",
+					"-weak_framework",
+					"\"LinkPresentation\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.moodexample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -418,7 +838,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -468,7 +888,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
@@ -485,15 +905,87 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = VZ42G9NTTN;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UniMP/Core/Libs",
+					"$(PROJECT_DIR)/Runner/UniMPSDK/Core/Libs",
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UniMP/Core/Libs",
+					"$(PROJECT_DIR)/Runner/UniMPSDK/Core/Libs",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"sqlite3\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AVKit\"",
+					"-framework",
+					"\"DKImagePickerController\"",
+					"-framework",
+					"\"DKPhotoGallery\"",
+					"-framework",
+					"\"FMDB\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"Photos\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SwiftyGif\"",
+					"-framework",
+					"\"Toast\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"file_picker\"",
+					"-framework",
+					"\"flutter_local_notifications\"",
+					"-framework",
+					"\"flutter_native_timezone\"",
+					"-framework",
+					"\"fluttertoast\"",
+					"-framework",
+					"\"integration_test\"",
+					"-framework",
+					"\"path_provider_ios\"",
+					"-framework",
+					"\"share_plus\"",
+					"-framework",
+					"\"shared_preferences_ios\"",
+					"-framework",
+					"\"sqflite\"",
+					"-framework",
+					"\"url_launcher_ios\"",
+					"-framework",
+					"\"vibration\"",
+					"-framework",
+					"\"webview_flutter_wkwebview\"",
+					"-weak_framework",
+					"\"LinkPresentation\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.moodexample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -507,15 +999,87 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = VZ42G9NTTN;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UniMP/Core/Libs",
+					"$(PROJECT_DIR)/Runner/UniMPSDK/Core/Libs",
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UniMP/Core/Libs",
+					"$(PROJECT_DIR)/Runner/UniMPSDK/Core/Libs",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"sqlite3\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"AVKit\"",
+					"-framework",
+					"\"DKImagePickerController\"",
+					"-framework",
+					"\"DKPhotoGallery\"",
+					"-framework",
+					"\"FMDB\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"Photos\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SwiftyGif\"",
+					"-framework",
+					"\"Toast\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"file_picker\"",
+					"-framework",
+					"\"flutter_local_notifications\"",
+					"-framework",
+					"\"flutter_native_timezone\"",
+					"-framework",
+					"\"fluttertoast\"",
+					"-framework",
+					"\"integration_test\"",
+					"-framework",
+					"\"path_provider_ios\"",
+					"-framework",
+					"\"share_plus\"",
+					"-framework",
+					"\"shared_preferences_ios\"",
+					"-framework",
+					"\"sqflite\"",
+					"-framework",
+					"\"url_launcher_ios\"",
+					"-framework",
+					"\"vibration\"",
+					"-framework",
+					"\"webview_flutter_wkwebview\"",
+					"-weak_framework",
+					"\"LinkPresentation\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.moodexample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
