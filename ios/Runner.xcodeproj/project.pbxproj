@@ -38,7 +38,7 @@
 		B050E0592874837400A346E3 /* unincomponents.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B050DFFA2874837400A346E3 /* unincomponents.ttf */; };
 		B050E05A2874837400A346E3 /* weex-polyfill.js in Resources */ = {isa = PBXBuildFile; fileRef = B050DFFB2874837400A346E3 /* weex-polyfill.js */; };
 		B050E05B2874837400A346E3 /* weexUniJs.js in Resources */ = {isa = PBXBuildFile; fileRef = B050DFFC2874837400A346E3 /* weexUniJs.js */; };
-		B050E0682874883A00A346E3 /* libcoreSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0042874837400A346E3 /* libcoreSupport.a */; };
+		B050E0682874883A00A346E3 /* libcoreSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0042874837400A346E3 /* libcoreSupport.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		B050E0692874883A00A346E3 /* liblibIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DFFF2874837400A346E3 /* liblibIO.a */; };
 		B050E06A2874883A00A346E3 /* liblibNativeObj.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0082874837400A346E3 /* liblibNativeObj.a */; };
 		B050E06B2874883A00A346E3 /* liblibNativeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0022874837400A346E3 /* liblibNativeUI.a */; };
@@ -49,7 +49,8 @@
 		B050E0702874883A00A346E3 /* liblibWeex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0002874837400A346E3 /* liblibWeex.a */; };
 		B050E0712874883A00A346E3 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DFFE2874837400A346E3 /* libSDWebImage.a */; };
 		B050E0722874883A00A346E3 /* storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0072874837400A346E3 /* storage.framework */; };
-		B050E0742874908500A346E3 /* __UNI__11E9B73.wgt in Resources */ = {isa = PBXBuildFile; fileRef = B050E0732874908500A346E3 /* __UNI__11E9B73.wgt */; };
+		B09C54B22875EEAE00FA78D2 /* __UNI__F87B0CE.wgt in Resources */ = {isa = PBXBuildFile; fileRef = B09C54B02875EEAE00FA78D2 /* __UNI__F87B0CE.wgt */; };
+		B09C54B52875F10A00FA78D2 /* __UNI__3BC70CE.wgt in Resources */ = {isa = PBXBuildFile; fileRef = B09C54B42875F10A00FA78D2 /* __UNI__3BC70CE.wgt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -71,7 +72,7 @@
 		1B496AF0CDBD81B05C698228 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
-		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; tabWidth = 2; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
@@ -191,7 +192,8 @@
 		B050E0522874837400A346E3 /* WXBridgeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBridgeProtocol.h; sourceTree = "<group>"; };
 		B050E0532874837400A346E3 /* DCUniMPError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPError.h; sourceTree = "<group>"; };
 		B050E0542874837400A346E3 /* DCUniMPMenuActionSheetStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPMenuActionSheetStyle.h; sourceTree = "<group>"; };
-		B050E0732874908500A346E3 /* __UNI__11E9B73.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__11E9B73.wgt; sourceTree = "<group>"; };
+		B09C54B02875EEAE00FA78D2 /* __UNI__F87B0CE.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__F87B0CE.wgt; sourceTree = "<group>"; };
+		B09C54B42875F10A00FA78D2 /* __UNI__3BC70CE.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__3BC70CE.wgt; sourceTree = "<group>"; };
 		F4C8517F1DEB8F4038F41C1B /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -459,7 +461,8 @@
 		B050E0672874859800A346E3 /* Apps */ = {
 			isa = PBXGroup;
 			children = (
-				B050E0732874908500A346E3 /* __UNI__11E9B73.wgt */,
+				B09C54B42875F10A00FA78D2 /* __UNI__3BC70CE.wgt */,
+				B09C54B02875EEAE00FA78D2 /* __UNI__F87B0CE.wgt */,
 			);
 			path = Apps;
 			sourceTree = "<group>";
@@ -528,12 +531,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
+				B09C54B22875EEAE00FA78D2 /* __UNI__F87B0CE.wgt in Resources */,
 				B050E0552874837400A346E3 /* __uniappes6.js in Resources */,
-				B050E0742874908500A346E3 /* __UNI__11E9B73.wgt in Resources */,
 				B050E05A2874837400A346E3 /* weex-polyfill.js in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				B050E0572874837400A346E3 /* PandoraApi.bundle in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
+				B09C54B52875F10A00FA78D2 /* __UNI__3BC70CE.wgt in Resources */,
 				B050E0592874837400A346E3 /* unincomponents.ttf in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
 				B050E0582874837400A346E3 /* uni-jsframework-vue3.js in Resources */,
@@ -579,7 +583,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin";
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin\n";
 		};
 		5C808D006FE805C8B7C97458 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
