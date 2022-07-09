@@ -38,17 +38,6 @@
 		B050E0592874837400A346E3 /* unincomponents.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B050DFFA2874837400A346E3 /* unincomponents.ttf */; };
 		B050E05A2874837400A346E3 /* weex-polyfill.js in Resources */ = {isa = PBXBuildFile; fileRef = B050DFFB2874837400A346E3 /* weex-polyfill.js */; };
 		B050E05B2874837400A346E3 /* weexUniJs.js in Resources */ = {isa = PBXBuildFile; fileRef = B050DFFC2874837400A346E3 /* weexUniJs.js */; };
-		B050E0682874883A00A346E3 /* libcoreSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0042874837400A346E3 /* libcoreSupport.a */; settings = {ATTRIBUTES = (Required, ); }; };
-		B050E0692874883A00A346E3 /* liblibIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DFFF2874837400A346E3 /* liblibIO.a */; };
-		B050E06A2874883A00A346E3 /* liblibNativeObj.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0082874837400A346E3 /* liblibNativeObj.a */; };
-		B050E06B2874883A00A346E3 /* liblibNativeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0022874837400A346E3 /* liblibNativeUI.a */; };
-		B050E06C2874883A00A346E3 /* liblibNavigator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0062874837400A346E3 /* liblibNavigator.a */; };
-		B050E06D2874883A00A346E3 /* liblibPDRCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0012874837400A346E3 /* liblibPDRCore.a */; };
-		B050E06E2874883A00A346E3 /* liblibStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0052874837400A346E3 /* liblibStorage.a */; };
-		B050E06F2874883A00A346E3 /* liblibUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0032874837400A346E3 /* liblibUI.a */; };
-		B050E0702874883A00A346E3 /* liblibWeex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0002874837400A346E3 /* liblibWeex.a */; };
-		B050E0712874883A00A346E3 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DFFE2874837400A346E3 /* libSDWebImage.a */; };
-		B050E0722874883A00A346E3 /* storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050E0072874837400A346E3 /* storage.framework */; };
 		B09C54B22875EEAE00FA78D2 /* __UNI__F87B0CE.wgt in Resources */ = {isa = PBXBuildFile; fileRef = B09C54B02875EEAE00FA78D2 /* __UNI__F87B0CE.wgt */; };
 		B09C54B52875F10A00FA78D2 /* __UNI__3BC70CE.wgt in Resources */ = {isa = PBXBuildFile; fileRef = B09C54B42875F10A00FA78D2 /* __UNI__3BC70CE.wgt */; };
 /* End PBXBuildFile section */
@@ -107,17 +96,6 @@
 		B050DFFA2874837400A346E3 /* unincomponents.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = unincomponents.ttf; sourceTree = "<group>"; };
 		B050DFFB2874837400A346E3 /* weex-polyfill.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "weex-polyfill.js"; sourceTree = "<group>"; };
 		B050DFFC2874837400A346E3 /* weexUniJs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = weexUniJs.js; sourceTree = "<group>"; };
-		B050DFFE2874837400A346E3 /* libSDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSDWebImage.a; sourceTree = "<group>"; };
-		B050DFFF2874837400A346E3 /* liblibIO.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibIO.a; sourceTree = "<group>"; };
-		B050E0002874837400A346E3 /* liblibWeex.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibWeex.a; sourceTree = "<group>"; };
-		B050E0012874837400A346E3 /* liblibPDRCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibPDRCore.a; sourceTree = "<group>"; };
-		B050E0022874837400A346E3 /* liblibNativeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNativeUI.a; sourceTree = "<group>"; };
-		B050E0032874837400A346E3 /* liblibUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibUI.a; sourceTree = "<group>"; };
-		B050E0042874837400A346E3 /* libcoreSupport.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcoreSupport.a; sourceTree = "<group>"; };
-		B050E0052874837400A346E3 /* liblibStorage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibStorage.a; sourceTree = "<group>"; };
-		B050E0062874837400A346E3 /* liblibNavigator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNavigator.a; sourceTree = "<group>"; };
-		B050E0072874837400A346E3 /* storage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = storage.framework; sourceTree = "<group>"; };
-		B050E0082874837400A346E3 /* liblibNativeObj.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNativeObj.a; sourceTree = "<group>"; };
 		B050E00A2874837400A346E3 /* DCUniMPSDKEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPSDKEngine.h; sourceTree = "<group>"; };
 		B050E00B2874837400A346E3 /* DCUniMP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMP.h; sourceTree = "<group>"; };
 		B050E00C2874837400A346E3 /* DCUniMPConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPConfiguration.h; sourceTree = "<group>"; };
@@ -194,6 +172,17 @@
 		B050E0542874837400A346E3 /* DCUniMPMenuActionSheetStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPMenuActionSheetStyle.h; sourceTree = "<group>"; };
 		B09C54B02875EEAE00FA78D2 /* __UNI__F87B0CE.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__F87B0CE.wgt; sourceTree = "<group>"; };
 		B09C54B42875F10A00FA78D2 /* __UNI__3BC70CE.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__3BC70CE.wgt; sourceTree = "<group>"; };
+		B09C54B62879FDD600FA78D2 /* storage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = storage.framework; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/storage.framework"; sourceTree = "<group>"; };
+		B09C54B72879FDD700FA78D2 /* libSDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDWebImage.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/libSDWebImage.a"; sourceTree = "<group>"; };
+		B09C54B82879FDD700FA78D2 /* liblibWeex.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibWeex.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/liblibWeex.a"; sourceTree = "<group>"; };
+		B09C54B92879FDD700FA78D2 /* liblibNativeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibNativeUI.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/liblibNativeUI.a"; sourceTree = "<group>"; };
+		B09C54BA2879FDD700FA78D2 /* liblibNavigator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibNavigator.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/liblibNavigator.a"; sourceTree = "<group>"; };
+		B09C54BB2879FDD700FA78D2 /* libcoreSupport.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcoreSupport.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/libcoreSupport.a"; sourceTree = "<group>"; };
+		B09C54BC2879FDD700FA78D2 /* liblibStorage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibStorage.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/liblibStorage.a"; sourceTree = "<group>"; };
+		B09C54BD2879FDD700FA78D2 /* liblibUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibUI.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/liblibUI.a"; sourceTree = "<group>"; };
+		B09C54BE2879FDD700FA78D2 /* liblibIO.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibIO.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/liblibIO.a"; sourceTree = "<group>"; };
+		B09C54BF2879FDD700FA78D2 /* liblibPDRCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibPDRCore.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/liblibPDRCore.a"; sourceTree = "<group>"; };
+		B09C54C02879FDD700FA78D2 /* liblibNativeObj.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibNativeObj.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/liblibNativeObj.a"; sourceTree = "<group>"; };
 		F4C8517F1DEB8F4038F41C1B /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -202,17 +191,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B050E0682874883A00A346E3 /* libcoreSupport.a in Frameworks */,
-				B050E0692874883A00A346E3 /* liblibIO.a in Frameworks */,
-				B050E06A2874883A00A346E3 /* liblibNativeObj.a in Frameworks */,
-				B050E06B2874883A00A346E3 /* liblibNativeUI.a in Frameworks */,
-				B050E06C2874883A00A346E3 /* liblibNavigator.a in Frameworks */,
-				B050E06D2874883A00A346E3 /* liblibPDRCore.a in Frameworks */,
-				B050E06E2874883A00A346E3 /* liblibStorage.a in Frameworks */,
-				B050E06F2874883A00A346E3 /* liblibUI.a in Frameworks */,
-				B050E0702874883A00A346E3 /* liblibWeex.a in Frameworks */,
-				B050E0712874883A00A346E3 /* libSDWebImage.a in Frameworks */,
-				B050E0722874883A00A346E3 /* storage.framework in Frameworks */,
 				B050DF7E2873424800A346E3 /* libiconv.tbd in Frameworks */,
 				B050DF7C2873423F00A346E3 /* AddressBook.framework in Frameworks */,
 				B050DF7A2873423500A346E3 /* CoreLocation.framework in Frameworks */,
@@ -240,6 +218,17 @@
 		58B136A49ECE204E1D5D5324 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B09C54BB2879FDD700FA78D2 /* libcoreSupport.a */,
+				B09C54BE2879FDD700FA78D2 /* liblibIO.a */,
+				B09C54C02879FDD700FA78D2 /* liblibNativeObj.a */,
+				B09C54B92879FDD700FA78D2 /* liblibNativeUI.a */,
+				B09C54BA2879FDD700FA78D2 /* liblibNavigator.a */,
+				B09C54BF2879FDD700FA78D2 /* liblibPDRCore.a */,
+				B09C54BC2879FDD700FA78D2 /* liblibStorage.a */,
+				B09C54BD2879FDD700FA78D2 /* liblibUI.a */,
+				B09C54B82879FDD700FA78D2 /* liblibWeex.a */,
+				B09C54B72879FDD700FA78D2 /* libSDWebImage.a */,
+				B09C54B62879FDD600FA78D2 /* storage.framework */,
 				B050DF7D2873424800A346E3 /* libiconv.tbd */,
 				B050DF7B2873423F00A346E3 /* AddressBook.framework */,
 				B050DF792873423500A346E3 /* CoreLocation.framework */,
@@ -354,17 +343,6 @@
 		B050DFFD2874837400A346E3 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				B050DFFE2874837400A346E3 /* libSDWebImage.a */,
-				B050DFFF2874837400A346E3 /* liblibIO.a */,
-				B050E0002874837400A346E3 /* liblibWeex.a */,
-				B050E0012874837400A346E3 /* liblibPDRCore.a */,
-				B050E0022874837400A346E3 /* liblibNativeUI.a */,
-				B050E0032874837400A346E3 /* liblibUI.a */,
-				B050E0042874837400A346E3 /* libcoreSupport.a */,
-				B050E0052874837400A346E3 /* liblibStorage.a */,
-				B050E0062874837400A346E3 /* liblibNavigator.a */,
-				B050E0072874837400A346E3 /* storage.framework */,
-				B050E0082874837400A346E3 /* liblibNativeObj.a */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
