@@ -10,9 +10,9 @@
 </h1> 
 
 <p align="center">
-<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.6.9" src="https://img.shields.io/badge/Mood--Example-v1.6.9-3e4663"/></a> 
-<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.0.2" src="https://img.shields.io/badge/Flutter-v3.0.2-46D1FD"/></a> 
-<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.17.3" src="https://img.shields.io/badge/Dart-v2.17.3-04599D"/></a> 
+<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.7.4" src="https://img.shields.io/badge/Mood--Example-v1.7.4-3e4663"/></a> 
+<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.0.4" src="https://img.shields.io/badge/Flutter-v3.0.4-46D1FD"/></a> 
+<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.17.5" src="https://img.shields.io/badge/Dart-v2.17.5-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -62,7 +62,7 @@
 | 环境 | 支持版本 |  
 | --- | --- |  
 | Android | 最低：Android 5.0 (API 21) |  
-| IOS | 未测试，正在适配中... |  
+| iOS | 最低：12.4 |  
 
 
 ## 🛠️ 开发环境
@@ -71,16 +71,20 @@
 
 > Windows  
 ```
-[√] Flutter (Channel stable, 3.0.2, on Microsoft Windows [版本 10.0.22000.675], locale zh-CN)
+[√] Flutter (Channel stable, 3.0.4, on Microsoft Windows [版本 10.0.22000.675], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 31.0.0)
 [√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.1.3)
 [√] Android Studio (version 2021.2)
-[√] VS Code (version 1.68.0)
+[√] VS Code (version 1.68.1)
 ```  
 
 > macOS  
 ```
-正在适配中...
+[✓] Flutter (Channel stable, 3.0.4, on macOS 12.4 21F79 darwin-x64, locale zh-Hans-CN)
+[✓] Android toolchain - develop for Android devices (Android SDK version 33.0.0)
+[✓] Xcode - develop for iOS and macOS (Xcode 13.4.1)
+[✓] Android Studio (version 2021.2)
+[✓] VS Code (version 1.68.1)
 ```  
 
 
@@ -119,7 +123,7 @@ Flutter Intl: Remove locale
 ......
 ```
 
-IOS 支持语言本地化还需要在 `ios/Runner/Info.plist` 进行如下编辑。
+iOS 支持语言本地化还需要在 `ios/Runner/Info.plist` 进行如下编辑。
 ```
 <key>CFBundleLocalizations</key>
 <array>
@@ -159,7 +163,7 @@ $ flutter test integration_test/app_test.dart
 
 ```sh
 ├── android                                         # Android 工程文件 
-│   ├── app                       
+│   └── app                       
 │   │   ├── libs                                    # 包含 UniMPSDK 依赖库
 │   │   └── src 
 │   │   │   └── main                  
@@ -177,7 +181,16 @@ $ flutter test integration_test/app_test.dart
 ├── build                                           # 编译或运行后产物
 ├── integration_test                                # 集成测试
 │   └── app_test.dart                               # 集成测试入口 用例
-├── ios                                             # IOS 工程文件
+├── ios                                             # iOS 工程文件
+│   ├── Runner                                      # Runner
+│   │   ├── UniMPSDK                                # 包含 UniMPSDK 内容
+│   │   │   ├── Apps                                # 包含 UniMPSDK 的 uniapp 小程序
+│   │   │   └── Core                                # 包含 UniMPSDK 依赖库
+│   │   ├── AppDelegate_UniMPSDK.swift              # 调用 UniMPSDK 主要逻辑代码
+│   │   ├── AppDelegate.swift                       # Flutter 的 iOS 默认入口
+│   │   ├── Info.plist                              # 项目配置
+│   │   └── Runner-Bridging-Header.h                # 依赖库引入
+│   └── Podfile                                     # 依赖配置
 ├── lib                                             # 工程相关文件（主要编码）
 │   ├── common                                      # 公共相关
 │   │   ├── local_notifications.dart                # 本地通知
@@ -224,6 +237,37 @@ $ flutter test integration_test/app_test.dart
 ├── pubspec.lock                                    # 依赖生成的文件
 └── pubspec.yaml                                    # 核心配置文件（项目配置、依赖等）
 ```
+
+
+## 🤔️ 常见问题  
+
+### Q: 在 iOS 无法打开 uni小程序或无法使用 UniMPSDK  
+<details>
+<summary>点击展开</summary>
+
+> 这是由于 UniMPSDK 官方提供的依赖超过大小限制。  
+> 本项目为了 iOS 端主要功能不受限，剔除了 UniMPSDK 中 Core/Libs 所有库。  
+> 详细目录说明可查看`项目结构`说明  
+> 跟着以下步骤可以恢复正常使用：  
+
+1、下载 UniMPSDK_iOS 库（如链接失效，请麻烦联系我）  
+* 链接: https://pan.baidu.com/s/1j1FgMfiFTwg5H8i5Rr0m_A 提取码: qbit  
+
+2、将 UniMPSDK 中 Core/Libs 所有库添加到项目中，具体如下：
+* 使用 Xcode 打开 Mood-Example/ios 目录
+* 选择 Runner -> TARGETS(Runner) -> Build Phases -> Link Binary With Libraries
+* 点击 + 号并选择 Add Other... 找到下载好的 UniMPSDK 目录
+* 全选 UniMPSDK/Core/Libs 中所有库，完成添加
+
+3、调用库并使用代码，具体如下：  
+* 解除 ios/Runner/Runner-Bridging-Header.h 中 #import "DCUniMP.h" 的注释  
+* 将 ios/Runner/AppDelegate_UniMPSDK.swift 中的所有逻辑代码复制到 ios/Runner/AppDelegate.swift 中  
+
+4、完成，启动 iOS，测试打开小程序  
+
+5、其他
+* [官方 UniMPSDK iOS 集成教程](https://nativesupport.dcloud.net.cn/UniMPDocs/UseSdk/ios)  
+</details>
 
 
 ## 🖼️ Illustration

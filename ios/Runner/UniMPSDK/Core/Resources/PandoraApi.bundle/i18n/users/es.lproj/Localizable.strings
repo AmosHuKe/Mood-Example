@@ -1,0 +1,81 @@
+// common
+"return"="regreso";
+"Cancel"="Cancelar";
+"OK"="OK";
+
+// unimp
+"There is no UniMP (%@) application resource in the running path, please check whether the application resource is deployed normally"="No hay un recurso de aplicación UniMP (% @) en la ruta de ejecución, verifique si el recurso de la aplicación se implementa normalmente";
+
+// ad
+"Refresh"="Actualizar";
+"copy Link"="copiar link";
+"Use Safari to open"="Usa Safari para abrir";
+"Share page"="Compartir pagina";
+"AD"="ANUNCIO";
+"View details"="Ver detalles";
+"Download"="Descargar";
+"Open"="Abierto";
+"jump over"="salte por encima";
+
+// video
+"Brightness"="Brillo";
+"Volume"="Volumen";
+"Barrage"="Bombardeo";
+
+// devtool
+"search"="buscar";
+"Connecting to debugging service (%@)"="Conectando al servicio de depuración (% @)";
+"The connection with debugging service has been disconnected. Possible reasons are as follows: \n1. the mobile phone and PC are not in the same LAN. \n2. Mobile phones use mobile networks. \n3. Mobile phone uses VPN and other proxy settings. \n4. The PC has a firewall."="Se ha desconectado la conexión con el servicio de depuración. Las posibles razones son las siguientes: \ n1. el teléfono móvil y la PC no están en la misma LAN. \ n2. Los teléfonos móviles utilizan redes móviles. \ n3. El teléfono móvil utiliza VPN y otras configuraciones de proxy. \ n4. La PC tiene un firewall.";
+"Unable to connect to debug service connection. Possible reasons are as follows: \n1. the mobile phone and PC are not in the same LAN. \n2. Mobile phones use mobile networks. \n3. Mobile phone uses VPN and other proxy settings. \n4. The PC has a firewall."="No se puede conectar a la conexión del servicio de depuración. Las posibles razones son las siguientes: \ n1. el teléfono móvil y la PC no están en la misma LAN. \ n2. Los teléfonos móviles utilizan redes móviles. \ n3. El teléfono móvil utiliza VPN y otras configuraciones de proxy. \ n4. La PC tiene un firewall.";
+"Reconnection debugging service"="Servicio de depuración de reconexión";
+
+// map
+"starting point"="punto de partida";
+"terminal point"="punto terminal";
+"Failed to verify the configured Baidu map key (appkey) [%d], reference: https://ask.dcloud.net.cn/article/29"="No se pudo verificar la clave de mapa de Baidu configurada (appkey) [% d], referencia: https://ask.dcloud.net.cn/article/29";
+"Baidu Maps"="Mapas de Baidu";
+"Gaode Maps"="Mapas de Gaode";
+"Take %@: get on at %@ and get off at %@ via %ld station"="Tome% @: suba en% @ y bájese en% @ a través de la estación% ld";
+
+// gallery
+"download failed"="Descarga fracasó";
+"File download failed, try to download again?"="Error al descargar el archivo, ¿intentar descargarlo de nuevo?";
+"Retry"="Rever";
+"Next" = "Próximo";
+"Done" = "Hecho";
+"Sorry" = "Lo siento";
+"Setting" = "Configuración";
+"Photos" = "Fotos";
+"Videos" = "Videos";
+"Preview" = "Avance";
+"Full image" = "Imagen completa";
+"Processing..." = "Procesando...";
+"Synchronizing photos from iCloud" = "Sincronizar fotos desde iCloud";
+"Can not use camera" = "No puedo usar la cámara";
+"Can not choose both video and photo" = "No se puede elegir tanto el video como la foto.";
+"Can not choose both photo and GIF" = "No se puede elegir tanto la foto como el GIF";
+"Select the video when in multi state, we will handle the video as a photo" = "Seleccione el video cuando esté en varios estados, manejaremos el video como una foto";
+"Can not jump to the privacy settings page, please go to the settings page by self, thank you" = "No se puede saltar a la página de configuración de privacidad, vaya a la página de configuración por sí mismo, gracias";
+"Select a maximum of %zd photos" = "Seleccione un máximo de %zd fotos";
+"Select a minimum of %zd photos" = "Seleccione un mínimo de %zd fotos";
+"Allow %@ to access your album in \"Settings -> Privacy -> Photos\"" = "Permita que %@ acceda a su álbum en \"Configuración -> Privacidad -> Fotos\"";
+"Please allow %@ to access your camera in \"Settings -> Privacy -> Camera\"" = "Permita que %@ acceda a su cámara en \"Configuración -> Privacidad -> Cámara\"";
+"Can not access photos in album" = "No se puede acceder a las fotos del álbum.";
+"Can not access all photos in album" = "No se puede acceder a todas las fotos del álbum.";
+"No photo access" = "Actualmente no hay permiso de acceso a fotos. Se recomienda ir a la configuración del sistema para permitir que las aplicaciones accedan a [Todas las fotos] en [Fotos]";
+"Photo access restricted" = "La aplicación solo puede acceder a algunas fotos del álbum. Se recomienda ir a la configuración del sistema para permitir que la aplicación acceda a [Todas las fotos] en [Fotos]";
+"Go to system settings" = "Ir a la configuración del sistema";
+"Limit tips" = "No se puede acceder a todas las fotos del álbum. \ NPermita el acceso a 「Todas las fotos」 en 「Fotos」.";
+"Limit Alert Tips" = "Continuar visitando algunas fotos";
+"Edit" = "Editar";
+"_LFME_oKButtonTitle" = "Hecho";
+"_LFME_cancelButtonTitle" = "Cancelar";
+"_LFME_processHintStr" = "Procesando...";
+"_LFME_alertViewCancelTitle" = "Hecho";
+"_LFME_reachMaximumLimitTitle" = "Límite de entrada alcanzado";
+"Original" = "Original";
+"_LFME_sticker_remove_normal" = "Arrastra aquí para borrar";
+"_LFME_sticker_remove_selected" = "Deja ir a borrar";
+"_LFME_UserGuide_ToolBar_Scroll" = "Desplácese hacia la izquierda encontrará más funciones.";
+"_LFME_UserGuide_StickerView_MovingView_Pinch" = "Dos dedos también pueden hacer zoom y rotar.";
+"_LFME_UserGuide_StickerView_DisplayView_LongPress" = "Mantenga pulsado para obtener una vista previa de la imagen.";
