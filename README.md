@@ -12,7 +12,7 @@
 <p align="center">
 <a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.6.9" src="https://img.shields.io/badge/Mood--Example-v1.6.9-3e4663"/></a> 
 <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.0.4" src="https://img.shields.io/badge/Flutter-v3.0.4-46D1FD"/></a> 
-<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.17.3" src="https://img.shields.io/badge/Dart-v2.17.3-04599D"/></a> 
+<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.17.5" src="https://img.shields.io/badge/Dart-v2.17.5-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -81,9 +81,10 @@
 > macOS  
 ```
 [✓] Flutter (Channel stable, 3.0.4, on macOS 12.4 21F79 darwin-x64, locale zh-Hans-CN)
-Checking Android licenses is taking an unexpectedly long time...[✓] Android toolchain - develop for Android devices (Android SDK version 33.0.0)
+[✓] Android toolchain - develop for Android devices (Android SDK version 33.0.0)
 [✓] Xcode - develop for iOS and macOS (Xcode 13.4.1)
 [✓] Android Studio (version 2021.2)
+[✓] VS Code (version 1.68.1)
 ```  
 
 
@@ -181,14 +182,15 @@ $ flutter test integration_test/app_test.dart
 ├── integration_test                                # 集成测试
 │   └── app_test.dart                               # 集成测试入口 用例
 ├── ios                                             # iOS 工程文件
-│   └── Runner                                      # Runner
+│   ├── Runner                                      # Runner
 │   │   ├── UniMPSDK                                # 包含 UniMPSDK 内容
 │   │   │   ├── Apps                                # 包含 UniMPSDK 的 uniapp 小程序
 │   │   │   └── Core                                # 包含 UniMPSDK 依赖库
 │   │   ├── AppDelegate_UniMPSDK.swift              # 调用 UniMPSDK 主要逻辑代码
 │   │   ├── AppDelegate.swift                       # Flutter 的 iOS 默认入口
-│   │   ├── Info.plist                              # 配置文件
+│   │   ├── Info.plist                              # 项目配置
 │   │   └── Runner-Bridging-Header.h                # 依赖库引入
+│   └── Podfile                                     # 依赖配置
 ├── lib                                             # 工程相关文件（主要编码）
 │   ├── common                                      # 公共相关
 │   │   ├── local_notifications.dart                # 本地通知
@@ -242,7 +244,7 @@ $ flutter test integration_test/app_test.dart
 ### Q: 在 iOS 无法打开 uni小程序或无法使用 UniMPSDK  
 > 这是由于 UniMPSDK 官方提供的依赖超过大小限制。  
 > 本项目为了 iOS 端主要功能不受限，剔除了 UniMPSDK 中 Core/Libs 所有库。  
-> 详细目录说明可查看`项目结构`说明
+> 详细目录说明可查看`项目结构`说明  
 > 跟着以下步骤可以恢复正常使用：  
 
 1、下载 UniMPSDK_iOS 库（如链接失效，请麻烦联系我）  
@@ -251,7 +253,7 @@ $ flutter test integration_test/app_test.dart
 2、将 UniMPSDK 中 Core/Libs 所有库添加到项目中，具体如下：
 * 使用 Xcode 打开 Mood-Example/ios 目录
 * 选择 Runner -> TARGETS(Runner) -> Build Phases -> Link Binary With Libraries
-* 点击 + 号并选择 Add Other... 找到第 1 步下载好的 UniMPSDK 目录
+* 点击 + 号并选择 Add Other... 找到下载好的 UniMPSDK 目录
 * 全选 UniMPSDK/Core/Libs 中所有库，完成添加
 
 3、调用库并使用代码，具体如下：  
