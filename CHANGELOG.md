@@ -1,3 +1,10 @@
+# 1.7.4
+- [升级] Flutter 3.0.4  
+- [新增] iOS 适配  
+- [新增] iOS 适配 UniMPSDK  
+- [新增] 实验室-游戏合集 (Flame、Bonfire)  
+- [Bug 修复] 系统字体放大后导致部分布局失效 ([#11](https://github.com/AmosHuKe/Mood-Example/issues/11))  
+
 # 1.6.9
 - [升级] Flutter 3.0.2  
 - [升级] 部分库升级  
