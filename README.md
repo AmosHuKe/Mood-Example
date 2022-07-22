@@ -303,7 +303,7 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 | [bonfire](https://pub.dev/packages/bonfire) | [MIT License](https://pub.dev/packages/bonfire/license) |  
 | [flutter_screenutil](https://pub.dev/packages/flutter_screenutil) | [Apache-2.0 License](https://pub.dev/packages/flutter_screenutil/license) |  
 | [table_calendar](https://pub.dev/packages/table_calendar) | [Apache-2.0 License](https://pub.dev/packages/table_calendar/license) |  
-| [flutter_native_timezone](https://pub.dev/packages/flutter_native_timezone) | [Apache-2.0 License](https://pub.dev/packages/
+| [flutter_native_timezone](https://pub.dev/packages/flutter_native_timezone) | [Apache-2.0 License](https://pub.dev/packages/flutter_native_timezone/license) |  
 | [sqflite](https://pub.dev/packages/sqflite) | [BSD-2-Clause License](https://pub.dev/packages/sqflite/license) |  
 | [vibration](https://pub.dev/packages/vibration) | [BSD-2-Clause License](https://pub.dev/packages/vibration/license) |  
 | [shared_preferences](https://pub.dev/packages/shared_preferences) | [BSD-3-Clause License](https://pub.dev/packages/shared_preferences/license) |  
@@ -314,7 +314,6 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 | [share_plus](https://pub.dev/packages/share_plus) | [BSD-3-Clause License](https://pub.dev/packages/share_plus/license) |  
 | [webview_flutter](https://pub.dev/packages/webview_flutter) | [BSD-3-Clause License](https://pub.dev/packages/webview_flutter/license) |  
 | [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) | [BSD-3-Clause License](https://pub.dev/packages/flutter_local_notifications/license) |  
-flutter_native_timezone/license) |  
 | [animations](https://pub.dev/packages/animations) | [BSD-3-Clause License](https://pub.dev/packages/animations/license) |  
 
 
