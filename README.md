@@ -287,7 +287,7 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 
 感谢开源  
 
-|  |  |  
+| Packages | License |  
 |---|---|  
 | [provider](https://pub.dev/packages/provider) | [MIT License](https://pub.dev/packages/provider/license) |  
 | [fluro](https://pub.dev/packages/fluro) | [MIT License](https://pub.dev/packages/fluro/license) |  
