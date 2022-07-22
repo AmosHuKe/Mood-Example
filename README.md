@@ -6,7 +6,7 @@
 <br/>
 
 <h1 align="center"> 
-<img alt="Logo" src="./.README/logo/logo.png" width="48px" style="border-radius:16px;" /> Mood Example
+<img alt="Logo" src="./.README/logo/logo.png" width="48px" style="border-radius:16px;" /> Mood Example[^info]
 </h1> 
 
 <p align="center">
@@ -322,4 +322,4 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 [![BSD-3-Clause License](https://img.shields.io/badge/license-BSD--3--Clause-green)](https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE)  
 Open sourced under the BSD-3-Clause license.  
 根据 BSD-3-Clause 许可证开源。  
-© AmosHuKe
+[^info]:© AmosHuKe
