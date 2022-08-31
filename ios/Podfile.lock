@@ -123,7 +123,7 @@ SPEC CHECKSUMS:
   DKImagePickerController: 72fd378f244cef3d27288e0aebf217a4467e4012
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
   file_picker: 3e6c3790de664ccf9b882732d9db5eaf6b8d4eb1
-  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_native_timezone: 5f05b2de06c9776b4cc70e1839f03de178394d22
   fluttertoast: 16fbe6039d06a763f3533670197d01fc73459037
@@ -140,6 +140,6 @@ SPEC CHECKSUMS:
   vibration: 1ec279c4a1a7a646627b54039d812334b3f1114a
   webview_flutter_wkwebview: b7e70ef1ddded7e69c796c7390ee74180182971f
 
-PODFILE CHECKSUM: ab1fd852a7aef1a8879e7c2106d53c13320dfc27
+PODFILE CHECKSUM: ce9c09e4a374857a6b96c58a0b650208a9426b06
 
 COCOAPODS: 1.11.3
