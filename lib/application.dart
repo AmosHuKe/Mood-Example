@@ -90,6 +90,7 @@ class _ApplicationState extends State<Application> {
             debugPrint("设备支持的地区语言$supportedLocales");
             return null;
           },
+          title: "Mood",
 
           /// Home
           home: const WillPopScopeRoute(child: Init()),
