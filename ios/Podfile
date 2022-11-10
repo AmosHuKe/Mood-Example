@@ -31,6 +31,9 @@ flutter_ios_podfile_setup
 target 'Runner' do
   use_frameworks!
   use_modular_headers!
+  
+  # Bug Fix DKImagePickerController
+  pod 'DKImagePickerController', '4.3.4'
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 end
