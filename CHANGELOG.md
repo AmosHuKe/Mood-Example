@@ -1,6 +1,8 @@
 # 1.7.7
-- [升级] Flutter 3.3.7  
+- [升级] Flutter 3.3.8  
 - [新增] 应用后台显示名称  
+- [修复] DKImagePickerController 4.3.3 版本，在 Xcode14、iOS16 环境下报错  
+
 # 1.7.6
 - [升级] Flutter 3.3.0  
 
