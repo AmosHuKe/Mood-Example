@@ -8,6 +8,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:moodexample/generated/l10n.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 
 ///
 import 'package:moodexample/themes/app_theme.dart';
@@ -16,7 +17,7 @@ import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/will_pop_scope_route/will_pop_scope_route.dart';
 import 'package:moodexample/home_screen.dart';
-import 'package:moodexample/common/local_notifications.dart';
+import 'package:moodexample/common/notification.dart';
 
 /// view_model
 import 'package:moodexample/view_models/mood/mood_view_model.dart';
@@ -139,42 +140,89 @@ class _InitState extends State<Init> {
     PreferencesDB().getAppIsLocaleSystem(applicationViewModel);
   }
 
-  /// 发送通知
-  void sendNotification(BuildContext context) {
-    LocalNotifications(
-        onSelectNotification: ({payload}) => onSelectNotification(payload))
-      ..init()
-      ..send(
-        0,
-        S.of(context).local_notification_welcome_title,
-        S.of(context).local_notification_welcome_body,
-        payload: 'localNotificationsInit',
-        channelId: ChannelID.init,
-        channelName: '进入应用',
-      );
+  /// 通知初始化
+  void initNotification() async {
+    NotificationController.initializeLocalNotifications();
+    await NotificationController.cancelNotifications();
+    bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
+    if (!isAllowed) {
+      if (!mounted) return;
+      isAllowed = await displayNotificationRationale(context);
+    }
+    print(isAllowed);
   }
 
-  /// 点击通知时触发
-  void onSelectNotification(String? payload) {
-    showDialog(
+  /// 通知权限
+  static Future<bool> displayNotificationRationale(BuildContext context) async {
+    bool userAuthorized = false;
+    await showCupertinoDialog<void>(
       context: context,
-      builder: (context) => Theme(
+      builder: (BuildContext context) => Theme(
         data: isDarkMode(context) ? ThemeData.dark() : ThemeData.light(),
         child: CupertinoAlertDialog(
-          title: Text(S.of(context).local_notification_dialog_welcome_title),
-          content: Text(S
-              .of(context)
-              .local_notification_dialog_welcome_content(payload!)),
-          actions: [
+          title: const Text("通知权限"),
+          content: const Text("打开权限后通知才会生效"),
+          actions: <CupertinoDialogAction>[
             CupertinoDialogAction(
-              isDefaultAction: true,
-              child: Text(S.of(context).local_notification_dialog_welcome_ok),
-              onPressed: () async {
-                Navigator.of(context, rootNavigator: true).pop();
+              child: const Text("取消"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            CupertinoDialogAction(
+              child: const Text("前往设置"),
+              onPressed: () {
+                userAuthorized = true;
+                Navigator.pop(context);
               },
             )
           ],
         ),
+      ),
+    );
+    return userAuthorized &&
+        await AwesomeNotifications().requestPermissionToSendNotifications();
+  }
+
+  /// 发送普通通知
+  void sendNotification(BuildContext context) async {
+    bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
+    if (!isAllowed) return;
+    if (!mounted) return;
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: 1,
+        channelKey: 'notification',
+        title: S.of(context).local_notification_welcome_title,
+        body: S.of(context).local_notification_welcome_body,
+        actionType: ActionType.Default,
+        category: NotificationCategory.Alarm,
+      ),
+    );
+  }
+
+  /// 发送定时计划通知
+  void sendScheduleNotification(BuildContext context) async {
+    String localTimeZone =
+        await AwesomeNotifications().getLocalTimeZoneIdentifier();
+    bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
+    if (!isAllowed) return;
+    if (!mounted) return;
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: -1, // 随机ID
+        channelKey: 'notification',
+        title: "定时计划通知",
+        body: "每1分钟你将看见此通知",
+        actionType: ActionType.Default,
+        category: NotificationCategory.Event,
+      ),
+      schedule: NotificationCalendar(
+        second: 0, // 当秒到达0时将会通知，意味着每个分钟的整点会通知
+        timeZone: localTimeZone,
+        allowWhileIdle: true,
+        preciseAlarm: true,
+        repeats: true,
       ),
     );
   }
@@ -187,7 +235,10 @@ class _InitState extends State<Init> {
 
   @override
   Widget build(BuildContext context) {
+    /// 通知初始化
+    initNotification();
     sendNotification(context);
+    sendScheduleNotification(context);
     return const MenuPage();
   }
 }
