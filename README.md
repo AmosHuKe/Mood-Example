@@ -11,8 +11,8 @@
 
 <p align="center">
 <a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.7.7" src="https://img.shields.io/badge/Mood--Example-v1.7.7-3e4663"/></a> 
-<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.3.8" src="https://img.shields.io/badge/Flutter-v3.3.8-46D1FD"/></a> 
-<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.18.4" src="https://img.shields.io/badge/Dart-v2.18.4-04599D"/></a> 
+<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.3.9" src="https://img.shields.io/badge/Flutter-v3.3.9-46D1FD"/></a> 
+<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.18.5" src="https://img.shields.io/badge/Dart-v2.18.5-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -71,7 +71,7 @@
 
 > Windows  
 ```
-[√] Flutter (Channel stable, 3.3.8, on Microsoft Windows [版本 10.0.22000.1098], locale zh-CN)
+[√] Flutter (Channel stable, 3.3.9, on Microsoft Windows [版本 10.0.22000.1219], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 31.0.0)
 [√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.4.0)
 [√] Android Studio (version 2021.3)
@@ -304,6 +304,7 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 | [flutter_screenutil](https://pub.dev/packages/flutter_screenutil) | [Apache-2.0 License](https://pub.dev/packages/flutter_screenutil/license) |  
 | [table_calendar](https://pub.dev/packages/table_calendar) | [Apache-2.0 License](https://pub.dev/packages/table_calendar/license) |  
 | [flutter_native_timezone](https://pub.dev/packages/flutter_native_timezone) | [Apache-2.0 License](https://pub.dev/packages/flutter_native_timezone/license) |  
+| [awesome_notifications](https://pub.dev/packages/awesome_notifications) | [Apache-2.0 License](https://pub.dev/packages/awesome_notifications/license) |  
 | [sqflite](https://pub.dev/packages/sqflite) | [BSD-2-Clause License](https://pub.dev/packages/sqflite/license) |  
 | [vibration](https://pub.dev/packages/vibration) | [BSD-2-Clause License](https://pub.dev/packages/vibration/license) |  
 | [shared_preferences](https://pub.dev/packages/shared_preferences) | [BSD-3-Clause License](https://pub.dev/packages/shared_preferences/license) |  
@@ -313,7 +314,6 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 | [flutter_lints](https://pub.dev/packages/flutter_lints) | [BSD-3-Clause License](https://pub.dev/packages/flutter_lints/license) |  
 | [share_plus](https://pub.dev/packages/share_plus) | [BSD-3-Clause License](https://pub.dev/packages/share_plus/license) |  
 | [webview_flutter](https://pub.dev/packages/webview_flutter) | [BSD-3-Clause License](https://pub.dev/packages/webview_flutter/license) |  
-| [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) | [BSD-3-Clause License](https://pub.dev/packages/flutter_local_notifications/license) |  
 | [animations](https://pub.dev/packages/animations) | [BSD-3-Clause License](https://pub.dev/packages/animations/license) |  
 
 
