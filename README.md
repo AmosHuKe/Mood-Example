@@ -193,7 +193,7 @@ $ flutter test integration_test/app_test.dart
 │   └── Podfile                                     # 依赖配置
 ├── lib                                             # 工程相关文件（主要编码）
 │   ├── common                                      # 公共相关
-│   │   ├── local_notifications.dart                # 本地通知
+│   │   ├── notification.dart                       # 本地通知
 │   │   ├── utils_intl.dart                         # 国际化工具
 │   │   └── utils.dart                              # 工具
 │   ├── config                                      # 配置
