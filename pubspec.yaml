@@ -72,7 +72,7 @@ dependencies:
   # 3D 数据集显示
   ditredi: ^1.0.3
   # 本地通知
-  flutter_local_notifications: ^9.6.0
+  awesome_notifications: ^0.7.4+1
   # 时区
   flutter_native_timezone: ^2.0.0
   # 动画
