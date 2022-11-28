@@ -1,12 +1,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.moodexample">
 
-    <!-- 震动 -->
+    <!-- 震动 begin-->
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <!-- 震动 end-->
+
     <!-- 生物特征识别 begin -->
     <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <!-- 生物特征识别 end -->
+    
+    <!-- 通知 begin -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+    <!-- 通知 end -->
 
     <application
         android:label="Mood"
