@@ -20,22 +20,20 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(payload) => "payload: ${payload}";
-
-  static String m1(moodDays) =>
+  static String m0(moodDays) =>
       "Mood swings are calculated on a ${moodDays}-day basis";
 
-  static String m2(moodScoreAverage) => "Average ${moodScoreAverage}";
+  static String m1(moodScoreAverage) => "Average ${moodScoreAverage}";
 
-  static String m3(moodDays) => "Mood swings in recent ${moodDays} days";
+  static String m2(moodDays) => "Mood swings in recent ${moodDays} days";
 
-  static String m4(moodDays) => "Statistics of mood in recent ${moodDays} days";
+  static String m3(moodDays) => "Statistics of mood in recent ${moodDays} days";
 
-  static String m5(daysCount) => "${daysCount} days";
+  static String m4(daysCount) => "${daysCount} days";
 
-  static String m6(moodCount) => "${moodCount} mood";
+  static String m5(moodCount) => "${moodCount} mood";
 
-  static String m7(moodScoreAverage) => "${moodScoreAverage}";
+  static String m6(moodScoreAverage) => "${moodScoreAverage}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -96,20 +94,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "home_upgrade_content": MessageLookupByLibrary.simpleMessage(
             "Learn the latest\nusage scenarios"),
         "home_upgrade_title": MessageLookupByLibrary.simpleMessage("Upgrade"),
-        "local_notification_dialog_welcome_content": m0,
-        "local_notification_dialog_welcome_ok":
-            MessageLookupByLibrary.simpleMessage("OK"),
-        "local_notification_dialog_welcome_title":
-            MessageLookupByLibrary.simpleMessage("Notification Click"),
-        "local_notification_mood_body": MessageLookupByLibrary.simpleMessage(
-            "If you click this notification, a schedule notification will be notified in 5 seconds."),
-        "local_notification_mood_title":
-            MessageLookupByLibrary.simpleMessage("Hi"),
-        "local_notification_schedule_mood_body":
-            MessageLookupByLibrary.simpleMessage(""),
-        "local_notification_schedule_mood_title":
+        "local_notification_dialog_allow_cancel":
+            MessageLookupByLibrary.simpleMessage("Cancel"),
+        "local_notification_dialog_allow_confirm":
+            MessageLookupByLibrary.simpleMessage("Settings"),
+        "local_notification_dialog_allow_content":
+            MessageLookupByLibrary.simpleMessage("Allow Notifications?"),
+        "local_notification_dialog_allow_title":
+            MessageLookupByLibrary.simpleMessage("Notifications"),
+        "local_notification_schedule_body":
+            MessageLookupByLibrary.simpleMessage("Every 1 minute"),
+        "local_notification_schedule_title":
             MessageLookupByLibrary.simpleMessage(
-                "Hi~ I am a scheduled notification"),
+                "📅 Scheduling a Notification"),
         "local_notification_welcome_body": MessageLookupByLibrary.simpleMessage(
             "Send you a notification that the notification has been initialized."),
         "local_notification_welcome_title":
@@ -161,23 +158,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "statistic_filter_15d": MessageLookupByLibrary.simpleMessage("15d"),
         "statistic_filter_30d": MessageLookupByLibrary.simpleMessage("30d"),
         "statistic_filter_7d": MessageLookupByLibrary.simpleMessage("7d"),
-        "statistic_moodScoreAverage_content": m1,
-        "statistic_moodScoreAverage_title": m2,
-        "statistic_moodScore_content": m3,
+        "statistic_moodScoreAverage_content": m0,
+        "statistic_moodScoreAverage_title": m1,
+        "statistic_moodScore_content": m2,
         "statistic_moodScore_title":
             MessageLookupByLibrary.simpleMessage("Mood swings"),
-        "statistic_moodStatistics_content": m4,
+        "statistic_moodStatistics_content": m3,
         "statistic_moodStatistics_title":
             MessageLookupByLibrary.simpleMessage("Mood statistics"),
         "statistic_overall_daysCount_subTitle":
             MessageLookupByLibrary.simpleMessage("Cumulative\nrecord days"),
-        "statistic_overall_daysCount_title": m5,
+        "statistic_overall_daysCount_title": m4,
         "statistic_overall_moodCount_subTitle":
             MessageLookupByLibrary.simpleMessage("Cumulative\nrecord mood"),
-        "statistic_overall_moodCount_title": m6,
+        "statistic_overall_moodCount_title": m5,
         "statistic_overall_moodScoreAverage_subTitle":
             MessageLookupByLibrary.simpleMessage("Average\ntotal score"),
-        "statistic_overall_moodScoreAverage_title": m7,
+        "statistic_overall_moodScoreAverage_title": m6,
         "statistic_title": MessageLookupByLibrary.simpleMessage("Statistic"),
         "web_view_loading_text":
             MessageLookupByLibrary.simpleMessage("Loading"),

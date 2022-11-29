@@ -1,8 +1,6 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 
 class NotificationController {
-  static ReceivedAction? initialAction;
-
   /// 初始化
   static Future<void> initializeLocalNotifications() async {
     await AwesomeNotifications().initialize(
@@ -21,10 +19,6 @@ class NotificationController {
       ],
       debug: true,
     );
-
-    // Get initial notification action is optional
-    initialAction = await AwesomeNotifications()
-        .getInitialNotificationAction(removeFromActionEvents: false);
   }
 
   // 重置小红点计数器

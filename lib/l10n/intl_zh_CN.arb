@@ -91,11 +91,10 @@
 
     "local_notification_welcome_title": "👋 欢迎来到这里",
     "local_notification_welcome_body": "进入给你发送一条通知，证明通知已初始化。",
-    "local_notification_dialog_welcome_title": "通知点击",
-    "local_notification_dialog_welcome_content": "payload 返回值: {payload}",
-    "local_notification_dialog_welcome_ok": "OK",
-    "local_notification_mood_title": "查看",
-    "local_notification_mood_body": "如果点击这条通知，那么将会在 5 秒后通知一条计划通知。",
-    "local_notification_schedule_mood_title": "Hi~ 我是定时计划通知",
-    "local_notification_schedule_mood_body": "我就是那位 5 秒后的计划通知。"
+    "local_notification_dialog_allow_title": "通知权限",
+    "local_notification_dialog_allow_content": "打开权限后通知才会生效",
+    "local_notification_dialog_allow_cancel": "取消",
+    "local_notification_dialog_allow_confirm": "前往设置",
+    "local_notification_schedule_title": "📅 定时计划通知",
+    "local_notification_schedule_body": "每1分钟你将看见此通知"
 }

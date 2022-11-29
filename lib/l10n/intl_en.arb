@@ -91,11 +91,10 @@
 
     "local_notification_welcome_title": "👋 Hi",
     "local_notification_welcome_body": "Send you a notification that the notification has been initialized.",
-    "local_notification_dialog_welcome_title": "Notification Click",
-    "local_notification_dialog_welcome_content": "payload: {payload}",
-    "local_notification_dialog_welcome_ok": "OK",
-    "local_notification_mood_title": "Hi",
-    "local_notification_mood_body": "If you click this notification, a schedule notification will be notified in 5 seconds.",
-    "local_notification_schedule_mood_title": "Hi~ I am a scheduled notification",
-    "local_notification_schedule_mood_body": ""
+    "local_notification_dialog_allow_title": "Notifications",
+    "local_notification_dialog_allow_content": "Allow Notifications?",
+    "local_notification_dialog_allow_cancel": "Cancel",
+    "local_notification_dialog_allow_confirm": "Settings",
+    "local_notification_schedule_title": "📅 Scheduling a Notification",
+    "local_notification_schedule_body": "Every 1 minute"
 }    

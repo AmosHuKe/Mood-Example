@@ -110,7 +110,7 @@ class Init extends StatefulWidget {
 
 class _InitState extends State<Init> {
   /// 应用初始化
-  void init(BuildContext context) async {
+  void init() async {
     MoodViewModel moodViewModel =
         Provider.of<MoodViewModel>(context, listen: false);
     ApplicationViewModel applicationViewModel =
@@ -138,18 +138,9 @@ class _InitState extends State<Init> {
 
     /// 触发获取APP地区语言是否跟随系统
     PreferencesDB().getAppIsLocaleSystem(applicationViewModel);
-  }
 
-  /// 通知初始化
-  void initNotification() async {
-    NotificationController.initializeLocalNotifications();
-    await NotificationController.cancelNotifications();
-    bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
-    if (!isAllowed) {
-      if (!mounted) return;
-      isAllowed = await displayNotificationRationale(context);
-    }
-    print(isAllowed);
+    /// 通知权限判断显示
+    allowedNotification();
   }
 
   /// 通知权限
@@ -160,17 +151,21 @@ class _InitState extends State<Init> {
       builder: (BuildContext context) => Theme(
         data: isDarkMode(context) ? ThemeData.dark() : ThemeData.light(),
         child: CupertinoAlertDialog(
-          title: const Text("通知权限"),
-          content: const Text("打开权限后通知才会生效"),
+          key: const Key("notification_rationale_dialog"),
+          title: Text(S.of(context).local_notification_dialog_allow_title),
+          content: Text(S.of(context).local_notification_dialog_allow_content),
           actions: <CupertinoDialogAction>[
             CupertinoDialogAction(
-              child: const Text("取消"),
+              key: const Key("notification_rationale_close"),
+              child: Text(S.of(context).local_notification_dialog_allow_cancel),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
             CupertinoDialogAction(
-              child: const Text("前往设置"),
+              key: const Key("notification_rationale_ok"),
+              child:
+                  Text(S.of(context).local_notification_dialog_allow_confirm),
               onPressed: () {
                 userAuthorized = true;
                 Navigator.pop(context);
@@ -184,8 +179,17 @@ class _InitState extends State<Init> {
         await AwesomeNotifications().requestPermissionToSendNotifications();
   }
 
+  /// 通知权限判断显示
+  void allowedNotification() async {
+    bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
+    if (!isAllowed) {
+      if (!mounted) return;
+      isAllowed = await displayNotificationRationale(context);
+    }
+  }
+
   /// 发送普通通知
-  void sendNotification(BuildContext context) async {
+  void sendNotification() async {
     bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
     if (!isAllowed) return;
     if (!mounted) return;
@@ -196,13 +200,13 @@ class _InitState extends State<Init> {
         title: S.of(context).local_notification_welcome_title,
         body: S.of(context).local_notification_welcome_body,
         actionType: ActionType.Default,
-        category: NotificationCategory.Alarm,
+        category: NotificationCategory.Event,
       ),
     );
   }
 
   /// 发送定时计划通知
-  void sendScheduleNotification(BuildContext context) async {
+  void sendScheduleNotification() async {
     String localTimeZone =
         await AwesomeNotifications().getLocalTimeZoneIdentifier();
     bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
@@ -212,8 +216,8 @@ class _InitState extends State<Init> {
       content: NotificationContent(
         id: -1, // 随机ID
         channelKey: 'notification',
-        title: "定时计划通知",
-        body: "每1分钟你将看见此通知",
+        title: S.of(context).local_notification_schedule_title,
+        body: S.of(context).local_notification_schedule_body,
         actionType: ActionType.Default,
         category: NotificationCategory.Event,
       ),
@@ -230,16 +234,15 @@ class _InitState extends State<Init> {
   @override
   void initState() {
     super.initState();
-    init(context);
+    init();
   }
 
   @override
   Widget build(BuildContext context) {
-    /// 通知初始化
-    initNotification();
-    sendNotification(context);
-    sendScheduleNotification(context);
-    return const MenuPage();
+    NotificationController.cancelNotifications();
+    sendNotification();
+    sendScheduleNotification();
+    return const MenuPage(key: Key("widget_menu_page"));
   }
 }
 
