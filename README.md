@@ -10,7 +10,7 @@
 </h1> 
 
 <p align="center">
-<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.7.7" src="https://img.shields.io/badge/Mood--Example-v1.7.7-3e4663"/></a> 
+<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.7.9" src="https://img.shields.io/badge/Mood--Example-v1.7.9-3e4663"/></a> 
 <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.3.9" src="https://img.shields.io/badge/Flutter-v3.3.9-46D1FD"/></a> 
 <a target="_blank" href="https://dart.dev/"><img alt="Dart v2.18.5" src="https://img.shields.io/badge/Dart-v2.18.5-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
@@ -241,7 +241,7 @@ $ flutter test integration_test/app_test.dart
 
 ## 🤔️ 常见问题  
 
-### Q: 在 iOS 无法打开 uni小程序或无法使用 UniMPSDK  
+### **Q: 在 iOS 无法打开 uni小程序或无法使用 UniMPSDK**  
 <details>
 <summary>点击展开</summary>
 
@@ -267,6 +267,17 @@ $ flutter test integration_test/app_test.dart
 
 5、其他
 * [官方 UniMPSDK iOS 集成教程](https://nativesupport.dcloud.net.cn/UniMPDocs/UseSdk/ios)  
+</details>
+
+### **Q: 在 APP 关闭后，通知失效**  
+<details>
+<summary>点击展开</summary>
+
+> 在确认应用开启了通知的情况下，关闭 APP 后依旧无法通知。  
+> 这是因为部分品牌 Android 默认使用了电池节能策略。  
+
+解决：关闭应用的电池节能策略，并打开自启动
+
 </details>
 
 

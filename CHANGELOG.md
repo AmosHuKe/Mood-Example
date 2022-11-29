@@ -1,3 +1,8 @@
+# 1.7.9
+- [升级] Flutter 3.3.9  
+- [修改] 本地通知库 flutter_local_notifications 更换为 awesome_notifications  
+- [新增] Schedule 定时计划通知  
+
 # 1.7.7
 - [升级] Flutter 3.3.8  
 - [新增] 应用后台显示名称  
