@@ -93,9 +93,9 @@ class PreferencesDB {
     SharedPreferences prefs = await init();
     debugPrint(locale);
     await setAppIsLocaleSystem(applicationViewModel, false);
-    final appLocale = locale ?? "zh";
-    final appLocaleList = appLocale.split('_');
-    prefs.setString(appLocale, appLocale);
+    final appLocaleSystem = locale ?? "zh";
+    final appLocaleList = appLocaleSystem.split('_');
+    prefs.setString(appLocale, appLocaleSystem);
     applicationViewModel.setLocale(Locale(
         appLocaleList[0], appLocaleList.length > 1 ? appLocaleList[1] : ''));
   }
