@@ -1,9 +1,12 @@
 package com.example.moodexample
 
 import io.dcloud.common.adapter.util.Logger
+import androidx.annotation.NonNull;
+import io.flutter.embedding.android.FlutterFragmentActivity;
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
+import io.flutter.plugins.GeneratedPluginRegistrant
 
 import io.dcloud.feature.sdk.DCUniMPSDK;
 import io.dcloud.feature.sdk.Interface.IUniMP
@@ -12,12 +15,12 @@ import io.dcloud.feature.sdk.DCSDKInitConfig
 import io.dcloud.feature.sdk.MenuActionSheetItem
 import io.flutter.Log
 
-class MainActivity: FlutterActivity() {
+class MainActivity: FlutterFragmentActivity() {
     /* ======================================================= */
     /* Override/Implements Methods                             */
     /* ======================================================= */
-    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
-        super.configureFlutterEngine(flutterEngine)
+    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+        GeneratedPluginRegistrant.registerWith(flutterEngine);
         val messenger = flutterEngine.dartExecutor.binaryMessenger
         // Channel 对象
         val channel = MethodChannel(messenger, "UniMP_mini_apps")
@@ -45,7 +48,7 @@ class MainActivity: FlutterActivity() {
                         DCUniMPSDK.getInstance().initialize(this, config)
 
                         // 打开小程序
-                        val unimp: IUniMP = DCUniMPSDK.getInstance().openUniMP(context, argumentAppID)
+                        val unimp: IUniMP = DCUniMPSDK.getInstance().openUniMP(this, argumentAppID)
                         // 监听胶囊菜单点击事件
                         DCUniMPSDK.getInstance().setDefMenuButtonClickCallBack { argumentAppID, id ->
                             when (id) {
