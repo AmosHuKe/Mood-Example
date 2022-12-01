@@ -14,6 +14,7 @@ import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_d
 import 'package:moodexample/views/menu_screen/widgets/setting_theme.dart';
 import 'package:moodexample/views/menu_screen/widgets/setting_language.dart';
 import 'package:moodexample/views/menu_screen/widgets/setting_database.dart';
+import 'package:moodexample/views/menu_screen/widgets/setting_key.dart';
 import 'package:moodexample/routes.dart';
 
 ///
@@ -154,6 +155,27 @@ class Menu extends StatelessWidget {
             showModalBottomDetail(
               context: context,
               child: const SettingDatabase(),
+            );
+          },
+        ),
+        MenuList(
+          icon: Icon(
+            Remix.shield_keyhole_line,
+            size: _titleIconSize,
+          ),
+          title: Text(
+            "安全",
+            style: TextStyle(
+              fontSize: _titleTextSize,
+            ),
+          ),
+          onTap: () {
+            debugPrint("安全");
+
+            /// 底部内容弹出
+            showModalBottomDetail(
+              context: context,
+              child: const SettingKey(),
             );
           },
         ),

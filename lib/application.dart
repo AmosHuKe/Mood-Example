@@ -18,6 +18,7 @@ import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/will_pop_scope_route/will_pop_scope_route.dart';
 import 'package:moodexample/home_screen.dart';
 import 'package:moodexample/common/notification.dart';
+import 'package:moodexample/widgets/lock_screen/lock_screen.dart';
 
 /// view_model
 import 'package:moodexample/view_models/mood/mood_view_model.dart';
@@ -108,7 +109,7 @@ class Init extends StatefulWidget {
   State<Init> createState() => _InitState();
 }
 
-class _InitState extends State<Init> {
+class _InitState extends State<Init> with WidgetsBindingObserver {
   /// 应用初始化
   void init() async {
     MoodViewModel moodViewModel =
@@ -118,6 +119,9 @@ class _InitState extends State<Init> {
 
     /// 初始化数据库
     await DB.db.database;
+
+    /// 锁屏
+    runLockScreen();
 
     /// 设置心情类别默认值
     final bool setMoodCategoryDefaultresult =
@@ -141,6 +145,12 @@ class _InitState extends State<Init> {
 
     /// 通知权限判断显示
     allowedNotification();
+  }
+
+  /// 锁屏
+  void runLockScreen() async {
+    if (!mounted) return;
+    lockScreen(context);
   }
 
   /// 通知权限
@@ -232,13 +242,42 @@ class _InitState extends State<Init> {
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        debugPrint("app 恢复");
+        break;
+      case AppLifecycleState.inactive:
+        debugPrint("app 闲置");
+
+        /// 锁屏
+        runLockScreen();
+        break;
+      case AppLifecycleState.paused:
+        debugPrint("app 暂停");
+        break;
+      case AppLifecycleState.detached:
+        debugPrint("app 退出");
+        break;
+    }
+  }
+
+  @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     init();
   }
 
   @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    /// 通知
     NotificationController.cancelNotifications();
     sendNotification();
     sendScheduleNotification();
