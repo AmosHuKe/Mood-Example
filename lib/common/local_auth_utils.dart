@@ -8,6 +8,8 @@ import 'package:remixicon/remixicon.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:moodexample/generated/l10n.dart';
+
 class LocalAuthUtils {
   final LocalAuthentication auth = LocalAuthentication();
 
@@ -39,26 +41,27 @@ class LocalAuthUtils {
   }
 
   /// 生物特征识别认证
-  Future<bool> localAuthBiometric() async {
+  Future<bool> localAuthBiometric(BuildContext context) async {
+    final s = S.of(context);
     final bool canAuthenticate = await localAuthSupported();
     final bool canAuthenticateBiometrics = await canLocalAuthBiometrics();
     if (!canAuthenticate) return false;
     if (canAuthenticateBiometrics) {
       try {
         final bool didAuthenticate = await auth.authenticate(
-          localizedReason: '请进行识别',
+          localizedReason: s.app_setting_security_localauth_localizedreason,
           options: const AuthenticationOptions(
             biometricOnly: true,
             stickyAuth: true,
           ),
-          authMessages: const <AuthMessages>[
+          authMessages: <AuthMessages>[
             AndroidAuthMessages(
-              signInTitle: "认证",
+              signInTitle: s.app_setting_security_localauth_signIntitle,
               biometricHint: "",
-              cancelButton: "取消",
+              cancelButton: s.app_setting_security_localauth_cancel,
             ),
             IOSAuthMessages(
-              cancelButton: "取消",
+              cancelButton: s.app_setting_security_localauth_cancel,
             ),
           ],
         );
@@ -67,7 +70,7 @@ class LocalAuthUtils {
         debugPrint(e.toString());
         if (e.code == "LockedOut") {
           Fluttertoast.showToast(
-            msg: "失败多次，请稍后重试",
+            msg: s.app_setting_security_localauth_error_1,
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,

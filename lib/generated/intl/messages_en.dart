@@ -67,6 +67,42 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Language"),
         "app_setting_language_system":
             MessageLookupByLibrary.simpleMessage("System"),
+        "app_setting_security":
+            MessageLookupByLibrary.simpleMessage("Security"),
+        "app_setting_security_biometric_face":
+            MessageLookupByLibrary.simpleMessage("Face auth"),
+        "app_setting_security_biometric_fingerprint":
+            MessageLookupByLibrary.simpleMessage("Fingerprint auth"),
+        "app_setting_security_biometric_iris":
+            MessageLookupByLibrary.simpleMessage("Iris auth"),
+        "app_setting_security_biometric_weak":
+            MessageLookupByLibrary.simpleMessage("TouchID / FaceID auth"),
+        "app_setting_security_content": MessageLookupByLibrary.simpleMessage(
+            "You need to unlock the app when you reopen it."),
+        "app_setting_security_localauth_cancel":
+            MessageLookupByLibrary.simpleMessage("Cancel"),
+        "app_setting_security_localauth_error_1":
+            MessageLookupByLibrary.simpleMessage(
+                "You have failed many times, please try again later"),
+        "app_setting_security_localauth_localizedreason":
+            MessageLookupByLibrary.simpleMessage("Please identify"),
+        "app_setting_security_localauth_signIntitle":
+            MessageLookupByLibrary.simpleMessage("Authentication required"),
+        "app_setting_security_lock":
+            MessageLookupByLibrary.simpleMessage("Security lock"),
+        "app_setting_security_lock_cancel":
+            MessageLookupByLibrary.simpleMessage("Cancel"),
+        "app_setting_security_lock_error_1":
+            MessageLookupByLibrary.simpleMessage(
+                "The two passwords are inconsistent"),
+        "app_setting_security_lock_resetinput":
+            MessageLookupByLibrary.simpleMessage("Reset input"),
+        "app_setting_security_lock_screen_title":
+            MessageLookupByLibrary.simpleMessage("Security lock"),
+        "app_setting_security_lock_title_1":
+            MessageLookupByLibrary.simpleMessage("Set password"),
+        "app_setting_security_lock_title_2":
+            MessageLookupByLibrary.simpleMessage("Confirm password"),
         "app_setting_theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "app_setting_theme_appearance":
             MessageLookupByLibrary.simpleMessage("Appearance"),

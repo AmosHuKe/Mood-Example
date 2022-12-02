@@ -164,7 +164,7 @@ class Menu extends StatelessWidget {
             size: _titleIconSize,
           ),
           title: Text(
-            "安全",
+            S.of(context).app_setting_security,
             style: TextStyle(
               fontSize: _titleTextSize,
             ),

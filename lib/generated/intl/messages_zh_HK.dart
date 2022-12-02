@@ -62,6 +62,39 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_setting_language": MessageLookupByLibrary.simpleMessage("語言"),
         "app_setting_language_system":
             MessageLookupByLibrary.simpleMessage("跟隨系統"),
+        "app_setting_security": MessageLookupByLibrary.simpleMessage("安全"),
+        "app_setting_security_biometric_face":
+            MessageLookupByLibrary.simpleMessage("面部識別"),
+        "app_setting_security_biometric_fingerprint":
+            MessageLookupByLibrary.simpleMessage("指紋識別"),
+        "app_setting_security_biometric_iris":
+            MessageLookupByLibrary.simpleMessage("虹膜識別"),
+        "app_setting_security_biometric_weak":
+            MessageLookupByLibrary.simpleMessage("指紋、面部等識別"),
+        "app_setting_security_content":
+            MessageLookupByLibrary.simpleMessage("重新打開應用時需要進行解鎖。"),
+        "app_setting_security_localauth_cancel":
+            MessageLookupByLibrary.simpleMessage("取消"),
+        "app_setting_security_localauth_error_1":
+            MessageLookupByLibrary.simpleMessage("失敗多次，請稍後重試"),
+        "app_setting_security_localauth_localizedreason":
+            MessageLookupByLibrary.simpleMessage("請進行識別"),
+        "app_setting_security_localauth_signIntitle":
+            MessageLookupByLibrary.simpleMessage("身份認證"),
+        "app_setting_security_lock":
+            MessageLookupByLibrary.simpleMessage("密碼鎖"),
+        "app_setting_security_lock_cancel":
+            MessageLookupByLibrary.simpleMessage("關閉"),
+        "app_setting_security_lock_error_1":
+            MessageLookupByLibrary.simpleMessage("兩次密碼不一致"),
+        "app_setting_security_lock_resetinput":
+            MessageLookupByLibrary.simpleMessage("重新輸入"),
+        "app_setting_security_lock_screen_title":
+            MessageLookupByLibrary.simpleMessage("輸入密碼解鎖"),
+        "app_setting_security_lock_title_1":
+            MessageLookupByLibrary.simpleMessage("設置密碼"),
+        "app_setting_security_lock_title_2":
+            MessageLookupByLibrary.simpleMessage("再次輸入確認密碼"),
         "app_setting_theme": MessageLookupByLibrary.simpleMessage("主題"),
         "app_setting_theme_appearance":
             MessageLookupByLibrary.simpleMessage("主題外觀"),

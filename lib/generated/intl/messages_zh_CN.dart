@@ -62,6 +62,39 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_setting_language": MessageLookupByLibrary.simpleMessage("语言"),
         "app_setting_language_system":
             MessageLookupByLibrary.simpleMessage("跟随系统"),
+        "app_setting_security": MessageLookupByLibrary.simpleMessage("安全"),
+        "app_setting_security_biometric_face":
+            MessageLookupByLibrary.simpleMessage("面部识别"),
+        "app_setting_security_biometric_fingerprint":
+            MessageLookupByLibrary.simpleMessage("指纹识别"),
+        "app_setting_security_biometric_iris":
+            MessageLookupByLibrary.simpleMessage("虹膜识别"),
+        "app_setting_security_biometric_weak":
+            MessageLookupByLibrary.simpleMessage("指纹、面部等识别"),
+        "app_setting_security_content":
+            MessageLookupByLibrary.simpleMessage("重新打开应用时需要进行解锁。"),
+        "app_setting_security_localauth_cancel":
+            MessageLookupByLibrary.simpleMessage("取消"),
+        "app_setting_security_localauth_error_1":
+            MessageLookupByLibrary.simpleMessage("失败多次，请稍后重试"),
+        "app_setting_security_localauth_localizedreason":
+            MessageLookupByLibrary.simpleMessage("请进行识别"),
+        "app_setting_security_localauth_signIntitle":
+            MessageLookupByLibrary.simpleMessage("身份认证"),
+        "app_setting_security_lock":
+            MessageLookupByLibrary.simpleMessage("密码锁"),
+        "app_setting_security_lock_cancel":
+            MessageLookupByLibrary.simpleMessage("关闭"),
+        "app_setting_security_lock_error_1":
+            MessageLookupByLibrary.simpleMessage("两次密码不一致"),
+        "app_setting_security_lock_resetinput":
+            MessageLookupByLibrary.simpleMessage("重新输入"),
+        "app_setting_security_lock_screen_title":
+            MessageLookupByLibrary.simpleMessage("输入密码解锁"),
+        "app_setting_security_lock_title_1":
+            MessageLookupByLibrary.simpleMessage("设置密码"),
+        "app_setting_security_lock_title_2":
+            MessageLookupByLibrary.simpleMessage("再次输入确认密码"),
         "app_setting_theme": MessageLookupByLibrary.simpleMessage("主题"),
         "app_setting_theme_appearance":
             MessageLookupByLibrary.simpleMessage("主题外观"),

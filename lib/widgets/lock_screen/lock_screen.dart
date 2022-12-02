@@ -7,11 +7,14 @@ import 'package:provider/provider.dart';
 
 import 'package:moodexample/common/local_auth_utils.dart';
 import 'package:moodexample/db/preferences_db.dart';
+import 'package:moodexample/generated/l10n.dart';
 
 import 'package:moodexample/view_models/application/application_view_model.dart';
+import 'package:remixicon/remixicon.dart';
 
 /// 锁屏
 Future<void> lockScreen(BuildContext context) async {
+  final s = S.of(context);
   ApplicationViewModel applicationViewModel =
       Provider.of<ApplicationViewModel>(context, listen: false);
   String password =
@@ -26,18 +29,23 @@ Future<void> lockScreen(BuildContext context) async {
     customizedButtonChild = Icon(
       await LocalAuthUtils().localAuthIcon(),
       size: 28.sp,
+      semanticLabel: s.app_setting_security_biometric_weak,
     );
   }
+
   if (password != "" && !applicationViewModel.keyPasswordScreenOpen) {
     return screenLock(
       context: context,
       correctString: password,
-      title: const Text("输入密码解锁"),
+      title: Text(s.app_setting_security_lock_screen_title),
       canCancel: false,
+      deleteButton: const Icon(
+        Remix.delete_back_2_fill,
+        semanticLabel: "删除",
+      ),
       customizedButtonChild: customizedButtonChild,
-      cancelButton: const Text("关闭"),
       customizedButtonTap: () async {
-        if (await LocalAuthUtils().localAuthBiometric()) {
+        if (await LocalAuthUtils().localAuthBiometric(context)) {
           applicationViewModel.setKeyPasswordScreenOpen(false);
           Navigator.pop(context);
         }
@@ -45,7 +53,7 @@ Future<void> lockScreen(BuildContext context) async {
       onOpened: () async {
         applicationViewModel.setKeyPasswordScreenOpen(true);
         if (canAppKeyBiometric) {
-          if (await LocalAuthUtils().localAuthBiometric()) {
+          if (await LocalAuthUtils().localAuthBiometric(context)) {
             applicationViewModel.setKeyPasswordScreenOpen(false);
             Navigator.pop(context);
           }
@@ -68,23 +76,27 @@ Future<void> createlockScreen(
   screenLockCreate(
     context: context,
     inputController: controller,
-    title: const Text("设置密码"),
-    confirmTitle: const Text("再次输入确认密码"),
+    title: Text(S.of(context).app_setting_security_lock_title_1),
+    confirmTitle: Text(S.of(context).app_setting_security_lock_title_2),
     onConfirmed: (password) {
       onConfirmed(password);
       Navigator.of(context).pop();
     },
-    cancelButton: const Text("关闭"),
+    cancelButton: Text(S.of(context).app_setting_security_lock_cancel),
+    deleteButton: const Icon(
+      Remix.delete_back_2_fill,
+      semanticLabel: "删除",
+    ),
     footer: TextButton(
       onPressed: () {
         // 重新输入
         controller.unsetConfirmed();
       },
-      child: const Text("重新输入"),
+      child: Text(S.of(context).app_setting_security_lock_resetinput),
     ),
     onError: (value) {
       Fluttertoast.showToast(
-        msg: "密码不一致",
+        msg: S.of(context).app_setting_security_lock_error_1,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
