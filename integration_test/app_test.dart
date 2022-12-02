@@ -77,6 +77,7 @@ void main() {
       Finder textData = find.text(i18n.app_setting_database);
       Finder textDataExport = find.text(i18n.app_setting_database_export_data);
       Finder textDataImport = find.text(i18n.app_setting_database_import_data);
+      Finder textSecurity = find.text(i18n.app_setting_security);
       Finder textTheme = find.text(i18n.app_setting_theme);
       Finder textThemeSetting = find.text(i18n.app_setting_theme_appearance);
       Finder textThemeSettingSystem =
@@ -121,6 +122,15 @@ void main() {
       await tester.tap(textDataImport);
       await tester.pumpAndSettle();
       await tester.tap(textDataExport);
+
+      await tester.fling(
+          widgetMoveModalBottomSheet, const Offset(0, 400), 2400.0);
+      await tester.pumpAndSettle();
+
+      /// 安全操作
+      expect(textSecurity, findsOneWidget);
+      await tester.tap(textSecurity);
+      await tester.pumpAndSettle();
 
       await tester.fling(
           widgetMoveModalBottomSheet, const Offset(0, 400), 2400.0);
