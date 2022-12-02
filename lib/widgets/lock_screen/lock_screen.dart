@@ -37,9 +37,10 @@ Future<void> lockScreen(BuildContext context) async {
       customizedButtonChild: customizedButtonChild,
       cancelButton: const Text("关闭"),
       customizedButtonTap: () async {
-        await LocalAuthUtils().localAuthBiometric()
-            ? Navigator.pop(context)
-            : null;
+        if (await LocalAuthUtils().localAuthBiometric()) {
+          applicationViewModel.setKeyPasswordScreenOpen(false);
+          Navigator.pop(context);
+        }
       },
       onOpened: () async {
         applicationViewModel.setKeyPasswordScreenOpen(true);
