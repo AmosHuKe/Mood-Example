@@ -66,7 +66,7 @@
 
 ## 🛠️ 开发环境
 
-### 基本环境  
+### 🛠️ 基本环境  
 
 > Windows  
 ```
@@ -87,7 +87,7 @@
 ```  
 
 
-### 国际化环境支持  
+### 🛠️ 国际化环境支持  
 
 安装编辑器插件：`Flutter Intl`  
 > Visual Studio Code: [Flutter Intl](https://marketplace.visualstudio.com/items?itemName=localizely.flutter-intl)   
@@ -294,7 +294,7 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 * Bogusław Podhalicz. [Mindfulness Concept App](https://dribbble.com/shots/15733031-Mindfulness-Concept-App)  
 
 
-## Packages 许可证  
+## 📦 Packages  
 
 感谢开源  
 
@@ -330,7 +330,7 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 | [webview_flutter](https://pub.dev/packages/webview_flutter) | [BSD-3-Clause License](https://pub.dev/packages/webview_flutter/license) |  
 
 
-## License 许可证
+## 📄 License
 
 [![BSD-3-Clause License](https://img.shields.io/badge/license-BSD--3--Clause-green)](https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE)  
 Open sourced under the BSD-3-Clause license.  
