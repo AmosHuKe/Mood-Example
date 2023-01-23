@@ -52,11 +52,6 @@ class _MoodPageState extends State<MoodPage>
   Widget build(BuildContext context) {
     /// AutomaticKeepAliveClientMixin
     super.build(context);
-    // 屏幕自适应 设置尺寸（填写设计中设备的屏幕尺寸）如果设计基于360dp * 690dp的屏幕
-    ScreenUtil.init(
-      context,
-      designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-    );
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       // 悬浮按钮
@@ -553,7 +548,7 @@ class _CalendarState extends State<Calendar> {
                     duration: const Duration(milliseconds: 400),
                     curve: Curves.linearToEaseOut);
               });
-              Future.delayed(const Duration(milliseconds: 2000), () {
+              Future.delayed(const Duration(milliseconds: 1000), () {
                 pageController.nextPage(
                     duration: const Duration(milliseconds: 400),
                     curve: Curves.linearToEaseOut);

@@ -53,49 +53,56 @@ class _ApplicationState extends State<Application> {
       builder: (context, child) {
         final watchApplicationViewModel = context.watch<ApplicationViewModel>();
 
-        return MaterialApp(
-          /// 网格
-          debugShowMaterialGrid: false,
+        return ScreenUtilInit(
+          designSize: const Size(AppTheme.wdp, AppTheme.hdp),
+          minTextAdapt: true,
+          splitScreenMode: true,
+          builder: (context, child) {
+            return MaterialApp(
+              /// 网格
+              debugShowMaterialGrid: false,
 
-          /// Debug标志
-          debugShowCheckedModeBanner: false,
+              /// Debug标志
+              debugShowCheckedModeBanner: false,
 
-          /// 打开性能监控，覆盖在屏幕最上面
-          showPerformanceOverlay: false,
+              /// 打开性能监控，覆盖在屏幕最上面
+              showPerformanceOverlay: false,
 
-          /// 语义视图（无障碍）
-          showSemanticsDebugger: false,
+              /// 语义视图（无障碍）
+              showSemanticsDebugger: false,
 
-          /// 主题
-          themeMode: watchApplicationViewModel.themeMode,
-          theme: AppTheme(getMultipleThemesMode(context))
-              .multipleThemesLightMode(),
-          darkTheme:
-              AppTheme(getMultipleThemesMode(context)).multipleThemesDarkMode(),
+              /// 主题
+              themeMode: watchApplicationViewModel.themeMode,
+              theme: AppTheme(getMultipleThemesMode(context))
+                  .multipleThemesLightMode(),
+              darkTheme: AppTheme(getMultipleThemesMode(context))
+                  .multipleThemesDarkMode(),
 
-          /// 路由钩子
-          onGenerateRoute: router.generator,
+              /// 路由钩子
+              onGenerateRoute: router.generator,
 
-          /// 国际化
-          supportedLocales: S.delegate.supportedLocales,
-          localizationsDelegates: const [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          locale: watchApplicationViewModel.localeSystem
-              ? null
-              : watchApplicationViewModel.locale,
-          localeListResolutionCallback: (locales, supportedLocales) {
-            debugPrint("当前地区语言$locales");
-            debugPrint("设备支持的地区语言$supportedLocales");
-            return null;
+              /// 国际化
+              supportedLocales: S.delegate.supportedLocales,
+              localizationsDelegates: const [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              locale: watchApplicationViewModel.localeSystem
+                  ? null
+                  : watchApplicationViewModel.locale,
+              localeListResolutionCallback: (locales, supportedLocales) {
+                debugPrint("当前地区语言$locales");
+                debugPrint("设备支持的地区语言$supportedLocales");
+                return null;
+              },
+              title: "Mood",
+
+              /// Home
+              home: const WillPopScopeRoute(child: Init()),
+            );
           },
-          title: "Mood",
-
-          /// Home
-          home: const WillPopScopeRoute(child: Init()),
         );
       },
     );
