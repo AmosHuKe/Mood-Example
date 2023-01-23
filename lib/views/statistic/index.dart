@@ -40,7 +40,6 @@ class _StatisticPageState extends State<StatisticPage>
   Widget build(BuildContext context) {
     /// AutomaticKeepAliveClientMixin
     super.build(context);
-    print("3");
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: const SafeArea(
