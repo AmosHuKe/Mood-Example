@@ -25,8 +25,26 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+  /// 当前页
+  late int _currentPage = 0;
+
+  /// 页面
+  final List<Widget> pages = [
+    /// 首页
+    const HomePage(),
+    const MoodPage(),
+    const StatisticPage(),
+  ];
+
   /// Tab控制
-  late TabController _pageController;
+  late final TabController _pageController = TabController(
+    initialIndex: _currentPage,
+    length: pages.length,
+    vsync: this,
+  );
+
+  /// PageView控制
+  final PageController _pageViewController = PageController();
 
   /// 进步按钮动画
   late AnimationController _stepButtonController;
@@ -38,17 +56,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   /// Tab icon大小
   final double _tabIconSize = 20.sp;
-
-  /// 当前页
-  late int _currentPage = 0;
-
-  /// 页面
-  final List<Widget> pages = [
-    /// 首页
-    const HomePage(),
-    const MoodPage(),
-    const StatisticPage(),
-  ];
 
   @override
   void initState() {
@@ -68,13 +75,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     _stepButtonAnimation.addListener(() {
       setState(() {});
     });
-
-    /// Tab控制
-    _pageController = TabController(
-      initialIndex: _currentPage,
-      length: pages.length,
-      vsync: this,
-    );
   }
 
   @override
@@ -84,22 +84,22 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
     /// Tab控制
     _pageController.dispose();
+
+    /// PageView控制
+    _pageViewController.dispose();
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    //屏幕自适应 设置尺寸（填写设计中设备的屏幕尺寸）如果设计基于360dp * 690dp的屏幕
-    ScreenUtil.init(
-      context,
-      designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-    );
     ThemeData appTheme = Theme.of(context);
 
     return Scaffold(
       backgroundColor: Theme.of(context).tabBarTheme.labelColor,
-      body: IndexedStack(
-        index: _currentPage,
+      body: PageView(
+        controller: _pageViewController,
+        physics: const NeverScrollableScrollPhysics(),
         children: pages,
       ),
       bottomNavigationBar: DecoratedBox(
@@ -167,6 +167,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       statistic.init(context);
                       break;
                   }
+                  _pageViewController.jumpToPage(value);
                   setState(() {
                     _currentPage = value;
                   });
