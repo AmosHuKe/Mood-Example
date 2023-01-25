@@ -10,7 +10,7 @@
 </h1> 
 
 <p align="center">
-<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.7.12" src="https://img.shields.io/badge/Mood--Example-v1.7.12-3e4663"/></a> 
+<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.7.14" src="https://img.shields.io/badge/Mood--Example-v1.7.14-3e4663"/></a> 
 <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.3.9" src="https://img.shields.io/badge/Flutter-v3.3.9-46D1FD"/></a> 
 <a target="_blank" href="https://dart.dev/"><img alt="Dart v2.18.5" src="https://img.shields.io/badge/Dart-v2.18.5-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
@@ -70,7 +70,7 @@
 
 > Windows  
 ```
-[√] Flutter (Channel stable, 3.3.9, on Microsoft Windows [版本 10.0.22000.1219], locale zh-CN)
+[√] Flutter (Channel stable, 3.7.0, on Microsoft Windows [版本 10.0.22000.1455], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 33.0.1)
 [√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.4.0)
 [√] Android Studio (version 2021.3)
