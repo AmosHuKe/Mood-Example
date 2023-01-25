@@ -43,10 +43,8 @@ class _SettingLanguageState extends State<SettingLanguage> {
               groupValue: true,
               title: Text(
                 S.of(context).app_setting_language_system,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(fontSize: 14.sp, fontWeight: FontWeight.normal),
+                style:
+                    TextStyle(fontSize: 14.sp, fontWeight: FontWeight.normal),
               ),
               onChanged: (value) async {
                 await PreferencesDB()
@@ -68,7 +66,7 @@ class _SettingLanguageState extends State<SettingLanguage> {
                       : false,
                   title: Text(
                     _languageConfig[index]["language"].toString(),
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: TextStyle(
                         fontSize: 14.sp, fontWeight: FontWeight.normal),
                   ),
                   onChanged: (value) async {

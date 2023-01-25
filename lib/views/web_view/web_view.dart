@@ -37,10 +37,10 @@ class _WebViewPageState extends State<WebViewPage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        foregroundColor: Theme.of(context).textTheme.headline1!.color,
+        foregroundColor: Theme.of(context).textTheme.displayLarge!.color,
         shadowColor: Colors.transparent,
         titleTextStyle: TextStyle(
-          color: Theme.of(context).textTheme.headline1!.color,
+          color: Theme.of(context).textTheme.bodyMedium!.color,
           fontSize: 14.sp,
         ),
         title: Text(_pageTitle),
@@ -91,7 +91,7 @@ class _WebViewPageState extends State<WebViewPage> {
                                 Remix.arrow_left_s_line,
                                 color: Theme.of(context)
                                     .textTheme
-                                    .headline1!
+                                    .bodyMedium!
                                     .color,
                               ),
                             ),
@@ -109,7 +109,7 @@ class _WebViewPageState extends State<WebViewPage> {
                                 Remix.arrow_right_s_line,
                                 color: Theme.of(context)
                                     .textTheme
-                                    .headline1!
+                                    .bodyMedium!
                                     .color,
                               ),
                             ),

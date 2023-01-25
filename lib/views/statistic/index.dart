@@ -31,10 +31,6 @@ class _StatisticPageState extends State<StatisticPage>
   /// AutomaticKeepAliveClientMixin
   @override
   bool get wantKeepAlive => true;
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,10 +105,10 @@ class _StatisticBodyState extends State<StatisticBody> {
                 children: [
                   Text(
                     S.of(context).statistic_title,
-                    style: Theme.of(context).textTheme.headline1!.copyWith(
-                          fontSize: 36.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    style: TextStyle(
+                      fontSize: 36.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
                     semanticsLabel:
                         S.of(context).app_bottomNavigationBar_title_statistic,
                   ),
@@ -931,10 +927,7 @@ class StatisticsCard extends StatelessWidget {
                 ),
                 child: Text(
                   title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1!
-                      .copyWith(fontSize: 14.sp),
+                  style: TextStyle(fontSize: 14.sp),
                   strutStyle: const StrutStyle(
                     forceStrutHeight: false,
                     leading: 1.5,
@@ -1005,10 +998,10 @@ class StatisticLayout extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: Theme.of(context).textTheme.headline1!.copyWith(
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   SizedBox(
                     height: 4.w,

@@ -93,10 +93,10 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     /// 内容字体样式
-    final textContentStyle = Theme.of(context).textTheme.bodyText1!.copyWith(
-          fontSize: 18.sp,
-          fontWeight: FontWeight.w400,
-        );
+    final textContentStyle = TextStyle(
+      fontSize: 18.sp,
+      fontWeight: FontWeight.w400,
+    );
 
     /// Swiper内容
     _swiperList = [
@@ -284,10 +284,10 @@ class TextImageSwiper extends StatelessWidget {
           ),
           child: Text(
             title,
-            style: Theme.of(context).textTheme.headline1!.copyWith(
-                  fontSize: 32.sp,
-                  fontWeight: FontWeight.w900,
-                ),
+            style: TextStyle(
+              fontSize: 32.sp,
+              fontWeight: FontWeight.w900,
+            ),
           ),
         ),
         Padding(

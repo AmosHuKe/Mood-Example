@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 
 /// 主题
 class AppThemeYellow {
-  // fromRGBO(46, 69, 177, 1) fromRGBO(84, 70, 183, 1)
   /// 主颜色
-  static const primaryColor =
-      Color(0xFFD6A548); // #4d5fb4 #2C3751 #3e4663 #F7C95E
+  static const primaryColor = Color(0xFFD6A548);
 
   /// 次要颜色
   static const subColor = Color(0xFFAFB8BF);
@@ -21,8 +19,12 @@ class AppThemeYellow {
     fontFamily: null,
     // 文字
     textTheme: const TextTheme(
-      headline1: TextStyle(color: Colors.black87),
-      bodyText1: TextStyle(color: Colors.black87),
+      displayLarge: TextStyle(color: Colors.black87),
+      displayMedium: TextStyle(color: Colors.black87),
+      displaySmall: TextStyle(color: Colors.black87),
+      bodyLarge: TextStyle(color: Colors.black87),
+      bodyMedium: TextStyle(color: Colors.black87),
+      bodySmall: TextStyle(color: Colors.black87),
     ),
     // 主颜色
     primaryColor: primaryColor,
@@ -76,8 +78,12 @@ class AppThemeYellow {
     fontFamily: null,
     // 文字
     textTheme: const TextTheme(
-      headline1: TextStyle(color: Color(0xFFEFEFEF)),
-      bodyText1: TextStyle(color: Color(0xFFEFEFEF)),
+      displayLarge: TextStyle(color: Color(0xFFEFEFEF)),
+      displayMedium: TextStyle(color: Color(0xFFEFEFEF)),
+      displaySmall: TextStyle(color: Color(0xFFEFEFEF)),
+      bodyLarge: TextStyle(color: Color(0xFFEFEFEF)),
+      bodyMedium: TextStyle(color: Color(0xFFEFEFEF)),
+      bodySmall: TextStyle(color: Color(0xFFEFEFEF)),
     ),
     // 主颜色
     primaryColor: primaryColor,

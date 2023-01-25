@@ -82,10 +82,10 @@ class _HomeBodyState extends State<HomeBody> {
                   Flexible(
                     child: Text(
                       S.of(context).home_hi,
-                      style: Theme.of(context).textTheme.headline1?.copyWith(
-                            fontSize: 48.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      style: TextStyle(
+                        fontSize: 48.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
                       semanticsLabel:
                           S.of(context).app_bottomNavigationBar_title_home,
                     ),
@@ -155,13 +155,10 @@ class _HomeBodyState extends State<HomeBody> {
                               padding: EdgeInsets.only(bottom: 24.w),
                               child: Text(
                                 S.of(context).home_help_title,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline1
-                                    ?.copyWith(
-                                      fontSize: 24.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                style: TextStyle(
+                                  fontSize: 24.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
@@ -202,10 +199,10 @@ class _HeaderState extends State<Header> {
               Flexible(
                 child: Text(
                   S.of(context).home_moodChoice_title,
-                  style: Theme.of(context).textTheme.headline1?.copyWith(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 20.sp,
-                      ),
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 20.sp,
+                  ),
                 ),
               ),
               Consumer<MoodViewModel>(
@@ -350,9 +347,9 @@ class OptionCard extends StatelessWidget {
                 padding: EdgeInsets.only(top: 10.w),
                 child: Text(
                   title,
-                  style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                        fontSize: 14.sp,
-                      ),
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                  ),
                 ),
               ),
             ],

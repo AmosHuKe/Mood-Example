@@ -63,7 +63,7 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        foregroundColor: Theme.of(context).textTheme.headline1!.color,
+        foregroundColor: Theme.of(context).textTheme.displayLarge!.color,
         shadowColor: Colors.transparent,
         titleTextStyle: TextStyle(
           color: Colors.black,
@@ -126,10 +126,10 @@ class _MoodCategorySelectBodyState extends State<MoodCategorySelectBody> {
                 _type == "edit"
                     ? S.of(context).mood_category_select_title_2
                     : S.of(context).mood_category_select_title_1,
-                style: Theme.of(context).textTheme.headline1!.copyWith(
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: TextStyle(
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 4.w),
@@ -237,10 +237,10 @@ class MoodChoiceCard extends StatelessWidget {
                 ),
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.headline1!.copyWith(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w400,
-                      ),
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ],
             ),

@@ -165,10 +165,10 @@ class _MoodBodyState extends State<MoodBody> {
                   Flexible(
                     child: Text(
                       S.of(context).mood_title,
-                      style: Theme.of(context).textTheme.headline1?.copyWith(
-                            fontSize: 36.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      style: TextStyle(
+                        fontSize: 36.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
                       semanticsLabel:
                           S.of(context).app_bottomNavigationBar_title_mood,
                     ),
@@ -394,10 +394,7 @@ class _CalendarState extends State<Calendar> {
             headerStyle: HeaderStyle(
               formatButtonVisible: false,
               titleCentered: true,
-              titleTextStyle: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(fontSize: 14.sp),
+              titleTextStyle: TextStyle(fontSize: 14.sp),
               leftChevronIcon: Icon(
                 Remix.arrow_left_s_line,
                 size: 24.sp,
@@ -803,13 +800,10 @@ class _MoodCardState extends State<MoodCard> {
                                             widget.title,
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline1!
-                                                .copyWith(
-                                                  fontSize: 20.sp,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
+                                            style: TextStyle(
+                                              fontSize: 20.sp,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                         ),
                                         Padding(
@@ -853,13 +847,10 @@ class _MoodCardState extends State<MoodCard> {
                               child: Align(
                                 child: Text(
                                   widget.score.toString(),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1!
-                                      .copyWith(
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                  style: TextStyle(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                   semanticsLabel:
                                       "${S.of(context).mood_data_score_title}：${widget.score}",
                                 ),
@@ -884,7 +875,7 @@ class _MoodCardState extends State<MoodCard> {
                           softWrap: true,
                           style: TextStyle(
                             color: widget.content != null
-                                ? Theme.of(context).textTheme.bodyText1!.color
+                                ? Theme.of(context).textTheme.bodyMedium!.color
                                 : AppTheme.subColor,
                             fontSize: 14.sp,
                           ),
@@ -989,18 +980,15 @@ class MoodDetail extends StatelessWidget {
                         padding: EdgeInsets.only(bottom: 12.w),
                         child: Text(
                           S.of(context).mood_data_score_title,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText1!
-                              .copyWith(fontSize: 16.w),
+                          style: TextStyle(fontSize: 16.w),
                         ),
                       ),
                       Text(
                         score.toString(),
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                              fontSize: 24.w,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        style: TextStyle(
+                          fontSize: 24.w,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),

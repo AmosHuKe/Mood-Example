@@ -96,7 +96,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     ThemeData appTheme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: Theme.of(context).tabBarTheme.labelColor,
       body: PageView(
         controller: _pageViewController,
         physics: const NeverScrollableScrollPhysics(),

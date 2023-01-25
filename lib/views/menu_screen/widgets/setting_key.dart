@@ -36,20 +36,20 @@ class _SettingKeyState extends State<SettingKey> {
           padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 2.w),
           child: Text(
             S.of(context).app_setting_security,
-            style: Theme.of(context).textTheme.headline1!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14.sp,
-                ),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 14.sp,
+            ),
           ),
         ),
         Padding(
           padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 14.w),
           child: Text(
             S.of(context).app_setting_security_content,
-            style: Theme.of(context).textTheme.headline1!.copyWith(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 12.sp,
-                ),
+            style: TextStyle(
+              fontWeight: FontWeight.normal,
+              fontSize: 12.sp,
+            ),
           ),
         ),
 
@@ -123,10 +123,7 @@ class _KeyBodyState extends State<KeyBody> {
             ),
             title: Text(
               authText,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(fontSize: 14.sp, fontWeight: FontWeight.normal),
+              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.normal),
             ),
             trailing: Semantics(
               label: authText,
@@ -163,10 +160,8 @@ class _KeyBodyState extends State<KeyBody> {
               ),
               title: Text(
                 S.of(context).app_setting_security_lock,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(fontSize: 14.sp, fontWeight: FontWeight.normal),
+                style:
+                    TextStyle(fontSize: 14.sp, fontWeight: FontWeight.normal),
               ),
               trailing: Semantics(
                 label: S.of(context).app_setting_security_lock,

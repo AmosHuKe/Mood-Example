@@ -36,10 +36,10 @@ class _SettingThemeState extends State<SettingTheme> {
           padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 14.w),
           child: Text(
             S.of(context).app_setting_theme_appearance,
-            style: Theme.of(context).textTheme.headline1!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14.sp,
-                ),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 14.sp,
+            ),
           ),
         ),
 
@@ -51,10 +51,10 @@ class _SettingThemeState extends State<SettingTheme> {
           padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 14.w),
           child: Text(
             S.of(context).app_setting_theme_themes,
-            style: Theme.of(context).textTheme.headline1!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14.sp,
-                ),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 14.sp,
+            ),
           ),
         ),
 
@@ -425,10 +425,7 @@ class DarkThemeCard extends StatelessWidget {
               padding: EdgeInsets.only(top: 4.w),
               child: Text(
                 title ?? "",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(fontSize: 12.sp, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
               ),
             ),
           ],

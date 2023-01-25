@@ -85,11 +85,11 @@ class _MoodContentState extends State<MoodContent> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        foregroundColor: Theme.of(context).textTheme.headline1!.color,
+        foregroundColor: Theme.of(context).textTheme.displayLarge!.color,
         shadowColor: Colors.transparent,
-        titleTextStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
-              fontSize: 14.sp,
-            ),
+        titleTextStyle: TextStyle(
+          fontSize: 14.sp,
+        ),
         centerTitle: true,
         title: Text(LocaleDatetime().yMMMd(_moodData.createTime ?? "")),
         leading: ActionButton(
@@ -130,7 +130,7 @@ class _MoodContentState extends State<MoodContent> {
               Remix.check_fill,
               size: 24.sp,
               color: isDarkMode(context)
-                  ? Theme.of(context).textTheme.headline1!.color
+                  ? Theme.of(context).textTheme.displayLarge!.color
                   : const Color(0xFF587966),
             ),
             onTap: () async {
@@ -313,7 +313,7 @@ class MoodChoiceCard extends StatelessWidget {
               ),
               Text(
                 title ?? "",
-                style: Theme.of(context).textTheme.headline1!.copyWith(
+                style: Theme.of(context).textTheme.displayLarge!.copyWith(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
                     ),
@@ -373,16 +373,10 @@ class _AddContentState extends State<AddContent> {
                 scrollPhysics: const AlwaysScrollableScrollPhysics(
                   parent: BouncingScrollPhysics(),
                 ),
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(fontSize: 14.sp),
+                style: TextStyle(fontSize: 14.sp),
                 decoration: InputDecoration(
                   hintText: S.of(context).mood_content_hintText,
-                  hintStyle: Theme.of(context)
-                      .textTheme
-                      .bodyText1!
-                      .copyWith(fontSize: 14.sp),
+                  hintStyle: TextStyle(fontSize: 14.sp),
                   border: InputBorder.none,
                   filled: true,
                   fillColor: Theme.of(context).cardColor,
@@ -423,8 +417,7 @@ class _MoodScoreState extends State<MoodScore> {
           ),
           child: Text(
             S.of(context).mood_data_score_title,
-            style:
-                Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 16.w),
+            style: TextStyle(fontSize: 16.w),
           ),
         ),
         Padding(
@@ -435,10 +428,10 @@ class _MoodScoreState extends State<MoodScore> {
           ),
           child: Text(
             (moodScore ~/ 1).toString(),
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                  fontSize: 24.w,
-                  fontWeight: FontWeight.bold,
-                ),
+            style: TextStyle(
+              fontSize: 24.w,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         Slider(
