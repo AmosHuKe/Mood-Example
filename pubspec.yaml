@@ -77,8 +77,10 @@ dependencies:
   flutter_native_timezone: ^2.0.0
   # 动画
   animations: ^2.0.3
-  # 游戏引擎
+  # 游戏引擎相关
   bonfire: 2.6.1
+  flame: 1.2.0
+  tiledjsonreader: 1.1.0
   # 密码锁
   flutter_screen_lock: ^9.0.0+1
   # 本地认证
