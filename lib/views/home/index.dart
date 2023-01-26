@@ -20,6 +20,7 @@ import 'package:moodexample/views/web_view/web_view.dart';
 import 'package:moodexample/models/mood/mood_category_model.dart';
 import 'package:moodexample/models/mood/mood_model.dart';
 import 'package:moodexample/view_models/mood/mood_view_model.dart';
+import 'package:moodexample/view_models/application/application_view_model.dart';
 import 'package:moodexample/services/mood/mood_service.dart';
 
 /// 首页
@@ -304,77 +305,84 @@ class OptionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OpenContainer(
-      useRootNavigator: true,
-      clipBehavior: Clip.none,
-      transitionType: ContainerTransitionType.fadeThrough,
-      transitionDuration: const Duration(milliseconds: 450),
-      closedBuilder: (_, openContainer) {
-        return GestureDetector(
-          child: Column(
-            children: [
-              AnimatedPress(
-                child: Container(
-                  constraints: BoxConstraints(minWidth: 52.w),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: isDarkMode(context)
-                          ? [const Color(0xFF2B3034), const Color(0xFF2B3034)]
-                          : [
-                              AppTheme.backgroundColor1,
-                              AppTheme.backgroundColor1
-                            ],
-                    ),
-                    borderRadius: BorderRadius.circular(18.w),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      left: 8.w,
-                      right: 8.w,
-                      top: 18.w,
-                      bottom: 18.w,
-                    ),
-                    child: Align(
-                      child: Text(
-                        icon,
-                        style: TextStyle(fontSize: _iconSize),
+    return Consumer<ApplicationViewModel>(
+      builder: (_, applicationViewModel, child) {
+        return OpenContainer(
+          useRootNavigator: true,
+          clipBehavior: Clip.none,
+          transitionType: ContainerTransitionType.fadeThrough,
+          transitionDuration: const Duration(milliseconds: 450),
+          closedBuilder: (_, openContainer) {
+            return GestureDetector(
+              child: Column(
+                children: [
+                  AnimatedPress(
+                    child: Container(
+                      constraints: BoxConstraints(minWidth: 52.w),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: isDarkMode(context)
+                              ? [
+                                  const Color(0xFF2B3034),
+                                  const Color(0xFF2B3034)
+                                ]
+                              : [
+                                  AppTheme.backgroundColor1,
+                                  AppTheme.backgroundColor1
+                                ],
+                        ),
+                        borderRadius: BorderRadius.circular(18.w),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: 8.w,
+                          right: 8.w,
+                          top: 18.w,
+                          bottom: 18.w,
+                        ),
+                        child: Align(
+                          child: Text(
+                            icon,
+                            style: TextStyle(fontSize: _iconSize),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 10.w),
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 14.sp,
+                  Padding(
+                    padding: EdgeInsets.only(top: 10.w),
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
-          onTap: () {
-            openContainer();
+              onTap: () {
+                openContainer();
+              },
+            );
+          },
+          openElevation: 0,
+          openColor: Colors.transparent,
+          middleColor: Colors.transparent,
+          closedElevation: 0,
+          closedShape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.w)),
+          closedColor: Colors.transparent,
+          openBuilder: (_, closeContainer) {
+            // 跳转输入内容页
+            String nowDateTime = DateTime.now().toString().substring(0, 10);
+            MoodData moodData = MoodData();
+            moodData.icon = icon;
+            moodData.title = title;
+            moodData.createTime = nowDateTime;
+            moodData.updateTime = nowDateTime;
+            return MoodContent(moodData: moodData);
           },
         );
-      },
-      openElevation: 0,
-      openColor: Colors.transparent,
-      middleColor: Colors.transparent,
-      closedElevation: 0,
-      closedShape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.w)),
-      closedColor: Colors.transparent,
-      openBuilder: (_, closeContainer) {
-        // 跳转输入内容页
-        String nowDateTime = DateTime.now().toString().substring(0, 10);
-        MoodData moodData = MoodData();
-        moodData.icon = icon;
-        moodData.title = title;
-        moodData.createTime = nowDateTime;
-        moodData.updateTime = nowDateTime;
-        return MoodContent(moodData: moodData);
       },
     );
   }
