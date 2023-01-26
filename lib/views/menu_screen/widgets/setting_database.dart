@@ -273,7 +273,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                     vibrate();
 
                                     /// 分享文件
-                                    Share.shareFiles([_errorPath]);
+                                    Share.shareXFiles([XFile(_errorPath)]);
                                   },
                                   child: Text(
                                     S
@@ -332,7 +332,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                             String filePath = await importDatabaseTemplate();
 
                             /// 分享文件
-                            Share.shareFiles([filePath]);
+                            Share.shareXFiles([XFile(filePath)]);
                           },
                           child: Text(
                             S
@@ -516,7 +516,6 @@ Future importDatabaseStart(List<List<Data?>> database) async {
       int? colIndex = data?.colIndex;
       dynamic value = data?.value;
       switch (colIndex) {
-
         /// 表情
         case 0:
           moodData["icon"] = value.toString();
@@ -668,7 +667,6 @@ Future<List<List>> importDatabaseErrorCheck(List<List<Data?>> database) async {
       // print(value);
       // print(_rowIndex);
       switch (rowIndex) {
-
         /// 表情
         case 0:
           if (value == null) {
@@ -830,7 +828,7 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
                               );
 
                               /// 分享文件
-                              Share.shareFiles([_exportPath]);
+                              Share.shareXFiles([XFile(_exportPath)]);
                             }
                           } catch (e) {
                             debugPrint("$e");
