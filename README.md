@@ -11,8 +11,8 @@
 
 <p align="center">
 <a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.7.15" src="https://img.shields.io/badge/Mood--Example-v1.7.15-3e4663"/></a> 
-<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.3.9" src="https://img.shields.io/badge/Flutter-v3.3.9-46D1FD"/></a> 
-<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.18.5" src="https://img.shields.io/badge/Dart-v2.18.5-04599D"/></a> 
+<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.7.0" src="https://img.shields.io/badge/Flutter-v3.7.0-46D1FD"/></a> 
+<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.19.0" src="https://img.shields.io/badge/Dart-v2.19.0-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
 
