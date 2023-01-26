@@ -123,7 +123,10 @@ class _KeyBodyState extends State<KeyBody> {
             ),
             title: Text(
               authText,
-              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.normal),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: 14.sp, fontWeight: FontWeight.normal),
             ),
             trailing: Semantics(
               label: authText,
@@ -160,8 +163,10 @@ class _KeyBodyState extends State<KeyBody> {
               ),
               title: Text(
                 S.of(context).app_setting_security_lock,
-                style:
-                    TextStyle(fontSize: 14.sp, fontWeight: FontWeight.normal),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontSize: 14.sp, fontWeight: FontWeight.normal),
               ),
               trailing: Semantics(
                 label: S.of(context).app_setting_security_lock,

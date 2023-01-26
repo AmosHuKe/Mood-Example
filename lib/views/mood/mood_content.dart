@@ -373,10 +373,16 @@ class _AddContentState extends State<AddContent> {
                 scrollPhysics: const AlwaysScrollableScrollPhysics(
                   parent: BouncingScrollPhysics(),
                 ),
-                style: TextStyle(fontSize: 14.sp),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontSize: 14.sp),
                 decoration: InputDecoration(
                   hintText: S.of(context).mood_content_hintText,
-                  hintStyle: TextStyle(fontSize: 14.sp),
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 14.sp),
                   border: InputBorder.none,
                   filled: true,
                   fillColor: Theme.of(context).cardColor,
