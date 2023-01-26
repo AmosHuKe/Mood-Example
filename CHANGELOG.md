@@ -1,6 +1,6 @@
 # 1.7.14
 - [升级] Flutter 3.7.0  
-- [升级] flutter_screenutil 5.6.0  
+- [升级] flutter_screenutil 5.6.0 及 部分库  
 - [优化] 导航主页开销  
 - [Bug 修复] 固定游戏引擎相关版本  
 
