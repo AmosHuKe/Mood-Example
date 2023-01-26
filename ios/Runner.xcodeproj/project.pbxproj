@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -568,6 +568,7 @@
 		};
 		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -582,6 +583,7 @@
 		};
 		9740EEB61CF901F6004384FC /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -689,7 +691,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = VZ42G9NTTN;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -745,15 +747,13 @@
 					"-framework",
 					"\"integration_test\"",
 					"-framework",
-					"\"path_provider_ios\"",
+					"\"path_provider_foundation\"",
 					"-framework",
 					"\"share_plus\"",
 					"-framework",
-					"\"shared_preferences_ios\"",
+					"\"shared_preferences_foundation\"",
 					"-framework",
 					"\"sqflite\"",
-					"-framework",
-					"\"url_launcher_ios\"",
 					"-framework",
 					"\"vibration\"",
 					"-framework",
@@ -890,7 +890,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = VZ42G9NTTN;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -946,15 +946,13 @@
 					"-framework",
 					"\"integration_test\"",
 					"-framework",
-					"\"path_provider_ios\"",
+					"\"path_provider_foundation\"",
 					"-framework",
 					"\"share_plus\"",
 					"-framework",
-					"\"shared_preferences_ios\"",
+					"\"shared_preferences_foundation\"",
 					"-framework",
 					"\"sqflite\"",
-					"-framework",
-					"\"url_launcher_ios\"",
 					"-framework",
 					"\"vibration\"",
 					"-framework",
@@ -982,7 +980,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = VZ42G9NTTN;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1038,15 +1036,13 @@
 					"-framework",
 					"\"integration_test\"",
 					"-framework",
-					"\"path_provider_ios\"",
+					"\"path_provider_foundation\"",
 					"-framework",
 					"\"share_plus\"",
 					"-framework",
-					"\"shared_preferences_ios\"",
+					"\"shared_preferences_foundation\"",
 					"-framework",
 					"\"sqflite\"",
-					"-framework",
-					"\"url_launcher_ios\"",
 					"-framework",
 					"\"vibration\"",
 					"-framework",

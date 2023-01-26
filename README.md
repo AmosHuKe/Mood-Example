@@ -81,9 +81,9 @@
 ```
 [✓] Flutter (Channel stable, 3.7.0, on macOS 13.0 22A380 darwin-x64, locale zh-Hans-CN)
 [✓] Android toolchain - develop for Android devices (Android SDK version 33.0.0)
-[✓] Xcode - develop for iOS and macOS (Xcode 14.1)
+[✓] Xcode - develop for iOS and macOS (Xcode 14.2)
 [✓] Android Studio (version 2021.3)
-[✓] VS Code (version 1.74.0)
+[✓] VS Code (version 1.74.3)
 ```  
 
 
