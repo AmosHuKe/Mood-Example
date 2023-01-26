@@ -1,8 +1,9 @@
-# 1.7.14
+# 1.7.15
 - [升级] Flutter 3.7.0  
-- [升级] flutter_screenutil 5.6.0 及 部分库  
+- [升级] flutter_screenutil 5.6.0、share_plus 6.3.0、file_picker 5.2.5 及 部分其他库  
 - [优化] 导航主页开销  
 - [Bug 修复] 固定游戏引擎相关版本  
+- [Bug 修复] 锁屏 lock_screen 不在跨异步间隙使用 buildContext  
 
 # 1.7.10
 - [新增] 解锁认证（锁屏密码、生物特征识别）  
