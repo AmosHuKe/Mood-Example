@@ -34,36 +34,46 @@ Future<void> lockScreen(BuildContext context) async {
   }
 
   if (password != "" && !applicationViewModel.keyPasswordScreenOpen) {
-    return screenLock(
-      context: context,
-      correctString: password,
-      title: Text(s.app_setting_security_lock_screen_title),
-      canCancel: false,
-      deleteButton: const Icon(
-        Remix.delete_back_2_fill,
-        semanticLabel: "删除",
-      ),
-      customizedButtonChild: customizedButtonChild,
-      customizedButtonTap: () async {
-        if (await LocalAuthUtils().localAuthBiometric(context)) {
+    if (context.mounted) {
+      screenLock(
+        context: context,
+        correctString: password,
+        title: Text(s.app_setting_security_lock_screen_title),
+        canCancel: false,
+        deleteButton: const Icon(
+          Remix.delete_back_2_fill,
+          semanticLabel: "删除",
+        ),
+        customizedButtonChild: customizedButtonChild,
+        customizedButtonTap: () async {
+          final bool localAuthBiometric =
+              await LocalAuthUtils().localAuthBiometric(context);
+          if (localAuthBiometric) {
+            applicationViewModel.setKeyPasswordScreenOpen(false);
+            if (context.mounted) {
+              Navigator.pop(context);
+            }
+          }
+        },
+        onOpened: () async {
+          applicationViewModel.setKeyPasswordScreenOpen(true);
+          if (canAppKeyBiometric) {
+            final bool localAuthBiometric =
+                await LocalAuthUtils().localAuthBiometric(context);
+            if (localAuthBiometric) {
+              applicationViewModel.setKeyPasswordScreenOpen(false);
+              if (context.mounted) {
+                Navigator.pop(context);
+              }
+            }
+          }
+        },
+        onUnlocked: () {
           applicationViewModel.setKeyPasswordScreenOpen(false);
           Navigator.pop(context);
-        }
-      },
-      onOpened: () async {
-        applicationViewModel.setKeyPasswordScreenOpen(true);
-        if (canAppKeyBiometric) {
-          if (await LocalAuthUtils().localAuthBiometric(context)) {
-            applicationViewModel.setKeyPasswordScreenOpen(false);
-            Navigator.pop(context);
-          }
-        }
-      },
-      onUnlocked: () {
-        applicationViewModel.setKeyPasswordScreenOpen(false);
-        Navigator.pop(context);
-      },
-    );
+        },
+      );
+    }
   }
 }
 
