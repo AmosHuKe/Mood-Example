@@ -64,9 +64,9 @@ dependencies:
   # Excel
   excel: ^2.0.1
   # 分享
-  share_plus: ^4.5.3
+  share_plus: ^6.3.0
   # 文件选择
-  file_picker: ^4.6.1
+  file_picker: ^5.2.5
   # WebView
   webview_flutter: ^3.0.4
   # 3D 数据集显示
