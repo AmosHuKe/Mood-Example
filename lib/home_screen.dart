@@ -18,7 +18,7 @@ import 'package:moodexample/views/statistic/index.dart';
 
 /// 首页底部Tabbar
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

@@ -8,7 +8,7 @@ import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
 class UniMPMiniappsPage extends StatefulWidget {
-  const UniMPMiniappsPage({Key? key}) : super(key: key);
+  const UniMPMiniappsPage({super.key});
 
   @override
   State<UniMPMiniappsPage> createState() => _UniMPMiniappsPageState();
@@ -56,7 +56,7 @@ class _UniMPMiniappsPageState extends State<UniMPMiniappsPage> {
 }
 
 class UniMPMiniappsBody extends StatefulWidget {
-  const UniMPMiniappsBody({Key? key}) : super(key: key);
+  const UniMPMiniappsBody({super.key});
 
   @override
   State<UniMPMiniappsBody> createState() => _UniMPMiniappsBodyState();

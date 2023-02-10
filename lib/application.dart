@@ -30,7 +30,7 @@ import 'package:moodexample/view_models/application/application_view_model.dart'
 import 'package:moodexample/views/menu_screen/menu_screen_left.dart';
 
 class Application extends StatefulWidget {
-  const Application({Key? key}) : super(key: key);
+  const Application({super.key});
 
   @override
   State<Application> createState() => _ApplicationState();
@@ -110,7 +110,7 @@ class _ApplicationState extends State<Application> {
 }
 
 class Init extends StatefulWidget {
-  const Init({Key? key}) : super(key: key);
+  const Init({super.key});
 
   @override
   State<Init> createState() => _InitState();
@@ -294,7 +294,7 @@ class _InitState extends State<Init> with WidgetsBindingObserver {
 
 /// 外层抽屉菜单
 class MenuPage extends StatefulWidget {
-  const MenuPage({Key? key}) : super(key: key);
+  const MenuPage({super.key});
 
   @override
   State<MenuPage> createState() => _MenuPageState();
@@ -337,7 +337,7 @@ class _MenuPageState extends State<MenuPage> {
 
 /// 主屏幕逻辑
 class MainScreenBody extends StatefulWidget {
-  const MainScreenBody({Key? key}) : super(key: key);
+  const MainScreenBody({super.key});
 
   @override
   State<MainScreenBody> createState() => _MainScreenBodyState();

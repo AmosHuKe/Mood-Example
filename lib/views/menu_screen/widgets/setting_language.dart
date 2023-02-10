@@ -14,7 +14,7 @@ import 'package:moodexample/view_models/application/application_view_model.dart'
 
 /// 语言设置
 class SettingLanguage extends StatefulWidget {
-  const SettingLanguage({Key? key}) : super(key: key);
+  const SettingLanguage({super.key});
 
   @override
   State<SettingLanguage> createState() => _SettingLanguageState();

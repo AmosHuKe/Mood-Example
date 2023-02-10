@@ -98,7 +98,7 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
 }
 
 class MoodCategorySelectBody extends StatefulWidget {
-  const MoodCategorySelectBody({Key? key}) : super(key: key);
+  const MoodCategorySelectBody({super.key});
 
   @override
   State<MoodCategorySelectBody> createState() => _MoodCategorySelectBodyState();
@@ -155,7 +155,7 @@ class _MoodCategorySelectBodyState extends State<MoodCategorySelectBody> {
 
 /// 心情选择
 class MoodChoice extends StatelessWidget {
-  const MoodChoice({Key? key}) : super(key: key);
+  const MoodChoice({super.key});
 
   @override
   Widget build(BuildContext context) {

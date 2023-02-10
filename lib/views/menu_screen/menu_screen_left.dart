@@ -22,7 +22,7 @@ import 'package:moodexample/view_models/application/application_view_model.dart'
 
 /// 外层抽屉菜单（左）
 class MenuScreenLeft extends StatelessWidget {
-  const MenuScreenLeft({Key? key}) : super(key: key);
+  const MenuScreenLeft({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class MenuScreenLeft extends StatelessWidget {
 }
 
 class MenuScreenLeftBody extends StatelessWidget {
-  const MenuScreenLeftBody({Key? key}) : super(key: key);
+  const MenuScreenLeftBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +85,7 @@ class MenuScreenLeftBody extends StatelessWidget {
 
 /// 头部
 class Header extends StatelessWidget {
-  const Header({Key? key}) : super(key: key);
+  const Header({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +123,7 @@ class Header extends StatelessWidget {
 
 /// 菜单
 class Menu extends StatelessWidget {
-  const Menu({Key? key}) : super(key: key);
+  const Menu({super.key});
   static final _titleTextSize = 14.sp;
   static final _titleIconSize = 20.sp;
 

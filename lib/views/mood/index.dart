@@ -30,7 +30,7 @@ import 'package:moodexample/models/mood/mood_model.dart';
 
 /// 心情页（记录列表）
 class MoodPage extends StatefulWidget {
-  const MoodPage({Key? key}) : super(key: key);
+  const MoodPage({super.key});
 
   @override
   State<MoodPage> createState() => _MoodPageState();
@@ -133,7 +133,7 @@ init(BuildContext context) {
 
 /// 主体
 class MoodBody extends StatefulWidget {
-  const MoodBody({Key? key}) : super(key: key);
+  const MoodBody({super.key});
 
   @override
   State<MoodBody> createState() => _MoodBodyState();
@@ -270,7 +270,7 @@ class _MoodBodyState extends State<MoodBody> {
 
 /// 日历
 class Calendar extends StatefulWidget {
-  const Calendar({Key? key}) : super(key: key);
+  const Calendar({super.key});
 
   @override
   State<Calendar> createState() => _CalendarState();

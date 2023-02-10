@@ -19,7 +19,7 @@ import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_shee
     as mini_game;
 
 class GamePage extends StatefulWidget {
-  const GamePage({Key? key}) : super(key: key);
+  const GamePage({super.key});
 
   @override
   State<GamePage> createState() => _GamePageState();
@@ -67,7 +67,7 @@ class _GamePageState extends State<GamePage> {
 }
 
 class UniMPMiniappsBody extends StatefulWidget {
-  const UniMPMiniappsBody({Key? key}) : super(key: key);
+  const UniMPMiniappsBody({super.key});
 
   @override
   State<UniMPMiniappsBody> createState() => _UniMPMiniappsBodyState();

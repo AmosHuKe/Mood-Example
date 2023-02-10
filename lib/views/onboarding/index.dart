@@ -12,7 +12,7 @@ import 'package:moodexample/widgets/animation/animation.dart';
 
 /// 引导页
 class Onboarding extends StatelessWidget {
-  const Onboarding({Key? key}) : super(key: key);
+  const Onboarding({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class Onboarding extends StatelessWidget {
 }
 
 class SwiperBody extends StatefulWidget {
-  const SwiperBody({Key? key}) : super(key: key);
+  const SwiperBody({super.key});
 
   @override
   State<SwiperBody> createState() => _SwiperBodyState();

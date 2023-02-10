@@ -27,7 +27,7 @@ import 'package:moodexample/models/mood/mood_model.dart';
 
 /// 数据
 class SettingDatabase extends StatefulWidget {
-  const SettingDatabase({Key? key}) : super(key: key);
+  const SettingDatabase({super.key});
 
   @override
   State<SettingDatabase> createState() => _SettingDatabaseState();
@@ -99,7 +99,7 @@ class _SettingDatabaseState extends State<SettingDatabase>
 
 /// 导入数据
 class ImportDatabaseBody extends StatefulWidget {
-  const ImportDatabaseBody({Key? key}) : super(key: key);
+  const ImportDatabaseBody({super.key});
 
   @override
   State<ImportDatabaseBody> createState() => _ImportDatabaseBodyState();
@@ -739,7 +739,7 @@ Future<List<List>> importDatabaseErrorCheck(List<List<Data?>> database) async {
 
 /// 导出数据
 class ExportDatabaseBody extends StatefulWidget {
-  const ExportDatabaseBody({Key? key}) : super(key: key);
+  const ExportDatabaseBody({super.key});
 
   @override
   State<ExportDatabaseBody> createState() => _ExportDatabaseBodyState();

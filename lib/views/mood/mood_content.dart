@@ -183,7 +183,7 @@ class _MoodContentState extends State<MoodContent> {
 }
 
 class MoodContentBody extends StatefulWidget {
-  const MoodContentBody({Key? key}) : super(key: key);
+  const MoodContentBody({super.key});
 
   @override
   State<MoodContentBody> createState() => _MoodContentBodyState();
@@ -328,7 +328,7 @@ class MoodChoiceCard extends StatelessWidget {
 
 /// 内容输入
 class AddContent extends StatefulWidget {
-  const AddContent({Key? key}) : super(key: key);
+  const AddContent({super.key});
 
   @override
   State<AddContent> createState() => _AddContentState();
@@ -401,7 +401,7 @@ class _AddContentState extends State<AddContent> {
 
 /// 心情程度
 class MoodScore extends StatefulWidget {
-  const MoodScore({Key? key}) : super(key: key);
+  const MoodScore({super.key});
 
   @override
   State<MoodScore> createState() => _MoodScoreState();

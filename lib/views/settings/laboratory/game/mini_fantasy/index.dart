@@ -14,7 +14,7 @@ import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/componen
 import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/components/orc.dart';
 
 class MiniFantasyPage extends StatefulWidget {
-  const MiniFantasyPage({Key? key}) : super(key: key);
+  const MiniFantasyPage({super.key});
 
   @override
   State<MiniFantasyPage> createState() => _MiniFantasyPageState();
@@ -62,7 +62,7 @@ class _MiniFantasyPageState extends State<MiniFantasyPage> {
 }
 
 class Game extends StatelessWidget {
-  const Game({Key? key}) : super(key: key);
+  const Game({super.key});
   static const assetsPath = 'game/mini_fantasy';
 
   @override

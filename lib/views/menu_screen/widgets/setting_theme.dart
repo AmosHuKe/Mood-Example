@@ -17,7 +17,7 @@ import 'package:moodexample/view_models/application/application_view_model.dart'
 
 /// 主题设置
 class SettingTheme extends StatefulWidget {
-  const SettingTheme({Key? key}) : super(key: key);
+  const SettingTheme({super.key});
 
   @override
   State<SettingTheme> createState() => _SettingThemeState();
@@ -67,7 +67,7 @@ class _SettingThemeState extends State<SettingTheme> {
 
 /// 主题外观设置
 class DarkThemeBody extends StatefulWidget {
-  const DarkThemeBody({Key? key}) : super(key: key);
+  const DarkThemeBody({super.key});
 
   @override
   State<DarkThemeBody> createState() => _DarkThemeBodyState();
@@ -210,7 +210,7 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
 
 /// 多主题设置
 class MultipleThemesBody extends StatefulWidget {
-  const MultipleThemesBody({Key? key}) : super(key: key);
+  const MultipleThemesBody({super.key});
 
   @override
   State<MultipleThemesBody> createState() => _MultipleThemesBodyState();

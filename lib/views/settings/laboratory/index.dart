@@ -12,7 +12,7 @@ import 'package:moodexample/views/settings/laboratory/unimp_miniapps/index.dart'
 import 'package:moodexample/views/settings/laboratory/game/index.dart';
 
 class LaboratoryPage extends StatefulWidget {
-  const LaboratoryPage({Key? key}) : super(key: key);
+  const LaboratoryPage({super.key});
 
   @override
   State<LaboratoryPage> createState() => _LaboratoryPageState();
@@ -59,7 +59,7 @@ class _LaboratoryPageState extends State<LaboratoryPage> {
 }
 
 class LaboratoryBody extends StatefulWidget {
-  const LaboratoryBody({Key? key}) : super(key: key);
+  const LaboratoryBody({super.key});
 
   @override
   State<LaboratoryBody> createState() => _LaboratoryBodyState();

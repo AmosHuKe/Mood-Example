@@ -20,7 +20,7 @@ import 'package:moodexample/services/statistic/statistic_service.dart';
 
 /// 统计
 class StatisticPage extends StatefulWidget {
-  const StatisticPage({Key? key}) : super(key: key);
+  const StatisticPage({super.key});
 
   @override
   State<StatisticPage> createState() => _StatisticPageState();
@@ -71,7 +71,7 @@ init(BuildContext context) {
 }
 
 class StatisticBody extends StatefulWidget {
-  const StatisticBody({Key? key}) : super(key: key);
+  const StatisticBody({super.key});
 
   @override
   State<StatisticBody> createState() => _StatisticBodyState();
@@ -252,7 +252,7 @@ class _StatisticBodyState extends State<StatisticBody> {
 
 /// 统计-情绪波动（线）
 class StatisticMoodLine extends StatefulWidget {
-  const StatisticMoodLine({Key? key}) : super(key: key);
+  const StatisticMoodLine({super.key});
 
   @override
   State<StatisticMoodLine> createState() => _StatisticMoodLineState();
@@ -290,7 +290,7 @@ class _StatisticMoodLineState extends State<StatisticMoodLine> {
 
 /// 周情绪波动统计（线）-数据
 class StatisticWeekMoodLine extends StatefulWidget {
-  const StatisticWeekMoodLine({Key? key}) : super(key: key);
+  const StatisticWeekMoodLine({super.key});
 
   @override
   State<StatisticWeekMoodLine> createState() => _StatisticWeekMoodLineState();
@@ -496,7 +496,7 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
 
 /// 总体统计
 class OverallStatistics extends StatelessWidget {
-  const OverallStatistics({Key? key}) : super(key: key);
+  const OverallStatistics({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -552,7 +552,7 @@ class OverallStatistics extends StatelessWidget {
 
 /// 周情绪波动统计-数据
 class StatisticWeekMood extends StatefulWidget {
-  const StatisticWeekMood({Key? key}) : super(key: key);
+  const StatisticWeekMood({super.key});
 
   @override
   State<StatisticWeekMood> createState() => _StatisticWeekMoodState();
@@ -729,7 +729,7 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
 
 /// 心情统计-数据
 class StatisticCategoryMood extends StatefulWidget {
-  const StatisticCategoryMood({Key? key}) : super(key: key);
+  const StatisticCategoryMood({super.key});
 
   @override
   State<StatisticCategoryMood> createState() => _StatisticCategoryMoodState();

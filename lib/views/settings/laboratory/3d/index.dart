@@ -9,7 +9,7 @@ import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
 class Page3D extends StatefulWidget {
-  const Page3D({Key? key}) : super(key: key);
+  const Page3D({super.key});
 
   @override
   State<Page3D> createState() => _Page3DState();
@@ -57,7 +57,7 @@ class _Page3DState extends State<Page3D> {
 }
 
 class Body3D extends StatefulWidget {
-  const Body3D({Key? key}) : super(key: key);
+  const Body3D({super.key});
 
   @override
   State<Body3D> createState() => _Body3DState();

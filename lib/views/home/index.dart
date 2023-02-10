@@ -25,7 +25,7 @@ import 'package:moodexample/services/mood/mood_service.dart';
 
 /// 首页
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage>
 
 /// 首页主体
 class HomeBody extends StatefulWidget {
-  const HomeBody({Key? key}) : super(key: key);
+  const HomeBody({super.key});
 
   @override
   State<HomeBody> createState() => _HomeBodyState();
@@ -181,7 +181,7 @@ class _HomeBodyState extends State<HomeBody> {
 
 /// 头部
 class Header extends StatefulWidget {
-  const Header({Key? key}) : super(key: key);
+  const Header({super.key});
 
   @override
   State<Header> createState() => _HeaderState();
@@ -227,7 +227,7 @@ class _HeaderState extends State<Header> {
 
 /// 情绪选项卡
 class OptionMood extends StatefulWidget {
-  const OptionMood({Key? key}) : super(key: key);
+  const OptionMood({super.key});
 
   @override
   State<OptionMood> createState() => _OptionMoodState();
@@ -390,7 +390,7 @@ class OptionCard extends StatelessWidget {
 
 /// 公告卡片
 class NoticeCard extends StatelessWidget {
-  const NoticeCard({Key? key}) : super(key: key);
+  const NoticeCard({super.key});
 
   /// 阴影
   Widget shadow({EdgeInsetsGeometry? margin, required double opacity}) {
@@ -435,7 +435,7 @@ class NoticeCard extends StatelessWidget {
 
 /// 操作卡片
 class ActionCard extends StatefulWidget {
-  const ActionCard({Key? key}) : super(key: key);
+  const ActionCard({super.key});
 
   @override
   State<ActionCard> createState() => _ActionCardState();
@@ -582,7 +582,7 @@ class _ActionCardState extends State<ActionCard> {
 
 /// 相关文章
 class Article extends StatefulWidget {
-  const Article({Key? key}) : super(key: key);
+  const Article({super.key});
 
   @override
   State<Article> createState() => _ArticleState();

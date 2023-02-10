@@ -19,7 +19,7 @@ import 'package:moodexample/view_models/application/application_view_model.dart'
 
 /// 安全
 class SettingKey extends StatefulWidget {
-  const SettingKey({Key? key}) : super(key: key);
+  const SettingKey({super.key});
 
   @override
   State<SettingKey> createState() => _SettingKeyState();
@@ -62,7 +62,7 @@ class _SettingKeyState extends State<SettingKey> {
 
 /// 安全设置
 class KeyBody extends StatefulWidget {
-  const KeyBody({Key? key}) : super(key: key);
+  const KeyBody({super.key});
 
   @override
   State<KeyBody> createState() => _KeyBodyState();

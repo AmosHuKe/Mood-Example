@@ -13,7 +13,7 @@ import 'package:moodexample/views/settings/laboratory/game/mini_game/components/
 import 'package:moodexample/views/settings/laboratory/game/mini_game/components/light.dart';
 
 class MiniGamePage extends StatefulWidget {
-  const MiniGamePage({Key? key}) : super(key: key);
+  const MiniGamePage({super.key});
 
   @override
   State<MiniGamePage> createState() => _MiniGamePageState();
@@ -69,7 +69,7 @@ class _MiniGamePageState extends State<MiniGamePage> {
 }
 
 class Game extends StatefulWidget {
-  const Game({Key? key}) : super(key: key);
+  const Game({super.key});
 
   @override
   State<Game> createState() => _GameState();
