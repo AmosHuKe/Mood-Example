@@ -10,9 +10,9 @@
 </h1> 
 
 <p align="center">
-<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.7.16" src="https://img.shields.io/badge/Mood--Example-v1.7.16-3e4663"/></a> 
-<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.7.3" src="https://img.shields.io/badge/Flutter-v3.7.3-46D1FD"/></a> 
-<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.19.2" src="https://img.shields.io/badge/Dart-v2.19.2-04599D"/></a> 
+<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.7.17" src="https://img.shields.io/badge/Mood--Example-v1.7.17-3e4663"/></a> 
+<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.7.7" src="https://img.shields.io/badge/Flutter-v3.7.7-46D1FD"/></a> 
+<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.19.4" src="https://img.shields.io/badge/Dart-v2.19.4-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -53,6 +53,7 @@
   - [x] uniapp 小程序（UniMPSDK v3.4.7）  
   - [x] 3D 城市（obj 格式）  
   - [x] 游戏合集（Flame、Bonfire）  
+  - [x] 异步 FFI 调用 C    
 ……
 
 
@@ -70,7 +71,7 @@
 
 > Windows  
 ```
-[√] Flutter (Channel stable, 3.7.3, on Microsoft Windows [版本 10.0.22000.1455], locale zh-CN)
+[√] Flutter (Channel stable, 3.7.7, on Microsoft Windows [版本 10.0.22000.1574], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 33.0.1)
 [√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.4.0)
 [√] Android Studio (version 2021.3)
