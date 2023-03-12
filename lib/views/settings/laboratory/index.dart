@@ -10,6 +10,7 @@ import 'package:moodexample/widgets/action_button/action_button.dart';
 import 'package:moodexample/views/settings/laboratory/3d/index.dart';
 import 'package:moodexample/views/settings/laboratory/unimp_miniapps/index.dart';
 import 'package:moodexample/views/settings/laboratory/game/index.dart';
+import 'package:moodexample/views/settings/laboratory/ffi/index.dart';
 
 class LaboratoryPage extends StatefulWidget {
   const LaboratoryPage({super.key});
@@ -151,8 +152,16 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "占位",
-          subtitle: "占位占位占位",
+          title: "FFI",
+          subtitle: "测试",
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const FFIPage(),
+              ),
+            );
+          },
         ),
         ListCard(
           leading: Icon(

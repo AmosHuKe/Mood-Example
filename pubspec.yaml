@@ -30,6 +30,8 @@ dependencies:
   flutter:
     sdk: flutter
   path: ^1.8.2
+  # FFI
+  ffi: ^2.0.1
   # 国际化
   flutter_localizations:
     sdk: flutter
