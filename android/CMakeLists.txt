@@ -1,15 +1,9 @@
-cmake_minimum_required(VERSION 3.4.1)  # for example
+cmake_minimum_required(VERSION 3.4.1)
 
-add_library(ffi
+# 项目名称
+set(PROJECT_NAME "ffi")
 
-            # 共享库
-            SHARED
-
-            # 加载文件.
-            ../ios/Classes/include/dart_api_dl.c
-            ../ios/Classes/include/dart_api_dl.h
-            ../ios/Classes/include/dart_api.h
-            ../ios/Classes/include/dart_native_api.h
-            ../ios/Classes/include/dart_version.h
-            ../ios/Classes/include/internal/dart_api_dl_impl.h
-            ../ios/Classes/ffi.cpp )
+# 批量添加c文件
+file(GLOB_RECURSE ffi ../ios/Classes/*)
+# 构建链接库 add_library(包名称 SHARED:构建动态链接库 源文件列表)
+add_library(${PROJECT_NAME} SHARED ${ffi})

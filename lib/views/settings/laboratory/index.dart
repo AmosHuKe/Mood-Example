@@ -148,12 +148,12 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
         ),
         ListCard(
           leading: Icon(
-            Remix.account_box_line,
+            Remix.align_vertically,
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "FFI",
-          subtitle: "测试",
+          title: "FFI 异步调用 C++",
+          subtitle: "通过 FFI 异步调用 C++ 并监听",
           onPressed: () {
             Navigator.push(
               context,
