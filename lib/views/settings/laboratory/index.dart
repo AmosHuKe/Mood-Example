@@ -152,8 +152,8 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "FFI 异步调用 C++",
-          subtitle: "通过 FFI 异步调用 C++ 并监听",
+          title: "FFI 异步调用 C/C++",
+          subtitle: "通过 FFI 异步调用 C/C++ 并监听",
           onPressed: () {
             Navigator.push(
               context,

@@ -138,7 +138,7 @@ class _FFIPageState extends State<FFIPage> {
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
           titleTextStyle: TextStyle(color: Colors.black, fontSize: 14.sp),
-          title: const Text("FFI 异步调用 C++"),
+          title: const Text("FFI 异步调用 C/C++"),
           leading: ActionButton(
             decoration: BoxDecoration(
               color: AppTheme.backgroundColor1,
