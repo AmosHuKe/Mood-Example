@@ -163,7 +163,7 @@ $ flutter test integration_test/app_test.dart
 
 ```sh
 ├── android                                         # Android 工程文件 
-│   └── app                       
+│   ├── app                       
 │   │   ├── libs                                    # 包含 UniMPSDK 依赖库
 │   │   └── src 
 │   │   │   └── main                  
@@ -177,11 +177,16 @@ $ flutter test integration_test/app_test.dart
 │   │   │   │   │   │   └── example    
 │   │   │   │   │   │   │   └── moodexample
 │   │   │   │   │   │   │   │   └── MainActivity.kt # Flutter 的 Android 默认入口
+│   └── CMakeLists.txt                              # CMake（目前编译 FFI 需要的文件）
 ├── assets                                          # 静态资源文件
 ├── build                                           # 编译或运行后产物
 ├── integration_test                                # 集成测试
 │   └── app_test.dart                               # 集成测试入口 用例
 ├── ios                                             # iOS 工程文件
+│   ├── Classes                                     # Classes（目前存放 FFI 相关文件）
+│   │   ├── include
+│   │   │   └── dart_native_api                     # DartNativeAPI 接口库
+│   │   └── ffi.cpp                                 # FFI 逻辑测试
 │   ├── Runner                                      # Runner
 │   │   ├── UniMPSDK                                # 包含 UniMPSDK 内容
 │   │   │   ├── Apps                                # 包含 UniMPSDK 的 uniapp 小程序
