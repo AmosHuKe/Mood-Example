@@ -72,11 +72,9 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
         leading: ActionButton(
           semanticsLabel: "关闭",
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: isDarkMode(context)
-                    ? [Theme.of(context).cardColor, Theme.of(context).cardColor]
-                    : [AppTheme.backgroundColor1, AppTheme.backgroundColor1],
-              ),
+              color: isDarkMode(context)
+                  ? Theme.of(context).cardColor
+                  : AppTheme.backgroundColor1,
               borderRadius:
                   BorderRadius.only(bottomRight: Radius.circular(18.w))),
           child: Icon(
@@ -215,12 +213,7 @@ class MoodChoiceCard extends StatelessWidget {
           height: 128.w,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Theme.of(context).cardColor,
-                  Theme.of(context).cardColor,
-                ],
-              ),
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(32.w),
             ),
             child: Column(

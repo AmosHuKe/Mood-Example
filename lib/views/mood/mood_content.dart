@@ -96,11 +96,9 @@ class _MoodContentState extends State<MoodContent> {
           key: const Key("widget_action_button_close"),
           semanticsLabel: "关闭",
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: isDarkMode(context)
-                    ? [Theme.of(context).cardColor, Theme.of(context).cardColor]
-                    : [AppTheme.backgroundColor1, AppTheme.backgroundColor1],
-              ),
+              color: isDarkMode(context)
+                  ? Theme.of(context).cardColor
+                  : AppTheme.backgroundColor1,
               borderRadius:
                   BorderRadius.only(bottomRight: Radius.circular(18.w))),
           child: Icon(
@@ -116,14 +114,9 @@ class _MoodContentState extends State<MoodContent> {
             key: const Key("widget_mood_actions_button"),
             semanticsLabel: "确认记录",
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: isDarkMode(context)
-                      ? [
-                          Theme.of(context).cardColor,
-                          Theme.of(context).cardColor
-                        ]
-                      : [const Color(0xFFD6F2E2), const Color(0xFFD6F2E2)],
-                ),
+                color: isDarkMode(context)
+                    ? Theme.of(context).cardColor
+                    : const Color(0xFFD6F2E2),
                 borderRadius:
                     BorderRadius.only(bottomLeft: Radius.circular(18.w))),
             child: Icon(
@@ -286,17 +279,7 @@ class MoodChoiceCard extends StatelessWidget {
         height: 128.w,
         child: DecoratedBox(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: isDarkMode(context)
-                  ? [
-                      const Color(0xFF202427),
-                      const Color(0xFF202427),
-                    ]
-                  : [
-                      Colors.white,
-                      Colors.white,
-                    ],
-            ),
+            color: isDarkMode(context) ? const Color(0xFF202427) : Colors.white,
             borderRadius: BorderRadius.circular(32.w),
           ),
           child: Column(
@@ -342,12 +325,7 @@ class _AddContentState extends State<AddContent> {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Theme.of(context).cardColor,
-            Theme.of(context).cardColor,
-          ],
-        ),
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(32.w),
       ),
       child: Padding(

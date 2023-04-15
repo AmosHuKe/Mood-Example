@@ -31,12 +31,7 @@ class _Page3DState extends State<Page3D> {
           title: const Text("3D 城市"),
           leading: ActionButton(
             decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [
-                    AppTheme.backgroundColor1,
-                    AppTheme.backgroundColor1
-                  ],
-                ),
+                color: AppTheme.backgroundColor1,
                 borderRadius:
                     BorderRadius.only(bottomRight: Radius.circular(18.w))),
             child: Icon(

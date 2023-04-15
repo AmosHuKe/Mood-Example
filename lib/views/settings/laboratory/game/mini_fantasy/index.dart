@@ -36,12 +36,7 @@ class _MiniFantasyPageState extends State<MiniFantasyPage> {
           title: const Text("MiniFantasy"),
           leading: ActionButton(
             decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [
-                    AppTheme.backgroundColor1,
-                    AppTheme.backgroundColor1
-                  ],
-                ),
+                color: AppTheme.backgroundColor1,
                 borderRadius:
                     BorderRadius.only(bottomRight: Radius.circular(18.w))),
             child: Icon(

@@ -366,12 +366,7 @@ class _CalendarState extends State<Calendar> {
       margin: EdgeInsets.only(left: 24.w, right: 24.w, top: 12.w, bottom: 12.w),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Theme.of(context).cardColor,
-              Theme.of(context).cardColor,
-            ],
-          ),
+          color: Theme.of(context).cardColor,
           boxShadow: [
             BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 6)
           ],
@@ -618,12 +613,7 @@ class _MoodCardState extends State<MoodCard> {
                     width: 56.w,
                     height: 56.w,
                     decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [
-                          Color(0xFFD6F2E2),
-                          Color(0xFFD6F2E2),
-                        ],
-                      ),
+                      color: const Color(0xFFD6F2E2),
                       borderRadius: BorderRadius.circular(18.w),
                     ),
                     child: const Icon(
@@ -666,12 +656,7 @@ class _MoodCardState extends State<MoodCard> {
                 height: 56.w,
                 margin: EdgeInsets.only(right: 24.w),
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [
-                      Color(0xFFFEE5E4),
-                      Color(0xFFFEE5E4),
-                    ],
-                  ),
+                  color: const Color(0xFFFEE5E4),
                   borderRadius: BorderRadius.circular(18.w),
                 ),
                 child: const Icon(
@@ -736,12 +721,7 @@ class _MoodCardState extends State<MoodCard> {
               ),
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Theme.of(context).cardColor,
-                      Theme.of(context).cardColor,
-                    ],
-                  ),
+                  color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(18.w),
                 ),
                 child: Padding(
@@ -762,17 +742,9 @@ class _MoodCardState extends State<MoodCard> {
                                   height: 48.w,
                                   child: DecoratedBox(
                                     decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: isDarkMode(context)
-                                            ? [
-                                                const Color(0xFF2B3034),
-                                                const Color(0xFF2B3034),
-                                              ]
-                                            : [
-                                                AppTheme.backgroundColor3,
-                                                AppTheme.backgroundColor3,
-                                              ],
-                                      ),
+                                      color: isDarkMode(context)
+                                          ? const Color(0xFF2B3034)
+                                          : AppTheme.backgroundColor3,
                                       borderRadius: BorderRadius.circular(14.w),
                                     ),
                                     child: Align(
@@ -828,17 +800,9 @@ class _MoodCardState extends State<MoodCard> {
                           ),
                           DecoratedBox(
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: isDarkMode(context)
-                                    ? [
-                                        const Color(0xFF2B3034),
-                                        const Color(0xFF2B3034),
-                                      ]
-                                    : [
-                                        AppTheme.backgroundColor3,
-                                        AppTheme.backgroundColor3,
-                                      ],
-                              ),
+                              color: isDarkMode(context)
+                                  ? const Color(0xFF2B3034)
+                                  : AppTheme.backgroundColor3,
                               borderRadius: BorderRadius.circular(10.w),
                             ),
                             child: SizedBox(
@@ -1008,17 +972,8 @@ class MoodDetail extends StatelessWidget {
           ),
           child: DecoratedBox(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: isDarkMode(context)
-                    ? [
-                        const Color(0xFF202427),
-                        const Color(0xFF202427),
-                      ]
-                    : [
-                        Colors.white,
-                        Colors.white,
-                      ],
-              ),
+              color:
+                  isDarkMode(context) ? const Color(0xFF202427) : Colors.white,
               borderRadius: BorderRadius.circular(32.w),
             ),
             child: Padding(

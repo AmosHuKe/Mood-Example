@@ -36,12 +36,7 @@ class ActionButton extends StatelessWidget {
     final double getHeight = height ?? 48.w;
     final Decoration getDecoration = decoration ??
         BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [
-              AppTheme.backgroundColor1,
-              AppTheme.backgroundColor1,
-            ],
-          ),
+          color: AppTheme.backgroundColor1,
           borderRadius: BorderRadius.circular(18.w),
         );
 

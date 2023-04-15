@@ -103,10 +103,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       ),
       bottomNavigationBar: DecoratedBox(
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            appTheme.bottomNavigationBarTheme.backgroundColor ?? Colors.white,
-            appTheme.bottomNavigationBarTheme.backgroundColor ?? Colors.white,
-          ]),
+          color:
+              appTheme.bottomNavigationBarTheme.backgroundColor ?? Colors.white,
           boxShadow: [
             BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 24),
           ],
@@ -181,17 +179,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   key: const Key("tab_screen_left"),
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: isDarkMode(context)
-                            ? [
-                                Colors.black12,
-                                Colors.black12,
-                              ]
-                            : [
-                                AppTheme.backgroundColor1,
-                                AppTheme.backgroundColor1,
-                              ],
-                      ),
+                      color: isDarkMode(context)
+                          ? Colors.black12
+                          : AppTheme.backgroundColor1,
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(14.sp),
                         bottomRight: Radius.circular(14.sp),

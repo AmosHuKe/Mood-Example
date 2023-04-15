@@ -905,9 +905,7 @@ class StatisticsCard extends StatelessWidget {
             children: [
               DecoratedBox(
                 decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.black, Colors.black],
-                  ),
+                  color: Colors.black,
                   shape: BoxShape.circle,
                 ),
                 child: SizedBox(
@@ -1068,17 +1066,7 @@ class FilterBottom extends StatelessWidget {
             margin: EdgeInsets.only(left: 6.w, right: 6.w),
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: checked
-                    ? [
-                        primaryColor,
-                        primaryColor,
-                      ]
-                    : [
-                        Theme.of(context).cardColor,
-                        Theme.of(context).cardColor,
-                      ],
-              ),
+              color: checked ? primaryColor : Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(14.sp),
               boxShadow: checked
                   ? [

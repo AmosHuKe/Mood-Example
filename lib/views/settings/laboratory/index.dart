@@ -32,12 +32,7 @@ class _LaboratoryPageState extends State<LaboratoryPage> {
           width: 48.w,
           height: 48.w,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Theme.of(context).primaryColor,
-                Theme.of(context).primaryColor,
-              ],
-            ),
+            color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.circular(18.w),
           ),
           child: Icon(

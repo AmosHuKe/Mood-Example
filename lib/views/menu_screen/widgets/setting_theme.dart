@@ -93,19 +93,9 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
                   Expanded(
                     child: Container(
                       alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: isDarkMode(context)
-                              ? [
-                                  const Color(0xFFF6F8FA),
-                                  const Color(0xFFF6F8FA)
-                                ]
-                              : [
-                                  const Color(0xFF111315),
-                                  const Color(0xFF111315)
-                                ],
-                        ),
-                      ),
+                      color: isDarkMode(context)
+                          ? const Color(0xFFF6F8FA)
+                          : const Color(0xFF111315),
                       child: Text(
                         "Aa",
                         style: TextStyle(
@@ -121,19 +111,9 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
                   Expanded(
                     child: Container(
                       alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: isDarkMode(context)
-                              ? [
-                                  const Color(0xFF111315),
-                                  const Color(0xFF111315)
-                                ]
-                              : [
-                                  const Color(0xFFF6F8FA),
-                                  const Color(0xFFF6F8FA)
-                                ],
-                        ),
-                      ),
+                      color: isDarkMode(context)
+                          ? const Color(0xFF111315)
+                          : const Color(0xFFF6F8FA),
                       child: Text(
                         "Aa",
                         style: TextStyle(
@@ -158,11 +138,7 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
               selected: themeMode == ThemeMode.light,
               child: Container(
                 alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Color(0xFFF6F8FA), Color(0xFFF6F8FA)],
-                  ),
-                ),
+                color: const Color(0xFFF6F8FA),
                 child: Text(
                   "Aa",
                   style: TextStyle(
@@ -182,11 +158,7 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
               selected: themeMode == ThemeMode.dark,
               child: Container(
                 alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Color(0xFF111315), Color(0xFF111315)],
-                  ),
-                ),
+                color: const Color(0xFF111315),
                 child: Text(
                   "Aa",
                   style: TextStyle(
@@ -245,13 +217,7 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
                   selected: multipleThemesMode == key,
                   child: Container(
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [primaryColor, primaryColor],
-                      ),
-                    ),
+                    color: primaryColor,
                   ),
                   onTap: () async {
                     debugPrint("主题:$key");

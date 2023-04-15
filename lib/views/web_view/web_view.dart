@@ -48,11 +48,9 @@ class _WebViewPageState extends State<WebViewPage> {
           key: const Key("widget_web_view_close"),
           semanticsLabel: "返回",
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: isDarkMode(context)
-                    ? [Theme.of(context).cardColor, Theme.of(context).cardColor]
-                    : [AppTheme.backgroundColor1, AppTheme.backgroundColor1],
-              ),
+              color: isDarkMode(context)
+                  ? Theme.of(context).cardColor
+                  : AppTheme.backgroundColor1,
               borderRadius:
                   BorderRadius.only(bottomRight: Radius.circular(18.w))),
           child: Icon(

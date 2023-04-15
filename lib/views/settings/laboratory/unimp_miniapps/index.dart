@@ -30,12 +30,7 @@ class _UniMPMiniappsPageState extends State<UniMPMiniappsPage> {
           title: const Text("uniapp 小程序"),
           leading: ActionButton(
             decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [
-                    AppTheme.backgroundColor1,
-                    AppTheme.backgroundColor1
-                  ],
-                ),
+                color: AppTheme.backgroundColor1,
                 borderRadius:
                     BorderRadius.only(bottomRight: Radius.circular(18.w))),
             child: Icon(

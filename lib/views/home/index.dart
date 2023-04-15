@@ -320,17 +320,9 @@ class OptionCard extends StatelessWidget {
                     child: Container(
                       constraints: BoxConstraints(minWidth: 52.w),
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: isDarkMode(context)
-                              ? [
-                                  const Color(0xFF2B3034),
-                                  const Color(0xFF2B3034)
-                                ]
-                              : [
-                                  AppTheme.backgroundColor1,
-                                  AppTheme.backgroundColor1
-                                ],
-                        ),
+                        color: isDarkMode(context)
+                            ? const Color(0xFF2B3034)
+                            : AppTheme.backgroundColor1,
                         borderRadius: BorderRadius.circular(18.w),
                       ),
                       child: Padding(
@@ -398,12 +390,7 @@ class NoticeCard extends StatelessWidget {
       height: 190.w,
       margin: margin,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            const Color(0xFFFFBBBB).withOpacity(opacity),
-            const Color(0xFFFFBBBB).withOpacity(opacity)
-          ],
-        ),
+        color: const Color(0xFFFFBBBB).withOpacity(opacity),
         borderRadius: BorderRadius.circular(24.sp),
       ),
     );

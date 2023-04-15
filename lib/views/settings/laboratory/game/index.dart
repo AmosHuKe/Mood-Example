@@ -41,12 +41,7 @@ class _GamePageState extends State<GamePage> {
           title: const Text("游戏合集"),
           leading: ActionButton(
             decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [
-                    AppTheme.backgroundColor1,
-                    AppTheme.backgroundColor1
-                  ],
-                ),
+                color: AppTheme.backgroundColor1,
                 borderRadius:
                     BorderRadius.only(bottomRight: Radius.circular(18.w))),
             child: Icon(
