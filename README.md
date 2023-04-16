@@ -269,8 +269,8 @@ $ flutter test integration_test/app_test.dart
 * 右键项目目录 Runner/UniMPSDK/Core 文件夹  
 * 点击 Add Files to "Runner"...  
 * 找到下载的库，选中 UniMPSDK/Core/Libs 文件夹，  
-  勾选上 Destination: [x] Copy items if needed，
-  选择 Added folders: [x] Create groups，
+  勾选上 Destination: Copy items if needed，  
+  选择 Added folders: Create groups，  
   点击 Add 添加完成  
 
 3、调用库并使用代码，具体如下：  
