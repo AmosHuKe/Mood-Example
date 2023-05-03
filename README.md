@@ -226,6 +226,7 @@ $ flutter test integration_test/app_test.dart
 │   │   ├── settings                                # 侧边设置栏-其他页面组件（实验室等）
 │   │   │   └── laboratory                          # 实验室
 │   │   │   │   ├── 3d                              # 3D 城市
+│   │   │   │   ├── ffi                             # ffi 测试
 │   │   │   │   ├── game                            # 游戏合集
 │   │   │   │   ├── unimp_miniapps                  # uniapp 小程序
 │   │   │   │   └── index.dart                      # 实验室首页
