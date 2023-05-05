@@ -22,10 +22,7 @@ Future<T?> showModalBottomDetail<T>({
     ),
     builder: (BuildContext context) {
       return Container(
-        margin: EdgeInsets.only(
-          left: 12.w,
-          right: 12.w,
-        ),
+        margin: EdgeInsets.symmetric(horizontal: 12.w),
         child: Column(
           children: [
             Semantics(

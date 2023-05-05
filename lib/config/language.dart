@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// 语言配置
-const languageConfig = [
+const List<Map<String, Object>> languageConfig = [
   {
     "language": "简体中文",
     "locale": Locale('zh', 'CN'),

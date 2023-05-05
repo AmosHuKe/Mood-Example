@@ -16,6 +16,7 @@ class PreferencesDB {
   }
 
   /*** APP相关 ***/
+
   /// 打开APP次数
   static const openAPPCount = "openAPPCount";
 
@@ -42,10 +43,12 @@ class PreferencesDB {
   static const appKeyBiometric = "appKeyBiometric";
 
   /*** 数据库相关 ***/
+
   /// 是否填充完成【心情类别】表默认值
   static const initMoodCategoryDefaultType = "initMoodCategoryDefaultType";
 
   /*** shared_preferences ***/
+
   /// 设置-是否填充完成【心情类别】表默认值
   Future setInitMoodCategoryDefaultType(bool value) async {
     SharedPreferences prefs = await init();
@@ -59,6 +62,8 @@ class PreferencesDB {
   }
 
   /// 设置-主题外观模式
+  ///
+  /// [value] system(默认)：跟随系统 light：普通 dark：深色
   Future setAppThemeDarkMode(
       ApplicationViewModel applicationViewModel, String value) async {
     SharedPreferences prefs = await init();

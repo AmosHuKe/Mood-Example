@@ -1,11 +1,12 @@
-import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
+
+///
+import 'package:bonfire/bonfire.dart';
 
 class CustomSpriteAnimationWidget extends StatelessWidget {
   final Future<SpriteAnimation> animation;
 
-  const CustomSpriteAnimationWidget({Key? key, required this.animation})
-      : super(key: key);
+  const CustomSpriteAnimationWidget({super.key, required this.animation});
   @override
   Widget build(BuildContext context) {
     return SizedBox(

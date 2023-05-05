@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-/// Package
+/// Packages
 import 'package:provider/provider.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -20,13 +20,13 @@ import 'package:moodexample/home_screen.dart';
 import 'package:moodexample/common/notification.dart';
 import 'package:moodexample/widgets/lock_screen/lock_screen.dart';
 
-/// view_model
+/// ViewModels
 import 'package:moodexample/view_models/mood/mood_view_model.dart';
 import 'package:moodexample/services/mood/mood_service.dart';
 import 'package:moodexample/view_models/statistic/statistic_view_model.dart';
 import 'package:moodexample/view_models/application/application_view_model.dart';
 
-/// 页面
+/// Pages
 import 'package:moodexample/views/menu_screen/menu_screen_left.dart';
 
 class Application extends StatefulWidget {

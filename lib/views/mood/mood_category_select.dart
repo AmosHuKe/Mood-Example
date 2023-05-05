@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Packages
+///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
@@ -28,9 +28,9 @@ late String _nowDateTime;
 /// 新增心情页
 class MoodCategorySelect extends StatefulWidget {
   const MoodCategorySelect({
-    Key? key,
+    super.key,
     required this.type,
-  }) : super(key: key);
+  });
 
   /// 状态 add:新增 edit:修改
   final String type;
@@ -193,10 +193,10 @@ class MoodChoice extends StatelessWidget {
 /// 心情选择卡片
 class MoodChoiceCard extends StatelessWidget {
   const MoodChoiceCard({
-    Key? key,
+    super.key,
     required this.icon,
     required this.title,
-  }) : super(key: key);
+  });
 
   /// 图标
   final String icon;

@@ -3,13 +3,15 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+///
 import 'package:bonfire/bonfire.dart';
 
+///
 import '../sprite_sheet/sprite_sheet_player.dart';
+import '../sprite_sheet/sprite_sheet_fire_ball.dart';
+import '../util/custom_sprite_animation_widget.dart';
 import 'boss.dart';
 import 'orc.dart';
-import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_sheet/sprite_sheet_fire_ball.dart';
-import 'package:moodexample/views/settings/laboratory/game/mini_game/util/custom_sprite_animation_widget.dart';
 
 double tileSize = 20.0;
 

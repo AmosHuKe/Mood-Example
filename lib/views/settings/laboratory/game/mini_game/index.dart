@@ -2,13 +2,16 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:bonfire/bonfire.dart';
 
+///
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
+///
 import 'package:moodexample/views/settings/laboratory/game/mini_game/components/human_player.dart';
 import 'package:moodexample/views/settings/laboratory/game/mini_game/components/light.dart';
 

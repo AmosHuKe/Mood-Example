@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 
+///
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
+///
 import 'package:moodexample/common/local_auth_utils.dart';
 import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/generated/l10n.dart';
 
+///
 import 'package:moodexample/view_models/application/application_view_model.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -79,9 +82,11 @@ Future<void> lockScreen(BuildContext context) async {
 
 /// 锁屏创建
 ///
-/// Function(String password) onConfirmed 密码确认后的操作
+/// [onConfirmed] 密码确认后的操作
 Future<void> createlockScreen(
-    BuildContext context, Function(String password) onConfirmed) async {
+  BuildContext context,
+  Function(String password) onConfirmed,
+) async {
   final controller = InputController();
   screenLockCreate(
     context: context,

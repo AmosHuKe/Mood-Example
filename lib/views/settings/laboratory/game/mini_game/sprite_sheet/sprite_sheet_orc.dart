@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+///
 import 'package:bonfire/bonfire.dart';
 
 class SpriteSheetOrc {
@@ -20,6 +21,7 @@ class SpriteSheetOrc {
         await Flame.images.load('$assetsPath/orc_damage.png');
     spriteSheetOrcDie = await Flame.images.load('$assetsPath/orc_die.png');
   }
+
   static Future<SpriteAnimation> getRunBottomRight() {
     return spriteSheetOrcRun
         .getAnimation(

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:remixicon/remixicon.dart';
 
+///
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
@@ -75,8 +77,12 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
     }
 
     return ListView(
-      padding:
-          EdgeInsets.only(left: 24.w, right: 24.w, top: 24.w, bottom: 20.h),
+      padding: EdgeInsets.only(
+        left: 24.w,
+        right: 24.w,
+        top: 24.w,
+        bottom: 20.h,
+      ),
       physics: const AlwaysScrollableScrollPhysics(
         parent: BouncingScrollPhysics(),
       ),
@@ -126,12 +132,12 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
 
 class ListCard extends StatelessWidget {
   const ListCard({
+    super.key,
     required this.title,
     required this.subtitle,
     required this.leading,
     this.onPressed,
-    Key? key,
-  }) : super(key: key);
+  });
 
   /// 标题
   final String title;
@@ -148,7 +154,7 @@ class ListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.only(top: 12.w, bottom: 12.w),
+      margin: EdgeInsets.symmetric(vertical: 12.w),
       shadowColor: Colors.black38,
       shape:
           ContinuousRectangleBorder(borderRadius: BorderRadius.circular(48.sp)),

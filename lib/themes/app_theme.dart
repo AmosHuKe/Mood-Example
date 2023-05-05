@@ -23,7 +23,7 @@ bool isDarkMode(BuildContext context) {
 
 /// 当前深色模式
 ///
-/// system(默认)：跟随系统 light：普通 dark：深色
+/// [mode] system(默认)：跟随系统 light：普通 dark：深色
 ThemeMode darkThemeMode(String mode) {
   ThemeMode themeMode = ThemeMode.system;
   switch (mode) {

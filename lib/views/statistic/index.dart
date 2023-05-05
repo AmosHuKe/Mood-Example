@@ -95,10 +95,7 @@ class _StatisticBodyState extends State<StatisticBody> {
           flexibleSpace: Align(
             child: Container(
               width: double.maxFinite,
-              margin: EdgeInsets.only(
-                left: 24.w,
-                right: 24.w,
-              ),
+              margin: EdgeInsets.symmetric(horizontal: 24.w),
               child: Wrap(
                 alignment: WrapAlignment.spaceBetween,
                 crossAxisAlignment: WrapCrossAlignment.center,
@@ -181,7 +178,7 @@ class _StatisticBodyState extends State<StatisticBody> {
           delegate: SliverChildBuilderDelegate(
             (context, index) {
               return Padding(
-                padding: EdgeInsets.only(top: 0.w, bottom: 48.h),
+                padding: EdgeInsets.only(bottom: 48.h),
                 child: Column(
                   children: [
                     /// 总体统计
@@ -864,11 +861,11 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
 /// 统计Card
 class StatisticsCard extends StatelessWidget {
   const StatisticsCard({
-    Key? key,
+    super.key,
     required this.icon,
     required this.title,
     required this.subTitle,
-  }) : super(key: key);
+  });
 
   /// Icon
   final IconData icon;
@@ -894,12 +891,7 @@ class StatisticsCard extends StatelessWidget {
             minWidth: 72.w,
             minHeight: 110.w,
           ),
-          margin: EdgeInsets.only(
-            left: 12.w,
-            right: 12.w,
-            top: 12.w,
-            bottom: 12.w,
-          ),
+          margin: EdgeInsets.all(12.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -919,10 +911,7 @@ class StatisticsCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(
-                  top: 20.w,
-                  bottom: 10.w,
-                ),
+                padding: EdgeInsets.only(top: 20.w, bottom: 10.w),
                 child: Text(
                   title,
                   style: TextStyle(fontSize: 14.sp),
@@ -950,12 +939,12 @@ class StatisticsCard extends StatelessWidget {
 /// 统计-布局
 class StatisticLayout extends StatelessWidget {
   const StatisticLayout({
-    Key? key,
+    super.key,
     required this.title,
     required this.subTitle,
     required this.height,
     required this.statistic,
-  }) : super(key: key);
+  });
 
   /// 标题
   final String title;
@@ -981,12 +970,7 @@ class StatisticLayout extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.sp)),
         child: Container(
           height: height,
-          margin: EdgeInsets.only(
-            left: 24.w,
-            right: 24.w,
-            top: 24.w,
-            bottom: 24.w,
-          ),
+          margin: EdgeInsets.all(24.w),
           child: Stack(
             children: [
               Column(
@@ -1032,11 +1016,11 @@ class StatisticLayout extends StatelessWidget {
 class FilterBottom extends StatelessWidget {
   const FilterBottom(
     this.text, {
-    Key? key,
+    super.key,
     required this.checked,
     this.semanticsLabel,
     this.onTap,
-  }) : super(key: key);
+  });
 
   /// 是否选中
   final bool checked;
@@ -1063,7 +1047,7 @@ class FilterBottom extends StatelessWidget {
           child: Container(
             width: 40.w,
             height: 40.w,
-            margin: EdgeInsets.only(left: 6.w, right: 6.w),
+            margin: EdgeInsets.symmetric(horizontal: 6.w),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: checked ? primaryColor : Theme.of(context).cardColor,

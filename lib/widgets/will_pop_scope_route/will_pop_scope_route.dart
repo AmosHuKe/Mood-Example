@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
+///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+///
 import 'package:moodexample/generated/l10n.dart';
 
 /// 导航返回拦截
 class WillPopScopeRoute extends StatefulWidget {
+  const WillPopScopeRoute({
+    super.key,
+    required this.child,
+  });
+
   /// 子组件
   final Widget child;
-
-  const WillPopScopeRoute({
-    Key? key,
-    required this.child,
-  }) : super(key: key);
 
   @override
   State<WillPopScopeRoute> createState() => _WillPopScopeRouteState();

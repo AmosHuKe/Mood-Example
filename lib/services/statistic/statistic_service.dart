@@ -10,7 +10,7 @@ import 'package:moodexample/common/utils.dart';
 ///
 import 'package:moodexample/view_models/statistic/statistic_view_model.dart';
 
-///
+/// 统计相关
 class StatisticService {
   /// 获取APP累计记录天数
   static Future<void> getAPPUsageDays(
@@ -47,12 +47,11 @@ class StatisticService {
 
   /// 获取近日情绪波动
   ///
-  /// @param StatisticViewModel statisticViewModel
-  ///
-  /// @param {int} days 往前获取的天数
+  /// [days] 往前获取的天数
   static Future<void> getMoodScoreAverageRecently(
-      StatisticViewModel statisticViewModel,
-      {int days = 7}) async {
+    StatisticViewModel statisticViewModel, {
+    int days = 7,
+  }) async {
     /// 数据
     late List<Map<String, dynamic>> dataList = [];
     final nowDate = DateTime.parse(getDatetimeNow("yyyy-MM-dd"));
@@ -76,11 +75,11 @@ class StatisticService {
 
   /// 获取近7日心情数量统计
   ///
-  /// @param StatisticViewModel statisticViewModel
-  ///
-  /// @param {int} days 往前获取的天数
-  static Future<void> getDateMoodCount(StatisticViewModel statisticViewModel,
-      {int days = 7}) async {
+  /// [days] 往前获取的天数
+  static Future<void> getDateMoodCount(
+    StatisticViewModel statisticViewModel, {
+    int days = 7,
+  }) async {
     /// 数据
     final nowDate = DateTime.parse(getDatetimeNow("yyyy-MM-dd"));
     // 获取近7日日期

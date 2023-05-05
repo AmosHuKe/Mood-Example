@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
+///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:remixicon/remixicon.dart';
 
+///
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
+///
 import 'package:moodexample/views/settings/laboratory/3d/index.dart';
 import 'package:moodexample/views/settings/laboratory/unimp_miniapps/index.dart';
 import 'package:moodexample/views/settings/laboratory/game/index.dart';
@@ -174,12 +177,12 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
 
 class ListCard extends StatelessWidget {
   const ListCard({
+    super.key,
     required this.title,
     required this.subtitle,
     required this.leading,
     this.onPressed,
-    Key? key,
-  }) : super(key: key);
+  });
 
   /// 标题
   final String title;
@@ -198,7 +201,7 @@ class ListCard extends StatelessWidget {
     return AnimatedPress(
       scaleEnd: 0.95,
       child: Card(
-        margin: EdgeInsets.only(top: 12.w, bottom: 12.w),
+        margin: EdgeInsets.symmetric(vertical: 12.w),
         shadowColor: Colors.black38,
         shape: ContinuousRectangleBorder(
             borderRadius: BorderRadius.circular(48.sp)),

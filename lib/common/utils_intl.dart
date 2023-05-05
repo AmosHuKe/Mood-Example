@@ -2,14 +2,14 @@ import 'package:intl/intl.dart';
 
 /// 国际化日期
 class LocaleDatetime {
-  /// [年月日]
+  /// 年月日格式化
   ///
-  /// @param {String} format 时间格式
+  /// [format] 时间格式
   ///
-  /// @return {String} 日期
+  /// @return [String] 日期如：2000-01-01
   String yMMMd(String format) {
-    return format.isEmpty
-        ? ""
-        : DateFormat.yMMMMd().format(DateFormat("yyyy-MM-dd").parse(format));
+    return format.isNotEmpty
+        ? DateFormat.yMMMMd().format(DateFormat("yyyy-MM-dd").parse(format))
+        : "";
   }
 }

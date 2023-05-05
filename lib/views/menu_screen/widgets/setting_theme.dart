@@ -195,11 +195,12 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
     List appMultipleThemesModeKey = [];
     appMultipleThemesMode
         .forEach((key, value) => appMultipleThemesModeKey.add(key));
+
     return Consumer<ApplicationViewModel>(
       builder: (_, applicationViewModel, child) {
         final multipleThemesMode = applicationViewModel.multipleThemesMode;
         return Padding(
-          padding: EdgeInsets.only(left: 12.w, right: 12.w),
+          padding: EdgeInsets.symmetric(horizontal: 12.w),
           child: Wrap(
             alignment: WrapAlignment.start,
             direction: Axis.horizontal,
@@ -246,11 +247,11 @@ class MultipleThemesCard extends StatelessWidget {
   final Function()? onTap;
 
   const MultipleThemesCard({
-    Key? key,
+    super.key,
     this.child,
     this.selected,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -327,12 +328,12 @@ class DarkThemeCard extends StatelessWidget {
   final Function()? onTap;
 
   const DarkThemeCard({
-    Key? key,
+    super.key,
     this.child,
     this.title,
     this.selected,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 /// 动画-按下
 class AnimatedPress extends StatefulWidget {
   const AnimatedPress({
-    Key? key,
+    super.key,
     required this.child,
     this.scaleEnd = 0.9,
-  }) : super(key: key);
+  });
 
   final Widget child;
 

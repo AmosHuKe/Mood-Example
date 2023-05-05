@@ -11,7 +11,7 @@ import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/views/statistic/index.dart' as statistic;
 import 'package:moodexample/generated/l10n.dart';
 
-/// 页面
+///
 import 'package:moodexample/views/home/index.dart';
 import 'package:moodexample/views/mood/index.dart';
 import 'package:moodexample/views/statistic/index.dart';
@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               TabBar(
                 // 震动或声音反馈
                 enableFeedback: true,
-                padding: EdgeInsets.only(left: 40.w, right: 0.w),
+                padding: EdgeInsets.only(left: 40.w),
                 controller: _pageController,
                 indicatorColor: Colors.transparent,
                 labelStyle: TextStyle(

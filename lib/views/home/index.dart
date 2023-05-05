@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-/// Packages
+///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
@@ -130,23 +130,13 @@ class _HomeBodyState extends State<HomeBody> {
 
                     /// 公告卡片
                     Padding(
-                      padding: EdgeInsets.only(
-                        left: 24.w,
-                        right: 24.w,
-                        top: 24.w,
-                        bottom: 24.w,
-                      ),
+                      padding: EdgeInsets.all(24.w),
                       child: const MergeSemantics(child: NoticeCard()),
                     ),
 
                     /// 相关文章
                     Padding(
-                      padding: EdgeInsets.only(
-                        left: 24.w,
-                        right: 24.w,
-                        top: 24.w,
-                        bottom: 24.w,
-                      ),
+                      padding: EdgeInsets.all(24.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -173,7 +163,7 @@ class _HomeBodyState extends State<HomeBody> {
             },
             childCount: 1,
           ),
-        )
+        ),
       ],
     );
   }
@@ -244,16 +234,10 @@ class _OptionMoodState extends State<OptionMood> {
     MoodService.getMoodCategoryAll(moodViewModel);
   }
 
-  /// Return
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.only(
-        left: 24.w,
-        right: 24.w,
-        top: 12.w,
-        bottom: 12.w,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.w),
       scrollDirection: Axis.horizontal,
       physics: const AlwaysScrollableScrollPhysics(
         parent: BouncingScrollPhysics(),
@@ -291,13 +275,15 @@ class _OptionMoodState extends State<OptionMood> {
 /// 小型选项卡片
 class OptionCard extends StatelessWidget {
   const OptionCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.icon,
-  }) : super(key: key);
+  });
 
   /// 标题
   final String title;
+
+  /// Icon
   final String icon;
 
   /// 图标大小
@@ -326,11 +312,9 @@ class OptionCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(18.w),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.only(
-                          left: 8.w,
-                          right: 8.w,
-                          top: 18.w,
-                          bottom: 18.w,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 8.w,
+                          vertical: 18.w,
                         ),
                         child: Align(
                           child: Text(
@@ -385,7 +369,10 @@ class NoticeCard extends StatelessWidget {
   const NoticeCard({super.key});
 
   /// 阴影
-  Widget shadow({EdgeInsetsGeometry? margin, required double opacity}) {
+  Widget shadow({
+    EdgeInsetsGeometry? margin,
+    required double opacity,
+  }) {
     return Container(
       height: 190.w,
       margin: margin,
@@ -445,12 +432,7 @@ class _ActionCardState extends State<ActionCard> {
         borderRadius: BorderRadius.circular(30.w),
       ),
       child: Padding(
-        padding: EdgeInsets.only(
-          left: 24.w,
-          right: 24.w,
-          top: 24.w,
-          bottom: 24.w,
-        ),
+        padding: EdgeInsets.all(24.w),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -486,9 +468,7 @@ class _ActionCardState extends State<ActionCard> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(
-                              top: 8.w,
-                            ),
+                            padding: EdgeInsets.only(top: 8.w),
                             child: Text(
                               S.of(context).home_upgrade_content,
                               style: TextStyle(
@@ -501,8 +481,10 @@ class _ActionCardState extends State<ActionCard> {
                       ),
                     ),
                     Container(
-                      constraints:
-                          BoxConstraints(minHeight: 45.w, minWidth: 95.w),
+                      constraints: BoxConstraints(
+                        minHeight: 45.w,
+                        minWidth: 95.w,
+                      ),
                       child: AnimatedPress(
                         child: OutlinedButton(
                           style: ButtonStyle(
@@ -535,7 +517,7 @@ class _ActionCardState extends State<ActionCard> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(top: 0.w, right: 4.w),
+                                padding: EdgeInsets.only(right: 4.w),
                                 child: Text(
                                   S.of(context).home_upgrade_button,
                                   strutStyle: const StrutStyle(
@@ -635,10 +617,7 @@ class _ArticleState extends State<Article> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(
-                            top: 6.w,
-                            bottom: 6.w,
-                          ),
+                          padding: EdgeInsets.symmetric(vertical: 6.w),
                           child: Text(
                             S.of(context).home_help_article_content_1,
                             style: TextStyle(
@@ -731,10 +710,7 @@ class _ArticleState extends State<Article> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(
-                            top: 6.w,
-                            bottom: 6.w,
-                          ),
+                          padding: EdgeInsets.symmetric(vertical: 6.w),
                           child: Text(
                             S.of(context).home_help_article_content_2,
                             style: TextStyle(
@@ -778,6 +754,17 @@ class _ArticleState extends State<Article> {
 
 /// 文章卡片
 class ArticleCard extends StatelessWidget {
+  const ArticleCard({
+    super.key,
+    required this.height,
+    required this.width,
+    required this.gradient,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
+    this.mainAxisAlignment = MainAxisAlignment.start,
+    required this.children,
+    this.onTap,
+  });
+
   /// 高
   final double height;
 
@@ -798,17 +785,6 @@ class ArticleCard extends StatelessWidget {
 
   final Function()? onTap;
 
-  const ArticleCard({
-    Key? key,
-    required this.height,
-    required this.width,
-    required this.gradient,
-    this.crossAxisAlignment = CrossAxisAlignment.start,
-    this.mainAxisAlignment = MainAxisAlignment.start,
-    required this.children,
-    this.onTap,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return AnimatedPress(
@@ -823,12 +799,7 @@ class ArticleCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(17.w),
             ),
             child: Padding(
-              padding: EdgeInsets.only(
-                left: 14.w,
-                right: 14.w,
-                top: 14.w,
-                bottom: 14.w,
-              ),
+              padding: EdgeInsets.all(14.w),
               child: Column(
                 mainAxisAlignment: mainAxisAlignment,
                 crossAxisAlignment: crossAxisAlignment,

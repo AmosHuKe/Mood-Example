@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 ///
+import 'package:intl/intl.dart';
 import 'package:vibration/vibration.dart';
 
 /// 工具
 
 /// 获取当前日期时间
 ///
-/// @param {String} format 时间格式
+/// [format] 时间格式，与 [DateFormat] 规则相同
 ///
-/// @return {String} 日期
-String getDatetimeNow(format) {
+/// @return [String] 日期
+String getDatetimeNow(String format) {
   DateTime now = DateTime.now();
   String formattedDate = DateFormat(format).format(now);
   return formattedDate.toString();
@@ -47,9 +47,11 @@ const List<Color> statisticColors = [
 ];
 
 /// 内容基础加密/解密转换
+///
+/// [value] 内容
 class ValueConvert {
-  String value;
   ValueConvert(this.value);
+  String value;
   String encode() => base64Encode(utf8.encode(value));
   String decode() => utf8.decode(base64Decode(value));
 }

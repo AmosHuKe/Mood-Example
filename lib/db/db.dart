@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 
 ///
 import 'package:sqflite/sqflite.dart';
-
-/// 数据库表
-import 'package:moodexample/db/database/table_mood_info.dart';
-import 'package:moodexample/db/database/table_mood_info_category.dart';
+import 'package:path/path.dart';
 
 ///
 import 'package:moodexample/models/mood/mood_category_model.dart';
 import 'package:moodexample/models/mood/mood_model.dart';
+
+/// 数据库表
+import 'package:moodexample/db/database/table_mood_info.dart';
+import 'package:moodexample/db/database/table_mood_info_category.dart';
 
 class DB {
   DB._();
@@ -66,10 +66,11 @@ class DB {
     await batch.commit();
   }
 
-  /// 心情详情内容
+  /*** 心情详情内容相关 ***/
 
   /// 查询心情详情
-  /// @param {String} datetime 查询日期（2022-01-04)
+  ///
+  /// [datetime] 查询日期（2022-01-04)
   ///
   Future<List> selectMood(String datetime) async {
     final db = await database;
@@ -138,7 +139,7 @@ class DB {
     return list;
   }
 
-  /// 心情类别
+  /*** 心情类别相关 ***/
 
   /// 查询所有心情类别
   Future<List> selectMoodCategoryAll() async {
@@ -156,7 +157,7 @@ class DB {
     return result > 0;
   }
 
-  /// 统计
+  /*** 统计相关 ***/
 
   /// 统计-APP累计记录天数
   Future<List> selectAPPUsageDays() async {
@@ -186,7 +187,9 @@ class DB {
   }
 
   /// 统计-按日期获取平均情绪波动
-  /// @param {String} datetime 日期平均情绪波动 例如2022-01-01
+  ///
+  /// [datetime] 日期平均情绪波动 例如 2022-01-01
+  ///
   Future<List> selectDateMoodScoreAverage(String datetime) async {
     final db = await database;
     List score = await db.rawQuery(
@@ -202,8 +205,10 @@ class DB {
   }
 
   /// 统计-按日期时间段获取心情数量统计
-  /// @param {String} startTime 开始时间 例如2022-01-01 00:00:00
-  /// @param {String} endTime 结束时间 例如2022-01-01 23:59:59
+  ///
+  /// [startTime] 开始时间 例如 2022-01-01 00:00:00
+  ///
+  /// [endTime] 结束时间 例如 2022-01-01 23:59:59
   Future<List> selectDateMoodCount(String startTime, String endTime) async {
     final db = await database;
     List count = await db.rawQuery(

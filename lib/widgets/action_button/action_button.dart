@@ -9,7 +9,7 @@ import 'package:moodexample/themes/app_theme.dart';
 /// 操作按钮
 class ActionButton extends StatelessWidget {
   const ActionButton({
-    Key? key,
+    super.key,
     this.semanticsLabel,
     this.width,
     this.height,
@@ -18,7 +18,7 @@ class ActionButton extends StatelessWidget {
     this.decoration,
     required this.child,
     this.onTap,
-  }) : super(key: key);
+  });
 
   /// 语义描述
   final String? semanticsLabel;

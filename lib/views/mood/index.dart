@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-/// Packages
+///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:animations/animations.dart';
+import 'package:intl/intl.dart';
 
 ///
 import 'package:moodexample/themes/app_theme.dart';
@@ -54,7 +54,6 @@ class _MoodPageState extends State<MoodPage>
     super.build(context);
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      // 悬浮按钮
       floatingActionButton: AnimatedPress(
         child: OpenContainer(
           useRootNavigator: true,
@@ -117,7 +116,7 @@ class _MoodPageState extends State<MoodPage>
 }
 
 /// 初始化
-init(BuildContext context) {
+void init(BuildContext context) {
   MoodViewModel moodViewModel =
       Provider.of<MoodViewModel>(context, listen: false);
 
@@ -155,10 +154,7 @@ class _MoodBodyState extends State<MoodBody> {
           backgroundColor: Colors.transparent,
           flexibleSpace: Align(
             child: Container(
-              margin: EdgeInsets.only(
-                left: 24.w,
-                right: 24.w,
-              ),
+              margin: EdgeInsets.symmetric(horizontal: 24.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -282,13 +278,13 @@ class _CalendarState extends State<Calendar> {
 
   /// 日历样式构建
   ///
-  /// @param DateTime day 当前日期
+  /// [day] 当前日期
   ///
-  /// @param List? moodRecordedDate 所有已记录心情的日期
+  /// [moodRecordedDate] 所有已记录心情的日期
   ///
-  /// @param List<Color>? bodyColors 主背景渐变颜色 - 至少两个
+  /// [bodyColors] 主背景渐变颜色 - 至少两个
   ///
-  /// @param TextStyle textStyle 字体样式
+  /// [textStyle] 字体样式
   static Widget calenderBuilder({
     required DateTime day,
     List? moodRecordedDate,
@@ -363,7 +359,7 @@ class _CalendarState extends State<Calendar> {
     late DateTime focusedDay = nowDateTime;
 
     return Container(
-      margin: EdgeInsets.only(left: 24.w, right: 24.w, top: 12.w, bottom: 12.w),
+      margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.w),
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
@@ -555,6 +551,17 @@ class _CalendarState extends State<Calendar> {
 
 /// 心情卡片
 class MoodCard extends StatefulWidget {
+  const MoodCard({
+    super.key,
+    required this.moodId,
+    required this.icon,
+    required this.title,
+    required this.datetime,
+    required this.content,
+    required this.score,
+    required this.createTime,
+  });
+
   /// moodId
   final int moodId;
 
@@ -575,17 +582,6 @@ class MoodCard extends StatefulWidget {
 
   /// 创建日期
   final String createTime;
-
-  const MoodCard({
-    Key? key,
-    required this.moodId,
-    required this.icon,
-    required this.title,
-    required this.datetime,
-    required this.content,
-    required this.score,
-    required this.createTime,
-  }) : super(key: key);
 
   @override
   State<MoodCard> createState() => _MoodCardState();
@@ -709,11 +705,11 @@ class _MoodCardState extends State<MoodCard> {
           ),
         ],
       ),
-      // 内容
+
+      /// 内容
       child: AnimatedPress(
         child: Container(
-          margin:
-              EdgeInsets.only(left: 24.w, right: 24.w, top: 12.w, bottom: 12.w),
+          margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.w),
           child: GestureDetector(
             child: ConstrainedBox(
               constraints: BoxConstraints(
@@ -759,10 +755,8 @@ class _MoodCardState extends State<MoodCard> {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsets.only(
-                                      left: 12.w,
-                                      right: 12.w,
-                                    ),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 12.w),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -875,6 +869,15 @@ class _MoodCardState extends State<MoodCard> {
 
 /// 心情详情详情展示
 class MoodDetail extends StatelessWidget {
+  const MoodDetail({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.score,
+    required this.createTime,
+    this.content,
+  });
+
   /// 图标
   final String icon;
 
@@ -889,15 +892,6 @@ class MoodDetail extends StatelessWidget {
 
   /// 创建日期
   final String createTime;
-
-  const MoodDetail({
-    Key? key,
-    required this.icon,
-    required this.title,
-    required this.score,
-    required this.createTime,
-    this.content,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -977,12 +971,7 @@ class MoodDetail extends StatelessWidget {
               borderRadius: BorderRadius.circular(32.w),
             ),
             child: Padding(
-              padding: EdgeInsets.only(
-                top: 24.w,
-                bottom: 24.w,
-                left: 24.w,
-                right: 24.w,
-              ),
+              padding: EdgeInsets.all(24.w),
               child: Text(
                 content ?? S.of(context).mood_data_content_empty,
                 style: TextStyle(

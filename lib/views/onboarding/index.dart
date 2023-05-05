@@ -79,7 +79,6 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
         .animate(_stepButtonColorController);
   }
 
-  /// 释放
   @override
   void dispose() {
     /// 进步按钮Icon动画
@@ -150,7 +149,6 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
       ),
     ];
 
-    /// Return
     return Flex(
       direction: Axis.vertical,
       children: [
@@ -183,9 +181,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
                 size: 8.w,
                 space: 10.w,
               ),
-              margin: EdgeInsets.only(
-                bottom: 24.h,
-              ),
+              margin: EdgeInsets.only(bottom: 24.h),
             ),
             controller: _swiperController,
             indicatorLayout: PageIndicatorLayout.WARM,
@@ -194,10 +190,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(
-            top: 24.h,
-            bottom: 24.h,
-          ),
+          padding: EdgeInsets.symmetric(vertical: 24.h),
           child: AnimatedPress(
             child: AnimatedBuilder(
               animation: _stepButtonColorAnimation,
@@ -253,6 +246,13 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
 
 /// 图片和文字组合的引导
 class TextImageSwiper extends StatelessWidget {
+  const TextImageSwiper({
+    super.key,
+    required this.title,
+    required this.describe,
+    required this.image,
+  });
+
   /// 标题（最多两行为视图最佳）
   final String title;
 
@@ -261,13 +261,6 @@ class TextImageSwiper extends StatelessWidget {
 
   /// 图片
   final Image image;
-
-  const TextImageSwiper({
-    Key? key,
-    required this.title,
-    required this.describe,
-    required this.image,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -278,10 +271,7 @@ class TextImageSwiper extends StatelessWidget {
           child: image,
         ),
         Padding(
-          padding: EdgeInsets.only(
-            left: 32.w,
-            right: 32.w,
-          ),
+          padding: EdgeInsets.only(left: 32.w, right: 32.w),
           child: Text(
             title,
             style: TextStyle(
@@ -291,11 +281,7 @@ class TextImageSwiper extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(
-            top: 14.h,
-            left: 32.w,
-            right: 32.w,
-          ),
+          padding: EdgeInsets.only(top: 14.h, left: 32.w, right: 32.w),
           child: describe,
         ),
       ],

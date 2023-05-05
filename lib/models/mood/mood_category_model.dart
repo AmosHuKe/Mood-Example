@@ -43,10 +43,9 @@ class MoodCategoryData {
     this.title,
   });
 
-  /// 表情
+  // 表情
   late String? icon;
-
-  /// 标题
+  // 标题
   late String? title;
 
   factory MoodCategoryData.fromJson(Map<String, dynamic> json) =>

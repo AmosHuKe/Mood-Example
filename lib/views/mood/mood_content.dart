@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-/// Packages
+///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moodexample/common/utils_intl.dart';
-import 'package:moodexample/widgets/animation/animation.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -13,6 +11,8 @@ import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
+import 'package:moodexample/common/utils_intl.dart';
+import 'package:moodexample/widgets/animation/animation.dart';
 
 ///
 import 'package:moodexample/models/mood/mood_model.dart';
@@ -26,9 +26,9 @@ late MoodData _moodData;
 /// 心情内容创建页
 class MoodContent extends StatefulWidget {
   const MoodContent({
-    Key? key,
+    super.key,
     required this.moodData,
-  }) : super(key: key);
+  });
 
   /// 心情详细数据
   final MoodData moodData;
@@ -260,10 +260,10 @@ class _MoodContentBodyState extends State<MoodContentBody> {
 /// 心情选择卡片
 class MoodChoiceCard extends StatelessWidget {
   const MoodChoiceCard({
-    Key? key,
+    super.key,
     this.icon,
     this.title,
-  }) : super(key: key);
+  });
 
   /// 图标
   final String? icon;
@@ -329,12 +329,7 @@ class _AddContentState extends State<AddContent> {
         borderRadius: BorderRadius.circular(32.w),
       ),
       child: Padding(
-        padding: EdgeInsets.only(
-          top: 12.w,
-          bottom: 12.w,
-          left: 24.w,
-          right: 24.w,
-        ),
+        padding: EdgeInsets.symmetric(vertical: 12.w, horizontal: 24.w),
         child: Form(
           key: _formContentKey,
           child: Column(
@@ -394,22 +389,14 @@ class _MoodScoreState extends State<MoodScore> {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(
-            bottom: 12.w,
-            left: 24.w,
-            right: 24.w,
-          ),
+          padding: EdgeInsets.only(bottom: 12.w, left: 24.w, right: 24.w),
           child: Text(
             S.of(context).mood_data_score_title,
             style: TextStyle(fontSize: 16.w),
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(
-            bottom: 12.w,
-            left: 24.w,
-            right: 24.w,
-          ),
+          padding: EdgeInsets.only(bottom: 12.w, left: 24.w, right: 24.w),
           child: Text(
             (moodScore ~/ 1).toString(),
             style: TextStyle(

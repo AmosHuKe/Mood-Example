@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 /// 空占位
 class Empty extends StatelessWidget {
   const Empty({
-    Key? key,
+    super.key,
     this.opacity = 0.4,
     this.padding = const EdgeInsets.all(0),
     this.height,
     this.width,
-  }) : super(key: key);
+  });
 
   /// 透明度
   final double opacity;
@@ -20,6 +20,7 @@ class Empty extends StatelessWidget {
 
   /// 图片宽度
   final double? width;
+
   @override
   Widget build(BuildContext context) {
     return Align(

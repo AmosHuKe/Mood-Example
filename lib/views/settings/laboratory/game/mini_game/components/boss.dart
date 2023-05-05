@@ -1,10 +1,12 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
+///
 import 'package:bonfire/bonfire.dart';
 
+///
 import '../sprite_sheet/sprite_sheet_boss.dart';
-import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/components/orc.dart';
+import 'orc.dart';
 
 double tileSize = 20.0;
 

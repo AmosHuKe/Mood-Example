@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Packages
+///
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:remixicon/remixicon.dart';
@@ -124,6 +124,7 @@ class Header extends StatelessWidget {
 /// 菜单
 class Menu extends StatelessWidget {
   const Menu({super.key});
+
   static final _titleTextSize = 14.sp;
   static final _titleIconSize = 20.sp;
 
@@ -276,11 +277,11 @@ class Menu extends StatelessWidget {
 /// 菜单列表
 class MenuList extends StatelessWidget {
   const MenuList({
-    Key? key,
+    super.key,
     this.icon,
     required this.title,
     this.onTap,
-  }) : super(key: key);
+  });
 
   // 图标
   final Widget? icon;
@@ -308,10 +309,12 @@ class MenuList extends StatelessWidget {
 /// 侧栏关闭状态下就不显示语义
 class BlockSemanticsToDrawerClosed extends StatelessWidget {
   const BlockSemanticsToDrawerClosed({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
+
   final Widget child;
+
   @override
   Widget build(BuildContext context) {
     /// 默认状态 为关闭
