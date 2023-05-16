@@ -15,7 +15,8 @@ import 'orc.dart';
 
 double tileSize = 20.0;
 
-class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
+class HumanPlayer extends SimplePlayer
+    with Lighting, ObjectCollision, UseBarLife {
   static const assetsPath = 'game/mini_game/player/human';
 
   /// 第一次游玩
@@ -76,31 +77,29 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       CollisionConfig(
         collisions: [
           CollisionArea.rectangle(
-            size: Vector2(size.x * 0.2, size.y * 0.2),
-            align: Vector2(tileSize * 1.3, tileSize * 1.4),
+            size: Vector2(size.x * 0.2, size.y * 0.4),
+            align: Vector2(tileSize * 1.3, tileSize),
           ),
         ],
       ),
     );
-  }
-
-  @override
-  void render(Canvas canvas) {
-    if (isDead) return;
 
     /// 生命条
-    drawDefaultLifeBar(
-      canvas,
-      drawInBottom: true,
+    setupBarLife(
+      size: Vector2(tileSize * 1.5, tileSize / 5),
+      barLifePosition: BarLifePorition.top,
+      showLifeText: false,
       margin: 0,
-      width: tileSize * 1.5,
-      height: tileSize / 5,
+      borderWidth: 2,
+      borderColor: Colors.white.withOpacity(0.5),
       borderRadius: BorderRadius.circular(2),
-      align: Offset(
-        tileSize * 0.7,
-        tileSize * 2.7,
-      ),
+      offset: Vector2(0, tileSize * 0.5),
     );
+  }
+
+  /// 渲染
+  @override
+  void render(Canvas canvas) {
     super.render(canvas);
   }
 
@@ -150,7 +149,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       /// 攻击范围
       simpleAttackMelee(
         damage: 50,
-        size: Vector2.all(tileSize * 1.5),
+        size: Vector2.all(tileSize),
         withPush: false,
       );
     }
@@ -293,32 +292,32 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
     gameRef.add(
       Orc(
         Vector2(
-          maxMapSize + 1000,
-          Random().nextDouble() * 1000,
+          maxMapSize + 500,
+          Random().nextDouble() * 500,
         ),
       ),
     );
     gameRef.add(
       Orc(
         Vector2(
-          -1000,
-          Random().nextDouble() * 1000,
+          -500,
+          Random().nextDouble() * 500,
         ),
       ),
     );
     gameRef.add(
       Orc(
         Vector2(
-          Random().nextDouble() * 1000,
-          maxMapSize + 1000,
+          Random().nextDouble() * 500,
+          maxMapSize + 500,
         ),
       ),
     );
     gameRef.add(
       Orc(
         Vector2(
-          Random().nextDouble() * 1000,
-          -1000,
+          Random().nextDouble() * 500,
+          -500,
         ),
       ),
     );

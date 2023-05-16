@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -11,7 +10,8 @@ import 'orc.dart';
 
 double tileSize = 20.0;
 
-class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
+class HumanPlayer extends SimplePlayer
+    with Lighting, ObjectCollision, UseBarLife {
   static double maxSpeed = tileSize * 4;
 
   bool lockMove = false;
@@ -59,27 +59,23 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
         ],
       ),
     );
+
+    /// 生命条
+    setupBarLife(
+      size: Vector2(tileSize * 1.5, tileSize / 5),
+      barLifePosition: BarLifePorition.top,
+      showLifeText: false,
+      margin: 0,
+      borderWidth: 2,
+      borderColor: Colors.white.withOpacity(0.5),
+      borderRadius: BorderRadius.circular(2),
+      offset: Vector2(0, tileSize * 0.5),
+    );
   }
 
+  /// 渲染
   @override
   void render(Canvas canvas) {
-    if (!isDead) {
-      /// 生命条
-      drawDefaultLifeBar(
-        canvas,
-        drawInBottom: true,
-        margin: 0,
-        width: tileSize * 1.5,
-        borderWidth: tileSize / 5,
-        height: tileSize / 5,
-        borderColor: Colors.white.withOpacity(0.5),
-        borderRadius: BorderRadius.circular(2),
-        align: Offset(
-          tileSize * 0.7,
-          tileSize * 0.7,
-        ),
-      );
-    }
     super.render(canvas);
   }
 
@@ -142,14 +138,7 @@ class HumanPlayer extends SimplePlayer with Lighting, ObjectCollision {
       /// 屏幕变红
       gameRef.lighting
           ?.animateToColor(const Color(0xFF630000).withOpacity(0.7));
-      gameRef.add(
-        Orc(
-          Vector2(
-            (gameRef.player?.position.x ?? 0) - Random().nextInt(20),
-            (gameRef.player?.position.y ?? 0) - Random().nextInt(20),
-          ),
-        ),
-      );
+
       idle();
       _addDamageAnimation(() {
         lockMove = false;

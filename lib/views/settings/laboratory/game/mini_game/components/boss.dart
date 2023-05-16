@@ -10,7 +10,8 @@ import 'orc.dart';
 
 double tileSize = 20.0;
 
-class Boss extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
+class Boss extends SimpleEnemy
+    with ObjectCollision, AutomaticRandomMovement, UseBarLife {
   bool canMove = true;
 
   Boss(Vector2 position)
@@ -36,6 +37,24 @@ class Boss extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
         ],
       ),
     );
+
+    /// 生命条
+    setupBarLife(
+      size: Vector2(tileSize * 1.5, tileSize / 5),
+      barLifePosition: BarLifePorition.top,
+      showLifeText: false,
+      margin: 0,
+      borderWidth: 2,
+      borderColor: Colors.white.withOpacity(0.5),
+      borderRadius: BorderRadius.circular(2),
+      offset: Vector2(0, tileSize * 0.5),
+    );
+  }
+
+  /// 渲染
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
   }
 
   /// 碰撞触发
@@ -46,27 +65,6 @@ class Boss extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
       active = false;
     }
     return active;
-  }
-
-  @override
-  void render(Canvas canvas) {
-    if (!isDead) {
-      /// 生命条
-      drawDefaultLifeBar(
-        canvas,
-        margin: 0,
-        width: tileSize * 3,
-        height: tileSize / 4,
-        borderRadius: BorderRadius.circular(2),
-        align: Offset(
-          tileSize * 1.7,
-          tileSize / 4,
-        ),
-        borderWidth: 10,
-        borderColor: Colors.red,
-      );
-    }
-    super.render(canvas);
   }
 
   @override
@@ -129,7 +127,7 @@ class Boss extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
   void _execAttack() {
     simpleAttackMelee(
       damage: 20,
-      size: Vector2.all(tileSize * 1.5),
+      size: Vector2.all(tileSize * 5),
       interval: 800,
       execute: () {},
     );

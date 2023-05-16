@@ -1,3 +1,7 @@
+# 1.8.0
+- [升级] Flutter 3.10.0  
+- [升级] 包升级以及部分包（flutter_zoom_drawer、webview_flutter、bonfire）适配
+
 # 1.7.18
 - [升级] Flutter 3.7.11  
 

@@ -67,7 +67,7 @@ class Game extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       final tileSize = max(constraints.maxHeight, constraints.maxWidth) / 20;
-      return BonfireTiledWidget(
+      return BonfireWidget(
         constructionMode: false,
         showCollisionArea: false,
         joystick: Joystick(
@@ -85,9 +85,9 @@ class Game extends StatelessWidget {
             )
           ],
         ), // required
-        map: TiledWorldMap(
+        map: WorldMapByTiled(
           '$assetsPath/tiles/map.json',
-          forceTileSize: Size(tileSize, tileSize),
+          forceTileSize: Vector2(tileSize, tileSize),
           objectsBuilder: {
             'light': (properties) => Light(
                   properties.position,
