@@ -528,7 +528,7 @@
 				};
 			};
 			buildConfigurationList = 97C146E91CF9000F007C117D /* Build configuration list for PBXProject "Runner" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -615,6 +615,7 @@
 			files = (
 			);
 			inputPaths = (
+				"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}",
 			);
 			name = "Thin Binary";
 			outputPaths = (
@@ -780,15 +781,11 @@
 					"-framework",
 					"\"SwiftyGif\"",
 					"-framework",
-					"\"Toast\"",
-					"-framework",
 					"\"UIKit\"",
 					"-framework",
 					"\"file_picker\"",
 					"-framework",
 					"\"flutter_native_timezone\"",
-					"-framework",
-					"\"fluttertoast\"",
 					"-framework",
 					"\"integration_test\"",
 					"-framework",
@@ -980,15 +977,11 @@
 					"-framework",
 					"\"SwiftyGif\"",
 					"-framework",
-					"\"Toast\"",
-					"-framework",
 					"\"UIKit\"",
 					"-framework",
 					"\"file_picker\"",
 					"-framework",
 					"\"flutter_native_timezone\"",
-					"-framework",
-					"\"fluttertoast\"",
 					"-framework",
 					"\"integration_test\"",
 					"-framework",
@@ -1071,15 +1064,11 @@
 					"-framework",
 					"\"SwiftyGif\"",
 					"-framework",
-					"\"Toast\"",
-					"-framework",
 					"\"UIKit\"",
 					"-framework",
 					"\"file_picker\"",
 					"-framework",
 					"\"flutter_native_timezone\"",
-					"-framework",
-					"\"fluttertoast\"",
 					"-framework",
 					"\"integration_test\"",
 					"-framework",
