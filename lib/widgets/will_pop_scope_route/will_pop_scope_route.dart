@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 ///
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 ///
 import 'package:moodexample/generated/l10n.dart';
@@ -28,15 +27,7 @@ class _WillPopScopeRouteState extends State<WillPopScopeRoute> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Fluttertoast.showToast(
-          msg: S.of(context).widgets_will_pop_scope_route_toast,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.black54,
-          textColor: Colors.white,
-          fontSize: 12.sp,
-        );
+        SmartDialog.showToast(S.of(context).widgets_will_pop_scope_route_toast);
         if (_lastPressedAt == null ||
             DateTime.now().difference(_lastPressedAt!) >
                 const Duration(seconds: 1)) {

@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
 ///
@@ -15,7 +14,8 @@ bool isDarkMode(BuildContext context) {
   final ThemeMode themeMode =
       Provider.of<ApplicationViewModel>(context, listen: false).themeMode;
   if (themeMode == ThemeMode.system) {
-    return window.platformBrightness == Brightness.dark;
+    return View.of(context).platformDispatcher.platformBrightness ==
+        Brightness.dark;
   } else {
     return themeMode == ThemeMode.dark;
   }

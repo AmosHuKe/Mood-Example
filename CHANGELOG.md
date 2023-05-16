@@ -1,3 +1,9 @@
+# 1.8.0
+- [升级] Flutter 3.10.0  
+- [升级] 包升级以及适配 flutter_zoom_drawer、webview_flutter、bonfire  
+- [新增] package flutter_smart_dialog  
+- [移除] package fluttertoast  
+
 # 1.7.18
 - [升级] Flutter 3.7.11  
 - [新增] 实验室 - FFI 异步调用 C/C++  

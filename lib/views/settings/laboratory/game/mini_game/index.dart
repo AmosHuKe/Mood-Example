@@ -25,12 +25,7 @@ class MiniGamePage extends StatefulWidget {
 class _MiniGamePageState extends State<MiniGamePage> {
   @override
   Widget build(BuildContext context) {
-    // 屏幕自适应 设置尺寸（填写设计中设备的屏幕尺寸）
     // 按横屏计算
-    ScreenUtil.init(
-      context,
-      designSize: const Size(AppTheme.hdp, AppTheme.wdp),
-    );
     return Theme(
       data: ThemeData(),
       child: Scaffold(
@@ -46,7 +41,7 @@ class _MiniGamePageState extends State<MiniGamePage> {
             decoration: BoxDecoration(
                 color: AppTheme.backgroundColor1,
                 borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(18.w))),
+                    BorderRadius.only(bottomRight: Radius.circular(18.h))),
             child: Icon(
               Remix.arrow_left_line,
               size: 24.sp,
@@ -80,7 +75,7 @@ class _GameState extends State<Game> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       final tileSize = max(constraints.maxHeight, constraints.maxWidth) / 20;
-      return BonfireTiledWidget(
+      return BonfireWidget(
         constructionMode: false,
         showCollisionArea: false,
         joystick: Joystick(
@@ -129,9 +124,9 @@ class _GameState extends State<Game> {
             )
           ],
         ), // required
-        map: TiledWorldMap(
+        map: WorldMapByTiled(
           '$assetsPath/tiles/mini_game_map.json',
-          forceTileSize: Size(tileSize, tileSize),
+          forceTileSize: Vector2(tileSize, tileSize),
           objectsBuilder: {
             'light': (properties) => Light(
                   position: properties.position,
@@ -163,7 +158,9 @@ class _GameState extends State<Game> {
               margin: const EdgeInsets.all(20),
               borderRadius: BorderRadius.circular(100),
               size: Vector2.all(constraints.maxHeight / 3),
+              zoom: 0.2,
               border: Border.all(color: Colors.white.withOpacity(0.5)),
+              enemyColor: Colors.red,
             );
           },
         },

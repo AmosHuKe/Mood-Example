@@ -9,7 +9,8 @@ import '../sprite_sheet/sprite_sheet_orc.dart';
 
 double tileSize = 20.0;
 
-class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
+class Orc extends SimpleEnemy
+    with ObjectCollision, AutomaticRandomMovement, UseBarLife {
   bool canMove = true;
 
   Orc(Vector2 position)
@@ -47,6 +48,24 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
         ],
       ),
     );
+
+    /// 生命条
+    setupBarLife(
+      size: Vector2(tileSize * 1.5, tileSize / 5),
+      barLifePosition: BarLifePorition.top,
+      showLifeText: false,
+      margin: 0,
+      borderWidth: 2,
+      borderColor: Colors.white.withOpacity(0.5),
+      borderRadius: BorderRadius.circular(2),
+      offset: Vector2(0, tileSize * 0.5),
+    );
+  }
+
+  /// 渲染
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
   }
 
   /// 碰撞触发
@@ -67,7 +86,7 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
     if (canMove) {
       /// 发现玩家
       seePlayer(
-        radiusVision: tileSize * 4,
+        radiusVision: tileSize * 5,
 
         /// 发现
         observed: (player) {
@@ -116,6 +135,7 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
   @override
   void die() {
     canMove = false;
+    gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.7));
 
     /// 死亡动画
     animation?.playOnce(
@@ -236,32 +256,10 @@ class Orc extends SimpleEnemy with ObjectCollision, AutomaticRandomMovement {
     );
   }
 
-  @override
-  void render(Canvas canvas) {
-    if (!isDead) {
-      /// 生命条
-      drawDefaultLifeBar(
-        canvas,
-        drawInBottom: true,
-        margin: 0,
-        width: tileSize * 1.5,
-        borderWidth: tileSize / 5,
-        height: tileSize / 5,
-        borderColor: Colors.white.withOpacity(0.5),
-        borderRadius: BorderRadius.circular(2),
-        align: Offset(
-          tileSize * 0.7,
-          tileSize * 0.7,
-        ),
-      );
-    }
-    super.render(canvas);
-  }
-
   /// 攻击
   void _execAttack() {
     simpleAttackMelee(
-      damage: 10,
+      damage: 200 + Random().nextDouble() * 200,
       size: Vector2.all(tileSize * 1.5),
       interval: 800,
       execute: () {

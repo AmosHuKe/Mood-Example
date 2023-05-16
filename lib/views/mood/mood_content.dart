@@ -360,6 +360,17 @@ class _AddContentState extends State<AddContent> {
                   filled: true,
                   fillColor: Theme.of(context).cardColor,
                 ),
+                buildCounter: (
+                  context, {
+                  required currentLength,
+                  required isFocused,
+                  maxLength,
+                }) {
+                  return Text(
+                    "$currentLength/$maxLength",
+                    style: TextStyle(fontSize: 10.sp),
+                  );
+                },
                 onChanged: (value) {
                   _moodData.content = value;
                 },

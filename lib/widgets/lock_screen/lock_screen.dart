@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 ///
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:provider/provider.dart';
 
 ///
@@ -110,15 +110,7 @@ Future<void> createlockScreen(
       child: Text(S.of(context).app_setting_security_lock_resetinput),
     ),
     onError: (value) {
-      Fluttertoast.showToast(
-        msg: S.of(context).app_setting_security_lock_error_1,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.black54,
-        textColor: Colors.white,
-        fontSize: 12.sp,
-      );
+      SmartDialog.showToast(S.of(context).app_setting_security_lock_error_1);
     },
   );
 }

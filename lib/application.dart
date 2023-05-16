@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 ///
 import 'package:moodexample/themes/app_theme.dart';
@@ -98,6 +100,8 @@ class _ApplicationState extends State<Application> {
                 return null;
               },
               title: "Mood",
+              navigatorObservers: [FlutterSmartDialog.observer],
+              builder: FlutterSmartDialog.init(),
 
               /// Home
               home: const WillPopScopeRoute(child: Init()),
@@ -305,12 +309,6 @@ class _MenuPageState extends State<MenuPage> {
 
   @override
   Widget build(BuildContext context) {
-    /// 屏幕自适应 设置尺寸（填写设计中设备的屏幕尺寸）如果设计基于360dp * 690dp的屏幕
-    ScreenUtil.init(
-      context,
-      designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-    );
-
     return Consumer<ApplicationViewModel>(
       builder: (_, applicationViewModel, child) {
         return ZoomDrawer(
@@ -319,16 +317,19 @@ class _MenuPageState extends State<MenuPage> {
           mainScreen: const MainScreenBody(),
           borderRadius: 36.w,
           showShadow: true,
-          disableGesture: false,
+          disableDragGesture: false,
+          mainScreenTapClose: true,
           openCurve: Curves.easeOut,
           closeCurve: Curves.fastOutSlowIn,
-          backgroundColor:
+          drawerShadowsBackgroundColor:
               isDarkMode(context) ? Colors.black26 : Colors.white38,
+          menuBackgroundColor: isDarkMode(context)
+              ? Theme.of(context).primaryColor.withAlpha(155)
+              : Theme.of(context).primaryColor,
           angle: 0,
-          swipeOffset: 3.0,
           mainScreenScale: 0.3,
           slideWidth: MediaQuery.of(context).size.width * 0.70,
-          style: DrawerStyle.Style1,
+          style: DrawerStyle.defaultStyle,
         );
       },
     );
@@ -350,7 +351,7 @@ class _MainScreenBodyState extends State<MainScreenBody> {
   Widget build(BuildContext context) {
     /// 监听状态进行改变
     return ValueListenableBuilder<DrawerState>(
-      valueListenable: ZoomDrawer.of(context)!.stateNotifier ?? drawerState,
+      valueListenable: ZoomDrawer.of(context)!.stateNotifier,
       builder: (_, state, child) {
         debugPrint("外层菜单状态：$state");
         return AbsorbPointer(

@@ -10,9 +10,9 @@
 </h1> 
 
 <p align="center">
-<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.7.18" src="https://img.shields.io/badge/Mood--Example-v1.7.18-3e4663"/></a> 
-<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.7.11" src="https://img.shields.io/badge/Flutter-v3.7.11-46D1FD"/></a> 
-<a target="_blank" href="https://dart.dev/"><img alt="Dart v2.19.6" src="https://img.shields.io/badge/Dart-v2.19.6-04599D"/></a> 
+<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.8.0" src="https://img.shields.io/badge/Mood--Example-v1.8.0-3e4663"/></a> 
+<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.10.0" src="https://img.shields.io/badge/Flutter-v3.10.0-46D1FD"/></a> 
+<a target="_blank" href="https://dart.dev/"><img alt="Dart v3.0.0" src="https://img.shields.io/badge/Dart-v3.0.0-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -71,20 +71,20 @@
 
 > Windows  
 ```
-[√] Flutter (Channel stable, 3.7.11, on Microsoft Windows [版本 10.0.22000.1817], locale zh-CN)
+[√] Flutter (Channel stable, 3.10.0, on Microsoft Windows [版本 10.0.22000.1817], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 33.0.1)
-[√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.4.0)
+[√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.5.5)
 [√] Android Studio (version 2021.3)
 [√] VS Code (version 1.70.0)
 ```  
 
 > macOS  
 ```
-[✓] Flutter (Channel stable, 3.7.11, on macOS 13.0 22A380 darwin-x64, locale zh-Hans-CN)
+[✓] Flutter (Channel stable, 3.10.0, on macOS 13.0 22A380 darwin-x64, locale zh-Hans-CN)
 [✓] Android toolchain - develop for Android devices (Android SDK version 33.0.0)
 [✓] Xcode - develop for iOS and macOS (Xcode 14.3)
 [✓] Android Studio (version 2021.3)
-[✓] VS Code (version 1.77.3)
+[✓] VS Code (version 1.78.2)
 ```  
 
 
@@ -322,10 +322,10 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 | [excel](https://pub.dev/packages/excel) | [MIT License](https://pub.dev/packages/excel/license) |  
 | [fluro](https://pub.dev/packages/fluro) | [MIT License](https://pub.dev/packages/fluro/license) |  
 | [file_picker](https://pub.dev/packages/file_picker) | [MIT License](https://pub.dev/packages/file_picker/license) |  
-| [fluttertoast](https://pub.dev/packages/fluttertoast) | [MIT License](https://pub.dev/packages/fluttertoast/license) |  
 | [flutter_slidable](https://pub.dev/packages/flutter_slidable) | [MIT License](https://pub.dev/packages/flutter_slidable/license) |  
 | [flutter_zoom_drawer](https://pub.dev/packages/flutter_zoom_drawer) | [MIT License](https://pub.dev/packages/flutter_zoom_drawer/license) |  
 | [flutter_screen_lock](https://pub.dev/packages/flutter_screen_lock) | [MIT License](https://pub.dev/packages/flutter_screen_lock/license) |  
+| [flutter_smart_dialog](https://pub.dev/packages/flutter_smart_dialog) | [MIT License](https://pub.dev/packages/flutter_smart_dialog/license) |  
 | [provider](https://pub.dev/packages/provider) | [MIT License](https://pub.dev/packages/provider/license) |  
 | [remixicon](https://pub.dev/packages/remixicon) | [MIT License](https://pub.dev/packages/remixicon/license) |  
 | [awesome_notifications](https://pub.dev/packages/awesome_notifications) | [Apache-2.0 License](https://pub.dev/packages/awesome_notifications/license) |  

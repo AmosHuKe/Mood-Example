@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 ///
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:provider/provider.dart';
 
 ///
 import 'package:moodexample/common/utils.dart';
-import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
 import 'package:moodexample/views/menu_screen/widgets/setting_theme.dart';
@@ -29,9 +29,7 @@ class MenuScreenLeft extends StatelessWidget {
     return Consumer<ApplicationViewModel>(
       builder: (_, applicationViewModel, child) {
         return Scaffold(
-          backgroundColor: isDarkMode(context)
-              ? Theme.of(context).primaryColor.withAlpha(155)
-              : Theme.of(context).primaryColor,
+          backgroundColor: Colors.transparent,
           body: GestureDetector(
             child: const SafeArea(
               child: MenuScreenLeftBody(),
@@ -317,10 +315,8 @@ class BlockSemanticsToDrawerClosed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// 默认状态 为关闭
-    ValueNotifier<DrawerState> drawerState = ValueNotifier(DrawerState.closed);
     return ValueListenableBuilder<DrawerState>(
-      valueListenable: ZoomDrawer.of(context)!.stateNotifier ?? drawerState,
+      valueListenable: ZoomDrawer.of(context)!.stateNotifier,
       builder: (_, state, child) {
         return BlockSemantics(
           blocking: state == DrawerState.closed,

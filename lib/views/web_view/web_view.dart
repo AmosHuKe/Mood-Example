@@ -31,8 +31,41 @@ class _WebViewPageState extends State<WebViewPage> {
   bool _canGoForward = false;
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
+
     final String url = ValueConvert(widget.url).decode();
+    _pageWebViewController = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onProgress: (int progress) {
+            debugPrint("加载中：$progress");
+            setState(() {
+              _pageTitle =
+                  "${S.of(context).web_view_loading_text} ${progress - 1}%";
+            });
+          },
+          onPageStarted: (String url) {
+            debugPrint("开始加载：$url");
+            setState(() {
+              _pageTitle = url;
+            });
+          },
+          onPageFinished: (String url) {
+            debugPrint("加载完成：$url");
+            webViewInit();
+          },
+          onWebResourceError: (WebResourceError error) {
+            debugPrint("加载错误：$error");
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(url));
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
@@ -119,35 +152,7 @@ class _WebViewPageState extends State<WebViewPage> {
               )
             : const SizedBox();
       }),
-      body: WebView(
-        initialUrl: url,
-        javascriptMode: JavascriptMode.unrestricted,
-        gestureNavigationEnabled: true,
-        allowsInlineMediaPlayback: true,
-        onWebViewCreated: (webViewController) async {
-          _pageWebViewController = webViewController;
-        },
-        onPageStarted: (url) async {
-          debugPrint("开始加载：$url");
-          setState(() {
-            _pageTitle = url;
-          });
-        },
-        onProgress: (progress) async {
-          debugPrint("加载中：$progress");
-          setState(() {
-            _pageTitle =
-                "${S.of(context).web_view_loading_text} ${progress - 1}%";
-          });
-        },
-        onPageFinished: (url) async {
-          debugPrint("加载完成：$url");
-          webViewInit();
-        },
-        onWebResourceError: (error) {
-          debugPrint("加载错误：$error");
-        },
-      ),
+      body: WebViewWidget(controller: _pageWebViewController),
     );
   }
 

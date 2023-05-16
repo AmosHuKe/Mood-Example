@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 ///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:flutter_zoom_drawer/config.dart';
 import 'package:remixicon/remixicon.dart';
 
 ///
@@ -191,9 +192,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       width: 36.w,
                       height: 42.w,
                       child: ValueListenableBuilder<DrawerState>(
-                        valueListenable:
-                            ZoomDrawer.of(context)!.stateNotifier ??
-                                drawerState,
+                        valueListenable: ZoomDrawer.of(context)!.stateNotifier,
                         builder: (_, state, child) {
                           if (state == DrawerState.closed) {
                             _stepButtonController.reverse();
