@@ -6,8 +6,7 @@ import 'package:local_auth/local_auth.dart';
 import 'package:local_auth_android/local_auth_android.dart';
 import 'package:local_auth_ios/local_auth_ios.dart';
 import 'package:remixicon/remixicon.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 ///
 import 'package:moodexample/generated/l10n.dart';
@@ -71,15 +70,7 @@ class LocalAuthUtils {
       } on PlatformException catch (e) {
         debugPrint(e.toString());
         if (e.code == "LockedOut") {
-          Fluttertoast.showToast(
-            msg: s.app_setting_security_localauth_error_1,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.black54,
-            textColor: Colors.white,
-            fontSize: 12.sp,
-          );
+          SmartDialog.showToast(s.app_setting_security_localauth_error_1);
         }
         return false;
       }

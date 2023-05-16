@@ -29,8 +29,8 @@ dependencies:
   fluro: ^2.0.5
   # 缩放抽屉
   flutter_zoom_drawer: ^3.0.4+1
-  # 轻提示 Toast
-  fluttertoast: ^8.2.1
+  # Dialog
+  flutter_smart_dialog: ^4.9.0+6
   # 日历
   table_calendar: ^3.0.9
   # 滑动操作项

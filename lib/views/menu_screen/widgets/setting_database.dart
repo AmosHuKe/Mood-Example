@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 ///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +13,6 @@ import 'package:remixicon/remixicon.dart';
 import 'package:excel/excel.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:intl/intl.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path/path.dart';
 
 ///
@@ -175,30 +175,15 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                 switch (results["state"]) {
                                   case 0:
                                     _errorPath = results["errorPath"];
-                                    Fluttertoast.showToast(
-                                      msg: S
-                                          .of(context)
-                                          .app_setting_database_import_data_toast_error,
-                                      toastLength: Toast.LENGTH_LONG,
-                                      gravity: ToastGravity.BOTTOM,
-                                      timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.black54,
-                                      textColor: Colors.white,
-                                      fontSize: 12.sp,
-                                    );
+                                    SmartDialog.showToast(S
+                                        .of(context)
+                                        .app_setting_database_import_data_toast_error);
+
                                     break;
                                   case 1:
-                                    Fluttertoast.showToast(
-                                      msg: S
-                                          .of(context)
-                                          .app_setting_database_import_data_toast_success,
-                                      toastLength: Toast.LENGTH_LONG,
-                                      gravity: ToastGravity.BOTTOM,
-                                      timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.black54,
-                                      textColor: Colors.white,
-                                      fontSize: 12.sp,
-                                    );
+                                    SmartDialog.showToast(S
+                                        .of(context)
+                                        .app_setting_database_import_data_toast_success);
 
                                     /// 更新心情数据
                                     MoodViewModel moodViewModel =
@@ -815,17 +800,9 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
                               });
                               vibrate();
                               if (!mounted) return;
-                              Fluttertoast.showToast(
-                                msg: S
-                                    .of(context)
-                                    .app_setting_database_export_data_toast_success,
-                                toastLength: Toast.LENGTH_LONG,
-                                gravity: ToastGravity.BOTTOM,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.black54,
-                                textColor: Colors.white,
-                                fontSize: 12.sp,
-                              );
+                              SmartDialog.showToast(S
+                                  .of(context)
+                                  .app_setting_database_export_data_toast_success);
 
                               /// 分享文件
                               Share.shareXFiles([XFile(_exportPath)]);

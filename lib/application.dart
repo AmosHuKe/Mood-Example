@@ -10,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 ///
 import 'package:moodexample/themes/app_theme.dart';
@@ -99,6 +100,8 @@ class _ApplicationState extends State<Application> {
                 return null;
               },
               title: "Mood",
+              navigatorObservers: [FlutterSmartDialog.observer],
+              builder: FlutterSmartDialog.init(),
 
               /// Home
               home: const WillPopScopeRoute(child: Init()),
