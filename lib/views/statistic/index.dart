@@ -627,16 +627,12 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
         switch (moodDays) {
           case 7:
             barWidth = 14.w;
-            break;
           case 15:
             barWidth = 10.w;
-            break;
           case 30:
             barWidth = 4.w;
-            break;
           default:
             barWidth = 14.w;
-            break;
         }
 
         ///

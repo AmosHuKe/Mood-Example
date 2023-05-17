@@ -256,14 +256,12 @@ class MoodChoiceCard extends StatelessWidget {
                   params: [moodDataToJson(moodData)],
                 ),
               );
-              break;
             case "edit":
               // 关闭当前页并返回数据
               MoodCategoryData moodCategoryData = MoodCategoryData();
               moodCategoryData.icon = icon;
               moodCategoryData.title = title;
               Navigator.pop(context, moodCategoryDataToJson(moodCategoryData));
-              break;
           }
         },
       ),

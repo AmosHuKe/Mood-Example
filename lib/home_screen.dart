@@ -163,7 +163,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     case 2:
                       // 统计菜单触发
                       statistic.init(context);
-                      break;
                   }
                   _pageViewController.jumpToPage(value);
                   setState(() {

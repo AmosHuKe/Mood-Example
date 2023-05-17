@@ -29,16 +29,12 @@ ThemeMode darkThemeMode(String mode) {
   switch (mode) {
     case "system":
       themeMode = ThemeMode.system;
-      break;
     case "dark":
       themeMode = ThemeMode.dark;
-      break;
     case "light":
       themeMode = ThemeMode.light;
-      break;
     default:
       themeMode = ThemeMode.system;
-      break;
   }
   return themeMode;
 }

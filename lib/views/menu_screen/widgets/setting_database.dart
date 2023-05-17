@@ -178,8 +178,6 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                     SmartDialog.showToast(S
                                         .of(context)
                                         .app_setting_database_import_data_toast_error);
-
-                                    break;
                                   case 1:
                                     SmartDialog.showToast(S
                                         .of(context)
@@ -203,9 +201,6 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                     /// 获取心情数据
                                     MoodService.getMoodData(
                                         moodViewModel, moodDatetime);
-                                    break;
-                                  default:
-                                    break;
                                 }
                               } catch (e) {
                                 debugPrint("$e");
@@ -504,22 +499,18 @@ Future importDatabaseStart(List<List<Data?>> database) async {
         /// 表情
         case 0:
           moodData["icon"] = value.toString();
-          break;
 
         /// 心情
         case 1:
           moodData["title"] = value.toString();
-          break;
 
         /// 内容
         case 2:
           moodData["content"] = value.toString();
-          break;
 
         /// 心情程度
         case 3:
           moodData["score"] = double.parse(value.toString()).toInt();
-          break;
 
         /// 创建日期、修改日期
         case 4:
@@ -527,7 +518,6 @@ Future importDatabaseStart(List<List<Data?>> database) async {
               DateFormat("yyyy-MM-dd").parse(value).toString().substring(0, 10);
           moodData["createTime"] = moodDate;
           moodData["updateTime"] = moodDate;
-          break;
       }
 
       /// 导入数据（一组数据完成）
@@ -657,18 +647,15 @@ Future<List<List>> importDatabaseErrorCheck(List<List<Data?>> database) async {
           if (value == null) {
             errorText += "【表情必填】 ";
           }
-          break;
 
         /// 心情
         case 1:
           if (value == null) {
             errorText += "【心情必填】 ";
           }
-          break;
 
         /// 内容
         case 2:
-          break;
 
         /// 心情程度
         case 3:
@@ -681,7 +668,6 @@ Future<List<List>> importDatabaseErrorCheck(List<List<Data?>> database) async {
           if (tryValue != null && (tryValue < 0 || tryValue > 100)) {
             errorText += "【心情程度只能为0-100整数】 ";
           }
-          break;
 
         /// 创建日期、修改日期
         case 4:
@@ -698,7 +684,6 @@ Future<List<List>> importDatabaseErrorCheck(List<List<Data?>> database) async {
           if (tryValue == null) {
             errorText += "【创建时间只能为文本，如2000-11-03】 ";
           }
-          break;
       }
 
       /// 导入数据（一组数据完成）并且错误内容不为空
