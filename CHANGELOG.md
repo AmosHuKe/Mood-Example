@@ -1,3 +1,6 @@
+# 1.8.0+1  
+- [Bug 修复] 游戏终止  
+
 # 1.8.0
 - [升级] Flutter 3.10.0  
 - [升级] 包升级以及适配 flutter_zoom_drawer、webview_flutter、bonfire  
