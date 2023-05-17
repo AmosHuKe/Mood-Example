@@ -77,9 +77,10 @@ class _GameState extends State<Game> {
       final tileSize = max(constraints.maxHeight, constraints.maxWidth) / 20;
       return BonfireWidget(
         constructionMode: false,
-        showCollisionArea: false,
+        showCollisionArea: true,
         joystick: Joystick(
           keyboardConfig: KeyboardConfig(
+            keyboardDirectionalType: KeyboardDirectionalType.wasdAndArrows,
             acceptedKeys: [
               LogicalKeyboardKey.space,
             ],
@@ -93,7 +94,7 @@ class _GameState extends State<Game> {
           ),
           actions: [
             JoystickAction(
-              actionId: 1,
+              actionId: PlayerAttackType.attackMelee,
               sprite: Sprite.load('$assetsPath/joystick_atack.png'),
               spritePressed:
                   Sprite.load('$assetsPath/joystick_atack_selected.png'),
@@ -101,7 +102,7 @@ class _GameState extends State<Game> {
               margin: const EdgeInsets.only(bottom: 50, right: 50),
             ),
             JoystickAction(
-              actionId: 2,
+              actionId: PlayerAttackType.attackRange,
               sprite: Sprite.load('$assetsPath/joystick_atack_range.png'),
               spritePressed:
                   Sprite.load('$assetsPath/joystick_atack_range_selected.png'),
@@ -112,7 +113,7 @@ class _GameState extends State<Game> {
               margin: const EdgeInsets.only(bottom: 30, right: 150),
             ),
             JoystickAction(
-              actionId: 3,
+              actionId: PlayerAttackType.attackRangeShotguns,
               sprite: Sprite.load('$assetsPath/joystick_atack_range.png'),
               spritePressed:
                   Sprite.load('$assetsPath/joystick_atack_range_selected.png'),

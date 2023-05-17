@@ -97,7 +97,7 @@ class Orc extends SimpleEnemy
             dt,
             closeComponent: (comp) {
               /// 抵达玩家，开始攻击
-              _execAttack();
+              execAttack();
             },
           );
         },
@@ -113,6 +113,7 @@ class Orc extends SimpleEnemy
         },
       );
     }
+
     super.update(dt);
   }
 
@@ -145,47 +146,39 @@ class Orc extends SimpleEnemy
       );
 
       /// 受伤动画
-      _addDamageAnimation();
+      // addDamageAnimation();
     }
     super.receiveDamage(attacker, damage, identify);
   }
 
   /// 攻击动画
-  void _addAttackAnimation() {
+  void addAttackAnimation() {
     Future<SpriteAnimation> newAnimation;
     switch (lastDirection) {
       case Direction.left:
         newAnimation = SpriteSheetOrc.getAttackBottomLeft();
-        break;
       case Direction.right:
         newAnimation = SpriteSheetOrc.getAttackBottomRight();
-        break;
       case Direction.up:
         if (lastDirectionHorizontal == Direction.right) {
           newAnimation = SpriteSheetOrc.getAttackTopRight();
         } else {
           newAnimation = SpriteSheetOrc.getAttackTopLeft();
         }
-        break;
       case Direction.down:
         if (lastDirectionHorizontal == Direction.right) {
           newAnimation = SpriteSheetOrc.getAttackBottomRight();
         } else {
           newAnimation = SpriteSheetOrc.getAttackBottomLeft();
         }
-        break;
       case Direction.upLeft:
         newAnimation = SpriteSheetOrc.getAttackTopLeft();
-        break;
       case Direction.upRight:
         newAnimation = SpriteSheetOrc.getAttackTopRight();
-        break;
       case Direction.downLeft:
         newAnimation = SpriteSheetOrc.getAttackBottomLeft();
-        break;
       case Direction.downRight:
         newAnimation = SpriteSheetOrc.getAttackBottomRight();
-        break;
     }
     animation?.playOnce(
       newAnimation,
@@ -194,42 +187,34 @@ class Orc extends SimpleEnemy
   }
 
   /// 受伤动画
-  void _addDamageAnimation() {
+  void addDamageAnimation() {
     canMove = false;
     Future<SpriteAnimation> newAnimation;
     switch (lastDirection) {
       case Direction.left:
         newAnimation = SpriteSheetOrc.getDamageBottomLeft();
-        break;
       case Direction.right:
         newAnimation = SpriteSheetOrc.getDamageBottomRight();
-        break;
       case Direction.up:
         if (lastDirectionHorizontal == Direction.right) {
           newAnimation = SpriteSheetOrc.getDamageTopRight();
         } else {
           newAnimation = SpriteSheetOrc.getDamageTopLeft();
         }
-        break;
       case Direction.down:
         if (lastDirectionHorizontal == Direction.right) {
           newAnimation = SpriteSheetOrc.getDamageBottomRight();
         } else {
           newAnimation = SpriteSheetOrc.getDamageBottomLeft();
         }
-        break;
       case Direction.upLeft:
         newAnimation = SpriteSheetOrc.getDamageTopLeft();
-        break;
       case Direction.upRight:
         newAnimation = SpriteSheetOrc.getDamageTopRight();
-        break;
       case Direction.downLeft:
         newAnimation = SpriteSheetOrc.getDamageBottomLeft();
-        break;
       case Direction.downRight:
         newAnimation = SpriteSheetOrc.getDamageBottomRight();
-        break;
     }
     animation?.playOnce(
       newAnimation,
@@ -241,13 +226,13 @@ class Orc extends SimpleEnemy
   }
 
   /// 攻击
-  void _execAttack() {
+  void execAttack() {
     simpleAttackMelee(
       damage: 10,
       size: Vector2.all(tileSize * 5),
       interval: 800,
       execute: () {
-        _addAttackAnimation();
+        addAttackAnimation();
       },
     );
   }

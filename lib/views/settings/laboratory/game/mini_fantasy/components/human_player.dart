@@ -136,14 +136,14 @@ class HumanPlayer extends SimplePlayer
       );
       // lockMove = true;
       /// 屏幕变红
-      gameRef.lighting
-          ?.animateToColor(const Color(0xFF630000).withOpacity(0.7));
+      // gameRef.lighting
+      //     ?.animateToColor(const Color(0xFF630000).withOpacity(0.7));
 
-      idle();
-      _addDamageAnimation(() {
-        lockMove = false;
-        gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.7));
-      });
+      // idle();
+      // _addDamageAnimation(() {
+      //   lockMove = false;
+      //   gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.7));
+      // });
     }
     super.receiveDamage(attacker, damage, from);
   }
@@ -166,37 +166,28 @@ class HumanPlayer extends SimplePlayer
     switch (lastDirection) {
       case Direction.left:
         newAnimation = SpriteSheetPlayer.getAttackBottomLeft();
-        break;
       case Direction.right:
         newAnimation = SpriteSheetPlayer.getAttackBottomRight();
-        break;
       case Direction.up:
         if (lastDirectionHorizontal == Direction.left) {
           newAnimation = SpriteSheetPlayer.getAttackTopLeft();
         } else {
           newAnimation = SpriteSheetPlayer.getAttackTopRight();
         }
-
-        break;
       case Direction.down:
         if (lastDirectionHorizontal == Direction.left) {
           newAnimation = SpriteSheetPlayer.getAttackBottomLeft();
         } else {
           newAnimation = SpriteSheetPlayer.getAttackBottomRight();
         }
-        break;
       case Direction.upLeft:
         newAnimation = SpriteSheetPlayer.getAttackTopLeft();
-        break;
       case Direction.upRight:
         newAnimation = SpriteSheetPlayer.getAttackTopRight();
-        break;
       case Direction.downLeft:
         newAnimation = SpriteSheetPlayer.getAttackBottomLeft();
-        break;
       case Direction.downRight:
         newAnimation = SpriteSheetPlayer.getAttackBottomRight();
-        break;
     }
     animation?.playOnce(newAnimation);
   }
@@ -207,36 +198,28 @@ class HumanPlayer extends SimplePlayer
     switch (lastDirection) {
       case Direction.left:
         newAnimation = SpriteSheetPlayer.getDamageBottomLeft();
-        break;
       case Direction.right:
         newAnimation = SpriteSheetPlayer.getDamageBottomRight();
-        break;
       case Direction.up:
         if (lastDirectionHorizontal == Direction.left) {
           newAnimation = SpriteSheetPlayer.getDamageTopLeft();
         } else {
           newAnimation = SpriteSheetPlayer.getDamageTopRight();
         }
-        break;
       case Direction.down:
         if (lastDirectionHorizontal == Direction.left) {
           newAnimation = SpriteSheetPlayer.getDamageBottomLeft();
         } else {
           newAnimation = SpriteSheetPlayer.getDamageBottomRight();
         }
-        break;
       case Direction.upLeft:
         newAnimation = SpriteSheetPlayer.getDamageTopLeft();
-        break;
       case Direction.upRight:
         newAnimation = SpriteSheetPlayer.getDamageTopRight();
-        break;
       case Direction.downLeft:
         newAnimation = SpriteSheetPlayer.getDamageBottomLeft();
-        break;
       case Direction.downRight:
         newAnimation = SpriteSheetPlayer.getDamageBottomRight();
-        break;
     }
     animation?.playOnce(
       newAnimation,

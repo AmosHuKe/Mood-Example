@@ -82,7 +82,7 @@ class Boss extends SimpleEnemy
             dt,
             closeComponent: (comp) {
               /// 抵达玩家，开始攻击
-              _execAttack();
+              execAttack();
             },
           );
         },
@@ -124,7 +124,7 @@ class Boss extends SimpleEnemy
   }
 
   /// 攻击
-  void _execAttack() {
+  void execAttack() {
     simpleAttackMelee(
       damage: 20,
       size: Vector2.all(tileSize * 5),

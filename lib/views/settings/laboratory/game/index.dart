@@ -20,6 +20,7 @@ import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_shee
     as mini_game;
 import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_sheet/sprite_sheet_player.dart'
     as mini_game;
+import 'mini_game/controllers/human_player_controller.dart' as mini_game;
 
 class GamePage extends StatefulWidget {
   const GamePage({super.key});
@@ -123,6 +124,8 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
             /// 载入游戏静态资源
             await mini_game.SpriteSheetPlayer.load();
             await mini_game.SpriteSheetOrc.load();
+            BonfireInjector()
+                .putFactory((i) => mini_game.HumanPlayerController());
             if (!mounted) return;
             Navigator.push(
               context,
