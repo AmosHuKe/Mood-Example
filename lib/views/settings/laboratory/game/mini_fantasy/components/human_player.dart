@@ -193,38 +193,38 @@ class HumanPlayer extends SimplePlayer
   }
 
   /// 受伤动画
-  void _addDamageAnimation(VoidCallback onFinish) {
-    Future<SpriteAnimation> newAnimation;
-    switch (lastDirection) {
-      case Direction.left:
-        newAnimation = SpriteSheetPlayer.getDamageBottomLeft();
-      case Direction.right:
-        newAnimation = SpriteSheetPlayer.getDamageBottomRight();
-      case Direction.up:
-        if (lastDirectionHorizontal == Direction.left) {
-          newAnimation = SpriteSheetPlayer.getDamageTopLeft();
-        } else {
-          newAnimation = SpriteSheetPlayer.getDamageTopRight();
-        }
-      case Direction.down:
-        if (lastDirectionHorizontal == Direction.left) {
-          newAnimation = SpriteSheetPlayer.getDamageBottomLeft();
-        } else {
-          newAnimation = SpriteSheetPlayer.getDamageBottomRight();
-        }
-      case Direction.upLeft:
-        newAnimation = SpriteSheetPlayer.getDamageTopLeft();
-      case Direction.upRight:
-        newAnimation = SpriteSheetPlayer.getDamageTopRight();
-      case Direction.downLeft:
-        newAnimation = SpriteSheetPlayer.getDamageBottomLeft();
-      case Direction.downRight:
-        newAnimation = SpriteSheetPlayer.getDamageBottomRight();
-    }
-    animation?.playOnce(
-      newAnimation,
-      runToTheEnd: true,
-      onFinish: onFinish,
-    );
-  }
+  // void _addDamageAnimation(VoidCallback onFinish) {
+  //   Future<SpriteAnimation> newAnimation;
+  //   switch (lastDirection) {
+  //     case Direction.left:
+  //       newAnimation = SpriteSheetPlayer.getDamageBottomLeft();
+  //     case Direction.right:
+  //       newAnimation = SpriteSheetPlayer.getDamageBottomRight();
+  //     case Direction.up:
+  //       if (lastDirectionHorizontal == Direction.left) {
+  //         newAnimation = SpriteSheetPlayer.getDamageTopLeft();
+  //       } else {
+  //         newAnimation = SpriteSheetPlayer.getDamageTopRight();
+  //       }
+  //     case Direction.down:
+  //       if (lastDirectionHorizontal == Direction.left) {
+  //         newAnimation = SpriteSheetPlayer.getDamageBottomLeft();
+  //       } else {
+  //         newAnimation = SpriteSheetPlayer.getDamageBottomRight();
+  //       }
+  //     case Direction.upLeft:
+  //       newAnimation = SpriteSheetPlayer.getDamageTopLeft();
+  //     case Direction.upRight:
+  //       newAnimation = SpriteSheetPlayer.getDamageTopRight();
+  //     case Direction.downLeft:
+  //       newAnimation = SpriteSheetPlayer.getDamageBottomLeft();
+  //     case Direction.downRight:
+  //       newAnimation = SpriteSheetPlayer.getDamageBottomRight();
+  //   }
+  //   animation?.playOnce(
+  //     newAnimation,
+  //     runToTheEnd: true,
+  //     onFinish: onFinish,
+  //   );
+  // }
 }

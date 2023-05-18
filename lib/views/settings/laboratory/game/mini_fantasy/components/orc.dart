@@ -202,43 +202,43 @@ class Orc extends SimpleEnemy
   }
 
   /// 受伤动画
-  void _addDamageAnimation() {
-    canMove = false;
-    Future<SpriteAnimation> newAnimation;
-    switch (lastDirection) {
-      case Direction.left:
-        newAnimation = SpriteSheetOrc.getDamageBottomLeft();
-      case Direction.right:
-        newAnimation = SpriteSheetOrc.getDamageBottomRight();
-      case Direction.up:
-        if (lastDirectionHorizontal == Direction.right) {
-          newAnimation = SpriteSheetOrc.getDamageTopRight();
-        } else {
-          newAnimation = SpriteSheetOrc.getDamageTopLeft();
-        }
-      case Direction.down:
-        if (lastDirectionHorizontal == Direction.right) {
-          newAnimation = SpriteSheetOrc.getDamageBottomRight();
-        } else {
-          newAnimation = SpriteSheetOrc.getDamageBottomLeft();
-        }
-      case Direction.upLeft:
-        newAnimation = SpriteSheetOrc.getDamageTopLeft();
-      case Direction.upRight:
-        newAnimation = SpriteSheetOrc.getDamageTopRight();
-      case Direction.downLeft:
-        newAnimation = SpriteSheetOrc.getDamageBottomLeft();
-      case Direction.downRight:
-        newAnimation = SpriteSheetOrc.getDamageBottomRight();
-    }
-    animation?.playOnce(
-      newAnimation,
-      runToTheEnd: true,
-      onFinish: () {
-        canMove = true;
-      },
-    );
-  }
+  // void _addDamageAnimation() {
+  //   canMove = false;
+  //   Future<SpriteAnimation> newAnimation;
+  //   switch (lastDirection) {
+  //     case Direction.left:
+  //       newAnimation = SpriteSheetOrc.getDamageBottomLeft();
+  //     case Direction.right:
+  //       newAnimation = SpriteSheetOrc.getDamageBottomRight();
+  //     case Direction.up:
+  //       if (lastDirectionHorizontal == Direction.right) {
+  //         newAnimation = SpriteSheetOrc.getDamageTopRight();
+  //       } else {
+  //         newAnimation = SpriteSheetOrc.getDamageTopLeft();
+  //       }
+  //     case Direction.down:
+  //       if (lastDirectionHorizontal == Direction.right) {
+  //         newAnimation = SpriteSheetOrc.getDamageBottomRight();
+  //       } else {
+  //         newAnimation = SpriteSheetOrc.getDamageBottomLeft();
+  //       }
+  //     case Direction.upLeft:
+  //       newAnimation = SpriteSheetOrc.getDamageTopLeft();
+  //     case Direction.upRight:
+  //       newAnimation = SpriteSheetOrc.getDamageTopRight();
+  //     case Direction.downLeft:
+  //       newAnimation = SpriteSheetOrc.getDamageBottomLeft();
+  //     case Direction.downRight:
+  //       newAnimation = SpriteSheetOrc.getDamageBottomRight();
+  //   }
+  //   animation?.playOnce(
+  //     newAnimation,
+  //     runToTheEnd: true,
+  //     onFinish: () {
+  //       canMove = true;
+  //     },
+  //   );
+  // }
 
   /// 攻击
   void _execAttack() {
