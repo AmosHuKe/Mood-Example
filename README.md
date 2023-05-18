@@ -235,6 +235,7 @@ $ flutter test integration_test/app_test.dart
 │   ├── widgets                                     # 通用组件相关
 │   ├── application.dart                            # 主应用
 │   ├── home_screen.dart                            # 主应用导航相关
+│   ├── init.dart                                   # 初始化相关
 │   ├── main.dart                                   # 主应用入口
 │   └── routes.dart                                 # 路由管理
 ├── test                                            # 测试
