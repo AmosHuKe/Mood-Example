@@ -6,7 +6,7 @@
 <br/>
 
 <h1 align="center"> 
-<img alt="Logo" src="./.README/logo/logo.png" width="48px" style="border-radius:16px;" /> Mood Example
+<img alt="Logo" src="./.README/logo/logo.png" width="48px" style="border-radius:16px;" /> Mood Example [![Sparkline](https://stars.medv.io/AmosHuKe/Mood-Example.svg)](https://stars.medv.io/AmosHuKe/Mood-Example)
 </h1> 
 
 <p align="center">
