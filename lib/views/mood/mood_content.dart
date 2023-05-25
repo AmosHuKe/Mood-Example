@@ -81,17 +81,18 @@ class _MoodContentState extends State<MoodContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         foregroundColor: Theme.of(context).textTheme.displayLarge!.color,
         shadowColor: Colors.transparent,
-        titleTextStyle: TextStyle(
-          fontSize: 14.sp,
-        ),
         centerTitle: true,
-        title: Text(LocaleDatetime().yMMMd(_moodData.createTime ?? "")),
+        title: Text(
+          LocaleDatetime().yMMMd(_moodData.createTime ?? ""),
+          style: TextStyle(
+            fontSize: 14.sp,
+          ),
+        ),
         leading: ActionButton(
           key: const Key("widget_action_button_close"),
           semanticsLabel: "关闭",

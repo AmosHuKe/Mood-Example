@@ -40,9 +40,8 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     /// AutomaticKeepAliveClientMixin
     super.build(context);
-    return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: const SafeArea(
+    return const Scaffold(
+      body: SafeArea(
         child: HomeBody(key: Key("widget_home_body")),
       ),
     );
@@ -249,13 +248,10 @@ class _OptionMoodState extends State<OptionMood> {
 
           /// 数据渲染
           for (MoodCategoryData list in moodViewModel.moodCategoryList ?? []) {
-            /// 获取所有心情类别
-            moodViewModel.setMoodCategoryData(list);
-            MoodCategoryData moodCategoryData = moodViewModel.moodCategoryData;
             widgetList.add(
               OptionCard(
-                title: moodCategoryData.title ?? "",
-                icon: moodCategoryData.icon ?? "",
+                title: list.title ?? "",
+                icon: list.icon ?? "",
               ),
             );
           }

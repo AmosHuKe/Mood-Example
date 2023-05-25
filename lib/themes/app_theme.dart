@@ -11,6 +11,7 @@ import 'package:moodexample/view_models/application/application_view_model.dart'
 
 /// 是否深色模式
 bool isDarkMode(BuildContext context) {
+  Theme.of(context);
   final ThemeMode themeMode =
       Provider.of<ApplicationViewModel>(context, listen: false).themeMode;
   if (themeMode == ThemeMode.system) {

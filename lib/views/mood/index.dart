@@ -53,7 +53,6 @@ class _MoodPageState extends State<MoodPage>
     /// AutomaticKeepAliveClientMixin
     super.build(context);
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       floatingActionButton: AnimatedPress(
         child: OpenContainer(
           useRootNavigator: true,
