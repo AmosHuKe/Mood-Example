@@ -376,7 +376,7 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 
 ## 🎨 Design
 
-* Bogusław Podhalicz. [Mindfulness Concept App](https://dribbble.com/shots/15733031-Mindfulness-Concept-App)  
+Bogusław Podhalicz. [Mindfulness Concept App](https://dribbble.com/shots/15733031-Mindfulness-Concept-App)  
 
 
 ## 📄 License
