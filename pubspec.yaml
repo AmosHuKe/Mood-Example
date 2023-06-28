@@ -1,7 +1,7 @@
 name: moodexample
 description: 管理自己的情绪，记录当下所见所想。
 publish_to: 'none'
-version: 1.8.0+3
+version: 1.8.0+5
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -18,19 +18,19 @@ dependencies:
   # 路径
   path_provider: ^2.0.15
   # UI 自适应工具
-  flutter_screenutil: ^5.8.2
+  flutter_screenutil: ^5.9.0-beta
   # 状态管理
   provider: ^6.0.5
   # 数据库
   sqflite: ^2.2.8+4
   # 共享存储
-  shared_preferences: ^2.1.1
+  shared_preferences: ^2.1.2
   # 路由管理
   fluro: ^2.0.5
   # 缩放抽屉
-  flutter_zoom_drawer: ^3.0.4+1
+  flutter_zoom_drawer: ^3.1.1
   # Dialog
-  flutter_smart_dialog: ^4.9.0+6
+  flutter_smart_dialog: ^4.9.2
   # 日历
   table_calendar: ^3.0.9
   # 滑动操作项
@@ -38,17 +38,17 @@ dependencies:
   # 轮播
   card_swiper: ^2.0.4
   # 震动
-  vibration: ^1.7.7
+  vibration: ^1.8.1
   # 图表
-  fl_chart: ^0.62.0
+  fl_chart: ^0.63.0
   # Excel
   excel: ^2.1.0
   # 分享
-  share_plus: ^7.0.0
+  share_plus: ^7.0.2
   # 文件选择
-  file_picker: ^5.3.0
+  file_picker: ^5.3.2
   # WebView
-  webview_flutter: ^4.2.0
+  webview_flutter: ^4.2.2
   # 3D 数据集显示
   ditredi: ^1.0.4
   vector_math: ^2.1.4

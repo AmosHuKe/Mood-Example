@@ -347,7 +347,7 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
         ///
         return LineChart(
           LineChartData(
-            clipData: FlClipData.vertical(),
+            clipData: const FlClipData.vertical(),
             maxX: (days + 1),
             minY: -50,
             maxY: 120,
@@ -371,7 +371,7 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                 //   offset: Offset.fromDirection(0, 0),
                 // ),
                 isStrokeCapRound: true,
-                dotData: FlDotData(show: false),
+                dotData: const FlDotData(show: false),
                 belowBarData: BarAreaData(
                   show: true,
                   gradient: LinearGradient(
@@ -450,10 +450,12 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
             ),
             titlesData: FlTitlesData(
               show: true,
-              leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              leftTitles:
+                  const AxisTitles(sideTitles: SideTitles(showTitles: false)),
               rightTitles:
-                  AxisTitles(sideTitles: SideTitles(showTitles: false)),
-              topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              topTitles:
+                  const AxisTitles(sideTitles: SideTitles(showTitles: false)),
               bottomTitles: AxisTitles(
                 sideTitles: SideTitles(
                     showTitles: true,
@@ -483,8 +485,8 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
               ),
             ),
           ),
-          swapAnimationDuration: const Duration(milliseconds: 450),
-          swapAnimationCurve: Curves.linearToEaseOut,
+          duration: const Duration(milliseconds: 450),
+          curve: Curves.linearToEaseOut,
         );
       },
     );
@@ -693,7 +695,8 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
             ),
             maxY: 100,
             titlesData: FlTitlesData(
-              topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              topTitles:
+                  const AxisTitles(sideTitles: SideTitles(showTitles: false)),
               bottomTitles: AxisTitles(
                 sideTitles: SideTitles(
                   showTitles: true,
@@ -705,11 +708,12 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
                   },
                 ),
               ),
-              leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              leftTitles:
+                  const AxisTitles(sideTitles: SideTitles(showTitles: false)),
               rightTitles:
-                  AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  const AxisTitles(sideTitles: SideTitles(showTitles: false)),
             ),
-            gridData: FlGridData(show: false),
+            gridData: const FlGridData(show: false),
             borderData: FlBorderData(show: false),
           ),
           swapAnimationDuration: const Duration(milliseconds: 1000), // Optional
