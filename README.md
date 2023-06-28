@@ -40,11 +40,11 @@
 
 - [🤔️ 常见问题](#️-常见问题)
 
+- [📦 Packages](#-Packages)
+
 - [🖼️ Illustration](#️-Illustration)
 
 - [🎨 Design](#-Design)
-
-- [📦 Packages](#-Packages)
 
 - [📄 License](#-License)
 
@@ -332,17 +332,6 @@ $ flutter test integration_test/app_test.dart
 </details>
 
 
-## 🖼️ Illustration
-
-<a target="_blank" href="https://icons8.com/illustrations/style--woolly"><img alt="style--woolly" src="https://img.shields.io/badge/Illustration Style-Woolly-BA5A56"/></a>  
-Illustration by <a target="_blank" href="https://icons8.com/illustrations/author/5ed4dd0e01d03600149fec60">Svetlana Tulenina</a> from <a target="_blank" href="https://icons8.com/illustrations">Ouch!</a>  
-
-
-## 🎨 Design
-
-* Bogusław Podhalicz. [Mindfulness Concept App](https://dribbble.com/shots/15733031-Mindfulness-Concept-App)  
-
-
 ## 📦 Packages  
 
 感谢开源  
@@ -377,6 +366,17 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 | [share_plus](https://pub.dev/packages/share_plus) | [BSD-3-Clause License](https://pub.dev/packages/share_plus/license) |  
 | [shared_preferences](https://pub.dev/packages/shared_preferences) | [BSD-3-Clause License](https://pub.dev/packages/shared_preferences/license) |  
 | [webview_flutter](https://pub.dev/packages/webview_flutter) | [BSD-3-Clause License](https://pub.dev/packages/webview_flutter/license) |  
+
+
+## 🖼️ Illustration
+
+<a target="_blank" href="https://icons8.com/illustrations/style--woolly"><img alt="style--woolly" src="https://img.shields.io/badge/Illustration Style-Woolly-BA5A56"/></a>  
+Illustration by <a target="_blank" href="https://icons8.com/illustrations/author/5ed4dd0e01d03600149fec60">Svetlana Tulenina</a> from <a target="_blank" href="https://icons8.com/illustrations">Ouch!</a>  
+
+
+## 🎨 Design
+
+* Bogusław Podhalicz. [Mindfulness Concept App](https://dribbble.com/shots/15733031-Mindfulness-Concept-App)  
 
 
 ## 📄 License
