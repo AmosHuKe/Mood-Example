@@ -340,8 +340,6 @@ Illustration by <a target="_blank" href="https://icons8.com/illustrations/author
 
 ## 🎨 Design
 
-* Outcrowd. [Mobile App - Onboarding with 3D](https://dribbble.com/shots/14238732-Mobile-App-Onboarding-with-3D)  
-* Taras Migulko. [The Brainbob mobile app](https://dribbble.com/shots/15865091-The-Brainbob-mobile-app)  
 * Bogusław Podhalicz. [Mindfulness Concept App](https://dribbble.com/shots/15733031-Mindfulness-Concept-App)  
 
 
