@@ -18,6 +18,39 @@
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
 
+<br/>
+
+- [🐦 简介](#-简介)
+
+- [🌏 相关网站](#-相关网站)
+
+- [⭐ 功能](#-功能)
+
+- [📱 测试运行环境](#-测试运行环境)
+
+- [🛠️ 开发环境](#-开发环境)
+
+  - [🛠️ 基本环境](#-基本环境)
+
+  - [🛠️ 国际化环境支持](#-国际化环境支持)
+
+- [🎉 启动](#-启动)
+
+- [📑 项目结构](#-项目结构)
+
+- [🤔️ 常见问题](#-常见问题)
+
+- [🖼️ Illustration](#-Illustration)
+
+- [🎨 Design](#-Design)
+
+- [📦 Packages](#-Packages)
+
+- [📄 License](#-License)
+
+<br/>
+
+## 🐦 简介
 
 `情绪记录` 样例工程  
 管理自己的情绪，记录当下所见所想，以及其他`实验室`功能（不定时更新一些功能）  
