@@ -3,6 +3,8 @@ PODS:
     - Flutter
     - IosAwnCore (= 0.7.3)
   - CropViewController (2.6.1)
+  - device_info_plus (0.0.1):
+    - Flutter
   - DKCamera (1.6.7)
   - DKImagePickerController (4.3.4):
     - DKImagePickerController/Camera (= 4.3.4)
@@ -88,6 +90,7 @@ PODS:
 
 DEPENDENCIES:
   - awesome_notifications (from `.symlinks/plugins/awesome_notifications/ios`)
+  - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - DKImagePickerController (= 4.3.4)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
@@ -115,6 +118,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   awesome_notifications:
     :path: ".symlinks/plugins/awesome_notifications/ios"
+  device_info_plus:
+    :path: ".symlinks/plugins/device_info_plus/ios"
   file_picker:
     :path: ".symlinks/plugins/file_picker/ios"
   Flutter:
@@ -141,6 +146,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   awesome_notifications: d63d9a25f126860f9a600850d99772237895b3ba
   CropViewController: 58fb440f30dac788b129d2a1f24cffdcb102669c
+  device_info_plus: 7545d84d8d1b896cb16a4ff98c19f07ec4b298ea
   DKCamera: a902b66921fca14b7a75266feb8c7568aa7caa71
   DKImagePickerController: b512c28220a2b8ac7419f21c491fc8534b7601ac
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
