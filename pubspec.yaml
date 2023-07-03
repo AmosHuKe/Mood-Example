@@ -24,13 +24,13 @@ dependencies:
   # 数据库
   sqflite: ^2.2.8+4
   # 共享存储
-  shared_preferences: ^2.1.2
+  shared_preferences: ^2.2.0
   # 路由管理
   fluro: ^2.0.5
   # 缩放抽屉
   flutter_zoom_drawer: ^3.1.1
   # Dialog
-  flutter_smart_dialog: ^4.9.2
+  flutter_smart_dialog: ^4.9.3+1
   # 日历
   table_calendar: ^3.0.9
   # 滑动操作项
@@ -53,7 +53,7 @@ dependencies:
   ditredi: ^1.0.4
   vector_math: ^2.1.4
   # 本地通知
-  awesome_notifications: ^0.7.4+1
+  awesome_notifications: ^0.7.5-dev.3
   # 时区
   flutter_native_timezone: ^2.0.0
   # 动画
@@ -82,7 +82,7 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
-  flutter_lints: ^2.0.1
+  flutter_lints: ^2.0.2
 
 flutter:
   uses-material-design: true
