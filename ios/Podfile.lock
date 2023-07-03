@@ -1,7 +1,7 @@
 PODS:
-  - awesome_notifications (0.0.5):
+  - awesome_notifications (0.7.5-dev.3):
     - Flutter
-    - IosAwnCore (= 0.7.3)
+    - IosAwnCore (= 0.7.5-dev.3)
   - CropViewController (2.6.1)
   - device_info_plus (0.0.1):
     - Flutter
@@ -65,7 +65,7 @@ PODS:
   - FMDB/standard (2.7.5)
   - integration_test (0.0.1):
     - Flutter
-  - IosAwnCore (0.7.3)
+  - IosAwnCore (0.7.5-dev.3)
   - local_auth_ios (0.0.1):
     - Flutter
   - path_provider_foundation (0.0.1):
@@ -144,7 +144,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
-  awesome_notifications: d63d9a25f126860f9a600850d99772237895b3ba
+  awesome_notifications: 1b6393d6ce02878dc50d0ae87baf7bdbc9d802a2
   CropViewController: 58fb440f30dac788b129d2a1f24cffdcb102669c
   device_info_plus: 7545d84d8d1b896cb16a4ff98c19f07ec4b298ea
   DKCamera: a902b66921fca14b7a75266feb8c7568aa7caa71
@@ -155,7 +155,7 @@ SPEC CHECKSUMS:
   flutter_native_timezone: 5f05b2de06c9776b4cc70e1839f03de178394d22
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   integration_test: 13825b8a9334a850581300559b8839134b124670
-  IosAwnCore: 6494e0e174d49f04f513e8a002187be226889a37
+  IosAwnCore: edf31913fd18960ebcde7c05912dc860ca2b63b2
   local_auth_ios: c6cf091ded637a88f24f86a8875d8b0f526e2605
   path_provider_foundation: eaf5b3e458fc0e5fbb9940fb09980e853fe058b8
   SDWebImage: 9e391cf38577742f501055dca17e4987f6713fe1
