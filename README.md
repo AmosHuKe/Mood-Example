@@ -18,7 +18,7 @@
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
 
-<br/>
+<sub>
 
 - [🐦 简介](#-简介)
 
@@ -47,6 +47,8 @@
 - [🎨 Design](#-Design)
 
 - [📄 License](#-License)
+
+</sub>
 
 <br/>
 
