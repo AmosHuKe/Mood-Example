@@ -76,12 +76,12 @@
 - [x] 深色模式  
 - [x] 本地数据管理  
 - [x] 路由管理  
-- [x] 状态管理（MVVM）  
+- [x] 状态管理 (MVVM)  
 - [x] 集成测试  
 - [x] 情绪记录  
 - [x] 图表统计  
 - [x] Excel 导入导出  
-- [x] 无障碍支持（Semantics）  
+- [x] 无障碍支持 (Semantics)  
 - [x] Web 访问  
 - [x] 解锁认证（锁屏密码、生物特征识别）  
 - [x] 本地通知  
@@ -146,7 +146,7 @@ Flutter Intl: Remove locale
 等等...
 ```  
 
-使用 `Flutter Intl: Add locale` 输入 `国际化（i18n）地区对照语言码`，如简体中文：`zh_CN`，插件会自动在 `lib/l10n` 目录下生成对应的 `arb` 文件，我们只需要在 `arb` 文件中进行翻译。  
+使用 `Flutter Intl: Add locale` 输入 `国际化 (i18n) 地区对照语言码`，如简体中文：`zh_CN`，插件会自动在 `lib/l10n` 目录下生成对应的 `arb` 文件，我们只需要在 `arb` 文件中进行翻译。  
 `arb` 翻译工作完成后，将对应的语言添加到 `lib/config/language.dart` 内。  
 即可 `适配设备首选语言` 以及 `在应用语言设置内进行切换`。  
 
@@ -173,7 +173,7 @@ iOS 支持语言本地化还需要在 `ios/Runner/Info.plist` 进行如下编辑
 
 ## 🎉 启动
 
-在[开发环境](#%EF%B8%8F-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83)支持的情况下  
+在 [开发环境](#%EF%B8%8F-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83) 支持的情况下  
 
 ```sh
 # 拷贝项目
@@ -182,7 +182,7 @@ $ git clone https://github.com/AmosHuKe/Mood-Example.git
 # 获取依赖
 $ flutter pub get
 
-# 启动项目 或 相关IDE启动
+# 启动项目或相关 IDE 启动
 $ flutter run
 
 # 更多启动模式
