@@ -176,7 +176,7 @@ iOS 支持语言本地化还需要在 `ios/Runner/Info.plist` 进行如下编辑
 在 [开发环境](#%EF%B8%8F-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83) 支持的情况下  
 
 ```sh
-# 拷贝项目
+# 克隆项目
 $ git clone https://github.com/AmosHuKe/Mood-Example.git
 
 # 获取依赖
