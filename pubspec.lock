@@ -45,10 +45,10 @@ packages:
     dependency: "direct main"
     description:
       name: bonfire
-      sha256: "2fb91e4e274fa1b36f109e3dcf2cda67fc96e32039790a723f12f0b04e1602ed"
+      sha256: "82e76abd553ef3de9084242fce9a8f87993827453e397355f8f2612e9ca44a05"
       url: "https://pub.dev"
     source: hosted
-    version: "2.12.5"
+    version: "2.12.6"
   boolean_selector:
     dependency: transitive
     description:
@@ -61,10 +61,10 @@ packages:
     dependency: "direct main"
     description:
       name: card_swiper
-      sha256: "0c94c538f47be1dab52d018d4900a7046b4cb0700dc7f95b8628da89d1212b35"
+      sha256: "21e52a144decbf0054e7cfed8bbe46fc89635e6c86b767eaccfe7d5aeba32528"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.4"
+    version: "3.0.1"
   characters:
     dependency: transitive
     description:
@@ -141,10 +141,10 @@ packages:
     dependency: "direct main"
     description:
       name: ditredi
-      sha256: bfe1223d9ae7cd53f7edfc9187c590d04a4f80046e622156fbc475555831eb18
+      sha256: "5bed909dfe632f977d412b7c324a724a49c4f33c221023cf07bb5b1762af59c4"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.4"
+    version: "2.0.0"
   equatable:
     dependency: transitive
     description:
@@ -284,10 +284,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_smart_dialog
-      sha256: "49003799720002f9ec5f7d04f7d95cd9e0d447988261b4c4bc5cdf914961d4c0"
+      sha256: "8ba9eeb5b0b380bec368c5c8a324e1dab0cd88965c2dd83e64237441140bc599"
       url: "https://pub.dev"
     source: hosted
-    version: "4.9.3+1"
+    version: "4.9.3+2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -376,10 +376,10 @@ packages:
     dependency: "direct main"
     description:
       name: local_auth_ios
-      sha256: "503a938c4edde6b244c6ee3b1e2e675ddb7e37e79d5056658dbed1997cf04785"
+      sha256: edc2977c5145492f3451db9507a2f2f284ee4f408950b3e16670838726761940
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.2"
+    version: "1.1.3"
   local_auth_platform_interface:
     dependency: transitive
     description:
