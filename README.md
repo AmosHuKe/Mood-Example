@@ -12,9 +12,9 @@
 </h1> 
 
 <p align="center">
-<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.8.0+5" src="https://img.shields.io/badge/Mood--Example-v1.8.0+5-3e4663"/></a> 
-<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.10.5" src="https://img.shields.io/badge/Flutter-v3.10.5-46D1FD"/></a> 
-<a target="_blank" href="https://dart.dev/"><img alt="Dart v3.0.5" src="https://img.shields.io/badge/Dart-v3.0.5-04599D"/></a> 
+<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.8.0+6" src="https://img.shields.io/badge/Mood--Example-v1.8.0+6-3e4663"/></a> 
+<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.10.6" src="https://img.shields.io/badge/Flutter-v3.10.6-46D1FD"/></a> 
+<a target="_blank" href="https://dart.dev/"><img alt="Dart v3.0.6" src="https://img.shields.io/badge/Dart-v3.0.6-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -108,20 +108,21 @@
 
 > Windows  
 ```
-[√] Flutter (Channel stable, 3.10.5, on Microsoft Windows [版本 10.0.22000.2057], locale zh-CN)
-[√] Android toolchain - develop for Android devices (Android SDK version 33.0.2)
+[√] Flutter (Channel stable, 3.10.6, on Microsoft Windows [版本 10.0.22000.2176], locale zh-CN)
+[√] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
 [√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.5.5)
 [√] Android Studio (version 2021.3)
+[√] IntelliJ IDEA Ultimate Edition (version 2023.1)
 [√] VS Code (version 1.78.2)
 ```  
 
 > macOS  
 ```
-[✓] Flutter (Channel stable, 3.10.5, on macOS 13.0 22A380 darwin-x64, locale zh-Hans-CN)
+[✓] Flutter (Channel stable, 3.10.6, on macOS 13.4.1 22F82 darwin-x64, locale zh-Hans-CN)
 [✓] Android toolchain - develop for Android devices (Android SDK version 33.0.0)
-[✓] Xcode - develop for iOS and macOS (Xcode 14.3)
+[✓] Xcode - develop for iOS and macOS (Xcode 14.3.1)
 [✓] Android Studio (version 2021.3)
-[✓] VS Code (version 1.78.2)
+[✓] VS Code (version 1.79.2)
 ```  
 
 
