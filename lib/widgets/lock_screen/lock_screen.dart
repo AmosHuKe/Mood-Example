@@ -52,19 +52,19 @@ Future<void> lockScreen(BuildContext context) async {
           final bool localAuthBiometric =
               await LocalAuthUtils().localAuthBiometric(context);
           if (localAuthBiometric) {
-            applicationViewModel.setKeyPasswordScreenOpen(false);
+            applicationViewModel.keyPasswordScreenOpen = false;
             if (context.mounted) {
               Navigator.pop(context);
             }
           }
         },
         onOpened: () async {
-          applicationViewModel.setKeyPasswordScreenOpen(true);
+          applicationViewModel.keyPasswordScreenOpen = true;
           if (canAppKeyBiometric) {
             final bool localAuthBiometric =
                 await LocalAuthUtils().localAuthBiometric(context);
             if (localAuthBiometric) {
-              applicationViewModel.setKeyPasswordScreenOpen(false);
+              applicationViewModel.keyPasswordScreenOpen = false;
               if (context.mounted) {
                 Navigator.pop(context);
               }
@@ -72,7 +72,7 @@ Future<void> lockScreen(BuildContext context) async {
           }
         },
         onUnlocked: () {
-          applicationViewModel.setKeyPasswordScreenOpen(false);
+          applicationViewModel.keyPasswordScreenOpen = false;
           Navigator.pop(context);
         },
       );

@@ -163,15 +163,10 @@ class MoodChoice extends StatelessWidget {
           builder: (_, moodViewModel, child) {
             List<Widget> widgetList = [];
             for (var list in moodViewModel.moodCategoryList ?? []) {
-              /// 获取所有心情类别
-              moodViewModel.setMoodCategoryData(list);
-              MoodCategoryData moodCategoryData =
-                  moodViewModel.moodCategoryData;
-
               widgetList.add(
                 MoodChoiceCard(
-                  icon: moodCategoryData.icon ?? "",
-                  title: moodCategoryData.title ?? "",
+                  icon: list.icon ?? "",
+                  title: list.title ?? "",
                 ),
               );
             }

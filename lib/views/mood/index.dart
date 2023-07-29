@@ -234,19 +234,17 @@ class _MoodBodyState extends State<MoodBody> {
               child: SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    moodViewModel
-                        .setMoodData(moodViewModel.moodDataList![index]);
-                    MoodData? moodData = moodViewModel.moodData;
+                    MoodData? moodData = moodViewModel.moodDataList![index];
 
                     return MoodCard(
-                      key: Key(moodViewModel.moodData?.moodId.toString() ?? ''),
-                      moodId: moodData?.moodId ?? -1,
-                      icon: moodData?.icon ?? '',
-                      title: moodData?.title ?? '',
-                      datetime: moodData?.createTime ?? '',
-                      score: moodData?.score ?? 0,
-                      content: moodData?.content,
-                      createTime: moodData?.createTime ?? '',
+                      key: Key(moodData.moodId.toString()),
+                      moodId: moodData.moodId ?? -1,
+                      icon: moodData.icon ?? '',
+                      title: moodData.title ?? '',
+                      datetime: moodData.createTime ?? '',
+                      score: moodData.score ?? 0,
+                      content: moodData.content,
+                      createTime: moodData.createTime ?? '',
                     );
                   },
                   childCount: moodViewModel.moodDataList?.length,
@@ -517,13 +515,13 @@ class _CalendarState extends State<Calendar> {
               });
 
               /// 赋值当前选择的日期
-              moodViewModel.setNowDateTime(selectedDay);
+              moodViewModel.nowDateTime = selectedDay;
 
               /// 处理赋值新日期
               String moodDatetime = selectedDay.toString().substring(0, 10);
 
               /// 开启加载
-              moodViewModel.setMoodDataLoading(true);
+              moodViewModel.moodDataLoading = true;
 
               /// 获取心情数据
               MoodService.getMoodData(moodViewModel, moodDatetime);

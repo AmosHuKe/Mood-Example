@@ -134,7 +134,7 @@ class _KeyBodyState extends State<KeyBody> {
               child: CupertinoSwitch(
                 value: keyBiometric,
                 onChanged: (value) async {
-                  applicationViewModel.setKeyPasswordScreenOpen(false);
+                  applicationViewModel.keyPasswordScreenOpen = false;
                   if (value) {
                     await LocalAuthUtils().localAuthBiometric(context)
                         ? await PreferencesDB()
@@ -174,7 +174,7 @@ class _KeyBodyState extends State<KeyBody> {
                 child: CupertinoSwitch(
                   value: keyPassword != "",
                   onChanged: (value) async {
-                    applicationViewModel.setKeyPasswordScreenOpen(false);
+                    applicationViewModel.keyPasswordScreenOpen = false;
                     if (value) {
                       createlockScreen(
                         context,

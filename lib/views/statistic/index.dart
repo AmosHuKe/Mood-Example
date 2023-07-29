@@ -70,15 +70,9 @@ init(BuildContext context) {
   StatisticService.getDateMoodCount(statisticViewModel, days: moodDays);
 }
 
-class StatisticBody extends StatefulWidget {
+class StatisticBody extends StatelessWidget {
   const StatisticBody({super.key});
 
-  @override
-  State<StatisticBody> createState() => _StatisticBodyState();
-}
-
-class _StatisticBodyState extends State<StatisticBody> {
-  late int _filterValue = 7;
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -109,55 +103,45 @@ class _StatisticBodyState extends State<StatisticBody> {
                     semanticsLabel:
                         S.of(context).app_bottomNavigationBar_title_statistic,
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      FilterBottom(
-                        S.of(context).statistic_filter_7d,
-                        checked: _filterValue == 7,
-                        semanticsLabel: "筛选7日统计数据",
-                        onTap: () {
-                          if (_filterValue == 7) return;
-                          setState(() {
-                            _filterValue = 7;
-                          });
-                          Provider.of<StatisticViewModel>(context,
-                                  listen: false)
-                              .setMoodDays(7);
-                          init(context);
-                        },
-                      ),
-                      FilterBottom(
-                        S.of(context).statistic_filter_15d,
-                        checked: _filterValue == 15,
-                        semanticsLabel: "筛选15日统计数据",
-                        onTap: () {
-                          if (_filterValue == 15) return;
-                          setState(() {
-                            _filterValue = 15;
-                          });
-                          Provider.of<StatisticViewModel>(context,
-                                  listen: false)
-                              .setMoodDays(15);
-                          init(context);
-                        },
-                      ),
-                      FilterBottom(
-                        S.of(context).statistic_filter_30d,
-                        checked: _filterValue == 30,
-                        semanticsLabel: "筛选30日统计数据",
-                        onTap: () {
-                          if (_filterValue == 30) return;
-                          setState(() {
-                            _filterValue = 30;
-                          });
-                          Provider.of<StatisticViewModel>(context,
-                                  listen: false)
-                              .setMoodDays(30);
-                          init(context);
-                        },
-                      )
-                    ],
+                  Consumer<StatisticViewModel>(
+                    builder: (context, statisticViewModel, child) {
+                      final int moodDays = statisticViewModel.moodDays;
+                      return Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          FilterBottom(
+                            S.of(context).statistic_filter_7d,
+                            checked: moodDays == 7,
+                            semanticsLabel: "筛选7日统计数据",
+                            onTap: () {
+                              if (moodDays == 7) return;
+                              statisticViewModel.moodDays = 7;
+                              init(context);
+                            },
+                          ),
+                          FilterBottom(
+                            S.of(context).statistic_filter_15d,
+                            checked: moodDays == 15,
+                            semanticsLabel: "筛选15日统计数据",
+                            onTap: () {
+                              if (moodDays == 15) return;
+                              statisticViewModel.moodDays = 15;
+                              init(context);
+                            },
+                          ),
+                          FilterBottom(
+                            S.of(context).statistic_filter_30d,
+                            checked: moodDays == 30,
+                            semanticsLabel: "筛选30日统计数据",
+                            onTap: () {
+                              if (moodDays == 30) return;
+                              statisticViewModel.moodDays = 30;
+                              init(context);
+                            },
+                          )
+                        ],
+                      );
+                    },
                   ),
                 ],
               ),

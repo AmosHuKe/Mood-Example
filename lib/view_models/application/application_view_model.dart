@@ -24,44 +24,44 @@ class ApplicationViewModel extends ChangeNotifier {
   bool _keyBiometric = false;
 
   /// 设置-主题模式
-  void setThemeMode(ThemeMode themeMode) {
+  set themeMode(ThemeMode themeMode) {
     _themeMode = themeMode;
     notifyListeners();
   }
 
   /// 设置-多主题模式
-  void setMultipleThemesMode(String multipleThemesMode) {
+  set multipleThemesMode(String multipleThemesMode) {
     _multipleThemesMode = multipleThemesMode;
     notifyListeners();
   }
 
   /// 设置-语言是否跟随系统
-  void setLocaleSystem(bool localeSystem) {
+  set localeSystem(bool localeSystem) {
     _localeSystem = localeSystem;
     notifyListeners();
   }
 
   /// 设置-语言
-  void setLocale(Locale locale) {
+  set locale(Locale locale) {
     _localeSystem = false;
     _locale = locale;
     notifyListeners();
   }
 
   /// 设置-安全-密码内容
-  void setKeyPassword(String keyPassword) {
+  set keyPassword(String keyPassword) {
     _keyPassword = keyPassword;
     notifyListeners();
   }
 
   /// 设置-安全-密码界面是否打开
-  void setKeyPasswordScreenOpen(bool keyPasswordScreenOpen) {
+  set keyPasswordScreenOpen(bool keyPasswordScreenOpen) {
     _keyPasswordScreenOpen = keyPasswordScreenOpen;
     notifyListeners();
   }
 
   /// 设置-安全-生物特征识别是否开启
-  void setKeyBiometric(bool keyBiometric) {
+  set keyBiometric(bool keyBiometric) {
     _keyBiometric = keyBiometric;
     notifyListeners();
   }

@@ -68,7 +68,7 @@ class PreferencesDB {
       ApplicationViewModel applicationViewModel, String value) async {
     SharedPreferences prefs = await init();
     prefs.setString(appThemeDarkMode, value);
-    applicationViewModel.setThemeMode(darkThemeMode(value));
+    applicationViewModel.themeMode = darkThemeMode(value);
   }
 
   /// 获取-主题外观模式
@@ -76,7 +76,7 @@ class PreferencesDB {
       ApplicationViewModel applicationViewModel) async {
     SharedPreferences prefs = await init();
     String themeDarkMode = prefs.getString(appThemeDarkMode) ?? "system";
-    applicationViewModel.setThemeMode(darkThemeMode(themeDarkMode));
+    applicationViewModel.themeMode = darkThemeMode(themeDarkMode);
     return themeDarkMode;
   }
 
@@ -85,7 +85,7 @@ class PreferencesDB {
       ApplicationViewModel applicationViewModel, String value) async {
     SharedPreferences prefs = await init();
     prefs.setString(appMultipleThemesMode, value);
-    applicationViewModel.setMultipleThemesMode(value);
+    applicationViewModel.multipleThemesMode = value;
   }
 
   /// 获取-多主题模式
@@ -94,7 +94,7 @@ class PreferencesDB {
     SharedPreferences prefs = await init();
     String multipleThemesMode =
         prefs.getString(appMultipleThemesMode) ?? "default";
-    applicationViewModel.setMultipleThemesMode(multipleThemesMode);
+    applicationViewModel.multipleThemesMode = multipleThemesMode;
     return multipleThemesMode;
   }
 
@@ -107,8 +107,10 @@ class PreferencesDB {
     final appLocaleSystem = locale ?? "zh";
     final appLocaleList = appLocaleSystem.split('_');
     prefs.setString(appLocale, appLocaleSystem);
-    applicationViewModel.setLocale(Locale(
-        appLocaleList[0], appLocaleList.length > 1 ? appLocaleList[1] : ''));
+    applicationViewModel.locale = Locale(
+      appLocaleList[0],
+      appLocaleList.length > 1 ? appLocaleList[1] : '',
+    );
   }
 
   /// 获取-APP地区语言
@@ -116,8 +118,10 @@ class PreferencesDB {
     SharedPreferences prefs = await init();
     String getAppLocale = prefs.getString(appLocale) ?? "zh";
     final appLocaleList = getAppLocale.split('_');
-    applicationViewModel.setLocale(Locale(
-        appLocaleList[0], appLocaleList.length > 1 ? appLocaleList[1] : ''));
+    applicationViewModel.locale = Locale(
+      appLocaleList[0],
+      appLocaleList.length > 1 ? appLocaleList[1] : '',
+    );
     return getAppLocale;
   }
 
@@ -126,7 +130,7 @@ class PreferencesDB {
       ApplicationViewModel applicationViewModel, bool isLocaleSystem) async {
     SharedPreferences prefs = await init();
     prefs.setBool(appIsLocaleSystem, isLocaleSystem);
-    applicationViewModel.setLocaleSystem(isLocaleSystem);
+    applicationViewModel.localeSystem = isLocaleSystem;
   }
 
   /// 获取-APP地区语言是否跟随系统
@@ -134,7 +138,7 @@ class PreferencesDB {
       ApplicationViewModel applicationViewModel) async {
     SharedPreferences prefs = await init();
     bool getAppIsLocaleSystem = prefs.getBool(appIsLocaleSystem) ?? true;
-    applicationViewModel.setLocaleSystem(getAppIsLocaleSystem);
+    applicationViewModel.localeSystem = getAppIsLocaleSystem;
     return getAppIsLocaleSystem;
   }
 
@@ -143,7 +147,7 @@ class PreferencesDB {
       ApplicationViewModel applicationViewModel, String keyPassword) async {
     SharedPreferences prefs = await init();
     prefs.setString(appKeyPassword, keyPassword);
-    applicationViewModel.setKeyPassword(keyPassword);
+    applicationViewModel.keyPassword = keyPassword;
   }
 
   /// 获取-安全-密码
@@ -151,7 +155,7 @@ class PreferencesDB {
       ApplicationViewModel applicationViewModel) async {
     SharedPreferences prefs = await init();
     String getAppKeyPassword = prefs.getString(appKeyPassword) ?? "";
-    applicationViewModel.setKeyPassword(getAppKeyPassword);
+    applicationViewModel.keyPassword = getAppKeyPassword;
     return getAppKeyPassword;
   }
 
@@ -160,7 +164,7 @@ class PreferencesDB {
       ApplicationViewModel applicationViewModel, bool keyBiometric) async {
     SharedPreferences prefs = await init();
     prefs.setBool(appKeyBiometric, keyBiometric);
-    applicationViewModel.setKeyBiometric(keyBiometric);
+    applicationViewModel.keyBiometric = keyBiometric;
   }
 
   /// 获取-安全-生物特征识别是否开启
@@ -168,7 +172,7 @@ class PreferencesDB {
       ApplicationViewModel applicationViewModel) async {
     SharedPreferences prefs = await init();
     bool getAppKeyBiometric = prefs.getBool(appKeyBiometric) ?? false;
-    applicationViewModel.setKeyBiometric(getAppKeyBiometric);
+    applicationViewModel.keyBiometric = getAppKeyBiometric;
     return getAppKeyBiometric;
   }
 }

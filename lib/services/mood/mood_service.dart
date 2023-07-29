@@ -64,7 +64,7 @@ class MoodService {
     MoodCategoryModel moodCategoryModel =
         moodCategoryModelFromJson(json.encode(moodCategoryDataAll));
     // 更新数据
-    moodViewModel.setMoodCategory(moodCategoryModel);
+    moodViewModel.moodCategoryList = moodCategoryModel.moodCategoryData;
   }
 
   /// 添加心情详情数据
@@ -85,7 +85,7 @@ class MoodService {
     // 转换模型
     MoodModel moodModel = moodModelFromJson(json.encode(moodDataAll));
     // 更新数据
-    moodViewModel.setMoodDataList(moodModel);
+    moodViewModel.moodDataList = moodModel.moodData;
   }
 
   /// 获取所有已记录心情的日期
@@ -102,7 +102,7 @@ class MoodService {
     }
     debugPrint("已记录的日期$dataList");
     // 更新数据
-    moodViewModel.setMoodRecordedDate(dataList);
+    moodViewModel.moodRecordedDate = dataList;
   }
 
   /// 修改心情详细数据
@@ -131,6 +131,6 @@ class MoodService {
     // 转换模型
     MoodModel moodModel = moodModelFromJson(json.encode(moodDataAll));
     // 更新数据
-    moodViewModel.setMoodAllDataList(moodModel);
+    moodViewModel.moodAllDataList = moodModel.moodData;
   }
 }

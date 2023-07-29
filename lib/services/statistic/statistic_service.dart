@@ -20,7 +20,7 @@ class StatisticService {
     debugPrint("获取APP使用天数$list");
     final int count = list[0]['dayCount'] ?? 0;
     // 赋值
-    statisticViewModel.setDaysCount(count);
+    statisticViewModel.daysCount = count;
   }
 
   /// 获取APP累计记录条数
@@ -31,7 +31,7 @@ class StatisticService {
     debugPrint("APP累计记录条数$list");
     final int count = list[0]['moodCount'] ?? 0;
     // 赋值
-    statisticViewModel.setMoodCount(count);
+    statisticViewModel.moodCount = count;
   }
 
   /// 获取平均情绪波动
@@ -42,7 +42,7 @@ class StatisticService {
     debugPrint("平均情绪波动$list");
     final int count = list[0]['moodScoreAverage'] ?? 0;
     // 赋值
-    statisticViewModel.setMoodScoreAverage(count);
+    statisticViewModel.moodScoreAverage = count;
   }
 
   /// 获取近日情绪波动
@@ -70,7 +70,7 @@ class StatisticService {
     debugPrint("近$days日情绪波动$dataList");
 
     // 赋值
-    statisticViewModel.setMoodScoreAverageRecently(dataList);
+    statisticViewModel.moodScoreAverageRecently = dataList;
   }
 
   /// 获取近7日心情数量统计
@@ -92,6 +92,6 @@ class StatisticService {
     debugPrint("近$days日心情数量统计$list");
 
     // 赋值
-    statisticViewModel.setDateMoodCount(list);
+    statisticViewModel.dateMoodCount = list;
   }
 }

@@ -21,34 +21,34 @@ class StatisticViewModel extends ChangeNotifier {
   List<dynamic> _dateMoodCount = [];
 
   /// 赋值统计的天数
-  setMoodDays(int moodDays) {
-    _moodDays = 7;
+  set moodDays(int moodDays) {
     _moodDays = moodDays;
+    notifyListeners();
   }
 
   /// 赋值APP累计使用天数
-  setDaysCount(int daysCount) {
+  set daysCount(int daysCount) {
     _daysCount = 0;
     _daysCount = daysCount;
     notifyListeners();
   }
 
   /// 赋值APP累计记录条数
-  setMoodCount(int moodCount) {
+  set moodCount(int moodCount) {
     _moodCount = 0;
     _moodCount = moodCount;
     notifyListeners();
   }
 
   /// 赋值平均情绪波动
-  setMoodScoreAverage(int moodScoreAverage) {
+  set moodScoreAverage(int moodScoreAverage) {
     _moodScoreAverage = 0;
     _moodScoreAverage = moodScoreAverage;
     notifyListeners();
   }
 
   /// 赋值近日情绪波动
-  setMoodScoreAverageRecently(
+  set moodScoreAverageRecently(
       List<Map<String, dynamic>> moodScoreAverageRecently) {
     _moodScoreAverageRecently = [];
     _moodScoreAverageRecently = moodScoreAverageRecently;
@@ -56,7 +56,7 @@ class StatisticViewModel extends ChangeNotifier {
   }
 
   /// 赋值近日心情数量统计
-  setDateMoodCount(List<dynamic> dateMoodCount) {
+  set dateMoodCount(List<dynamic> dateMoodCount) {
     _dateMoodCount = [];
     _dateMoodCount = dateMoodCount;
     notifyListeners();
