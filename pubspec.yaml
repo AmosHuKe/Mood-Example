@@ -66,6 +66,8 @@ dependencies:
   local_auth: ^2.1.6
   local_auth_android: ^1.0.28
   local_auth_ios: ^1.1.3
+  # 倾斜视差
+  flutter_tilt: ^1.0.1
 
   # Remixicon
   remixicon: ^1.0.0

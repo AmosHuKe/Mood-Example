@@ -285,6 +285,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_tilt:
+    dependency: "direct main"
+    description:
+      name: flutter_tilt
+      sha256: "14950853812e7960940c3c25d5b5dc005cab0dfd020573bd91c23e4cb42d784b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   flutter_timezone:
     dependency: "direct main"
     description:

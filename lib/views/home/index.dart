@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 ///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_tilt/flutter_tilt.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:animations/animations.dart';
@@ -381,24 +382,114 @@ class NoticeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        /// 阴影
-        shadow(
-          opacity: 0.2,
-          margin: EdgeInsets.only(left: 24.w, right: 24.w, top: 16.w),
-        ),
-        shadow(
-          opacity: 0.4,
-          margin: EdgeInsets.only(left: 12.w, right: 12.w, top: 8.w),
-        ),
-
-        /// 正文
-        SizedBox(
-          height: 190.w,
-          child: const ActionCard(),
-        ),
-      ],
+    return Tilt(
+      tiltConfig: const TiltConfig(
+        leaveDuration: Duration(seconds: 1),
+        leaveCurve: Curves.elasticOut,
+      ),
+      lightConfig: const LightConfig(disable: true),
+      shadowConfig: const ShadowConfig(disable: true),
+      childLayout: ChildLayout(
+        outer: [
+          Positioned(
+            right: -20.w,
+            child: TiltParallax(
+              size: const Offset(15, 15),
+              child: Image.asset(
+                'assets/images/onboarding/onboarding_3.png',
+                fit: BoxFit.contain,
+                width: 180.w,
+              ),
+            ),
+          ),
+        ],
+        inner: [
+          Positioned(
+            left: 24.w,
+            bottom: 24.w,
+            child: TiltParallax(
+              size: const Offset(5, 5),
+              child: Container(
+                constraints: BoxConstraints(
+                  minHeight: 45.w,
+                  minWidth: 95.w,
+                ),
+                child: AnimatedPress(
+                  child: OutlinedButton(
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.black87),
+                      textStyle: MaterialStateProperty.all(
+                        TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14.sp),
+                        ),
+                      ),
+                      overlayColor: MaterialStateProperty.all(Colors.white10),
+                    ),
+                    onPressed: () => {
+                      /// 导航到新路由
+                      Navigator.pushNamed(
+                        context,
+                        Routes.onboarding,
+                      ).then((result) {})
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 4.w),
+                          child: Text(
+                            S.of(context).home_upgrade_button,
+                            strutStyle: const StrutStyle(
+                              forceStrutHeight: false,
+                              leading: 1,
+                            ),
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Remix.play_circle_fill,
+                          size: 24.sp,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+        behind: [
+          /// 阴影
+          TiltParallax(
+            size: const Offset(-16, -16),
+            child: shadow(
+              opacity: 0.2,
+              margin: EdgeInsets.only(left: 24.w, right: 24.w, top: 32.w),
+            ),
+          ),
+          TiltParallax(
+            size: const Offset(-8, -8),
+            child: shadow(
+              opacity: 0.4,
+              margin: EdgeInsets.only(left: 12.w, right: 12.w, top: 16.w),
+            ),
+          ),
+        ],
+      ),
+      child: SizedBox(
+        height: 190.w,
+        child: const ActionCard(),
+      ),
     );
   }
 }
@@ -432,112 +523,30 @@ class _ActionCardState extends State<ActionCard> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              clipBehavior: Clip.none,
-              alignment: Alignment.centerLeft,
+            /// 文字和按钮
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                /// 图片或装饰
-                Positioned(
-                  bottom: -18.w,
-                  left: 128.w,
-                  child: Image.asset(
-                    'assets/images/onboarding/onboarding_3.png',
-                    fit: BoxFit.contain,
-                    width: 180.w,
+                Text(
+                  S.of(context).home_upgrade_title,
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w900,
                   ),
                 ),
-
-                /// 文字和按钮
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            S.of(context).home_upgrade_title,
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 8.w),
-                            child: Text(
-                              S.of(context).home_upgrade_content,
-                              style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16.sp,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                Padding(
+                  padding: EdgeInsets.only(top: 8.w),
+                  child: Text(
+                    S.of(context).home_upgrade_content,
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 16.sp,
                     ),
-                    Container(
-                      constraints: BoxConstraints(
-                        minHeight: 45.w,
-                        minWidth: 95.w,
-                      ),
-                      child: AnimatedPress(
-                        child: OutlinedButton(
-                          style: ButtonStyle(
-                            foregroundColor:
-                                MaterialStateProperty.all(Colors.white),
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.black87),
-                            textStyle: MaterialStateProperty.all(
-                              TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(14.sp),
-                              ),
-                            ),
-                            overlayColor:
-                                MaterialStateProperty.all(Colors.white10),
-                          ),
-                          onPressed: () => {
-                            /// 导航到新路由
-                            Navigator.pushNamed(
-                              context,
-                              Routes.onboarding,
-                            ).then((result) {})
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(right: 4.w),
-                                child: Text(
-                                  S.of(context).home_upgrade_button,
-                                  strutStyle: const StrutStyle(
-                                    forceStrutHeight: false,
-                                    leading: 1,
-                                  ),
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                  ),
-                                ),
-                              ),
-                              Icon(
-                                Remix.play_circle_fill,
-                                size: 24.sp,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
