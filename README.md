@@ -12,7 +12,7 @@
 </h1> 
 
 <p align="center">
-<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.8.0+7" src="https://img.shields.io/badge/Mood--Example-v1.8.0+7-3e4663"/></a> 
+<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.8.0+8" src="https://img.shields.io/badge/Mood--Example-v1.8.0+8-3e4663"/></a> 
 <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.10.6" src="https://img.shields.io/badge/Flutter-v3.10.6-46D1FD"/></a> 
 <a target="_blank" href="https://dart.dev/"><img alt="Dart v3.0.6" src="https://img.shields.io/badge/Dart-v3.0.6-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
@@ -108,11 +108,11 @@
 
 > Windows  
 ```
-[√] Flutter (Channel stable, 3.10.6, on Microsoft Windows [版本 10.0.22000.2176], locale zh-CN)
+[√] Flutter (Channel stable, 3.10.6, on Microsoft Windows [版本 10.0.22000.2295], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
 [√] Visual Studio - develop for Windows (Visual Studio Community 2022 17.5.5)
 [√] Android Studio (version 2021.3)
-[√] IntelliJ IDEA Ultimate Edition (version 2023.1)
+[√] IntelliJ IDEA Ultimate Edition (version 2023.2)
 [√] VS Code (version 1.78.2)
 ```  
 
@@ -356,7 +356,7 @@ $ flutter test integration_test/app_test.dart
 | [remixicon](https://pub.dev/packages/remixicon) | [MIT License](https://pub.dev/packages/remixicon/license) |  
 | [awesome_notifications](https://pub.dev/packages/awesome_notifications) | [Apache-2.0 License](https://pub.dev/packages/awesome_notifications/license) |  
 | [flutter_screenutil](https://pub.dev/packages/flutter_screenutil) | [Apache-2.0 License](https://pub.dev/packages/flutter_screenutil/license) |  
-| [flutter_native_timezone](https://pub.dev/packages/flutter_native_timezone) | [Apache-2.0 License](https://pub.dev/packages/flutter_native_timezone/license) |  
+| [flutter_timezone](https://pub.dev/packages/flutter_timezone) | [Apache-2.0 License](https://pub.dev/packages/flutter_timezone/license) |  
 | [table_calendar](https://pub.dev/packages/table_calendar) | [Apache-2.0 License](https://pub.dev/packages/table_calendar/license) |  
 | [sqflite](https://pub.dev/packages/sqflite) | [BSD-2-Clause License](https://pub.dev/packages/sqflite/license) |  
 | [vibration](https://pub.dev/packages/vibration) | [BSD-2-Clause License](https://pub.dev/packages/vibration/license) |  

@@ -16,13 +16,13 @@ dependencies:
   # 国际化
   intl: ^0.18.0
   # 路径
-  path_provider: ^2.0.15
+  path_provider: ^2.1.0
   # UI 自适应工具
   flutter_screenutil: ^5.9.0-beta
   # 状态管理
   provider: ^6.0.5
   # 数据库
-  sqflite: ^2.2.8+4
+  sqflite: ^2.3.0
   # 共享存储
   shared_preferences: ^2.2.0
   # 路由管理
@@ -30,7 +30,7 @@ dependencies:
   # 缩放抽屉
   flutter_zoom_drawer: ^3.1.1
   # Dialog
-  flutter_smart_dialog: ^4.9.3+2
+  flutter_smart_dialog: ^4.9.4
   # 日历
   table_calendar: ^3.0.9
   # 滑动操作项
@@ -44,9 +44,9 @@ dependencies:
   # Excel
   excel: ^2.1.0
   # 分享
-  share_plus: ^7.0.2
+  share_plus: ^7.1.0
   # 文件选择
-  file_picker: ^5.3.2
+  file_picker: ^5.3.3
   # WebView
   webview_flutter: ^4.2.2
   # 3D 数据集显示
@@ -55,11 +55,11 @@ dependencies:
   # 本地通知
   awesome_notifications: ^0.7.5-dev.3
   # 时区
-  flutter_native_timezone: ^2.0.0
+  flutter_timezone: ^1.0.7
   # 动画
   animations: ^2.0.7
   # 游戏引擎相关
-  bonfire: ^2.12.6
+  bonfire: ^2.12.7
   # 密码锁
   flutter_screen_lock: ^9.0.1
   # 本地认证
