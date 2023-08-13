@@ -122,7 +122,7 @@
 [✓] Android toolchain - develop for Android devices (Android SDK version 33.0.0)
 [✓] Xcode - develop for iOS and macOS (Xcode 14.3.1)
 [✓] Android Studio (version 2021.3)
-[✓] VS Code (version 1.79.2)
+[✓] VS Code (version 1.81.1)
 ```  
 
 
