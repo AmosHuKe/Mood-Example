@@ -52,14 +52,12 @@ class _AnimatedPressState extends State<AnimatedPress>
     AnimationStatus status = _controller.status;
     if (status != AnimationStatus.forward &&
         status != AnimationStatus.completed) {
-      debugPrint("开始动画");
       _controller.forward();
     }
   }
 
   /// 结束动画
   void controllerReverse() {
-    debugPrint("结束动画");
     _controller.reverse();
   }
 
