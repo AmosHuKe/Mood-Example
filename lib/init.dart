@@ -35,10 +35,11 @@ class _InitState extends State<Init> with WidgetsBindingObserver {
         debugPrint("app 恢复");
       case AppLifecycleState.inactive:
         debugPrint("app 闲置");
+      case AppLifecycleState.hidden:
+        debugPrint("app 隐藏");
       case AppLifecycleState.paused:
         debugPrint("app 暂停");
-
-        /// 锁屏
+        // 锁屏
         runLockScreen();
       case AppLifecycleState.detached:
         debugPrint("app 退出");

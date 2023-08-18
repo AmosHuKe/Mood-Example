@@ -226,7 +226,7 @@ void main() {
           tester.element(find.byKey(const Key("widget_menu_page")));
       var i18n = S.of(context);
 
-      Finder widgetHomeBody = find.byKey(const Key("widget_home_body"));
+      // Finder widgetHomeBody = find.byKey(const Key("widget_home_body"));
       Finder widgetTabHome = find.byKey(const Key("tab_home"));
       Finder widgetOptionMood = find.byKey(const Key("widget_option_mood"));
       Finder widgetActionButtonClose =
@@ -266,10 +266,10 @@ void main() {
       await tester.tap(widgetTabHome);
       await tester.pumpAndSettle();
       expect(textHi, findsOneWidget);
-      await tester.fling(widgetHomeBody, const Offset(0, -400), 2400.0);
+      await tester.fling(textHelp, const Offset(0, -400), 2400.0);
       await tester.pumpAndSettle();
       expect(textHelp, findsOneWidget);
-      await tester.fling(widgetHomeBody, const Offset(0, 400), 2400.0);
+      await tester.fling(textHelp, const Offset(0, 400), 2400.0);
       await tester.pumpAndSettle();
       expect(textHi, findsOneWidget);
 
@@ -316,7 +316,7 @@ void main() {
       await tester.pumpAndSettle();
 
       /// 帮助文章操作
-      await tester.fling(widgetHomeBody, const Offset(0, -400), 2400.0);
+      await tester.fling(textHelp, const Offset(0, -400), 2400.0);
       await tester.pumpAndSettle();
       expect(widgetHomeArticle1, findsOneWidget);
       expect(widgetHomeArticle2, findsOneWidget);

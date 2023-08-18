@@ -1,5 +1,5 @@
-# Unreleased  
-- [升级] Flutter 3.10.6  
+# 1.9.0  
+- [升级] Flutter 3.13.0  
 - [升级] Package 升级及适配  
 - [Bug 修复] 游戏终止  
 
