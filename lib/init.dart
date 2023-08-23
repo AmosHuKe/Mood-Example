@@ -27,32 +27,24 @@ class Init extends StatefulWidget {
   State<Init> createState() => _InitState();
 }
 
-class _InitState extends State<Init> with WidgetsBindingObserver {
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.resumed:
-        debugPrint("app 恢复");
-      case AppLifecycleState.inactive:
-        debugPrint("app 闲置");
-      case AppLifecycleState.hidden:
-        debugPrint("app 隐藏");
-      case AppLifecycleState.paused:
-        debugPrint("app 暂停");
-        // 锁屏
-        runLockScreen();
-      case AppLifecycleState.detached:
-        debugPrint("app 退出");
-    }
-  }
-
+class _InitState extends State<Init> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    AppLifecycleListener(
+      onResume: () => debugPrint("App Resume"),
+      onInactive: () => debugPrint("App Inactive"),
+      onHide: () => debugPrint("App Hide"),
+      onShow: () => debugPrint("App Show"),
+      onPause: () {
+        debugPrint("App Pause");
+        runLockScreen();
+      },
+      onRestart: () => debugPrint("App Restart"),
+      onDetach: () => debugPrint("App Detach"),
+    );
     init();
-
-    /// 通知测试
+    // 通知测试
     NotificationController.cancelNotifications();
     sendNotification();
     sendScheduleNotification();
@@ -60,7 +52,6 @@ class _InitState extends State<Init> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 

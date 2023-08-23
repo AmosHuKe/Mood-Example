@@ -1,3 +1,7 @@
+
+# Unreleased
+- [修改] didChangeAppLifecycleState -> AppLifecycleListener
+
 # 1.9.0  
 - [升级] Flutter 3.13.0  
 - [升级] Package 升级及适配  
