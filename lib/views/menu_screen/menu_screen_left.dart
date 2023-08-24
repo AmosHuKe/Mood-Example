@@ -53,27 +53,33 @@ class MenuScreenLeftBody extends StatelessWidget {
         parent: BouncingScrollPhysics(),
       ),
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                top: 72.w,
-                bottom: 48.w,
-                left: 24.w,
-                right: 24.w,
-              ),
-              child: const Header(),
+        Padding(
+          padding: EdgeInsets.only(
+            top: 72.w,
+            bottom: 48.w,
+            left: 24.w,
+            right: 24.w,
+          ),
+          child: const Header(),
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            bottom: 24.w,
+            left: 24.w,
+            right: 24.w,
+          ),
+          child: const Menu(),
+        ),
+
+        /// 插画
+        BlockSemanticsToDrawerClosed(
+          child: Container(
+            padding: EdgeInsets.only(left: 24.w, bottom: 24.w),
+            child: Image.asset(
+              "assets/images/woolly/woolly-comet-2.png",
+              width: 240.w,
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                bottom: 24.w,
-                left: 24.w,
-                right: 24.w,
-              ),
-              child: const Menu(),
-            ),
-          ],
+          ),
         ),
       ],
     );
@@ -254,17 +260,6 @@ class Menu extends StatelessWidget {
               ),
             );
           },
-        ),
-
-        /// 插画
-        BlockSemanticsToDrawerClosed(
-          child: Container(
-            padding: EdgeInsets.only(top: 0.w),
-            child: Image.asset(
-              "assets/images/woolly/woolly-comet-2.png",
-              width: 240.w,
-            ),
-          ),
         ),
       ],
     );

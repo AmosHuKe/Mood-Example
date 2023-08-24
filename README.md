@@ -12,8 +12,8 @@
 </h1> 
 
 <p align="center">
-<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.9.0+1" src="https://img.shields.io/badge/Mood--Example-v1.9.0+1-3e4663"/></a> 
-<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.13.0" src="https://img.shields.io/badge/Flutter-v3.13.0-46D1FD"/></a> 
+<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.9.0+2" src="https://img.shields.io/badge/Mood--Example-v1.9.0+2-3e4663"/></a> 
+<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.13.1" src="https://img.shields.io/badge/Flutter-v3.13.1-46D1FD"/></a> 
 <a target="_blank" href="https://dart.dev/"><img alt="Dart v3.1.0" src="https://img.shields.io/badge/Dart-v3.1.0-04599D"/></a> 
 <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
@@ -108,7 +108,7 @@
 
 > Windows  
 ```
-[✓] Flutter (Channel stable, 3.13.0, on Microsoft Windows [版本 10.0.22000.2295], locale zh-CN)
+[✓] Flutter (Channel stable, 3.13.1, on Microsoft Windows [版本 10.0.22000.2295], locale zh-CN)
 [✓] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
 [✓] Visual Studio - develop Windows apps (Visual Studio Community 2022 17.5.5)
 [✓] Android Studio (version 2021.3)
