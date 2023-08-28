@@ -1,7 +1,11 @@
 
-# Unreleased
-- [升级] Flutter 3.13.1  
+# 1.9.1
+- [升级] Flutter 3.13.1
+- [升级] Package 升级及适配  
+- [新增] 沉浸模式（全屏模式）
+- [优化] 代码结构
 - [修改] didChangeAppLifecycleState -> AppLifecycleListener
+- [Bug 修复] WebView 报错
 
 # 1.9.0  
 - [升级] Flutter 3.13.0  
