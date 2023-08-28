@@ -33,9 +33,7 @@ class MenuScreenLeft extends StatelessWidget {
             child: const SafeArea(
               child: MenuScreenLeftBody(),
             ),
-            onTap: () {
-              ZoomDrawer.of(context)?.toggle.call();
-            },
+            onTap: () => ZoomDrawer.of(context)?.toggle.call(),
           ),
         );
       },
@@ -148,7 +146,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            debugPrint('数据');
+            print('数据');
 
             /// 底部内容弹出
             showModalBottomDetail(
@@ -169,7 +167,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            debugPrint('安全');
+            print('安全');
 
             /// 底部内容弹出
             showModalBottomDetail(
@@ -190,7 +188,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            debugPrint('主题');
+            print('主题');
 
             /// 底部内容弹出
             showModalBottomDetail(
@@ -211,7 +209,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            debugPrint('语言');
+            print('语言');
 
             /// 底部内容弹出
             showModalBottomDetail(
@@ -232,7 +230,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            debugPrint('实验室');
+            print('实验室');
             Navigator.pushNamed(context, Routes.settingLaboratory);
           },
         ),
@@ -248,7 +246,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            debugPrint('关于');
+            print('关于');
             Navigator.pushNamed(
               context,
               Routes.transformParams(
@@ -311,12 +309,10 @@ class BlockSemanticsToDrawerClosed extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder<DrawerState>(
       valueListenable: ZoomDrawer.of(context)!.stateNotifier,
-      builder: (_, state, child) {
-        return BlockSemantics(
-          blocking: state == DrawerState.closed,
-          child: child,
-        );
-      },
+      builder: (_, state, child) => BlockSemantics(
+        blocking: state == DrawerState.closed,
+        child: child,
+      ),
       child: child,
     );
   }

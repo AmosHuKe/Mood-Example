@@ -187,7 +187,7 @@ void main() {
       await tester.pumpAndSettle();
 
       for (final element in languageConfig) {
-        language.add(element['language']);
+        language.add(element.language);
       }
 
       await Future.forEach(language, (e) async {

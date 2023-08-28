@@ -19,11 +19,25 @@ import 'package:moodexample/models/mood/mood_model.dart';
 import 'package:moodexample/services/mood/mood_service.dart';
 import 'package:moodexample/view_models/mood/mood_view_model.dart';
 
-/// 状态
-late String _type;
+late MoodCategorySelectType _moodCategorySelectType;
 
 /// 当前选择的时间
 late String _nowDateTime;
+
+/// 状态
+enum MoodCategorySelectType {
+  add('add'),
+  edit('edit');
+
+  const MoodCategorySelectType(this.type);
+
+  final String type;
+
+  static MoodCategorySelectType fromString(String type) => values.firstWhere(
+        (e) => e.type == type,
+        orElse: () => add,
+      );
+}
 
 /// 新增心情页
 class MoodCategorySelect extends StatefulWidget {
@@ -32,7 +46,7 @@ class MoodCategorySelect extends StatefulWidget {
     required this.type,
   });
 
-  /// 状态 add:新增 edit:修改
+  /// 状态
   final String type;
 
   @override
@@ -47,7 +61,7 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
         Provider.of<MoodViewModel>(context, listen: false);
 
     /// 状态
-    _type = widget.type;
+    _moodCategorySelectType = MoodCategorySelectType.fromString(widget.type);
 
     /// 当前选择的时间
     _nowDateTime = moodViewModel.nowDateTime.toString().substring(0, 10);
@@ -64,10 +78,7 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         foregroundColor: Theme.of(context).textTheme.displayLarge!.color,
         shadowColor: Colors.transparent,
-        titleTextStyle: TextStyle(
-          color: Colors.black,
-          fontSize: 14.sp,
-        ),
+        titleTextStyle: TextStyle(color: Colors.black, fontSize: 14.sp),
         leading: ActionButton(
           semanticsLabel: '关闭',
           decoration: BoxDecoration(
@@ -76,13 +87,8 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
                 : AppTheme.backgroundColor1,
             borderRadius: BorderRadius.only(bottomRight: Radius.circular(18.w)),
           ),
-          child: Icon(
-            Remix.arrow_left_line,
-            size: 24.sp,
-          ),
-          onTap: () {
-            Navigator.of(context).pop();
-          },
+          child: Icon(Remix.arrow_left_line, size: 24.sp),
+          onTap: () => Navigator.of(context).pop(),
         ),
       ),
       body: const SafeArea(
@@ -94,14 +100,9 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
   }
 }
 
-class MoodCategorySelectBody extends StatefulWidget {
+class MoodCategorySelectBody extends StatelessWidget {
   const MoodCategorySelectBody({super.key});
 
-  @override
-  State<MoodCategorySelectBody> createState() => _MoodCategorySelectBodyState();
-}
-
-class _MoodCategorySelectBodyState extends State<MoodCategorySelectBody> {
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -120,7 +121,7 @@ class _MoodCategorySelectBodyState extends State<MoodCategorySelectBody> {
           child: Column(
             children: [
               Text(
-                _type == 'edit'
+                _moodCategorySelectType == MoodCategorySelectType.edit
                     ? S.of(context).mood_category_select_title_2
                     : S.of(context).mood_category_select_title_1,
                 style: TextStyle(
@@ -131,7 +132,9 @@ class _MoodCategorySelectBodyState extends State<MoodCategorySelectBody> {
               Padding(
                 padding: EdgeInsets.only(top: 4.w),
                 child: Text(
-                  _type == 'edit' ? '' : LocaleDatetime().yMMMd(_nowDateTime),
+                  _moodCategorySelectType == MoodCategorySelectType.edit
+                      ? ''
+                      : LocaleDatetime().yMMMd(_nowDateTime),
                   style: TextStyle(
                     color: AppTheme.subColor,
                     fontSize: 14.sp,
@@ -202,40 +205,38 @@ class MoodChoiceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedPress(
       child: GestureDetector(
-        child: SizedBox(
+        child: Container(
           width: 128.w,
           height: 128.w,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              color: Theme.of(context).cardColor,
-              borderRadius: BorderRadius.circular(32.w),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(bottom: 6.w),
-                  child: Text(
-                    icon,
-                    style: TextStyle(
-                      fontSize: 32.sp,
-                    ),
-                  ),
-                ),
-                Text(
-                  title,
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            borderRadius: BorderRadius.circular(32.w),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(bottom: 6.w),
+                child: Text(
+                  icon,
                   style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w400,
+                    fontSize: 32.sp,
                   ),
                 ),
-              ],
-            ),
+              ),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
           ),
         ),
         onTap: () {
-          switch (_type) {
-            case 'add':
+          switch (_moodCategorySelectType) {
+            case MoodCategorySelectType.add:
               // 关闭当前页并跳转输入内容页
               final MoodData moodData = MoodData();
               moodData.icon = icon;
@@ -250,11 +251,12 @@ class MoodChoiceCard extends StatelessWidget {
                   params: [moodDataToJson(moodData)],
                 ),
               );
-            case 'edit':
+            case MoodCategorySelectType.edit:
               // 关闭当前页并返回数据
-              final MoodCategoryData moodCategoryData = MoodCategoryData();
-              moodCategoryData.icon = icon;
-              moodCategoryData.title = title;
+              final moodCategoryData = MoodCategoryData(
+                icon: icon,
+                title: title,
+              );
               Navigator.pop(context, moodCategoryDataToJson(moodCategoryData));
           }
         },

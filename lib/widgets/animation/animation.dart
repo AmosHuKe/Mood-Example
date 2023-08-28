@@ -64,29 +64,15 @@ class _AnimatedPressState extends State<AnimatedPress>
   @override
   Widget build(BuildContext context) {
     return Listener(
-      onPointerDown: (_) {
-        controllerForward();
-      },
-      onPointerHover: (_) {
-        controllerForward();
-      },
-      onPointerMove: (_) {
-        controllerForward();
-      },
-      onPointerCancel: (_) {
-        controllerReverse();
-      },
-      onPointerUp: (_) {
-        controllerReverse();
-      },
+      onPointerDown: (_) => controllerForward(),
+      onPointerHover: (_) => controllerForward(),
+      onPointerMove: (_) => controllerForward(),
+      onPointerCancel: (_) => controllerReverse(),
+      onPointerUp: (_) => controllerReverse(),
       child: AnimatedBuilder(
         animation: _controller,
-        builder: (context, child) {
-          return Transform.scale(
-            scale: _scale.value,
-            child: child,
-          );
-        },
+        builder: (context, child) =>
+            Transform.scale(scale: _scale.value, child: child),
         child: widget.child,
       ),
     );

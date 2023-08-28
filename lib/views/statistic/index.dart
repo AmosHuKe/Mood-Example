@@ -160,73 +160,68 @@ class StatisticBody extends StatelessWidget {
             init(context);
           },
         ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              return Padding(
-                padding: EdgeInsets.only(bottom: 48.h),
-                child: Column(
-                  children: [
-                    /// 总体统计
-                    const OverallStatistics(),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 48.h),
+            child: Column(
+              children: [
+                /// 总体统计
+                const OverallStatistics(),
 
-                    /// 情绪波动（线）
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: 12.w,
-                        left: 24.w,
-                        right: 24.w,
-                      ),
-                      child: const StatisticMoodLine(),
-                    ),
+                /// 情绪波动（线）
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: 12.w,
+                    left: 24.w,
+                    right: 24.w,
+                  ),
+                  child: const StatisticMoodLine(),
+                ),
 
-                    /// 情绪波动
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: 12.w,
-                        left: 24.w,
-                        right: 24.w,
-                      ),
-                      child: Consumer<StatisticViewModel>(
-                        builder: (_, statisticViewModel, child) {
-                          return StatisticLayout(
-                            title: S.of(context).statistic_moodScore_title,
-                            subTitle: S.of(context).statistic_moodScore_content(
+                /// 情绪波动
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: 12.w,
+                    left: 24.w,
+                    right: 24.w,
+                  ),
+                  child: Consumer<StatisticViewModel>(
+                    builder: (_, statisticViewModel, child) {
+                      return StatisticLayout(
+                        title: S.of(context).statistic_moodScore_title,
+                        subTitle: S.of(context).statistic_moodScore_content(
+                              statisticViewModel.moodDays,
+                            ),
+                        height: 180.w,
+                        statistic: const StatisticWeekMood(),
+                      );
+                    },
+                  ),
+                ),
+
+                /// 心情统计
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: 12.w,
+                    left: 24.w,
+                    right: 24.w,
+                  ),
+                  child: Consumer<StatisticViewModel>(
+                    builder: (_, statisticViewModel, child) {
+                      return StatisticLayout(
+                        title: S.of(context).statistic_moodStatistics_title,
+                        subTitle:
+                            S.of(context).statistic_moodStatistics_content(
                                   statisticViewModel.moodDays,
                                 ),
-                            height: 180.w,
-                            statistic: const StatisticWeekMood(),
-                          );
-                        },
-                      ),
-                    ),
-
-                    /// 心情统计
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: 12.w,
-                        left: 24.w,
-                        right: 24.w,
-                      ),
-                      child: Consumer<StatisticViewModel>(
-                        builder: (_, statisticViewModel, child) {
-                          return StatisticLayout(
-                            title: S.of(context).statistic_moodStatistics_title,
-                            subTitle:
-                                S.of(context).statistic_moodStatistics_content(
-                                      statisticViewModel.moodDays,
-                                    ),
-                            height: 320.w,
-                            statistic: const StatisticCategoryMood(),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
+                        height: 320.w,
+                        statistic: const StatisticCategoryMood(),
+                      );
+                    },
+                  ),
                 ),
-              );
-            },
-            childCount: 1,
+              ],
+            ),
           ),
         ),
       ],
@@ -235,14 +230,9 @@ class StatisticBody extends StatelessWidget {
 }
 
 /// 统计-情绪波动（线）
-class StatisticMoodLine extends StatefulWidget {
+class StatisticMoodLine extends StatelessWidget {
   const StatisticMoodLine({super.key});
 
-  @override
-  State<StatisticMoodLine> createState() => _StatisticMoodLineState();
-}
-
-class _StatisticMoodLineState extends State<StatisticMoodLine> {
   @override
   Widget build(BuildContext context) {
     return Consumer<StatisticViewModel>(
@@ -274,14 +264,9 @@ class _StatisticMoodLineState extends State<StatisticMoodLine> {
 }
 
 /// 周情绪波动统计（线）-数据
-class StatisticWeekMoodLine extends StatefulWidget {
+class StatisticWeekMoodLine extends StatelessWidget {
   const StatisticWeekMoodLine({super.key});
 
-  @override
-  State<StatisticWeekMoodLine> createState() => _StatisticWeekMoodLineState();
-}
-
-class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
   @override
   Widget build(BuildContext context) {
     final List<Color> gradientColors = [
@@ -332,7 +317,6 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
           {'datetime': '', 'score': listData.last['score']},
         ];
 
-        ///
         return LineChart(
           LineChartData(
             clipData: const FlClipData.vertical(),
@@ -549,49 +533,7 @@ class StatisticWeekMood extends StatefulWidget {
 
 class _StatisticWeekMoodState extends State<StatisticWeekMood> {
   /// 当前选择的下标
-  late int _touchedIndex = -1;
-
-  /// 每条数据
-  BarChartGroupData makeGroupData(
-    int x,
-    double y, {
-    bool isTouched = false,
-    List<int> showTooltips = const [],
-    double? width,
-  }) {
-    return BarChartGroupData(
-      x: x,
-      barRods: [
-        BarChartRodData(
-          fromY: 0,
-          toY: y,
-          gradient: LinearGradient(
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-            colors: isTouched
-                ? [
-                    Theme.of(context).primaryColor.withOpacity(0.4),
-                    Theme.of(context).primaryColor,
-                  ]
-                : [
-                    Theme.of(context).primaryColor,
-                    Theme.of(context).primaryColor.withOpacity(0.4),
-                  ],
-          ),
-          width: width ?? 14.w,
-          borderRadius: BorderRadius.circular(14.w),
-          backDrawRodData: BackgroundBarChartRodData(
-            show: true,
-            color: isDarkMode(context)
-                ? const Color(0xFF2B3034)
-                : AppTheme.backgroundColor1,
-            fromY: 100,
-          ),
-        ),
-      ],
-      showingTooltipIndicators: showTooltips,
-    );
-  }
+  int _touchedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -706,10 +648,52 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
             gridData: const FlGridData(show: false),
             borderData: FlBorderData(show: false),
           ),
-          swapAnimationDuration: const Duration(milliseconds: 1000), // Optional
-          swapAnimationCurve: Curves.linearToEaseOut, // Optional
+          swapAnimationDuration: const Duration(milliseconds: 1000),
+          swapAnimationCurve: Curves.linearToEaseOut,
         );
       },
+    );
+  }
+
+  /// 每条数据
+  BarChartGroupData makeGroupData(
+    int x,
+    double y, {
+    bool isTouched = false,
+    List<int> showTooltips = const [],
+    double? width,
+  }) {
+    return BarChartGroupData(
+      x: x,
+      barRods: [
+        BarChartRodData(
+          fromY: 0,
+          toY: y,
+          gradient: LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            colors: isTouched
+                ? [
+                    Theme.of(context).primaryColor.withOpacity(0.4),
+                    Theme.of(context).primaryColor,
+                  ]
+                : [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).primaryColor.withOpacity(0.4),
+                  ],
+          ),
+          width: width ?? 14.w,
+          borderRadius: BorderRadius.circular(14.w),
+          backDrawRodData: BackgroundBarChartRodData(
+            show: true,
+            color: isDarkMode(context)
+                ? const Color(0xFF2B3034)
+                : AppTheme.backgroundColor1,
+            fromY: 100,
+          ),
+        ),
+      ],
+      showingTooltipIndicators: showTooltips,
     );
   }
 }
@@ -725,57 +709,6 @@ class StatisticCategoryMood extends StatefulWidget {
 class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
   /// 当前选择的下标
   late int _touchedIndex = -1;
-
-  /// 每条数据
-  PieChartSectionData makeSectionData(
-    double? value, {
-    String? title,
-    double? radius,
-    double? fontSize,
-    Color? color,
-    double? badgeFontSize,
-    double? badgeWidth,
-    double? badgeHeight,
-  }) {
-    return PieChartSectionData(
-      color: color,
-      value: value,
-      title: value?.toInt().toString(),
-      radius: radius,
-      titleStyle: TextStyle(
-        fontSize: fontSize,
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
-      ),
-      badgeWidget: AnimatedContainer(
-        duration: PieChart.defaultDuration,
-        width: badgeWidth,
-        height: badgeHeight,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          shape: BoxShape.circle,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(.2),
-              offset: const Offset(0, 0),
-              blurRadius: 4,
-            ),
-          ],
-        ),
-        padding: EdgeInsets.all(1.w),
-        child: Center(
-          child: Text(
-            title ?? '',
-            style: TextStyle(
-              fontSize: badgeFontSize,
-            ),
-          ),
-        ),
-      ),
-      badgePositionPercentageOffset: 0.9.w,
-      titlePositionPercentageOffset: 0.6.w,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -846,6 +779,57 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
       },
     );
   }
+
+  /// 每条数据
+  PieChartSectionData makeSectionData(
+    double? value, {
+    String? title,
+    double? radius,
+    double? fontSize,
+    Color? color,
+    double? badgeFontSize,
+    double? badgeWidth,
+    double? badgeHeight,
+  }) {
+    return PieChartSectionData(
+      color: color,
+      value: value,
+      title: value?.toInt().toString(),
+      radius: radius,
+      titleStyle: TextStyle(
+        fontSize: fontSize,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+      badgeWidget: AnimatedContainer(
+        duration: PieChart.defaultDuration,
+        width: badgeWidth,
+        height: badgeHeight,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(.2),
+              offset: const Offset(0, 0),
+              blurRadius: 4,
+            ),
+          ],
+        ),
+        padding: EdgeInsets.all(1.w),
+        child: Center(
+          child: Text(
+            title ?? '',
+            style: TextStyle(
+              fontSize: badgeFontSize,
+            ),
+          ),
+        ),
+      ),
+      badgePositionPercentageOffset: 0.9.w,
+      titlePositionPercentageOffset: 0.6.w,
+    );
+  }
 }
 
 /// 统计Card
@@ -874,8 +858,9 @@ class StatisticsCard extends StatelessWidget {
       excludeSemantics: true,
       child: Card(
         elevation: 0,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.sp)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.sp),
+        ),
         child: Container(
           constraints: BoxConstraints(
             minWidth: 72.w,
@@ -885,19 +870,17 @@ class StatisticsCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              DecoratedBox(
+              Container(
+                width: 36.w,
+                height: 36.w,
                 decoration: const BoxDecoration(
                   color: Colors.black,
                   shape: BoxShape.circle,
                 ),
-                child: SizedBox(
-                  width: 36.w,
-                  height: 36.w,
-                  child: Icon(
-                    icon,
-                    size: 18.sp,
-                    color: Colors.white,
-                  ),
+                child: Icon(
+                  icon,
+                  size: 18.sp,
+                  color: Colors.white,
                 ),
               ),
               Padding(
@@ -956,8 +939,9 @@ class StatisticLayout extends StatelessWidget {
       excludeSemantics: true,
       child: Card(
         elevation: 0,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.sp)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.sp),
+        ),
         child: Container(
           height: height,
           margin: EdgeInsets.all(24.w),
@@ -975,9 +959,7 @@ class StatisticLayout extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
-                    height: 4.w,
-                  ),
+                  SizedBox(height: 4.w),
                   Text(
                     subTitle,
                     style: TextStyle(
@@ -986,12 +968,8 @@ class StatisticLayout extends StatelessWidget {
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  SizedBox(
-                    height: 38.w,
-                  ),
-                  Expanded(
-                    child: statistic,
-                  ),
+                  SizedBox(height: 38.w),
+                  Expanded(child: statistic),
                 ],
               ),
             ],

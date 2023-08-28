@@ -260,11 +260,11 @@ class HumanPlayer extends SimplePlayer
   /// 敌对生物生成 Orc
   void enemyOrcCreate(double dt) {
     if (checkInterval('EnemyBossCreate', 1000, dt)) {
-      debugPrint('怪物数量：${gameRef.enemies().length}');
+      print('怪物数量：${gameRef.enemies().length}');
 
       /// 限制数量
       if (gameRef.enemies().length >= 100) return;
-      debugPrint('Orc 生成了');
+      print('Orc 生成了');
 
       /// 生成
       gameRef.add(
@@ -305,11 +305,11 @@ class HumanPlayer extends SimplePlayer
   /// 敌对生物生成 Boss
   void enemyBossCreate(double dt) {
     if (checkInterval('EnemyBossCreate', 1000, dt)) {
-      debugPrint('怪物数量：${gameRef.enemies().length}');
+      print('怪物数量：${gameRef.enemies().length}');
 
       /// 限制数量
       if (gameRef.enemies().length >= 100) return;
-      debugPrint('Boss 生成了');
+      print('Boss 生成了');
 
       /// 生成
       gameRef.add(

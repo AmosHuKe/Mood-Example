@@ -473,50 +473,44 @@ class ActionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
+    return Container(
+      padding: EdgeInsets.all(24.w),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
-          colors: [
-            Color(0xFFFFBBBB),
-            Color(0xFFFFBBBB),
-            Color(0xFFFFC5C5),
-          ],
+          colors: [Color(0xFFFFBBBB), Color(0xFFFFBBBB), Color(0xFFFFC5C5)],
         ),
         borderRadius: BorderRadius.circular(30.w),
       ),
-      child: Padding(
-        padding: EdgeInsets.all(24.w),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            /// 文字和按钮
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  S.of(context).home_upgrade_title,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          /// 文字和按钮
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                S.of(context).home_upgrade_title,
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 8.w),
+                child: Text(
+                  S.of(context).home_upgrade_content,
                   style: TextStyle(
                     color: Colors.black87,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w900,
+                    fontSize: 16.sp,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 8.w),
-                  child: Text(
-                    S.of(context).home_upgrade_content,
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 16.sp,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

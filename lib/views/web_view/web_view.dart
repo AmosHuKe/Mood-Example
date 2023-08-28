@@ -40,24 +40,24 @@ class _WebViewPageState extends State<WebViewPage> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
-            debugPrint('加载中：$progress');
+            print('加载中：$progress');
             setState(() {
               _pageTitle =
                   '${S.of(context).web_view_loading_text} ${progress - 1}%';
             });
           },
           onPageStarted: (String url) {
-            debugPrint('开始加载：$url');
+            print('开始加载：$url');
             setState(() {
               _pageTitle = url;
             });
           },
           onPageFinished: (String url) {
-            debugPrint('加载完成：$url');
+            print('加载完成：$url');
             webViewInit();
           },
           onWebResourceError: (WebResourceError error) {
-            debugPrint('加载错误：$error');
+            print('加载错误：$error');
           },
         ),
       )

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 
 ///
 import 'package:moodexample/db/db.dart';
@@ -102,7 +101,7 @@ class MoodService {
 
       dataList.add({'recordedDate': recordedDate, 'icon': icon});
     }
-    debugPrint('已记录的日期$dataList');
+    print('已记录的日期$dataList');
     // 更新数据
     moodViewModel.moodRecordedDate = dataList;
   }

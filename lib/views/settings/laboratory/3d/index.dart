@@ -34,21 +34,15 @@ class _Page3DState extends State<Page3D> {
           leading: ActionButton(
             decoration: BoxDecoration(
               color: AppTheme.backgroundColor1,
-              borderRadius:
-                  BorderRadius.only(bottomRight: Radius.circular(18.w)),
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(18.w),
+              ),
             ),
-            child: Icon(
-              Remix.arrow_left_line,
-              size: 24.sp,
-            ),
-            onTap: () {
-              Navigator.of(context).pop();
-            },
+            child: Icon(Remix.arrow_left_line, size: 24.sp),
+            onTap: () => Navigator.of(context).pop(),
           ),
         ),
-        body: const SafeArea(
-          child: Body3D(),
-        ),
+        body: const SafeArea(child: Body3D()),
       ),
     );
   }

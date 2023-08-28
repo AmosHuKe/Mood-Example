@@ -13,14 +13,9 @@ import 'package:moodexample/config/language.dart';
 import 'package:moodexample/view_models/application/application_view_model.dart';
 
 /// 语言设置
-class SettingLanguage extends StatefulWidget {
+class SettingLanguage extends StatelessWidget {
   const SettingLanguage({super.key});
 
-  @override
-  State<SettingLanguage> createState() => _SettingLanguageState();
-}
-
-class _SettingLanguageState extends State<SettingLanguage> {
   /// 语言列表
   static const _languageConfig = languageConfig;
 
@@ -61,21 +56,23 @@ class _SettingLanguageState extends State<SettingLanguage> {
           builder: (_, applicationViewModel, child) {
             return Column(
               children: List<Widget>.generate(_languageConfig.length, (index) {
-                return RadioListTile(
-                  value: _languageConfig[index]['locale'].toString(),
+                return RadioListTile<Locale>(
+                  value: _languageConfig[index].locale,
                   groupValue: !applicationViewModel.localeSystem
-                      ? applicationViewModel.locale.toString()
-                      : false,
+                      ? applicationViewModel.locale
+                      : null,
                   title: Text(
-                    _languageConfig[index]['language'].toString(),
+                    _languageConfig[index].language,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.normal,
                         ),
                   ),
                   onChanged: (value) async {
-                    await PreferencesDB()
-                        .setAppLocale(applicationViewModel, value.toString());
+                    await PreferencesDB().setAppLocale(
+                      applicationViewModel,
+                      value.toString(),
+                    );
                   },
                 );
               }),

@@ -84,7 +84,7 @@ class Routes {
   static void configureRoutes(FluroRouter router) {
     router.notFoundHandler = Handler(
       handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
-        debugPrint('路由不存在!!!');
+        print('路由不存在!!!');
         return;
       },
     );
@@ -130,7 +130,7 @@ class Routes {
     for (int i = 0; i < params.length; i++) {
       transform += '/${params[i]}';
     }
-    debugPrint('$router$transform');
+    print('$router$transform');
     return '$router$transform';
   }
 }

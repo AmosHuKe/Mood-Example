@@ -75,7 +75,7 @@ class Orc extends SimpleEnemy
 
     /// 碰撞 Orc 不发生碰撞
     if (component is Orc) {
-      debugPrint('碰撞 Orc');
+      print('碰撞 Orc');
       active = false;
     }
     return active;

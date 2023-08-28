@@ -34,19 +34,15 @@ Future<T?> showModalBottomDetail<T>({
                 margin: EdgeInsets.all(12.w),
                 height: 4.w,
                 width: 24.w,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: isDarkMode(context)
-                        ? const Color(0xFF2B3034)
-                        : Colors.grey,
-                    borderRadius: BorderRadius.circular(8.w),
-                  ),
+                decoration: BoxDecoration(
+                  color: isDarkMode(context)
+                      ? const Color(0xFF2B3034)
+                      : Colors.grey,
+                  borderRadius: BorderRadius.circular(8.w),
                 ),
               ),
             ),
-            Expanded(
-              child: child,
-            ),
+            Expanded(child: child),
           ],
         ),
       );

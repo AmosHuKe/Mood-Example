@@ -24,14 +24,9 @@ import 'package:moodexample/view_models/application/application_view_model.dart'
 /// Pages
 import 'package:moodexample/views/menu_screen/menu_screen_left.dart';
 
-class Application extends StatefulWidget {
+class Application extends StatelessWidget {
   const Application({super.key});
 
-  @override
-  State<Application> createState() => _ApplicationState();
-}
-
-class _ApplicationState extends State<Application> {
   @override
   Widget build(BuildContext context) {
     /// 路由
@@ -54,29 +49,23 @@ class _ApplicationState extends State<Application> {
           splitScreenMode: true,
           builder: (context, child) {
             return MaterialApp(
-              /// 网格
+              // 网格
               debugShowMaterialGrid: false,
-
-              /// Debug标志
+              // Debug标志
               debugShowCheckedModeBanner: false,
-
-              /// 打开性能监控，覆盖在屏幕最上面
+              // 打开性能监控，覆盖在屏幕最上面
               showPerformanceOverlay: false,
-
-              /// 语义视图（无障碍）
+              // 语义视图（无障碍）
               showSemanticsDebugger: false,
-
-              /// 主题
+              // 主题
               themeMode: watchApplicationViewModel.themeMode,
               theme: AppTheme(getMultipleThemesMode(context))
                   .multipleThemesLightMode(),
               darkTheme: AppTheme(getMultipleThemesMode(context))
                   .multipleThemesDarkMode(),
-
-              /// 路由钩子
+              // 路由钩子
               onGenerateRoute: router.generator,
-
-              /// 国际化
+              // 国际化
               supportedLocales: S.delegate.supportedLocales,
               localizationsDelegates: const [
                 S.delegate,
@@ -88,15 +77,14 @@ class _ApplicationState extends State<Application> {
                   ? null
                   : watchApplicationViewModel.locale,
               localeListResolutionCallback: (locales, supportedLocales) {
-                debugPrint('当前地区语言$locales');
-                debugPrint('设备支持的地区语言$supportedLocales');
+                print('当前地区语言$locales');
+                print('设备支持的地区语言$supportedLocales');
                 return null;
               },
               title: 'Mood',
               navigatorObservers: [FlutterSmartDialog.observer],
               builder: FlutterSmartDialog.init(),
-
-              /// Home
+              // Home
               home: const WillPopScopeRoute(
                 child: Init(
                   child: MenuPage(key: Key('widget_menu_page')),
@@ -111,18 +99,13 @@ class _ApplicationState extends State<Application> {
 }
 
 /// 外层抽屉菜单
-class MenuPage extends StatefulWidget {
+class MenuPage extends StatelessWidget {
   const MenuPage({super.key});
 
   @override
-  State<MenuPage> createState() => _MenuPageState();
-}
-
-class _MenuPageState extends State<MenuPage> {
-  final _drawerController = ZoomDrawerController();
-
-  @override
   Widget build(BuildContext context) {
+    final _drawerController = ZoomDrawerController();
+
     return Consumer<ApplicationViewModel>(
       builder: (_, applicationViewModel, child) {
         return ZoomDrawer(
@@ -151,23 +134,16 @@ class _MenuPageState extends State<MenuPage> {
 }
 
 /// 主屏幕逻辑
-class MainScreenBody extends StatefulWidget {
+class MainScreenBody extends StatelessWidget {
   const MainScreenBody({super.key});
 
-  @override
-  State<MainScreenBody> createState() => _MainScreenBodyState();
-}
-
-class _MainScreenBodyState extends State<MainScreenBody> {
-  /// 默认状态 为关闭
-  ValueNotifier<DrawerState> drawerState = ValueNotifier(DrawerState.closed);
   @override
   Widget build(BuildContext context) {
     /// 监听状态进行改变
     return ValueListenableBuilder<DrawerState>(
       valueListenable: ZoomDrawer.of(context)!.stateNotifier,
       builder: (_, state, child) {
-        debugPrint('外层菜单状态：$state');
+        print('外层菜单状态：$state');
         return AbsorbPointer(
           absorbing: state != DrawerState.closed,
           child: child,

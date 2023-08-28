@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 ///
 import 'package:intl/intl.dart';
 
@@ -18,7 +16,7 @@ class StatisticService {
   ) async {
     // 查询
     final list = await DB.db.selectAPPUsageDays();
-    debugPrint('获取APP使用天数$list');
+    print('获取APP使用天数$list');
     final int count = list[0]['dayCount'] ?? 0;
     // 赋值
     statisticViewModel.daysCount = count;
@@ -30,7 +28,7 @@ class StatisticService {
   ) async {
     // 查询
     final list = await DB.db.selectAPPMoodCount();
-    debugPrint('APP累计记录条数$list');
+    print('APP累计记录条数$list');
     final int count = list[0]['moodCount'] ?? 0;
     // 赋值
     statisticViewModel.moodCount = count;
@@ -42,7 +40,7 @@ class StatisticService {
   ) async {
     // 查询
     final list = await DB.db.selectMoodScoreAverage();
-    debugPrint('平均情绪波动$list');
+    print('平均情绪波动$list');
     final int count = list[0]['moodScoreAverage'] ?? 0;
     // 赋值
     statisticViewModel.moodScoreAverage = count;
@@ -70,7 +68,7 @@ class StatisticService {
         'score': count,
       });
     }
-    debugPrint('近$days日情绪波动$dataList');
+    print('近$days日情绪波动$dataList');
 
     // 赋值
     statisticViewModel.moodScoreAverageRecently = dataList;
@@ -92,7 +90,7 @@ class StatisticService {
         "${DateFormat("yyyy-MM-dd").format(nowDate)} 23:59:59";
     // 查询
     final list = await DB.db.selectDateMoodCount(startTime, endTime);
-    debugPrint('近$days日心情数量统计$list');
+    print('近$days日心情数量统计$list');
 
     // 赋值
     statisticViewModel.dateMoodCount = list;

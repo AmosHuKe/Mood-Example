@@ -16,14 +16,9 @@ import 'package:moodexample/widgets/animation/animation.dart';
 import 'package:moodexample/view_models/application/application_view_model.dart';
 
 /// 主题设置
-class SettingTheme extends StatefulWidget {
+class SettingTheme extends StatelessWidget {
   const SettingTheme({super.key});
 
-  @override
-  State<SettingTheme> createState() => _SettingThemeState();
-}
-
-class _SettingThemeState extends State<SettingTheme> {
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -66,14 +61,9 @@ class _SettingThemeState extends State<SettingTheme> {
 }
 
 /// 主题外观设置
-class DarkThemeBody extends StatefulWidget {
+class DarkThemeBody extends StatelessWidget {
   const DarkThemeBody({super.key});
 
-  @override
-  State<DarkThemeBody> createState() => _DarkThemeBodyState();
-}
-
-class _DarkThemeBodyState extends State<DarkThemeBody> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ApplicationViewModel>(
@@ -85,7 +75,7 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
           runSpacing: 16.w,
           spacing: 16.w,
           children: [
-            DarkThemeCard(
+            ThemeCard(
               title: S.of(context).app_setting_theme_appearance_system,
               selected: themeMode == ThemeMode.system,
               child: Row(
@@ -129,11 +119,13 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
                 ],
               ),
               onTap: () async {
-                await PreferencesDB()
-                    .setAppThemeDarkMode(applicationViewModel, 'system');
+                await PreferencesDB().setAppThemeDarkMode(
+                  applicationViewModel,
+                  'system',
+                );
               },
             ),
-            DarkThemeCard(
+            ThemeCard(
               title: S.of(context).app_setting_theme_appearance_light,
               selected: themeMode == ThemeMode.light,
               child: Container(
@@ -149,11 +141,13 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
                 ),
               ),
               onTap: () async {
-                await PreferencesDB()
-                    .setAppThemeDarkMode(applicationViewModel, 'light');
+                await PreferencesDB().setAppThemeDarkMode(
+                  applicationViewModel,
+                  'light',
+                );
               },
             ),
-            DarkThemeCard(
+            ThemeCard(
               title: S.of(context).app_setting_theme_appearance_dark,
               selected: themeMode == ThemeMode.dark,
               child: Container(
@@ -169,8 +163,10 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
                 ),
               ),
               onTap: () async {
-                await PreferencesDB()
-                    .setAppThemeDarkMode(applicationViewModel, 'dark');
+                await PreferencesDB().setAppThemeDarkMode(
+                  applicationViewModel,
+                  'dark',
+                );
               },
             ),
           ],
@@ -221,7 +217,7 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
                     color: primaryColor,
                   ),
                   onTap: () async {
-                    debugPrint('主题:$key');
+                    print('主题:$key');
                     await PreferencesDB()
                         .setMultipleThemesMode(applicationViewModel, key);
                   },
@@ -313,9 +309,9 @@ class MultipleThemesCard extends StatelessWidget {
   }
 }
 
-/// 深色模式卡片
-class DarkThemeCard extends StatelessWidget {
-  const DarkThemeCard({
+/// 主题模式卡片
+class ThemeCard extends StatelessWidget {
+  const ThemeCard({
     super.key,
     this.child,
     this.title,

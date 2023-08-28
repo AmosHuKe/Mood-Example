@@ -71,9 +71,9 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
         // 通过渠道，调用原生代码代码的方法
         final future = await channel.invokeMethod('open', {'AppID': appID});
         // 打印执行的结果
-        debugPrint(future.toString());
+        print(future.toString());
       } on PlatformException catch (e) {
-        debugPrint(e.toString());
+        print(e.toString());
       }
     }
 

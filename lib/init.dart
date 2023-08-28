@@ -32,16 +32,16 @@ class _InitState extends State<Init> {
   void initState() {
     super.initState();
     AppLifecycleListener(
-      onResume: () => debugPrint('App Resume'),
-      onInactive: () => debugPrint('App Inactive'),
-      onHide: () => debugPrint('App Hide'),
-      onShow: () => debugPrint('App Show'),
+      onResume: () => print('App Resume'),
+      onInactive: () => print('App Inactive'),
+      onHide: () => print('App Hide'),
+      onShow: () => print('App Show'),
       onPause: () {
-        debugPrint('App Pause');
+        print('App Pause');
         runLockScreen();
       },
-      onRestart: () => debugPrint('App Restart'),
-      onDetach: () => debugPrint('App Detach'),
+      onRestart: () => print('App Restart'),
+      onDetach: () => print('App Detach'),
     );
     init();
     // 通知测试

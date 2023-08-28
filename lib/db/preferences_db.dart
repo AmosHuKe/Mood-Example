@@ -110,7 +110,7 @@ class PreferencesDB {
     String? locale,
   ) async {
     final SharedPreferences prefs = await init();
-    debugPrint(locale);
+    print(locale);
     await setAppIsLocaleSystem(applicationViewModel, false);
     final appLocaleSystem = locale ?? 'zh';
     final appLocaleList = appLocaleSystem.split('_');

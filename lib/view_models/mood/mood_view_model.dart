@@ -14,7 +14,7 @@ class MoodViewModel extends ChangeNotifier {
   List<MoodData>? _moodDataList = [];
 
   /// 当前选择的日期
-  DateTime nowDateTime = DateTime.now();
+  DateTime _nowDateTime = DateTime.now();
 
   /// 心情数据加载
   bool _moodDataLoading = true;
@@ -36,6 +36,12 @@ class MoodViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// 赋值当前选择得日期
+  set nowDateTime(DateTime nowDateTime) {
+    _nowDateTime = nowDateTime;
+    notifyListeners();
+  }
+
   /// 赋值心情数据加载
   set moodDataLoading(bool moodDataLoading) {
     _moodDataLoading = moodDataLoading;
@@ -53,9 +59,9 @@ class MoodViewModel extends ChangeNotifier {
   Future<bool> setMoodCategoryDefault() async {
     final bool initMoodCategoryDefaultType =
         await PreferencesDB().getInitMoodCategoryDefaultType();
-    debugPrint('心情类别默认值初始化:$initMoodCategoryDefaultType');
+    print('心情类别默认值初始化:$initMoodCategoryDefaultType');
     if (!initMoodCategoryDefaultType) {
-      debugPrint('开始心情类别默认值初始化');
+      print('开始心情类别默认值初始化');
       MoodService.setCategoryDefault();
 
       /// 已赋值默认值标记
@@ -80,6 +86,7 @@ class MoodViewModel extends ChangeNotifier {
 
   /// 心情数据
   List<MoodData>? get moodDataList => _moodDataList;
+  DateTime get nowDateTime => _nowDateTime;
   bool get moodDataLoading => _moodDataLoading;
   List get moodRecordedDate => _moodRecordedDate;
   List<MoodCategoryData>? get moodCategoryList => _moodCategoryList;

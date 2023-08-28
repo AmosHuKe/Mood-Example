@@ -22,16 +22,18 @@ Future<void> lockScreen(BuildContext context) async {
       Provider.of<ApplicationViewModel>(context, listen: false);
   final String password =
       await PreferencesDB().getAppKeyPassword(applicationViewModel);
+  final localAuthUtils = await LocalAuthUtils();
 
   /// 支持生物特征识别处理
   Widget? customizedButtonChild;
   final bool canAppKeyBiometric =
       await PreferencesDB().getAppKeyBiometric(applicationViewModel);
   final bool canLocalAuthBiometrics =
-      await LocalAuthUtils().canLocalAuthBiometrics();
+      await localAuthUtils.canLocalAuthBiometrics();
   if (canAppKeyBiometric && canLocalAuthBiometrics) {
+    final localAuthList = await localAuthUtils.localAuthList();
     customizedButtonChild = Icon(
-      await LocalAuthUtils().localAuthIcon(),
+      await localAuthUtils.localAuthIcon(localAuthList),
       size: 28.sp,
       semanticLabel: s.app_setting_security_biometric_weak,
     );
@@ -51,7 +53,7 @@ Future<void> lockScreen(BuildContext context) async {
         customizedButtonChild: customizedButtonChild,
         customizedButtonTap: () async {
           final bool localAuthBiometric =
-              await LocalAuthUtils().localAuthBiometric(context);
+              await localAuthUtils.localAuthBiometric(context);
           if (localAuthBiometric) {
             applicationViewModel.keyPasswordScreenOpen = false;
             if (context.mounted) {
@@ -63,7 +65,7 @@ Future<void> lockScreen(BuildContext context) async {
           applicationViewModel.keyPasswordScreenOpen = true;
           if (canAppKeyBiometric) {
             final bool localAuthBiometric =
-                await LocalAuthUtils().localAuthBiometric(context);
+                await localAuthUtils.localAuthBiometric(context);
             if (localAuthBiometric) {
               applicationViewModel.keyPasswordScreenOpen = false;
               if (context.mounted) {

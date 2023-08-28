@@ -32,9 +32,9 @@ class ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double getWidth = width ?? 48.w;
-    final double getHeight = height ?? 48.w;
-    final Decoration getDecoration = decoration ??
+    final double _width = width ?? 48.w;
+    final double _height = height ?? 48.w;
+    final Decoration _decoration = decoration ??
         BoxDecoration(
           color: AppTheme.backgroundColor1,
           borderRadius: BorderRadius.circular(18.w),
@@ -47,14 +47,12 @@ class ActionButton extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          width: getWidth,
-          height: getHeight,
+          width: _width,
+          height: _height,
           margin: margin,
           padding: padding,
-          child: DecoratedBox(
-            decoration: getDecoration,
-            child: child,
-          ),
+          decoration: _decoration,
+          child: child,
         ),
       ),
     );

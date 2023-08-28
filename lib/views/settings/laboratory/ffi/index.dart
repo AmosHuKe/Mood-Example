@@ -77,9 +77,9 @@ class _FFIPageState extends State<FFIPage> {
     final int dartApiInited = initDartApiDL(NativeApi.initializeApiDLData);
 
     if (dartApiInited == 0) {
-      debugPrint('初始化 Dart Native API 成功');
+      print('初始化 Dart Native API 成功');
     } else {
-      debugPrint('初始化 Dart Native API 失败');
+      print('初始化 Dart Native API 失败');
     }
   }
 

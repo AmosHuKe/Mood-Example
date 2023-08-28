@@ -13,7 +13,6 @@ class WillPopScopeRoute extends StatefulWidget {
     required this.child,
   });
 
-  /// 子组件
   final Widget child;
 
   @override

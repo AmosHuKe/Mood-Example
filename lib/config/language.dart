@@ -1,21 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:moodexample/models/config/language_model.dart';
+
 /// 语言配置
-const List<Map<String, Object>> languageConfig = [
-  {
-    'language': '简体中文',
-    'locale': Locale('zh', 'CN'),
-  },
-  {
-    'language': '繁體中文（台灣）',
-    'locale': Locale('zh', 'TW'),
-  },
-  {
-    'language': '繁體中文（香港）',
-    'locale': Locale('zh', 'HK'),
-  },
-  {
-    'language': 'English',
-    'locale': Locale('en'),
-  }
+const List<LanguageData> languageConfig = [
+  LanguageData('简体中文', Locale('zh', 'CN')),
+  LanguageData('繁體中文（台灣）', Locale('zh', 'TW')),
+  LanguageData('繁體中文（香港）', Locale('zh', 'HK')),
+  LanguageData('English', Locale('en')),
 ];

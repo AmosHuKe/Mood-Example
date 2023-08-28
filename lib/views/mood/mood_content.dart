@@ -13,6 +13,8 @@ import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 import 'package:moodexample/common/utils_intl.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
+import 'package:moodexample/views/mood/mood_category_select.dart'
+    show MoodCategorySelectType;
 
 ///
 import 'package:moodexample/models/mood/mood_model.dart';
@@ -45,37 +47,6 @@ class _MoodContentState extends State<MoodContent> {
     /// 心情数据
     _moodData = widget.moodData;
     _moodData.score = _moodData.score ?? 50;
-  }
-
-  /// 关闭返回
-  Function? onClose(BuildContext context) {
-    FocusScope.of(context).unfocus();
-    showCupertinoDialog<void>(
-      context: context,
-      builder: (BuildContext context) => Theme(
-        data: isDarkMode(context) ? ThemeData.dark() : ThemeData.light(),
-        child: CupertinoAlertDialog(
-          title: Text(S.of(context).mood_content_close_button_title),
-          content: Text(S.of(context).mood_content_close_button_content),
-          actions: <CupertinoDialogAction>[
-            CupertinoDialogAction(
-              child: Text(S.of(context).mood_content_close_button_cancel),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            CupertinoDialogAction(
-              child: Text(S.of(context).mood_content_close_button_confirm),
-              onPressed: () {
-                Navigator.pop(context);
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-    return null;
   }
 
   @override
@@ -129,6 +100,7 @@ class _MoodContentState extends State<MoodContent> {
                   : const Color(0xFF587966),
             ),
             onTap: () async {
+              FocusScope.of(context).unfocus();
               final MoodViewModel moodViewModel =
                   Provider.of<MoodViewModel>(context, listen: false);
 
@@ -174,6 +146,37 @@ class _MoodContentState extends State<MoodContent> {
         ),
       ),
     );
+  }
+
+  /// 关闭返回
+  Function? onClose(BuildContext context) {
+    FocusScope.of(context).unfocus();
+    showCupertinoDialog<void>(
+      context: context,
+      builder: (BuildContext context) => Theme(
+        data: isDarkMode(context) ? ThemeData.dark() : ThemeData.light(),
+        child: CupertinoAlertDialog(
+          title: Text(S.of(context).mood_content_close_button_title),
+          content: Text(S.of(context).mood_content_close_button_content),
+          actions: <CupertinoDialogAction>[
+            CupertinoDialogAction(
+              child: Text(S.of(context).mood_content_close_button_cancel),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            CupertinoDialogAction(
+              child: Text(S.of(context).mood_content_close_button_confirm),
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+    return null;
   }
 }
 
@@ -222,13 +225,13 @@ class _MoodContentBodyState extends State<MoodContentBody> {
                     context,
                     Routes.transformParams(
                       router: Routes.moodCategorySelect,
-                      params: ['edit'],
+                      params: [MoodCategorySelectType.edit.type],
                     ),
                   ).then((result) {
                     if (result == null) return;
+                    final MoodCategoryData moodCategoryData =
+                        moodCategoryDataFromJson(result.toString());
                     setState(() {
-                      final MoodCategoryData moodCategoryData =
-                          moodCategoryDataFromJson(result.toString());
                       _moodData.icon = moodCategoryData.icon;
                       _moodData.title = moodCategoryData.title;
                     });
@@ -276,35 +279,33 @@ class MoodChoiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedPress(
-      child: SizedBox(
+      child: Container(
         width: 128.w,
         height: 128.w,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: isDarkMode(context) ? const Color(0xFF202427) : Colors.white,
-            borderRadius: BorderRadius.circular(32.w),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(bottom: 6.w),
-                child: Text(
-                  icon ?? '',
-                  style: TextStyle(
-                    fontSize: 32.sp,
-                  ),
+        decoration: BoxDecoration(
+          color: isDarkMode(context) ? const Color(0xFF202427) : Colors.white,
+          borderRadius: BorderRadius.circular(32.w),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(bottom: 6.w),
+              child: Text(
+                icon ?? '',
+                style: TextStyle(
+                  fontSize: 32.sp,
                 ),
               ),
-              Text(
-                title ?? '',
-                style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w400,
-                    ),
-              ),
-            ],
-          ),
+            ),
+            Text(
+              title ?? '',
+              style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
+            ),
+          ],
         ),
       ),
     );
@@ -325,60 +326,58 @@ class _AddContentState extends State<AddContent> {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 12.w, horizontal: 24.w),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(32.w),
       ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 12.w, horizontal: 24.w),
-        child: Form(
-          key: _formContentKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextFormField(
-                key: const Key('content'),
-                initialValue: _moodData.content,
-                autocorrect: true,
-                autofocus: true,
-                keyboardType: TextInputType.multiline,
-                maxLines: 10,
-                maxLength: 5000,
-                scrollPhysics: const AlwaysScrollableScrollPhysics(
-                  parent: BouncingScrollPhysics(),
-                ),
-                style: Theme.of(context)
+      child: Form(
+        key: _formContentKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextFormField(
+              key: const Key('content'),
+              initialValue: _moodData.content,
+              autocorrect: true,
+              autofocus: true,
+              keyboardType: TextInputType.multiline,
+              maxLines: 10,
+              maxLength: 5000,
+              scrollPhysics: const AlwaysScrollableScrollPhysics(
+                parent: BouncingScrollPhysics(),
+              ),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: 14.sp),
+              decoration: InputDecoration(
+                hintText: S.of(context).mood_content_hintText,
+                hintStyle: Theme.of(context)
                     .textTheme
                     .bodyMedium!
                     .copyWith(fontSize: 14.sp),
-                decoration: InputDecoration(
-                  hintText: S.of(context).mood_content_hintText,
-                  hintStyle: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(fontSize: 14.sp),
-                  border: InputBorder.none,
-                  filled: true,
-                  fillColor: Theme.of(context).cardColor,
-                ),
-                buildCounter: (
-                  context, {
-                  required currentLength,
-                  required isFocused,
-                  maxLength,
-                }) {
-                  return Text(
-                    '$currentLength/$maxLength',
-                    style: TextStyle(fontSize: 10.sp),
-                  );
-                },
-                onChanged: (value) {
-                  _moodData.content = value;
-                },
+                border: InputBorder.none,
+                filled: true,
+                fillColor: Theme.of(context).cardColor,
               ),
-            ],
-          ),
+              buildCounter: (
+                context, {
+                required currentLength,
+                required isFocused,
+                maxLength,
+              }) {
+                return Text(
+                  '$currentLength/$maxLength',
+                  style: TextStyle(fontSize: 10.sp),
+                );
+              },
+              onChanged: (value) {
+                _moodData.content = value;
+              },
+            ),
+          ],
         ),
       ),
     );
@@ -394,11 +393,12 @@ class MoodScore extends StatefulWidget {
 }
 
 class _MoodScoreState extends State<MoodScore> {
+  /// 心情分数
+  double moodScore =
+      _moodData.score != null ? double.parse(_moodData.score.toString()) : 50;
+
   @override
   Widget build(BuildContext context) {
-    /// 心情分数
-    double moodScore =
-        _moodData.score != null ? double.parse(_moodData.score.toString()) : 50;
     return Column(
       children: [
         Padding(
@@ -425,14 +425,14 @@ class _MoodScoreState extends State<MoodScore> {
           max: 100.0,
           activeColor: Theme.of(context).primaryColor,
           thumbColor: Theme.of(context).primaryColor,
-          semanticFormatterCallback: (val) => '当前心情程度：${val ~/ 1}',
-          onChanged: (val) {
+          semanticFormatterCallback: (value) => '当前心情程度：${value ~/ 1}',
+          onChanged: (value) {
             setState(() {
-              moodScore = val;
+              moodScore = value;
             });
 
             /// 赋值分数
-            _moodData.score = val ~/ 1;
+            _moodData.score = value ~/ 1;
           },
         ),
       ],

@@ -155,7 +155,6 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
       direction: Axis.vertical,
       children: [
         Expanded(
-          flex: 1,
           child: Swiper(
             itemBuilder: (BuildContext context, int index) {
               return _swiperList[index];
@@ -219,15 +218,12 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
                   ),
                   overlayColor: MaterialStateProperty.all(Colors.white10),
                 ),
-                onPressed: () => {
-                  if (swiperIndex == _swiperList.length - 1)
-                    {
-                      Navigator.of(context).pop(),
-                    }
-                  else
-                    {
-                      _swiperController.next(animation: true),
-                    },
+                onPressed: () {
+                  if (swiperIndex == _swiperList.length - 1) {
+                    Navigator.of(context).pop();
+                  } else {
+                    _swiperController.next(animation: true);
+                  }
                 },
                 child: Transform.rotate(
                   angle: _stepButtonCurve.value * 1.58,

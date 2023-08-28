@@ -68,7 +68,7 @@ class LocalAuthUtils {
         );
         return didAuthenticate;
       } on PlatformException catch (e) {
-        debugPrint(e.toString());
+        print(e.toString());
         if (e.code == 'LockedOut') {
           SmartDialog.showToast(s.app_setting_security_localauth_error_1);
         }
@@ -79,9 +79,7 @@ class LocalAuthUtils {
   }
 
   /// 识别图标
-  Future<IconData?> localAuthIcon() async {
-    final List<BiometricType> localAuthList =
-        await LocalAuthUtils().localAuthList();
+  IconData? localAuthIcon(List<BiometricType> localAuthList) {
     IconData? authIcon;
     localAuthList.contains(BiometricType.weak)
         ? authIcon = Remix.body_scan_line
@@ -96,5 +94,26 @@ class LocalAuthUtils {
         ? authIcon = Remix.fingerprint_line
         : null;
     return authIcon;
+  }
+
+  /// 识别文字
+  String localAuthText(
+    BuildContext context,
+    List<BiometricType> localAuthList,
+  ) {
+    String authText = '';
+    localAuthList.contains(BiometricType.weak)
+        ? authText = S.of(context).app_setting_security_biometric_weak
+        : null;
+    localAuthList.contains(BiometricType.iris)
+        ? authText = S.of(context).app_setting_security_biometric_iris
+        : null;
+    localAuthList.contains(BiometricType.face)
+        ? authText = S.of(context).app_setting_security_biometric_face
+        : null;
+    localAuthList.contains(BiometricType.fingerprint)
+        ? authText = S.of(context).app_setting_security_biometric_fingerprint
+        : null;
+    return authText;
   }
 }

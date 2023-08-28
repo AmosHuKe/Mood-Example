@@ -15,14 +15,9 @@ import 'package:moodexample/views/settings/laboratory/unimp_miniapps/index.dart'
 import 'package:moodexample/views/settings/laboratory/game/index.dart';
 import 'package:moodexample/views/settings/laboratory/ffi/index.dart';
 
-class LaboratoryPage extends StatefulWidget {
+class LaboratoryPage extends StatelessWidget {
   const LaboratoryPage({super.key});
 
-  @override
-  State<LaboratoryPage> createState() => _LaboratoryPageState();
-}
-
-class _LaboratoryPageState extends State<LaboratoryPage> {
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -57,14 +52,9 @@ class _LaboratoryPageState extends State<LaboratoryPage> {
   }
 }
 
-class LaboratoryBody extends StatefulWidget {
+class LaboratoryBody extends StatelessWidget {
   const LaboratoryBody({super.key});
 
-  @override
-  State<LaboratoryBody> createState() => _LaboratoryBodyState();
-}
-
-class _LaboratoryBodyState extends State<LaboratoryBody> {
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -167,8 +157,8 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: '占位',
-          subtitle: '占位占位占位',
+          title: '...',
+          subtitle: '......',
         ),
       ],
     );
