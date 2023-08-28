@@ -12,22 +12,22 @@ import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/generated/l10n.dart';
 
 ///
-import 'package:moodexample/view_models/application/application_view_model.dart';
+import 'package:moodexample/providers/application/application_provider.dart';
 import 'package:remixicon/remixicon.dart';
 
 /// 锁屏
 Future<void> lockScreen(BuildContext context) async {
   final s = S.of(context);
-  final ApplicationViewModel applicationViewModel =
-      Provider.of<ApplicationViewModel>(context, listen: false);
+  final ApplicationProvider applicationProvider =
+      Provider.of<ApplicationProvider>(context, listen: false);
   final String password =
-      await PreferencesDB().getAppKeyPassword(applicationViewModel);
+      await PreferencesDB().getAppKeyPassword(applicationProvider);
   final localAuthUtils = await LocalAuthUtils();
 
   /// 支持生物特征识别处理
   Widget? customizedButtonChild;
   final bool canAppKeyBiometric =
-      await PreferencesDB().getAppKeyBiometric(applicationViewModel);
+      await PreferencesDB().getAppKeyBiometric(applicationProvider);
   final bool canLocalAuthBiometrics =
       await localAuthUtils.canLocalAuthBiometrics();
   if (canAppKeyBiometric && canLocalAuthBiometrics) {
@@ -39,7 +39,7 @@ Future<void> lockScreen(BuildContext context) async {
     );
   }
 
-  if (password != '' && !applicationViewModel.keyPasswordScreenOpen) {
+  if (password != '' && !applicationProvider.keyPasswordScreenOpen) {
     if (context.mounted) {
       screenLock(
         context: context,
@@ -55,19 +55,19 @@ Future<void> lockScreen(BuildContext context) async {
           final bool localAuthBiometric =
               await localAuthUtils.localAuthBiometric(context);
           if (localAuthBiometric) {
-            applicationViewModel.keyPasswordScreenOpen = false;
+            applicationProvider.keyPasswordScreenOpen = false;
             if (context.mounted) {
               Navigator.pop(context);
             }
           }
         },
         onOpened: () async {
-          applicationViewModel.keyPasswordScreenOpen = true;
+          applicationProvider.keyPasswordScreenOpen = true;
           if (canAppKeyBiometric) {
             final bool localAuthBiometric =
                 await localAuthUtils.localAuthBiometric(context);
             if (localAuthBiometric) {
-              applicationViewModel.keyPasswordScreenOpen = false;
+              applicationProvider.keyPasswordScreenOpen = false;
               if (context.mounted) {
                 Navigator.pop(context);
               }
@@ -75,7 +75,7 @@ Future<void> lockScreen(BuildContext context) async {
           }
         },
         onUnlocked: () {
-          applicationViewModel.keyPasswordScreenOpen = false;
+          applicationProvider.keyPasswordScreenOpen = false;
           Navigator.pop(context);
         },
       );

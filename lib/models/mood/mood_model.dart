@@ -1,12 +1,14 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 
 MoodModel moodModelFromJson(String str) => MoodModel.fromJson(json.decode(str));
 String moodModelToJson(MoodModel data) => json.encode(data.toJson());
 
 /// 心情详细数据
+@immutable
 class MoodModel {
-  MoodModel({
-    this.moodData,
+  const MoodModel({
+    required this.moodData,
   });
 
   factory MoodModel.fromJson(Map<String, dynamic> json) => MoodModel(
@@ -17,11 +19,11 @@ class MoodModel {
         ),
       );
 
-  final List<MoodData>? moodData;
+  final List<MoodData> moodData;
 
   Map<String, dynamic> toJson() => {
         'moodData': List<dynamic>.from(
-          moodData!.map(
+          moodData.map(
             (x) => x.toJson(),
           ),
         ),

@@ -17,7 +17,7 @@ import 'package:moodexample/views/menu_screen/widgets/setting_key.dart';
 import 'package:moodexample/routes.dart';
 
 ///
-import 'package:moodexample/view_models/application/application_view_model.dart';
+import 'package:moodexample/providers/application/application_provider.dart';
 
 /// 外层抽屉菜单（左）
 class MenuScreenLeft extends StatelessWidget {
@@ -25,8 +25,8 @@ class MenuScreenLeft extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ApplicationViewModel>(
-      builder: (_, applicationViewModel, child) {
+    return Consumer<ApplicationProvider>(
+      builder: (_, applicationProvider, child) {
         return Scaffold(
           backgroundColor: Colors.transparent,
           body: GestureDetector(

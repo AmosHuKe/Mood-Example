@@ -14,8 +14,8 @@ import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/widgets/lock_screen/lock_screen.dart';
 
 ///
-import 'package:moodexample/view_models/application/application_view_model.dart';
-import 'package:moodexample/view_models/mood/mood_view_model.dart';
+import 'package:moodexample/providers/application/application_provider.dart';
+import 'package:moodexample/providers/mood/mood_provider.dart';
 import 'package:moodexample/services/mood/mood_service.dart';
 
 class Init extends StatefulWidget {
@@ -60,10 +60,10 @@ class _InitState extends State<Init> {
 
   /// 应用初始化
   void init() async {
-    final MoodViewModel moodViewModel =
-        Provider.of<MoodViewModel>(context, listen: false);
-    final ApplicationViewModel applicationViewModel =
-        Provider.of<ApplicationViewModel>(context, listen: false);
+    final MoodProvider moodProvider =
+        Provider.of<MoodProvider>(context, listen: false);
+    final ApplicationProvider applicationProvider =
+        Provider.of<ApplicationProvider>(context, listen: false);
 
     /// 初始化数据库
     await DB.db.database;
@@ -73,23 +73,23 @@ class _InitState extends State<Init> {
 
     /// 设置心情类别默认值
     final bool setMoodCategoryDefaultresult =
-        await MoodViewModel().setMoodCategoryDefault();
+        await MoodProvider().setMoodCategoryDefault();
     if (setMoodCategoryDefaultresult) {
       /// 获取所有心情类别
-      MoodService.getMoodCategoryAll(moodViewModel);
+      MoodService.getMoodCategoryAll(moodProvider);
     }
 
     /// 触发获取APP主题深色模式
-    PreferencesDB().getAppThemeDarkMode(applicationViewModel);
+    PreferencesDB().getAppThemeDarkMode(applicationProvider);
 
     /// 触发获取APP多主题模式
-    PreferencesDB().getMultipleThemesMode(applicationViewModel);
+    PreferencesDB().getMultipleThemesMode(applicationProvider);
 
     /// 触发获取APP地区语言
-    PreferencesDB().getAppLocale(applicationViewModel);
+    PreferencesDB().getAppLocale(applicationProvider);
 
     /// 触发获取APP地区语言是否跟随系统
-    PreferencesDB().getAppIsLocaleSystem(applicationViewModel);
+    PreferencesDB().getAppIsLocaleSystem(applicationProvider);
 
     /// 通知权限判断显示
     allowedNotification();

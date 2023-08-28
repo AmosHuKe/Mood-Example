@@ -17,9 +17,9 @@ import 'package:moodexample/home_screen.dart';
 import 'init.dart';
 
 /// ViewModels
-import 'package:moodexample/view_models/mood/mood_view_model.dart';
-import 'package:moodexample/view_models/statistic/statistic_view_model.dart';
-import 'package:moodexample/view_models/application/application_view_model.dart';
+import 'package:moodexample/providers/mood/mood_provider.dart';
+import 'package:moodexample/providers/statistic/statistic_provider.dart';
+import 'package:moodexample/providers/application/application_provider.dart';
 
 /// Pages
 import 'package:moodexample/views/menu_screen/menu_screen_left.dart';
@@ -36,12 +36,12 @@ class Application extends StatelessWidget {
     return MultiProvider(
       /// 状态管理
       providers: [
-        ChangeNotifierProvider(create: (_) => MoodViewModel()),
-        ChangeNotifierProvider(create: (_) => StatisticViewModel()),
-        ChangeNotifierProvider(create: (_) => ApplicationViewModel()),
+        ChangeNotifierProvider(create: (_) => MoodProvider()),
+        ChangeNotifierProvider(create: (_) => StatisticProvider()),
+        ChangeNotifierProvider(create: (_) => ApplicationProvider()),
       ],
       builder: (context, child) {
-        final watchApplicationViewModel = context.watch<ApplicationViewModel>();
+        final watchApplicationProvider = context.watch<ApplicationProvider>();
 
         return ScreenUtilInit(
           designSize: const Size(AppTheme.wdp, AppTheme.hdp),
@@ -58,7 +58,7 @@ class Application extends StatelessWidget {
               // 语义视图（无障碍）
               showSemanticsDebugger: false,
               // 主题
-              themeMode: watchApplicationViewModel.themeMode,
+              themeMode: watchApplicationProvider.themeMode,
               theme: AppTheme(getMultipleThemesMode(context))
                   .multipleThemesLightMode(),
               darkTheme: AppTheme(getMultipleThemesMode(context))
@@ -73,9 +73,9 @@ class Application extends StatelessWidget {
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
               ],
-              locale: watchApplicationViewModel.localeSystem
+              locale: watchApplicationProvider.localeSystem
                   ? null
-                  : watchApplicationViewModel.locale,
+                  : watchApplicationProvider.locale,
               localeListResolutionCallback: (locales, supportedLocales) {
                 print('当前地区语言$locales');
                 print('设备支持的地区语言$supportedLocales');
@@ -106,8 +106,8 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _drawerController = ZoomDrawerController();
 
-    return Consumer<ApplicationViewModel>(
-      builder: (_, applicationViewModel, child) {
+    return Consumer<ApplicationProvider>(
+      builder: (_, applicationProvider, child) {
         return ZoomDrawer(
           controller: _drawerController,
           menuScreen: const MenuScreenLeft(),

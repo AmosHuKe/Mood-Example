@@ -250,12 +250,12 @@ $ flutter test integration_test/app_test.dart
 │   ├── generated                                   # intl 语言包生成的文件夹（不用编码，使用 Flutter Intl 插件自动生成）
 │   ├── l10n                                        # intl 语言包
 │   ├── models                                      # 数据模型
+│   ├── providers                                   # 业务状态逻辑
 │   ├── services                                    # 数据服务
 │   ├── themes                                      # 主题相关
 │   │   ├── multiple_themes_mode                    # 多主题配色
 │   │   │   └── theme_default.dart.dart             # 多主题默认配色
 │   │   └── app_theme.dart                          # 主题基础
-│   ├── view_models                                 # 业务逻辑
 │   ├── views                                       # 视图
 │   │   ├── home                                    # 首页
 │   │   ├── menu_screen                             # 侧边设置栏

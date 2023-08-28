@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// App相关
-class ApplicationViewModel extends ChangeNotifier {
+class ApplicationProvider extends ChangeNotifier {
   /// 主题模式
   ThemeMode _themeMode = ThemeMode.system;
 

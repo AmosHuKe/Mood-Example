@@ -25,7 +25,7 @@ import 'package:moodexample/views/mood/mood_category_select.dart'
 
 ///
 import 'package:moodexample/services/mood/mood_service.dart';
-import 'package:moodexample/view_models/mood/mood_view_model.dart';
+import 'package:moodexample/providers/mood/mood_provider.dart';
 import 'package:moodexample/models/mood/mood_model.dart';
 
 /// 心情页（记录列表）
@@ -117,18 +117,18 @@ class _MoodPageState extends State<MoodPage>
 
 /// 初始化
 void init(BuildContext context) {
-  final MoodViewModel moodViewModel =
-      Provider.of<MoodViewModel>(context, listen: false);
+  final MoodProvider moodProvider =
+      Provider.of<MoodProvider>(context, listen: false);
 
   /// 获取所有有记录心情的日期
-  MoodService.getMoodRecordedDate(moodViewModel);
+  MoodService.getMoodRecordedDate(moodProvider);
 
   /// 处理日期
   final String moodDatetime =
-      moodViewModel.nowDateTime.toString().substring(0, 10);
+      moodProvider.nowDateTime.toString().substring(0, 10);
 
   /// 获取心情数据
-  MoodService.getMoodData(moodViewModel, moodDatetime);
+  MoodService.getMoodData(moodProvider, moodDatetime);
 }
 
 /// 主体
@@ -187,10 +187,10 @@ class MoodBody extends StatelessWidget {
         ),
 
         /// 心情数据列表
-        Consumer<MoodViewModel>(
-          builder: (_, moodViewModel, child) {
+        Consumer<MoodProvider>(
+          builder: (_, moodProvider, child) {
             /// 加载数据的占位
-            if (moodViewModel.moodDataLoading) {
+            if (moodProvider.moodDataLoading) {
               return SliverFixedExtentList(
                 itemExtent: 280.w,
                 delegate: SliverChildBuilderDelegate(
@@ -205,7 +205,7 @@ class MoodBody extends StatelessWidget {
             }
 
             /// 没有数据的占位
-            if ((moodViewModel.moodDataList?.length ?? 0) <= 0) {
+            if ((moodProvider.moodDataList?.length ?? 0) <= 0) {
               return SliverFixedExtentList(
                 itemExtent: 280.w,
                 delegate: SliverChildBuilderDelegate(
@@ -226,8 +226,7 @@ class MoodBody extends StatelessWidget {
               child: SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    final MoodData moodData =
-                        moodViewModel.moodDataList![index];
+                    final MoodData moodData = moodProvider.moodDataList![index];
 
                     return MoodCard(
                       key: Key(moodData.moodId.toString()),
@@ -240,7 +239,7 @@ class MoodBody extends StatelessWidget {
                       createTime: moodData.createTime ?? '',
                     );
                   },
-                  childCount: moodViewModel.moodDataList?.length,
+                  childCount: moodProvider.moodDataList?.length,
                 ),
               ),
             );
@@ -278,10 +277,10 @@ class _CalendarState extends State<Calendar> {
         ],
         borderRadius: BorderRadius.circular(18.w),
       ),
-      child: Consumer<MoodViewModel>(
-        builder: (context, moodViewModel, child) {
+      child: Consumer<MoodProvider>(
+        builder: (context, moodProvider, child) {
           /// 当前选中得日期
-          late final _nowDateTime = moodViewModel.nowDateTime;
+          late final _nowDateTime = moodProvider.nowDateTime;
 
           return TableCalendar(
             firstDay: DateTime.utc(2021, 10, 01),
@@ -337,7 +336,7 @@ class _CalendarState extends State<Calendar> {
             // 自定义界面构建
             calendarBuilders: CalendarBuilders(
               defaultBuilder: (context, day, focusedDay) {
-                final List moodRecordedDate = moodViewModel.moodRecordedDate;
+                final List moodRecordedDate = moodProvider.moodRecordedDate;
                 return calenderBuilder(
                   day: day,
                   moodRecordedDate: moodRecordedDate,
@@ -369,7 +368,7 @@ class _CalendarState extends State<Calendar> {
                 ),
               ),
               todayBuilder: (context, day, focusedDay) {
-                final List moodRecordedDate = moodViewModel.moodRecordedDate;
+                final List moodRecordedDate = moodProvider.moodRecordedDate;
                 return calenderBuilder(
                   day: day,
                   moodRecordedDate: moodRecordedDate,
@@ -401,23 +400,23 @@ class _CalendarState extends State<Calendar> {
             selectedDayPredicate: (day) => isSameDay(_nowDateTime, day),
             onDaySelected: (selectedDay, focusedDay) {
               /// 之前选择的日期
-              final DateTime oldSelectedDay = moodViewModel.nowDateTime;
+              final DateTime oldSelectedDay = moodProvider.nowDateTime;
 
               /// 选择的日期相同则不操作
               if (oldSelectedDay == selectedDay) return;
 
               /// 赋值当前选择的日期
-              moodViewModel.nowDateTime = selectedDay;
+              moodProvider.nowDateTime = selectedDay;
 
               /// 处理赋值新日期
               final String moodDatetime =
                   selectedDay.toString().substring(0, 10);
 
               /// 开启加载
-              moodViewModel.moodDataLoading = true;
+              moodProvider.moodDataLoading = true;
 
               /// 获取心情数据
-              MoodService.getMoodData(moodViewModel, moodDatetime);
+              MoodService.getMoodData(moodProvider, moodDatetime);
             },
             onCalendarCreated: (pageController) {
               /// 初始化触发一次

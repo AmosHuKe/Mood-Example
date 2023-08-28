@@ -15,7 +15,7 @@ import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/generated/l10n.dart';
 
 ///
-import 'package:moodexample/view_models/application/application_view_model.dart';
+import 'package:moodexample/providers/application/application_provider.dart';
 
 /// 安全
 class SettingKey extends StatelessWidget {
@@ -70,15 +70,15 @@ class _KeyBodyState extends State<KeyBody> {
   String localAuthText = '';
 
   void init(BuildContext context) async {
-    final ApplicationViewModel applicationViewModel =
-        Provider.of<ApplicationViewModel>(context, listen: false);
+    final ApplicationProvider applicationProvider =
+        Provider.of<ApplicationProvider>(context, listen: false);
     final localAuthUtils = await LocalAuthUtils();
     localAuthList = await localAuthUtils.localAuthList();
     localAuthIcon = localAuthUtils.localAuthIcon(localAuthList);
     localAuthText = localAuthUtils.localAuthText(context, localAuthList);
 
     /// 获取-安全-生物特征识别是否开启
-    await PreferencesDB().getAppKeyBiometric(applicationViewModel);
+    await PreferencesDB().getAppKeyBiometric(applicationProvider);
   }
 
   @override
@@ -89,10 +89,10 @@ class _KeyBodyState extends State<KeyBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ApplicationViewModel>(
-      builder: (_, applicationViewModel, child) {
-        final String keyPassword = applicationViewModel.keyPassword;
-        final bool keyBiometric = applicationViewModel.keyBiometric;
+    return Consumer<ApplicationProvider>(
+      builder: (_, applicationProvider, child) {
+        final String keyPassword = applicationProvider.keyPassword;
+        final bool keyBiometric = applicationProvider.keyBiometric;
 
         Widget biometricsAuth = const SizedBox();
         if (keyPassword != '' && localAuthText != '') {
@@ -116,15 +116,15 @@ class _KeyBodyState extends State<KeyBody> {
               child: CupertinoSwitch(
                 value: keyBiometric,
                 onChanged: (value) async {
-                  applicationViewModel.keyPasswordScreenOpen = false;
+                  applicationProvider.keyPasswordScreenOpen = false;
                   if (value) {
                     await LocalAuthUtils().localAuthBiometric(context)
                         ? await PreferencesDB()
-                            .setAppKeyBiometric(applicationViewModel, value)
+                            .setAppKeyBiometric(applicationProvider, value)
                         : null;
                   } else {
                     await PreferencesDB()
-                        .setAppKeyBiometric(applicationViewModel, value);
+                        .setAppKeyBiometric(applicationProvider, value);
                   }
                 },
               ),
@@ -156,22 +156,22 @@ class _KeyBodyState extends State<KeyBody> {
                 child: CupertinoSwitch(
                   value: keyPassword != '',
                   onChanged: (value) async {
-                    applicationViewModel.keyPasswordScreenOpen = false;
+                    applicationProvider.keyPasswordScreenOpen = false;
                     if (value) {
                       createlockScreen(
                         context,
                         (password) async {
                           await PreferencesDB().setAppKeyPassword(
-                            applicationViewModel,
+                            applicationProvider,
                             password,
                           );
                         },
                       );
                     } else {
                       await PreferencesDB()
-                          .setAppKeyPassword(applicationViewModel, '');
+                          .setAppKeyPassword(applicationProvider, '');
                       await PreferencesDB()
-                          .setAppKeyBiometric(applicationViewModel, false);
+                          .setAppKeyBiometric(applicationProvider, false);
                     }
                   },
                 ),

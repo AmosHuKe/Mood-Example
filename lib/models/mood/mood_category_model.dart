@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 
 MoodCategoryModel moodCategoryModelFromJson(String str) =>
     MoodCategoryModel.fromJson(json.decode(str));
@@ -6,9 +7,10 @@ String moodCategoryModelToJson(MoodCategoryModel data) =>
     json.encode(data.toJson());
 
 /// 心情类别数据
+@immutable
 class MoodCategoryModel {
-  MoodCategoryModel({
-    this.moodCategoryData,
+  const MoodCategoryModel({
+    required this.moodCategoryData,
   });
 
   factory MoodCategoryModel.fromJson(Map<String, dynamic> json) =>
@@ -20,11 +22,11 @@ class MoodCategoryModel {
         ),
       );
 
-  final List<MoodCategoryData>? moodCategoryData;
+  final List<MoodCategoryData> moodCategoryData;
 
   Map<String, dynamic> toJson() => {
         'moodCategoryData': List<dynamic>.from(
-          moodCategoryData!.map(
+          moodCategoryData.map(
             (x) => x.toJson(),
           ),
         ),
@@ -37,10 +39,11 @@ String moodCategoryDataToJson(MoodCategoryData data) =>
     json.encode(data.toJson());
 
 /// 心情类别数据
+@immutable
 class MoodCategoryData {
-  MoodCategoryData({
-    this.icon,
-    this.title,
+  const MoodCategoryData({
+    required this.icon,
+    required this.title,
   });
 
   factory MoodCategoryData.fromJson(Map<String, dynamic> json) =>
@@ -50,9 +53,9 @@ class MoodCategoryData {
       );
 
   // 表情
-  late String? icon;
+  final String icon;
   // 标题
-  late String? title;
+  final String title;
 
   Map<String, dynamic> toJson() => {
         'icon': icon,

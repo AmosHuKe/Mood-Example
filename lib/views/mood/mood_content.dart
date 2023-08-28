@@ -19,7 +19,7 @@ import 'package:moodexample/views/mood/mood_category_select.dart'
 ///
 import 'package:moodexample/models/mood/mood_model.dart';
 import 'package:moodexample/models/mood/mood_category_model.dart';
-import 'package:moodexample/view_models/mood/mood_view_model.dart';
+import 'package:moodexample/providers/mood/mood_provider.dart';
 import 'package:moodexample/services/mood/mood_service.dart';
 
 /// 心情数据
@@ -101,13 +101,13 @@ class _MoodContentState extends State<MoodContent> {
             ),
             onTap: () async {
               FocusScope.of(context).unfocus();
-              final MoodViewModel moodViewModel =
-                  Provider.of<MoodViewModel>(context, listen: false);
+              final MoodProvider moodProvider =
+                  Provider.of<MoodProvider>(context, listen: false);
 
               /// 是否操作成功
               late bool result = false;
               final String nowDateTime =
-                  moodViewModel.nowDateTime.toString().substring(0, 10);
+                  moodProvider.nowDateTime.toString().substring(0, 10);
 
               /// 存在ID的操作（代表修改）
               if (_moodData.moodId != null) {
@@ -122,10 +122,10 @@ class _MoodContentState extends State<MoodContent> {
               }
               if (result) {
                 /// 获取心情数据
-                MoodService.getMoodData(moodViewModel, nowDateTime);
+                MoodService.getMoodData(moodProvider, nowDateTime);
 
                 /// 获取所有已记录心情的日期
-                MoodService.getMoodRecordedDate(moodViewModel);
+                MoodService.getMoodRecordedDate(moodProvider);
 
                 if (!mounted) return;
 
@@ -205,8 +205,8 @@ class _MoodContentBodyState extends State<MoodContentBody> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
-                child: Consumer<MoodViewModel>(
-                  builder: (_, moodViewModel, child) {
+                child: Consumer<MoodProvider>(
+                  builder: (_, moodProvider, child) {
                     /// 心情卡片
                     return Semantics(
                       button: true,

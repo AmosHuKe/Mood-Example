@@ -9,7 +9,7 @@ import 'package:moodexample/models/mood/mood_category_model.dart';
 import 'package:moodexample/services/mood/mood_service.dart';
 
 // 心情页相关
-class MoodViewModel extends ChangeNotifier {
+class MoodProvider extends ChangeNotifier {
   /// 心情数据List
   List<MoodData>? _moodDataList = [];
 

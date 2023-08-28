@@ -13,7 +13,7 @@ import 'package:moodexample/config/multiple_themes.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 
 ///
-import 'package:moodexample/view_models/application/application_view_model.dart';
+import 'package:moodexample/providers/application/application_provider.dart';
 
 /// 主题设置
 class SettingTheme extends StatelessWidget {
@@ -66,9 +66,9 @@ class DarkThemeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ApplicationViewModel>(
-      builder: (_, applicationViewModel, child) {
-        final themeMode = applicationViewModel.themeMode;
+    return Consumer<ApplicationProvider>(
+      builder: (_, applicationProvider, child) {
+        final themeMode = applicationProvider.themeMode;
         return Wrap(
           alignment: WrapAlignment.center,
           direction: Axis.horizontal,
@@ -120,7 +120,7 @@ class DarkThemeBody extends StatelessWidget {
               ),
               onTap: () async {
                 await PreferencesDB().setAppThemeDarkMode(
-                  applicationViewModel,
+                  applicationProvider,
                   'system',
                 );
               },
@@ -142,7 +142,7 @@ class DarkThemeBody extends StatelessWidget {
               ),
               onTap: () async {
                 await PreferencesDB().setAppThemeDarkMode(
-                  applicationViewModel,
+                  applicationProvider,
                   'light',
                 );
               },
@@ -164,7 +164,7 @@ class DarkThemeBody extends StatelessWidget {
               ),
               onTap: () async {
                 await PreferencesDB().setAppThemeDarkMode(
-                  applicationViewModel,
+                  applicationProvider,
                   'dark',
                 );
               },
@@ -192,9 +192,9 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
     appMultipleThemesMode
         .forEach((key, value) => appMultipleThemesModeKey.add(key));
 
-    return Consumer<ApplicationViewModel>(
-      builder: (_, applicationViewModel, child) {
-        final multipleThemesMode = applicationViewModel.multipleThemesMode;
+    return Consumer<ApplicationProvider>(
+      builder: (_, applicationProvider, child) {
+        final multipleThemesMode = applicationProvider.multipleThemesMode;
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.w),
           child: Wrap(
@@ -219,7 +219,7 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
                   onTap: () async {
                     print('主题:$key');
                     await PreferencesDB()
-                        .setMultipleThemesMode(applicationViewModel, key);
+                        .setMultipleThemesMode(applicationProvider, key);
                   },
                 );
               },

@@ -21,7 +21,7 @@ import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 
 ///
-import 'package:moodexample/view_models/mood/mood_view_model.dart';
+import 'package:moodexample/providers/mood/mood_provider.dart';
 import 'package:moodexample/services/mood/mood_service.dart';
 import 'package:moodexample/models/mood/mood_model.dart';
 
@@ -185,26 +185,26 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                   );
 
                                   /// 更新心情数据
-                                  final MoodViewModel moodViewModel =
-                                      Provider.of<MoodViewModel>(
+                                  final MoodProvider moodProvider =
+                                      Provider.of<MoodProvider>(
                                     context,
                                     listen: false,
                                   );
 
                                   /// 获取所有有记录心情的日期
                                   MoodService.getMoodRecordedDate(
-                                    moodViewModel,
+                                    moodProvider,
                                   );
 
                                   /// 处理日期
-                                  final String moodDatetime = moodViewModel
+                                  final String moodDatetime = moodProvider
                                       .nowDateTime
                                       .toString()
                                       .substring(0, 10);
 
                                   /// 获取心情数据
                                   MoodService.getMoodData(
-                                    moodViewModel,
+                                    moodProvider,
                                     moodDatetime,
                                   );
                               }
@@ -816,7 +816,7 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
 
 /// 导出数据
 Future<String> exportDatabase() async {
-  final MoodViewModel moodViewModel = MoodViewModel();
+  final MoodProvider moodProvider = MoodProvider();
   final DateTime now = DateTime.now();
 
   /// 获取APP文件临时根路径
@@ -893,8 +893,8 @@ Future<String> exportDatabase() async {
     ..cellStyle = cellStyle;
 
   /// 获取所有心情数据并赋值
-  await MoodService.getMoodAllData(moodViewModel);
-  final moodAllDataList = moodViewModel.moodAllDataList;
+  await MoodService.getMoodAllData(moodProvider);
+  final moodAllDataList = moodProvider.moodAllDataList;
 
   /// 添加Excel数据
   moodAllDataList?.forEach((list) {

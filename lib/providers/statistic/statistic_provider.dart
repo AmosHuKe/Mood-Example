@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 /// 统计相关
-class StatisticViewModel extends ChangeNotifier {
+class StatisticProvider extends ChangeNotifier {
   /// 统计的天数
   int _moodDays = 7;
 

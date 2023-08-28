@@ -6,51 +6,51 @@ import 'package:moodexample/db/db.dart';
 import 'package:moodexample/common/utils.dart';
 
 ///
-import 'package:moodexample/view_models/statistic/statistic_view_model.dart';
+import 'package:moodexample/providers/statistic/statistic_provider.dart';
 
 /// 统计相关
 class StatisticService {
   /// 获取APP累计记录天数
   static Future<void> getAPPUsageDays(
-    StatisticViewModel statisticViewModel,
+    StatisticProvider statisticProvider,
   ) async {
     // 查询
     final list = await DB.db.selectAPPUsageDays();
     print('获取APP使用天数$list');
     final int count = list[0]['dayCount'] ?? 0;
     // 赋值
-    statisticViewModel.daysCount = count;
+    statisticProvider.daysCount = count;
   }
 
   /// 获取APP累计记录条数
   static Future<void> getAPPMoodCount(
-    StatisticViewModel statisticViewModel,
+    StatisticProvider statisticProvider,
   ) async {
     // 查询
     final list = await DB.db.selectAPPMoodCount();
     print('APP累计记录条数$list');
     final int count = list[0]['moodCount'] ?? 0;
     // 赋值
-    statisticViewModel.moodCount = count;
+    statisticProvider.moodCount = count;
   }
 
   /// 获取平均情绪波动
   static Future<void> getMoodScoreAverage(
-    StatisticViewModel statisticViewModel,
+    StatisticProvider statisticProvider,
   ) async {
     // 查询
     final list = await DB.db.selectMoodScoreAverage();
     print('平均情绪波动$list');
     final int count = list[0]['moodScoreAverage'] ?? 0;
     // 赋值
-    statisticViewModel.moodScoreAverage = count;
+    statisticProvider.moodScoreAverage = count;
   }
 
   /// 获取近日情绪波动
   ///
   /// [days] 往前获取的天数
   static Future<void> getMoodScoreAverageRecently(
-    StatisticViewModel statisticViewModel, {
+    StatisticProvider statisticProvider, {
     int days = 7,
   }) async {
     /// 数据
@@ -71,14 +71,14 @@ class StatisticService {
     print('近$days日情绪波动$dataList');
 
     // 赋值
-    statisticViewModel.moodScoreAverageRecently = dataList;
+    statisticProvider.moodScoreAverageRecently = dataList;
   }
 
   /// 获取近7日心情数量统计
   ///
   /// [days] 往前获取的天数
   static Future<void> getDateMoodCount(
-    StatisticViewModel statisticViewModel, {
+    StatisticProvider statisticProvider, {
     int days = 7,
   }) async {
     /// 数据
@@ -93,6 +93,6 @@ class StatisticService {
     print('近$days日心情数量统计$list');
 
     // 赋值
-    statisticViewModel.dateMoodCount = list;
+    statisticProvider.dateMoodCount = list;
   }
 }

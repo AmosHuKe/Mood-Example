@@ -10,7 +10,7 @@ import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/config/language.dart';
 
 ///
-import 'package:moodexample/view_models/application/application_view_model.dart';
+import 'package:moodexample/providers/application/application_provider.dart';
 
 /// 语言设置
 class SettingLanguage extends StatelessWidget {
@@ -27,12 +27,12 @@ class SettingLanguage extends StatelessWidget {
       ),
       children: [
         /// 跟随系统
-        Selector<ApplicationViewModel, bool>(
-          selector: (_, applicationViewModel) =>
-              applicationViewModel.localeSystem,
+        Selector<ApplicationProvider, bool>(
+          selector: (_, applicationProvider) =>
+              applicationProvider.localeSystem,
           builder: (_, localeSystem, child) {
-            final ApplicationViewModel applicationViewModel =
-                Provider.of<ApplicationViewModel>(context, listen: false);
+            final ApplicationProvider applicationProvider =
+                Provider.of<ApplicationProvider>(context, listen: false);
             return RadioListTile(
               value: localeSystem,
               groupValue: true,
@@ -45,21 +45,21 @@ class SettingLanguage extends StatelessWidget {
               ),
               onChanged: (value) async {
                 await PreferencesDB()
-                    .setAppIsLocaleSystem(applicationViewModel, true);
+                    .setAppIsLocaleSystem(applicationProvider, true);
               },
             );
           },
         ),
 
         /// 语言
-        Consumer<ApplicationViewModel>(
-          builder: (_, applicationViewModel, child) {
+        Consumer<ApplicationProvider>(
+          builder: (_, applicationProvider, child) {
             return Column(
               children: List<Widget>.generate(_languageConfig.length, (index) {
                 return RadioListTile<Locale>(
                   value: _languageConfig[index].locale,
-                  groupValue: !applicationViewModel.localeSystem
-                      ? applicationViewModel.locale
+                  groupValue: !applicationProvider.localeSystem
+                      ? applicationProvider.locale
                       : null,
                   title: Text(
                     _languageConfig[index].language,
@@ -70,7 +70,7 @@ class SettingLanguage extends StatelessWidget {
                   ),
                   onChanged: (value) async {
                     await PreferencesDB().setAppLocale(
-                      applicationViewModel,
+                      applicationProvider,
                       value.toString(),
                     );
                   },

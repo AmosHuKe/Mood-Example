@@ -7,13 +7,13 @@ import 'package:provider/provider.dart';
 import 'package:moodexample/config/multiple_themes.dart';
 
 ///
-import 'package:moodexample/view_models/application/application_view_model.dart';
+import 'package:moodexample/providers/application/application_provider.dart';
 
 /// 是否深色模式
 bool isDarkMode(BuildContext context) {
   Theme.of(context);
   final ThemeMode themeMode =
-      Provider.of<ApplicationViewModel>(context, listen: false).themeMode;
+      Provider.of<ApplicationProvider>(context, listen: false).themeMode;
   if (themeMode == ThemeMode.system) {
     return View.of(context).platformDispatcher.platformBrightness ==
         Brightness.dark;
@@ -41,7 +41,7 @@ ThemeMode darkThemeMode(String mode) {
 /// 当前多主题
 String getMultipleThemesMode(BuildContext context) {
   final String multipleThemesMode =
-      Provider.of<ApplicationViewModel>(context, listen: false)
+      Provider.of<ApplicationProvider>(context, listen: false)
           .multipleThemesMode;
   return multipleThemesMode;
 }

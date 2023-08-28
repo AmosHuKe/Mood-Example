@@ -15,7 +15,7 @@ import 'package:moodexample/widgets/empty/empty.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 
 ///
-import 'package:moodexample/view_models/statistic/statistic_view_model.dart';
+import 'package:moodexample/providers/statistic/statistic_provider.dart';
 import 'package:moodexample/services/statistic/statistic_service.dart';
 
 /// 统计
@@ -47,29 +47,29 @@ class _StatisticPageState extends State<StatisticPage>
 
 /// 初始化
 void init(BuildContext context) {
-  final StatisticViewModel statisticViewModel =
-      Provider.of<StatisticViewModel>(context, listen: false);
+  final StatisticProvider statisticProvider =
+      Provider.of<StatisticProvider>(context, listen: false);
 
   /// 统计的天数
-  final int moodDays = statisticViewModel.moodDays;
+  final int moodDays = statisticProvider.moodDays;
 
   /// 统计-APP累计使用天数
-  StatisticService.getAPPUsageDays(statisticViewModel);
+  StatisticService.getAPPUsageDays(statisticProvider);
 
   /// 统计-APP累计记录条数
-  StatisticService.getAPPMoodCount(statisticViewModel);
+  StatisticService.getAPPMoodCount(statisticProvider);
 
   /// 统计-平均情绪波动
-  StatisticService.getMoodScoreAverage(statisticViewModel);
+  StatisticService.getMoodScoreAverage(statisticProvider);
 
   /// 统计-近日情绪波动
   StatisticService.getMoodScoreAverageRecently(
-    statisticViewModel,
+    statisticProvider,
     days: moodDays,
   );
 
   /// 统计-近日心情数量统计
-  StatisticService.getDateMoodCount(statisticViewModel, days: moodDays);
+  StatisticService.getDateMoodCount(statisticProvider, days: moodDays);
 }
 
 class StatisticBody extends StatelessWidget {
@@ -105,9 +105,9 @@ class StatisticBody extends StatelessWidget {
                     semanticsLabel:
                         S.of(context).app_bottomNavigationBar_title_statistic,
                   ),
-                  Consumer<StatisticViewModel>(
-                    builder: (context, statisticViewModel, child) {
-                      final int moodDays = statisticViewModel.moodDays;
+                  Consumer<StatisticProvider>(
+                    builder: (context, statisticProvider, child) {
+                      final int moodDays = statisticProvider.moodDays;
                       return Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -117,7 +117,7 @@ class StatisticBody extends StatelessWidget {
                             semanticsLabel: '筛选7日统计数据',
                             onTap: () {
                               if (moodDays == 7) return;
-                              statisticViewModel.moodDays = 7;
+                              statisticProvider.moodDays = 7;
                               init(context);
                             },
                           ),
@@ -127,7 +127,7 @@ class StatisticBody extends StatelessWidget {
                             semanticsLabel: '筛选15日统计数据',
                             onTap: () {
                               if (moodDays == 15) return;
-                              statisticViewModel.moodDays = 15;
+                              statisticProvider.moodDays = 15;
                               init(context);
                             },
                           ),
@@ -137,7 +137,7 @@ class StatisticBody extends StatelessWidget {
                             semanticsLabel: '筛选30日统计数据',
                             onTap: () {
                               if (moodDays == 30) return;
-                              statisticViewModel.moodDays = 30;
+                              statisticProvider.moodDays = 30;
                               init(context);
                             },
                           ),
@@ -185,12 +185,12 @@ class StatisticBody extends StatelessWidget {
                     left: 24.w,
                     right: 24.w,
                   ),
-                  child: Consumer<StatisticViewModel>(
-                    builder: (_, statisticViewModel, child) {
+                  child: Consumer<StatisticProvider>(
+                    builder: (_, statisticProvider, child) {
                       return StatisticLayout(
                         title: S.of(context).statistic_moodScore_title,
                         subTitle: S.of(context).statistic_moodScore_content(
-                              statisticViewModel.moodDays,
+                              statisticProvider.moodDays,
                             ),
                         height: 180.w,
                         statistic: const StatisticWeekMood(),
@@ -206,13 +206,13 @@ class StatisticBody extends StatelessWidget {
                     left: 24.w,
                     right: 24.w,
                   ),
-                  child: Consumer<StatisticViewModel>(
-                    builder: (_, statisticViewModel, child) {
+                  child: Consumer<StatisticProvider>(
+                    builder: (_, statisticProvider, child) {
                       return StatisticLayout(
                         title: S.of(context).statistic_moodStatistics_title,
                         subTitle:
                             S.of(context).statistic_moodStatistics_content(
-                                  statisticViewModel.moodDays,
+                                  statisticProvider.moodDays,
                                 ),
                         height: 320.w,
                         statistic: const StatisticCategoryMood(),
@@ -235,18 +235,18 @@ class StatisticMoodLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<StatisticViewModel>(
-      builder: (_, statisticViewModel, child) {
+    return Consumer<StatisticProvider>(
+      builder: (_, statisticProvider, child) {
         /// 获取数据 计算近日平均
         final List<Map<String, dynamic>> listData =
-            statisticViewModel.moodScoreAverageRecently;
+            statisticProvider.moodScoreAverageRecently;
         double moodScoreAverage = 0;
         double moodScoreSum = 0;
         for (int i = 0; i < listData.length; i++) {
           moodScoreSum += listData[i]['score'];
         }
         moodScoreAverage = double.parse(
-          (moodScoreSum / statisticViewModel.moodDays).toStringAsFixed(1),
+          (moodScoreSum / statisticProvider.moodDays).toStringAsFixed(1),
         );
         return StatisticLayout(
           title: S
@@ -254,7 +254,7 @@ class StatisticMoodLine extends StatelessWidget {
               .statistic_moodScoreAverage_title(moodScoreAverage.toString()),
           subTitle: S
               .of(context)
-              .statistic_moodScoreAverage_content(statisticViewModel.moodDays),
+              .statistic_moodScoreAverage_content(statisticProvider.moodDays),
           height: 240.w,
           statistic: const StatisticWeekMoodLine(),
         );
@@ -282,14 +282,14 @@ class StatisticWeekMoodLine extends StatelessWidget {
       Theme.of(context).primaryColor.withOpacity(0.4),
       Theme.of(context).primaryColor.withOpacity(0.1),
     ];
-    return Consumer<StatisticViewModel>(
-      builder: (_, statisticViewModel, child) {
+    return Consumer<StatisticProvider>(
+      builder: (_, statisticProvider, child) {
         /// 获取数据
         late List<Map<String, dynamic>> listData =
-            statisticViewModel.moodScoreAverageRecently;
+            statisticProvider.moodScoreAverageRecently;
 
         /// 统计的天数
-        final int moodDays = statisticViewModel.moodDays;
+        final int moodDays = statisticProvider.moodDays;
 
         /// 数据数量
         final int moodCount = listData.length;
@@ -482,15 +482,15 @@ class OverallStatistics extends StatelessWidget {
           left: 24.w,
           right: 24.w,
         ),
-        child: Consumer<StatisticViewModel>(
-          builder: (_, statisticViewModel, child) {
+        child: Consumer<StatisticProvider>(
+          builder: (_, statisticProvider, child) {
             return IntrinsicHeight(
               child: Row(
                 children: [
                   StatisticsCard(
                     icon: Remix.time_line,
                     title: S.of(context).statistic_overall_daysCount_title(
-                          statisticViewModel.daysCount,
+                          statisticProvider.daysCount,
                         ),
                     subTitle:
                         S.of(context).statistic_overall_daysCount_subTitle,
@@ -498,7 +498,7 @@ class OverallStatistics extends StatelessWidget {
                   StatisticsCard(
                     icon: Remix.file_list_2_line,
                     title: S.of(context).statistic_overall_moodCount_title(
-                          statisticViewModel.moodCount,
+                          statisticProvider.moodCount,
                         ),
                     subTitle:
                         S.of(context).statistic_overall_moodCount_subTitle,
@@ -507,7 +507,7 @@ class OverallStatistics extends StatelessWidget {
                     icon: Remix.pulse_line,
                     title:
                         S.of(context).statistic_overall_moodScoreAverage_title(
-                              statisticViewModel.moodScoreAverage,
+                              statisticProvider.moodScoreAverage,
                             ),
                     subTitle: S
                         .of(context)
@@ -537,14 +537,14 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<StatisticViewModel>(
-      builder: (_, statisticViewModel, child) {
+    return Consumer<StatisticProvider>(
+      builder: (_, statisticProvider, child) {
         /// 获取数据
         List<Map<String, dynamic>> listData =
-            statisticViewModel.moodScoreAverageRecently;
+            statisticProvider.moodScoreAverageRecently;
 
         /// 统计的天数
-        final int moodDays = statisticViewModel.moodDays;
+        final int moodDays = statisticProvider.moodDays;
 
         /// 数据为空的占位
         if (listData.isEmpty) {
@@ -712,12 +712,12 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<StatisticViewModel>(
-      builder: (_, statisticViewModel, child) {
+    return Consumer<StatisticProvider>(
+      builder: (_, statisticProvider, child) {
         late List listData = [];
 
         /// 获取数据
-        listData = statisticViewModel.dateMoodCount;
+        listData = statisticProvider.dateMoodCount;
 
         /// 空占位
         if (listData.isEmpty) {

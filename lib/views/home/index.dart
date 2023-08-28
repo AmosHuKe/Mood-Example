@@ -20,8 +20,8 @@ import 'package:moodexample/views/web_view/web_view.dart';
 ///
 import 'package:moodexample/models/mood/mood_category_model.dart';
 import 'package:moodexample/models/mood/mood_model.dart';
-import 'package:moodexample/view_models/mood/mood_view_model.dart';
-import 'package:moodexample/view_models/application/application_view_model.dart';
+import 'package:moodexample/providers/mood/mood_provider.dart';
+import 'package:moodexample/providers/application/application_provider.dart';
 import 'package:moodexample/services/mood/mood_service.dart';
 
 /// 首页
@@ -171,10 +171,10 @@ class Header extends StatelessWidget {
             fontSize: 20.sp,
           ),
         ),
-        Consumer<MoodViewModel>(
-          builder: (_, moodViewModel, child) {
+        Consumer<MoodProvider>(
+          builder: (_, moodProvider, child) {
             /// 加载数据的占位
-            if (moodViewModel.moodCategoryList!.isEmpty) {
+            if (moodProvider.moodCategoryList!.isEmpty) {
               return Align(
                 child: CupertinoActivityIndicator(radius: 12.sp),
               );
@@ -199,11 +199,11 @@ class _OptionMoodState extends State<OptionMood> {
   @override
   void initState() {
     super.initState();
-    final MoodViewModel moodViewModel =
-        Provider.of<MoodViewModel>(context, listen: false);
+    final MoodProvider moodProvider =
+        Provider.of<MoodProvider>(context, listen: false);
 
     /// 获取所有心情类别
-    MoodService.getMoodCategoryAll(moodViewModel);
+    MoodService.getMoodCategoryAll(moodProvider);
   }
 
   @override
@@ -214,19 +214,16 @@ class _OptionMoodState extends State<OptionMood> {
       physics: const AlwaysScrollableScrollPhysics(
         parent: BouncingScrollPhysics(),
       ),
-      child: Consumer<MoodViewModel>(
-        builder: (_, moodViewModel, child) {
+      child: Consumer<MoodProvider>(
+        builder: (_, moodProvider, child) {
           /// 所有心情类型数据
           final List<Widget> widgetList = [];
 
           /// 数据渲染
           for (final MoodCategoryData list
-              in moodViewModel.moodCategoryList ?? []) {
+              in moodProvider.moodCategoryList ?? []) {
             widgetList.add(
-              OptionCard(
-                title: list.title ?? '',
-                icon: list.icon ?? '',
-              ),
+              OptionCard(title: list.title, icon: list.icon),
             );
           }
 
@@ -261,8 +258,8 @@ class OptionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ApplicationViewModel>(
-      builder: (_, applicationViewModel, child) {
+    return Consumer<ApplicationProvider>(
+      builder: (_, applicationProvider, child) {
         return OpenContainer(
           useRootNavigator: true,
           clipBehavior: Clip.none,
