@@ -1,21 +1,21 @@
 
 <p align="center">
-<img alt="Preview1" src="./.README/preview/preview1.png">
+  <img alt="Preview1" src="./README/preview/preview1.png">
 </p>
 
 <br/>
 
 <h1 align="center"> 
-<img alt="Logo" src="./.README/logo/logo.png" width="48px" style="border-radius:16px;" /> Mood Example
+  <img alt="Logo" src="./README/logo/logo.png" width="48px" style="border-radius:16px;" /> Mood Example
 
-[![Sparkline](https://stars.medv.io/AmosHuKe/Mood-Example.svg)](https://stars.medv.io/AmosHuKe/Mood-Example)
+  [![Sparkline](https://stars.medv.io/AmosHuKe/Mood-Example.svg)](https://stars.medv.io/AmosHuKe/Mood-Example)
 </h1> 
 
 <p align="center">
-<a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.9.1" src="https://img.shields.io/badge/Mood--Example-v1.9.1-3e4663"/></a> 
-<a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.13.1" src="https://img.shields.io/badge/Flutter-v3.13.1-46D1FD"/></a> 
-<a target="_blank" href="https://dart.dev/"><img alt="Dart v3.1.0" src="https://img.shields.io/badge/Dart-v3.1.0-04599D"/></a> 
-<a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
+  <a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.9.1" src="https://img.shields.io/badge/Mood--Example-v1.9.1-3e4663"/></a> 
+  <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.13.1" src="https://img.shields.io/badge/Flutter-v3.13.1-46D1FD"/></a> 
+  <a target="_blank" href="https://dart.dev/"><img alt="Dart v3.1.0" src="https://img.shields.io/badge/Dart-v3.1.0-04599D"/></a> 
+  <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
 
 <sub>
