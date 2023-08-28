@@ -41,6 +41,7 @@ class _WebViewPageState extends State<WebViewPage> {
         NavigationDelegate(
           onProgress: (int progress) {
             print('加载中：$progress');
+            if (!mounted) return;
             setState(() {
               _pageTitle =
                   '${S.of(context).web_view_loading_text} ${progress - 1}%';
@@ -48,12 +49,14 @@ class _WebViewPageState extends State<WebViewPage> {
           },
           onPageStarted: (String url) {
             print('开始加载：$url');
+            if (!mounted) return;
             setState(() {
               _pageTitle = url;
             });
           },
           onPageFinished: (String url) {
             print('加载完成：$url');
+            if (!mounted) return;
             webViewInit();
           },
           onWebResourceError: (WebResourceError error) {
