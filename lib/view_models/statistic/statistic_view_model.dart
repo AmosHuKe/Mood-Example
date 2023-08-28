@@ -49,7 +49,8 @@ class StatisticViewModel extends ChangeNotifier {
 
   /// 赋值近日情绪波动
   set moodScoreAverageRecently(
-      List<Map<String, dynamic>> moodScoreAverageRecently) {
+    List<Map<String, dynamic>> moodScoreAverageRecently,
+  ) {
     _moodScoreAverageRecently = [];
     _moodScoreAverageRecently = moodScoreAverageRecently;
     notifyListeners();

@@ -27,7 +27,7 @@ class TableMoodInfo {
   static const String fieldUpdateTime = 'updateTime';
 
   /// 删除数据库
-  final String dropTable = "DROP TABLE IF EXISTS $tableName";
+  final String dropTable = 'DROP TABLE IF EXISTS $tableName';
 
   /// 创建数据库
   final String createTable = '''

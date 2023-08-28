@@ -49,7 +49,7 @@ class _AnimatedPressState extends State<AnimatedPress>
 
   /// 开始动画
   void controllerForward() {
-    AnimationStatus status = _controller.status;
+    final AnimationStatus status = _controller.status;
     if (status != AnimationStatus.forward &&
         status != AnimationStatus.completed) {
       _controller.forward();

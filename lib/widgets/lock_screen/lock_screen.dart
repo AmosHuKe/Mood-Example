@@ -18,16 +18,17 @@ import 'package:remixicon/remixicon.dart';
 /// 锁屏
 Future<void> lockScreen(BuildContext context) async {
   final s = S.of(context);
-  ApplicationViewModel applicationViewModel =
+  final ApplicationViewModel applicationViewModel =
       Provider.of<ApplicationViewModel>(context, listen: false);
-  String password =
+  final String password =
       await PreferencesDB().getAppKeyPassword(applicationViewModel);
 
   /// 支持生物特征识别处理
   Widget? customizedButtonChild;
-  bool canAppKeyBiometric =
+  final bool canAppKeyBiometric =
       await PreferencesDB().getAppKeyBiometric(applicationViewModel);
-  bool canLocalAuthBiometrics = await LocalAuthUtils().canLocalAuthBiometrics();
+  final bool canLocalAuthBiometrics =
+      await LocalAuthUtils().canLocalAuthBiometrics();
   if (canAppKeyBiometric && canLocalAuthBiometrics) {
     customizedButtonChild = Icon(
       await LocalAuthUtils().localAuthIcon(),
@@ -36,7 +37,7 @@ Future<void> lockScreen(BuildContext context) async {
     );
   }
 
-  if (password != "" && !applicationViewModel.keyPasswordScreenOpen) {
+  if (password != '' && !applicationViewModel.keyPasswordScreenOpen) {
     if (context.mounted) {
       screenLock(
         context: context,
@@ -45,7 +46,7 @@ Future<void> lockScreen(BuildContext context) async {
         canCancel: false,
         deleteButton: const Icon(
           Remix.delete_back_2_fill,
-          semanticLabel: "删除",
+          semanticLabel: '删除',
         ),
         customizedButtonChild: customizedButtonChild,
         customizedButtonTap: () async {
@@ -100,7 +101,7 @@ Future<void> createlockScreen(
     cancelButton: Text(S.of(context).app_setting_security_lock_cancel),
     deleteButton: const Icon(
       Remix.delete_back_2_fill,
-      semanticLabel: "删除",
+      semanticLabel: '删除',
     ),
     footer: TextButton(
       onPressed: () {

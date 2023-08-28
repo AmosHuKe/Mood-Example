@@ -88,18 +88,18 @@ class _ApplicationState extends State<Application> {
                   ? null
                   : watchApplicationViewModel.locale,
               localeListResolutionCallback: (locales, supportedLocales) {
-                debugPrint("当前地区语言$locales");
-                debugPrint("设备支持的地区语言$supportedLocales");
+                debugPrint('当前地区语言$locales');
+                debugPrint('设备支持的地区语言$supportedLocales');
                 return null;
               },
-              title: "Mood",
+              title: 'Mood',
               navigatorObservers: [FlutterSmartDialog.observer],
               builder: FlutterSmartDialog.init(),
 
               /// Home
               home: const WillPopScopeRoute(
                 child: Init(
-                  child: MenuPage(key: Key("widget_menu_page")),
+                  child: MenuPage(key: Key('widget_menu_page')),
                 ),
               ),
             );
@@ -167,7 +167,7 @@ class _MainScreenBodyState extends State<MainScreenBody> {
     return ValueListenableBuilder<DrawerState>(
       valueListenable: ZoomDrawer.of(context)!.stateNotifier,
       builder: (_, state, child) {
-        debugPrint("外层菜单状态：$state");
+        debugPrint('外层菜单状态：$state');
         return AbsorbPointer(
           absorbing: state != DrawerState.closed,
           child: child,

@@ -36,12 +36,13 @@ class _MiniFantasyPageState extends State<MiniFantasyPage> {
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
           titleTextStyle: TextStyle(color: Colors.black, fontSize: 14.sp),
-          title: const Text("MiniFantasy"),
+          title: const Text('MiniFantasy'),
           leading: ActionButton(
             decoration: BoxDecoration(
-                color: AppTheme.backgroundColor1,
-                borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(18.w))),
+              color: AppTheme.backgroundColor1,
+              borderRadius:
+                  BorderRadius.only(bottomRight: Radius.circular(18.w)),
+            ),
             child: Icon(
               Remix.arrow_left_line,
               size: 24.sp,
@@ -65,64 +66,66 @@ class Game extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      final tileSize = max(constraints.maxHeight, constraints.maxWidth) / 20;
-      return BonfireWidget(
-        constructionMode: false,
-        showCollisionArea: false,
-        joystick: Joystick(
-          keyboardConfig: KeyboardConfig(
-            acceptedKeys: [
-              LogicalKeyboardKey.space,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final tileSize = max(constraints.maxHeight, constraints.maxWidth) / 20;
+        return BonfireWidget(
+          constructionMode: false,
+          showCollisionArea: false,
+          joystick: Joystick(
+            keyboardConfig: KeyboardConfig(
+              acceptedKeys: [
+                LogicalKeyboardKey.space,
+              ],
+            ),
+            directional: JoystickDirectional(),
+            actions: [
+              JoystickAction(
+                actionId: 1,
+                color: Colors.deepOrange,
+                margin: const EdgeInsets.all(65),
+              ),
             ],
+          ), // required
+          map: WorldMapByTiled(
+            '$assetsPath/tiles/map.json',
+            forceTileSize: Vector2(tileSize, tileSize),
+            objectsBuilder: {
+              'light': (properties) => Light(
+                    properties.position,
+                    properties.size,
+                  ),
+              'orc': (properties) => Orc(properties.position),
+            },
           ),
-          directional: JoystickDirectional(),
-          actions: [
-            JoystickAction(
-              actionId: 1,
-              color: Colors.deepOrange,
-              margin: const EdgeInsets.all(65),
-            )
-          ],
-        ), // required
-        map: WorldMapByTiled(
-          '$assetsPath/tiles/map.json',
-          forceTileSize: Vector2(tileSize, tileSize),
-          objectsBuilder: {
-            'light': (properties) => Light(
-                  properties.position,
-                  properties.size,
-                ),
-            'orc': (properties) => Orc(properties.position),
-          },
-        ),
-        player: HumanPlayer(Vector2(4 * tileSize, 4 * tileSize)),
-        lightingColorGame: Colors.black.withOpacity(0.7),
-        progress: Container(
-          color: Colors.black,
-          child: const Center(
-            child: Text(
-              '载入中...',
-              style: TextStyle(color: Colors.white),
+          player: HumanPlayer(Vector2(4 * tileSize, 4 * tileSize)),
+          lightingColorGame: Colors.black.withOpacity(0.7),
+          progress: Container(
+            color: Colors.black,
+            child: const Center(
+              child: Text(
+                '载入中...',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
-        ),
-        overlayBuilderMap: {
-          'miniMap': (context, game) => MiniMap(
-                game: game,
-                margin: const EdgeInsets.all(20),
-                borderRadius: BorderRadius.circular(100),
-                size: Vector2.all(constraints.maxHeight / 5),
-                border: Border.all(color: Colors.white.withOpacity(0.5)),
-                playerColor: Colors.green,
-                enemyColor: Colors.red,
-                npcColor: Colors.red,
-              ),
-        },
-        initialActiveOverlays: const [
-          'miniMap',
-        ],
-      );
-    });
+          overlayBuilderMap: {
+            'miniMap': (context, game) => MiniMap(
+                  game: game,
+                  margin: const EdgeInsets.all(20),
+                  borderRadius: BorderRadius.circular(100),
+                  size: Vector2.all(constraints.maxHeight / 5),
+                  border: Border.all(color: Colors.white.withOpacity(0.5)),
+                  playerColor: Colors.green,
+                  enemyColor: Colors.red,
+                  npcColor: Colors.red,
+                ),
+          },
+          initialActiveOverlays: const [
+            'miniMap',
+          ],
+        );
+      },
+    );
   }
 }

@@ -30,8 +30,8 @@ class _LaboratoryPageState extends State<LaboratoryPage> {
       child: Scaffold(
         backgroundColor: const Color(0xFFF6F8FA),
         floatingActionButton: ActionButton(
-          key: const Key("widget_laboratory_back_button"),
-          semanticsLabel: "返回",
+          key: const Key('widget_laboratory_back_button'),
+          semanticsLabel: '返回',
           width: 48.w,
           height: 48.w,
           decoration: BoxDecoration(
@@ -49,7 +49,7 @@ class _LaboratoryPageState extends State<LaboratoryPage> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         body: const SafeArea(
-          key: Key("widget_laboratory_page"),
+          key: Key('widget_laboratory_page'),
           child: LaboratoryBody(),
         ),
       ),
@@ -98,8 +98,8 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "uniapp 小程序",
-          subtitle: "集成 UniMPSDK 可在 APP 内打开 uniapp 小程序。",
+          title: 'uniapp 小程序',
+          subtitle: '集成 UniMPSDK 可在 APP 内打开 uniapp 小程序。',
           onPressed: () {
             Navigator.push(
               context,
@@ -115,9 +115,9 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "3D 城市",
+          title: '3D 城市',
           subtitle:
-              "obj 格式，CPU 渲染性能较低，3D 来源 https://github.com/pissang/little-big-city",
+              'obj 格式，CPU 渲染性能较低，3D 来源 https://github.com/pissang/little-big-city',
           onPressed: () {
             Navigator.push(
               context,
@@ -133,8 +133,8 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "游戏合集",
-          subtitle: "基于 Flame、Bonfire 的 2D 游戏。",
+          title: '游戏合集',
+          subtitle: '基于 Flame、Bonfire 的 2D 游戏。',
           onPressed: () {
             Navigator.push(
               context,
@@ -150,8 +150,8 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "FFI 异步调用 C/C++",
-          subtitle: "通过 FFI 异步调用 C/C++ 并监听",
+          title: 'FFI 异步调用 C/C++',
+          subtitle: '通过 FFI 异步调用 C/C++ 并监听',
           onPressed: () {
             Navigator.push(
               context,
@@ -167,8 +167,8 @@ class _LaboratoryBodyState extends State<LaboratoryBody> {
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "占位",
-          subtitle: "占位占位占位",
+          title: '占位',
+          subtitle: '占位占位占位',
         ),
       ],
     );
@@ -194,7 +194,7 @@ class ListCard extends StatelessWidget {
   final Widget leading;
 
   /// 点击打开触发
-  final Function()? onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -204,7 +204,8 @@ class ListCard extends StatelessWidget {
         margin: EdgeInsets.symmetric(vertical: 12.w),
         shadowColor: Colors.black38,
         shape: ContinuousRectangleBorder(
-            borderRadius: BorderRadius.circular(48.sp)),
+          borderRadius: BorderRadius.circular(48.sp),
+        ),
         child: Padding(
           padding: EdgeInsets.all(14.w),
           child: Column(

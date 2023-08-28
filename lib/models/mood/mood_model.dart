@@ -9,18 +9,18 @@ class MoodModel {
     this.moodData,
   });
 
-  final List<MoodData>? moodData;
-
   factory MoodModel.fromJson(Map<String, dynamic> json) => MoodModel(
         moodData: List<MoodData>.from(
-          json["data"].map(
+          json['data'].map(
             (x) => MoodData.fromJson(x),
           ),
         ),
       );
 
+  final List<MoodData>? moodData;
+
   Map<String, dynamic> toJson() => {
-        "moodData": List<dynamic>.from(
+        'moodData': List<dynamic>.from(
           moodData!.map(
             (x) => x.toJson(),
           ),
@@ -43,6 +43,16 @@ class MoodData {
     this.updateTime,
   });
 
+  factory MoodData.fromJson(Map<String, dynamic> json) => MoodData(
+        moodId: json['moodId'],
+        icon: json['icon'],
+        title: json['title'],
+        score: json['score'],
+        content: json['content'],
+        createTime: json['createTime'],
+        updateTime: json['updateTime'],
+      );
+
   // ID
   late int? moodId;
   // 图标
@@ -58,23 +68,13 @@ class MoodData {
   // 修改日期
   late String? updateTime;
 
-  factory MoodData.fromJson(Map<String, dynamic> json) => MoodData(
-        moodId: json["moodId"],
-        icon: json["icon"],
-        title: json["title"],
-        score: json["score"],
-        content: json["content"],
-        createTime: json["createTime"],
-        updateTime: json["updateTime"],
-      );
-
   Map<String, dynamic> toJson() => {
-        "moodId": moodId,
-        "icon": icon,
-        "title": title,
-        "score": score,
-        "content": content,
-        "createTime": createTime,
-        "updateTime": updateTime,
+        'moodId': moodId,
+        'icon': icon,
+        'title': title,
+        'score': score,
+        'content': content,
+        'createTime': createTime,
+        'updateTime': updateTime,
       };
 }

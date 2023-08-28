@@ -12,8 +12,6 @@ double tileSize = 20.0;
 
 class Boss extends SimpleEnemy
     with ObjectCollision, AutomaticRandomMovement, UseBarLife {
-  bool canMove = true;
-
   Boss(Vector2 position)
       : super(
           position: position,
@@ -50,6 +48,8 @@ class Boss extends SimpleEnemy
       offset: Vector2(0, tileSize * 0.5),
     );
   }
+
+  bool canMove = true;
 
   /// 渲染
   @override

@@ -38,8 +38,8 @@ class _FFIPageState extends State<FFIPage> {
   /// 接收端口2
   final ReceivePort _receivePort2 = ReceivePort();
 
-  late String _testText1 = "";
-  late String _testText2 = "";
+  late String _testText1 = '';
+  late String _testText2 = '';
   late bool _testLoading1 = true;
   late bool _testLoading2 = true;
 
@@ -64,21 +64,22 @@ class _FFIPageState extends State<FFIPage> {
   void ffiInit() {
     /// 加载库 符号表
     _dl = Platform.isAndroid
-        ? DynamicLibrary.open("libffi.so")
+        ? DynamicLibrary.open('libffi.so')
         : DynamicLibrary.process();
 
     /// 查找 DartApi 初始化函数
-    DartInitializeApiDL initDartApiDL =
+    final DartInitializeApiDL initDartApiDL =
         _dl.lookupFunction<NativeDartInitializeApiDL, DartInitializeApiDL>(
-            "InitDartApiDL");
+      'InitDartApiDL',
+    );
 
     /// 调用初始化函数，并判断是否成功
     final int dartApiInited = initDartApiDL(NativeApi.initializeApiDLData);
 
     if (dartApiInited == 0) {
-      debugPrint("初始化 Dart Native API 成功");
+      debugPrint('初始化 Dart Native API 成功');
     } else {
-      debugPrint("初始化 Dart Native API 失败");
+      debugPrint('初始化 Dart Native API 失败');
     }
   }
 
@@ -87,7 +88,7 @@ class _FFIPageState extends State<FFIPage> {
     /// 监听接收端口
     _receivePort1.listen((message) {
       setState(() {
-        _testText1 = "$message\ntype=${message.runtimeType}";
+        _testText1 = '$message\ntype=${message.runtimeType}';
         _testLoading1 = false;
       });
 
@@ -96,9 +97,10 @@ class _FFIPageState extends State<FFIPage> {
     });
 
     /// 查找 注册线程函数
-    RegisterSendPort registerSendPort =
+    final RegisterSendPort registerSendPort =
         _dl.lookupFunction<NativeRegisterSendPort, RegisterSendPort>(
-            "RegisterSendPort");
+      'RegisterSendPort',
+    );
 
     /// 调用 开启线程并传入参数
     registerSendPort(_receivePort1.sendPort.nativePort, 3);
@@ -109,7 +111,7 @@ class _FFIPageState extends State<FFIPage> {
     /// 监听接收端口
     _receivePort2.listen((message) {
       setState(() {
-        _testText2 = "$message\ntype=${message.runtimeType}";
+        _testText2 = '$message\ntype=${message.runtimeType}';
         _testLoading2 = false;
       });
 
@@ -118,9 +120,10 @@ class _FFIPageState extends State<FFIPage> {
     });
 
     /// 查找 注册线程函数
-    RegisterSendPort registerSendPort =
+    final RegisterSendPort registerSendPort =
         _dl.lookupFunction<NativeRegisterSendPort, RegisterSendPort>(
-            "RegisterSendPort");
+      'RegisterSendPort',
+    );
 
     /// 调用 开启线程并传入参数
     registerSendPort(_receivePort2.sendPort.nativePort, 1);
@@ -138,7 +141,7 @@ class _FFIPageState extends State<FFIPage> {
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
           titleTextStyle: TextStyle(color: Colors.black, fontSize: 14.sp),
-          title: const Text("FFI 异步调用 C/C++"),
+          title: const Text('FFI 异步调用 C/C++'),
           leading: ActionButton(
             decoration: BoxDecoration(
               color: AppTheme.backgroundColor1,
@@ -157,7 +160,7 @@ class _FFIPageState extends State<FFIPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "接收端口 ${_receivePort1.sendPort.nativePort} 信息：",
+                  '接收端口 ${_receivePort1.sendPort.nativePort} 信息：',
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.bold,
@@ -173,7 +176,7 @@ class _FFIPageState extends State<FFIPage> {
                       ),
                 SizedBox(height: 24.w),
                 Text(
-                  "接收端口 ${_receivePort2.sendPort.nativePort} 信息：",
+                  '接收端口 ${_receivePort2.sendPort.nativePort} 信息：',
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.bold,

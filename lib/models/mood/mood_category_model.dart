@@ -11,19 +11,19 @@ class MoodCategoryModel {
     this.moodCategoryData,
   });
 
-  final List<MoodCategoryData>? moodCategoryData;
-
   factory MoodCategoryModel.fromJson(Map<String, dynamic> json) =>
       MoodCategoryModel(
         moodCategoryData: List<MoodCategoryData>.from(
-          json["data"].map(
+          json['data'].map(
             (x) => MoodCategoryData.fromJson(x),
           ),
         ),
       );
 
+  final List<MoodCategoryData>? moodCategoryData;
+
   Map<String, dynamic> toJson() => {
-        "moodCategoryData": List<dynamic>.from(
+        'moodCategoryData': List<dynamic>.from(
           moodCategoryData!.map(
             (x) => x.toJson(),
           ),
@@ -43,21 +43,19 @@ class MoodCategoryData {
     this.title,
   });
 
+  factory MoodCategoryData.fromJson(Map<String, dynamic> json) =>
+      MoodCategoryData(
+        icon: json['icon'],
+        title: json['title'],
+      );
+
   // 表情
   late String? icon;
   // 标题
   late String? title;
 
-  factory MoodCategoryData.fromJson(Map<String, dynamic> json) =>
-      MoodCategoryData(
-        icon: json["icon"],
-        title: json["title"],
-      );
-
-  get length => null;
-
   Map<String, dynamic> toJson() => {
-        "icon": icon,
-        "title": title,
+        'icon': icon,
+        'title': title,
       };
 }

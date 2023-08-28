@@ -40,24 +40,24 @@ class _WebViewPageState extends State<WebViewPage> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
-            debugPrint("加载中：$progress");
+            debugPrint('加载中：$progress');
             setState(() {
               _pageTitle =
-                  "${S.of(context).web_view_loading_text} ${progress - 1}%";
+                  '${S.of(context).web_view_loading_text} ${progress - 1}%';
             });
           },
           onPageStarted: (String url) {
-            debugPrint("开始加载：$url");
+            debugPrint('开始加载：$url');
             setState(() {
               _pageTitle = url;
             });
           },
           onPageFinished: (String url) {
-            debugPrint("加载完成：$url");
+            debugPrint('加载完成：$url');
             webViewInit();
           },
           onWebResourceError: (WebResourceError error) {
-            debugPrint("加载错误：$error");
+            debugPrint('加载错误：$error');
           },
         ),
       )
@@ -78,14 +78,14 @@ class _WebViewPageState extends State<WebViewPage> {
         ),
         title: Text(_pageTitle),
         leading: ActionButton(
-          key: const Key("widget_web_view_close"),
-          semanticsLabel: "返回",
+          key: const Key('widget_web_view_close'),
+          semanticsLabel: '返回',
           decoration: BoxDecoration(
-              color: isDarkMode(context)
-                  ? Theme.of(context).cardColor
-                  : AppTheme.backgroundColor1,
-              borderRadius:
-                  BorderRadius.only(bottomRight: Radius.circular(18.w))),
+            color: isDarkMode(context)
+                ? Theme.of(context).cardColor
+                : AppTheme.backgroundColor1,
+            borderRadius: BorderRadius.only(bottomRight: Radius.circular(18.w)),
+          ),
           child: Icon(
             Remix.close_fill,
             size: 24.sp,
@@ -97,7 +97,7 @@ class _WebViewPageState extends State<WebViewPage> {
         actions: [
           AnimatedPress(
             child: IconButton(
-              tooltip: "刷新",
+              tooltip: '刷新',
               onPressed: () async {
                 await _pageWebViewController.reload();
               },
@@ -106,60 +106,66 @@ class _WebViewPageState extends State<WebViewPage> {
           ),
         ],
       ),
-      bottomNavigationBar: Builder(builder: (_) {
-        return _canGoBack || _canGoForward
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Builder(builder: (_) {
-                    return _canGoBack
-                        ? Expanded(
-                            child: IconButton(
-                              onPressed: () async {
-                                await _pageWebViewController.goBack();
-                              },
-                              icon: Icon(
-                                Remix.arrow_left_s_line,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .color,
-                              ),
-                            ),
-                          )
-                        : const SizedBox();
-                  }),
-                  Builder(builder: (_) {
-                    return _canGoForward
-                        ? Expanded(
-                            child: IconButton(
-                              onPressed: () async {
-                                await _pageWebViewController.goForward();
-                              },
-                              icon: Icon(
-                                Remix.arrow_right_s_line,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .color,
-                              ),
-                            ),
-                          )
-                        : const SizedBox();
-                  }),
-                ],
-              )
-            : const SizedBox();
-      }),
+      bottomNavigationBar: Builder(
+        builder: (_) {
+          return _canGoBack || _canGoForward
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Builder(
+                      builder: (_) {
+                        return _canGoBack
+                            ? Expanded(
+                                child: IconButton(
+                                  onPressed: () async {
+                                    await _pageWebViewController.goBack();
+                                  },
+                                  icon: Icon(
+                                    Remix.arrow_left_s_line,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .color,
+                                  ),
+                                ),
+                              )
+                            : const SizedBox();
+                      },
+                    ),
+                    Builder(
+                      builder: (_) {
+                        return _canGoForward
+                            ? Expanded(
+                                child: IconButton(
+                                  onPressed: () async {
+                                    await _pageWebViewController.goForward();
+                                  },
+                                  icon: Icon(
+                                    Remix.arrow_right_s_line,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .color,
+                                  ),
+                                ),
+                              )
+                            : const SizedBox();
+                      },
+                    ),
+                  ],
+                )
+              : const SizedBox();
+        },
+      ),
       body: WebViewWidget(controller: _pageWebViewController),
     );
   }
 
   /// 网页初始化
-  webViewInit() async {
-    String pageTitle = await _pageWebViewController.getTitle() ?? '';
-    bool pageCanGoBack = await _pageWebViewController.canGoBack();
-    bool pageCanGoForward = await _pageWebViewController.canGoForward();
+  void webViewInit() async {
+    final String pageTitle = await _pageWebViewController.getTitle() ?? '';
+    final bool pageCanGoBack = await _pageWebViewController.canGoBack();
+    final bool pageCanGoForward = await _pageWebViewController.canGoForward();
     setState(() {
       _pageTitle = pageTitle;
       _canGoBack = pageCanGoBack;

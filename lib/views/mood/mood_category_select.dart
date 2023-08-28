@@ -43,7 +43,7 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
   @override
   void initState() {
     super.initState();
-    MoodViewModel moodViewModel =
+    final MoodViewModel moodViewModel =
         Provider.of<MoodViewModel>(context, listen: false);
 
     /// 状态
@@ -69,13 +69,13 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
           fontSize: 14.sp,
         ),
         leading: ActionButton(
-          semanticsLabel: "关闭",
+          semanticsLabel: '关闭',
           decoration: BoxDecoration(
-              color: isDarkMode(context)
-                  ? Theme.of(context).cardColor
-                  : AppTheme.backgroundColor1,
-              borderRadius:
-                  BorderRadius.only(bottomRight: Radius.circular(18.w))),
+            color: isDarkMode(context)
+                ? Theme.of(context).cardColor
+                : AppTheme.backgroundColor1,
+            borderRadius: BorderRadius.only(bottomRight: Radius.circular(18.w)),
+          ),
           child: Icon(
             Remix.arrow_left_line,
             size: 24.sp,
@@ -87,7 +87,7 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
       ),
       body: const SafeArea(
         child: MoodCategorySelectBody(
-          key: Key("widget_mood_category_select_body"),
+          key: Key('widget_mood_category_select_body'),
         ),
       ),
     );
@@ -120,7 +120,7 @@ class _MoodCategorySelectBodyState extends State<MoodCategorySelectBody> {
           child: Column(
             children: [
               Text(
-                _type == "edit"
+                _type == 'edit'
                     ? S.of(context).mood_category_select_title_2
                     : S.of(context).mood_category_select_title_1,
                 style: TextStyle(
@@ -131,7 +131,7 @@ class _MoodCategorySelectBodyState extends State<MoodCategorySelectBody> {
               Padding(
                 padding: EdgeInsets.only(top: 4.w),
                 child: Text(
-                  _type == "edit" ? "" : LocaleDatetime().yMMMd(_nowDateTime),
+                  _type == 'edit' ? '' : LocaleDatetime().yMMMd(_nowDateTime),
                   style: TextStyle(
                     color: AppTheme.subColor,
                     fontSize: 14.sp,
@@ -161,12 +161,12 @@ class MoodChoice extends StatelessWidget {
         padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 48.w),
         child: Consumer<MoodViewModel>(
           builder: (_, moodViewModel, child) {
-            List<Widget> widgetList = [];
-            for (var list in moodViewModel.moodCategoryList ?? []) {
+            final List<Widget> widgetList = [];
+            for (final list in moodViewModel.moodCategoryList ?? []) {
               widgetList.add(
                 MoodChoiceCard(
-                  icon: list.icon ?? "",
-                  title: list.title ?? "",
+                  icon: list.icon ?? '',
+                  title: list.title ?? '',
                 ),
               );
             }
@@ -235,9 +235,9 @@ class MoodChoiceCard extends StatelessWidget {
         ),
         onTap: () {
           switch (_type) {
-            case "add":
+            case 'add':
               // 关闭当前页并跳转输入内容页
-              MoodData moodData = MoodData();
+              final MoodData moodData = MoodData();
               moodData.icon = icon;
               moodData.title = title;
               moodData.createTime = _nowDateTime;
@@ -250,9 +250,9 @@ class MoodChoiceCard extends StatelessWidget {
                   params: [moodDataToJson(moodData)],
                 ),
               );
-            case "edit":
+            case 'edit':
               // 关闭当前页并返回数据
-              MoodCategoryData moodCategoryData = MoodCategoryData();
+              final MoodCategoryData moodCategoryData = MoodCategoryData();
               moodCategoryData.icon = icon;
               moodCategoryData.title = title;
               Navigator.pop(context, moodCategoryDataToJson(moodCategoryData));

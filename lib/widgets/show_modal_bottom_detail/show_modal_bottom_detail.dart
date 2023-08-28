@@ -27,10 +27,10 @@ Future<T?> showModalBottomDetail<T>({
           children: [
             Semantics(
               button: true,
-              label: "返回",
+              label: '返回',
               onTap: () => Navigator.of(context).pop(),
               child: Container(
-                key: const Key("widget_move_modal_bottom_sheet"),
+                key: const Key('widget_move_modal_bottom_sheet'),
                 margin: EdgeInsets.all(12.w),
                 height: 4.w,
                 width: 24.w,

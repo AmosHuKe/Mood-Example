@@ -14,20 +14,20 @@ import 'package:moodexample/config/multiple_themes.dart';
 void main() {
   /// 集成测试环境的初始化
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-  group("基础操作测试", () {
-    testWidgets("切换底部菜单 Tab", (WidgetTester tester) async {
+  group('基础操作测试', () {
+    testWidgets('切换底部菜单 Tab', (WidgetTester tester) async {
       app.main();
       await tester.pumpAndSettle();
 
-      Finder widgetTabHome = find.byKey(const Key("tab_home"));
-      Finder widgetTabMood = find.byKey(const Key("tab_mood"));
-      Finder widgetTabStatistic = find.byKey(const Key("tab_statistic"));
-      Finder notificationRationaleDialog =
-          find.byKey(const Key("notification_rationale_dialog"));
-      Finder notificationRationaleOK =
-          find.byKey(const Key("notification_rationale_ok"));
-      Finder notificationRationaleClose =
-          find.byKey(const Key("notification_rationale_close"));
+      final Finder widgetTabHome = find.byKey(const Key('tab_home'));
+      final Finder widgetTabMood = find.byKey(const Key('tab_mood'));
+      final Finder widgetTabStatistic = find.byKey(const Key('tab_statistic'));
+      final Finder notificationRationaleDialog =
+          find.byKey(const Key('notification_rationale_dialog'));
+      final Finder notificationRationaleOK =
+          find.byKey(const Key('notification_rationale_ok'));
+      final Finder notificationRationaleClose =
+          find.byKey(const Key('notification_rationale_close'));
 
       /// 通知权限
       if (notificationRationaleDialog.precache()) {
@@ -53,51 +53,55 @@ void main() {
       await tester.pumpAndSettle();
     });
 
-    testWidgets("侧栏基础操作", (WidgetTester tester) async {
+    testWidgets('侧栏基础操作', (WidgetTester tester) async {
       app.main();
       await tester.pumpAndSettle();
       await Future.delayed(const Duration(seconds: 3));
       final BuildContext context =
-          tester.element(find.byKey(const Key("widget_menu_page")));
-      var i18n = S.of(context);
+          tester.element(find.byKey(const Key('widget_menu_page')));
+      final i18n = S.of(context);
 
-      List appMultipleThemesModeKey = [];
-      List language = [];
-      Finder widgetTabScreenLeft = find.byKey(const Key("tab_screen_left"));
-      Finder widgetMoveModalBottomSheet =
-          find.byKey(const Key("widget_move_modal_bottom_sheet"));
-      Finder widgetLaboratoryPage =
-          find.byKey(const Key("widget_laboratory_page"));
-      Finder widgetLaboratoryBackButton =
-          find.byKey(const Key("widget_laboratory_back_button"));
-      Finder widgetMenuScreenLeftLogo =
-          find.byKey(const Key("widget_menu_screen_left_logo"));
-      Finder widgetWebViewClose =
-          find.byKey(const Key("widget_web_view_close"));
-      Finder textData = find.text(i18n.app_setting_database);
-      Finder textDataExport = find.text(i18n.app_setting_database_export_data);
-      Finder textDataImport = find.text(i18n.app_setting_database_import_data);
-      Finder textSecurity = find.text(i18n.app_setting_security);
-      Finder textTheme = find.text(i18n.app_setting_theme);
-      Finder textThemeSetting = find.text(i18n.app_setting_theme_appearance);
-      Finder textThemeSettingSystem =
+      final List appMultipleThemesModeKey = [];
+      final List language = [];
+      final Finder widgetTabScreenLeft =
+          find.byKey(const Key('tab_screen_left'));
+      final Finder widgetMoveModalBottomSheet =
+          find.byKey(const Key('widget_move_modal_bottom_sheet'));
+      final Finder widgetLaboratoryPage =
+          find.byKey(const Key('widget_laboratory_page'));
+      final Finder widgetLaboratoryBackButton =
+          find.byKey(const Key('widget_laboratory_back_button'));
+      final Finder widgetMenuScreenLeftLogo =
+          find.byKey(const Key('widget_menu_screen_left_logo'));
+      final Finder widgetWebViewClose =
+          find.byKey(const Key('widget_web_view_close'));
+      final Finder textData = find.text(i18n.app_setting_database);
+      final Finder textDataExport =
+          find.text(i18n.app_setting_database_export_data);
+      final Finder textDataImport =
+          find.text(i18n.app_setting_database_import_data);
+      final Finder textSecurity = find.text(i18n.app_setting_security);
+      final Finder textTheme = find.text(i18n.app_setting_theme);
+      final Finder textThemeSetting =
+          find.text(i18n.app_setting_theme_appearance);
+      final Finder textThemeSettingSystem =
           find.text(i18n.app_setting_theme_appearance_system);
-      Finder textThemeSettingLight =
+      final Finder textThemeSettingLight =
           find.text(i18n.app_setting_theme_appearance_light);
-      Finder textThemeSettingDark =
+      final Finder textThemeSettingDark =
           find.text(i18n.app_setting_theme_appearance_dark);
-      Finder textLanguage = find.text(i18n.app_setting_language);
-      Finder textLanguageChinese = find.text("简体中文");
-      Finder textLanguageEnglish = find.text("English");
-      Finder textLanguageSystem = find.text("System");
-      Finder textLaboratory = find.text(i18n.app_setting_laboratory);
-      Finder textAbout = find.text(i18n.app_setting_about);
-      Finder notificationRationaleDialog =
-          find.byKey(const Key("notification_rationale_dialog"));
-      Finder notificationRationaleOK =
-          find.byKey(const Key("notification_rationale_ok"));
-      Finder notificationRationaleClose =
-          find.byKey(const Key("notification_rationale_close"));
+      final Finder textLanguage = find.text(i18n.app_setting_language);
+      final Finder textLanguageChinese = find.text('简体中文');
+      final Finder textLanguageEnglish = find.text('English');
+      final Finder textLanguageSystem = find.text('System');
+      final Finder textLaboratory = find.text(i18n.app_setting_laboratory);
+      final Finder textAbout = find.text(i18n.app_setting_about);
+      final Finder notificationRationaleDialog =
+          find.byKey(const Key('notification_rationale_dialog'));
+      final Finder notificationRationaleOK =
+          find.byKey(const Key('notification_rationale_ok'));
+      final Finder notificationRationaleClose =
+          find.byKey(const Key('notification_rationale_close'));
 
       /// 通知权限
       if (notificationRationaleDialog.precache()) {
@@ -124,7 +128,10 @@ void main() {
       await tester.tap(textDataExport);
 
       await tester.fling(
-          widgetMoveModalBottomSheet, const Offset(0, 400), 2400.0);
+        widgetMoveModalBottomSheet,
+        const Offset(0, 400),
+        2400.0,
+      );
       await tester.pumpAndSettle();
 
       /// 安全操作
@@ -133,7 +140,10 @@ void main() {
       await tester.pumpAndSettle();
 
       await tester.fling(
-          widgetMoveModalBottomSheet, const Offset(0, 400), 2400.0);
+        widgetMoveModalBottomSheet,
+        const Offset(0, 400),
+        2400.0,
+      );
       await tester.pumpAndSettle();
 
       /// 主题操作
@@ -148,24 +158,27 @@ void main() {
       await tester.tap(textThemeSettingLight);
       await tester.pumpAndSettle();
       await Future.forEach(appMultipleThemesModeKey, (key) async {
-        await tester.tap(find.byKey(Key("widget_multiple_themes_card_$key")));
+        await tester.tap(find.byKey(Key('widget_multiple_themes_card_$key')));
         await tester.pumpAndSettle();
       });
 
       await tester.tap(textThemeSettingDark);
       await tester.pumpAndSettle();
       await Future.forEach(appMultipleThemesModeKey, (key) async {
-        await tester.tap(find.byKey(Key("widget_multiple_themes_card_$key")));
+        await tester.tap(find.byKey(Key('widget_multiple_themes_card_$key')));
         await tester.pumpAndSettle();
       });
 
       await tester.tap(textThemeSettingSystem);
       await tester.pumpAndSettle();
       await tester
-          .tap(find.byKey(const Key("widget_multiple_themes_card_default")));
+          .tap(find.byKey(const Key('widget_multiple_themes_card_default')));
 
       await tester.fling(
-          widgetMoveModalBottomSheet, const Offset(0, 400), 2400.0);
+        widgetMoveModalBottomSheet,
+        const Offset(0, 400),
+        2400.0,
+      );
       await tester.pumpAndSettle();
 
       /// 语言操作
@@ -173,8 +186,8 @@ void main() {
       await tester.tap(textLanguage);
       await tester.pumpAndSettle();
 
-      for (var element in languageConfig) {
-        language.add(element["language"]);
+      for (final element in languageConfig) {
+        language.add(element['language']);
       }
 
       await Future.forEach(language, (e) async {
@@ -190,7 +203,10 @@ void main() {
       expect(textLanguageChinese, findsOneWidget);
 
       await tester.fling(
-          widgetMoveModalBottomSheet, const Offset(0, 400), 2400.0);
+        widgetMoveModalBottomSheet,
+        const Offset(0, 400),
+        2400.0,
+      );
       await tester.pumpAndSettle();
 
       /// 实验室操作
@@ -218,41 +234,43 @@ void main() {
       await tester.pumpAndSettle();
     });
 
-    testWidgets("首页基础操作", (WidgetTester tester) async {
+    testWidgets('首页基础操作', (WidgetTester tester) async {
       app.main();
       await tester.pumpAndSettle();
       await Future.delayed(const Duration(seconds: 3));
       final BuildContext context =
-          tester.element(find.byKey(const Key("widget_menu_page")));
-      var i18n = S.of(context);
+          tester.element(find.byKey(const Key('widget_menu_page')));
+      final i18n = S.of(context);
 
       // Finder widgetHomeBody = find.byKey(const Key("widget_home_body"));
-      Finder widgetTabHome = find.byKey(const Key("tab_home"));
-      Finder widgetOptionMood = find.byKey(const Key("widget_option_mood"));
-      Finder widgetActionButtonClose =
-          find.byKey(const Key("widget_action_button_close"));
-      Finder widgetNextButton = find.byKey(const Key("widget_next_button"));
-      Finder widgetWebViewClose =
-          find.byKey(const Key("widget_web_view_close"));
-      Finder widgetHomeArticle1 =
-          find.byKey(const Key("widget_home_article_1"));
-      Finder widgetHomeArticle2 =
-          find.byKey(const Key("widget_home_article_2"));
-      Finder textHi = find.text(i18n.home_hi);
-      Finder textHelp = find.text(i18n.home_help_title);
-      Finder textHappy = find.text("开心");
-      Finder textAngry = find.text("生气");
-      Finder textOK = find.text(i18n.mood_content_close_button_confirm);
-      Finder textLook = find.text(i18n.home_upgrade_button);
-      Finder textGLSX = find.text(i18n.onboarding_title_1);
-      Finder textJXTJ = find.text(i18n.onboarding_title_2);
-      Finder textJKKS = find.text(i18n.onboarding_title_3);
-      Finder notificationRationaleDialog =
-          find.byKey(const Key("notification_rationale_dialog"));
-      Finder notificationRationaleOK =
-          find.byKey(const Key("notification_rationale_ok"));
-      Finder notificationRationaleClose =
-          find.byKey(const Key("notification_rationale_close"));
+      final Finder widgetTabHome = find.byKey(const Key('tab_home'));
+      final Finder widgetOptionMood =
+          find.byKey(const Key('widget_option_mood'));
+      final Finder widgetActionButtonClose =
+          find.byKey(const Key('widget_action_button_close'));
+      final Finder widgetNextButton =
+          find.byKey(const Key('widget_next_button'));
+      final Finder widgetWebViewClose =
+          find.byKey(const Key('widget_web_view_close'));
+      final Finder widgetHomeArticle1 =
+          find.byKey(const Key('widget_home_article_1'));
+      final Finder widgetHomeArticle2 =
+          find.byKey(const Key('widget_home_article_2'));
+      final Finder textHi = find.text(i18n.home_hi);
+      final Finder textHelp = find.text(i18n.home_help_title);
+      final Finder textHappy = find.text('开心');
+      final Finder textAngry = find.text('生气');
+      final Finder textOK = find.text(i18n.mood_content_close_button_confirm);
+      final Finder textLook = find.text(i18n.home_upgrade_button);
+      final Finder textGLSX = find.text(i18n.onboarding_title_1);
+      final Finder textJXTJ = find.text(i18n.onboarding_title_2);
+      final Finder textJKKS = find.text(i18n.onboarding_title_3);
+      final Finder notificationRationaleDialog =
+          find.byKey(const Key('notification_rationale_dialog'));
+      final Finder notificationRationaleOK =
+          find.byKey(const Key('notification_rationale_ok'));
+      final Finder notificationRationaleClose =
+          find.byKey(const Key('notification_rationale_close'));
 
       /// 通知权限
       if (notificationRationaleDialog.precache()) {
@@ -332,47 +350,47 @@ void main() {
       await tester.pumpAndSettle();
     });
 
-    testWidgets("心情页基础操作", (WidgetTester tester) async {
+    testWidgets('心情页基础操作', (WidgetTester tester) async {
       app.main();
       await tester.pumpAndSettle();
       await Future.delayed(const Duration(seconds: 3));
       final BuildContext context =
-          tester.element(find.byKey(const Key("widget_menu_page")));
-      var i18n = S.of(context);
+          tester.element(find.byKey(const Key('widget_menu_page')));
+      final i18n = S.of(context);
 
-      String nowDay = DateFormat("dd").format(DateTime.now());
-      String nowDay1 = DateFormat("dd")
+      final String nowDay = DateFormat('dd').format(DateTime.now());
+      final String nowDay1 = DateFormat('dd')
           .format(DateTime.now().subtract(const Duration(days: 1)));
-      Finder widgetTabMood = find.byKey(const Key("tab_mood"));
-      Finder widgeMoodBody = find.byKey(const Key("widget_mood_body"));
-      Finder widgetAddMoodButton =
-          find.byKey(const Key("widget_add_mood_button"));
-      Finder widgetMoodBodyCalendar =
-          find.byKey(const Key("widget_mood_body_calendar"));
-      Finder widgetMoodCategorySelectBody =
-          find.byKey(const Key("widget_mood_category_select_body"));
-      Finder widgetMoodActionsButton =
-          find.byKey(const Key("widget_mood_actions_button"));
-      Finder widgetMoveModalBottomSheet =
-          find.byKey(const Key("widget_move_modal_bottom_sheet"));
-      Finder widgetMoodCardSlidableActionButtonEdit =
-          find.byKey(const Key("widget_mood_card_slidable_action_button_edit"));
-      Finder widgetMoodCardSlidableActionButtonDelete = find
-          .byKey(const Key("widget_mood_card_slidable_action_button_delete"));
-      Finder textMood = find.text(i18n.mood_title);
-      Finder textNowDay = find.text(nowDay);
-      Finder textNowDay1 = find.text(nowDay1);
-      Finder textXZGJRH = find.text(i18n.mood_category_select_title_1);
-      Finder textHYZXQ = find.text(i18n.mood_category_select_title_2);
-      Finder textXQCD = find.text(i18n.mood_data_score_title);
-      Finder textHappy = find.text("开心");
-      Finder textAngry = find.text("生气");
-      Finder notificationRationaleDialog =
-          find.byKey(const Key("notification_rationale_dialog"));
-      Finder notificationRationaleOK =
-          find.byKey(const Key("notification_rationale_ok"));
-      Finder notificationRationaleClose =
-          find.byKey(const Key("notification_rationale_close"));
+      final Finder widgetTabMood = find.byKey(const Key('tab_mood'));
+      final Finder widgeMoodBody = find.byKey(const Key('widget_mood_body'));
+      final Finder widgetAddMoodButton =
+          find.byKey(const Key('widget_add_mood_button'));
+      final Finder widgetMoodBodyCalendar =
+          find.byKey(const Key('widget_mood_body_calendar'));
+      final Finder widgetMoodCategorySelectBody =
+          find.byKey(const Key('widget_mood_category_select_body'));
+      final Finder widgetMoodActionsButton =
+          find.byKey(const Key('widget_mood_actions_button'));
+      final Finder widgetMoveModalBottomSheet =
+          find.byKey(const Key('widget_move_modal_bottom_sheet'));
+      final Finder widgetMoodCardSlidableActionButtonEdit =
+          find.byKey(const Key('widget_mood_card_slidable_action_button_edit'));
+      final Finder widgetMoodCardSlidableActionButtonDelete = find
+          .byKey(const Key('widget_mood_card_slidable_action_button_delete'));
+      final Finder textMood = find.text(i18n.mood_title);
+      final Finder textNowDay = find.text(nowDay);
+      final Finder textNowDay1 = find.text(nowDay1);
+      final Finder textXZGJRH = find.text(i18n.mood_category_select_title_1);
+      final Finder textHYZXQ = find.text(i18n.mood_category_select_title_2);
+      final Finder textXQCD = find.text(i18n.mood_data_score_title);
+      final Finder textHappy = find.text('开心');
+      final Finder textAngry = find.text('生气');
+      final Finder notificationRationaleDialog =
+          find.byKey(const Key('notification_rationale_dialog'));
+      final Finder notificationRationaleOK =
+          find.byKey(const Key('notification_rationale_ok'));
+      final Finder notificationRationaleClose =
+          find.byKey(const Key('notification_rationale_close'));
 
       /// 通知权限
       if (notificationRationaleDialog.precache()) {
@@ -417,11 +435,17 @@ void main() {
       expect(textXZGJRH, findsOneWidget);
       expect(textHappy, findsOneWidget);
       await tester.fling(
-          widgetMoodCategorySelectBody, const Offset(0, -500), 2400.0);
+        widgetMoodCategorySelectBody,
+        const Offset(0, -500),
+        2400.0,
+      );
       await tester.pumpAndSettle();
       expect(textAngry, findsOneWidget);
       await tester.fling(
-          widgetMoodCategorySelectBody, const Offset(0, 500), 2400.0);
+        widgetMoodCategorySelectBody,
+        const Offset(0, 500),
+        2400.0,
+      );
       await tester.pumpAndSettle();
       expect(textHappy, findsOneWidget);
       await tester.tap(textHappy);
@@ -433,7 +457,10 @@ void main() {
       expect(textHYZXQ, findsOneWidget);
       expect(textHappy, findsOneWidget);
       await tester.fling(
-          widgetMoodCategorySelectBody, const Offset(0, -500), 2400.0);
+        widgetMoodCategorySelectBody,
+        const Offset(0, -500),
+        2400.0,
+      );
       await tester.pumpAndSettle();
       expect(textAngry, findsOneWidget);
       await tester.tap(textAngry);
@@ -449,7 +476,10 @@ void main() {
       await tester.pumpAndSettle();
       expect(textAngry, findsWidgets);
       await tester.fling(
-          widgetMoveModalBottomSheet, const Offset(0, 400), 2400.0);
+        widgetMoveModalBottomSheet,
+        const Offset(0, 400),
+        2400.0,
+      );
       await tester.pumpAndSettle();
       await tester.fling(textAngry.last, const Offset(-400, 0), 2400.0);
       await tester.pumpAndSettle();
@@ -461,30 +491,31 @@ void main() {
       expect(widgetMoodCardSlidableActionButtonDelete, findsNothing);
     });
 
-    testWidgets("统计页基础操作", (WidgetTester tester) async {
+    testWidgets('统计页基础操作', (WidgetTester tester) async {
       app.main();
       await tester.pumpAndSettle();
       await Future.delayed(const Duration(seconds: 3));
       final BuildContext context =
-          tester.element(find.byKey(const Key("widget_menu_page")));
-      var i18n = S.of(context);
+          tester.element(find.byKey(const Key('widget_menu_page')));
+      final i18n = S.of(context);
 
-      Finder widgetTabStatistic = find.byKey(const Key("tab_statistic"));
-      Finder widgetStatisticBody =
-          find.byKey(const Key("widget_statistic_body"));
-      Finder textStatistic = find.text(i18n.statistic_title);
-      Finder textMoodStatistic = find.text(i18n.statistic_moodStatistics_title);
-      Finder textMoodDay7 = find.text(i18n.statistic_filter_7d);
-      Finder textMoodDay15 = find.text(i18n.statistic_filter_15d);
-      Finder textMoodDay30 = find.text(i18n.statistic_filter_30d);
+      final Finder widgetTabStatistic = find.byKey(const Key('tab_statistic'));
+      final Finder widgetStatisticBody =
+          find.byKey(const Key('widget_statistic_body'));
+      final Finder textStatistic = find.text(i18n.statistic_title);
+      final Finder textMoodStatistic =
+          find.text(i18n.statistic_moodStatistics_title);
+      final Finder textMoodDay7 = find.text(i18n.statistic_filter_7d);
+      final Finder textMoodDay15 = find.text(i18n.statistic_filter_15d);
+      final Finder textMoodDay30 = find.text(i18n.statistic_filter_30d);
       Finder textMoodDesc(int day) =>
           find.text(i18n.statistic_moodScoreAverage_content(day));
-      Finder notificationRationaleDialog =
-          find.byKey(const Key("notification_rationale_dialog"));
-      Finder notificationRationaleOK =
-          find.byKey(const Key("notification_rationale_ok"));
-      Finder notificationRationaleClose =
-          find.byKey(const Key("notification_rationale_close"));
+      final Finder notificationRationaleDialog =
+          find.byKey(const Key('notification_rationale_dialog'));
+      final Finder notificationRationaleOK =
+          find.byKey(const Key('notification_rationale_ok'));
+      final Finder notificationRationaleClose =
+          find.byKey(const Key('notification_rationale_close'));
 
       /// 通知权限
       if (notificationRationaleDialog.precache()) {

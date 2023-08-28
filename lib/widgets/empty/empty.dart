@@ -32,10 +32,10 @@ class Empty extends StatelessWidget {
             Padding(
               padding: padding,
               child: Image.asset(
-                "assets/images/woolly/woolly-password-1.png",
+                'assets/images/woolly/woolly-password-1.png',
                 height: height,
                 width: width,
-                semanticLabel: "空",
+                semanticLabel: '空',
               ),
             ),
           ],

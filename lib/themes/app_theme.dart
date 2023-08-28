@@ -28,14 +28,12 @@ bool isDarkMode(BuildContext context) {
 ThemeMode darkThemeMode(String mode) {
   ThemeMode themeMode = ThemeMode.system;
   switch (mode) {
-    case "system":
+    case 'system':
       themeMode = ThemeMode.system;
-    case "dark":
+    case 'dark':
       themeMode = ThemeMode.dark;
-    case "light":
+    case 'light':
       themeMode = ThemeMode.light;
-    default:
-      themeMode = ThemeMode.system;
   }
   return themeMode;
 }
@@ -50,8 +48,9 @@ String getMultipleThemesMode(BuildContext context) {
 
 /// 主题基础
 class AppTheme {
-  String multipleThemesMode = "default";
   AppTheme(this.multipleThemesMode);
+
+  String multipleThemesMode = 'default';
 
   /// 设备参考大小
   static const double wdp = 360.0;
@@ -68,7 +67,7 @@ class AppTheme {
   /// 多主题 light
   ThemeData? multipleThemesLightMode() {
     ThemeData? lightTheme =
-        appMultipleThemesMode["default"]![AppMultipleThemesMode.light];
+        appMultipleThemesMode['default']![AppMultipleThemesMode.light];
     if (appMultipleThemesMode[multipleThemesMode] != null) {
       lightTheme = appMultipleThemesMode[multipleThemesMode]![
           AppMultipleThemesMode.light];
@@ -79,7 +78,7 @@ class AppTheme {
   /// 多主题 dark
   ThemeData? multipleThemesDarkMode() {
     ThemeData? darkTheme =
-        appMultipleThemesMode["default"]![AppMultipleThemesMode.dark];
+        appMultipleThemesMode['default']![AppMultipleThemesMode.dark];
     if (appMultipleThemesMode[multipleThemesMode] != null) {
       darkTheme = appMultipleThemesMode[multipleThemesMode]![
           AppMultipleThemesMode.dark];

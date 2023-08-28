@@ -58,7 +58,7 @@ class LocalAuthUtils {
           authMessages: <AuthMessages>[
             AndroidAuthMessages(
               signInTitle: s.app_setting_security_localauth_signIntitle,
-              biometricHint: "",
+              biometricHint: '',
               cancelButton: s.app_setting_security_localauth_cancel,
             ),
             IOSAuthMessages(
@@ -69,7 +69,7 @@ class LocalAuthUtils {
         return didAuthenticate;
       } on PlatformException catch (e) {
         debugPrint(e.toString());
-        if (e.code == "LockedOut") {
+        if (e.code == 'LockedOut') {
           SmartDialog.showToast(s.app_setting_security_localauth_error_1);
         }
         return false;
@@ -80,7 +80,8 @@ class LocalAuthUtils {
 
   /// 识别图标
   Future<IconData?> localAuthIcon() async {
-    List<BiometricType> localAuthList = await LocalAuthUtils().localAuthList();
+    final List<BiometricType> localAuthList =
+        await LocalAuthUtils().localAuthList();
     IconData? authIcon;
     localAuthList.contains(BiometricType.weak)
         ? authIcon = Remix.body_scan_line

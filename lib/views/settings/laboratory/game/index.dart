@@ -42,12 +42,13 @@ class _GamePageState extends State<GamePage> {
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
           titleTextStyle: TextStyle(color: Colors.black, fontSize: 14.sp),
-          title: const Text("游戏合集"),
+          title: const Text('游戏合集'),
           leading: ActionButton(
             decoration: BoxDecoration(
-                color: AppTheme.backgroundColor1,
-                borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(18.w))),
+              color: AppTheme.backgroundColor1,
+              borderRadius:
+                  BorderRadius.only(bottomRight: Radius.circular(18.w)),
+            ),
             child: Icon(
               Remix.arrow_left_line,
               size: 24.sp,
@@ -93,8 +94,8 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "Mini Fantasy",
-          subtitle: "2D 地牢风格游戏，基于 Mini Fantasy 示例，修改了一些奇怪的东西。",
+          title: 'Mini Fantasy',
+          subtitle: '2D 地牢风格游戏，基于 Mini Fantasy 示例，修改了一些奇怪的东西。',
           onPressed: () async {
             /// 载入游戏静态资源
             await mini_fantasy.SpriteSheetOrc.load();
@@ -114,9 +115,9 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "疯狂射击、怪物生成",
+          title: '疯狂射击、怪物生成',
           subtitle:
-              "素材来源：https://github.com/RafaelBarbosatec/mini_fantasy、https://0x72.itch.io/dungeontileset-ii",
+              '素材来源：https://github.com/RafaelBarbosatec/mini_fantasy、https://0x72.itch.io/dungeontileset-ii',
           onPressed: () async {
             /// 横屏
             await Flame.device.setLandscape();
@@ -166,7 +167,7 @@ class ListCard extends StatelessWidget {
   final Widget leading;
 
   /// 点击打开触发
-  final Function()? onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {

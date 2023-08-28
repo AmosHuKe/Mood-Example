@@ -15,7 +15,7 @@ class NotificationController {
           groupAlertBehavior: GroupAlertBehavior.Children,
           importance: NotificationImportance.High,
           defaultPrivacy: NotificationPrivacy.Private,
-        )
+        ),
       ],
       debug: true,
     );

@@ -32,16 +32,16 @@ class _InitState extends State<Init> {
   void initState() {
     super.initState();
     AppLifecycleListener(
-      onResume: () => debugPrint("App Resume"),
-      onInactive: () => debugPrint("App Inactive"),
-      onHide: () => debugPrint("App Hide"),
-      onShow: () => debugPrint("App Show"),
+      onResume: () => debugPrint('App Resume'),
+      onInactive: () => debugPrint('App Inactive'),
+      onHide: () => debugPrint('App Hide'),
+      onShow: () => debugPrint('App Show'),
       onPause: () {
-        debugPrint("App Pause");
+        debugPrint('App Pause');
         runLockScreen();
       },
-      onRestart: () => debugPrint("App Restart"),
-      onDetach: () => debugPrint("App Detach"),
+      onRestart: () => debugPrint('App Restart'),
+      onDetach: () => debugPrint('App Detach'),
     );
     init();
     // 通知测试
@@ -60,9 +60,9 @@ class _InitState extends State<Init> {
 
   /// 应用初始化
   void init() async {
-    MoodViewModel moodViewModel =
+    final MoodViewModel moodViewModel =
         Provider.of<MoodViewModel>(context, listen: false);
-    ApplicationViewModel applicationViewModel =
+    final ApplicationViewModel applicationViewModel =
         Provider.of<ApplicationViewModel>(context, listen: false);
 
     /// 初始化数据库
@@ -112,7 +112,7 @@ class _InitState extends State<Init> {
 
   /// 发送普通通知
   void sendNotification() async {
-    bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
+    final bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
     if (!isAllowed) return;
     if (!mounted) return;
     await AwesomeNotifications().createNotification(
@@ -129,9 +129,9 @@ class _InitState extends State<Init> {
 
   /// 发送定时计划通知
   void sendScheduleNotification() async {
-    String localTimeZone =
+    final String localTimeZone =
         await AwesomeNotifications().getLocalTimeZoneIdentifier();
-    bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
+    final bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
     if (!isAllowed) return;
     if (!mounted) return;
     await AwesomeNotifications().createNotification(
@@ -161,26 +161,26 @@ class _InitState extends State<Init> {
       builder: (BuildContext context) => Theme(
         data: isDarkMode(context) ? ThemeData.dark() : ThemeData.light(),
         child: CupertinoAlertDialog(
-          key: const Key("notification_rationale_dialog"),
+          key: const Key('notification_rationale_dialog'),
           title: Text(S.of(context).local_notification_dialog_allow_title),
           content: Text(S.of(context).local_notification_dialog_allow_content),
           actions: <CupertinoDialogAction>[
             CupertinoDialogAction(
-              key: const Key("notification_rationale_close"),
+              key: const Key('notification_rationale_close'),
               child: Text(S.of(context).local_notification_dialog_allow_cancel),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
             CupertinoDialogAction(
-              key: const Key("notification_rationale_ok"),
+              key: const Key('notification_rationale_ok'),
               child:
                   Text(S.of(context).local_notification_dialog_allow_confirm),
               onPressed: () {
                 userAuthorized = true;
                 Navigator.pop(context);
               },
-            )
+            ),
           ],
         ),
       ),

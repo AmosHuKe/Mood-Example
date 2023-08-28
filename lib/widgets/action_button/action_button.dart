@@ -28,7 +28,7 @@ class ActionButton extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final Decoration? decoration;
   final Widget child;
-  final Function()? onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

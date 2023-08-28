@@ -6,7 +6,7 @@ class ApplicationViewModel extends ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.system;
 
   /// 多主题模式
-  String _multipleThemesMode = "default";
+  String _multipleThemesMode = 'default';
 
   /// 语言是否跟随系统
   bool _localeSystem = true;
@@ -15,7 +15,7 @@ class ApplicationViewModel extends ChangeNotifier {
   Locale _locale = const Locale('zh');
 
   /// 安全-密码内容
-  String _keyPassword = "";
+  String _keyPassword = '';
 
   /// 安全-密码界面是否打开
   bool _keyPasswordScreenOpen = false;

@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:bonfire/bonfire.dart';
 
 class CustomSpriteAnimationWidget extends StatelessWidget {
+  const CustomSpriteAnimationWidget({super.key, required this.animation});
+
   final Future<SpriteAnimation> animation;
 
-  const CustomSpriteAnimationWidget({super.key, required this.animation});
   @override
   Widget build(BuildContext context) {
     return SizedBox(

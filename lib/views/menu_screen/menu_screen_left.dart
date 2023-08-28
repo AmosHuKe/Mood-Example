@@ -76,7 +76,7 @@ class MenuScreenLeftBody extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.only(left: 24.w, bottom: 24.w),
             child: Image.asset(
-              "assets/images/woolly/woolly-comet-2.png",
+              'assets/images/woolly/woolly-comet-2.png',
               width: 240.w,
             ),
           ),
@@ -94,14 +94,14 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       button: true,
-      label: "关闭设置",
+      label: '关闭设置',
       child: Row(
         children: [
           ClipRRect(
-            key: const Key("widget_menu_screen_left_logo"),
+            key: const Key('widget_menu_screen_left_logo'),
             borderRadius: BorderRadius.circular(14.sp),
             child: Image.asset(
-              "assets/images/logo.png",
+              'assets/images/logo.png',
               width: 42.w,
               height: 42.w,
             ),
@@ -109,13 +109,13 @@ class Header extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 12.w),
             child: Text(
-              "Mood",
+              'Mood',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 28.sp,
                 fontWeight: FontWeight.bold,
               ),
-              semanticsLabel: "",
+              semanticsLabel: '',
             ),
           ),
         ],
@@ -148,7 +148,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            debugPrint("数据");
+            debugPrint('数据');
 
             /// 底部内容弹出
             showModalBottomDetail(
@@ -169,7 +169,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            debugPrint("安全");
+            debugPrint('安全');
 
             /// 底部内容弹出
             showModalBottomDetail(
@@ -190,7 +190,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            debugPrint("主题");
+            debugPrint('主题');
 
             /// 底部内容弹出
             showModalBottomDetail(
@@ -211,7 +211,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            debugPrint("语言");
+            debugPrint('语言');
 
             /// 底部内容弹出
             showModalBottomDetail(
@@ -232,7 +232,7 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            debugPrint("实验室");
+            debugPrint('实验室');
             Navigator.pushNamed(context, Routes.settingLaboratory);
           },
         ),
@@ -248,14 +248,14 @@ class Menu extends StatelessWidget {
             ),
           ),
           onTap: () {
-            debugPrint("关于");
+            debugPrint('关于');
             Navigator.pushNamed(
               context,
               Routes.transformParams(
                 router: Routes.webViewPage,
                 params: [
-                  ValueConvert("https://github.com/AmosHuKe/Mood-Example")
-                      .encode()
+                  ValueConvert('https://github.com/AmosHuKe/Mood-Example')
+                      .encode(),
                 ],
               ),
             );
@@ -280,7 +280,7 @@ class MenuList extends StatelessWidget {
   // 标题
   final Widget title;
   // 点击事件
-  final Function()? onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

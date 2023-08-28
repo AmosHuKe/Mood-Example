@@ -26,20 +26,6 @@ class HumanPlayer extends SimplePlayer
         ObjectCollision,
         UseBarLife,
         UseStateController<HumanPlayerController> {
-  static const assetsPath = 'game/mini_game/player/human';
-
-  /// 第一次游玩
-  bool firstPlayer = false;
-
-  /// 最大速度
-  static double maxSpeed = tileSize * 5;
-
-  /// 最大地图大小
-  static int maxMapSize = 1200;
-
-  /// 移动锁
-  bool lockMove = false;
-
   HumanPlayer(Vector2 position)
       : super(
           position: position,
@@ -93,6 +79,20 @@ class HumanPlayer extends SimplePlayer
       offset: Vector2(0, tileSize * 0.5),
     );
   }
+
+  static const assetsPath = 'game/mini_game/player/human';
+
+  /// 第一次游玩
+  bool firstPlayer = false;
+
+  /// 最大速度
+  static double maxSpeed = tileSize * 5;
+
+  /// 最大地图大小
+  static int maxMapSize = 1200;
+
+  /// 移动锁
+  bool lockMove = false;
 
   /// 渲染
   @override
@@ -200,9 +200,9 @@ class HumanPlayer extends SimplePlayer
             [
               Say(
                 text: [
-                  const TextSpan(text: "你...好...陌...生...人..."),
+                  const TextSpan(text: '你...好...陌...生...人...'),
                   const TextSpan(
-                    text: "  怪物已经向你冲来！！！",
+                    text: '  怪物已经向你冲来！！！',
                     style: TextStyle(
                       color: Colors.red,
                     ),
@@ -223,7 +223,7 @@ class HumanPlayer extends SimplePlayer
 
   /// 死亡触发
   void handleDie() {
-    Vector2 playerPosition =
+    final Vector2 playerPosition =
         gameRef.player?.position ?? Vector2(position.x, position.y);
     gameRef.camera.moveToTargetAnimated(this, finish: () {});
     TalkDialog.show(
@@ -231,7 +231,7 @@ class HumanPlayer extends SimplePlayer
       [
         Say(
           text: [
-            const TextSpan(text: "恩... 好像失败了..."),
+            const TextSpan(text: '恩... 好像失败了...'),
           ],
           person: CustomSpriteAnimationWidget(
             animation: SpriteSheetPlayer.getDamageTopRight(),
@@ -260,7 +260,7 @@ class HumanPlayer extends SimplePlayer
   /// 敌对生物生成 Orc
   void enemyOrcCreate(double dt) {
     if (checkInterval('EnemyBossCreate', 1000, dt)) {
-      debugPrint("怪物数量：${gameRef.enemies().length}");
+      debugPrint('怪物数量：${gameRef.enemies().length}');
 
       /// 限制数量
       if (gameRef.enemies().length >= 100) return;
@@ -305,7 +305,7 @@ class HumanPlayer extends SimplePlayer
   /// 敌对生物生成 Boss
   void enemyBossCreate(double dt) {
     if (checkInterval('EnemyBossCreate', 1000, dt)) {
-      debugPrint("怪物数量：${gameRef.enemies().length}");
+      debugPrint('怪物数量：${gameRef.enemies().length}');
 
       /// 限制数量
       if (gameRef.enemies().length >= 100) return;

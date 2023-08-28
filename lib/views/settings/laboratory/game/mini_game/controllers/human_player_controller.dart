@@ -14,7 +14,7 @@ class HumanPlayerController extends StateController<HumanPlayer> {
   @override
   void update(double dt, HumanPlayer component) {
     /// 远程攻击触发（发射间隔）
-    bool execRangeAttackInterval = component.checkInterval(
+    final bool execRangeAttackInterval = component.checkInterval(
       'AttackRange',
       100,
       dt,
@@ -24,7 +24,7 @@ class HumanPlayerController extends StateController<HumanPlayer> {
     }
 
     /// 远程混乱攻击触发（发射间隔）
-    bool execRangeShotgunsAttackInterval = component.checkInterval(
+    final bool execRangeShotgunsAttackInterval = component.checkInterval(
       'AttackRangeShotguns',
       50,
       dt,

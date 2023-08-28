@@ -13,32 +13,32 @@ enum AppMultipleThemesMode { light, dark }
 
 /// 多主题
 Map<String, Map<AppMultipleThemesMode, ThemeData>> appMultipleThemesMode = {
-  "default": {
+  'default': {
     AppMultipleThemesMode.light: AppThemeDefault.lightTheme,
     AppMultipleThemesMode.dark: AppThemeDefault.darkTheme,
   },
-  "red": {
+  'red': {
     AppMultipleThemesMode.light: AppThemeRed.lightTheme,
     AppMultipleThemesMode.dark: AppThemeRed.darkTheme,
   },
-  "orange": {
+  'orange': {
     AppMultipleThemesMode.light: AppThemeOrange.lightTheme,
     AppMultipleThemesMode.dark: AppThemeOrange.darkTheme,
   },
-  "yellow": {
+  'yellow': {
     AppMultipleThemesMode.light: AppThemeYellow.lightTheme,
     AppMultipleThemesMode.dark: AppThemeYellow.darkTheme,
   },
-  "green": {
+  'green': {
     AppMultipleThemesMode.light: AppThemeGreen.lightTheme,
     AppMultipleThemesMode.dark: AppThemeGreen.darkTheme,
   },
-  "cyan": {
+  'cyan': {
     AppMultipleThemesMode.light: AppThemeCyan.lightTheme,
     AppMultipleThemesMode.dark: AppThemeCyan.darkTheme,
   },
-  "purple": {
+  'purple': {
     AppMultipleThemesMode.light: AppThemePurple.lightTheme,
     AppMultipleThemesMode.dark: AppThemePurple.darkTheme,
-  }
+  },
 };

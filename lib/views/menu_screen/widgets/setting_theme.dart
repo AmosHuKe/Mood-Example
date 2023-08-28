@@ -59,7 +59,7 @@ class _SettingThemeState extends State<SettingTheme> {
         ),
 
         const MultipleThemesBody(),
-        SizedBox(height: 48.w)
+        SizedBox(height: 48.w),
       ],
     );
   }
@@ -97,7 +97,7 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
                           ? const Color(0xFFF6F8FA)
                           : const Color(0xFF111315),
                       child: Text(
-                        "Aa",
+                        'Aa',
                         style: TextStyle(
                           color: isDarkMode(context)
                               ? Colors.black87
@@ -115,7 +115,7 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
                           ? const Color(0xFF111315)
                           : const Color(0xFFF6F8FA),
                       child: Text(
-                        "Aa",
+                        'Aa',
                         style: TextStyle(
                           color: isDarkMode(context)
                               ? const Color(0xFFEFEFEF)
@@ -130,7 +130,7 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
               ),
               onTap: () async {
                 await PreferencesDB()
-                    .setAppThemeDarkMode(applicationViewModel, "system");
+                    .setAppThemeDarkMode(applicationViewModel, 'system');
               },
             ),
             DarkThemeCard(
@@ -140,7 +140,7 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
                 alignment: Alignment.center,
                 color: const Color(0xFFF6F8FA),
                 child: Text(
-                  "Aa",
+                  'Aa',
                   style: TextStyle(
                     color: Colors.black87,
                     fontWeight: FontWeight.bold,
@@ -150,7 +150,7 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
               ),
               onTap: () async {
                 await PreferencesDB()
-                    .setAppThemeDarkMode(applicationViewModel, "light");
+                    .setAppThemeDarkMode(applicationViewModel, 'light');
               },
             ),
             DarkThemeCard(
@@ -160,7 +160,7 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
                 alignment: Alignment.center,
                 color: const Color(0xFF111315),
                 child: Text(
-                  "Aa",
+                  'Aa',
                   style: TextStyle(
                     color: const Color(0xFFEFEFEF),
                     fontWeight: FontWeight.bold,
@@ -170,7 +170,7 @@ class _DarkThemeBodyState extends State<DarkThemeBody> {
               ),
               onTap: () async {
                 await PreferencesDB()
-                    .setAppThemeDarkMode(applicationViewModel, "dark");
+                    .setAppThemeDarkMode(applicationViewModel, 'dark');
               },
             ),
           ],
@@ -192,7 +192,7 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
   @override
   Widget build(BuildContext context) {
     /// 获取多主题Key
-    List appMultipleThemesModeKey = [];
+    final List appMultipleThemesModeKey = [];
     appMultipleThemesMode
         .forEach((key, value) => appMultipleThemesModeKey.add(key));
 
@@ -209,19 +209,19 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
             children: List.generate(
               appMultipleThemesModeKey.length,
               (generator) {
-                String key = appMultipleThemesModeKey[generator];
-                Color primaryColor =
+                final String key = appMultipleThemesModeKey[generator];
+                final Color primaryColor =
                     appMultipleThemesMode[key]![AppMultipleThemesMode.light]!
                         .primaryColor;
                 return MultipleThemesCard(
-                  key: Key("widget_multiple_themes_card_$key"),
+                  key: Key('widget_multiple_themes_card_$key'),
                   selected: multipleThemesMode == key,
                   child: Container(
                     alignment: Alignment.center,
                     color: primaryColor,
                   ),
                   onTap: () async {
-                    debugPrint("主题:$key");
+                    debugPrint('主题:$key');
                     await PreferencesDB()
                         .setMultipleThemesMode(applicationViewModel, key);
                   },
@@ -237,15 +237,6 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
 
 /// 多主题卡片
 class MultipleThemesCard extends StatelessWidget {
-  /// 卡片内容
-  final Widget? child;
-
-  /// 是否选中
-  final bool? selected;
-
-  /// 点击触发
-  final Function()? onTap;
-
   const MultipleThemesCard({
     super.key,
     this.child,
@@ -253,9 +244,18 @@ class MultipleThemesCard extends StatelessWidget {
     this.onTap,
   });
 
+  /// 卡片内容
+  final Widget? child;
+
+  /// 是否选中
+  final bool? selected;
+
+  /// 点击触发
+  final VoidCallback? onTap;
+
   @override
   Widget build(BuildContext context) {
-    bool isSelected = selected ?? false;
+    final bool isSelected = selected ?? false;
     return AnimatedPress(
       child: GestureDetector(
         onTap: onTap,
@@ -315,6 +315,14 @@ class MultipleThemesCard extends StatelessWidget {
 
 /// 深色模式卡片
 class DarkThemeCard extends StatelessWidget {
+  const DarkThemeCard({
+    super.key,
+    this.child,
+    this.title,
+    this.selected,
+    this.onTap,
+  });
+
   /// 卡片内容
   final Widget? child;
 
@@ -325,19 +333,11 @@ class DarkThemeCard extends StatelessWidget {
   final bool? selected;
 
   /// 点击触发
-  final Function()? onTap;
-
-  const DarkThemeCard({
-    super.key,
-    this.child,
-    this.title,
-    this.selected,
-    this.onTap,
-  });
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    bool isSelected = selected ?? false;
+    final bool isSelected = selected ?? false;
     return AnimatedPress(
       child: GestureDetector(
         onTap: onTap,
@@ -391,7 +391,7 @@ class DarkThemeCard extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 4.w),
               child: Text(
-                title ?? "",
+                title ?? '',
                 style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
               ),
             ),

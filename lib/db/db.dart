@@ -21,7 +21,7 @@ class DB {
   final _version = 1;
 
   /// 数据库名称
-  final _databaseName = "moodDB.db";
+  final _databaseName = 'moodDB.db';
 
   Future<Database> get database async {
     _db = await createDatabase();
@@ -30,10 +30,14 @@ class DB {
 
   /// 创建
   Future<Database> createDatabase() async {
-    String dbPath = await getDatabasesPath();
-    String path = join(dbPath, _databaseName);
-    Database db = await openDatabase(path,
-        version: _version, onCreate: _onCreate, onUpgrade: _onUpgrade);
+    final String dbPath = await getDatabasesPath();
+    final String path = join(dbPath, _databaseName);
+    final Database db = await openDatabase(
+      path,
+      version: _version,
+      onCreate: _onCreate,
+      onUpgrade: _onUpgrade,
+    );
     return db;
   }
 
@@ -41,8 +45,8 @@ class DB {
 
   /// 创建
   void _onCreate(Database db, int newVersion) async {
-    debugPrint("_onCreate 新版本:$newVersion");
-    var batch = db.batch();
+    debugPrint('_onCreate 新版本:$newVersion');
+    final batch = db.batch();
 
     /// 心情详细内容表
     batch.execute(TableMoodInfo().dropTable);
@@ -56,10 +60,10 @@ class DB {
 
   /// 升级
   void _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    debugPrint("_onUpgrade 旧版本:$oldVersion");
-    debugPrint("_onUpgrade 新版本:$newVersion");
+    debugPrint('_onUpgrade 旧版本:$oldVersion');
+    debugPrint('_onUpgrade 新版本:$newVersion');
 
-    var batch = db.batch();
+    final batch = db.batch();
 
     /// 升级逻辑
 
@@ -74,10 +78,10 @@ class DB {
   ///
   Future<List> selectMood(String datetime) async {
     final db = await database;
-    List list = await db.query(
+    final List list = await db.query(
       TableMoodInfo.tableName,
       orderBy:
-          "${TableMoodInfo.fieldCreateTime} asc, ${TableMoodInfo.fieldMoodId} desc",
+          '${TableMoodInfo.fieldCreateTime} asc, ${TableMoodInfo.fieldMoodId} desc',
       where: '''
         ${TableMoodInfo.fieldCreateTime} like ? 
       ''',
@@ -89,17 +93,18 @@ class DB {
   /// 新增心情详情
   Future<bool> insertMood(MoodData moodData) async {
     final db = await database;
-    int result = await db.insert(TableMoodInfo.tableName, moodData.toJson());
+    final int result =
+        await db.insert(TableMoodInfo.tableName, moodData.toJson());
     return result > 0;
   }
 
   /// 修改心情详情
   Future<bool> updateMood(MoodData moodData) async {
     final db = await database;
-    int result = await db.update(
+    final int result = await db.update(
       TableMoodInfo.tableName,
       moodData.toJson(),
-      where: "${TableMoodInfo.fieldMoodId} = ?",
+      where: '${TableMoodInfo.fieldMoodId} = ?',
       whereArgs: [moodData.moodId],
     );
     return result > 0;
@@ -108,9 +113,9 @@ class DB {
   /// 删除心情
   Future<bool> deleteMood(MoodData moodData) async {
     final db = await database;
-    int result = await db.delete(
+    final int result = await db.delete(
       TableMoodInfo.tableName,
-      where: "${TableMoodInfo.fieldMoodId} = ?",
+      where: '${TableMoodInfo.fieldMoodId} = ?',
       whereArgs: [moodData.moodId],
     );
     return result > 0;
@@ -119,7 +124,7 @@ class DB {
   /// 查询所有已记录心情的日期
   Future<List> selectMoodRecordedDate() async {
     final db = await database;
-    List list = await db.rawQuery('''
+    final List list = await db.rawQuery('''
       SELECT 
         DISTINCT DATE(${TableMoodInfo.fieldCreateTime}) as recordedDate,
         ${TableMoodInfo.fieldIcon} 
@@ -132,9 +137,9 @@ class DB {
   /// 查询所有心情详情
   Future<List> selectAllMood() async {
     final db = await database;
-    List list = await db.query(
+    final List list = await db.query(
       TableMoodInfo.tableName,
-      orderBy: "${TableMoodInfo.fieldCreateTime} desc",
+      orderBy: '${TableMoodInfo.fieldCreateTime} desc',
     );
     return list;
   }
@@ -144,16 +149,19 @@ class DB {
   /// 查询所有心情类别
   Future<List> selectMoodCategoryAll() async {
     final db = await database;
-    List list = await db.query(TableMoodInfoCategory.tableName);
+    final List list = await db.query(TableMoodInfoCategory.tableName);
     return list;
   }
 
   /// 设置默认心情类别
   Future<bool> insertMoodCategoryDefault(
-      MoodCategoryData moodCategoryData) async {
+    MoodCategoryData moodCategoryData,
+  ) async {
     final db = await database;
-    int result = await db.insert(
-        TableMoodInfoCategory.tableName, moodCategoryData.toJson());
+    final int result = await db.insert(
+      TableMoodInfoCategory.tableName,
+      moodCategoryData.toJson(),
+    );
     return result > 0;
   }
 
@@ -162,23 +170,25 @@ class DB {
   /// 统计-APP累计记录天数
   Future<List> selectAPPUsageDays() async {
     final db = await database;
-    List days = await db.rawQuery(
-        "SELECT count(DISTINCT DATE(${TableMoodInfo.fieldCreateTime})) as dayCount FROM ${TableMoodInfo.tableName}");
+    final List days = await db.rawQuery(
+      'SELECT count(DISTINCT DATE(${TableMoodInfo.fieldCreateTime})) as dayCount FROM ${TableMoodInfo.tableName}',
+    );
     return days;
   }
 
   /// 统计-APP累计记录条数
   Future<List> selectAPPMoodCount() async {
     final db = await database;
-    List count = await db.rawQuery(
-        "SELECT count(${TableMoodInfo.fieldMoodId}) as moodCount FROM ${TableMoodInfo.tableName}");
+    final List count = await db.rawQuery(
+      'SELECT count(${TableMoodInfo.fieldMoodId}) as moodCount FROM ${TableMoodInfo.tableName}',
+    );
     return count;
   }
 
   /// 统计-平均情绪波动
   Future<List> selectMoodScoreAverage() async {
     final db = await database;
-    List count = await db.rawQuery('''
+    final List count = await db.rawQuery('''
       SELECT 
         (sum(${TableMoodInfo.fieldScore})/count(${TableMoodInfo.fieldMoodId})) as moodScoreAverage 
       FROM ${TableMoodInfo.tableName}
@@ -192,7 +202,7 @@ class DB {
   ///
   Future<List> selectDateMoodScoreAverage(String datetime) async {
     final db = await database;
-    List score = await db.rawQuery(
+    final List score = await db.rawQuery(
       '''
         SELECT 
           (sum(${TableMoodInfo.fieldScore})/count(${TableMoodInfo.fieldMoodId})) as moodScoreAverage 
@@ -211,7 +221,7 @@ class DB {
   /// [endTime] 结束时间 例如 2022-01-01 23:59:59
   Future<List> selectDateMoodCount(String startTime, String endTime) async {
     final db = await database;
-    List count = await db.rawQuery(
+    final List count = await db.rawQuery(
       '''
         SELECT 
           ${TableMoodInfo.fieldIcon},

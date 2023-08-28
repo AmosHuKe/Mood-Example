@@ -12,8 +12,6 @@ double tileSize = 20.0;
 
 class Orc extends SimpleEnemy
     with ObjectCollision, AutomaticRandomMovement, UseBarLife {
-  bool canMove = true;
-
   Orc(Vector2 position)
       : super(
           position: position,
@@ -62,6 +60,8 @@ class Orc extends SimpleEnemy
       offset: Vector2(0, tileSize * 0.5),
     );
   }
+
+  bool canMove = true;
 
   /// 渲染
   @override

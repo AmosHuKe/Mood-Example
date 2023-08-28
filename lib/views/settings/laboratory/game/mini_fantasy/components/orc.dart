@@ -11,8 +11,6 @@ double tileSize = 20.0;
 
 class Orc extends SimpleEnemy
     with ObjectCollision, AutomaticRandomMovement, UseBarLife {
-  bool canMove = true;
-
   Orc(Vector2 position)
       : super(
           position: position,
@@ -62,6 +60,8 @@ class Orc extends SimpleEnemy
     );
   }
 
+  bool canMove = true;
+
   /// 渲染
   @override
   void render(Canvas canvas) {
@@ -75,7 +75,7 @@ class Orc extends SimpleEnemy
 
     /// 碰撞 Orc 不发生碰撞
     if (component is Orc) {
-      debugPrint("碰撞 Orc");
+      debugPrint('碰撞 Orc');
       active = false;
     }
     return active;

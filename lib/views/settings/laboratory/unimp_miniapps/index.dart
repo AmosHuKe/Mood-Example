@@ -29,12 +29,13 @@ class _UniMPMiniappsPageState extends State<UniMPMiniappsPage> {
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
           titleTextStyle: TextStyle(color: Colors.black, fontSize: 14.sp),
-          title: const Text("uniapp 小程序"),
+          title: const Text('uniapp 小程序'),
           leading: ActionButton(
             decoration: BoxDecoration(
-                color: AppTheme.backgroundColor1,
-                borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(18.w))),
+              color: AppTheme.backgroundColor1,
+              borderRadius:
+                  BorderRadius.only(bottomRight: Radius.circular(18.w)),
+            ),
             child: Icon(
               Remix.arrow_left_line,
               size: 24.sp,
@@ -63,12 +64,12 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
   @override
   Widget build(BuildContext context) {
     // 创建渠道与原生沟通
-    const channel = MethodChannel("UniMP_mini_apps");
+    const channel = MethodChannel('UniMP_mini_apps');
 
     Future callNativeMethod(String appID) async {
       try {
         // 通过渠道，调用原生代码代码的方法
-        final future = await channel.invokeMethod("open", {"AppID": appID});
+        final future = await channel.invokeMethod('open', {'AppID': appID});
         // 打印执行的结果
         debugPrint(future.toString());
       } on PlatformException catch (e) {
@@ -93,9 +94,9 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
           child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("UniMPSDK_Android 版本：3.4.7.V2.20220425"),
-              Text("UniMPSDK_iOS 版本：3.4.7"),
-              Text("HBuilderX 版本：3.4.7"),
+              Text('UniMPSDK_Android 版本：3.4.7.V2.20220425'),
+              Text('UniMPSDK_iOS 版本：3.4.7'),
+              Text('HBuilderX 版本：3.4.7'),
             ],
           ),
         ),
@@ -107,10 +108,10 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "uView",
-          subtitle: "uView UI，是 uni-app 生态优秀的 UI 框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水",
+          title: 'uView',
+          subtitle: 'uView UI，是 uni-app 生态优秀的 UI 框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水',
           onPressed: () async {
-            await callNativeMethod("__UNI__F87B0CE");
+            await callNativeMethod('__UNI__F87B0CE');
           },
         ),
         ListCard(
@@ -119,10 +120,10 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
             size: 32.sp,
             color: Colors.black87,
           ),
-          title: "hello-uniapp",
-          subtitle: "演示 uni-app 框架的组件、接口、模板等",
+          title: 'hello-uniapp',
+          subtitle: '演示 uni-app 框架的组件、接口、模板等',
           onPressed: () async {
-            await callNativeMethod("__UNI__3BC70CE");
+            await callNativeMethod('__UNI__3BC70CE');
           },
         ),
       ],
@@ -149,7 +150,7 @@ class ListCard extends StatelessWidget {
   final Widget leading;
 
   /// 点击打开触发
-  final Function()? onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {

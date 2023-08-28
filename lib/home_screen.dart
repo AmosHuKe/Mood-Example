@@ -93,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData appTheme = Theme.of(context);
+    final ThemeData appTheme = Theme.of(context);
 
     return Scaffold(
       body: PageView(
@@ -133,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 tabs: [
                   /// 菜单
                   Tab(
-                    key: const Key("tab_home"),
+                    key: const Key('tab_home'),
                     text: S.of(context).app_bottomNavigationBar_title_home,
                     icon: Icon(
                       Remix.home_line,
@@ -141,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     ),
                   ),
                   Tab(
-                    key: const Key("tab_mood"),
+                    key: const Key('tab_mood'),
                     text: S.of(context).app_bottomNavigationBar_title_mood,
                     icon: Icon(
                       Remix.heart_3_line,
@@ -149,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     ),
                   ),
                   Tab(
-                    key: const Key("tab_statistic"),
+                    key: const Key('tab_statistic'),
                     text: S.of(context).app_bottomNavigationBar_title_statistic,
                     icon: Icon(
                       Remix.bar_chart_line,
@@ -173,9 +173,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               // 侧栏
               Semantics(
                 button: true,
-                label: "打开设置",
+                label: '打开设置',
                 child: GestureDetector(
-                  key: const Key("tab_screen_left"),
+                  key: const Key('tab_screen_left'),
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       color: isDarkMode(context)

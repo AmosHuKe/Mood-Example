@@ -12,10 +12,6 @@ double tileSize = 20.0;
 
 class HumanPlayer extends SimplePlayer
     with Lighting, ObjectCollision, UseBarLife {
-  static double maxSpeed = tileSize * 4;
-
-  bool lockMove = false;
-
   HumanPlayer(Vector2 position)
       : super(
           position: position,
@@ -73,6 +69,10 @@ class HumanPlayer extends SimplePlayer
     );
   }
 
+  static double maxSpeed = tileSize * 4;
+
+  bool lockMove = false;
+
   /// 渲染
   @override
   void render(Canvas canvas) {
@@ -86,7 +86,7 @@ class HumanPlayer extends SimplePlayer
 
     /// 碰撞 Orc 不发生碰撞
     if (component is Orc) {
-      debugPrint("碰撞 Orc");
+      debugPrint('碰撞 Orc');
       active = false;
     }
     return active;

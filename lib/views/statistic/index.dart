@@ -39,15 +39,15 @@ class _StatisticPageState extends State<StatisticPage>
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: const SafeArea(
-        child: StatisticBody(key: Key("widget_statistic_body")),
+        child: StatisticBody(key: Key('widget_statistic_body')),
       ),
     );
   }
 }
 
 /// 初始化
-init(BuildContext context) {
-  StatisticViewModel statisticViewModel =
+void init(BuildContext context) {
+  final StatisticViewModel statisticViewModel =
       Provider.of<StatisticViewModel>(context, listen: false);
 
   /// 统计的天数
@@ -63,8 +63,10 @@ init(BuildContext context) {
   StatisticService.getMoodScoreAverage(statisticViewModel);
 
   /// 统计-近日情绪波动
-  StatisticService.getMoodScoreAverageRecently(statisticViewModel,
-      days: moodDays);
+  StatisticService.getMoodScoreAverageRecently(
+    statisticViewModel,
+    days: moodDays,
+  );
 
   /// 统计-近日心情数量统计
   StatisticService.getDateMoodCount(statisticViewModel, days: moodDays);
@@ -112,7 +114,7 @@ class StatisticBody extends StatelessWidget {
                           FilterBottom(
                             S.of(context).statistic_filter_7d,
                             checked: moodDays == 7,
-                            semanticsLabel: "筛选7日统计数据",
+                            semanticsLabel: '筛选7日统计数据',
                             onTap: () {
                               if (moodDays == 7) return;
                               statisticViewModel.moodDays = 7;
@@ -122,7 +124,7 @@ class StatisticBody extends StatelessWidget {
                           FilterBottom(
                             S.of(context).statistic_filter_15d,
                             checked: moodDays == 15,
-                            semanticsLabel: "筛选15日统计数据",
+                            semanticsLabel: '筛选15日统计数据',
                             onTap: () {
                               if (moodDays == 15) return;
                               statisticViewModel.moodDays = 15;
@@ -132,13 +134,13 @@ class StatisticBody extends StatelessWidget {
                           FilterBottom(
                             S.of(context).statistic_filter_30d,
                             checked: moodDays == 30,
-                            semanticsLabel: "筛选30日统计数据",
+                            semanticsLabel: '筛选30日统计数据',
                             onTap: () {
                               if (moodDays == 30) return;
                               statisticViewModel.moodDays = 30;
                               init(context);
                             },
-                          )
+                          ),
                         ],
                       );
                     },
@@ -190,7 +192,8 @@ class StatisticBody extends StatelessWidget {
                           return StatisticLayout(
                             title: S.of(context).statistic_moodScore_title,
                             subTitle: S.of(context).statistic_moodScore_content(
-                                statisticViewModel.moodDays),
+                                  statisticViewModel.moodDays,
+                                ),
                             height: 180.w,
                             statistic: const StatisticWeekMood(),
                           );
@@ -209,10 +212,10 @@ class StatisticBody extends StatelessWidget {
                         builder: (_, statisticViewModel, child) {
                           return StatisticLayout(
                             title: S.of(context).statistic_moodStatistics_title,
-                            subTitle: S
-                                .of(context)
-                                .statistic_moodStatistics_content(
-                                    statisticViewModel.moodDays),
+                            subTitle:
+                                S.of(context).statistic_moodStatistics_content(
+                                      statisticViewModel.moodDays,
+                                    ),
                             height: 320.w,
                             statistic: const StatisticCategoryMood(),
                           );
@@ -245,15 +248,16 @@ class _StatisticMoodLineState extends State<StatisticMoodLine> {
     return Consumer<StatisticViewModel>(
       builder: (_, statisticViewModel, child) {
         /// 获取数据 计算近日平均
-        List<Map<String, dynamic>> listData =
+        final List<Map<String, dynamic>> listData =
             statisticViewModel.moodScoreAverageRecently;
         double moodScoreAverage = 0;
         double moodScoreSum = 0;
         for (int i = 0; i < listData.length; i++) {
-          moodScoreSum += listData[i]["score"];
+          moodScoreSum += listData[i]['score'];
         }
         moodScoreAverage = double.parse(
-            (moodScoreSum / statisticViewModel.moodDays).toStringAsFixed(1));
+          (moodScoreSum / statisticViewModel.moodDays).toStringAsFixed(1),
+        );
         return StatisticLayout(
           title: S
               .of(context)
@@ -280,7 +284,7 @@ class StatisticWeekMoodLine extends StatefulWidget {
 class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
   @override
   Widget build(BuildContext context) {
-    List<Color> gradientColors = [
+    final List<Color> gradientColors = [
       Theme.of(context).primaryColor.withOpacity(0.1),
       Theme.of(context).primaryColor.withOpacity(0.4),
       Theme.of(context).primaryColor.withOpacity(0.6),
@@ -315,17 +319,17 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
         if (moodEmpty) {
           listData = List.generate((days), (i) {
             return {
-              "datetime": "",
-              "score": 0,
+              'datetime': '',
+              'score': 0,
             };
           });
         }
 
         /// 为了数据效果展示首尾填充占位数据
-        List<Map<String, dynamic>> listFlSpot = [
-          {"datetime": "", "score": listData.first["score"]},
+        final List<Map<String, dynamic>> listFlSpot = [
+          {'datetime': '', 'score': listData.first['score']},
           ...listData,
-          {"datetime": "", "score": listData.last["score"]},
+          {'datetime': '', 'score': listData.last['score']},
         ];
 
         ///
@@ -340,7 +344,7 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                 spots: List<FlSpot>.generate(listFlSpot.length, (i) {
                   return FlSpot(
                     double.parse((i).toString()),
-                    double.parse(listFlSpot[i]["score"].toString()),
+                    double.parse(listFlSpot[i]['score'].toString()),
                   );
                 }),
                 isCurved: true,
@@ -383,7 +387,7 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                       return null;
                     }
                     return LineTooltipItem(
-                      "",
+                      '',
                       const TextStyle(),
                       children: [
                         TextSpan(
@@ -395,11 +399,11 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                           ),
                         ),
                         TextSpan(
-                          text: (listFlSpot[i]["datetime"].toString() != ""
-                              ? listFlSpot[i]["datetime"]
+                          text: (listFlSpot[i]['datetime'].toString() != ''
+                              ? listFlSpot[i]['datetime']
                                   .toString()
                                   .substring(5, 10)
-                              : ""),
+                              : ''),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 10.sp,
@@ -442,23 +446,23 @@ class _StatisticWeekMoodLineState extends State<StatisticWeekMoodLine> {
                   const AxisTitles(sideTitles: SideTitles(showTitles: false)),
               bottomTitles: AxisTitles(
                 sideTitles: SideTitles(
-                    showTitles: true,
-                    reservedSize: 18.w,
-                    interval: days > 7 ? ((days / 7) + 1) : (days / 7),
-                    getTitlesWidget: (value, titleMeta) {
-                      final nowListDate =
-                          listFlSpot[(value).toInt()]['datetime'];
-                      return Text(
-                        (nowListDate.toString() != ""
-                            ? nowListDate.toString().substring(8, 10)
-                            : ""),
-                        style: TextStyle(
-                          color: AppTheme.subColor,
-                          fontWeight: FontWeight.normal,
-                          fontSize: 12.sp,
-                        ),
-                      );
-                    }),
+                  showTitles: true,
+                  reservedSize: 18.w,
+                  interval: days > 7 ? ((days / 7) + 1) : (days / 7),
+                  getTitlesWidget: (value, titleMeta) {
+                    final nowListDate = listFlSpot[(value).toInt()]['datetime'];
+                    return Text(
+                      (nowListDate.toString() != ''
+                          ? nowListDate.toString().substring(8, 10)
+                          : ''),
+                      style: TextStyle(
+                        color: AppTheme.subColor,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 12.sp,
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
             borderData: FlBorderData(
@@ -502,23 +506,25 @@ class OverallStatistics extends StatelessWidget {
                   StatisticsCard(
                     icon: Remix.time_line,
                     title: S.of(context).statistic_overall_daysCount_title(
-                        statisticViewModel.daysCount),
+                          statisticViewModel.daysCount,
+                        ),
                     subTitle:
                         S.of(context).statistic_overall_daysCount_subTitle,
                   ),
                   StatisticsCard(
                     icon: Remix.file_list_2_line,
                     title: S.of(context).statistic_overall_moodCount_title(
-                        statisticViewModel.moodCount),
+                          statisticViewModel.moodCount,
+                        ),
                     subTitle:
                         S.of(context).statistic_overall_moodCount_subTitle,
                   ),
                   StatisticsCard(
                     icon: Remix.pulse_line,
-                    title: S
-                        .of(context)
-                        .statistic_overall_moodScoreAverage_title(
-                            statisticViewModel.moodScoreAverage),
+                    title:
+                        S.of(context).statistic_overall_moodScoreAverage_title(
+                              statisticViewModel.moodScoreAverage,
+                            ),
                     subTitle: S
                         .of(context)
                         .statistic_overall_moodScoreAverage_subTitle,
@@ -602,8 +608,8 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
         if (listData.isEmpty) {
           listData = List.generate(moodDays, (i) {
             return {
-              "datetime": "---------- --------",
-              "score": 0,
+              'datetime': '---------- --------',
+              'score': 0,
             };
           });
         }
@@ -638,11 +644,11 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
                 tooltipBgColor: Theme.of(context).primaryColor,
                 getTooltipItem: (group, groupIndex, rod, rodIndex) {
                   return BarTooltipItem(
-                    "",
+                    '',
                     const TextStyle(),
                     children: [
                       TextSpan(
-                        text: "${rod.toY}\n",
+                        text: '${rod.toY}\n',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 14.sp,
@@ -650,11 +656,11 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
                         ),
                       ),
                       TextSpan(
-                        text: (listData[group.x]['datetime'].toString() != ""
+                        text: (listData[group.x]['datetime'].toString() != ''
                             ? listData[group.x]['datetime']
                                 .toString()
                                 .substring(5, 10)
-                            : ""),
+                            : ''),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 10.sp,
@@ -686,7 +692,7 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
                   showTitles: true,
                   getTitlesWidget: (value, titleMeta) {
                     return Text(
-                      "",
+                      '',
                       style: TextStyle(fontSize: 12.sp),
                     );
                   },
@@ -864,7 +870,7 @@ class StatisticsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       container: true,
-      label: "$subTitle$title",
+      label: '$subTitle$title',
       excludeSemantics: true,
       child: Card(
         elevation: 0,
@@ -946,7 +952,7 @@ class StatisticLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       container: true,
-      label: "$title$subTitle",
+      label: '$title$subTitle',
       excludeSemantics: true,
       child: Card(
         elevation: 0,
@@ -1016,11 +1022,11 @@ class FilterBottom extends StatelessWidget {
   final String? semanticsLabel;
 
   /// onTap
-  final Function()? onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    Color primaryColor = Theme.of(context).primaryColor;
+    final Color primaryColor = Theme.of(context).primaryColor;
     return AnimatedPress(
       child: Semantics(
         button: true,
@@ -1039,13 +1045,15 @@ class FilterBottom extends StatelessWidget {
               boxShadow: checked
                   ? [
                       BoxShadow(
-                          color:
-                              Theme.of(context).primaryColor.withOpacity(0.2),
-                          blurRadius: 6)
+                        color: Theme.of(context).primaryColor.withOpacity(0.2),
+                        blurRadius: 6,
+                      ),
                     ]
                   : [
                       BoxShadow(
-                          color: Colors.black.withOpacity(0.02), blurRadius: 6)
+                        color: Colors.black.withOpacity(0.02),
+                        blurRadius: 6,
+                      ),
                     ],
             ),
             child: Text(
