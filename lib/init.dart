@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 ///
 import 'package:awesome_notifications/awesome_notifications.dart';
@@ -31,6 +32,8 @@ class _InitState extends State<Init> {
   @override
   void initState() {
     super.initState();
+
+    /// App 生命周期
     AppLifecycleListener(
       onResume: () => print('App Resume'),
       onInactive: () => print('App Inactive'),
@@ -43,11 +46,9 @@ class _InitState extends State<Init> {
       onRestart: () => print('App Restart'),
       onDetach: () => print('App Detach'),
     );
+
+    /// 初始化
     init();
-    // 通知测试
-    NotificationController.cancelNotifications();
-    sendNotification();
-    sendScheduleNotification();
   }
 
   @override
@@ -56,7 +57,27 @@ class _InitState extends State<Init> {
   }
 
   @override
-  Widget build(BuildContext context) => widget.child;
+  Widget build(BuildContext context) {
+    /// 沉浸模式（全屏模式）
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    SystemChrome.setSystemUIOverlayStyle(
+      isDarkMode(context)
+          ? SystemUiOverlayStyle.dark.copyWith(
+              statusBarColor: Colors.transparent,
+              statusBarBrightness: Brightness.light,
+              statusBarIconBrightness: Brightness.light,
+              systemNavigationBarColor: Colors.transparent,
+            )
+          : SystemUiOverlayStyle.light.copyWith(
+              statusBarColor: Colors.transparent,
+              statusBarBrightness: Brightness.dark,
+              statusBarIconBrightness: Brightness.dark,
+              systemNavigationBarColor: Colors.transparent,
+            ),
+    );
+
+    return widget.child;
+  }
 
   /// 应用初始化
   void init() async {
@@ -93,6 +114,11 @@ class _InitState extends State<Init> {
 
     /// 通知权限判断显示
     allowedNotification();
+
+    /// 通知测试
+    NotificationController.cancelNotifications();
+    sendNotification();
+    sendScheduleNotification();
   }
 
   /// 锁屏

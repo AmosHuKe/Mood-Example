@@ -7,6 +7,7 @@ class AppThemeRed {
 
   /// 浅色主题
   static final lightTheme = ThemeData(
+    brightness: Brightness.light,
     // 字体
     fontFamily: null,
     // 文字
@@ -66,6 +67,7 @@ class AppThemeRed {
 
   /// 深色主题
   static final darkTheme = ThemeData(
+    brightness: Brightness.dark,
     // 字体
     fontFamily: null,
     // 文字
