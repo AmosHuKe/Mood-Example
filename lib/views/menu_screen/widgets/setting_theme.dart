@@ -6,7 +6,6 @@ import 'package:remixicon/remixicon.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
-import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/config/multiple_themes.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 
@@ -115,12 +114,7 @@ class DarkThemeBody extends StatelessWidget {
                   ),
                 ],
               ),
-              onTap: () async {
-                await PreferencesDB().setAppThemeDarkMode(
-                  applicationProvider,
-                  'system',
-                );
-              },
+              onTap: () => applicationProvider.themeMode = ThemeMode.system,
             ),
             ThemeCard(
               title: S.of(context).app_setting_theme_appearance_light,
@@ -137,12 +131,7 @@ class DarkThemeBody extends StatelessWidget {
                   ),
                 ),
               ),
-              onTap: () async {
-                await PreferencesDB().setAppThemeDarkMode(
-                  applicationProvider,
-                  'light',
-                );
-              },
+              onTap: () => applicationProvider.themeMode = ThemeMode.light,
             ),
             ThemeCard(
               title: S.of(context).app_setting_theme_appearance_dark,
@@ -159,12 +148,7 @@ class DarkThemeBody extends StatelessWidget {
                   ),
                 ),
               ),
-              onTap: () async {
-                await PreferencesDB().setAppThemeDarkMode(
-                  applicationProvider,
-                  'dark',
-                );
-              },
+              onTap: () => applicationProvider.themeMode = ThemeMode.dark,
             ),
           ],
         );
@@ -213,10 +197,9 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
                     alignment: Alignment.center,
                     color: primaryColor,
                   ),
-                  onTap: () async {
+                  onTap: () {
                     print('主题:$key');
-                    await PreferencesDB()
-                        .setMultipleThemesMode(applicationProvider, key);
+                    applicationProvider.multipleThemesMode = key;
                   },
                 );
               },

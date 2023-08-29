@@ -6,7 +6,6 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:provider/provider.dart';
 
 import 'package:moodexample/common/local_auth_utils.dart';
-import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/generated/l10n.dart';
 
 import 'package:moodexample/providers/application/application_provider.dart';
@@ -17,14 +16,15 @@ Future<void> lockScreen(BuildContext context) async {
   final s = S.of(context);
   final ApplicationProvider applicationProvider =
       Provider.of<ApplicationProvider>(context, listen: false);
-  final String password =
-      await PreferencesDB().getAppKeyPassword(applicationProvider);
+  applicationProvider.loadKeyPassword();
+  applicationProvider.loadKeyBiometric();
+
+  final String password = applicationProvider.keyPassword;
   final localAuthUtils = await LocalAuthUtils();
 
   /// 支持生物特征识别处理
   Widget? customizedButtonChild;
-  final bool canAppKeyBiometric =
-      await PreferencesDB().getAppKeyBiometric(applicationProvider);
+  final bool canAppKeyBiometric = applicationProvider.keyBiometric;
   final bool canLocalAuthBiometrics =
       await localAuthUtils.canLocalAuthBiometrics();
   if (canAppKeyBiometric && canLocalAuthBiometrics) {

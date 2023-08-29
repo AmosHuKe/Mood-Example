@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
-import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/config/language.dart';
 
 import 'package:moodexample/providers/application/application_provider.dart';
@@ -29,8 +28,8 @@ class SettingLanguage extends StatelessWidget {
               applicationProvider.localeSystem,
           builder: (_, localeSystem, child) {
             final ApplicationProvider applicationProvider =
-                Provider.of<ApplicationProvider>(context, listen: false);
-            return RadioListTile(
+                context.read<ApplicationProvider>();
+            return RadioListTile<bool>(
               value: localeSystem,
               groupValue: true,
               title: Text(
@@ -40,10 +39,7 @@ class SettingLanguage extends StatelessWidget {
                     .bodyMedium!
                     .copyWith(fontSize: 14.sp, fontWeight: FontWeight.normal),
               ),
-              onChanged: (value) async {
-                await PreferencesDB()
-                    .setAppIsLocaleSystem(applicationProvider, true);
-              },
+              onChanged: (_) => applicationProvider.localeSystem = true,
             );
           },
         ),
@@ -65,12 +61,7 @@ class SettingLanguage extends StatelessWidget {
                           fontWeight: FontWeight.normal,
                         ),
                   ),
-                  onChanged: (value) async {
-                    await PreferencesDB().setAppLocale(
-                      applicationProvider,
-                      value.toString(),
-                    );
-                  },
+                  onChanged: (value) => applicationProvider.locale = value!,
                 );
               }),
             );

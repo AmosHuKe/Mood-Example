@@ -9,7 +9,6 @@ import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/common/notification.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/db/db.dart';
-import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/widgets/lock_screen/lock_screen.dart';
 
 import 'package:moodexample/providers/application/application_provider.dart';
@@ -77,33 +76,25 @@ class _InitState extends State<Init> {
 
   /// 应用初始化
   void init() async {
-    final MoodProvider moodProvider =
-        Provider.of<MoodProvider>(context, listen: false);
+    final MoodProvider moodProvider = context.read<MoodProvider>();
     final ApplicationProvider applicationProvider =
-        Provider.of<ApplicationProvider>(context, listen: false);
+        context.read<ApplicationProvider>();
 
-    /// 初始化数据库
+    // 初始化数据库
     await DB.db.database;
-
-    /// 锁屏
+    // 锁屏
     runLockScreen();
-
-    /// 获取所有心情类别
+    // 获取所有心情类别
     moodProvider.loadMoodCategoryAllList();
-
-    /// 触发获取APP主题深色模式
-    PreferencesDB().getAppThemeDarkMode(applicationProvider);
-
-    /// 触发获取APP多主题模式
-    PreferencesDB().getMultipleThemesMode(applicationProvider);
-
-    /// 触发获取APP地区语言
-    PreferencesDB().getAppLocale(applicationProvider);
-
-    /// 触发获取APP地区语言是否跟随系统
-    PreferencesDB().getAppIsLocaleSystem(applicationProvider);
-
-    /// 通知权限判断显示
+    // 触发获取APP主题深色模式
+    applicationProvider.loadThemeMode();
+    // 触发获取APP多主题模式
+    applicationProvider.loadMultipleThemesMode();
+    // 触发获取APP地区语言
+    applicationProvider.loadLocale();
+    // 触发获取APP地区语言是否跟随系统
+    applicationProvider.loadLocaleSystem();
+    // 通知权限判断显示
     allowedNotification();
 
     /// 通知测试

@@ -4,8 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
 
-import 'package:moodexample/providers/application/application_provider.dart';
-
 /// shared_preferences
 class PreferencesDB {
   Future<SharedPreferences> init() async {
@@ -47,9 +45,9 @@ class PreferencesDB {
   /*** shared_preferences ***/
 
   /// 设置-是否填充完成【心情类别】表默认值
-  Future setInitMoodCategoryDefaultType(bool value) async {
+  Future<bool> setInitMoodCategoryDefaultType(bool value) async {
     final SharedPreferences prefs = await init();
-    prefs.setBool(initMoodCategoryDefaultType, value);
+    return prefs.setBool(initMoodCategoryDefaultType, value);
   }
 
   /// 获取-是否填充完成【心情类别】表默认值
@@ -59,134 +57,81 @@ class PreferencesDB {
   }
 
   /// 设置-主题外观模式
-  ///
-  /// [value] system(默认)：跟随系统 light：普通 dark：深色
-  Future setAppThemeDarkMode(
-    ApplicationProvider applicationProvider,
-    String value,
-  ) async {
+  Future<bool> setAppThemeDarkMode(ThemeMode themeMode) async {
     final SharedPreferences prefs = await init();
-    prefs.setString(appThemeDarkMode, value);
-    applicationProvider.themeMode = darkThemeMode(value);
+    return prefs.setString(appThemeDarkMode, themeMode.name);
   }
 
   /// 获取-主题外观模式
-  Future<String> getAppThemeDarkMode(
-    ApplicationProvider applicationProvider,
-  ) async {
+  Future<ThemeMode> getAppThemeDarkMode() async {
     final SharedPreferences prefs = await init();
     final String themeDarkMode = prefs.getString(appThemeDarkMode) ?? 'system';
-    applicationProvider.themeMode = darkThemeMode(themeDarkMode);
-    return themeDarkMode;
+    return darkThemeMode(themeDarkMode);
   }
 
   /// 设置-多主题模式
-  Future setMultipleThemesMode(
-    ApplicationProvider applicationProvider,
-    String value,
-  ) async {
+  Future<bool> setMultipleThemesMode(String value) async {
     final SharedPreferences prefs = await init();
-    prefs.setString(appMultipleThemesMode, value);
-    applicationProvider.multipleThemesMode = value;
+    return prefs.setString(appMultipleThemesMode, value);
   }
 
   /// 获取-多主题模式
-  Future<String> getMultipleThemesMode(
-    ApplicationProvider applicationProvider,
-  ) async {
+  Future<String> getMultipleThemesMode() async {
     final SharedPreferences prefs = await init();
-    final String multipleThemesMode =
-        prefs.getString(appMultipleThemesMode) ?? 'default';
-    applicationProvider.multipleThemesMode = multipleThemesMode;
-    return multipleThemesMode;
+    return prefs.getString(appMultipleThemesMode) ?? 'default';
   }
 
   /// 设置-APP地区语言
-  Future setAppLocale(
-    ApplicationProvider applicationProvider,
-    String? locale,
-  ) async {
+  Future<bool> setAppLocale(Locale locale) async {
     final SharedPreferences prefs = await init();
-    print(locale);
-    await setAppIsLocaleSystem(applicationProvider, false);
-    final appLocaleSystem = locale ?? 'zh';
-    final appLocaleList = appLocaleSystem.split('_');
-    prefs.setString(appLocale, appLocaleSystem);
-    applicationProvider.locale = Locale(
-      appLocaleList[0],
-      appLocaleList.length > 1 ? appLocaleList[1] : '',
-    );
+    print(locale.toLanguageTag());
+    return prefs.setString(appLocale, locale.toLanguageTag());
   }
 
   /// 获取-APP地区语言
-  Future<String> getAppLocale(ApplicationProvider applicationProvider) async {
+  Future<Locale> getAppLocale() async {
     final SharedPreferences prefs = await init();
     final String getAppLocale = prefs.getString(appLocale) ?? 'zh';
-    final appLocaleList = getAppLocale.split('_');
-    applicationProvider.locale = Locale(
+    final appLocaleList = getAppLocale.split('-');
+    return Locale(
       appLocaleList[0],
       appLocaleList.length > 1 ? appLocaleList[1] : '',
     );
-    return getAppLocale;
   }
 
   /// 设置-APP地区语言是否跟随系统
-  Future setAppIsLocaleSystem(
-    ApplicationProvider applicationProvider,
-    bool isLocaleSystem,
-  ) async {
+  Future<bool> setAppIsLocaleSystem(bool isLocaleSystem) async {
     final SharedPreferences prefs = await init();
-    prefs.setBool(appIsLocaleSystem, isLocaleSystem);
-    applicationProvider.localeSystem = isLocaleSystem;
+    return prefs.setBool(appIsLocaleSystem, isLocaleSystem);
   }
 
   /// 获取-APP地区语言是否跟随系统
-  Future<bool> getAppIsLocaleSystem(
-    ApplicationProvider applicationProvider,
-  ) async {
+  Future<bool> getAppIsLocaleSystem() async {
     final SharedPreferences prefs = await init();
-    final bool getAppIsLocaleSystem = prefs.getBool(appIsLocaleSystem) ?? true;
-    applicationProvider.localeSystem = getAppIsLocaleSystem;
-    return getAppIsLocaleSystem;
+    return prefs.getBool(appIsLocaleSystem) ?? true;
   }
 
   /// 设置-安全-密码
-  Future setAppKeyPassword(
-    ApplicationProvider applicationProvider,
-    String keyPassword,
-  ) async {
+  Future<bool> setAppKeyPassword(String keyPassword) async {
     final SharedPreferences prefs = await init();
-    prefs.setString(appKeyPassword, keyPassword);
-    applicationProvider.keyPassword = keyPassword;
+    return prefs.setString(appKeyPassword, keyPassword);
   }
 
   /// 获取-安全-密码
-  Future<String> getAppKeyPassword(
-    ApplicationProvider applicationProvider,
-  ) async {
+  Future<String> getAppKeyPassword() async {
     final SharedPreferences prefs = await init();
-    final String getAppKeyPassword = prefs.getString(appKeyPassword) ?? '';
-    applicationProvider.keyPassword = getAppKeyPassword;
-    return getAppKeyPassword;
+    return prefs.getString(appKeyPassword) ?? '';
   }
 
   /// 设置-安全-生物特征识别是否开启
-  Future setAppKeyBiometric(
-    ApplicationProvider applicationProvider,
-    bool keyBiometric,
-  ) async {
+  Future<bool> setAppKeyBiometric(bool keyBiometric) async {
     final SharedPreferences prefs = await init();
-    prefs.setBool(appKeyBiometric, keyBiometric);
-    applicationProvider.keyBiometric = keyBiometric;
+    return prefs.setBool(appKeyBiometric, keyBiometric);
   }
 
   /// 获取-安全-生物特征识别是否开启
-  Future<bool> getAppKeyBiometric(
-    ApplicationProvider applicationProvider,
-  ) async {
+  Future<bool> getAppKeyBiometric() async {
     final SharedPreferences prefs = await init();
-    final bool getAppKeyBiometric = prefs.getBool(appKeyBiometric) ?? false;
-    applicationProvider.keyBiometric = getAppKeyBiometric;
-    return getAppKeyBiometric;
+    return prefs.getBool(appKeyBiometric) ?? false;
   }
 }

@@ -9,7 +9,6 @@ import 'package:remixicon/remixicon.dart';
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/lock_screen/lock_screen.dart';
 import 'package:moodexample/common/local_auth_utils.dart';
-import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/generated/l10n.dart';
 
 import 'package:moodexample/providers/application/application_provider.dart';
@@ -68,14 +67,14 @@ class _KeyBodyState extends State<KeyBody> {
 
   void init(BuildContext context) async {
     final ApplicationProvider applicationProvider =
-        Provider.of<ApplicationProvider>(context, listen: false);
+        context.read<ApplicationProvider>();
     final localAuthUtils = await LocalAuthUtils();
     localAuthList = await localAuthUtils.localAuthList();
     localAuthIcon = localAuthUtils.localAuthIcon(localAuthList);
     localAuthText = localAuthUtils.localAuthText(context, localAuthList);
 
     /// 获取-安全-生物特征识别是否开启
-    await PreferencesDB().getAppKeyBiometric(applicationProvider);
+    applicationProvider.loadKeyBiometric();
   }
 
   @override
@@ -116,12 +115,10 @@ class _KeyBodyState extends State<KeyBody> {
                   applicationProvider.keyPasswordScreenOpen = false;
                   if (value) {
                     await LocalAuthUtils().localAuthBiometric(context)
-                        ? await PreferencesDB()
-                            .setAppKeyBiometric(applicationProvider, value)
+                        ? applicationProvider.keyBiometric = value
                         : null;
                   } else {
-                    await PreferencesDB()
-                        .setAppKeyBiometric(applicationProvider, value);
+                    applicationProvider.keyBiometric = value;
                   }
                 },
               ),
@@ -157,18 +154,12 @@ class _KeyBodyState extends State<KeyBody> {
                     if (value) {
                       createlockScreen(
                         context,
-                        (password) async {
-                          await PreferencesDB().setAppKeyPassword(
-                            applicationProvider,
-                            password,
-                          );
-                        },
+                        (password) =>
+                            applicationProvider.keyPassword = password,
                       );
                     } else {
-                      await PreferencesDB()
-                          .setAppKeyPassword(applicationProvider, '');
-                      await PreferencesDB()
-                          .setAppKeyBiometric(applicationProvider, false);
+                      applicationProvider.keyPassword = '';
+                      applicationProvider.keyBiometric = false;
                     }
                   },
                 ),
