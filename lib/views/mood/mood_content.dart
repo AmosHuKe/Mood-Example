@@ -55,7 +55,7 @@ class _MoodContentState extends State<MoodContent> {
         shadowColor: Colors.transparent,
         centerTitle: true,
         title: Text(
-          LocaleDatetime().yMMMd(_moodData.createTime ?? ''),
+          LocaleDatetime.yMMMd(_moodData.createTime ?? ''),
           style: TextStyle(
             fontSize: 14.sp,
           ),

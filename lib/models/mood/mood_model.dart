@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/widgets.dart';
 
 MoodData moodDataFromJson(String str) => MoodData.fromJson(json.decode(str));
 String moodDataToJson(MoodData data) => json.encode(data.toJson());
@@ -56,8 +57,9 @@ MoodRecordData moodRecordDataFromJson(String str) =>
 String moodRecordDataToJson(MoodRecordData data) => json.encode(data.toJson());
 
 /// 心情记录日期数据
+@immutable
 class MoodRecordData {
-  MoodRecordData({
+  const MoodRecordData({
     required this.recordDate,
     required this.icon,
   });

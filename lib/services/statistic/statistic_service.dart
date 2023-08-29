@@ -11,7 +11,6 @@ import 'package:moodexample/models/statistic/statistic_model.dart';
 class StatisticService {
   /// 获取APP累计记录天数
   static Future<int> getAPPUsageDays() async {
-    // 查询
     final list = await DB.db.selectAPPUsageDays();
     print('获取APP使用天数$list');
     return list[0]['dayCount'] ?? 0;
@@ -19,7 +18,6 @@ class StatisticService {
 
   /// 获取APP累计记录条数
   static Future<int> getAPPMoodCount() async {
-    // 查询
     final list = await DB.db.selectAPPMoodCount();
     print('APP累计记录条数$list');
     return list[0]['moodCount'] ?? 0;
@@ -27,7 +25,6 @@ class StatisticService {
 
   /// 获取平均情绪波动
   static Future<int> getMoodScoreAverage() async {
-    // 查询
     final list = await DB.db.selectMoodScoreAverage();
     print('平均情绪波动$list');
     return list[0]['moodScoreAverage'] ?? 0;
@@ -54,7 +51,6 @@ class StatisticService {
         ),
       );
     }
-
     return dataList;
   }
 

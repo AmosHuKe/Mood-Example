@@ -42,11 +42,9 @@ class _MoodPageState extends State<MoodPage>
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.endOfFrame.then(
-      (_) {
-        if (mounted) init(context);
-      },
-    );
+    WidgetsBinding.instance.endOfFrame.then((_) {
+      if (mounted) init(context);
+    });
   }
 
   @override
@@ -494,9 +492,7 @@ class _CalendarState extends State<Calendar> {
                     margin: EdgeInsets.only(top: 28.w),
                     child: Text(
                       list[recordedIndex].icon,
-                      style: TextStyle(
-                        fontSize: 8.sp,
-                      ),
+                      style: TextStyle(fontSize: 8.sp),
                     ),
                   );
                 }
@@ -729,7 +725,7 @@ class MoodCard extends StatelessWidget {
                                           fontWeight: FontWeight.normal,
                                         ),
                                         semanticsLabel:
-                                            '${LocaleDatetime().yMMMd(datetime)} 心情：$title',
+                                            '${LocaleDatetime.yMMMd(datetime)} 心情：$title',
                                       ),
                                     ),
                                   ],
@@ -840,13 +836,13 @@ class MoodDetail extends StatelessWidget {
         Align(
           heightFactor: 2.w,
           child: Text(
-            LocaleDatetime().yMMMd(createTime),
+            LocaleDatetime.yMMMd(createTime),
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.bold,
               color: AppTheme.subColor,
             ),
-            semanticsLabel: '${LocaleDatetime().yMMMd(createTime)} 心情：$title',
+            semanticsLabel: '${LocaleDatetime.yMMMd(createTime)} 心情：$title',
           ),
         ),
         Padding(

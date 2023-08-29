@@ -114,9 +114,8 @@ class _KeyBodyState extends State<KeyBody> {
                 onChanged: (value) async {
                   applicationProvider.keyPasswordScreenOpen = false;
                   if (value) {
-                    await LocalAuthUtils().localAuthBiometric(context)
-                        ? applicationProvider.keyBiometric = value
-                        : null;
+                    if (await LocalAuthUtils().localAuthBiometric(context))
+                      applicationProvider.keyBiometric = value;
                   } else {
                     applicationProvider.keyBiometric = value;
                   }

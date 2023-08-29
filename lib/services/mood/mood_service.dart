@@ -10,45 +10,19 @@ class MoodService {
   /// 设置心情类别默认值
   static Future<void> setCategoryDefault() async {
     /// 默认值
-    final List<Map<String, String>> moodCategoryData = [
-      {
-        'icon': '😊',
-        'title': '开心',
-      },
-      {
-        'icon': '🎉',
-        'title': '惊喜',
-      },
-      {
-        'icon': '🤡',
-        'title': '滑稽',
-      },
-      {
-        'icon': '😅',
-        'title': '尴尬',
-      },
-      {
-        'icon': '😟',
-        'title': '伤心',
-      },
-      {
-        'icon': '🤯',
-        'title': '惊讶',
-      },
-      {
-        'icon': '🤩',
-        'title': '崇拜',
-      },
-      {
-        'icon': '😡',
-        'title': '生气',
-      }
+    final List<MoodCategoryData> moodCategoryData = [
+      MoodCategoryData(icon: '😊', title: '开心'),
+      MoodCategoryData(icon: '🎉', title: '惊喜'),
+      MoodCategoryData(icon: '🤡', title: '滑稽'),
+      MoodCategoryData(icon: '😅', title: '尴尬'),
+      MoodCategoryData(icon: '😟', title: '伤心'),
+      MoodCategoryData(icon: '🤯', title: '惊讶'),
+      MoodCategoryData(icon: '🤩', title: '崇拜'),
+      MoodCategoryData(icon: '😡', title: '生气'),
     ];
 
     for (final value in moodCategoryData) {
-      final MoodCategoryData moodCategoryData =
-          moodCategoryDataFromJson(json.encode(value));
-      DB.db.insertMoodCategoryDefault(moodCategoryData);
+      DB.db.insertMoodCategoryDefault(value);
     }
   }
 
@@ -64,9 +38,7 @@ class MoodService {
   }
 
   /// 添加心情详情数据
-  static Future<bool> addMoodData(
-    MoodData moodData,
-  ) async {
+  static Future<bool> addMoodData(MoodData moodData) async {
     // 添加数据
     final bool result = await DB.db.insertMood(moodData);
     return result;
@@ -97,18 +69,14 @@ class MoodService {
   }
 
   /// 修改心情详细数据
-  static Future<bool> editMood(
-    MoodData moodData,
-  ) async {
+  static Future<bool> editMood(MoodData moodData) async {
     // 修改数据
     final bool result = await DB.db.updateMood(moodData);
     return result;
   }
 
   /// 删除心情详细数据
-  static Future<bool> delMood(
-    MoodData moodData,
-  ) async {
+  static Future<bool> delMood(MoodData moodData) async {
     // 删除数据
     final bool result = await DB.db.deleteMood(moodData);
     return result;

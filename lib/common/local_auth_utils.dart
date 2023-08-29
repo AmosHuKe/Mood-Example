@@ -79,18 +79,13 @@ class LocalAuthUtils {
   /// 识别图标
   IconData? localAuthIcon(List<BiometricType> localAuthList) {
     IconData? authIcon;
-    localAuthList.contains(BiometricType.weak)
-        ? authIcon = Remix.body_scan_line
-        : null;
-    localAuthList.contains(BiometricType.iris)
-        ? authIcon = Remix.eye_line
-        : null;
-    localAuthList.contains(BiometricType.face)
-        ? authIcon = Remix.body_scan_line
-        : null;
-    localAuthList.contains(BiometricType.fingerprint)
-        ? authIcon = Remix.fingerprint_line
-        : null;
+    if (localAuthList.contains(BiometricType.weak))
+      authIcon = Remix.body_scan_line;
+    if (localAuthList.contains(BiometricType.iris)) authIcon = Remix.eye_line;
+    if (localAuthList.contains(BiometricType.face))
+      authIcon = Remix.body_scan_line;
+    if (localAuthList.contains(BiometricType.fingerprint))
+      authIcon = Remix.fingerprint_line;
     return authIcon;
   }
 
@@ -100,18 +95,14 @@ class LocalAuthUtils {
     List<BiometricType> localAuthList,
   ) {
     String authText = '';
-    localAuthList.contains(BiometricType.weak)
-        ? authText = S.of(context).app_setting_security_biometric_weak
-        : null;
-    localAuthList.contains(BiometricType.iris)
-        ? authText = S.of(context).app_setting_security_biometric_iris
-        : null;
-    localAuthList.contains(BiometricType.face)
-        ? authText = S.of(context).app_setting_security_biometric_face
-        : null;
-    localAuthList.contains(BiometricType.fingerprint)
-        ? authText = S.of(context).app_setting_security_biometric_fingerprint
-        : null;
+    if (localAuthList.contains(BiometricType.weak))
+      authText = S.of(context).app_setting_security_biometric_weak;
+    if (localAuthList.contains(BiometricType.iris))
+      authText = S.of(context).app_setting_security_biometric_iris;
+    if (localAuthList.contains(BiometricType.face))
+      authText = S.of(context).app_setting_security_biometric_face;
+    if (localAuthList.contains(BiometricType.fingerprint))
+      authText = S.of(context).app_setting_security_biometric_fingerprint;
     return authText;
   }
 }

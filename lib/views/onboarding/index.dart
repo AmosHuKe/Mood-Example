@@ -157,21 +157,17 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
             itemBuilder: (BuildContext context, int index) {
               return _swiperList[index];
             },
-            onIndexChanged: (index) => {
-              if (index != _swiperList.length - 1)
-                {
-                  _stepButtonController.reverse(),
-                  _stepButtonColorController.reverse(),
-                }
-              else
-                {
-                  _stepButtonController.forward(),
-                  _stepButtonColorController.forward(),
-                },
+            onIndexChanged: (index) {
+              if (index != _swiperList.length - 1) {
+                _stepButtonController.reverse();
+                _stepButtonColorController.reverse();
+              } else {
+                _stepButtonController.forward();
+                _stepButtonColorController.forward();
+              }
               setState(() {
-                /// 赋值当前下标
                 swiperIndex = index;
-              }),
+              });
             },
             pagination: SwiperPagination(
               builder: DotSwiperPaginationBuilder(
@@ -264,9 +260,7 @@ class TextImageSwiper extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Align(
-          child: image,
-        ),
+        Align(child: image),
         Padding(
           padding: EdgeInsets.only(left: 32.w, right: 32.w),
           child: Text(

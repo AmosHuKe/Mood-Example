@@ -129,7 +129,7 @@ class MoodCategorySelectBody extends StatelessWidget {
                 child: Text(
                   _moodCategorySelectType == MoodCategorySelectType.edit
                       ? ''
-                      : LocaleDatetime().yMMMd(_nowDateTime),
+                      : LocaleDatetime.yMMMd(_nowDateTime),
                   style: TextStyle(
                     color: AppTheme.subColor,
                     fontSize: 14.sp,

@@ -122,9 +122,9 @@ class Routes {
     required String router,
     required List<dynamic> params,
   }) {
-    late String transform = '';
-    for (int i = 0; i < params.length; i++) {
-      transform += '/${params[i]}';
+    String transform = '';
+    for (final value in params) {
+      transform += '/$value';
     }
     print('$router$transform');
     return '$router$transform';

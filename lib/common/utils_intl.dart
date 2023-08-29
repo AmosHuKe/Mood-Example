@@ -7,9 +7,7 @@ class LocaleDatetime {
   /// [format] 时间格式
   ///
   /// @return [String] 日期如：2000-01-01
-  String yMMMd(String format) {
-    return format.isNotEmpty
-        ? DateFormat.yMMMMd().format(DateFormat('yyyy-MM-dd').parse(format))
-        : '';
-  }
+  static String yMMMd(String format) => format.isNotEmpty
+      ? DateFormat.yMMMMd().format(DateFormat('yyyy-MM-dd').parse(format))
+      : '';
 }
