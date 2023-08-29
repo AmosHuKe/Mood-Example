@@ -60,7 +60,7 @@ class KeyBody extends StatefulWidget {
 }
 
 class _KeyBodyState extends State<KeyBody> {
-  static final _titleIconSize = 18.sp;
+  final _titleIconSize = 18.sp;
   List<BiometricType> localAuthList = [];
   IconData? localAuthIcon;
   String localAuthText = '';

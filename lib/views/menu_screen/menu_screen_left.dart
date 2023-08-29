@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:remixicon/remixicon.dart';
-import 'package:provider/provider.dart';
 
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/generated/l10n.dart';
@@ -14,26 +13,17 @@ import 'package:moodexample/views/menu_screen/widgets/setting_database.dart';
 import 'package:moodexample/views/menu_screen/widgets/setting_key.dart';
 import 'package:moodexample/routes.dart';
 
-import 'package:moodexample/providers/application/application_provider.dart';
-
 /// 外层抽屉菜单（左）
 class MenuScreenLeft extends StatelessWidget {
   const MenuScreenLeft({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ApplicationProvider>(
-      builder: (_, applicationProvider, child) {
-        return Scaffold(
-          backgroundColor: Colors.transparent,
-          body: GestureDetector(
-            child: const SafeArea(
-              child: MenuScreenLeftBody(),
-            ),
-            onTap: () => ZoomDrawer.of(context)?.toggle.call(),
-          ),
-        );
-      },
+    return GestureDetector(
+      child: const SafeArea(
+        child: MenuScreenLeftBody(),
+      ),
+      onTap: () => ZoomDrawer.of(context)?.toggle.call(),
     );
   }
 }
@@ -123,11 +113,11 @@ class Header extends StatelessWidget {
 class Menu extends StatelessWidget {
   const Menu({super.key});
 
-  static final _titleTextSize = 14.sp;
-  static final _titleIconSize = 20.sp;
-
   @override
   Widget build(BuildContext context) {
+    final _titleTextSize = 14.sp;
+    final _titleIconSize = 20.sp;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

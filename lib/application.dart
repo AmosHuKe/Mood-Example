@@ -102,29 +102,25 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _drawerController = ZoomDrawerController();
 
-    return Consumer<ApplicationProvider>(
-      builder: (_, applicationProvider, child) {
-        return ZoomDrawer(
-          controller: _drawerController,
-          menuScreen: const MenuScreenLeft(),
-          mainScreen: const MainScreenBody(),
-          borderRadius: 36.w,
-          showShadow: true,
-          disableDragGesture: false,
-          mainScreenTapClose: true,
-          openCurve: Curves.easeOut,
-          closeCurve: Curves.fastOutSlowIn,
-          drawerShadowsBackgroundColor:
-              isDarkMode(context) ? Colors.black26 : Colors.white38,
-          menuBackgroundColor: isDarkMode(context)
-              ? Theme.of(context).primaryColor.withAlpha(155)
-              : Theme.of(context).primaryColor,
-          angle: 0,
-          mainScreenScale: 0.3,
-          slideWidth: MediaQuery.of(context).size.width * 0.70,
-          style: DrawerStyle.defaultStyle,
-        );
-      },
+    return ZoomDrawer(
+      controller: _drawerController,
+      menuScreen: const MenuScreenLeft(),
+      mainScreen: const MainScreenBody(),
+      borderRadius: 36.w,
+      showShadow: true,
+      disableDragGesture: false,
+      mainScreenTapClose: true,
+      openCurve: Curves.easeOut,
+      closeCurve: Curves.fastOutSlowIn,
+      drawerShadowsBackgroundColor:
+          isDarkMode(context) ? Colors.black26 : Colors.white38,
+      menuBackgroundColor: isDarkMode(context)
+          ? Theme.of(context).primaryColor.withAlpha(155)
+          : Theme.of(context).primaryColor,
+      angle: 0,
+      mainScreenScale: 0.3,
+      slideWidth: MediaQuery.of(context).size.width * 0.70,
+      style: DrawerStyle.defaultStyle,
     );
   }
 }

@@ -43,7 +43,9 @@ class _InitState extends State<Init> {
     );
 
     /// 初始化
-    init();
+    WidgetsBinding.instance.endOfFrame.then((_) {
+      if (mounted) init();
+    });
   }
 
   @override

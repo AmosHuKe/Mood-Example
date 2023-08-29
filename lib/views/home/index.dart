@@ -247,11 +247,11 @@ class OptionCard extends StatelessWidget {
   /// Icon
   final String icon;
 
-  /// 图标大小
-  static final double _iconSize = 32.sp;
-
   @override
   Widget build(BuildContext context) {
+    /// 图标大小
+    final double _iconSize = 32.sp;
+
     return Consumer<ApplicationProvider>(
       builder: (_, applicationProvider, child) {
         return OpenContainer(
