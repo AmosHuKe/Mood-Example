@@ -275,7 +275,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                   child: Container(
                     width: 64.h,
                     height: 64.h,
-                    padding: EdgeInsets.only(left: 12.w, top: 12.w),
+                    margin: EdgeInsets.only(left: 12.w, top: 12.w),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
