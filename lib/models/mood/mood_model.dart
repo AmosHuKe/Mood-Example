@@ -1,34 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
-
-MoodModel moodModelFromJson(String str) => MoodModel.fromJson(json.decode(str));
-String moodModelToJson(MoodModel data) => json.encode(data.toJson());
-
-/// 心情详细数据
-@immutable
-class MoodModel {
-  const MoodModel({
-    required this.moodData,
-  });
-
-  factory MoodModel.fromJson(Map<String, dynamic> json) => MoodModel(
-        moodData: List<MoodData>.from(
-          json['data'].map(
-            (x) => MoodData.fromJson(x),
-          ),
-        ),
-      );
-
-  final List<MoodData> moodData;
-
-  Map<String, dynamic> toJson() => {
-        'moodData': List<dynamic>.from(
-          moodData.map(
-            (x) => x.toJson(),
-          ),
-        ),
-      };
-}
 
 MoodData moodDataFromJson(String str) => MoodData.fromJson(json.decode(str));
 String moodDataToJson(MoodData data) => json.encode(data.toJson());
@@ -78,5 +48,32 @@ class MoodData {
         'content': content,
         'createTime': createTime,
         'updateTime': updateTime,
+      };
+}
+
+MoodRecordData moodRecordDataFromJson(String str) =>
+    MoodRecordData.fromJson(json.decode(str));
+String moodRecordDataToJson(MoodRecordData data) => json.encode(data.toJson());
+
+/// 心情记录日期数据
+class MoodRecordData {
+  MoodRecordData({
+    required this.recordDate,
+    required this.icon,
+  });
+
+  factory MoodRecordData.fromJson(Map<String, dynamic> json) => MoodRecordData(
+        recordDate: json['recordDate'],
+        icon: json['icon'],
+      );
+
+  // 记录日期
+  final String recordDate;
+  // 图标
+  final String icon;
+
+  Map<String, dynamic> toJson() => {
+        'recordDate': recordDate,
+        'icon': icon,
       };
 }

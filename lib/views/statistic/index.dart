@@ -15,8 +15,8 @@ import 'package:moodexample/widgets/empty/empty.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 
 ///
+import 'package:moodexample/models/statistic/statistic_model.dart';
 import 'package:moodexample/providers/statistic/statistic_provider.dart';
-import 'package:moodexample/services/statistic/statistic_service.dart';
 
 /// 统计
 class StatisticPage extends StatefulWidget {
@@ -47,29 +47,25 @@ class _StatisticPageState extends State<StatisticPage>
 
 /// 初始化
 void init(BuildContext context) {
-  final StatisticProvider statisticProvider =
-      Provider.of<StatisticProvider>(context, listen: false);
+  final StatisticProvider statisticProvider = context.read<StatisticProvider>();
 
   /// 统计的天数
   final int moodDays = statisticProvider.moodDays;
 
   /// 统计-APP累计使用天数
-  StatisticService.getAPPUsageDays(statisticProvider);
+  statisticProvider.loadDaysCount();
 
   /// 统计-APP累计记录条数
-  StatisticService.getAPPMoodCount(statisticProvider);
+  statisticProvider.loadMoodCount();
 
   /// 统计-平均情绪波动
-  StatisticService.getMoodScoreAverage(statisticProvider);
+  statisticProvider.loadMoodScoreAverage();
 
   /// 统计-近日情绪波动
-  StatisticService.getMoodScoreAverageRecently(
-    statisticProvider,
-    days: moodDays,
-  );
+  statisticProvider.loadMoodScoreAverageRecently(days: moodDays);
 
   /// 统计-近日心情数量统计
-  StatisticService.getDateMoodCount(statisticProvider, days: moodDays);
+  statisticProvider.loadDateMoodCount(days: moodDays);
 }
 
 class StatisticBody extends StatelessWidget {
@@ -238,12 +234,12 @@ class StatisticMoodLine extends StatelessWidget {
     return Consumer<StatisticProvider>(
       builder: (_, statisticProvider, child) {
         /// 获取数据 计算近日平均
-        final List<Map<String, dynamic>> listData =
+        final List<StatisticMoodScoreAverageRecentlyData> listData =
             statisticProvider.moodScoreAverageRecently;
         double moodScoreAverage = 0;
         double moodScoreSum = 0;
         for (int i = 0; i < listData.length; i++) {
-          moodScoreSum += listData[i]['score'];
+          moodScoreSum += listData[i].score;
         }
         moodScoreAverage = double.parse(
           (moodScoreSum / statisticProvider.moodDays).toStringAsFixed(1),
@@ -285,7 +281,7 @@ class StatisticWeekMoodLine extends StatelessWidget {
     return Consumer<StatisticProvider>(
       builder: (_, statisticProvider, child) {
         /// 获取数据
-        late List<Map<String, dynamic>> listData =
+        late List<StatisticMoodScoreAverageRecentlyData> listData =
             statisticProvider.moodScoreAverageRecently;
 
         /// 统计的天数
@@ -303,18 +299,24 @@ class StatisticWeekMoodLine extends StatelessWidget {
         /// 数据为空的占位
         if (moodEmpty) {
           listData = List.generate((days), (i) {
-            return {
-              'datetime': '',
-              'score': 0,
-            };
+            return StatisticMoodScoreAverageRecentlyData(
+              datetime: '',
+              score: 0,
+            );
           });
         }
 
         /// 为了数据效果展示首尾填充占位数据
-        final List<Map<String, dynamic>> listFlSpot = [
-          {'datetime': '', 'score': listData.first['score']},
+        final List<StatisticMoodScoreAverageRecentlyData> listFlSpot = [
+          StatisticMoodScoreAverageRecentlyData(
+            datetime: '',
+            score: listData.first.score,
+          ),
           ...listData,
-          {'datetime': '', 'score': listData.last['score']},
+          StatisticMoodScoreAverageRecentlyData(
+            datetime: '',
+            score: listData.last.score,
+          ),
         ];
 
         return LineChart(
@@ -328,7 +330,7 @@ class StatisticWeekMoodLine extends StatelessWidget {
                 spots: List<FlSpot>.generate(listFlSpot.length, (i) {
                   return FlSpot(
                     double.parse((i).toString()),
-                    double.parse(listFlSpot[i]['score'].toString()),
+                    double.parse(listFlSpot[i].score.toString()),
                   );
                 }),
                 isCurved: true,
@@ -375,7 +377,7 @@ class StatisticWeekMoodLine extends StatelessWidget {
                       const TextStyle(),
                       children: [
                         TextSpan(
-                          text: "${listFlSpot[i]["score"]} ",
+                          text: '${listFlSpot[i].score} ',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 14.sp,
@@ -383,11 +385,7 @@ class StatisticWeekMoodLine extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: (listFlSpot[i]['datetime'].toString() != ''
-                              ? listFlSpot[i]['datetime']
-                                  .toString()
-                                  .substring(5, 10)
-                              : ''),
+                          text: listFlSpot[i].datetime.substring(5, 10),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 10.sp,
@@ -434,7 +432,7 @@ class StatisticWeekMoodLine extends StatelessWidget {
                   reservedSize: 18.w,
                   interval: days > 7 ? ((days / 7) + 1) : (days / 7),
                   getTitlesWidget: (value, titleMeta) {
-                    final nowListDate = listFlSpot[(value).toInt()]['datetime'];
+                    final nowListDate = listFlSpot[(value).toInt()].datetime;
                     return Text(
                       (nowListDate.toString() != ''
                           ? nowListDate.toString().substring(8, 10)
@@ -540,7 +538,7 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
     return Consumer<StatisticProvider>(
       builder: (_, statisticProvider, child) {
         /// 获取数据
-        List<Map<String, dynamic>> listData =
+        List<StatisticMoodScoreAverageRecentlyData> listData =
             statisticProvider.moodScoreAverageRecently;
 
         /// 统计的天数
@@ -549,10 +547,10 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
         /// 数据为空的占位
         if (listData.isEmpty) {
           listData = List.generate(moodDays, (i) {
-            return {
-              'datetime': '---------- --------',
-              'score': 0,
-            };
+            return StatisticMoodScoreAverageRecentlyData(
+              datetime: '---------- --------',
+              score: 0,
+            );
           });
         }
 
@@ -575,7 +573,7 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
             barGroups: List<BarChartGroupData>.generate(listData.length, (i) {
               return makeGroupData(
                 i,
-                double.parse(listData[i]['score'].toString()),
+                double.parse(listData[i].score.toString()),
                 isTouched: i == _touchedIndex,
                 width: barWidth,
               );
@@ -598,11 +596,7 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
                         ),
                       ),
                       TextSpan(
-                        text: (listData[group.x]['datetime'].toString() != ''
-                            ? listData[group.x]['datetime']
-                                .toString()
-                                .substring(5, 10)
-                            : ''),
+                        text: listData[group.x].datetime.substring(5, 10),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 10.sp,
@@ -714,10 +708,9 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
   Widget build(BuildContext context) {
     return Consumer<StatisticProvider>(
       builder: (_, statisticProvider, child) {
-        late List listData = [];
-
         /// 获取数据
-        listData = statisticProvider.dateMoodCount;
+        final List<StatisticDateMoodCountData> listData =
+            statisticProvider.dateMoodCount;
 
         /// 空占位
         if (listData.isEmpty) {
@@ -740,8 +733,8 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
               final radius = isTouched ? 120.w : 100.w;
 
               return makeSectionData(
-                double.parse(item['count'].toString()),
-                title: item['icon'],
+                double.parse(item.count.toString()),
+                title: item.icon,
                 radius: radius,
                 fontSize: fontSize,
                 color: statisticColors[i],

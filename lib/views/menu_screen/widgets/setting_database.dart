@@ -22,7 +22,6 @@ import 'package:moodexample/widgets/animation/animation.dart';
 
 ///
 import 'package:moodexample/providers/mood/mood_provider.dart';
-import 'package:moodexample/services/mood/mood_service.dart';
 import 'package:moodexample/models/mood/mood_model.dart';
 
 /// 数据
@@ -192,9 +191,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                   );
 
                                   /// 获取所有有记录心情的日期
-                                  MoodService.getMoodRecordedDate(
-                                    moodProvider,
-                                  );
+                                  moodProvider.loadMoodRecordDateAllList();
 
                                   /// 处理日期
                                   final String moodDatetime = moodProvider
@@ -203,10 +200,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                       .substring(0, 10);
 
                                   /// 获取心情数据
-                                  MoodService.getMoodData(
-                                    moodProvider,
-                                    moodDatetime,
-                                  );
+                                  moodProvider.loadMoodDataList(moodDatetime);
                               }
                             } catch (e) {
                               print('$e');
@@ -467,7 +461,10 @@ Future<Map> importDatabase(BuildContext context) async {
             returnResults['errorPath'] = errorPath;
           } else {
             /// 导入数据操作
-            await importDatabaseStart(excel.tables['MoodExample']!.rows);
+            await importDatabaseStart(
+              context,
+              excel.tables['MoodExample']!.rows,
+            );
             returnResults['state'] = 1;
           }
         }
@@ -482,7 +479,12 @@ Future<Map> importDatabase(BuildContext context) async {
 }
 
 /// 正式导入数据
-Future importDatabaseStart(List<List<Data?>> database) async {
+Future importDatabaseStart(
+  BuildContext context,
+  List<List<Data?>> database,
+) async {
+  final moodProvider = context.read<MoodProvider>();
+
   /// 心情数据
   final Map<String, dynamic> moodData = {
     'icon': '',
@@ -532,7 +534,7 @@ Future importDatabaseStart(List<List<Data?>> database) async {
 
         /// 是否操作成功
         late bool result = false;
-        result = await MoodService.addMoodData(
+        result = await moodProvider.addMoodData(
           moodDataFromJson(json.encode(moodData)),
         );
         print('是否导入成功$result');
@@ -893,7 +895,7 @@ Future<String> exportDatabase() async {
     ..cellStyle = cellStyle;
 
   /// 获取所有心情数据并赋值
-  await MoodService.getMoodAllData(moodProvider);
+  moodProvider.loadMoodDataAllList();
   final moodAllDataList = moodProvider.moodAllDataList;
 
   /// 添加Excel数据

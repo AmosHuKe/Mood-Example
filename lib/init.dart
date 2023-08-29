@@ -17,7 +17,6 @@ import 'package:moodexample/widgets/lock_screen/lock_screen.dart';
 ///
 import 'package:moodexample/providers/application/application_provider.dart';
 import 'package:moodexample/providers/mood/mood_provider.dart';
-import 'package:moodexample/services/mood/mood_service.dart';
 
 class Init extends StatefulWidget {
   const Init({super.key, required this.child});
@@ -92,13 +91,8 @@ class _InitState extends State<Init> {
     /// 锁屏
     runLockScreen();
 
-    /// 设置心情类别默认值
-    final bool setMoodCategoryDefaultresult =
-        await MoodProvider().setMoodCategoryDefault();
-    if (setMoodCategoryDefaultresult) {
-      /// 获取所有心情类别
-      MoodService.getMoodCategoryAll(moodProvider);
-    }
+    /// 获取所有心情类别
+    moodProvider.loadMoodCategoryAllList();
 
     /// 触发获取APP主题深色模式
     PreferencesDB().getAppThemeDarkMode(applicationProvider);

@@ -6,7 +6,6 @@ import 'package:moodexample/db/db.dart';
 ///
 import 'package:moodexample/models/mood/mood_model.dart';
 import 'package:moodexample/models/mood/mood_category_model.dart';
-import 'package:moodexample/providers/mood/mood_provider.dart';
 
 /// 心情相关
 class MoodService {
@@ -56,14 +55,14 @@ class MoodService {
   }
 
   /// 获取所有心情类别
-  static Future<void> getMoodCategoryAll(MoodProvider moodProvider) async {
+  static Future<List<MoodCategoryData>> getMoodCategoryAll() async {
     final moodCategoryData = await DB.db.selectMoodCategoryAll();
-    final Map<String, List> moodCategoryDataAll = {'data': moodCategoryData};
+    final List<MoodCategoryData> moodCategoryDataList = [];
     // 转换模型
-    final MoodCategoryModel moodCategoryModel =
-        moodCategoryModelFromJson(json.encode(moodCategoryDataAll));
-    // 更新数据
-    moodProvider.moodCategoryList = moodCategoryModel.moodCategoryData;
+    for (final value in moodCategoryData) {
+      moodCategoryDataList.add(moodCategoryDataFromJson(json.encode(value)));
+    }
+    return moodCategoryDataList;
   }
 
   /// 添加心情详情数据
@@ -75,35 +74,28 @@ class MoodService {
     return result;
   }
 
-  /// 获取详情数据
-  static Future<void> getMoodData(
-    MoodProvider moodProvider,
-    String datetime,
-  ) async {
+  /// 根据日期获取详情数据
+  static Future<List<MoodData>> getMoodData(String datetime) async {
     // 查询心情数据
     final moodData = await DB.db.selectMood(datetime);
-    final Map<String, List> moodDataAll = {'data': moodData};
-    // 转换模型
-    final MoodModel moodModel = moodModelFromJson(json.encode(moodDataAll));
-    // 更新数据
-    moodProvider.moodDataList = moodModel.moodData;
+    final List<MoodData> MoodDataList = [];
+    for (final value in moodData) {
+      // 转换模型
+      MoodDataList.add(moodDataFromJson(json.encode(value)));
+    }
+    return MoodDataList;
   }
 
   /// 获取所有已记录心情的日期
-  static Future<void> getMoodRecordedDate(MoodProvider moodProvider) async {
-    /// 数据
-    late final List dataList = [];
+  static Future<List<MoodRecordData>> getMoodRecordDate() async {
     // 查询
-    final list = await DB.db.selectMoodRecordedDate();
-    for (int i = 0; i < list.length; i++) {
-      late final String recordedDate = list[i]['recordedDate'] ?? '';
-      late final String icon = list[i]['icon'] ?? '';
-
-      dataList.add({'recordedDate': recordedDate, 'icon': icon});
+    final list = await DB.db.selectMoodRecordDate();
+    late final List<MoodRecordData> dataList = [];
+    for (final value in list) {
+      // 转换模型
+      dataList.add(moodRecordDataFromJson(json.encode(value)));
     }
-    print('已记录的日期$dataList');
-    // 更新数据
-    moodProvider.moodRecordedDate = dataList;
+    return dataList;
   }
 
   /// 修改心情详细数据
@@ -125,13 +117,14 @@ class MoodService {
   }
 
   /// 获取所有心情详情数据
-  static Future<void> getMoodAllData(MoodProvider moodProvider) async {
+  static Future<List<MoodData>> getMoodAllData() async {
     // 查询心情数据
     final moodData = await DB.db.selectAllMood();
-    final Map<String, List> moodDataAll = {'data': moodData};
-    // 转换模型
-    final MoodModel moodModel = moodModelFromJson(json.encode(moodDataAll));
-    // 更新数据
-    moodProvider.moodAllDataList = moodModel.moodData;
+    final List<MoodData> moodDataList = [];
+    for (final value in moodData) {
+      // 转换模型
+      moodDataList.add(moodDataFromJson(json.encode(value)));
+    }
+    return moodDataList;
   }
 }

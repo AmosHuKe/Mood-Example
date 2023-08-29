@@ -16,7 +16,6 @@ import 'package:moodexample/widgets/animation/animation.dart';
 ///
 import 'package:moodexample/models/mood/mood_category_model.dart';
 import 'package:moodexample/models/mood/mood_model.dart';
-import 'package:moodexample/services/mood/mood_service.dart';
 import 'package:moodexample/providers/mood/mood_provider.dart';
 
 late MoodCategorySelectType _moodCategorySelectType;
@@ -67,7 +66,7 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
     _nowDateTime = moodProvider.nowDateTime.toString().substring(0, 10);
 
     /// 获取所有心情类别
-    MoodService.getMoodCategoryAll(moodProvider);
+    moodProvider.loadMoodCategoryAllList();
   }
 
   @override
@@ -165,12 +164,9 @@ class MoodChoice extends StatelessWidget {
         child: Consumer<MoodProvider>(
           builder: (_, moodProvider, child) {
             final List<Widget> widgetList = [];
-            for (final list in moodProvider.moodCategoryList ?? []) {
+            for (final list in moodProvider.moodCategoryList) {
               widgetList.add(
-                MoodChoiceCard(
-                  icon: list.icon ?? '',
-                  title: list.title ?? '',
-                ),
+                MoodChoiceCard(icon: list.icon, title: list.title),
               );
             }
 

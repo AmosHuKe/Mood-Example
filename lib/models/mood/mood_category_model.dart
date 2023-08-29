@@ -1,38 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 
-MoodCategoryModel moodCategoryModelFromJson(String str) =>
-    MoodCategoryModel.fromJson(json.decode(str));
-String moodCategoryModelToJson(MoodCategoryModel data) =>
-    json.encode(data.toJson());
-
-/// 心情类别数据
-@immutable
-class MoodCategoryModel {
-  const MoodCategoryModel({
-    required this.moodCategoryData,
-  });
-
-  factory MoodCategoryModel.fromJson(Map<String, dynamic> json) =>
-      MoodCategoryModel(
-        moodCategoryData: List<MoodCategoryData>.from(
-          json['data'].map(
-            (x) => MoodCategoryData.fromJson(x),
-          ),
-        ),
-      );
-
-  final List<MoodCategoryData> moodCategoryData;
-
-  Map<String, dynamic> toJson() => {
-        'moodCategoryData': List<dynamic>.from(
-          moodCategoryData.map(
-            (x) => x.toJson(),
-          ),
-        ),
-      };
-}
-
 MoodCategoryData moodCategoryDataFromJson(String str) =>
     MoodCategoryData.fromJson(json.decode(str));
 String moodCategoryDataToJson(MoodCategoryData data) =>

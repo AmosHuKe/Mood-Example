@@ -20,7 +20,6 @@ import 'package:moodexample/views/mood/mood_category_select.dart'
 import 'package:moodexample/models/mood/mood_model.dart';
 import 'package:moodexample/models/mood/mood_category_model.dart';
 import 'package:moodexample/providers/mood/mood_provider.dart';
-import 'package:moodexample/services/mood/mood_service.dart';
 
 /// 心情数据
 late MoodData _moodData;
@@ -115,17 +114,17 @@ class _MoodContentState extends State<MoodContent> {
                 /// 赋值修改时间
                 _moodData.updateTime =
                     DateTime.now().toString().substring(0, 10);
-                result = await MoodService.editMood(_moodData);
+                result = await moodProvider.editMoodData(_moodData);
               } else {
                 /// 创建心情数据
-                result = await MoodService.addMoodData(_moodData);
+                result = await moodProvider.addMoodData(_moodData);
               }
               if (result) {
                 /// 获取心情数据
-                MoodService.getMoodData(moodProvider, nowDateTime);
+                moodProvider.loadMoodDataList(nowDateTime);
 
                 /// 获取所有已记录心情的日期
-                MoodService.getMoodRecordedDate(moodProvider);
+                moodProvider.loadMoodRecordDateAllList();
 
                 if (!mounted) return;
 

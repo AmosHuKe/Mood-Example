@@ -24,7 +24,6 @@ import 'package:moodexample/views/mood/mood_category_select.dart'
     show MoodCategorySelect, MoodCategorySelectType;
 
 ///
-import 'package:moodexample/services/mood/mood_service.dart';
 import 'package:moodexample/providers/mood/mood_provider.dart';
 import 'package:moodexample/models/mood/mood_model.dart';
 
@@ -45,7 +44,12 @@ class _MoodPageState extends State<MoodPage>
   @override
   void initState() {
     super.initState();
-    init(context);
+
+    WidgetsBinding.instance.endOfFrame.then(
+      (_) {
+        if (mounted) init(context);
+      },
+    );
   }
 
   @override
@@ -117,18 +121,17 @@ class _MoodPageState extends State<MoodPage>
 
 /// 初始化
 void init(BuildContext context) {
-  final MoodProvider moodProvider =
-      Provider.of<MoodProvider>(context, listen: false);
+  final MoodProvider moodProvider = context.read<MoodProvider>();
 
-  /// 获取所有有记录心情的日期
-  MoodService.getMoodRecordedDate(moodProvider);
+  /// 获取所有记录心情的日期
+  moodProvider.loadMoodRecordDateAllList();
 
   /// 处理日期
   final String moodDatetime =
       moodProvider.nowDateTime.toString().substring(0, 10);
 
   /// 获取心情数据
-  MoodService.getMoodData(moodProvider, moodDatetime);
+  moodProvider.loadMoodDataList(moodDatetime);
 }
 
 /// 主体
@@ -205,7 +208,7 @@ class MoodBody extends StatelessWidget {
             }
 
             /// 没有数据的占位
-            if ((moodProvider.moodDataList?.length ?? 0) <= 0) {
+            if ((moodProvider.moodDataList.length) <= 0) {
               return SliverFixedExtentList(
                 itemExtent: 280.w,
                 delegate: SliverChildBuilderDelegate(
@@ -226,7 +229,7 @@ class MoodBody extends StatelessWidget {
               child: SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    final MoodData moodData = moodProvider.moodDataList![index];
+                    final MoodData moodData = moodProvider.moodDataList[index];
 
                     return MoodCard(
                       key: Key(moodData.moodId.toString()),
@@ -239,7 +242,7 @@ class MoodBody extends StatelessWidget {
                       createTime: moodData.createTime ?? '',
                     );
                   },
-                  childCount: moodProvider.moodDataList?.length,
+                  childCount: moodProvider.moodDataList.length,
                 ),
               ),
             );
@@ -336,10 +339,11 @@ class _CalendarState extends State<Calendar> {
             // 自定义界面构建
             calendarBuilders: CalendarBuilders(
               defaultBuilder: (context, day, focusedDay) {
-                final List moodRecordedDate = moodProvider.moodRecordedDate;
+                final List<MoodRecordData> moodRecordDate =
+                    moodProvider.moodRecordDate;
                 return calenderBuilder(
                   day: day,
-                  moodRecordedDate: moodRecordedDate,
+                  moodRecordDate: moodRecordDate,
                   textStyle: TextStyle(
                     color: isDarkMode(context) ? Colors.white : Colors.black87,
                   ),
@@ -368,10 +372,11 @@ class _CalendarState extends State<Calendar> {
                 ),
               ),
               todayBuilder: (context, day, focusedDay) {
-                final List moodRecordedDate = moodProvider.moodRecordedDate;
+                final List<MoodRecordData> moodRecordDate =
+                    moodProvider.moodRecordDate;
                 return calenderBuilder(
                   day: day,
-                  moodRecordedDate: moodRecordedDate,
+                  moodRecordDate: moodRecordDate,
                   bodyColors: [
                     Theme.of(context).primaryColor.withOpacity(0.2),
                     Theme.of(context).primaryColor.withOpacity(0.2),
@@ -416,7 +421,7 @@ class _CalendarState extends State<Calendar> {
               moodProvider.moodDataLoading = true;
 
               /// 获取心情数据
-              MoodService.getMoodData(moodProvider, moodDatetime);
+              moodProvider.loadMoodDataList(moodDatetime);
             },
             onCalendarCreated: (pageController) {
               /// 初始化触发一次
@@ -443,14 +448,14 @@ class _CalendarState extends State<Calendar> {
   ///
   /// [day] 当前日期
   ///
-  /// [moodRecordedDate] 所有已记录心情的日期
+  /// [moodRecordDate] 所有已记录心情的日期
   ///
   /// [bodyColors] 主背景渐变颜色 - 至少两个
   ///
   /// [textStyle] 字体样式
   Widget calenderBuilder({
     required DateTime day,
-    List? moodRecordedDate,
+    List<MoodRecordData>? moodRecordDate,
     List<Color>? bodyColors,
     List<BoxShadow>? boxShadow,
     required TextStyle textStyle,
@@ -458,7 +463,7 @@ class _CalendarState extends State<Calendar> {
     final String nowDate = DateFormat('yyyy-MM-dd').format(day);
 
     /// 所有已记录心情的日期
-    final List list = moodRecordedDate ?? [];
+    final List<MoodRecordData> list = moodRecordDate ?? [];
 
     return Container(
       width: 36.w,
@@ -482,7 +487,7 @@ class _CalendarState extends State<Calendar> {
               builder: (context) {
                 int recordedIndex = -1;
                 for (int i = 0; i < list.length; i++) {
-                  if (list[i]['recordedDate'] ==
+                  if (list[i].recordDate ==
                       DateFormat('yyyy-MM-dd').format(day)) {
                     recordedIndex = i;
                   }
@@ -491,7 +496,7 @@ class _CalendarState extends State<Calendar> {
                   return Container(
                     margin: EdgeInsets.only(top: 28.w),
                     child: Text(
-                      list[recordedIndex]['icon'],
+                      list[recordedIndex].icon,
                       style: TextStyle(
                         fontSize: 8.sp,
                       ),
@@ -634,10 +639,10 @@ class MoodCard extends StatelessWidget {
                         CupertinoDialogAction(
                           isDestructiveAction: true,
                           onPressed: () async {
-                            final MoodData moodData = MoodData();
-                            moodData.moodId = moodId;
+                            final moodProvider = context.read<MoodProvider>();
+                            final MoodData moodData = MoodData(moodId: moodId);
                             final bool result =
-                                await MoodService.delMood(moodData);
+                                await moodProvider.deleteMoodData(moodData);
                             if (result) {
                               // 重新初始化
                               init(context);

@@ -119,14 +119,14 @@ class DB {
   }
 
   /// 查询所有已记录心情的日期
-  Future<List> selectMoodRecordedDate() async {
+  Future<List> selectMoodRecordDate() async {
     final db = await database;
     final List list = await db.rawQuery('''
       SELECT 
-        DISTINCT DATE(${TableMoodInfo.fieldCreateTime}) as recordedDate,
+        DISTINCT DATE(${TableMoodInfo.fieldCreateTime}) as recordDate,
         ${TableMoodInfo.fieldIcon} 
       FROM ${TableMoodInfo.tableName} 
-      group by recordedDate 
+      group by recordDate 
     ''');
     return list;
   }

@@ -22,7 +22,6 @@ import 'package:moodexample/models/mood/mood_category_model.dart';
 import 'package:moodexample/models/mood/mood_model.dart';
 import 'package:moodexample/providers/mood/mood_provider.dart';
 import 'package:moodexample/providers/application/application_provider.dart';
-import 'package:moodexample/services/mood/mood_service.dart';
 
 /// 首页
 class HomePage extends StatefulWidget {
@@ -174,7 +173,7 @@ class Header extends StatelessWidget {
         Consumer<MoodProvider>(
           builder: (_, moodProvider, child) {
             /// 加载数据的占位
-            if (moodProvider.moodCategoryList!.isEmpty) {
+            if (moodProvider.moodCategoryList.isEmpty) {
               return Align(
                 child: CupertinoActivityIndicator(radius: 12.sp),
               );
@@ -203,7 +202,7 @@ class _OptionMoodState extends State<OptionMood> {
         Provider.of<MoodProvider>(context, listen: false);
 
     /// 获取所有心情类别
-    MoodService.getMoodCategoryAll(moodProvider);
+    moodProvider.loadMoodCategoryAllList();
   }
 
   @override
@@ -220,8 +219,7 @@ class _OptionMoodState extends State<OptionMood> {
           final List<Widget> widgetList = [];
 
           /// 数据渲染
-          for (final MoodCategoryData list
-              in moodProvider.moodCategoryList ?? []) {
+          for (final MoodCategoryData list in moodProvider.moodCategoryList) {
             widgetList.add(
               OptionCard(title: list.title, icon: list.icon),
             );
