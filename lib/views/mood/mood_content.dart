@@ -97,8 +97,7 @@ class _MoodContentState extends State<MoodContent> {
             ),
             onTap: () async {
               FocusScope.of(context).unfocus();
-              final MoodProvider moodProvider =
-                  Provider.of<MoodProvider>(context, listen: false);
+              final MoodProvider moodProvider = context.read<MoodProvider>();
 
               /// 是否操作成功
               late bool result = false;

@@ -53,8 +53,7 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
   @override
   void initState() {
     super.initState();
-    final MoodProvider moodProvider =
-        Provider.of<MoodProvider>(context, listen: false);
+    final MoodProvider moodProvider = context.read<MoodProvider>();
 
     /// 状态
     _moodCategorySelectType = MoodCategorySelectType.fromString(widget.type);

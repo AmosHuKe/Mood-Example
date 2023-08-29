@@ -15,7 +15,7 @@ import 'package:remixicon/remixicon.dart';
 Future<void> lockScreen(BuildContext context) async {
   final s = S.of(context);
   final ApplicationProvider applicationProvider =
-      Provider.of<ApplicationProvider>(context, listen: false);
+      context.read<ApplicationProvider>();
   applicationProvider.loadKeyPassword();
   applicationProvider.loadKeyBiometric();
 

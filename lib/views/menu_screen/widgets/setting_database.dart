@@ -182,10 +182,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
 
                                   /// 更新心情数据
                                   final MoodProvider moodProvider =
-                                      Provider.of<MoodProvider>(
-                                    context,
-                                    listen: false,
-                                  );
+                                      context.read<MoodProvider>();
 
                                   /// 获取所有有记录心情的日期
                                   moodProvider.loadMoodRecordDateAllList();

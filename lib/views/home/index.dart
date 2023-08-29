@@ -195,8 +195,7 @@ class _OptionMoodState extends State<OptionMood> {
   @override
   void initState() {
     super.initState();
-    final MoodProvider moodProvider =
-        Provider.of<MoodProvider>(context, listen: false);
+    final MoodProvider moodProvider = context.read<MoodProvider>();
 
     /// 获取所有心情类别
     moodProvider.loadMoodCategoryAllList();
