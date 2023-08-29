@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
-///
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/routes.dart';
@@ -16,7 +14,6 @@ import 'package:moodexample/widgets/animation/animation.dart';
 import 'package:moodexample/views/mood/mood_category_select.dart'
     show MoodCategorySelectType;
 
-///
 import 'package:moodexample/models/mood/mood_model.dart';
 import 'package:moodexample/models/mood/mood_category_model.dart';
 import 'package:moodexample/providers/mood/mood_provider.dart';

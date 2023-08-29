@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-///
 import 'package:moodexample/db/preferences_db.dart';
 
-///
 import 'package:moodexample/models/mood/mood_model.dart';
 import 'package:moodexample/models/mood/mood_category_model.dart';
 import 'package:moodexample/services/mood/mood_service.dart';

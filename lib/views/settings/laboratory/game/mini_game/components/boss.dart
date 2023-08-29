@@ -1,10 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-///
 import 'package:bonfire/bonfire.dart';
 
-///
 import '../sprite_sheet/sprite_sheet_boss.dart';
 import 'orc.dart';
 

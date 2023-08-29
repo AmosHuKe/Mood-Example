@@ -2,11 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-///
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:provider/provider.dart';
 
-///
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/common/notification.dart';
 import 'package:moodexample/generated/l10n.dart';
@@ -14,7 +12,6 @@ import 'package:moodexample/db/db.dart';
 import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/widgets/lock_screen/lock_screen.dart';
 
-///
 import 'package:moodexample/providers/application/application_provider.dart';
 import 'package:moodexample/providers/mood/mood_provider.dart';
 

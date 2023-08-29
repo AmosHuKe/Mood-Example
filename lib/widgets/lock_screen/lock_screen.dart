@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 
-///
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:provider/provider.dart';
 
-///
 import 'package:moodexample/common/local_auth_utils.dart';
 import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/generated/l10n.dart';
 
-///
 import 'package:moodexample/providers/application/application_provider.dart';
 import 'package:remixicon/remixicon.dart';
 

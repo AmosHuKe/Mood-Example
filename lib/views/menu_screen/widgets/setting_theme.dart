@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 
-///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
-///
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/config/multiple_themes.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 
-///
 import 'package:moodexample/providers/application/application_provider.dart';
 
 /// 主题设置

@@ -1,20 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
-///
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/lock_screen/lock_screen.dart';
 import 'package:moodexample/common/local_auth_utils.dart';
 import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/generated/l10n.dart';
 
-///
 import 'package:moodexample/providers/application/application_provider.dart';
 
 /// 安全

@@ -1,7 +1,7 @@
-import 'package:bonfire/bonfire.dart';
 import 'package:flutter/services.dart';
 
-///
+import 'package:bonfire/bonfire.dart';
+
 import '../components/human_player.dart';
 
 class HumanPlayerController extends StateController<HumanPlayer> {

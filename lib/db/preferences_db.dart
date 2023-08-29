@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-///
 import 'package:shared_preferences/shared_preferences.dart';
 
-///
 import 'package:moodexample/themes/app_theme.dart';
 
-///
 import 'package:moodexample/providers/application/application_provider.dart';
 
 /// shared_preferences

@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:path_provider/path_provider.dart';
@@ -15,12 +14,10 @@ import 'package:share_plus/share_plus.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 
-///
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 
-///
 import 'package:moodexample/providers/mood/mood_provider.dart';
 import 'package:moodexample/models/mood/mood_model.dart';
 

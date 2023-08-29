@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-///
 import 'package:provider/provider.dart';
 
-///
 import 'package:moodexample/config/multiple_themes.dart';
 
-///
 import 'package:moodexample/providers/application/application_provider.dart';
 
 /// 是否深色模式

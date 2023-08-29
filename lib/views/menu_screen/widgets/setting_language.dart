@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 
-///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
-///
 import 'package:moodexample/db/preferences_db.dart';
 import 'package:moodexample/config/language.dart';
 
-///
 import 'package:moodexample/providers/application/application_provider.dart';
 
 /// 语言设置

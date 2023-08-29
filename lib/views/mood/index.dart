@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +9,6 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:animations/animations.dart';
 import 'package:intl/intl.dart';
 
-///
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
@@ -23,7 +21,6 @@ import 'package:moodexample/views/mood/mood_content.dart';
 import 'package:moodexample/views/mood/mood_category_select.dart'
     show MoodCategorySelect, MoodCategorySelectType;
 
-///
 import 'package:moodexample/providers/mood/mood_provider.dart';
 import 'package:moodexample/models/mood/mood_model.dart';
 

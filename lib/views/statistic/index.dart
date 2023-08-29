@@ -1,20 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
-///
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/widgets/empty/empty.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 
-///
 import 'package:moodexample/models/statistic/statistic_model.dart';
 import 'package:moodexample/providers/statistic/statistic_provider.dart';
 

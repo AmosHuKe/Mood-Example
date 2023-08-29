@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 
-///
 import 'package:fluro/fluro.dart';
 
-///
 import 'package:moodexample/widgets/will_pop_scope_route/will_pop_scope_route.dart';
 
-///
 import 'package:moodexample/models/mood/mood_model.dart';
 
-///
 import 'package:moodexample/views/mood/index.dart';
 import 'package:moodexample/views/home/index.dart';
 import 'package:moodexample/views/onboarding/index.dart';

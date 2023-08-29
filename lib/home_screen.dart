@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 
-///
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:remixicon/remixicon.dart';
 
-///
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/views/statistic/index.dart' as statistic;
 import 'package:moodexample/generated/l10n.dart';
 
-///
 import 'package:moodexample/views/home/index.dart';
 import 'package:moodexample/views/mood/index.dart';
 import 'package:moodexample/views/statistic/index.dart';

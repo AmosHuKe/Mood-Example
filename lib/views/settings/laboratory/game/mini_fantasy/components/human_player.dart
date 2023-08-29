@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-///
 import 'package:bonfire/bonfire.dart';
 
-///
 import '../sprite_sheet/sprite_sheet_player.dart';
 import 'orc.dart';
 

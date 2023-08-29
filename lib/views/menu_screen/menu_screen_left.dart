@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
-///
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:provider/provider.dart';
 
-///
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/generated/l10n.dart';
 import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
@@ -16,7 +14,6 @@ import 'package:moodexample/views/menu_screen/widgets/setting_database.dart';
 import 'package:moodexample/views/menu_screen/widgets/setting_key.dart';
 import 'package:moodexample/routes.dart';
 
-///
 import 'package:moodexample/providers/application/application_provider.dart';
 
 /// 外层抽屉菜单（左）

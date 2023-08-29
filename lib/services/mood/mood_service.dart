@@ -1,9 +1,7 @@
 import 'dart:convert';
 
-///
 import 'package:moodexample/db/db.dart';
 
-///
 import 'package:moodexample/models/mood/mood_model.dart';
 import 'package:moodexample/models/mood/mood_category_model.dart';
 

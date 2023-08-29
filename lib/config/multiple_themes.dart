@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-///
 import 'package:moodexample/themes/multiple_themes_mode/theme_default.dart';
 import 'package:moodexample/themes/multiple_themes_mode/theme_green.dart';
 import 'package:moodexample/themes/multiple_themes_mode/theme_orange.dart';

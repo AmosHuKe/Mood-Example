@@ -4,10 +4,8 @@ import 'package:integration_test/integration_test.dart';
 import 'package:intl/intl.dart';
 import 'package:moodexample/generated/l10n.dart';
 
-///
 import 'package:moodexample/main.dart' as app;
 
-///
 import 'package:moodexample/config/language.dart';
 import 'package:moodexample/config/multiple_themes.dart';
 

@@ -1,11 +1,9 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-///
 import 'package:moodexample/models/mood/mood_category_model.dart';
 import 'package:moodexample/models/mood/mood_model.dart';
 
-/// 数据库表
 import 'package:moodexample/db/database/table_mood_info.dart';
 import 'package:moodexample/db/database/table_mood_info_category.dart';
 
