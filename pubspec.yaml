@@ -1,7 +1,7 @@
 name: moodexample
 description: 管理自己的情绪，记录当下所见所想。
 publish_to: 'none'
-version: 1.9.4
+version: 1.9.4+430
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -67,7 +67,7 @@ dependencies:
   local_auth_android: ^1.0.32
   local_auth_ios: ^1.1.3
   # 倾斜视差
-  flutter_tilt: ^2.0.0-dev.2
+  flutter_tilt: ^2.0.0-dev.3
 
   # Remixicon
   remixicon: ^1.0.0
