@@ -1,7 +1,7 @@
 name: moodexample
 description: 管理自己的情绪，记录当下所见所想。
 publish_to: 'none'
-version: 1.9.4+430
+version: 1.9.4+431
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -16,7 +16,7 @@ dependencies:
   # 国际化
   intl: ^0.18.0
   # 路径
-  path_provider: ^2.1.0
+  path_provider: ^2.1.1
   # UI 自适应工具
   flutter_screenutil: ^5.9.0
   # 状态管理
@@ -24,7 +24,7 @@ dependencies:
   # 数据库
   sqflite: ^2.3.0
   # 共享存储
-  shared_preferences: ^2.2.0
+  shared_preferences: ^2.2.1
   # 路由管理
   fluro: ^2.0.5
   # 缩放抽屉
@@ -46,9 +46,9 @@ dependencies:
   # 分享
   share_plus: ^7.1.0
   # 文件选择
-  file_picker: ^5.3.4
+  file_picker: ^5.5.0
   # WebView
-  webview_flutter: ^4.2.3
+  webview_flutter: ^4.2.4
   # 3D 数据集显示
   ditredi: ^2.0.0
   vector_math: ^2.1.4
@@ -57,22 +57,22 @@ dependencies:
   # 时区
   flutter_timezone: ^1.0.7
   # 动画
-  animations: ^2.0.7
+  animations: ^2.0.8
   # 游戏引擎相关
   bonfire: ^2.12.7
   # 密码锁
   flutter_screen_lock: ^9.0.1
   # 本地认证
-  local_auth: ^2.1.6
-  local_auth_android: ^1.0.32
-  local_auth_ios: ^1.1.3
+  local_auth: ^2.1.7
+  local_auth_android: ^1.0.34
+  local_auth_ios: ^1.1.4
   # 倾斜视差
-  flutter_tilt: ^2.0.0-dev.3
+  flutter_tilt: ^2.0.0
 
   # Remixicon
   remixicon: ^1.0.0
   # CupertinoIcons
-  cupertino_icons: ^1.0.5
+  cupertino_icons: ^1.0.6
 
 # https://dart.dev/tools/pub/dependencies#dependency-overrides
 dependency_overrides:
