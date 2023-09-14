@@ -24,12 +24,14 @@ class Init extends StatefulWidget {
 }
 
 class _InitState extends State<Init> {
+  late final AppLifecycleListener _appLifecycleListener;
+
   @override
   void initState() {
     super.initState();
 
     /// App 生命周期
-    AppLifecycleListener(
+    _appLifecycleListener = AppLifecycleListener(
       onResume: () => print('App Resume'),
       onInactive: () => print('App Inactive'),
       onHide: () => print('App Hide'),
@@ -50,6 +52,7 @@ class _InitState extends State<Init> {
 
   @override
   void dispose() {
+    _appLifecycleListener.dispose();
     super.dispose();
   }
 
