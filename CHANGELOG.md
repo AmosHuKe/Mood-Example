@@ -1,5 +1,6 @@
 # Unreleased
-- [升级] Package 升级及适配 
+- [升级] Flutter 3.13.4
+- [升级] Package 升级及适配
 
 # 1.9.3
 - [优化] 代码结构
