@@ -31,6 +31,7 @@
 .pub/
 /build/
 /ios/build
+coverage/
 
 # Web related
 lib/generated_plugin_registrant.dart

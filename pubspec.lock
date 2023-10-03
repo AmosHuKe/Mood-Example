@@ -37,18 +37,18 @@ packages:
     dependency: "direct main"
     description:
       name: awesome_notifications
-      sha256: "6ba98d73553c8a54e7b77f8dd8b95ce9d32a7839ef182b28cf2ad54ec28b1821"
+      sha256: "65f730f9c0e73a346039ef746384bcff1773f9f03821b859705a7ab8db977b23"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.5-dev.3"
+    version: "0.8.2"
   bonfire:
     dependency: "direct main"
     description:
       name: bonfire
-      sha256: "9d370c938cc6cbfd8c6658b30c294c9f8795fa7c8cbc5ace3e0b1419ab498a33"
+      sha256: "0333594472cd448e1a11edf0461e9015290e1a273bc6a6f757016878b9d7c1c2"
       url: "https://pub.dev"
     source: hosted
-    version: "2.12.7"
+    version: "2.12.8"
   boolean_selector:
     dependency: transitive
     description:
@@ -289,10 +289,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_tilt
-      sha256: "7b5819c0177bfb5762160c3152131448f37b5285e2ef7aa93bb006dc0a4b90cf"
+      sha256: "660d45516c297037c84923ca16c66c1bd194cb3387d20a39de45e3d3d078f066"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.4"
+    version: "2.0.6"
   flutter_timezone:
     dependency: "direct main"
     description:
@@ -528,10 +528,10 @@ packages:
     dependency: transitive
     description:
       name: plugin_platform_interface
-      sha256: "43798d895c929056255600343db8f049921cbec94d31ec87f1dc5c16c01935dd"
+      sha256: da3fdfeccc4d4ff2da8f8c556704c08f912542c5fb3cf2233ed75372384a034d
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.5"
+    version: "2.1.6"
   pointycastle:
     dependency: transitive
     description:
@@ -829,10 +829,10 @@ packages:
     dependency: "direct main"
     description:
       name: vibration
-      sha256: d81f665bcb201f586c295a21f3fe8f1cb6dc32c81a213a99e9c714ec8e811ce5
+      sha256: ab6d26f6694ae0cf702b6d3d1b399570f2911eddb1132c8f82eeacb71a08ece2
       url: "https://pub.dev"
     source: hosted
-    version: "1.8.1"
+    version: "1.8.2"
   vm_service:
     dependency: transitive
     description:
@@ -861,34 +861,34 @@ packages:
     dependency: "direct main"
     description:
       name: webview_flutter
-      sha256: "82f6787d5df55907aa01e49bd9644f4ed1cc82af7a8257dd9947815959d2e755"
+      sha256: c1ab9b81090705c6069197d9fdc1625e587b52b8d70cdde2339d177ad0dbb98e
       url: "https://pub.dev"
     source: hosted
-    version: "4.2.4"
+    version: "4.4.1"
   webview_flutter_android:
     dependency: transitive
     description:
       name: webview_flutter_android
-      sha256: bca797abba472868655b5f1a6029c1132385685ee9db4713cb0e7f33076210c6
+      sha256: b0cd33dd7d3dd8e5f664e11a19e17ba12c352647269921a3b568406b001f1dff
       url: "https://pub.dev"
     source: hosted
-    version: "3.9.3"
+    version: "3.12.0"
   webview_flutter_platform_interface:
     dependency: transitive
     description:
       name: webview_flutter_platform_interface
-      sha256: "0ca3cfcc6781a7de701d580917af4a9efc4e3e129f8ead95a80587f0a749480a"
+      sha256: "6d9213c65f1060116757a7c473247c60f3f7f332cac33dc417c9e362a9a13e4f"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.0"
+    version: "2.6.0"
   webview_flutter_wkwebview:
     dependency: transitive
     description:
       name: webview_flutter_wkwebview
-      sha256: ed749f94ac9e814d04a258a9255cf69cfa4cc6006ff59542aea7fb4590144972
+      sha256: "3c7d56ca4b82654ad1f58aeefb8d593a59224f26d6b2bf8feed074361eb34c86"
       url: "https://pub.dev"
     source: hosted
-    version: "3.7.3"
+    version: "3.9.0"
   win32:
     dependency: transitive
     description:
