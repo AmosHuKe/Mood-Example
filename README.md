@@ -203,17 +203,17 @@ $ flutter test integration_test/app_test.dart
 │   ├── app                       
 │   │   ├── libs                                    # 包含 UniMPSDK 依赖库
 │   │   └── src 
-│   │   │   └── main                  
-│   │   │   │   ├── assets                          # 包含 UniMPSDK 内容
-│   │   │   │   │   ├── apps                        # 包含 UniMPSDK 的 uniapp 小程序
-│   │   │   │   │   ├── data                        # 包含 UniMPSDK 内容
-│   │   │   │   │   ├── uni-jsframework-vue3.js     # UniMPSDK
-│   │   │   │   │   └── uni-jsframework.js          # UniMPSDK
-│   │   │   │   └── kotlin                          
-│   │   │   │   │   └── com                      
-│   │   │   │   │   │   └── example    
-│   │   │   │   │   │   │   └── moodexample
-│   │   │   │   │   │   │   │   └── MainActivity.kt # Flutter 的 Android 默认入口
+│   │       └── main                  
+│   │           ├── assets                          # 包含 UniMPSDK 内容
+│   │           │   ├── apps                        # 包含 UniMPSDK 的 uniapp 小程序
+│   │           │   ├── data                        # 包含 UniMPSDK 内容
+│   │           │   ├── uni-jsframework-vue3.js     # UniMPSDK
+│   │           │   └── uni-jsframework.js          # UniMPSDK
+│   │           └── kotlin                          
+│   │               └── com                      
+│   │                   └── example    
+│   │                       └── moodexample
+│   │                           └── MainActivity.kt # Flutter 的 Android 默认入口
 │   └── CMakeLists.txt                              # CMake（目前编译 FFI 需要的文件）
 ├── assets                                          # 静态资源文件
 ├── build                                           # 编译或运行后产物
@@ -262,11 +262,11 @@ $ flutter test integration_test/app_test.dart
 │   │   ├── onboarding                              # 用户引导页
 │   │   ├── settings                                # 侧边设置栏-其他页面组件（实验室等）
 │   │   │   └── laboratory                          # 实验室
-│   │   │   │   ├── 3d                              # 3D 城市
-│   │   │   │   ├── ffi                             # ffi 测试
-│   │   │   │   ├── game                            # 游戏合集
-│   │   │   │   ├── unimp_miniapps                  # uniapp 小程序
-│   │   │   │   └── index.dart                      # 实验室首页
+│   │   │       ├── 3d                              # 3D 城市
+│   │   │       ├── ffi                             # ffi 测试
+│   │   │       ├── game                            # 游戏合集
+│   │   │       ├── unimp_miniapps                  # uniapp 小程序
+│   │   │       └── index.dart                      # 实验室首页
 │   │   ├── statistic                               # 统计页
 │   │   └── web_view                                # WebView
 │   ├── widgets                                     # 通用组件相关
