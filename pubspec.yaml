@@ -1,7 +1,7 @@
 name: moodexample
 description: 管理自己的情绪，记录当下所见所想。
 publish_to: 'none'
-version: 1.9.4+433
+version: 1.9.4+434
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -40,7 +40,7 @@ dependencies:
   # 震动
   vibration: ^1.8.2
   # 图表
-  fl_chart: ^0.63.0
+  fl_chart: ^0.64.0
   # Excel
   excel: ^2.1.0
   # 分享
