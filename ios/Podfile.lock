@@ -1,7 +1,7 @@
 PODS:
-  - awesome_notifications (0.7.5-dev.3):
+  - awesome_notifications (0.8.1):
     - Flutter
-    - IosAwnCore (= 0.7.5-dev.3)
+    - IosAwnCore (~> 0.8.0)
   - CropViewController (2.6.1)
   - device_info_plus (0.0.1):
     - Flutter
@@ -65,15 +65,17 @@ PODS:
   - FMDB/standard (2.7.5)
   - integration_test (0.0.1):
     - Flutter
-  - IosAwnCore (0.7.5-dev.3)
+  - IosAwnCore (0.8.0)
   - local_auth_ios (0.0.1):
     - Flutter
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - SDWebImage (5.14.0):
-    - SDWebImage/Core (= 5.14.0)
-  - SDWebImage/Core (5.14.0)
+  - SDWebImage (5.18.3):
+    - SDWebImage/Core (= 5.18.3)
+  - SDWebImage/Core (5.18.3)
+  - sensors_plus (0.0.1):
+    - Flutter
   - share_plus (0.0.1):
     - Flutter
   - shared_preferences_foundation (0.0.1):
@@ -82,7 +84,7 @@ PODS:
   - sqflite (0.0.3):
     - Flutter
     - FMDB (>= 2.7.5)
-  - SwiftyGif (5.4.3)
+  - SwiftyGif (5.4.4)
   - vibration (1.7.5):
     - Flutter
   - webview_flutter_wkwebview (0.0.1):
@@ -98,6 +100,7 @@ DEPENDENCIES:
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - local_auth_ios (from `.symlinks/plugins/local_auth_ios/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - sensors_plus (from `.symlinks/plugins/sensors_plus/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
@@ -132,6 +135,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/local_auth_ios/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  sensors_plus:
+    :path: ".symlinks/plugins/sensors_plus/ios"
   share_plus:
     :path: ".symlinks/plugins/share_plus/ios"
   shared_preferences_foundation:
@@ -144,7 +149,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
-  awesome_notifications: 1b6393d6ce02878dc50d0ae87baf7bdbc9d802a2
+  awesome_notifications: db394d2e061e4583ba0f738ddea611e3986cc3fb
   CropViewController: 58fb440f30dac788b129d2a1f24cffdcb102669c
   device_info_plus: 7545d84d8d1b896cb16a4ff98c19f07ec4b298ea
   DKCamera: a902b66921fca14b7a75266feb8c7568aa7caa71
@@ -155,14 +160,15 @@ SPEC CHECKSUMS:
   flutter_timezone: ffb07bdad3c6276af8dada0f11978d8a1f8a20bb
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   integration_test: 13825b8a9334a850581300559b8839134b124670
-  IosAwnCore: edf31913fd18960ebcde7c05912dc860ca2b63b2
+  IosAwnCore: ed1b2b6d84962a758354dbacd9ce525c72ce28a9
   local_auth_ios: c6cf091ded637a88f24f86a8875d8b0f526e2605
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
-  SDWebImage: 9e391cf38577742f501055dca17e4987f6713fe1
+  SDWebImage: 96e0c18ef14010b7485210e92fac888587ebb958
+  sensors_plus: bda64198ccc7d3ccbb49e6ae17d92f67687bee20
   share_plus: 599aa54e4ea31d4b4c0e9c911bcc26c55e791028
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
   sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
-  SwiftyGif: 6c3eafd0ce693cad58bb63d2b2fb9bacb8552780
+  SwiftyGif: 93a1cc87bf3a51916001cf8f3d63835fb64c819f
   vibration: 7d883d141656a1c1a6d8d238616b2042a51a1241
   webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
 
