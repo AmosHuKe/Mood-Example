@@ -12,7 +12,7 @@
 </h1> 
 
 <p align="center">
-  <a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.9.3" src="https://img.shields.io/badge/Mood--Example-v1.9.3-3e4663"/></a> 
+  <a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.9.4" src="https://img.shields.io/badge/Mood--Example-v1.9.4-3e4663"/></a> 
   <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.13.7" src="https://img.shields.io/badge/Flutter-v3.13.7-46D1FD"/></a> 
   <a target="_blank" href="https://dart.dev/"><img alt="Dart v3.1.3" src="https://img.shields.io/badge/Dart-v3.1.3-04599D"/></a> 
   <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
@@ -118,11 +118,11 @@
 
 > macOS  
 ```
-[✓] Flutter (Channel stable, 3.13.0, on macOS 13.4.1 22F82 darwin-x64, locale zh-Hans-CN)
+[✓] Flutter (Channel stable, 3.13.7, on macOS 14.0 23A344 darwin-x64, locale zh-Hans-CN)
 [✓] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
-[✓] Xcode - develop for iOS and macOS (Xcode 14.3.1)
+[✓] Xcode - develop for iOS and macOS (Xcode 15.0)
 [✓] Android Studio (version 2021.3)
-[✓] VS Code (version 1.81.1)
+[✓] VS Code (version 1.83.1)
 ```  
 
 
