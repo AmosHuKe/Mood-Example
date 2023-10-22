@@ -13,10 +13,10 @@ class DB {
   late Database _db;
 
   /// 数据库版本号
-  final _version = 1;
+  static const int _version = 1;
 
   /// 数据库名称
-  final _databaseName = 'moodDB.db';
+  static const String _databaseName = 'moodDB.db';
 
   Future<Database> get database async {
     _db = await createDatabase();
@@ -44,12 +44,14 @@ class DB {
     final batch = db.batch();
 
     /// 心情详细内容表
-    batch.execute(TableMoodInfo().dropTable);
-    batch.execute(TableMoodInfo().createTable);
+    final tableMoodInfo = TableMoodInfo();
+    batch.execute(tableMoodInfo.dropTable);
+    batch.execute(tableMoodInfo.createTable);
 
     /// 心情分类表
-    batch.execute(TableMoodInfoCategory().dropTable);
-    batch.execute(TableMoodInfoCategory().createTable);
+    final tableMoodInfoCategory = TableMoodInfoCategory();
+    batch.execute(tableMoodInfoCategory.dropTable);
+    batch.execute(tableMoodInfoCategory.createTable);
     await batch.commit();
   }
 
