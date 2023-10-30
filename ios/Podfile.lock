@@ -155,7 +155,7 @@ SPEC CHECKSUMS:
   DKCamera: a902b66921fca14b7a75266feb8c7568aa7caa71
   DKImagePickerController: b512c28220a2b8ac7419f21c491fc8534b7601ac
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
-  file_picker: ce3938a0df3cc1ef404671531facef740d03f920
+  file_picker: 15fd9539e4eb735dc54bae8c0534a7a9511a03de
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_timezone: ffb07bdad3c6276af8dada0f11978d8a1f8a20bb
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
@@ -164,8 +164,8 @@ SPEC CHECKSUMS:
   local_auth_ios: c6cf091ded637a88f24f86a8875d8b0f526e2605
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
   SDWebImage: 96e0c18ef14010b7485210e92fac888587ebb958
-  sensors_plus: bda64198ccc7d3ccbb49e6ae17d92f67687bee20
-  share_plus: 599aa54e4ea31d4b4c0e9c911bcc26c55e791028
+  sensors_plus: 4ee32bc7d61a055f27f88d3215ad6b6fb96a2b8e
+  share_plus: c3fef564749587fc939ef86ffb283ceac0baf9f5
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
   sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
   SwiftyGif: 93a1cc87bf3a51916001cf8f3d63835fb64c819f
