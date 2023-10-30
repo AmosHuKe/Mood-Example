@@ -441,7 +441,7 @@ Future<Map> importDatabase(BuildContext context) async {
       final excel = Excel.decodeBytes(bytes);
       for (final table in excel.tables.keys) {
         print(table); // 工作表名
-        print('${excel.tables[table]!.maxCols}'); // 表最大列数
+        print('${excel.tables[table]!.maxColumns}'); // 表最大列数
         print('${excel.tables[table]!.maxRows}'); // 表最大行数
         /// 判断是否是需要的工作表
         if (table == 'MoodExample') {
@@ -495,7 +495,7 @@ Future importDatabaseStart(
       if (dataIndex < 3) {
         break;
       }
-      final int? colIndex = data?.colIndex;
+      final int? colIndex = data?.columnIndex;
       final dynamic value = data?.value;
       switch (colIndex) {
         /// 表情

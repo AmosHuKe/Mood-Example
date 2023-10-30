@@ -157,10 +157,10 @@ packages:
     dependency: "direct main"
     description:
       name: excel
-      sha256: f6a76fff6ac14f48fd44a6528e72705965e02cbc593e00427ab1d9a9f5d3bffa
+      sha256: f7cde34ffdbb397edeb4566621433bb820517cc0d8676c20d6122a85f749ee49
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.0"
+    version: "3.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -189,10 +189,10 @@ packages:
     dependency: "direct main"
     description:
       name: file_picker
-      sha256: be325344c1f3070354a1d84a231a1ba75ea85d413774ec4bdf444c023342e030
+      sha256: "903dd4ba13eae7cef64acc480e91bf54c3ddd23b5b90b639c170f3911e489620"
       url: "https://pub.dev"
     source: hosted
-    version: "5.5.0"
+    version: "6.0.0"
   fl_chart:
     dependency: "direct main"
     description:
@@ -289,18 +289,18 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_tilt
-      sha256: "3ac6e5e60501d531d6f4d805bdd33c2d5b31eadbbff29be28dfab9da3ef20764"
+      sha256: "4e9e2c79fd3e495c2c147fb7c404a10c9db2429b56dfc9b033ff89f89536a353"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.7"
+    version: "2.0.10"
   flutter_timezone:
     dependency: "direct main"
     description:
       name: flutter_timezone
-      sha256: "4508018aba499c837f723e2e718259eb677410490638b7ea669b11113d083e68"
+      sha256: "06b35132c98fa188db3c4b654b7e1af7ccd01dfe12a004d58be423357605fb24"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.7"
+    version: "1.0.8"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -376,10 +376,10 @@ packages:
     dependency: "direct main"
     description:
       name: local_auth_android
-      sha256: "9ad0b1ffa6f04f4d91e38c2d4c5046583e23f4cae8345776a994e8670df57fb1"
+      sha256: df4ccb3193525b8a60c78a5ca7bf188a47705bcf77bcc837a6b2cf6da64ae0e2
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.34"
+    version: "1.0.35"
   local_auth_ios:
     dependency: "direct main"
     description:
@@ -584,26 +584,26 @@ packages:
     dependency: "direct main"
     description:
       name: share_plus
-      sha256: "6cec740fa0943a826951223e76218df002804adb588235a8910dc3d6b0654e11"
+      sha256: f74fc3f1cbd99f39760182e176802f693fa0ec9625c045561cfad54681ea93dd
       url: "https://pub.dev"
     source: hosted
-    version: "7.1.0"
+    version: "7.2.1"
   share_plus_platform_interface:
     dependency: transitive
     description:
       name: share_plus_platform_interface
-      sha256: "357412af4178d8e11d14f41723f80f12caea54cf0d5cd29af9dcdab85d58aea7"
+      sha256: df08bc3a07d01f5ea47b45d03ffcba1fa9cd5370fb44b3f38c70e42cced0f956
       url: "https://pub.dev"
     source: hosted
-    version: "3.3.0"
+    version: "3.3.1"
   shared_preferences:
     dependency: "direct main"
     description:
       name: shared_preferences
-      sha256: b7f41bad7e521d205998772545de63ff4e6c97714775902c199353f8bf1511ac
+      sha256: "81429e4481e1ccfb51ede496e916348668fd0921627779233bd24cc3ff6abd02"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.1"
+    version: "2.2.2"
   shared_preferences_android:
     dependency: transitive
     description:
@@ -829,10 +829,10 @@ packages:
     dependency: "direct main"
     description:
       name: vibration
-      sha256: ab6d26f6694ae0cf702b6d3d1b399570f2911eddb1132c8f82eeacb71a08ece2
+      sha256: "63d4f6b03e38d106599da18e786d5edcd02354433a4ed478fccbbcfc347193ab"
       url: "https://pub.dev"
     source: hosted
-    version: "1.8.2"
+    version: "1.8.3"
   vm_service:
     dependency: transitive
     description:

@@ -1,5 +1,5 @@
-# Unreleased
-- [升级] Flutter 3.13.8
+# 1.9.5
+- [升级] Flutter 3.13.9
 - [升级] Package 升级及适配
 
 # 1.9.4
