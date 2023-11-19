@@ -50,6 +50,7 @@ class _MoodContentState extends State<MoodContent> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        forceMaterialTransparency: true,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         foregroundColor: Theme.of(context).textTheme.displayLarge!.color,
         shadowColor: Colors.transparent,
@@ -132,10 +133,11 @@ class _MoodContentState extends State<MoodContent> {
         ],
       ),
       body: SafeArea(
-        child: WillPopScope(
-          onWillPop: () async {
+        child: PopScope(
+          canPop: false,
+          onPopInvoked: (bool didPop) {
+            if (didPop) return;
             onClose(context);
-            return true;
           },
           child: const MoodContentBody(),
         ),

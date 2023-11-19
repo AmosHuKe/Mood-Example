@@ -15,6 +15,7 @@ class AppThemeYellow {
 
   /// 浅色主题
   static final lightTheme = ThemeData(
+    useMaterial3: false,
     brightness: Brightness.light,
     // 字体
     fontFamily: null,
@@ -75,6 +76,7 @@ class AppThemeYellow {
 
   /// 深色主题
   static final darkTheme = ThemeData(
+    useMaterial3: false,
     brightness: Brightness.dark,
     // 字体
     fontFamily: null,

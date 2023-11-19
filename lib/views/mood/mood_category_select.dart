@@ -70,6 +70,7 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        forceMaterialTransparency: true,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         foregroundColor: Theme.of(context).textTheme.displayLarge!.color,
         shadowColor: Colors.transparent,

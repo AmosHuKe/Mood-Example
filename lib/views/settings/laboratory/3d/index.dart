@@ -19,11 +19,12 @@ class _Page3DState extends State<Page3D> {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(),
+      data: ThemeData(useMaterial3: false),
       child: Scaffold(
         backgroundColor: const Color(0xFFE2DDE4),
         appBar: AppBar(
           elevation: 0,
+          forceMaterialTransparency: true,
           backgroundColor: const Color(0xFFF6F8FA),
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,

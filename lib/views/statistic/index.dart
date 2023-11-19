@@ -80,6 +80,7 @@ class StatisticBody extends StatelessWidget {
         SliverAppBar(
           pinned: false,
           elevation: 0,
+          forceMaterialTransparency: true,
           backgroundColor: Colors.transparent,
           flexibleSpace: Align(
             child: Container(

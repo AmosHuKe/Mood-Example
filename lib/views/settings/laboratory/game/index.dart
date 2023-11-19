@@ -30,11 +30,12 @@ class _GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(),
+      data: ThemeData(useMaterial3: false),
       child: Scaffold(
         backgroundColor: const Color(0xFFF6F8FA),
         appBar: AppBar(
           elevation: 0,
+          forceMaterialTransparency: true,
           backgroundColor: const Color(0xFFF6F8FA),
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
@@ -128,11 +129,12 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => WillPopScope(
-                  onWillPop: () async {
-                    /// 竖屏
+                builder: (context) => PopScope(
+                  canPop: false,
+                  onPopInvoked: (bool didPop) async {
+                    if (didPop) return;
+                    // 竖屏
                     await Flame.device.setPortrait();
-                    return true;
                   },
                   child: const MiniGamePage(),
                 ),

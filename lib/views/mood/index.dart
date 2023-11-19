@@ -143,6 +143,7 @@ class MoodBody extends StatelessWidget {
         SliverAppBar(
           pinned: false,
           elevation: 0,
+          forceMaterialTransparency: true,
           backgroundColor: Colors.transparent,
           flexibleSpace: Container(
             alignment: Alignment.center,

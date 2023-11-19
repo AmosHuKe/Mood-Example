@@ -18,7 +18,7 @@ class LaboratoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(),
+      data: ThemeData(useMaterial3: false),
       child: Scaffold(
         backgroundColor: const Color(0xFFF6F8FA),
         floatingActionButton: ActionButton(
@@ -55,8 +55,12 @@ class LaboratoryBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding:
-          EdgeInsets.only(left: 14.w, right: 14.w, top: 24.w, bottom: 20.h),
+      padding: EdgeInsets.only(
+        left: 14.w,
+        right: 14.w,
+        top: 24.w,
+        bottom: 20.h,
+      ),
       physics: const AlwaysScrollableScrollPhysics(
         parent: BouncingScrollPhysics(),
       ),

@@ -130,11 +130,12 @@ class _FFIPageState extends State<FFIPage> {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(),
+      data: ThemeData(useMaterial3: false),
       child: Scaffold(
         backgroundColor: const Color(0xFFF6F8FA),
         appBar: AppBar(
           elevation: 0,
+          forceMaterialTransparency: true,
           backgroundColor: const Color(0xFFF6F8FA),
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
