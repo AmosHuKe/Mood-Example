@@ -8,7 +8,7 @@ import '../sprite_sheet/sprite_sheet_orc.dart';
 double tileSize = 20.0;
 
 class Orc extends SimpleEnemy
-    with ObjectCollision, AutomaticRandomMovement, UseBarLife {
+    with AutomaticRandomMovement, BlockMovementCollision, UseLifeBar {
   Orc(Vector2 position)
       : super(
           position: position,
@@ -29,36 +29,32 @@ class Orc extends SimpleEnemy
           speed: tileSize * 3 + Random().nextInt(20),
           size: Vector2.all(tileSize * 2.9),
         ) {
-    /// 设置碰撞系统
-    setupCollision(
-      CollisionConfig(
-        collisions: [
-          /// 碰撞形状及体积
-          CollisionArea.rectangle(
-            size: Vector2(
-              size.x * 0.3,
-              size.y * 0.2,
-            ),
-            align: Vector2(tileSize * 1, tileSize * 1.5),
-          ),
-        ],
-      ),
-    );
-
     /// 生命条
-    setupBarLife(
+    setupLifeBar(
       size: Vector2(tileSize * 1.5, tileSize / 5),
-      barLifePosition: BarLifePorition.top,
+      barLifeDrawPosition: BarLifeDrawPorition.top,
       showLifeText: false,
-      margin: 0,
       borderWidth: 2,
       borderColor: Colors.white.withOpacity(0.5),
       borderRadius: BorderRadius.circular(2),
-      offset: Vector2(0, tileSize * 0.5),
+      position: Vector2(6, tileSize * 0.2),
     );
   }
 
-  bool canMove = true;
+  bool _canMove = true;
+
+  @override
+  Future<void> onLoad() {
+    /// 设置碰撞系统
+    add(RectangleHitbox(
+      size: Vector2(
+        size.x * 0.3,
+        size.y * 0.2,
+      ),
+      position: Vector2(tileSize * 1, tileSize * 1.5),
+    ));
+    return super.onLoad();
+  }
 
   /// 渲染
   @override
@@ -68,61 +64,34 @@ class Orc extends SimpleEnemy
 
   /// 碰撞触发
   @override
-  bool onCollision(GameComponent component, bool active) {
-    bool active = true;
-
+  void onCollision(Set<Vector2> points, PositionComponent other) {
     /// 碰撞 Orc 不发生碰撞
-    if (component is Orc) {
+    if (other is Orc) {
       print('碰撞 Orc');
-      active = false;
+      return;
     }
-    return active;
+    super.onCollision(points, other);
   }
 
   @override
   void update(double dt) {
-    if (canMove) {
-      /// 发现玩家
-      seePlayer(
+    if (_canMove) {
+      // 发现并攻击玩家
+      seeAndMoveToPlayer(
         radiusVision: tileSize * 5,
-
-        /// 发现
-        observed: (player) {
-          /// 相机跟随玩家放大
-          gameRef.camera.moveToPlayerAnimated(
-            zoom: 1.5,
-            finish: () {},
-            duration: const Duration(seconds: 1),
-            curve: Curves.decelerate,
-          );
-
-          /// 跟随玩家
-          followComponent(
-            player,
-            dt,
-            closeComponent: (comp) {
-              /// 抵达玩家，开始攻击
-              _execAttack();
-            },
-          );
+        closePlayer: (comp) {
+          /// 抵达玩家，开始攻击
+          _execAttack();
         },
-
-        /// 未发现
+        // 未发现
         notObserved: () {
-          /// 相机跟随玩家变为正常
-          gameRef.camera.moveToPlayerAnimated(
-            zoom: 1,
-            finish: () {},
-            duration: const Duration(seconds: 1),
-            curve: Curves.decelerate,
-          );
-
           /// 随机移动
           runRandomMovement(
             dt,
             speed: speed / 3,
             maxDistance: (tileSize * 2).toInt(),
           );
+          return true;
         },
       );
     }
@@ -132,7 +101,7 @@ class Orc extends SimpleEnemy
   /// 死亡
   @override
   void die() {
-    canMove = false;
+    _canMove = false;
     gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.7));
 
     /// 死亡动画
@@ -154,7 +123,7 @@ class Orc extends SimpleEnemy
       /// 伤害显示
       showDamage(
         damage,
-        initVelocityTop: -2,
+        initVelocityUp: -2,
         config: TextStyle(color: Colors.amberAccent, fontSize: tileSize / 2),
       );
 
@@ -201,7 +170,7 @@ class Orc extends SimpleEnemy
 
   /// 受伤动画
   // void _addDamageAnimation() {
-  //   canMove = false;
+  //   _canMove = false;
   //   Future<SpriteAnimation> newAnimation;
   //   switch (lastDirection) {
   //     case Direction.left:
@@ -233,7 +202,7 @@ class Orc extends SimpleEnemy
   //     newAnimation,
   //     runToTheEnd: true,
   //     onFinish: () {
-  //       canMove = true;
+  //       _canMove = true;
   //     },
   //   );
   // }

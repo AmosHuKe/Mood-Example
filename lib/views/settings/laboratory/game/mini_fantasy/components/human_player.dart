@@ -9,7 +9,7 @@ import 'orc.dart';
 double tileSize = 20.0;
 
 class HumanPlayer extends SimplePlayer
-    with Lighting, ObjectCollision, UseBarLife {
+    with BlockMovementCollision, Lighting, UseLifeBar {
   HumanPlayer(Vector2 position)
       : super(
           position: position,
@@ -39,31 +39,15 @@ class HumanPlayer extends SimplePlayer
       ),
     );
 
-    /// 碰撞
-    setupCollision(
-      CollisionConfig(
-        collisions: [
-          CollisionArea.rectangle(
-            size: Vector2(
-              size.x * 0.2,
-              size.y * 0.15,
-            ),
-            align: Vector2(tileSize * 1.15, tileSize * 1.5),
-          ),
-        ],
-      ),
-    );
-
     /// 生命条
-    setupBarLife(
+    setupLifeBar(
       size: Vector2(tileSize * 1.5, tileSize / 5),
-      barLifePosition: BarLifePorition.top,
+      barLifeDrawPosition: BarLifeDrawPorition.top,
       showLifeText: false,
-      margin: 0,
       borderWidth: 2,
       borderColor: Colors.white.withOpacity(0.5),
       borderRadius: BorderRadius.circular(2),
-      offset: Vector2(0, tileSize * 0.5),
+      position: Vector2(6, tileSize * 0.2),
     );
   }
 
@@ -71,28 +55,37 @@ class HumanPlayer extends SimplePlayer
 
   bool lockMove = false;
 
+  @override
+  Future<void> onLoad() {
+    /// 设置碰撞系统
+    add(RectangleHitbox(
+      size: Vector2(size.x * 0.2, size.y * 0.15),
+      position: Vector2(tileSize * 1.15, tileSize * 1.5),
+    ));
+    return super.onLoad();
+  }
+
   /// 渲染
   @override
   void render(Canvas canvas) {
+    gameRef.camera.follow(this);
     super.render(canvas);
   }
 
   /// 碰撞触发
   @override
-  bool onCollision(GameComponent component, bool active) {
-    bool active = true;
-
+  void onCollision(Set<Vector2> points, PositionComponent other) {
     /// 碰撞 Orc 不发生碰撞
-    if (component is Orc) {
+    if (other is Orc) {
       print('碰撞 Orc');
-      active = false;
+      return;
     }
-    return active;
+    super.onCollision(points, other);
   }
 
   /// 操纵手柄操作控制
   @override
-  void joystickAction(JoystickActionEvent event) {
+  void onJoystickAction(JoystickActionEvent event) {
     /// 死亡 || 锁住移动
     if (isDead || lockMove) return;
 
@@ -111,16 +104,16 @@ class HumanPlayer extends SimplePlayer
         withPush: false,
       );
     }
-    super.joystickAction(event);
+    super.onJoystickAction(event);
   }
 
   @override
-  void joystickChangeDirectional(JoystickDirectionalEvent event) {
+  void onJoystickChangeDirectional(JoystickDirectionalEvent event) {
     if (lockMove || isDead) {
       return;
     }
     speed = maxSpeed * event.intensity;
-    super.joystickChangeDirectional(event);
+    super.onJoystickChangeDirectional(event);
   }
 
   /// 受伤触发
@@ -129,7 +122,7 @@ class HumanPlayer extends SimplePlayer
     if (!isDead) {
       showDamage(
         damage,
-        initVelocityTop: -2,
+        initVelocityUp: -2,
         config: TextStyle(color: Colors.white, fontSize: tileSize / 2),
       );
       // lockMove = true;

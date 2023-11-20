@@ -68,7 +68,7 @@ class Game extends StatelessWidget {
       builder: (context, constraints) {
         final tileSize = max(constraints.maxHeight, constraints.maxWidth) / 20;
         return BonfireWidget(
-          constructionMode: false,
+          debugMode: false,
           showCollisionArea: false,
           joystick: Joystick(
             keyboardConfig: KeyboardConfig(
@@ -84,7 +84,7 @@ class Game extends StatelessWidget {
                 margin: const EdgeInsets.all(65),
               ),
             ],
-          ), // required
+          ),
           map: WorldMapByTiled(
             '$assetsPath/tiles/map.json',
             forceTileSize: Vector2(tileSize, tileSize),
@@ -97,6 +97,7 @@ class Game extends StatelessWidget {
             },
           ),
           player: HumanPlayer(Vector2(4 * tileSize, 4 * tileSize)),
+          cameraConfig: CameraConfig(zoom: 1),
           lightingColorGame: Colors.black.withOpacity(0.7),
           progress: Container(
             color: Colors.black,
@@ -110,6 +111,7 @@ class Game extends StatelessWidget {
           overlayBuilderMap: {
             'miniMap': (context, game) => MiniMap(
                   game: game,
+                  zoom: 0.8,
                   margin: const EdgeInsets.all(20),
                   borderRadius: BorderRadius.circular(100),
                   size: Vector2.all(constraints.maxHeight / 5),

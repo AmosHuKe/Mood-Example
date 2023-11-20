@@ -25,7 +25,7 @@ class SpriteSheetOrc {
     return spriteSheetOrcRun
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
+          amount: 4,
         )
         .asFuture();
   }
@@ -34,8 +34,8 @@ class SpriteSheetOrc {
     return spriteSheetOrcRun
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
-          startDy: 21,
+          amount: 4,
+          position: Vector2(0, 21),
         )
         .asFuture();
   }
@@ -44,8 +44,8 @@ class SpriteSheetOrc {
     return spriteSheetOrcRun
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
-          startDy: 42,
+          amount: 4,
+          position: Vector2(0, 42),
         )
         .asFuture();
   }
@@ -54,8 +54,8 @@ class SpriteSheetOrc {
     return spriteSheetOrcRun
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
-          startDy: 63,
+          amount: 4,
+          position: Vector2(0, 63),
         )
         .asFuture();
   }
@@ -64,7 +64,7 @@ class SpriteSheetOrc {
     return spriteSheetOrcIdle
         .getAnimation(
           size: Vector2.all(21),
-          count: 16,
+          amount: 16,
         )
         .asFuture();
   }
@@ -73,8 +73,8 @@ class SpriteSheetOrc {
     return spriteSheetOrcIdle
         .getAnimation(
           size: Vector2.all(21),
-          count: 16,
-          startDy: 21,
+          amount: 16,
+          position: Vector2(0, 21),
         )
         .asFuture();
   }
@@ -83,8 +83,8 @@ class SpriteSheetOrc {
     return spriteSheetOrcIdle
         .getAnimation(
           size: Vector2.all(21),
-          count: 16,
-          startDy: 42,
+          amount: 16,
+          position: Vector2(0, 42),
         )
         .asFuture();
   }
@@ -93,8 +93,8 @@ class SpriteSheetOrc {
     return spriteSheetOrcIdle
         .getAnimation(
           size: Vector2.all(21),
-          count: 16,
-          startDy: 63,
+          amount: 16,
+          position: Vector2(0, 63),
         )
         .asFuture();
   }
@@ -103,7 +103,7 @@ class SpriteSheetOrc {
     return spriteSheetOrcAttack
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
+          amount: 4,
           loop: false,
           stepTime: animSpeed,
         )
@@ -114,8 +114,8 @@ class SpriteSheetOrc {
     return spriteSheetOrcAttack
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
-          startDy: 21,
+          amount: 4,
+          position: Vector2(0, 21),
           loop: false,
           stepTime: animSpeed,
         )
@@ -126,8 +126,8 @@ class SpriteSheetOrc {
     return spriteSheetOrcAttack
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
-          startDy: 42,
+          amount: 4,
+          position: Vector2(0, 42),
           loop: false,
           stepTime: animSpeed,
         )
@@ -138,8 +138,8 @@ class SpriteSheetOrc {
     return spriteSheetOrcAttack
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
-          startDy: 63,
+          amount: 4,
+          position: Vector2(0, 63),
           loop: false,
           stepTime: animSpeed,
         )
@@ -150,7 +150,7 @@ class SpriteSheetOrc {
     return spriteSheetOrcDamage
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
+          amount: 4,
           loop: false,
         )
         .asFuture();
@@ -160,8 +160,8 @@ class SpriteSheetOrc {
     return spriteSheetOrcDamage
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
-          startDy: 21,
+          amount: 4,
+          position: Vector2(0, 21),
           loop: false,
         )
         .asFuture();
@@ -171,8 +171,8 @@ class SpriteSheetOrc {
     return spriteSheetOrcDamage
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
-          startDy: 42,
+          amount: 4,
+          position: Vector2(0, 42),
           loop: false,
         )
         .asFuture();
@@ -182,8 +182,8 @@ class SpriteSheetOrc {
     return spriteSheetOrcDamage
         .getAnimation(
           size: Vector2.all(21),
-          count: 4,
-          startDy: 63,
+          amount: 4,
+          position: Vector2(0, 63),
           loop: false,
         )
         .asFuture();
@@ -194,7 +194,7 @@ class SpriteSheetOrc {
     return spriteSheetOrcDie
         .getAnimation(
           size: Vector2.all(21),
-          count: 12,
+          amount: 12,
           loop: false,
         )
         .asFuture();
