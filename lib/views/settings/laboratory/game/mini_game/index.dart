@@ -77,7 +77,7 @@ class _GameState extends State<Game> {
         final tileSize = max(constraints.maxHeight, constraints.maxWidth) / 20;
         return BonfireWidget(
           debugMode: false,
-          showCollisionArea: true,
+          showCollisionArea: false,
           joystick: Joystick(
             keyboardConfig: KeyboardConfig(
               acceptedKeys: [
