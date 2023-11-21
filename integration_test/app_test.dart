@@ -28,7 +28,7 @@ void main() {
           find.byKey(const Key('notification_rationale_close'));
 
       /// 通知权限
-      if (notificationRationaleDialog.tryEvaluate()) {
+      if (await notificationRationaleDialog.tryEvaluate()) {
         expect(notificationRationaleOK, findsOneWidget);
         expect(notificationRationaleClose, findsOneWidget);
         await tester.tap(notificationRationaleClose);
@@ -102,7 +102,7 @@ void main() {
           find.byKey(const Key('notification_rationale_close'));
 
       /// 通知权限
-      if (notificationRationaleDialog.tryEvaluate()) {
+      if (await notificationRationaleDialog.tryEvaluate()) {
         expect(notificationRationaleOK, findsOneWidget);
         expect(notificationRationaleClose, findsOneWidget);
         await tester.tap(notificationRationaleClose);
@@ -271,7 +271,7 @@ void main() {
           find.byKey(const Key('notification_rationale_close'));
 
       /// 通知权限
-      if (notificationRationaleDialog.tryEvaluate()) {
+      if (await notificationRationaleDialog.tryEvaluate()) {
         expect(notificationRationaleOK, findsOneWidget);
         expect(notificationRationaleClose, findsOneWidget);
         await tester.tap(notificationRationaleClose);
@@ -391,7 +391,7 @@ void main() {
           find.byKey(const Key('notification_rationale_close'));
 
       /// 通知权限
-      if (notificationRationaleDialog.tryEvaluate()) {
+      if (await notificationRationaleDialog.tryEvaluate()) {
         expect(notificationRationaleOK, findsOneWidget);
         expect(notificationRationaleClose, findsOneWidget);
         await tester.tap(notificationRationaleClose);
@@ -516,7 +516,7 @@ void main() {
           find.byKey(const Key('notification_rationale_close'));
 
       /// 通知权限
-      if (notificationRationaleDialog.tryEvaluate()) {
+      if (await notificationRationaleDialog.tryEvaluate()) {
         expect(notificationRationaleOK, findsOneWidget);
         expect(notificationRationaleClose, findsOneWidget);
         await tester.tap(notificationRationaleClose);
