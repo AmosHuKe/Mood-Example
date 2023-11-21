@@ -91,7 +91,7 @@ class Orc extends SimpleEnemy
             speed: speed / 3,
             maxDistance: (tileSize * 2).toInt(),
           );
-          return true;
+          return false;
         },
       );
     }
