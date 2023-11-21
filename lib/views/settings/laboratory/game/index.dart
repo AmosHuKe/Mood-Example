@@ -1,8 +1,8 @@
-// import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:remixicon/remixicon.dart';
+import 'package:bonfire/bonfire.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
@@ -12,12 +12,11 @@ import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/sprite_s
     as mini_fantasy;
 import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/sprite_sheet/sprite_sheet_player.dart'
     as mini_fantasy;
-// import 'package:moodexample/views/settings/laboratory/game/mini_game/index.dart';
-// import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_sheet/sprite_sheet_orc.dart'
-//     as mini_game;
-// import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_sheet/sprite_sheet_player.dart'
-//     as mini_game;
-// import 'mini_game/controllers/human_player_controller.dart' as mini_game;
+import 'package:moodexample/views/settings/laboratory/game/mini_game/index.dart';
+import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_sheet/sprite_sheet_orc.dart'
+    as mini_game;
+import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_sheet/sprite_sheet_player.dart'
+    as mini_game;
 
 class GamePage extends StatefulWidget {
   const GamePage({super.key});
@@ -107,41 +106,39 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
             );
           },
         ),
-        // ListCard(
-        //   leading: Icon(
-        //     Remix.gamepad_line,
-        //     size: 32.sp,
-        //     color: Colors.black87,
-        //   ),
-        //   title: '疯狂射击、怪物生成',
-        //   subtitle:
-        //       '素材来源：https://github.com/RafaelBarbosatec/mini_fantasy、https://0x72.itch.io/dungeontileset-ii',
-        //   onPressed: () async {
-        //     /// 横屏
-        //     await Flame.device.setLandscape();
+        ListCard(
+          leading: Icon(
+            Remix.gamepad_line,
+            size: 32.sp,
+            color: Colors.black87,
+          ),
+          title: '疯狂射击、怪物生成',
+          subtitle:
+              '素材来源：https://github.com/RafaelBarbosatec/mini_fantasy、https://0x72.itch.io/dungeontileset-ii',
+          onPressed: () async {
+            /// 横屏
+            await Flame.device.setLandscape();
 
-        //     /// 载入游戏静态资源
-        //     await mini_game.SpriteSheetPlayer.load();
-        //     await mini_game.SpriteSheetOrc.load();
-        //     BonfireInjector()
-        //         .putFactory((i) => mini_game.HumanPlayerController());
-        //     if (!mounted) return;
-        //     Navigator.push(
-        //       context,
-        //       MaterialPageRoute(
-        //         builder: (context) => PopScope(
-        //           canPop: false,
-        //           onPopInvoked: (bool didPop) async {
-        //             if (didPop) return;
-        //             // 竖屏
-        //             await Flame.device.setPortrait();
-        //           },
-        //           child: const MiniGamePage(),
-        //         ),
-        //       ),
-        //     );
-        //   },
-        // ),
+            /// 载入游戏静态资源
+            await mini_game.SpriteSheetPlayer.load();
+            await mini_game.SpriteSheetOrc.load();
+            if (!mounted) return;
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PopScope(
+                  canPop: false,
+                  onPopInvoked: (bool didPop) async {
+                    if (didPop) return;
+                    // 竖屏
+                    await Flame.device.setPortrait();
+                  },
+                  child: const MiniGamePage(),
+                ),
+              ),
+            );
+          },
+        ),
       ],
     );
   }

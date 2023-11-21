@@ -1,12 +1,12 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:bonfire/bonfire.dart';
 
 import '../sprite_sheet/sprite_sheet_player.dart';
 import '../sprite_sheet/sprite_sheet_fire_ball.dart';
 import '../util/custom_sprite_animation_widget.dart';
-import '../controllers/human_player_controller.dart';
 import 'boss.dart';
 import 'orc.dart';
 
@@ -19,11 +19,7 @@ enum PlayerAttackType {
 }
 
 class HumanPlayer extends SimplePlayer
-    with
-        Lighting,
-        ObjectCollision,
-        UseBarLife,
-        UseStateController<HumanPlayerController> {
+    with BlockMovementCollision, Lighting, UseLifeBar {
   HumanPlayer(Vector2 position)
       : super(
           position: position,
@@ -52,29 +48,15 @@ class HumanPlayer extends SimplePlayer
         color: Colors.transparent,
       ),
     );
-
-    /// 碰撞
-    setupCollision(
-      CollisionConfig(
-        collisions: [
-          CollisionArea.rectangle(
-            size: Vector2(size.x * 0.2, size.y * 0.4),
-            align: Vector2(tileSize * 1.3, tileSize),
-          ),
-        ],
-      ),
-    );
-
-    /// 生命条
-    setupBarLife(
+    // 生命条
+    setupLifeBar(
       size: Vector2(tileSize * 1.5, tileSize / 5),
-      barLifePosition: BarLifePorition.top,
+      barLifeDrawPosition: BarLifeDrawPorition.top,
       showLifeText: false,
-      margin: 0,
       borderWidth: 2,
       borderColor: Colors.white.withOpacity(0.5),
       borderRadius: BorderRadius.circular(2),
-      offset: Vector2(0, tileSize * 0.5),
+      position: Vector2(8, tileSize * 0.2),
     );
   }
 
@@ -92,6 +74,22 @@ class HumanPlayer extends SimplePlayer
   /// 移动锁
   bool lockMove = false;
 
+  /// 攻击
+  bool executingRangeAttack = false;
+  double radAngleRangeAttack = 0;
+  bool executingRangeShotgunsAttack = false;
+  double radAngleRangeShotgunsAttack = 0;
+
+  @override
+  Future<void> onLoad() {
+    /// 设置碰撞系统
+    add(RectangleHitbox(
+      size: Vector2(size.x * 0.2, size.y * 0.4),
+      position: Vector2(tileSize * 1.3, tileSize),
+    ));
+    return super.onLoad();
+  }
+
   /// 渲染
   @override
   void render(Canvas canvas) {
@@ -104,60 +102,96 @@ class HumanPlayer extends SimplePlayer
       enemyOrcCreate(dt);
       enemyBossCreate(dt);
       firstPlayerSay();
+
+      handleActionAttackRange(dt);
+      handleActionAttackRangeShotguns(dt);
     }
     super.update(dt);
   }
 
   /// 碰撞触发
   @override
-  bool onCollision(GameComponent component, bool active) {
-    bool active = true;
-
-    /// Orc 不发生碰撞
-    if (component is Orc) {
-      active = false;
-    }
-
-    /// Boss 不发生碰撞
-    if (component is Boss) {
-      active = false;
-    }
-    if (component is FlyingAttackObject) {
-      active = false;
-    }
-    return active;
+  void onCollision(Set<Vector2> points, PositionComponent other) {
+    // Orc 不发生碰撞
+    if (other is Orc) return;
+    // Boss 不发生碰撞
+    if (other is Boss) return;
+    // 飞行道具不发生碰撞
+    if (other is FlyingAttackGameObject) return;
+    super.onCollision(points, other);
   }
 
   /// 操纵手柄操作控制
   @override
-  void joystickAction(JoystickActionEvent event) {
+  void onJoystickAction(JoystickActionEvent event) {
     if (hasGameRef && gameRef.sceneBuilderStatus.isRunning) return;
 
     /// 死亡 || 锁住移动
     if (isDead || lockMove) return;
 
-    controller.handleJoystickAction(event);
-    super.joystickAction(event);
+    handleJoystickAction(event);
+    super.onJoystickAction(event);
+  }
+
+  /// 操纵手柄操作控制
+  void handleJoystickAction(JoystickActionEvent event) {
+    /// 近战攻击
+    if ((event.id == LogicalKeyboardKey.space.keyId ||
+            event.id == LogicalKeyboardKey.select.keyId ||
+            event.id == PlayerAttackType.attackMelee) &&
+        event.event == ActionEvent.DOWN) {
+      /// 攻击动画
+      addAttackAnimation();
+
+      /// 攻击范围
+      simpleAttackMelee(
+        damage: 50,
+        size: Vector2.all(tileSize),
+        withPush: false,
+      );
+    }
+
+    /// 远程攻击
+    if (event.id == LogicalKeyboardKey.select.keyId ||
+        event.id == PlayerAttackType.attackRange) {
+      if (event.event == ActionEvent.MOVE) {
+        executingRangeAttack = true;
+        radAngleRangeAttack = event.radAngle;
+      }
+      if (event.event == ActionEvent.UP) {
+        executingRangeAttack = false;
+      }
+    }
+
+    /// 远程混乱攻击
+    if (event.id == LogicalKeyboardKey.select.keyId ||
+        event.id == PlayerAttackType.attackRangeShotguns) {
+      if (event.event == ActionEvent.MOVE) {
+        executingRangeShotgunsAttack = true;
+        radAngleRangeShotgunsAttack = event.radAngle;
+      }
+      if (event.event == ActionEvent.UP) {
+        executingRangeShotgunsAttack = false;
+      }
+    }
   }
 
   /// 操纵杆控制
   @override
-  void joystickChangeDirectional(JoystickDirectionalEvent event) {
+  void onJoystickChangeDirectional(JoystickDirectionalEvent event) {
     if (hasGameRef && gameRef.sceneBuilderStatus.isRunning) return;
 
     /// 死亡 || 锁住移动
     if (isDead || lockMove) return;
 
     speed = maxSpeed * event.intensity;
-    super.joystickChangeDirectional(event);
+    super.onJoystickChangeDirectional(event);
   }
 
   /// 受伤触发
   @override
   void receiveDamage(AttackFromEnum attacker, double damage, dynamic from) {
-    if (hasController) {
-      controller.handleReceiveDamage(damage);
-    }
+    handleReceiveDamage(damage);
     super.receiveDamage(attacker, damage, from);
   }
 
@@ -172,7 +206,7 @@ class HumanPlayer extends SimplePlayer
   void handleReceiveDamage(double damage) {
     showDamage(
       damage,
-      initVelocityTop: -2,
+      initVelocityUp: -2,
       config: TextStyle(color: Colors.white, fontSize: tileSize / 2),
     );
     // lockMove = true;
@@ -191,8 +225,8 @@ class HumanPlayer extends SimplePlayer
     if (!firstPlayer) {
       firstPlayer = true;
       gameRef.camera.moveToTargetAnimated(
-        this,
-        finish: () {
+        target: this,
+        onComplete: () {
           TalkDialog.show(
             gameRef.context,
             [
@@ -223,7 +257,7 @@ class HumanPlayer extends SimplePlayer
   void handleDie() {
     final Vector2 playerPosition =
         gameRef.player?.position ?? Vector2(position.x, position.y);
-    gameRef.camera.moveToTargetAnimated(this, finish: () {});
+    gameRef.camera.moveToTargetAnimated(target: this, onComplete: () {});
     TalkDialog.show(
       gameRef.context,
       [
@@ -265,38 +299,16 @@ class HumanPlayer extends SimplePlayer
       print('Orc 生成了');
 
       /// 生成
-      gameRef.add(
-        Orc(
-          Vector2(
-            maxMapSize + 500,
-            Random().nextDouble() * 500,
+      for (int i = 0; i < 4; i++) {
+        gameRef.add(
+          Orc(
+            Vector2(
+              Random().nextDouble() * (maxMapSize - 100),
+              Random().nextDouble() * (maxMapSize - 100),
+            ),
           ),
-        ),
-      );
-      gameRef.add(
-        Orc(
-          Vector2(
-            -500,
-            Random().nextDouble() * 500,
-          ),
-        ),
-      );
-      gameRef.add(
-        Orc(
-          Vector2(
-            Random().nextDouble() * 500,
-            maxMapSize + 500,
-          ),
-        ),
-      );
-      gameRef.add(
-        Orc(
-          Vector2(
-            Random().nextDouble() * 500,
-            -500,
-          ),
-        ),
-      );
+        );
+      }
     }
   }
 
@@ -310,22 +322,42 @@ class HumanPlayer extends SimplePlayer
       print('Boss 生成了');
 
       /// 生成
-      gameRef.add(
-        Boss(
-          Vector2(
-            maxMapSize + 1000,
-            Random().nextDouble() * 1000,
+      for (int i = 0; i < 2; i++) {
+        gameRef.add(
+          Boss(
+            Vector2(
+              Random().nextDouble() * (maxMapSize - 100),
+              Random().nextDouble() * (maxMapSize - 100),
+            ),
           ),
-        ),
-      );
-      gameRef.add(
-        Boss(
-          Vector2(
-            -1000,
-            Random().nextDouble() * 1000,
-          ),
-        ),
-      );
+        );
+      }
+    }
+  }
+
+  /// 远程攻击
+  void handleActionAttackRange(double dt) {
+    /// 远程攻击触发（发射间隔）
+    final bool execRangeAttackInterval = checkInterval(
+      'AttackRange',
+      150,
+      dt,
+    );
+    if (executingRangeAttack && execRangeAttackInterval) {
+      actionAttackRange(radAngleRangeAttack);
+    }
+  }
+
+  /// 远程混乱攻击
+  void handleActionAttackRangeShotguns(double dt) {
+    /// 远程混乱攻击触发（发射间隔）
+    final bool execRangeShotgunsAttackInterval = checkInterval(
+      'AttackRangeShotguns',
+      50,
+      dt,
+    );
+    if (executingRangeShotgunsAttack && execRangeShotgunsAttackInterval) {
+      actionAttackRangeShotguns(radAngleRangeShotgunsAttack);
     }
   }
 
@@ -341,13 +373,9 @@ class HumanPlayer extends SimplePlayer
       damage: 50.0 + Random().nextInt(10),
       attackFrom: AttackFromEnum.PLAYER_OR_ALLY,
       marginFromOrigin: 30,
-      collision: CollisionConfig(
-        collisions: [
-          CollisionArea.rectangle(
-            size: Vector2(tileSize, tileSize),
-            align: Vector2(tileSize, tileSize / 3),
-          ),
-        ],
+      collision: RectangleHitbox(
+        size: Vector2(tileSize, tileSize),
+        position: Vector2(tileSize, tileSize / 3),
       ),
       lightingConfig: LightingConfig(
         radius: tileSize * 0.9,
@@ -369,13 +397,9 @@ class HumanPlayer extends SimplePlayer
       damage: 50.0 + Random().nextInt(20),
       attackFrom: AttackFromEnum.PLAYER_OR_ALLY,
       marginFromOrigin: 35,
-      collision: CollisionConfig(
-        collisions: [
-          CollisionArea.rectangle(
-            size: Vector2(tileSize, tileSize),
-            align: Vector2(tileSize, tileSize / 3),
-          ),
-        ],
+      collision: RectangleHitbox(
+        size: Vector2(tileSize, tileSize),
+        position: Vector2(tileSize, tileSize / 3),
       ),
       lightingConfig: LightingConfig(
         radius: tileSize * 0.9,

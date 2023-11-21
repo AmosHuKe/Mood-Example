@@ -76,11 +76,10 @@ class _GameState extends State<Game> {
       builder: (context, constraints) {
         final tileSize = max(constraints.maxHeight, constraints.maxWidth) / 20;
         return BonfireWidget(
-          constructionMode: false,
-          showCollisionArea: false,
+          debugMode: false,
+          showCollisionArea: true,
           joystick: Joystick(
             keyboardConfig: KeyboardConfig(
-              keyboardDirectionalType: KeyboardDirectionalType.wasdAndArrows,
               acceptedKeys: [
                 LogicalKeyboardKey.space,
               ],
@@ -141,8 +140,8 @@ class _GameState extends State<Game> {
           cameraConfig: CameraConfig(
             zoom: 1,
             moveOnlyMapArea: true,
-            smoothCameraEnabled: true,
-            smoothCameraSpeed: 2,
+            // smoothCameraEnabled: true,
+            // smoothCameraSpeed: 2,
           ),
           player: HumanPlayer(Vector2(tileSize * 15, tileSize * 13)),
           lightingColorGame: Colors.black.withOpacity(0.7),
@@ -162,7 +161,7 @@ class _GameState extends State<Game> {
                 margin: const EdgeInsets.all(20),
                 borderRadius: BorderRadius.circular(100),
                 size: Vector2.all(constraints.maxHeight / 3),
-                zoom: 0.2,
+                zoom: 0.6,
                 border: Border.all(color: Colors.white.withOpacity(0.5)),
                 enemyColor: Colors.red,
               );

@@ -9,7 +9,7 @@ import 'orc.dart';
 double tileSize = 20.0;
 
 class Boss extends SimpleEnemy
-    with ObjectCollision, AutomaticRandomMovement, UseBarLife {
+    with AutomaticRandomMovement, BlockMovementCollision, UseLifeBar {
   Boss(Vector2 position)
       : super(
           position: position,
@@ -18,36 +18,32 @@ class Boss extends SimpleEnemy
           speed: tileSize * 0.5 + Random().nextInt(60),
           size: Vector2.all(tileSize * 5),
         ) {
-    /// 设置碰撞系统
-    setupCollision(
-      CollisionConfig(
-        collisions: [
-          /// 碰撞形状及体积
-          CollisionArea.rectangle(
-            size: Vector2(
-              size.x * 0.6,
-              size.y * 0.5,
-            ),
-            align: Vector2(tileSize * 1.2, tileSize * 1.5),
-          ),
-        ],
-      ),
-    );
-
     /// 生命条
-    setupBarLife(
-      size: Vector2(tileSize * 1.5, tileSize / 5),
-      barLifePosition: BarLifePorition.top,
+    setupLifeBar(
+      size: Vector2(tileSize * 2.5, tileSize / 5),
+      barLifeDrawPosition: BarLifeDrawPorition.top,
       showLifeText: false,
-      margin: 0,
       borderWidth: 2,
       borderColor: Colors.white.withOpacity(0.5),
       borderRadius: BorderRadius.circular(2),
-      offset: Vector2(0, tileSize * 0.5),
+      position: Vector2(16, tileSize * 0.2),
     );
   }
 
-  bool canMove = true;
+  bool _canMove = true;
+
+  @override
+  Future<void> onLoad() {
+    /// 设置碰撞系统
+    add(RectangleHitbox(
+      size: Vector2(
+        size.x * 0.6,
+        size.y * 0.5,
+      ),
+      position: Vector2(tileSize * 1.2, tileSize * 1.5),
+    ));
+    return super.onLoad();
+  }
 
   /// 渲染
   @override
@@ -57,42 +53,32 @@ class Boss extends SimpleEnemy
 
   /// 碰撞触发
   @override
-  bool onCollision(GameComponent component, bool active) {
-    bool active = true;
-    if (component is Orc) {
-      active = false;
-    }
-    return active;
+  void onCollision(Set<Vector2> points, PositionComponent other) {
+    if (other is Orc) return;
+    if (other is Boss) return;
+    super.onCollision(points, other);
   }
 
   @override
   void update(double dt) {
-    if (canMove) {
-      /// 发现玩家
-      seePlayer(
+    if (_canMove) {
+      /// 发现并攻击玩家
+      seeAndMoveToPlayer(
         radiusVision: tileSize * 10000,
-
-        /// 发现
-        observed: (player) {
-          /// 跟随玩家
-          followComponent(
-            player,
-            dt,
-            closeComponent: (comp) {
-              /// 抵达玩家，开始攻击
-              execAttack();
-            },
-          );
+        visionAngle: tileSize * 10000,
+        closePlayer: (comp) {
+          /// 抵达玩家，开始攻击
+          execAttack();
         },
-
-        /// 未发现
+        // 未发现
         notObserved: () {
           /// 随机移动
           runRandomMovement(
             dt,
-            speed: speed / 3,
-            maxDistance: (tileSize * 4).toInt(),
+            speed: speed / 1.5,
+            maxDistance: (tileSize * 100).toInt(),
           );
+          return false;
         },
       );
     }
@@ -102,7 +88,7 @@ class Boss extends SimpleEnemy
   /// 死亡
   @override
   void die() {
-    canMove = false;
+    _canMove = false;
     removeFromParent();
     super.die();
   }
@@ -114,7 +100,7 @@ class Boss extends SimpleEnemy
       /// 伤害显示
       showDamage(
         damage,
-        initVelocityTop: -2,
+        initVelocityUp: -2,
         config: TextStyle(color: Colors.amberAccent, fontSize: tileSize / 2),
       );
     }
