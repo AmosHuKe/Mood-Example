@@ -100,7 +100,7 @@ class Boss extends SimpleEnemy
       /// 伤害显示
       showDamage(
         damage,
-        initVelocityUp: -2,
+        initVelocityVertical: -2,
         config: TextStyle(color: Colors.amberAccent, fontSize: tileSize / 2),
       );
     }

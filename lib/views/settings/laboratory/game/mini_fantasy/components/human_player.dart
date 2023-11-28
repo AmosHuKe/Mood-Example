@@ -122,7 +122,7 @@ class HumanPlayer extends SimplePlayer
     if (!isDead) {
       showDamage(
         damage,
-        initVelocityUp: -2,
+        initVelocityVertical: -2,
         config: TextStyle(color: Colors.white, fontSize: tileSize / 2),
       );
       // lockMove = true;
