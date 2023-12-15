@@ -285,7 +285,7 @@ $ flutter test integration_test/app_test.dart
 
 ## 🤔️ 常见问题  
 
-### **Q: 在 iOS 无法打开 uni小程序或无法使用 UniMPSDK**  
+<!-- ### **Q: 在 iOS 无法打开 uni小程序或无法使用 UniMPSDK**  
 <details>
 <summary>点击展开</summary>
 
@@ -298,13 +298,13 @@ $ flutter test integration_test/app_test.dart
 * 链接: https://pan.baidu.com/s/1j1FgMfiFTwg5H8i5Rr0m_A 提取码: qbit  
 
 2、将 UniMPSDK 中 Core/Libs 所有库添加到项目中，具体如下：
-* 使用 Xcode 打开 Mood-Example/ios 目录
+* 使用 Xcode 打开 Mood-Example/ios 目录 -->
 <!-- 
 * 选择 Runner -> TARGETS(Runner) -> Build Phases -> Link Binary With Libraries  
 * 点击 + 号并选择 Add Other... 找到下载好的 UniMPSDK 目录
 * 全选 UniMPSDK/Core/Libs 中所有库，完成添加   
 -->
-* 右键项目目录 Runner/UniMPSDK/Core 文件夹  
+<!-- * 右键项目目录 Runner/UniMPSDK/Core 文件夹  
 * 点击 Add Files to "Runner"...  
 * 找到下载的库，选中 UniMPSDK/Core/Libs 文件夹，  
   勾选 Destination: Copy items if needed，  
@@ -319,7 +319,7 @@ $ flutter test integration_test/app_test.dart
 
 5、其他
 * [官方 UniMPSDK iOS 集成教程](https://nativesupport.dcloud.net.cn/UniMPDocs/UseSdk/ios)  
-</details>
+</details> -->
 
 ### **Q: 在 APP 关闭后，通知失效**  
 <details>
