@@ -12,7 +12,7 @@
 	<key>Ad</key>
 	<dict>
 		<key>class</key>
-		<string>FeatureUniAd</string>
+		<string>DCUniAdFeature</string>
 		<key>global</key>
 		<true/>
 	</dict>
@@ -231,6 +231,13 @@
 			<key>identifier</key>
 			<string>com.pushserver</string>
 		</dict>
+	</dict>
+	<key>Record</key>
+	<dict>
+		<key>class</key>
+		<string>PGRecord</string>
+		<key>global</key>
+		<true/>
 	</dict>
 	<key>Runtime</key>
 	<dict>

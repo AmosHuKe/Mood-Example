@@ -30,13 +30,24 @@
 		B050DF7A2873423500A346E3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF792873423500A346E3 /* CoreLocation.framework */; };
 		B050DF7C2873423F00A346E3 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF7B2873423F00A346E3 /* AddressBook.framework */; };
 		B050DF7E2873424800A346E3 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF7D2873424800A346E3 /* libiconv.tbd */; };
-		B050E0552874837400A346E3 /* __uniappes6.js in Resources */ = {isa = PBXBuildFile; fileRef = B050DFF62874837400A346E3 /* __uniappes6.js */; };
-		B050E0562874837400A346E3 /* uni-jsframework.js in Resources */ = {isa = PBXBuildFile; fileRef = B050DFF72874837400A346E3 /* uni-jsframework.js */; };
-		B050E0572874837400A346E3 /* PandoraApi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B050DFF82874837400A346E3 /* PandoraApi.bundle */; };
-		B050E0582874837400A346E3 /* uni-jsframework-vue3.js in Resources */ = {isa = PBXBuildFile; fileRef = B050DFF92874837400A346E3 /* uni-jsframework-vue3.js */; };
-		B050E0592874837400A346E3 /* unincomponents.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B050DFFA2874837400A346E3 /* unincomponents.ttf */; };
-		B050E05A2874837400A346E3 /* weex-polyfill.js in Resources */ = {isa = PBXBuildFile; fileRef = B050DFFB2874837400A346E3 /* weex-polyfill.js */; };
-		B050E05B2874837400A346E3 /* weexUniJs.js in Resources */ = {isa = PBXBuildFile; fileRef = B050DFFC2874837400A346E3 /* weexUniJs.js */; };
+		B07CD96A2B2CA1B6009E3AF9 /* __uniappes6.js in Resources */ = {isa = PBXBuildFile; fileRef = B07CD9632B2CA1B5009E3AF9 /* __uniappes6.js */; };
+		B07CD96B2B2CA1B6009E3AF9 /* uni-jsframework.js in Resources */ = {isa = PBXBuildFile; fileRef = B07CD9642B2CA1B5009E3AF9 /* uni-jsframework.js */; };
+		B07CD96C2B2CA1B6009E3AF9 /* PandoraApi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B07CD9652B2CA1B5009E3AF9 /* PandoraApi.bundle */; };
+		B07CD96D2B2CA1B6009E3AF9 /* uni-jsframework-vue3.js in Resources */ = {isa = PBXBuildFile; fileRef = B07CD9662B2CA1B5009E3AF9 /* uni-jsframework-vue3.js */; };
+		B07CD96E2B2CA1B6009E3AF9 /* unincomponents.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B07CD9672B2CA1B5009E3AF9 /* unincomponents.ttf */; };
+		B07CD96F2B2CA1B6009E3AF9 /* weex-polyfill.js in Resources */ = {isa = PBXBuildFile; fileRef = B07CD9682B2CA1B5009E3AF9 /* weex-polyfill.js */; };
+		B07CD9702B2CA1B6009E3AF9 /* weexUniJs.js in Resources */ = {isa = PBXBuildFile; fileRef = B07CD9692B2CA1B5009E3AF9 /* weexUniJs.js */; };
+		B07CD9C22B2CABA2009E3AF9 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9B72B2CABA2009E3AF9 /* libSDWebImage.a */; };
+		B07CD9C32B2CABA2009E3AF9 /* liblibIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9B82B2CABA2009E3AF9 /* liblibIO.a */; };
+		B07CD9C42B2CABA2009E3AF9 /* liblibWeex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9B92B2CABA2009E3AF9 /* liblibWeex.a */; };
+		B07CD9C52B2CABA2009E3AF9 /* liblibPDRCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BA2B2CABA2009E3AF9 /* liblibPDRCore.a */; };
+		B07CD9C62B2CABA2009E3AF9 /* liblibNativeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BB2B2CABA2009E3AF9 /* liblibNativeUI.a */; };
+		B07CD9C72B2CABA2009E3AF9 /* liblibUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BC2B2CABA2009E3AF9 /* liblibUI.a */; };
+		B07CD9C82B2CABA2009E3AF9 /* libcoreSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BD2B2CABA2009E3AF9 /* libcoreSupport.a */; };
+		B07CD9C92B2CABA2009E3AF9 /* liblibStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BE2B2CABA2009E3AF9 /* liblibStorage.a */; };
+		B07CD9CA2B2CABA2009E3AF9 /* liblibNavigator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BF2B2CABA2009E3AF9 /* liblibNavigator.a */; };
+		B07CD9CB2B2CABA2009E3AF9 /* storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9C02B2CABA2009E3AF9 /* storage.framework */; };
+		B07CD9CC2B2CABA2009E3AF9 /* liblibNativeObj.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9C12B2CABA2009E3AF9 /* liblibNativeObj.a */; };
 		B09C54B22875EEAE00FA78D2 /* __UNI__F87B0CE.wgt in Resources */ = {isa = PBXBuildFile; fileRef = B09C54B02875EEAE00FA78D2 /* __UNI__F87B0CE.wgt */; };
 		B09C54B52875F10A00FA78D2 /* __UNI__3BC70CE.wgt in Resources */ = {isa = PBXBuildFile; fileRef = B09C54B42875F10A00FA78D2 /* __UNI__3BC70CE.wgt */; };
 		B0EC8FAF29C189D20016F5FA /* dart_api_dl.c in Sources */ = {isa = PBXBuildFile; fileRef = B0EC8FA729C189D20016F5FA /* dart_api_dl.c */; };
@@ -91,100 +102,100 @@
 		B050DF792873423500A346E3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B050DF7B2873423F00A346E3 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		B050DF7D2873424800A346E3 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
-		B050DFF62874837400A346E3 /* __uniappes6.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = __uniappes6.js; sourceTree = "<group>"; };
-		B050DFF72874837400A346E3 /* uni-jsframework.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "uni-jsframework.js"; sourceTree = "<group>"; };
-		B050DFF82874837400A346E3 /* PandoraApi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PandoraApi.bundle; sourceTree = "<group>"; };
-		B050DFF92874837400A346E3 /* uni-jsframework-vue3.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "uni-jsframework-vue3.js"; sourceTree = "<group>"; };
-		B050DFFA2874837400A346E3 /* unincomponents.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = unincomponents.ttf; sourceTree = "<group>"; };
-		B050DFFB2874837400A346E3 /* weex-polyfill.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "weex-polyfill.js"; sourceTree = "<group>"; };
-		B050DFFC2874837400A346E3 /* weexUniJs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = weexUniJs.js; sourceTree = "<group>"; };
-		B050E00A2874837400A346E3 /* DCUniMPSDKEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPSDKEngine.h; sourceTree = "<group>"; };
-		B050E00B2874837400A346E3 /* DCUniMP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMP.h; sourceTree = "<group>"; };
-		B050E00C2874837400A346E3 /* DCUniMPConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPConfiguration.h; sourceTree = "<group>"; };
-		B050E00D2874837400A346E3 /* DCUniMPInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPInstance.h; sourceTree = "<group>"; };
-		B050E00F2874837400A346E3 /* WXModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXModuleProtocol.h; sourceTree = "<group>"; };
-		B050E0102874837400A346E3 /* WXResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXResourceLoader.h; sourceTree = "<group>"; };
-		B050E0112874837400A346E3 /* WXApmForInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApmForInstance.h; sourceTree = "<group>"; };
-		B050E0122874837400A346E3 /* WXWebSocketHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXWebSocketHandler.h; sourceTree = "<group>"; };
-		B050E0132874837400A346E3 /* WXImgLoaderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXImgLoaderProtocol.h; sourceTree = "<group>"; };
-		B050E0142874837400A346E3 /* WXComponentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXComponentManager.h; sourceTree = "<group>"; };
-		B050E0152874837400A346E3 /* WXScrollerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXScrollerProtocol.h; sourceTree = "<group>"; };
-		B050E0162874837400A346E3 /* WXRichText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXRichText.h; sourceTree = "<group>"; };
-		B050E0172874837400A346E3 /* WXView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXView.h; sourceTree = "<group>"; };
-		B050E0182874837400A346E3 /* WXValidateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXValidateProtocol.h; sourceTree = "<group>"; };
-		B050E0192874837400A346E3 /* WXDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXDefine.h; sourceTree = "<group>"; };
-		B050E01A2874837400A346E3 /* JSContext+Weex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSContext+Weex.h"; sourceTree = "<group>"; };
-		B050E01B2874837400A346E3 /* WXExtendCallNativeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXExtendCallNativeProtocol.h; sourceTree = "<group>"; };
-		B050E01C2874837400A346E3 /* WXSDKEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSDKEngine.h; sourceTree = "<group>"; };
-		B050E01D2874837400A346E3 /* style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = style.h; sourceTree = "<group>"; };
-		B050E01E2874837400A346E3 /* WXResourceRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXResourceRequestHandler.h; sourceTree = "<group>"; };
-		B050E01F2874837400A346E3 /* WXDisplayLinkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXDisplayLinkManager.h; sourceTree = "<group>"; };
-		B050E0202874837400A346E3 /* WXUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUtility.h; sourceTree = "<group>"; };
-		B050E0212874837400A346E3 /* WXResourceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXResourceRequest.h; sourceTree = "<group>"; };
-		B050E0222874837400A346E3 /* WXConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXConvert.h; sourceTree = "<group>"; };
-		B050E0232874837400A346E3 /* WXPageEventNotifyEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXPageEventNotifyEvent.h; sourceTree = "<group>"; };
-		B050E0242874837400A346E3 /* WXSDKInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSDKInstance.h; sourceTree = "<group>"; };
-		B050E0252874837400A346E3 /* WXSDKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSDKManager.h; sourceTree = "<group>"; };
-		B050E0262874837400A346E3 /* WXDebugTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXDebugTool.h; sourceTree = "<group>"; };
-		B050E0272874837400A346E3 /* WXType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXType.h; sourceTree = "<group>"; };
-		B050E0282874837400A346E3 /* WXApmProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApmProtocol.h; sourceTree = "<group>"; };
-		B050E0292874837400A346E3 /* WXJSFrameworkLoadProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXJSFrameworkLoadProtocol.h; sourceTree = "<group>"; };
-		B050E02A2874837400A346E3 /* WXExceptionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXExceptionUtils.h; sourceTree = "<group>"; };
-		B050E02B2874837400A346E3 /* WXIndicatorComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXIndicatorComponent.h; sourceTree = "<group>"; };
-		B050E02C2874837400A346E3 /* WXErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXErrorView.h; sourceTree = "<group>"; };
-		B050E02D2874837400A346E3 /* NSObject+WXSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WXSwizzle.h"; sourceTree = "<group>"; };
-		B050E02E2874837400A346E3 /* WXMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMonitor.h; sourceTree = "<group>"; };
-		B050E02F2874837400A346E3 /* WXSDKInstance+DCExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WXSDKInstance+DCExtend.h"; sourceTree = "<group>"; };
-		B050E0302874837400A346E3 /* WXRecyclerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXRecyclerComponent.h; sourceTree = "<group>"; };
-		B050E0312874837400A346E3 /* WXScrollerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXScrollerComponent.h; sourceTree = "<group>"; };
-		B050E0322874837400A346E3 /* WXNetworkProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNetworkProtocol.h; sourceTree = "<group>"; };
-		B050E0332874837400A346E3 /* WXTracingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTracingManager.h; sourceTree = "<group>"; };
-		B050E0342874837400A346E3 /* WXComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXComponent.h; sourceTree = "<group>"; };
-		B050E0352874837400A346E3 /* WXPrerenderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXPrerenderManager.h; sourceTree = "<group>"; };
-		B050E0362874837400A346E3 /* WXComponent+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WXComponent+Layout.h"; sourceTree = "<group>"; };
-		B050E0372874837400A346E3 /* layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layout.h; sourceTree = "<group>"; };
-		B050E0382874837400A346E3 /* WXSDKInstance+Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WXSDKInstance+Bridge.h"; sourceTree = "<group>"; };
-		B050E0392874837400A346E3 /* UniPluginProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniPluginProtocol.h; sourceTree = "<group>"; };
-		B050E03A2874837400A346E3 /* WXModalUIModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXModalUIModule.h; sourceTree = "<group>"; };
-		B050E03B2874837400A346E3 /* WXAnalyzerCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAnalyzerCenter.h; sourceTree = "<group>"; };
-		B050E03C2874837400A346E3 /* WXVoiceOverModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXVoiceOverModule.h; sourceTree = "<group>"; };
-		B050E03D2874837400A346E3 /* WXRootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXRootView.h; sourceTree = "<group>"; };
-		B050E03E2874837400A346E3 /* WXAppConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAppConfiguration.h; sourceTree = "<group>"; };
-		B050E03F2874837400A346E3 /* WXListComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXListComponent.h; sourceTree = "<group>"; };
-		B050E0402874837400A346E3 /* WXSDKError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSDKError.h; sourceTree = "<group>"; };
-		B050E0412874837400A346E3 /* WXRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXRootViewController.h; sourceTree = "<group>"; };
-		B050E0422874837400A346E3 /* WXNavigationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNavigationProtocol.h; sourceTree = "<group>"; };
-		B050E0432874837400A346E3 /* WXAnalyzerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAnalyzerProtocol.h; sourceTree = "<group>"; };
-		B050E0442874837400A346E3 /* WeexSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeexSDK.h; sourceTree = "<group>"; };
-		B050E0452874837400A346E3 /* WXBridgeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBridgeManager.h; sourceTree = "<group>"; };
-		B050E0462874837400A346E3 /* WXResourceResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXResourceResponse.h; sourceTree = "<group>"; };
-		B050E0472874837400A346E3 /* WXBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBaseViewController.h; sourceTree = "<group>"; };
-		B050E0482874837400A346E3 /* WXAppMonitorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAppMonitorProtocol.h; sourceTree = "<group>"; };
-		B050E0492874837400A346E3 /* WeexProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeexProtocol.h; sourceTree = "<group>"; };
-		B050E04A2874837400A346E3 /* WXJSExceptionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXJSExceptionProtocol.h; sourceTree = "<group>"; };
-		B050E04B2874837400A346E3 /* WXJSExceptionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXJSExceptionInfo.h; sourceTree = "<group>"; };
-		B050E04C2874837400A346E3 /* WXTracingProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTracingProtocol.h; sourceTree = "<group>"; };
-		B050E04D2874837400A346E3 /* flex_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flex_enum.h; sourceTree = "<group>"; };
-		B050E04E2874837400A346E3 /* WXConfigCenterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXConfigCenterProtocol.h; sourceTree = "<group>"; };
-		B050E04F2874837400A346E3 /* WXEventModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXEventModuleProtocol.h; sourceTree = "<group>"; };
-		B050E0502874837400A346E3 /* WXURLRewriteProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXURLRewriteProtocol.h; sourceTree = "<group>"; };
-		B050E0512874837400A346E3 /* WXAComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAComponent.h; sourceTree = "<group>"; };
-		B050E0522874837400A346E3 /* WXBridgeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBridgeProtocol.h; sourceTree = "<group>"; };
-		B050E0532874837400A346E3 /* DCUniMPError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPError.h; sourceTree = "<group>"; };
-		B050E0542874837400A346E3 /* DCUniMPMenuActionSheetStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPMenuActionSheetStyle.h; sourceTree = "<group>"; };
+		B07CD9172B2CA1B5009E3AF9 /* DCUniMPSDKEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPSDKEngine.h; sourceTree = "<group>"; };
+		B07CD9182B2CA1B5009E3AF9 /* DCUniMP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMP.h; sourceTree = "<group>"; };
+		B07CD9192B2CA1B5009E3AF9 /* DCUniMPConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPConfiguration.h; sourceTree = "<group>"; };
+		B07CD91A2B2CA1B5009E3AF9 /* DCUniMPInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPInstance.h; sourceTree = "<group>"; };
+		B07CD91C2B2CA1B5009E3AF9 /* WXModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXModuleProtocol.h; sourceTree = "<group>"; };
+		B07CD91D2B2CA1B5009E3AF9 /* WXResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXResourceLoader.h; sourceTree = "<group>"; };
+		B07CD91E2B2CA1B5009E3AF9 /* WXApmForInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApmForInstance.h; sourceTree = "<group>"; };
+		B07CD91F2B2CA1B5009E3AF9 /* WXWebSocketHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXWebSocketHandler.h; sourceTree = "<group>"; };
+		B07CD9202B2CA1B5009E3AF9 /* WXImgLoaderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXImgLoaderProtocol.h; sourceTree = "<group>"; };
+		B07CD9212B2CA1B5009E3AF9 /* WXComponentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXComponentManager.h; sourceTree = "<group>"; };
+		B07CD9222B2CA1B5009E3AF9 /* WXScrollerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXScrollerProtocol.h; sourceTree = "<group>"; };
+		B07CD9232B2CA1B5009E3AF9 /* WXRichText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXRichText.h; sourceTree = "<group>"; };
+		B07CD9242B2CA1B5009E3AF9 /* WXView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXView.h; sourceTree = "<group>"; };
+		B07CD9252B2CA1B5009E3AF9 /* WXValidateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXValidateProtocol.h; sourceTree = "<group>"; };
+		B07CD9262B2CA1B5009E3AF9 /* WXDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXDefine.h; sourceTree = "<group>"; };
+		B07CD9272B2CA1B5009E3AF9 /* JSContext+Weex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSContext+Weex.h"; sourceTree = "<group>"; };
+		B07CD9282B2CA1B5009E3AF9 /* WXExtendCallNativeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXExtendCallNativeProtocol.h; sourceTree = "<group>"; };
+		B07CD9292B2CA1B5009E3AF9 /* WXSDKEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSDKEngine.h; sourceTree = "<group>"; };
+		B07CD92A2B2CA1B5009E3AF9 /* style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = style.h; sourceTree = "<group>"; };
+		B07CD92B2B2CA1B5009E3AF9 /* WXResourceRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXResourceRequestHandler.h; sourceTree = "<group>"; };
+		B07CD92C2B2CA1B5009E3AF9 /* WXDisplayLinkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXDisplayLinkManager.h; sourceTree = "<group>"; };
+		B07CD92D2B2CA1B5009E3AF9 /* WXUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUtility.h; sourceTree = "<group>"; };
+		B07CD92E2B2CA1B5009E3AF9 /* WXResourceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXResourceRequest.h; sourceTree = "<group>"; };
+		B07CD92F2B2CA1B5009E3AF9 /* WXConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXConvert.h; sourceTree = "<group>"; };
+		B07CD9302B2CA1B5009E3AF9 /* WXPageEventNotifyEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXPageEventNotifyEvent.h; sourceTree = "<group>"; };
+		B07CD9312B2CA1B5009E3AF9 /* WXSDKInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSDKInstance.h; sourceTree = "<group>"; };
+		B07CD9322B2CA1B5009E3AF9 /* WXSDKManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSDKManager.h; sourceTree = "<group>"; };
+		B07CD9332B2CA1B5009E3AF9 /* WXDebugTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXDebugTool.h; sourceTree = "<group>"; };
+		B07CD9342B2CA1B5009E3AF9 /* WXType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXType.h; sourceTree = "<group>"; };
+		B07CD9352B2CA1B5009E3AF9 /* WXApmProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApmProtocol.h; sourceTree = "<group>"; };
+		B07CD9362B2CA1B5009E3AF9 /* WXJSFrameworkLoadProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXJSFrameworkLoadProtocol.h; sourceTree = "<group>"; };
+		B07CD9372B2CA1B5009E3AF9 /* WXExceptionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXExceptionUtils.h; sourceTree = "<group>"; };
+		B07CD9382B2CA1B5009E3AF9 /* WXIndicatorComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXIndicatorComponent.h; sourceTree = "<group>"; };
+		B07CD9392B2CA1B5009E3AF9 /* WXErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXErrorView.h; sourceTree = "<group>"; };
+		B07CD93A2B2CA1B5009E3AF9 /* NSObject+WXSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WXSwizzle.h"; sourceTree = "<group>"; };
+		B07CD93B2B2CA1B5009E3AF9 /* WXMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMonitor.h; sourceTree = "<group>"; };
+		B07CD93C2B2CA1B5009E3AF9 /* WXSDKInstance+DCExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WXSDKInstance+DCExtend.h"; sourceTree = "<group>"; };
+		B07CD93D2B2CA1B5009E3AF9 /* WXRecyclerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXRecyclerComponent.h; sourceTree = "<group>"; };
+		B07CD93E2B2CA1B5009E3AF9 /* WXScrollerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXScrollerComponent.h; sourceTree = "<group>"; };
+		B07CD93F2B2CA1B5009E3AF9 /* WXNetworkProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNetworkProtocol.h; sourceTree = "<group>"; };
+		B07CD9402B2CA1B5009E3AF9 /* WXTracingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTracingManager.h; sourceTree = "<group>"; };
+		B07CD9412B2CA1B5009E3AF9 /* WXComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXComponent.h; sourceTree = "<group>"; };
+		B07CD9422B2CA1B5009E3AF9 /* WXPrerenderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXPrerenderManager.h; sourceTree = "<group>"; };
+		B07CD9432B2CA1B5009E3AF9 /* WXComponent+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WXComponent+Layout.h"; sourceTree = "<group>"; };
+		B07CD9442B2CA1B5009E3AF9 /* layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layout.h; sourceTree = "<group>"; };
+		B07CD9452B2CA1B5009E3AF9 /* WXSDKInstance+Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WXSDKInstance+Bridge.h"; sourceTree = "<group>"; };
+		B07CD9462B2CA1B5009E3AF9 /* UniPluginProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniPluginProtocol.h; sourceTree = "<group>"; };
+		B07CD9472B2CA1B5009E3AF9 /* WXModalUIModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXModalUIModule.h; sourceTree = "<group>"; };
+		B07CD9482B2CA1B5009E3AF9 /* WXAnalyzerCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAnalyzerCenter.h; sourceTree = "<group>"; };
+		B07CD9492B2CA1B5009E3AF9 /* WXVoiceOverModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXVoiceOverModule.h; sourceTree = "<group>"; };
+		B07CD94A2B2CA1B5009E3AF9 /* WXRootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXRootView.h; sourceTree = "<group>"; };
+		B07CD94B2B2CA1B5009E3AF9 /* WXAppConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAppConfiguration.h; sourceTree = "<group>"; };
+		B07CD94C2B2CA1B5009E3AF9 /* WXListComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXListComponent.h; sourceTree = "<group>"; };
+		B07CD94D2B2CA1B5009E3AF9 /* WXSDKError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSDKError.h; sourceTree = "<group>"; };
+		B07CD94E2B2CA1B5009E3AF9 /* WXRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXRootViewController.h; sourceTree = "<group>"; };
+		B07CD94F2B2CA1B5009E3AF9 /* WXNavigationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNavigationProtocol.h; sourceTree = "<group>"; };
+		B07CD9502B2CA1B5009E3AF9 /* WXAnalyzerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAnalyzerProtocol.h; sourceTree = "<group>"; };
+		B07CD9512B2CA1B5009E3AF9 /* WeexSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeexSDK.h; sourceTree = "<group>"; };
+		B07CD9522B2CA1B5009E3AF9 /* WXBridgeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBridgeManager.h; sourceTree = "<group>"; };
+		B07CD9532B2CA1B5009E3AF9 /* WXResourceResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXResourceResponse.h; sourceTree = "<group>"; };
+		B07CD9542B2CA1B5009E3AF9 /* WXBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBaseViewController.h; sourceTree = "<group>"; };
+		B07CD9552B2CA1B5009E3AF9 /* WXAppMonitorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAppMonitorProtocol.h; sourceTree = "<group>"; };
+		B07CD9562B2CA1B5009E3AF9 /* WeexProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeexProtocol.h; sourceTree = "<group>"; };
+		B07CD9572B2CA1B5009E3AF9 /* WXJSExceptionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXJSExceptionProtocol.h; sourceTree = "<group>"; };
+		B07CD9582B2CA1B5009E3AF9 /* WXJSExceptionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXJSExceptionInfo.h; sourceTree = "<group>"; };
+		B07CD9592B2CA1B5009E3AF9 /* WXTracingProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTracingProtocol.h; sourceTree = "<group>"; };
+		B07CD95A2B2CA1B5009E3AF9 /* flex_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flex_enum.h; sourceTree = "<group>"; };
+		B07CD95B2B2CA1B5009E3AF9 /* WXConfigCenterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXConfigCenterProtocol.h; sourceTree = "<group>"; };
+		B07CD95C2B2CA1B5009E3AF9 /* WXEventModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXEventModuleProtocol.h; sourceTree = "<group>"; };
+		B07CD95D2B2CA1B5009E3AF9 /* WXURLRewriteProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXURLRewriteProtocol.h; sourceTree = "<group>"; };
+		B07CD95E2B2CA1B5009E3AF9 /* WXAComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAComponent.h; sourceTree = "<group>"; };
+		B07CD95F2B2CA1B5009E3AF9 /* WXBridgeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBridgeProtocol.h; sourceTree = "<group>"; };
+		B07CD9602B2CA1B5009E3AF9 /* DCUniMPError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPError.h; sourceTree = "<group>"; };
+		B07CD9612B2CA1B5009E3AF9 /* DCUniMPMenuActionSheetStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCUniMPMenuActionSheetStyle.h; sourceTree = "<group>"; };
+		B07CD9632B2CA1B5009E3AF9 /* __uniappes6.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = __uniappes6.js; sourceTree = "<group>"; };
+		B07CD9642B2CA1B5009E3AF9 /* uni-jsframework.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "uni-jsframework.js"; sourceTree = "<group>"; };
+		B07CD9652B2CA1B5009E3AF9 /* PandoraApi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PandoraApi.bundle; sourceTree = "<group>"; };
+		B07CD9662B2CA1B5009E3AF9 /* uni-jsframework-vue3.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "uni-jsframework-vue3.js"; sourceTree = "<group>"; };
+		B07CD9672B2CA1B5009E3AF9 /* unincomponents.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = unincomponents.ttf; sourceTree = "<group>"; };
+		B07CD9682B2CA1B5009E3AF9 /* weex-polyfill.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "weex-polyfill.js"; sourceTree = "<group>"; };
+		B07CD9692B2CA1B5009E3AF9 /* weexUniJs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = weexUniJs.js; sourceTree = "<group>"; };
+		B07CD9B72B2CABA2009E3AF9 /* libSDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSDWebImage.a; sourceTree = "<group>"; };
+		B07CD9B82B2CABA2009E3AF9 /* liblibIO.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibIO.a; sourceTree = "<group>"; };
+		B07CD9B92B2CABA2009E3AF9 /* liblibWeex.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibWeex.a; sourceTree = "<group>"; };
+		B07CD9BA2B2CABA2009E3AF9 /* liblibPDRCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibPDRCore.a; sourceTree = "<group>"; };
+		B07CD9BB2B2CABA2009E3AF9 /* liblibNativeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNativeUI.a; sourceTree = "<group>"; };
+		B07CD9BC2B2CABA2009E3AF9 /* liblibUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibUI.a; sourceTree = "<group>"; };
+		B07CD9BD2B2CABA2009E3AF9 /* libcoreSupport.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcoreSupport.a; sourceTree = "<group>"; };
+		B07CD9BE2B2CABA2009E3AF9 /* liblibStorage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibStorage.a; sourceTree = "<group>"; };
+		B07CD9BF2B2CABA2009E3AF9 /* liblibNavigator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNavigator.a; sourceTree = "<group>"; };
+		B07CD9C02B2CABA2009E3AF9 /* storage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = storage.framework; sourceTree = "<group>"; };
+		B07CD9C12B2CABA2009E3AF9 /* liblibNativeObj.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNativeObj.a; sourceTree = "<group>"; };
 		B09C54B02875EEAE00FA78D2 /* __UNI__F87B0CE.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__F87B0CE.wgt; sourceTree = "<group>"; };
 		B09C54B42875F10A00FA78D2 /* __UNI__3BC70CE.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__3BC70CE.wgt; sourceTree = "<group>"; };
-		B09C54B62879FDD600FA78D2 /* storage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = storage.framework; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/storage.framework"; sourceTree = "<group>"; };
-		B09C54B72879FDD700FA78D2 /* libSDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDWebImage.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/libSDWebImage.a"; sourceTree = "<group>"; };
-		B09C54B82879FDD700FA78D2 /* liblibWeex.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibWeex.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/liblibWeex.a"; sourceTree = "<group>"; };
-		B09C54B92879FDD700FA78D2 /* liblibNativeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibNativeUI.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/liblibNativeUI.a"; sourceTree = "<group>"; };
-		B09C54BA2879FDD700FA78D2 /* liblibNavigator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibNavigator.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/liblibNavigator.a"; sourceTree = "<group>"; };
-		B09C54BB2879FDD700FA78D2 /* libcoreSupport.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcoreSupport.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/libcoreSupport.a"; sourceTree = "<group>"; };
-		B09C54BC2879FDD700FA78D2 /* liblibStorage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibStorage.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/liblibStorage.a"; sourceTree = "<group>"; };
-		B09C54BD2879FDD700FA78D2 /* liblibUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibUI.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/liblibUI.a"; sourceTree = "<group>"; };
-		B09C54BE2879FDD700FA78D2 /* liblibIO.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibIO.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/liblibIO.a"; sourceTree = "<group>"; };
-		B09C54BF2879FDD700FA78D2 /* liblibPDRCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibPDRCore.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/liblibPDRCore.a"; sourceTree = "<group>"; };
-		B09C54C02879FDD700FA78D2 /* liblibNativeObj.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibNativeObj.a; path = "../../../../../../Downloads/UniMPSDK_iOS@3.4.7/UniMPSDK/Core/Libs/liblibNativeObj.a"; sourceTree = "<group>"; };
 		B0EC8FA629C189D20016F5FA /* dart_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dart_api.h; sourceTree = "<group>"; };
 		B0EC8FA729C189D20016F5FA /* dart_api_dl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dart_api_dl.c; sourceTree = "<group>"; };
 		B0EC8FA829C189D20016F5FA /* dart_version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dart_version.h; sourceTree = "<group>"; };
@@ -207,10 +218,21 @@
 				B050DF782873422D00A346E3 /* AssetsLibrary.framework in Frameworks */,
 				B050DF762873422400A346E3 /* CoreTelephony.framework in Frameworks */,
 				B050DF742873421A00A346E3 /* QuickLook.framework in Frameworks */,
+				B07CD9C42B2CABA2009E3AF9 /* liblibWeex.a in Frameworks */,
+				B07CD9C82B2CABA2009E3AF9 /* libcoreSupport.a in Frameworks */,
 				B050DF722873421200A346E3 /* libc++.tbd in Frameworks */,
+				B07CD9C92B2CABA2009E3AF9 /* liblibStorage.a in Frameworks */,
+				B07CD9CB2B2CABA2009E3AF9 /* storage.framework in Frameworks */,
 				B050DF702873420900A346E3 /* CoreGraphics.framework in Frameworks */,
 				B050DF6E287341FD00A346E3 /* QuartzCore.framework in Frameworks */,
+				B07CD9C62B2CABA2009E3AF9 /* liblibNativeUI.a in Frameworks */,
+				B07CD9C22B2CABA2009E3AF9 /* libSDWebImage.a in Frameworks */,
 				B050DF6C287341F300A346E3 /* CoreText.framework in Frameworks */,
+				B07CD9C72B2CABA2009E3AF9 /* liblibUI.a in Frameworks */,
+				B07CD9C32B2CABA2009E3AF9 /* liblibIO.a in Frameworks */,
+				B07CD9C52B2CABA2009E3AF9 /* liblibPDRCore.a in Frameworks */,
+				B07CD9CA2B2CABA2009E3AF9 /* liblibNavigator.a in Frameworks */,
+				B07CD9CC2B2CABA2009E3AF9 /* liblibNativeObj.a in Frameworks */,
 				B050DF6A287341EB00A346E3 /* OpenGLES.framework in Frameworks */,
 				B050DF68287341DD00A346E3 /* GLKit.framework in Frameworks */,
 				B050DF66287341CE00A346E3 /* AVKit.framework in Frameworks */,
@@ -228,17 +250,6 @@
 		58B136A49ECE204E1D5D5324 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B09C54BB2879FDD700FA78D2 /* libcoreSupport.a */,
-				B09C54BE2879FDD700FA78D2 /* liblibIO.a */,
-				B09C54C02879FDD700FA78D2 /* liblibNativeObj.a */,
-				B09C54B92879FDD700FA78D2 /* liblibNativeUI.a */,
-				B09C54BA2879FDD700FA78D2 /* liblibNavigator.a */,
-				B09C54BF2879FDD700FA78D2 /* liblibPDRCore.a */,
-				B09C54BC2879FDD700FA78D2 /* liblibStorage.a */,
-				B09C54BD2879FDD700FA78D2 /* liblibUI.a */,
-				B09C54B82879FDD700FA78D2 /* liblibWeex.a */,
-				B09C54B72879FDD700FA78D2 /* libSDWebImage.a */,
-				B09C54B62879FDD600FA78D2 /* storage.framework */,
 				B050DF7D2873424800A346E3 /* libiconv.tbd */,
 				B050DF7B2873423F00A346E3 /* AddressBook.framework */,
 				B050DF792873423500A346E3 /* CoreLocation.framework */,
@@ -330,113 +341,11 @@
 		B050DFF42874837400A346E3 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				B050DFF52874837400A346E3 /* Resources */,
-				B050E0092874837400A346E3 /* Headers */,
+				B07CD9B62B2CABA2009E3AF9 /* Libs */,
+				B07CD9162B2CA1B5009E3AF9 /* Headers */,
+				B07CD9622B2CA1B5009E3AF9 /* Resources */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		B050DFF52874837400A346E3 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				B050DFF62874837400A346E3 /* __uniappes6.js */,
-				B050DFF72874837400A346E3 /* uni-jsframework.js */,
-				B050DFF82874837400A346E3 /* PandoraApi.bundle */,
-				B050DFF92874837400A346E3 /* uni-jsframework-vue3.js */,
-				B050DFFA2874837400A346E3 /* unincomponents.ttf */,
-				B050DFFB2874837400A346E3 /* weex-polyfill.js */,
-				B050DFFC2874837400A346E3 /* weexUniJs.js */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		B050E0092874837400A346E3 /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				B050E00A2874837400A346E3 /* DCUniMPSDKEngine.h */,
-				B050E00B2874837400A346E3 /* DCUniMP.h */,
-				B050E00C2874837400A346E3 /* DCUniMPConfiguration.h */,
-				B050E00D2874837400A346E3 /* DCUniMPInstance.h */,
-				B050E00E2874837400A346E3 /* weexHeader */,
-				B050E0532874837400A346E3 /* DCUniMPError.h */,
-				B050E0542874837400A346E3 /* DCUniMPMenuActionSheetStyle.h */,
-			);
-			path = Headers;
-			sourceTree = "<group>";
-		};
-		B050E00E2874837400A346E3 /* weexHeader */ = {
-			isa = PBXGroup;
-			children = (
-				B050E00F2874837400A346E3 /* WXModuleProtocol.h */,
-				B050E0102874837400A346E3 /* WXResourceLoader.h */,
-				B050E0112874837400A346E3 /* WXApmForInstance.h */,
-				B050E0122874837400A346E3 /* WXWebSocketHandler.h */,
-				B050E0132874837400A346E3 /* WXImgLoaderProtocol.h */,
-				B050E0142874837400A346E3 /* WXComponentManager.h */,
-				B050E0152874837400A346E3 /* WXScrollerProtocol.h */,
-				B050E0162874837400A346E3 /* WXRichText.h */,
-				B050E0172874837400A346E3 /* WXView.h */,
-				B050E0182874837400A346E3 /* WXValidateProtocol.h */,
-				B050E0192874837400A346E3 /* WXDefine.h */,
-				B050E01A2874837400A346E3 /* JSContext+Weex.h */,
-				B050E01B2874837400A346E3 /* WXExtendCallNativeProtocol.h */,
-				B050E01C2874837400A346E3 /* WXSDKEngine.h */,
-				B050E01D2874837400A346E3 /* style.h */,
-				B050E01E2874837400A346E3 /* WXResourceRequestHandler.h */,
-				B050E01F2874837400A346E3 /* WXDisplayLinkManager.h */,
-				B050E0202874837400A346E3 /* WXUtility.h */,
-				B050E0212874837400A346E3 /* WXResourceRequest.h */,
-				B050E0222874837400A346E3 /* WXConvert.h */,
-				B050E0232874837400A346E3 /* WXPageEventNotifyEvent.h */,
-				B050E0242874837400A346E3 /* WXSDKInstance.h */,
-				B050E0252874837400A346E3 /* WXSDKManager.h */,
-				B050E0262874837400A346E3 /* WXDebugTool.h */,
-				B050E0272874837400A346E3 /* WXType.h */,
-				B050E0282874837400A346E3 /* WXApmProtocol.h */,
-				B050E0292874837400A346E3 /* WXJSFrameworkLoadProtocol.h */,
-				B050E02A2874837400A346E3 /* WXExceptionUtils.h */,
-				B050E02B2874837400A346E3 /* WXIndicatorComponent.h */,
-				B050E02C2874837400A346E3 /* WXErrorView.h */,
-				B050E02D2874837400A346E3 /* NSObject+WXSwizzle.h */,
-				B050E02E2874837400A346E3 /* WXMonitor.h */,
-				B050E02F2874837400A346E3 /* WXSDKInstance+DCExtend.h */,
-				B050E0302874837400A346E3 /* WXRecyclerComponent.h */,
-				B050E0312874837400A346E3 /* WXScrollerComponent.h */,
-				B050E0322874837400A346E3 /* WXNetworkProtocol.h */,
-				B050E0332874837400A346E3 /* WXTracingManager.h */,
-				B050E0342874837400A346E3 /* WXComponent.h */,
-				B050E0352874837400A346E3 /* WXPrerenderManager.h */,
-				B050E0362874837400A346E3 /* WXComponent+Layout.h */,
-				B050E0372874837400A346E3 /* layout.h */,
-				B050E0382874837400A346E3 /* WXSDKInstance+Bridge.h */,
-				B050E0392874837400A346E3 /* UniPluginProtocol.h */,
-				B050E03A2874837400A346E3 /* WXModalUIModule.h */,
-				B050E03B2874837400A346E3 /* WXAnalyzerCenter.h */,
-				B050E03C2874837400A346E3 /* WXVoiceOverModule.h */,
-				B050E03D2874837400A346E3 /* WXRootView.h */,
-				B050E03E2874837400A346E3 /* WXAppConfiguration.h */,
-				B050E03F2874837400A346E3 /* WXListComponent.h */,
-				B050E0402874837400A346E3 /* WXSDKError.h */,
-				B050E0412874837400A346E3 /* WXRootViewController.h */,
-				B050E0422874837400A346E3 /* WXNavigationProtocol.h */,
-				B050E0432874837400A346E3 /* WXAnalyzerProtocol.h */,
-				B050E0442874837400A346E3 /* WeexSDK.h */,
-				B050E0452874837400A346E3 /* WXBridgeManager.h */,
-				B050E0462874837400A346E3 /* WXResourceResponse.h */,
-				B050E0472874837400A346E3 /* WXBaseViewController.h */,
-				B050E0482874837400A346E3 /* WXAppMonitorProtocol.h */,
-				B050E0492874837400A346E3 /* WeexProtocol.h */,
-				B050E04A2874837400A346E3 /* WXJSExceptionProtocol.h */,
-				B050E04B2874837400A346E3 /* WXJSExceptionInfo.h */,
-				B050E04C2874837400A346E3 /* WXTracingProtocol.h */,
-				B050E04D2874837400A346E3 /* flex_enum.h */,
-				B050E04E2874837400A346E3 /* WXConfigCenterProtocol.h */,
-				B050E04F2874837400A346E3 /* WXEventModuleProtocol.h */,
-				B050E0502874837400A346E3 /* WXURLRewriteProtocol.h */,
-				B050E0512874837400A346E3 /* WXAComponent.h */,
-				B050E0522874837400A346E3 /* WXBridgeProtocol.h */,
-			);
-			path = weexHeader;
 			sourceTree = "<group>";
 		};
 		B050E0672874859800A346E3 /* Apps */ = {
@@ -446,6 +355,127 @@
 				B09C54B02875EEAE00FA78D2 /* __UNI__F87B0CE.wgt */,
 			);
 			path = Apps;
+			sourceTree = "<group>";
+		};
+		B07CD9162B2CA1B5009E3AF9 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				B07CD9172B2CA1B5009E3AF9 /* DCUniMPSDKEngine.h */,
+				B07CD9182B2CA1B5009E3AF9 /* DCUniMP.h */,
+				B07CD9192B2CA1B5009E3AF9 /* DCUniMPConfiguration.h */,
+				B07CD91A2B2CA1B5009E3AF9 /* DCUniMPInstance.h */,
+				B07CD91B2B2CA1B5009E3AF9 /* weexHeader */,
+				B07CD9602B2CA1B5009E3AF9 /* DCUniMPError.h */,
+				B07CD9612B2CA1B5009E3AF9 /* DCUniMPMenuActionSheetStyle.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		B07CD91B2B2CA1B5009E3AF9 /* weexHeader */ = {
+			isa = PBXGroup;
+			children = (
+				B07CD91C2B2CA1B5009E3AF9 /* WXModuleProtocol.h */,
+				B07CD91D2B2CA1B5009E3AF9 /* WXResourceLoader.h */,
+				B07CD91E2B2CA1B5009E3AF9 /* WXApmForInstance.h */,
+				B07CD91F2B2CA1B5009E3AF9 /* WXWebSocketHandler.h */,
+				B07CD9202B2CA1B5009E3AF9 /* WXImgLoaderProtocol.h */,
+				B07CD9212B2CA1B5009E3AF9 /* WXComponentManager.h */,
+				B07CD9222B2CA1B5009E3AF9 /* WXScrollerProtocol.h */,
+				B07CD9232B2CA1B5009E3AF9 /* WXRichText.h */,
+				B07CD9242B2CA1B5009E3AF9 /* WXView.h */,
+				B07CD9252B2CA1B5009E3AF9 /* WXValidateProtocol.h */,
+				B07CD9262B2CA1B5009E3AF9 /* WXDefine.h */,
+				B07CD9272B2CA1B5009E3AF9 /* JSContext+Weex.h */,
+				B07CD9282B2CA1B5009E3AF9 /* WXExtendCallNativeProtocol.h */,
+				B07CD9292B2CA1B5009E3AF9 /* WXSDKEngine.h */,
+				B07CD92A2B2CA1B5009E3AF9 /* style.h */,
+				B07CD92B2B2CA1B5009E3AF9 /* WXResourceRequestHandler.h */,
+				B07CD92C2B2CA1B5009E3AF9 /* WXDisplayLinkManager.h */,
+				B07CD92D2B2CA1B5009E3AF9 /* WXUtility.h */,
+				B07CD92E2B2CA1B5009E3AF9 /* WXResourceRequest.h */,
+				B07CD92F2B2CA1B5009E3AF9 /* WXConvert.h */,
+				B07CD9302B2CA1B5009E3AF9 /* WXPageEventNotifyEvent.h */,
+				B07CD9312B2CA1B5009E3AF9 /* WXSDKInstance.h */,
+				B07CD9322B2CA1B5009E3AF9 /* WXSDKManager.h */,
+				B07CD9332B2CA1B5009E3AF9 /* WXDebugTool.h */,
+				B07CD9342B2CA1B5009E3AF9 /* WXType.h */,
+				B07CD9352B2CA1B5009E3AF9 /* WXApmProtocol.h */,
+				B07CD9362B2CA1B5009E3AF9 /* WXJSFrameworkLoadProtocol.h */,
+				B07CD9372B2CA1B5009E3AF9 /* WXExceptionUtils.h */,
+				B07CD9382B2CA1B5009E3AF9 /* WXIndicatorComponent.h */,
+				B07CD9392B2CA1B5009E3AF9 /* WXErrorView.h */,
+				B07CD93A2B2CA1B5009E3AF9 /* NSObject+WXSwizzle.h */,
+				B07CD93B2B2CA1B5009E3AF9 /* WXMonitor.h */,
+				B07CD93C2B2CA1B5009E3AF9 /* WXSDKInstance+DCExtend.h */,
+				B07CD93D2B2CA1B5009E3AF9 /* WXRecyclerComponent.h */,
+				B07CD93E2B2CA1B5009E3AF9 /* WXScrollerComponent.h */,
+				B07CD93F2B2CA1B5009E3AF9 /* WXNetworkProtocol.h */,
+				B07CD9402B2CA1B5009E3AF9 /* WXTracingManager.h */,
+				B07CD9412B2CA1B5009E3AF9 /* WXComponent.h */,
+				B07CD9422B2CA1B5009E3AF9 /* WXPrerenderManager.h */,
+				B07CD9432B2CA1B5009E3AF9 /* WXComponent+Layout.h */,
+				B07CD9442B2CA1B5009E3AF9 /* layout.h */,
+				B07CD9452B2CA1B5009E3AF9 /* WXSDKInstance+Bridge.h */,
+				B07CD9462B2CA1B5009E3AF9 /* UniPluginProtocol.h */,
+				B07CD9472B2CA1B5009E3AF9 /* WXModalUIModule.h */,
+				B07CD9482B2CA1B5009E3AF9 /* WXAnalyzerCenter.h */,
+				B07CD9492B2CA1B5009E3AF9 /* WXVoiceOverModule.h */,
+				B07CD94A2B2CA1B5009E3AF9 /* WXRootView.h */,
+				B07CD94B2B2CA1B5009E3AF9 /* WXAppConfiguration.h */,
+				B07CD94C2B2CA1B5009E3AF9 /* WXListComponent.h */,
+				B07CD94D2B2CA1B5009E3AF9 /* WXSDKError.h */,
+				B07CD94E2B2CA1B5009E3AF9 /* WXRootViewController.h */,
+				B07CD94F2B2CA1B5009E3AF9 /* WXNavigationProtocol.h */,
+				B07CD9502B2CA1B5009E3AF9 /* WXAnalyzerProtocol.h */,
+				B07CD9512B2CA1B5009E3AF9 /* WeexSDK.h */,
+				B07CD9522B2CA1B5009E3AF9 /* WXBridgeManager.h */,
+				B07CD9532B2CA1B5009E3AF9 /* WXResourceResponse.h */,
+				B07CD9542B2CA1B5009E3AF9 /* WXBaseViewController.h */,
+				B07CD9552B2CA1B5009E3AF9 /* WXAppMonitorProtocol.h */,
+				B07CD9562B2CA1B5009E3AF9 /* WeexProtocol.h */,
+				B07CD9572B2CA1B5009E3AF9 /* WXJSExceptionProtocol.h */,
+				B07CD9582B2CA1B5009E3AF9 /* WXJSExceptionInfo.h */,
+				B07CD9592B2CA1B5009E3AF9 /* WXTracingProtocol.h */,
+				B07CD95A2B2CA1B5009E3AF9 /* flex_enum.h */,
+				B07CD95B2B2CA1B5009E3AF9 /* WXConfigCenterProtocol.h */,
+				B07CD95C2B2CA1B5009E3AF9 /* WXEventModuleProtocol.h */,
+				B07CD95D2B2CA1B5009E3AF9 /* WXURLRewriteProtocol.h */,
+				B07CD95E2B2CA1B5009E3AF9 /* WXAComponent.h */,
+				B07CD95F2B2CA1B5009E3AF9 /* WXBridgeProtocol.h */,
+			);
+			path = weexHeader;
+			sourceTree = "<group>";
+		};
+		B07CD9622B2CA1B5009E3AF9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B07CD9632B2CA1B5009E3AF9 /* __uniappes6.js */,
+				B07CD9642B2CA1B5009E3AF9 /* uni-jsframework.js */,
+				B07CD9652B2CA1B5009E3AF9 /* PandoraApi.bundle */,
+				B07CD9662B2CA1B5009E3AF9 /* uni-jsframework-vue3.js */,
+				B07CD9672B2CA1B5009E3AF9 /* unincomponents.ttf */,
+				B07CD9682B2CA1B5009E3AF9 /* weex-polyfill.js */,
+				B07CD9692B2CA1B5009E3AF9 /* weexUniJs.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B07CD9B62B2CABA2009E3AF9 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				B07CD9B72B2CABA2009E3AF9 /* libSDWebImage.a */,
+				B07CD9B82B2CABA2009E3AF9 /* liblibIO.a */,
+				B07CD9B92B2CABA2009E3AF9 /* liblibWeex.a */,
+				B07CD9BA2B2CABA2009E3AF9 /* liblibPDRCore.a */,
+				B07CD9BB2B2CABA2009E3AF9 /* liblibNativeUI.a */,
+				B07CD9BC2B2CABA2009E3AF9 /* liblibUI.a */,
+				B07CD9BD2B2CABA2009E3AF9 /* libcoreSupport.a */,
+				B07CD9BE2B2CABA2009E3AF9 /* liblibStorage.a */,
+				B07CD9BF2B2CABA2009E3AF9 /* liblibNavigator.a */,
+				B07CD9C02B2CABA2009E3AF9 /* storage.framework */,
+				B07CD9C12B2CABA2009E3AF9 /* liblibNativeObj.a */,
+			);
+			path = Libs;
 			sourceTree = "<group>";
 		};
 		B0EC8FA329C189D20016F5FA /* Classes */ = {
@@ -550,19 +580,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B07CD96C2B2CA1B6009E3AF9 /* PandoraApi.bundle in Resources */,
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
+				B07CD96D2B2CA1B6009E3AF9 /* uni-jsframework-vue3.js in Resources */,
+				B07CD96E2B2CA1B6009E3AF9 /* unincomponents.ttf in Resources */,
+				B07CD96F2B2CA1B6009E3AF9 /* weex-polyfill.js in Resources */,
+				B07CD96B2B2CA1B6009E3AF9 /* uni-jsframework.js in Resources */,
 				B09C54B22875EEAE00FA78D2 /* __UNI__F87B0CE.wgt in Resources */,
-				B050E0552874837400A346E3 /* __uniappes6.js in Resources */,
-				B050E05A2874837400A346E3 /* weex-polyfill.js in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
-				B050E0572874837400A346E3 /* PandoraApi.bundle in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
+				B07CD96A2B2CA1B6009E3AF9 /* __uniappes6.js in Resources */,
 				B09C54B52875F10A00FA78D2 /* __UNI__3BC70CE.wgt in Resources */,
-				B050E0592874837400A346E3 /* unincomponents.ttf in Resources */,
+				B07CD9702B2CA1B6009E3AF9 /* weexUniJs.js in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
-				B050E0582874837400A346E3 /* uni-jsframework-vue3.js in Resources */,
-				B050E05B2874837400A346E3 /* weexUniJs.js in Resources */,
-				B050E0562874837400A346E3 /* uni-jsframework.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
