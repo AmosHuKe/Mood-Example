@@ -208,8 +208,6 @@ $ flutter test integration_test/app_test.dart
 │   │           ├── assets                          # 包含 UniMPSDK 内容
 │   │           │   ├── apps                        # 包含 UniMPSDK 的 uniapp 小程序
 │   │           │   ├── data                        # 包含 UniMPSDK 内容
-│   │           │   ├── uni-jsframework-vue3.js     # UniMPSDK
-│   │           │   └── uni-jsframework.js          # UniMPSDK
 │   │           └── kotlin                          
 │   │               └── com                      
 │   │                   └── example    

@@ -49,7 +49,7 @@
 			<module name="Sina" value="io.dcloud.share.sina.SinaWeiboApiManager"/>
 			<module name="Tencent" value="io.dcloud.share.tencent.TencentWeiboApiManager"/>
 			<module name="Weixin" value="io.dcloud.share.mm.WeiXinApiManager"/>
-            <module name="QQ" value="io.dcloud.share.qq.QQApiManager"/>
+			<module name="QQ" value="io.dcloud.share.qq.QQApiManager"/>
 		</feature>
 		<feature name="OAuth" value="io.dcloud.feature.oauth.OAuthFeatureImpl">
 			<module name="OAuth-Weixin" value="io.dcloud.feature.oauth.weixin.WeiXinOAuthService"/>
@@ -61,19 +61,13 @@
 		<feature name="Stream" value="io.dcloud.appstream.js.StreamAppFeatureImpl"/>
 		<feature name="Fingerprint" value="io.dcloud.feature.fingerprint.FingerPrintsImpl"/>
 		<feature name="iBeacon" value="io.dcloud.feature.iBeacon.WxBluetoothFeatureImpl"/>
-        <feature name="Bluetooth" value="io.dcloud.feature.bluetooth.BluetoothFeature"/>
-        <feature name="Sqlite" value="io.dcloud.feature.sqlite.DataBaseFeature"/>
-        <feature name="Ad" value="io.dcloud.feature.ad.AdFlowFeatureImpl">
-            <module name="360" value="io.dcloud.feature.ad.juhe360.AD360Module"/>
-            <module name="csj" value="io.dcloud.feature.ad.csj.ADCsjModule"/>
-            <module name="gdt" value="io.dcloud.feature.ad.gdt.ADGdtModule"/>
-        </feature>
+		<feature name="Bluetooth" value="io.dcloud.feature.bluetooth.BluetoothFeature"/>
 	</features>
 
 	<services>
 		<service name="push" value="io.dcloud.feature.aps.APSFeatureImpl"/>
 		<service name="Statistic" value="io.dcloud.feature.statistics.StatisticsBootImpl"/>
 		<service name="Downloader" value="io.dcloud.net.DownloaderBootImpl"/>
-		<!--<service name="Maps" value="io.dcloud.js.map.MapInitImpl"/>-->
+		<service name="Maps" value="io.dcloud.js.map.MapInitImpl"/>
 	</services>
 </properties>
