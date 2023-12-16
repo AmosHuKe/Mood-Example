@@ -321,6 +321,32 @@ $ flutter test integration_test/app_test.dart
 * [官方 UniMPSDK iOS 集成教程](https://nativesupport.dcloud.net.cn/UniMPDocs/UseSdk/ios)  
 </details> -->
 
+### **Q: 小程序无法使用视频、地图等**  
+<details>
+<summary>点击展开</summary>
+
+这是因为项目中只集成了核心基础库（因为仅作为集成演示），  
+许多功能库（比如视频、地图、分享、支付、登录、直播 pusher 等 SDK）没有集成，  
+
+如果你需要这些功能就需要自行集成。
+
+比如在 iOS 中集成，需要先下载  [UniMP_iOS_SDK](https://nativesupport.dcloud.net.cn/UniMPDocs/SDKDownload/ios.html) ，  
+然后你会看见如下结构：
+
+```
+├── UniMPSDK
+│   ├── Core          # 核心库
+│   ├── Features      # 非核心功能库
+......
+```
+
+之后根据以下两个官方教程进行集成：
+
+- [iOS 核心库集成教程（可以看看，非核心库集成方式也是一致）](https://nativesupport.dcloud.net.cn/UniMPDocs/UseSdk/ios.html)
+- [iOS 功能模块集成（包含所有库的教程和说明）](https://nativesupport.dcloud.net.cn/UniMPDocs/UseModule/ios/ios.html)
+
+</details>
+
 ### **Q: 在 APP 关闭后，通知失效**  
 <details>
 <summary>点击展开</summary>
