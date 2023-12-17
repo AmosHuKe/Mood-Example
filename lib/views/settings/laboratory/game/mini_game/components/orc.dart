@@ -38,7 +38,7 @@ class Orc extends SimpleEnemy
       borderWidth: 2,
       borderColor: Colors.white.withOpacity(0.5),
       borderRadius: BorderRadius.circular(2),
-      position: Vector2(16, tileSize * 0.5),
+      textOffset: Vector2(16, tileSize * 0.5),
     );
   }
 

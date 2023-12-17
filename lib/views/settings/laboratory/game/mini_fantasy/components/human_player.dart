@@ -47,7 +47,7 @@ class HumanPlayer extends SimplePlayer
       borderWidth: 2,
       borderColor: Colors.white.withOpacity(0.5),
       borderRadius: BorderRadius.circular(2),
-      position: Vector2(6, tileSize * 0.2),
+      textOffset: Vector2(6, tileSize * 0.2),
     );
   }
 
