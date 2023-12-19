@@ -47,9 +47,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late Animation<double> _stepButtonAnimation;
   late CurvedAnimation _stepButtonCurve;
 
-  /// Tab icon大小
-  final double _tabIconSize = 20.sp;
-
   @override
   void initState() {
     super.initState();
@@ -87,6 +84,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final ThemeData appTheme = Theme.of(context);
+
+    /// Tab icon大小
+    final double _tabIconSize = 20.sp;
 
     return Scaffold(
       body: PageView(
