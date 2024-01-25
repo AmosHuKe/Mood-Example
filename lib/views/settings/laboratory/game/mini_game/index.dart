@@ -128,7 +128,7 @@ class _GameState extends State<Game> {
             ],
           ), // required
           map: WorldMapByTiled(
-            '$assetsPath/tiles/mini_game_map.json',
+            TiledReader.asset('$assetsPath/tiles/mini_game_map.json'),
             forceTileSize: Vector2(tileSize, tileSize),
             objectsBuilder: {
               'light': (properties) => Light(
@@ -145,15 +145,15 @@ class _GameState extends State<Game> {
           ),
           player: HumanPlayer(Vector2(tileSize * 15, tileSize * 13)),
           lightingColorGame: Colors.black.withOpacity(0.7),
-          progress: Container(
-            color: Colors.black,
-            child: const Center(
-              child: Text(
-                '载入中...',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ),
+          // progress: Container(
+          //   color: Colors.black,
+          //   child: const Center(
+          //     child: Text(
+          //       '载入中...',
+          //       style: TextStyle(color: Colors.white),
+          //     ),
+          //   ),
+          // ),
           overlayBuilderMap: {
             'miniMap': (context, game) {
               return MiniMap(

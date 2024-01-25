@@ -1,5 +1,5 @@
 # 1.9.8
-- [升级] Flutter 3.16.4
+- [升级] Flutter 3.16.8
 - [升级] Package 升级及适配
 - [升级] UniMPSDK 3.98
 

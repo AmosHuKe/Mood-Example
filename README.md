@@ -13,8 +13,8 @@
 
 <p align="center">
   <a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.9.8" src="https://img.shields.io/badge/Mood--Example-v1.9.8-3e4663"/></a> 
-  <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.16.4" src="https://img.shields.io/badge/Flutter-v3.16.4-46D1FD"/></a> 
-  <a target="_blank" href="https://dart.dev/"><img alt="Dart v3.2.3" src="https://img.shields.io/badge/Dart-v3.2.3-04599D"/></a> 
+  <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.16.8" src="https://img.shields.io/badge/Flutter-v3.16.8-46D1FD"/></a> 
+  <a target="_blank" href="https://dart.dev/"><img alt="Dart v3.2.5" src="https://img.shields.io/badge/Dart-v3.2.5-04599D"/></a> 
   <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -87,9 +87,9 @@
 - [x] 本地通知  
 - [x] 动画  
 - [x] 实验室（占用 APP 大部分包体积，源码位置查看项目结构）  
-  - [x] uniapp 小程序（UniMPSDK v3.4.7）  
+  - [x] uniapp 小程序（UniMPSDK v3.98）  
   - [x] 3D 城市（obj 格式）  
-  - [x] 游戏合集（Flame、Bonfire）  
+  - [x] 游戏合集（Bonfire, Flame）  
   - [x] FFI 异步调用 C/C++  
 ……
 
@@ -108,17 +108,17 @@
 
 > Windows  
 ```
-[√] Flutter (Channel stable, 3.16.4, on Microsoft Windows [版本 10.0.22621.2715], locale zh-CN)
+[√] Flutter (Channel stable, 3.16.8, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
 [√] Visual Studio - develop Windows apps (Visual Studio Community 2022 17.7.5)
 [√] Android Studio (version 2022.3)
 [√] IntelliJ IDEA Ultimate Edition (version 2023.2)
-[√] VS Code (version 1.85.1)
+[√] VS Code (version 1.85.2)
 ```  
 
 > macOS  
 ```
-[✓] Flutter (Channel stable, 3.16.1, on macOS 14.0 23A344 darwin-x64, locale zh-Hans-CN)
+[✓] Flutter (Channel stable, 3.16.8, on macOS 14.0 23A344 darwin-x64, locale zh-Hans-CN)
 [✓] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
 [✓] Xcode - develop for iOS and macOS (Xcode 15.0.1)
 [✓] Android Studio (version 2021.3)

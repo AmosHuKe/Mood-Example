@@ -86,7 +86,7 @@ class Game extends StatelessWidget {
             ],
           ),
           map: WorldMapByTiled(
-            '$assetsPath/tiles/map.json',
+            TiledReader.asset('$assetsPath/tiles/map.json'),
             forceTileSize: Vector2(tileSize, tileSize),
             objectsBuilder: {
               'light': (properties) => Light(
@@ -99,15 +99,15 @@ class Game extends StatelessWidget {
           player: HumanPlayer(Vector2(4 * tileSize, 4 * tileSize)),
           cameraConfig: CameraConfig(zoom: 1),
           lightingColorGame: Colors.black.withOpacity(0.7),
-          progress: Container(
-            color: Colors.black,
-            child: const Center(
-              child: Text(
-                '载入中...',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ),
+          // progress: Container(
+          //   color: Colors.black,
+          //   child: const Center(
+          //     child: Text(
+          //       '载入中...',
+          //       style: TextStyle(color: Colors.white),
+          //     ),
+          //   ),
+          // ),
           overlayBuilderMap: {
             'miniMap': (context, game) => MiniMap(
                   game: game,
