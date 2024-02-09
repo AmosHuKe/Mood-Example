@@ -13,8 +13,8 @@
 
 <p align="center">
   <a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.9.8" src="https://img.shields.io/badge/Mood--Example-v1.9.8-3e4663"/></a> 
-  <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.16.8" src="https://img.shields.io/badge/Flutter-v3.16.8-46D1FD"/></a> 
-  <a target="_blank" href="https://dart.dev/"><img alt="Dart v3.2.5" src="https://img.shields.io/badge/Dart-v3.2.5-04599D"/></a> 
+  <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.16.9" src="https://img.shields.io/badge/Flutter-v3.16.9-46D1FD"/></a> 
+  <a target="_blank" href="https://dart.dev/"><img alt="Dart v3.2.6" src="https://img.shields.io/badge/Dart-v3.2.6-04599D"/></a> 
   <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -108,12 +108,12 @@
 
 > Windows  
 ```
-[√] Flutter (Channel stable, 3.16.8, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
+[√] Flutter (Channel stable, 3.16.9, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
 [√] Visual Studio - develop Windows apps (Visual Studio Community 2022 17.7.5)
 [√] Android Studio (version 2022.3)
-[√] IntelliJ IDEA Ultimate Edition (version 2023.2)
-[√] VS Code (version 1.85.2)
+[√] IntelliJ IDEA Ultimate Edition (version 2023.3)
+[√] VS Code (version 1.86.1)
 ```  
 
 > macOS  
@@ -334,9 +334,9 @@ $ flutter test integration_test/app_test.dart
 然后你会看见如下结构：
 
 ```
-├── UniMPSDK
-│   ├── Core          # 核心库
-│   ├── Features      # 非核心功能库
+├── UniMPSDK/
+│   ├── Core/         # 核心库
+│   ├── Features/     # 非核心功能库
 ......
 ```
 
