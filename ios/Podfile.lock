@@ -1,7 +1,7 @@
 PODS:
-  - awesome_notifications (0.8.1):
+  - awesome_notifications (0.9.0):
     - Flutter
-    - IosAwnCore (~> 0.8.0)
+    - IosAwnCore (~> 0.9.1)
   - CropViewController (2.6.1)
   - device_info_plus (0.0.1):
     - Flutter
@@ -60,20 +60,17 @@ PODS:
   - Flutter (1.0.0)
   - flutter_timezone (0.0.1):
     - Flutter
-  - FMDB (2.7.5):
-    - FMDB/standard (= 2.7.5)
-  - FMDB/standard (2.7.5)
   - integration_test (0.0.1):
     - Flutter
-  - IosAwnCore (0.8.0)
+  - IosAwnCore (0.9.1)
   - local_auth_ios (0.0.1):
     - Flutter
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - SDWebImage (5.18.3):
-    - SDWebImage/Core (= 5.18.3)
-  - SDWebImage/Core (5.18.3)
+  - SDWebImage (5.18.10):
+    - SDWebImage/Core (= 5.18.10)
+  - SDWebImage/Core (5.18.10)
   - sensors_plus (0.0.1):
     - Flutter
   - share_plus (0.0.1):
@@ -83,7 +80,7 @@ PODS:
     - FlutterMacOS
   - sqflite (0.0.3):
     - Flutter
-    - FMDB (>= 2.7.5)
+    - FlutterMacOS
   - SwiftyGif (5.4.4)
   - vibration (1.7.5):
     - Flutter
@@ -103,7 +100,7 @@ DEPENDENCIES:
   - sensors_plus (from `.symlinks/plugins/sensors_plus/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
-  - sqflite (from `.symlinks/plugins/sqflite/ios`)
+  - sqflite (from `.symlinks/plugins/sqflite/darwin`)
   - vibration (from `.symlinks/plugins/vibration/ios`)
   - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
@@ -113,7 +110,6 @@ SPEC REPOS:
     - DKCamera
     - DKImagePickerController
     - DKPhotoGallery
-    - FMDB
     - IosAwnCore
     - SDWebImage
     - SwiftyGif
@@ -142,36 +138,35 @@ EXTERNAL SOURCES:
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   sqflite:
-    :path: ".symlinks/plugins/sqflite/ios"
+    :path: ".symlinks/plugins/sqflite/darwin"
   vibration:
     :path: ".symlinks/plugins/vibration/ios"
   webview_flutter_wkwebview:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
-  awesome_notifications: db394d2e061e4583ba0f738ddea611e3986cc3fb
+  awesome_notifications: 399076ea2bdf119beef9126f1ca6914215390997
   CropViewController: 58fb440f30dac788b129d2a1f24cffdcb102669c
   device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
   DKCamera: a902b66921fca14b7a75266feb8c7568aa7caa71
   DKImagePickerController: b512c28220a2b8ac7419f21c491fc8534b7601ac
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
   file_picker: 15fd9539e4eb735dc54bae8c0534a7a9511a03de
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_timezone: ffb07bdad3c6276af8dada0f11978d8a1f8a20bb
-  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   integration_test: 13825b8a9334a850581300559b8839134b124670
-  IosAwnCore: ed1b2b6d84962a758354dbacd9ce525c72ce28a9
-  local_auth_ios: c6cf091ded637a88f24f86a8875d8b0f526e2605
-  path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
-  SDWebImage: 96e0c18ef14010b7485210e92fac888587ebb958
+  IosAwnCore: 4691f457bd8dc9a3a0a941cee6439a894a0b81aa
+  local_auth_ios: 5046a18c018dd973247a0564496c8898dbb5adf9
+  path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
+  SDWebImage: fc8f2d48bbfd72ef39d70e981bd24a3f3be53fec
   sensors_plus: 42b9de1b8237675fa8d8121e4bb93be0f79fa61d
   share_plus: c3fef564749587fc939ef86ffb283ceac0baf9f5
-  shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
-  sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
+  shared_preferences_foundation: b4c3b4cddf1c21f02770737f147a3f5da9d39695
+  sqflite: 673a0e54cc04b7d6dba8d24fb8095b31c3a99eec
   SwiftyGif: 93a1cc87bf3a51916001cf8f3d63835fb64c819f
   vibration: 7d883d141656a1c1a6d8d238616b2042a51a1241
-  webview_flutter_wkwebview: 2e2d318f21a5e036e2c3f26171342e95908bd60a
+  webview_flutter_wkwebview: be0f0d33777f1bfd0c9fdcb594786704dbf65f36
 
-PODFILE CHECKSUM: 02598592f0d8e013d241e3374c7f46374d4aca96
+PODFILE CHECKSUM: 83441e0ba62511ffa3aa414360603dd19494dade
 
 COCOAPODS: 1.11.3
