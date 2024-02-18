@@ -41,7 +41,7 @@ dependencies:
   local_auth: ^2.1.8 # 本地认证
   local_auth_android: ^1.0.37 # 本地认证
   local_auth_ios: ^1.1.7 # 本地认证
-  flutter_tilt: ^2.3.0  # 倾斜视差
+  flutter_tilt: 2.4.0-beta.3 # 倾斜视差
   remixicon: ^1.1.1 # Remixicon
   cupertino_icons: ^1.0.6
 

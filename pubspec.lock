@@ -297,10 +297,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_tilt
-      sha256: "9c0e3fe0e4b4ba34571225cd20938c390ea4b0c91564f492d46e34c279cf785a"
+      sha256: "98e2fccbafe3692a955515003d9a105c5de98e99bf41c6723c1b2881912ee1e2"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.0-beta.2"
+    version: "2.4.0-beta.3"
   flutter_timezone:
     dependency: "direct main"
     description:
