@@ -553,17 +553,12 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
         }
 
         /// 根据数据适应每条数据宽度
-        late double barWidth = 14.w;
-        switch (moodDays) {
-          case 7:
-            barWidth = 14.w;
-          case 15:
-            barWidth = 10.w;
-          case 30:
-            barWidth = 4.w;
-          default:
-            barWidth = 14.w;
-        }
+        final double barWidth = switch (moodDays) {
+          7 => 14.w,
+          15 => 10.w,
+          30 => 4.w,
+          _ => 14.w,
+        };
 
         ///
         return BarChart(
