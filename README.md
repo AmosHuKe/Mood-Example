@@ -227,7 +227,6 @@ $ flutter test integration_test/app_test.dart
 │   │   ├── UniMPSDK/                               # 包含 UniMPSDK 内容
 │   │   │   ├── Apps/                               # 包含 UniMPSDK 的 uniapp 小程序
 │   │   │   └── Core/                               # 包含 UniMPSDK 依赖库
-│   │   ├── AppDelegate_UniMPSDK.swift              # 调用 UniMPSDK 主要逻辑代码
 │   │   ├── AppDelegate.swift                       # Flutter 的 iOS 默认入口
 │   │   ├── Info.plist                              # 项目配置
 │   │   └── Runner-Bridging-Header.h                # 依赖库引入
