@@ -63,7 +63,7 @@ PODS:
   - integration_test (0.0.1):
     - Flutter
   - IosAwnCore (0.9.1)
-  - local_auth_ios (0.0.1):
+  - local_auth_darwin (0.0.1):
     - Flutter
   - path_provider_foundation (0.0.1):
     - Flutter
@@ -95,7 +95,7 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_timezone (from `.symlinks/plugins/flutter_timezone/ios`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
-  - local_auth_ios (from `.symlinks/plugins/local_auth_ios/ios`)
+  - local_auth_darwin (from `.symlinks/plugins/local_auth_darwin/darwin`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - sensors_plus (from `.symlinks/plugins/sensors_plus/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
@@ -127,8 +127,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_timezone/ios"
   integration_test:
     :path: ".symlinks/plugins/integration_test/ios"
-  local_auth_ios:
-    :path: ".symlinks/plugins/local_auth_ios/ios"
+  local_auth_darwin:
+    :path: ".symlinks/plugins/local_auth_darwin/darwin"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
   sensors_plus:
@@ -156,7 +156,7 @@ SPEC CHECKSUMS:
   flutter_timezone: ffb07bdad3c6276af8dada0f11978d8a1f8a20bb
   integration_test: 13825b8a9334a850581300559b8839134b124670
   IosAwnCore: 4691f457bd8dc9a3a0a941cee6439a894a0b81aa
-  local_auth_ios: 5046a18c018dd973247a0564496c8898dbb5adf9
+  local_auth_darwin: c7e464000a6a89e952235699e32b329457608d98
   path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
   SDWebImage: fc8f2d48bbfd72ef39d70e981bd24a3f3be53fec
   sensors_plus: 42b9de1b8237675fa8d8121e4bb93be0f79fa61d
