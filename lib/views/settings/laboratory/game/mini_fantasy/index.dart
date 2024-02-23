@@ -70,12 +70,12 @@ class Game extends StatelessWidget {
         return BonfireWidget(
           debugMode: false,
           showCollisionArea: false,
+          keyboardConfig: KeyboardConfig(
+            acceptedKeys: [
+              LogicalKeyboardKey.space,
+            ],
+          ),
           joystick: Joystick(
-            keyboardConfig: KeyboardConfig(
-              acceptedKeys: [
-                LogicalKeyboardKey.space,
-              ],
-            ),
             directional: JoystickDirectional(),
             actions: [
               JoystickAction(

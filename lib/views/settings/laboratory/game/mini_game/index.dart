@@ -78,12 +78,12 @@ class _GameState extends State<Game> {
         return BonfireWidget(
           debugMode: false,
           showCollisionArea: false,
+          keyboardConfig: KeyboardConfig(
+            acceptedKeys: [
+              LogicalKeyboardKey.space,
+            ],
+          ),
           joystick: Joystick(
-            keyboardConfig: KeyboardConfig(
-              acceptedKeys: [
-                LogicalKeyboardKey.space,
-              ],
-            ),
             directional: JoystickDirectional(
               spriteBackgroundDirectional:
                   Sprite.load('$assetsPath/joystick_background.png'),
