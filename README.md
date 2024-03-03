@@ -120,8 +120,7 @@
 
 ### 🛠️ i18n l10n  
 
-官方教程（中文）：[链接](https://flutter.cn/docs/ui/accessibility-and-internationalization/internationalization)  
-官方教程（英文）：[链接](https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization)  
+官方国际化教程：[中文站](https://flutter.cn/docs/ui/accessibility-and-internationalization/internationalization) | [英文站](https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization)  
 
 ```sh
 ├── lib/
