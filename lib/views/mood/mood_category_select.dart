@@ -6,7 +6,7 @@ import 'package:remixicon/remixicon.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/common/utils_intl.dart';
-import 'package:moodexample/generated/l10n.dart';
+import 'package:moodexample/l10n/gen/app_localizations.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
@@ -130,7 +130,7 @@ class MoodCategorySelectBody extends StatelessWidget {
                 child: Text(
                   _moodCategorySelectType == MoodCategorySelectType.edit
                       ? ''
-                      : LocaleDatetime.yMMMd(_nowDateTime),
+                      : LocaleDatetime.yMMMd(context, _nowDateTime),
                   style: TextStyle(
                     color: AppTheme.subColor,
                     fontSize: 14.sp,

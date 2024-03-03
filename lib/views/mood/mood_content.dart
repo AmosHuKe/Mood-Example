@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
-import 'package:moodexample/generated/l10n.dart';
+import 'package:moodexample/l10n/gen/app_localizations.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 import 'package:moodexample/common/utils_intl.dart';
@@ -56,7 +56,7 @@ class _MoodContentState extends State<MoodContent> {
         shadowColor: Colors.transparent,
         centerTitle: true,
         title: Text(
-          LocaleDatetime.yMMMd(_moodData.createTime ?? ''),
+          LocaleDatetime.yMMMd(context, _moodData.createTime ?? ''),
           style: TextStyle(
             fontSize: 14.sp,
           ),

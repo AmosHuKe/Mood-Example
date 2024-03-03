@@ -1,4 +1,5 @@
 {
+    "@@locale": "zh_TW",
     "app_bottomNavigationBar_title_home": "首頁",
     "app_bottomNavigationBar_title_mood": "心情",
     "app_bottomNavigationBar_title_statistic": "統計",

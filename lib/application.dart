@@ -4,14 +4,13 @@ import 'package:provider/provider.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:moodexample/generated/l10n.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/widgets/will_pop_scope_route/will_pop_scope_route.dart';
 import 'package:moodexample/home_screen.dart';
+import 'package:moodexample/l10n/gen/app_localizations.dart';
 import 'init.dart';
 
 import 'package:moodexample/providers/mood/mood_provider.dart';
@@ -62,13 +61,8 @@ class Application extends StatelessWidget {
               // 路由钩子
               onGenerateRoute: router.generator,
               // 国际化
-              supportedLocales: S.delegate.supportedLocales,
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
+              supportedLocales: S.supportedLocales,
+              localizationsDelegates: S.localizationsDelegates,
               locale: watchApplicationProvider.localeSystem
                   ? null
                   : watchApplicationProvider.locale,

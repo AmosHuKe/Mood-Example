@@ -9,7 +9,7 @@ import 'package:animations/animations.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/routes.dart';
-import 'package:moodexample/generated/l10n.dart';
+import 'package:moodexample/l10n/gen/app_localizations.dart';
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 import 'package:moodexample/views/mood/mood_content.dart';

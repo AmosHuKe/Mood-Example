@@ -1,4 +1,5 @@
 {
+    "@@locale": "en",
     "app_bottomNavigationBar_title_home": "Home",
     "app_bottomNavigationBar_title_mood": "Mood",
     "app_bottomNavigationBar_title_statistic": "Statistic",

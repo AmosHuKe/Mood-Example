@@ -1,7 +1,7 @@
 includes: package:flutter_lints/flutter.yaml
 
 analyzer:
-  exclude: [lib/generated/**]
+  exclude: [lib/l10n/gen/**]
 
 linter:
   rules:

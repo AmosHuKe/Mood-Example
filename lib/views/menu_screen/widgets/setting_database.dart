@@ -14,7 +14,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 
-import 'package:moodexample/generated/l10n.dart';
+import 'package:moodexample/l10n/gen/app_localizations.dart';
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 

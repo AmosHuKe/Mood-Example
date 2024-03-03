@@ -9,7 +9,7 @@ import 'package:remixicon/remixicon.dart';
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/lock_screen/lock_screen.dart';
 import 'package:moodexample/common/local_auth_utils.dart';
-import 'package:moodexample/generated/l10n.dart';
+import 'package:moodexample/l10n/gen/app_localizations.dart';
 
 import 'package:moodexample/providers/application/application_provider.dart';
 

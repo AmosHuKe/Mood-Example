@@ -7,7 +7,7 @@ import 'package:remixicon/remixicon.dart';
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/views/statistic/index.dart' as statistic;
-import 'package:moodexample/generated/l10n.dart';
+import 'package:moodexample/l10n/gen/app_localizations.dart';
 
 import 'package:moodexample/views/home/index.dart';
 import 'package:moodexample/views/mood/index.dart';

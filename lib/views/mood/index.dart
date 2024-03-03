@@ -10,7 +10,7 @@ import 'package:animations/animations.dart';
 import 'package:intl/intl.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
-import 'package:moodexample/generated/l10n.dart';
+import 'package:moodexample/l10n/gen/app_localizations.dart';
 import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
 import 'package:moodexample/widgets/empty/empty.dart';
 import 'package:moodexample/common/utils.dart';
@@ -282,6 +282,7 @@ class _CalendarState extends State<Calendar> {
           late final _nowDateTime = moodProvider.nowDateTime;
 
           return TableCalendar(
+            locale: S.of(context).localeName,
             firstDay: DateTime.utc(2021, 10, 01),
             lastDay: DateTime.now(),
             focusedDay: _nowDateTime,
@@ -726,7 +727,7 @@ class MoodCard extends StatelessWidget {
                                           fontWeight: FontWeight.normal,
                                         ),
                                         semanticsLabel:
-                                            '${LocaleDatetime.yMMMd(datetime)} 心情：$title',
+                                            '${LocaleDatetime.yMMMd(context, datetime)} 心情：$title',
                                       ),
                                     ),
                                   ],
@@ -837,13 +838,14 @@ class MoodDetail extends StatelessWidget {
         Align(
           heightFactor: 2.w,
           child: Text(
-            LocaleDatetime.yMMMd(createTime),
+            LocaleDatetime.yMMMd(context, createTime),
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.bold,
               color: AppTheme.subColor,
             ),
-            semanticsLabel: '${LocaleDatetime.yMMMd(createTime)} 心情：$title',
+            semanticsLabel:
+                '${LocaleDatetime.yMMMd(context, createTime)} 心情：$title',
           ),
         ),
         Padding(

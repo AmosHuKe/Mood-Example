@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
-import 'package:moodexample/generated/l10n.dart';
+import 'package:moodexample/l10n/gen/app_localizations.dart';
 
 /// 导航返回拦截
 class WillPopScopeRoute extends StatefulWidget {

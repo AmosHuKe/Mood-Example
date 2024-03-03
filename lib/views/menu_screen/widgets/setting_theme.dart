@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
-import 'package:moodexample/generated/l10n.dart';
+import 'package:moodexample/l10n/gen/app_localizations.dart';
 import 'package:moodexample/config/multiple_themes.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 

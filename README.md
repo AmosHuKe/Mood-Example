@@ -13,7 +13,7 @@
 
 <p align="center">
   <a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.9.9" src="https://img.shields.io/badge/Mood--Example-v1.9.9-3e4663"/></a> 
-  <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.19.1" src="https://img.shields.io/badge/Flutter-v3.19.1-46D1FD"/></a> 
+  <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.19.2" src="https://img.shields.io/badge/Flutter-v3.19.2-46D1FD"/></a> 
   <a target="_blank" href="https://dart.dev/"><img alt="Dart v3.3.0" src="https://img.shields.io/badge/Dart-v3.3.0-04599D"/></a> 
   <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
 </p> 
@@ -26,13 +26,11 @@
 
 - [功能](#-功能)
 
-- [测试运行环境](#-测试运行环境)
-
 - [开发环境](#️-开发环境)
 
   - [基本环境](#️-基本环境)
 
-  - [国际化环境支持](#️-国际化环境支持)
+  - [i18n l10n](#️-i18n-l10n)
 
 - [启动](#-启动)
 
@@ -57,21 +55,23 @@
 `情绪记录` 样例工程  
 管理自己的情绪，记录当下所见所想，以及其他`实验室`功能（不定时更新一些功能）  
 运用 `Flutter` 的实践工程，主要目的是学习、实践。  
+
+> [!NOTE]  
 > 注意：由于是学习实践工程，所以重点在于学习，许多业务逻辑可能并不符合现实。  
 > Emoji 因设备缘故，会存在不同样式。  
 
 
 ## 🌏 相关网站
 
-> Flutter 官网（中文）：<a target="_blank" href="https://flutter.cn/">https://flutter.cn/</a>  
-> Flutter 官网（英文）：<a target="_blank" href="https://flutter.dev/">https://flutter.dev/</a>  
-> Packages (原始站点) ：<a target="_blank" href="https://pub.dev/">https://pub.dev/</a>  
-> Packages (中国镜像) ：<a target="_blank" href="https://pub-web.flutter-io.cn/">https://pub-web.flutter-io.cn/</a>  
+> Flutter 官网（中文）：[https://flutter.cn/](https://flutter.cn/)  
+> Flutter 官网（英文）：[https://flutter.dev/](https://flutter.dev/)  
+> Packages (原始站点) ：[https://pub.dev/](https://pub.dev/)  
+> Packages (中国镜像) ：[https://pub-web.flutter-io.cn/](https://pub-web.flutter-io.cn/)  
 
 
 ## ⭐ 功能
 
-- [x] 国际化 i18n  
+- [x] 国际化 i18n l10n  
 - [x] 多主题  
 - [x] 深色模式  
 - [x] 本地数据管理  
@@ -94,26 +94,18 @@
 ……
 
 
-## 📱 测试运行环境
-
-| 环境 | 支持版本 |  
-| --- | --- |  
-| Android | 最低：Android 5.0 (API 21) |  
-| iOS | 最低：iOS 12.4 |  
-
-
 ## 🛠️ 开发环境
 
 ### 🛠️ 基本环境  
 
 > Windows  
 ```
-[√] Flutter (Channel stable, 3.19.1, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
+[√] Flutter (Channel stable, 3.19.2, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
 [√] Visual Studio - develop Windows apps (Visual Studio Community 2022 17.9.0)
 [√] Android Studio (version 2023.1)
 [√] IntelliJ IDEA Ultimate Edition (version 2023.3)
-[√] VS Code (version 1.86.2)
+[√] VS Code (version 1.87.0)
 ```  
 
 > macOS  
@@ -126,49 +118,20 @@
 ```  
 
 
-### 🛠️ 国际化环境支持  
+### 🛠️ i18n l10n  
 
-安装编辑器插件：`Flutter Intl`  
-> Visual Studio Code: [Flutter Intl](https://marketplace.visualstudio.com/items?itemName=localizely.flutter-intl)   
-> IntelliJ / Android Studio: [Flutter Intl](https://plugins.jetbrains.com/plugin/13666-flutter-intl)  
-
-```sh
-# 插件指令
-
-# 初始化
-Flutter Intl: Initialize
-
-# 添加 Locale
-Flutter Intl: Add locale
-
-# 删除 Locale
-Flutter Intl: Remove locale
-
-等等...
-```  
-
-使用 `Flutter Intl: Add locale` 输入 `国际化 (i18n) 地区对照语言码`，如简体中文：`zh_CN`，插件会自动在 `lib/l10n` 目录下生成对应的 `arb` 文件，我们只需要在 `arb` 文件中进行翻译。  
-`arb` 翻译工作完成后，将对应的语言添加到 `lib/config/language.dart` 内。  
-即可 `适配设备首选语言` 以及 `在应用语言设置内进行切换`。  
+官方教程（中文）：[链接](https://flutter.cn/docs/ui/accessibility-and-internationalization/internationalization)  
+官方教程（英文）：[链接](https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization)  
 
 ```sh
 ├── lib/
 │   ├── config/
-│   │   └── language.dart   # 语言配置
-│   ├── generated/          # intl 语言包生成的文件夹（不用编码，使用 Flutter Intl 插件自动生成）
-│   ├── l10n/               # intl 语言包
-│   │   └──intl_zh_CN.arb   # 如 简体中文：zh_CN
+│   │   └── language.dart   # 语言配置（用于列表选项）
+│   ├── l10n/               # l10n 语言包
+│   │   ├── gen/            # l10n 语言包生成的文件夹（不用编码，自动生成）
+│   │   └── app_zh_CN.arb   # 如 简体中文：zh_CN
+├── l10n.yaml               # l10n 配置
 ......
-```
-
-iOS 支持语言本地化还需要在 `ios/Runner/Info.plist` 进行如下编辑。
-```
-<key>CFBundleLocalizations</key>
-<array>
-    <string>en</string>
-    <string>zh_CN</string>
-    ...
-</array>
 ```
 
 
@@ -238,14 +201,14 @@ $ flutter test integration_test/app_test.dart
 │   │   ├── utils_intl.dart                         # 国际化工具
 │   │   └── utils.dart                              # 工具
 │   ├── config/                                     # 配置
-│   │   ├── language.dart                           # 语言配置
+│   │   ├── language.dart                           # 语言配置（用于列表选项）
 │   │   └── multiple_themes.dart                    # 多主题配置
 │   ├── db/                                         # 数据存储相关
 │   │   ├── database/                               # sqflite 数据表配置
 │   │   ├── db.dart                                 # sqflite 数据库相关
 │   │   └── preferences_db.dart                     # shared_preferences 数据相关
-│   ├── generated/                                  # intl 语言包生成的文件夹（不用编码，使用 Flutter Intl 插件自动生成）
-│   ├── l10n/                                       # intl 语言包
+│   ├── l10n/                                       # l10n 语言包
+│   │   ├── gen/                                    # l10n 语言包生成的文件夹（不用编码，自动生成）
 │   ├── models/                                     # 数据模型
 │   ├── providers/                                  # 业务状态逻辑
 │   ├── services/                                   # 数据服务
@@ -277,6 +240,7 @@ $ flutter test integration_test/app_test.dart
 ├── .gitignore                                      # Git 提交仓库忽略文件配置
 ├── .metadata                                       # 当前 workspace 配置记录
 ├── analysis_options.yaml                           # Dart 语言代码规范
+├── l10n.yaml                                       # l10n 配置
 ├── pubspec.lock                                    # 依赖生成的文件
 └── pubspec.yaml                                    # 核心配置文件（项目配置、依赖等）
 ```
