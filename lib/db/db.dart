@@ -10,18 +10,14 @@ import 'package:moodexample/db/database/table_mood_info_category.dart';
 class DB {
   DB._();
   static final DB db = DB._();
-  late Database _db;
+  Database? _db;
+  Future<Database> get database async => _db ??= await createDatabase();
 
   /// 数据库版本号
   static const int _version = 1;
 
   /// 数据库名称
   static const String _databaseName = 'moodDB.db';
-
-  Future<Database> get database async {
-    _db = await createDatabase();
-    return _db;
-  }
 
   /// 创建
   Future<Database> createDatabase() async {
@@ -36,7 +32,7 @@ class DB {
     return db;
   }
 
-  Future close() async => _db.close();
+  Future close() async => _db?.close();
 
   /// 创建
   void _onCreate(Database db, int newVersion) async {

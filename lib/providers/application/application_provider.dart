@@ -27,79 +27,79 @@ class ApplicationProvider extends ChangeNotifier {
 
   /// 获取-主题模式
   void loadThemeMode() async {
-    _themeMode = await PreferencesDB().getAppThemeDarkMode();
+    _themeMode = await PreferencesDB.db.getAppThemeDarkMode();
     notifyListeners();
   }
 
   /// 设置-主题模式
   set themeMode(ThemeMode themeMode) {
-    PreferencesDB().setAppThemeDarkMode(themeMode);
+    PreferencesDB.db.setAppThemeDarkMode(themeMode);
     _themeMode = themeMode;
     notifyListeners();
   }
 
   /// 获取-多主题模式
   void loadMultipleThemesMode() async {
-    _multipleThemesMode = await PreferencesDB().getMultipleThemesMode();
+    _multipleThemesMode = await PreferencesDB.db.getMultipleThemesMode();
     notifyListeners();
   }
 
   /// 设置-多主题模式
   set multipleThemesMode(String multipleThemesMode) {
-    PreferencesDB().setMultipleThemesMode(multipleThemesMode);
+    PreferencesDB.db.setMultipleThemesMode(multipleThemesMode);
     _multipleThemesMode = multipleThemesMode;
     notifyListeners();
   }
 
   /// 获取-语言是否跟随系统
   void loadLocaleSystem() async {
-    _localeSystem = await PreferencesDB().getAppIsLocaleSystem();
+    _localeSystem = await PreferencesDB.db.getAppIsLocaleSystem();
     notifyListeners();
   }
 
   /// 设置-语言是否跟随系统
   set localeSystem(bool localeSystem) {
-    PreferencesDB().setAppIsLocaleSystem(localeSystem);
+    PreferencesDB.db.setAppIsLocaleSystem(localeSystem);
     _localeSystem = localeSystem;
     notifyListeners();
   }
 
   /// 获取-语言
   void loadLocale() async {
-    _locale = await PreferencesDB().getAppLocale();
+    _locale = await PreferencesDB.db.getAppLocale();
     notifyListeners();
   }
 
   /// 设置-语言
   set locale(Locale locale) {
     localeSystem = false;
-    PreferencesDB().setAppLocale(locale);
+    PreferencesDB.db.setAppLocale(locale);
     _locale = locale;
     notifyListeners();
   }
 
   /// 获取-安全-密码内容
   void loadKeyPassword() async {
-    _keyPassword = await PreferencesDB().getAppKeyPassword();
+    _keyPassword = await PreferencesDB.db.getAppKeyPassword();
     notifyListeners();
   }
 
   /// 设置-安全-密码内容
   set keyPassword(String keyPassword) {
-    PreferencesDB().setAppKeyPassword(keyPassword);
+    PreferencesDB.db.setAppKeyPassword(keyPassword);
     _keyPassword = keyPassword;
     notifyListeners();
   }
 
   /// 获取-安全-生物特征识别是否开启
   void loadKeyBiometric() async {
-    _keyBiometric = await PreferencesDB().getAppKeyBiometric();
+    _keyBiometric = await PreferencesDB.db.getAppKeyBiometric();
     notifyListeners();
   }
 
   /// 设置-安全-生物特征识别是否开启
   set keyBiometric(bool keyBiometric) {
-    PreferencesDB().setAppKeyBiometric(keyBiometric);
+    PreferencesDB.db.setAppKeyBiometric(keyBiometric);
     _keyBiometric = keyBiometric;
     notifyListeners();
   }
