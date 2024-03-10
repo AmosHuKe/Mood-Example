@@ -1,7 +1,7 @@
 name: moodexample
 description: 管理自己的情绪，记录当下所见所想。
 publish_to: 'none'
-version: 1.9.9+449
+version: 1.9.9+450
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
@@ -28,7 +28,7 @@ dependencies:
   fl_chart: ^0.66.2 # 图表
   excel: ^4.0.2 # Excel
   share_plus: ^7.2.2 # 分享
-  file_picker: ^6.1.1 # 文件选择
+  file_picker: ^6.2.0 # 文件选择
   webview_flutter: ^4.7.0 # WebView
   ditredi: ^2.0.2 # 3D 数据集显示
   vector_math: ^2.1.4
@@ -42,7 +42,7 @@ dependencies:
   local_auth_android: ^1.0.37 # 本地认证
   local_auth_darwin: ^1.2.2 # 本地认证
   flutter_tilt: ^2.4.0 # 倾斜视差
-  remixicon: ^1.1.1 # Remixicon
+  remixicon: ^1.2.0 # Remixicon
   cupertino_icons: ^1.0.6
 
 # https://dart.dev/tools/pub/dependencies#dependency-overrides
