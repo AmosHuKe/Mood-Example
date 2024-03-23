@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: a_star_algorithm
-      sha256: "7129494d8a494dafd43fb473c412bc8ab6c9ae130be100211c9102a70f30f848"
+      sha256: c9a92079331f8229f572718ed12c25b0e3adf3570318becfa689f5554e6ffd30
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.1"
+    version: "0.3.2"
   animations:
     dependency: "direct main"
     description:
@@ -21,10 +21,10 @@ packages:
     dependency: transitive
     description:
       name: archive
-      sha256: "22600aa1e926be775fa5fe7e6894e7fb3df9efda8891c73f70fb3262399a432d"
+      sha256: "7b875fd4a20b165a3084bd2d210439b22ebc653f21cea4842729c0c30c82596b"
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.10"
+    version: "3.4.9"
   async:
     dependency: transitive
     description:
@@ -37,10 +37,10 @@ packages:
     dependency: "direct main"
     description:
       name: awesome_notifications
-      sha256: "7387f0c0031ca4a8d08f7d866ab286d880c6f2f151b87fa809077dca7c7be3ea"
+      sha256: d9e46ce7f5171ee1e9b1c5bc6dc40bd77528561f592842ce97ce3a0a9ae155ef
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.2"
+    version: "0.9.3+1"
   bonfire:
     dependency: "direct main"
     description:
@@ -125,10 +125,10 @@ packages:
     dependency: transitive
     description:
       name: device_info_plus
-      sha256: "77f757b789ff68e4eaf9c56d1752309bd9f7ad557cb105b938a7f8eb89e59110"
+      sha256: "50fb435ed30c6d2525cbfaaa0f46851ea6131315f213c0d921b0e407b34e3b84"
       url: "https://pub.dev"
     source: hosted
-    version: "9.1.2"
+    version: "10.0.1"
   device_info_plus_platform_interface:
     dependency: transitive
     description:
@@ -157,10 +157,10 @@ packages:
     dependency: "direct main"
     description:
       name: excel
-      sha256: c299b5ccf14bb7f24fe64ca1a15e4a3796ab563575087ce3f7e07fc2e3429db5
+      sha256: "86958dd0771d4ce372cc8332d17d18d803bbcef6ab6d12ddd071699e4c232573"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.2"
+    version: "4.0.3"
   fake_async:
     dependency: transitive
     description:
@@ -189,10 +189,10 @@ packages:
     dependency: "direct main"
     description:
       name: file_picker
-      sha256: caa6bc229eab3e32eb2f37b53a5f9d22a6981474afd210c512a7546c1e1a04f6
+      sha256: d1d0ac3966b36dc3e66eeefb40280c17feb87fa2099c6e22e6a1fc959327bd03
       url: "https://pub.dev"
     source: hosted
-    version: "6.2.0"
+    version: "8.0.0+1"
   fixnum:
     dependency: transitive
     description:
@@ -276,10 +276,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_slidable
-      sha256: "19ed4813003a6ff4e9c6bcce37e792a2a358919d7603b2b31ff200229191e44c"
+      sha256: "673403d2eeef1f9e8483bd6d8d92aae73b1d8bd71f382bc3930f699c731bc27c"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.1"
+    version: "3.1.0"
   flutter_smart_dialog:
     dependency: "direct main"
     description:
@@ -297,10 +297,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_tilt
-      sha256: ff3f566ac8277d93f999f7e3303319d92fdb5d3b02ac909074da000677f6f737
+      sha256: "153952e8998969ece167739e927b4e0c233b98735533939c8f0808c1e63b6d0f"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.0"
+    version: "3.0.0"
   flutter_timezone:
     dependency: "direct main"
     description:
@@ -608,10 +608,10 @@ packages:
     dependency: transitive
     description:
       name: sensors_plus
-      sha256: "8e7fa79b4940442bb595bfc0ee9da4af5a22a0fe6ebacc74998245ee9496a82d"
+      sha256: "59a962b35e36abc799bab94974128f29877ca11610d0573f5aea73d1a5d4bd88"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.2"
+    version: "5.0.0"
   sensors_plus_platform_interface:
     dependency: transitive
     description:
@@ -624,18 +624,18 @@ packages:
     dependency: "direct main"
     description:
       name: share_plus
-      sha256: "3ef39599b00059db0990ca2e30fca0a29d8b37aae924d60063f8e0184cf20900"
+      sha256: "05ec043470319bfbabe0adbc90d3a84cbff0426b9d9f3a6e2ad3e131fa5fa629"
       url: "https://pub.dev"
     source: hosted
-    version: "7.2.2"
+    version: "8.0.2"
   share_plus_platform_interface:
     dependency: transitive
     description:
       name: share_plus_platform_interface
-      sha256: df08bc3a07d01f5ea47b45d03ffcba1fa9cd5370fb44b3f38c70e42cced0f956
+      sha256: "251eb156a8b5fa9ce033747d73535bf53911071f8d3b6f4f0b578505ce0d4496"
       url: "https://pub.dev"
     source: hosted
-    version: "3.3.1"
+    version: "3.4.0"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -733,10 +733,10 @@ packages:
     dependency: transitive
     description:
       name: sqflite_common
-      sha256: "28d8c66baee4968519fb8bd6cdbedad982d6e53359091f0b74544a9f32ec72d5"
+      sha256: "3da423ce7baf868be70e2c0976c28a1bb2f73644268b7ffa7d2e08eab71f16a4"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.3"
+    version: "2.5.4"
   stack_trace:
     dependency: transitive
     description:
@@ -917,10 +917,10 @@ packages:
     dependency: transitive
     description:
       name: webview_flutter_android
-      sha256: "3e5f4e9d818086b0d01a66fb1ff9cc72ab0cc58c71980e3d3661c5685ea0efb0"
+      sha256: f038ee2fae73b509dde1bc9d2c5a50ca92054282de17631a9a3d515883740934
       url: "https://pub.dev"
     source: hosted
-    version: "3.15.0"
+    version: "3.16.0"
   webview_flutter_platform_interface:
     dependency: transitive
     description:
@@ -933,10 +933,10 @@ packages:
     dependency: transitive
     description:
       name: webview_flutter_wkwebview
-      sha256: "9bf168bccdf179ce90450b5f37e36fe263f591c9338828d6bf09b6f8d0f57f86"
+      sha256: f12f8d8a99784b863e8b85e4a9a5e3cf1839d6803d2c0c3e0533a8f3c5a992a7
       url: "https://pub.dev"
     source: hosted
-    version: "3.12.0"
+    version: "3.13.0"
   win32:
     dependency: transitive
     description:

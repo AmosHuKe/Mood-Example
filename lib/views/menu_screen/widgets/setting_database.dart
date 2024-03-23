@@ -358,11 +358,11 @@ Future<String> importDatabaseTemplate() async {
 
   /// 单元格样式
   final CellStyle cellStyle = CellStyle(
-    fontColorHex: '#FFFFFF',
+    fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
     fontSize: 10,
     bold: true,
     fontFamily: getFontFamily(FontFamily.Microsoft_Sans_Serif),
-    backgroundColorHex: '#3E4663',
+    backgroundColorHex: ExcelColor.fromHexString('#3E4663'),
     horizontalAlign: HorizontalAlign.Center,
     verticalAlign: VerticalAlign.Center,
   );
@@ -375,11 +375,11 @@ Future<String> importDatabaseTemplate() async {
   sheetObject.cell(CellIndex.indexByString('A1'))
     ..value = TextCellValue('MoodExample')
     ..cellStyle = CellStyle(
-      fontColorHex: '#FFFFFF',
+      fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
       fontSize: 10,
       bold: true,
       fontFamily: getFontFamily(FontFamily.Microsoft_Sans_Serif),
-      backgroundColorHex: '#3E4663',
+      backgroundColorHex: ExcelColor.fromHexString('#3E4663'),
       horizontalAlign: HorizontalAlign.Center,
       verticalAlign: VerticalAlign.Center,
     );
@@ -577,11 +577,11 @@ Future<String> importDatabaseError(List<List<Data?>> database) async {
 
     /// 单元格样式
     final CellStyle cellStyle = CellStyle(
-      fontColorHex: '#FFFFFF',
+      fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
       fontSize: 10,
       bold: true,
       fontFamily: getFontFamily(FontFamily.Microsoft_Sans_Serif),
-      backgroundColorHex: '#3E4663',
+      backgroundColorHex: ExcelColor.fromHexString('#3E4663'),
       horizontalAlign: HorizontalAlign.Center,
       verticalAlign: VerticalAlign.Center,
     );
@@ -594,11 +594,11 @@ Future<String> importDatabaseError(List<List<Data?>> database) async {
     sheetObject.cell(CellIndex.indexByString('A1'))
       ..value = TextCellValue('MoodExample')
       ..cellStyle = CellStyle(
-        fontColorHex: '#FFFFFF',
+        fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
         fontSize: 10,
         bold: true,
         fontFamily: getFontFamily(FontFamily.Microsoft_Sans_Serif),
-        backgroundColorHex: '#3E4663',
+        backgroundColorHex: ExcelColor.fromHexString('#3E4663'),
         horizontalAlign: HorizontalAlign.Center,
         verticalAlign: VerticalAlign.Center,
       );
@@ -851,11 +851,11 @@ Future<String> exportDatabase() async {
 
   /// 单元格样式
   final CellStyle cellStyle = CellStyle(
-    fontColorHex: '#FFFFFF',
+    fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
     fontSize: 10,
     bold: true,
     fontFamily: getFontFamily(FontFamily.Microsoft_Sans_Serif),
-    backgroundColorHex: '#3E4663',
+    backgroundColorHex: ExcelColor.fromHexString('#3E4663'),
     horizontalAlign: HorizontalAlign.Center,
     verticalAlign: VerticalAlign.Center,
   );
@@ -868,11 +868,11 @@ Future<String> exportDatabase() async {
   sheetObject.cell(CellIndex.indexByString('A1'))
     ..value = TextCellValue('MoodExample')
     ..cellStyle = CellStyle(
-      fontColorHex: '#FFFFFF',
+      fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
       fontSize: 10,
       bold: true,
       fontFamily: getFontFamily(FontFamily.Microsoft_Sans_Serif),
-      backgroundColorHex: '#3E4663',
+      backgroundColorHex: ExcelColor.fromHexString('#3E4663'),
       horizontalAlign: HorizontalAlign.Center,
       verticalAlign: VerticalAlign.Center,
     );
