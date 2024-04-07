@@ -45,10 +45,10 @@ packages:
     dependency: "direct main"
     description:
       name: bonfire
-      sha256: "83e00084b3283ec14dfc9b7cd827635abe11ea2e5f141e921177a66d8cef4034"
+      sha256: "5c948ee7d8505aab38a520f8183f98728f46dcc559f377fcf3fe606f5ccade2a"
       url: "https://pub.dev"
     source: hosted
-    version: "3.6.1"
+    version: "3.7.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -205,18 +205,18 @@ packages:
     dependency: "direct main"
     description:
       name: fl_chart
-      sha256: "00b74ae680df6b1135bdbea00a7d1fc072a9180b7c3f3702e4b19a9943f5ed7d"
+      sha256: "2b7c1f5d867da9a054661641c8f499c55c47c39acccb97b3bc673f5fa9a39e74"
       url: "https://pub.dev"
     source: hosted
-    version: "0.66.2"
+    version: "0.67.0"
   flame:
     dependency: "direct main"
     description:
       name: flame
-      sha256: bb42a35fa5dabdea535daebe5b020e21a2fce8192b67b7e55cd30fed86d29f69
+      sha256: da1812e2f17a8ffd5d43ea6a83137794e7f482bcf50419bc9847b8efdb39f791
       url: "https://pub.dev"
     source: hosted
-    version: "1.16.0"
+    version: "1.17.0"
   fluro:
     dependency: "direct main"
     description:
@@ -239,10 +239,10 @@ packages:
     dependency: "direct dev"
     description:
       name: flutter_lints
-      sha256: e2a421b7e59244faef694ba7b30562e489c2b489866e505074eb005cd7060db7
+      sha256: "9e8c3858111da373efc5aa341de011d9bd23e2c5c5e0c62bccf32438e192d7b1"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.1"
+    version: "3.0.2"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -576,10 +576,10 @@ packages:
     dependency: transitive
     description:
       name: pointycastle
-      sha256: "43ac87de6e10afabc85c445745a7b799e04de84cebaa4fd7bf55a5e1e9604d29"
+      sha256: "70fe966348fe08c34bf929582f1d8247d9d9408130723206472b4687227e4333"
       url: "https://pub.dev"
     source: hosted
-    version: "3.7.4"
+    version: "3.8.0"
   process:
     dependency: transitive
     description:
@@ -725,10 +725,10 @@ packages:
     dependency: "direct main"
     description:
       name: sqflite
-      sha256: a9016f495c927cb90557c909ff26a6d92d9bd54fc42ba92e19d4e79d61e798c6
+      sha256: "5ce2e1a15e822c3b4bfb5400455775e421da7098eed8adc8f26298ada7c9308c"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.2"
+    version: "2.3.3"
   sqflite_common:
     dependency: transitive
     description:
@@ -789,10 +789,10 @@ packages:
     dependency: "direct main"
     description:
       name: table_calendar
-      sha256: "3f7950145168251aad4fa6c0a914b5ef4e9a82fa365bb349c3ac5378f866e771"
+      sha256: b759eb6caa88dda8e51c70ee43c19d1682f8244458f84cced9138ee35b2ce416
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.0"
+    version: "3.1.1"
   term_glyph:
     dependency: transitive
     description:
@@ -941,10 +941,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: "8cb58b45c47dcb42ab3651533626161d6b67a2921917d8d429791f76972b3480"
+      sha256: "0a989dc7ca2bb51eac91e8fd00851297cfffd641aa7538b165c62637ca0eaa4a"
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.0"
+    version: "5.4.0"
   win32_registry:
     dependency: transitive
     description:

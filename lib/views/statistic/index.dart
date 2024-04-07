@@ -362,7 +362,7 @@ class StatisticWeekMoodLine extends StatelessWidget {
                 fitInsideHorizontally: true,
                 tooltipRoundedRadius: 24.sp,
                 tooltipMargin: 24.w,
-                tooltipBgColor: Theme.of(context).primaryColor,
+                getTooltipColor: (_) => Theme.of(context).primaryColor,
                 getTooltipItems: (List<LineBarSpot> touchedSpots) {
                   return touchedSpots.map((barSpot) {
                     final flSpot = barSpot;
@@ -574,7 +574,7 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
             barTouchData: BarTouchData(
               touchTooltipData: BarTouchTooltipData(
                 tooltipRoundedRadius: 12.sp,
-                tooltipBgColor: Theme.of(context).primaryColor,
+                getTooltipColor: (_) => Theme.of(context).primaryColor,
                 getTooltipItem: (group, groupIndex, rod, rodIndex) {
                   return BarTooltipItem(
                     '',
