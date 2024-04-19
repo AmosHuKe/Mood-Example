@@ -165,7 +165,7 @@ class SEn extends S {
   String get home_upgrade_content => 'Learn the latest\nusage scenarios';
 
   @override
-  String get home_upgrade_button => 'Look';
+  String get home_upgrade_button => 'Read';
 
   @override
   String get home_help_title => 'Help';

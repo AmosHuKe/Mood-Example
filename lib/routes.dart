@@ -6,13 +6,13 @@ import 'package:moodexample/widgets/will_pop_scope_route/will_pop_scope_route.da
 
 import 'package:moodexample/models/mood/mood_model.dart';
 
-import 'package:moodexample/views/mood/index.dart';
-import 'package:moodexample/views/home/index.dart';
-import 'package:moodexample/views/onboarding/index.dart';
-import 'package:moodexample/views/mood/mood_category_select.dart';
-import 'package:moodexample/views/mood/mood_content.dart';
-import 'package:moodexample/views/settings/laboratory/index.dart';
-import 'package:moodexample/views/web_view/web_view.dart';
+import 'views/mood/index.dart';
+import 'views/home/index.dart';
+import 'views/onboarding/index.dart';
+import 'views/mood/mood_category_select.dart';
+import 'views/mood/mood_content.dart';
+import 'views/settings/laboratory/index.dart';
+import 'views/web_view/web_view.dart';
 
 /// 路由管理
 class Routes {

@@ -5,7 +5,6 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:remixicon/remixicon.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
-import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/views/statistic/index.dart' as statistic;
 import 'package:moodexample/l10n/gen/app_localizations.dart';
 
@@ -206,7 +205,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                   onTap: () {
                     /// 侧栏操作
-                    vibrate();
                     ZoomDrawer.of(context)?.toggle.call();
                   },
                 ),

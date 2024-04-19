@@ -9,6 +9,7 @@ import 'package:remixicon/remixicon.dart';
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/l10n/gen/app_localizations.dart';
 import 'package:moodexample/common/utils.dart';
+
 import 'package:moodexample/widgets/empty/empty.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 
@@ -150,7 +151,6 @@ class StatisticBody extends StatelessWidget {
         /// 下拉加载
         CupertinoSliverRefreshControl(
           onRefresh: () async {
-            vibrate();
             init(context);
           },
         ),

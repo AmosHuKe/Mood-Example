@@ -1,7 +1,8 @@
 # 1.9.9
-- [升级] Flutter 3.19.4
+- [升级] Flutter 3.19.6
 - [升级] Package 升级及适配
 - [修改] i18n l10n 新用法（移除 IDE 插件的使用）
+- [移除] cupertino_icons、vibration package
 
 # 1.9.8
 - [升级] Flutter 3.16.9

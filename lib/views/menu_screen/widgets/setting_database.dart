@@ -15,7 +15,6 @@ import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 
 import 'package:moodexample/l10n/gen/app_localizations.dart';
-import 'package:moodexample/common/utils.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 
 import 'package:moodexample/providers/mood/mood_provider.dart';
@@ -153,7 +152,6 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                           color: const Color(0xFFFFFFFF),
                           padding: EdgeInsets.all(22.w),
                           onPressed: () async {
-                            vibrate();
                             setState(() {
                               _isImport = true;
                               _errorPath = '';
@@ -163,7 +161,6 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                               if (!mounted) return;
                               setState(() {
                                 _isImport = false;
-                                vibrate();
                               });
                               switch (results['state']) {
                                 case 0:
@@ -244,8 +241,6 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                     ),
                                   ),
                                   onPressed: () async {
-                                    vibrate();
-
                                     /// 分享文件
                                     Share.shareXFiles([XFile(_errorPath)]);
                                   },
@@ -301,7 +296,6 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                               MaterialStateProperty.all(const CircleBorder()),
                         ),
                         onPressed: () async {
-                          vibrate();
                           final String filePath =
                               await importDatabaseTemplate();
 
@@ -779,7 +773,6 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
                       color: const Color(0xFFFFFFFF),
                       padding: EdgeInsets.all(22.w),
                       onPressed: () async {
-                        vibrate();
                         try {
                           /// 没文件则进行生成
                           if (_exportPath.isEmpty) {
@@ -797,7 +790,6 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
                             setState(() {
                               _isExport = false;
                             });
-                            vibrate();
                             if (!mounted) return;
                             SmartDialog.showToast(
                               S

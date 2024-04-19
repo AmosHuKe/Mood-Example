@@ -11,18 +11,19 @@ import 'package:intl/intl.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/l10n/gen/app_localizations.dart';
+import 'package:moodexample/common/utils_intl.dart';
+
 import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
 import 'package:moodexample/widgets/empty/empty.dart';
-import 'package:moodexample/common/utils.dart';
-import 'package:moodexample/common/utils_intl.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
+
 import 'package:moodexample/views/mood/mood_content.dart';
 import 'package:moodexample/views/mood/mood_category_select.dart'
     show MoodCategorySelect, MoodCategorySelectType;
 
-import 'package:moodexample/providers/mood/mood_provider.dart';
 import 'package:moodexample/models/mood/mood_model.dart';
+import 'package:moodexample/providers/mood/mood_provider.dart';
 
 /// 心情页（记录列表）
 class MoodPage extends StatefulWidget {
@@ -88,7 +89,6 @@ class _MoodPageState extends State<MoodPage>
                 ],
               ),
               onPressed: () {
-                vibrate();
                 openContainer();
               },
             );
@@ -175,7 +175,6 @@ class MoodBody extends StatelessWidget {
         /// 下拉加载
         CupertinoSliverRefreshControl(
           onRefresh: () async {
-            vibrate();
             init(context);
           },
         ),

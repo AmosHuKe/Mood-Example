@@ -13,9 +13,9 @@
 
 <p align="center">
   <a target="_blank" href="/CHANGELOG.md"><img alt="Mood-Example v1.9.9" src="https://img.shields.io/badge/Mood--Example-v1.9.9-3e4663"/></a> 
-  <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.19.4" src="https://img.shields.io/badge/Flutter-v3.19.4-46D1FD"/></a> 
-  <a target="_blank" href="https://dart.dev/"><img alt="Dart v3.3.2" src="https://img.shields.io/badge/Dart-v3.3.2-04599D"/></a> 
-  <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/license-BSD--3--Clause-green"/></a> 
+  <a target="_blank" href="https://flutter.dev/"><img alt="Flutter v3.19.6" src="https://img.shields.io/badge/Flutter-v3.19.6-0468D7"/></a> 
+  <a target="_blank" href="https://dart.dev/"><img alt="Dart v3.3.4" src="https://img.shields.io/badge/Dart-v3.3.4-04599C"/></a> 
+  <a target="_blank" href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/License-BSD--3--Clause-green"/></a> 
 </p> 
 
 <sub>
@@ -98,17 +98,17 @@
 
 ### 🛠️ 基本环境  
 
-> Windows  
+Windows:   
 ```
-[√] Flutter (Channel stable, 3.19.4, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
+[√] Flutter (Channel stable, 3.19.6, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
-[√] Visual Studio - develop Windows apps (Visual Studio Community 2022 17.9.0)
-[√] Android Studio (version 2023.1)
-[√] IntelliJ IDEA Ultimate Edition (version 2023.3)
-[√] VS Code (version 1.87.2)
+[√] Visual Studio - develop Windows apps (Visual Studio Community 2022 17.9.6)
+[√] Android Studio (version 2023.2)
+[√] IntelliJ IDEA Ultimate Edition (version 2024.1)
+[√] VS Code (version 1.88.1)
 ```  
 
-> macOS  
+macOS:   
 ```
 [✓] Flutter (Channel stable, 3.19.4, on macOS 14.0 23A344 darwin-x64, locale zh-Hans-CN)
 [✓] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
@@ -329,9 +329,9 @@ $ flutter test integration_test/app_test.dart
 |---|---|  
 | [bonfire](https://pub.dev/packages/bonfire) | [MIT License](https://pub.dev/packages/bonfire/license) |  
 | [card_swiper](https://pub.dev/packages/card_swiper) | [MIT License](https://pub.dev/packages/card_swiper/license) |  
-| [cupertino_icons](https://pub.dev/packages/cupertino_icons) | [MIT License](https://pub.dev/packages/cupertino_icons/license) |  
 | [ditredi](https://pub.dev/packages/ditredi) | [MIT License](https://pub.dev/packages/ditredi/license) |  
 | [excel](https://pub.dev/packages/excel) | [MIT License](https://pub.dev/packages/excel/license) |  
+| [flame](https://pub.dev/packages/flame) | [MIT License](https://pub.dev/packages/flame/license) |  
 | [fluro](https://pub.dev/packages/fluro) | [MIT License](https://pub.dev/packages/fluro/license) |  
 | [file_picker](https://pub.dev/packages/file_picker) | [MIT License](https://pub.dev/packages/file_picker/license) |  
 | [flutter_slidable](https://pub.dev/packages/flutter_slidable) | [MIT License](https://pub.dev/packages/flutter_slidable/license) |  
@@ -346,7 +346,6 @@ $ flutter test integration_test/app_test.dart
 | [flutter_timezone](https://pub.dev/packages/flutter_timezone) | [Apache-2.0 License](https://pub.dev/packages/flutter_timezone/license) |  
 | [table_calendar](https://pub.dev/packages/table_calendar) | [Apache-2.0 License](https://pub.dev/packages/table_calendar/license) |  
 | [sqflite](https://pub.dev/packages/sqflite) | [BSD-2-Clause License](https://pub.dev/packages/sqflite/license) |  
-| [vibration](https://pub.dev/packages/vibration) | [BSD-2-Clause License](https://pub.dev/packages/vibration/license) |  
 | [animations](https://pub.dev/packages/animations) | [BSD-3-Clause License](https://pub.dev/packages/animations/license) |  
 | [fl_chart](https://pub.dev/packages/fl_chart) | [BSD-3-Clause License](https://pub.dev/packages/fl_chart/license) |  
 | [flutter_lints](https://pub.dev/packages/flutter_lints) | [BSD-3-Clause License](https://pub.dev/packages/flutter_lints/license) |  
@@ -371,7 +370,7 @@ Design by [Mindfulness Concept App](https://dribbble.com/shots/15733031-Mindfuln
 
 ## 📄 License
 
-[![BSD-3-Clause License](https://img.shields.io/badge/license-BSD--3--Clause-green)](https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE)  
+[![BSD-3-Clause License](https://img.shields.io/badge/License-BSD--3--Clause-green)](https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE)  
 Open sourced under the BSD-3-Clause license.  
 根据 BSD-3-Clause 许可证开源。  
 © AmosHuKe

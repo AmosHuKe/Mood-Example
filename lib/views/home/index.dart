@@ -11,7 +11,9 @@ import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/routes.dart';
 import 'package:moodexample/l10n/gen/app_localizations.dart';
 import 'package:moodexample/common/utils.dart';
+
 import 'package:moodexample/widgets/animation/animation.dart';
+
 import 'package:moodexample/views/mood/mood_content.dart';
 import 'package:moodexample/views/web_view/web_view.dart';
 
@@ -539,7 +541,6 @@ class Article extends StatelessWidget {
                 ],
               ),
               onTap: () {
-                vibrate();
                 openContainer();
               },
               children: [
@@ -632,7 +633,6 @@ class Article extends StatelessWidget {
                 ],
               ),
               onTap: () {
-                vibrate();
                 openContainer();
               },
               children: [

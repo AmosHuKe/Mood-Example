@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
-import 'package:vibration/vibration.dart';
 
 /// 工具
 
@@ -15,12 +14,6 @@ String getDatetimeNow(String format) {
   final DateTime now = DateTime.now();
   final String formattedDate = DateFormat(format).format(now);
   return formattedDate.toString();
-}
-
-/// 震动
-Future<void> vibrate() async {
-  print('~~~ 震动 ~~~');
-  Vibration.vibrate(duration: 10);
 }
 
 /// 统计颜色块

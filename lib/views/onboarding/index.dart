@@ -6,6 +6,7 @@ import 'package:card_swiper/card_swiper.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/l10n/gen/app_localizations.dart';
+
 import 'package:moodexample/widgets/animation/animation.dart';
 
 /// 引导页

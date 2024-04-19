@@ -9,7 +9,7 @@ Future<T?> showModalBottomDetail<T>({
   required BuildContext context,
   required Widget child,
 }) {
-  return showModalBottomSheet(
+  return showModalBottomSheet<T>(
     context: context,
     barrierColor: isDarkMode(context) ? Colors.black45 : Colors.black54,
     shape: RoundedRectangleBorder(

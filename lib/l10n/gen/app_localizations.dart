@@ -401,7 +401,7 @@ abstract class S {
   /// No description provided for @home_upgrade_button.
   ///
   /// In en, this message translates to:
-  /// **'Look'**
+  /// **'Read'**
   String get home_upgrade_button;
 
   /// No description provided for @home_help_title.

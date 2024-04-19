@@ -8,16 +8,17 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/routes.dart';
-import 'package:moodexample/widgets/will_pop_scope_route/will_pop_scope_route.dart';
 import 'package:moodexample/home_screen.dart';
 import 'package:moodexample/l10n/gen/app_localizations.dart';
 import 'init.dart';
 
+import 'package:moodexample/widgets/will_pop_scope_route/will_pop_scope_route.dart';
+
+import 'package:moodexample/views/menu_screen/menu_screen_left.dart';
+
 import 'package:moodexample/providers/mood/mood_provider.dart';
 import 'package:moodexample/providers/statistic/statistic_provider.dart';
 import 'package:moodexample/providers/application/application_provider.dart';
-
-import 'package:moodexample/views/menu_screen/menu_screen_left.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});
