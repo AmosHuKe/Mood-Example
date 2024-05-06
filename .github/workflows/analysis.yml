@@ -1,0 +1,35 @@
+name: 'code analysis'
+run-name: 'Code Analysis'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+
+jobs:
+
+  code-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - name: Prepare dependencies
+        run: |
+          flutter --version
+          flutter pub get
+      - name: Check Dart code formatting
+        run: |
+          dart format . -o none --set-exit-if-changed
+      - name: Analyze Dart code
+        run: |
+          flutter analyze .
