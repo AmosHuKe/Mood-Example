@@ -87,7 +87,7 @@ class Game extends StatelessWidget {
             ],
           ),
           map: WorldMapByTiled(
-            TiledReader.asset('$assetsPath/tiles/map.json'),
+            WorldMapReader.fromAsset('$assetsPath/tiles/map.json'),
             forceTileSize: Vector2(tileSize, tileSize),
             objectsBuilder: {
               'light': (properties) => Light(

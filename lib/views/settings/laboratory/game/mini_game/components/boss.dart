@@ -87,15 +87,15 @@ class Boss extends SimpleEnemy
 
   /// 死亡
   @override
-  void die() {
+  void onDie() {
     _canMove = false;
     removeFromParent();
-    super.die();
+    super.onDie();
   }
 
   /// 受伤触发
   @override
-  void receiveDamage(AttackFromEnum attacker, double damage, identify) {
+  bool receiveDamage(AttackOriginEnum attacker, double damage, identify) {
     if (!isDead) {
       /// 伤害显示
       showDamage(
@@ -104,7 +104,7 @@ class Boss extends SimpleEnemy
         config: TextStyle(color: Colors.amberAccent, fontSize: tileSize / 2),
       );
     }
-    super.receiveDamage(attacker, damage, identify);
+    return super.receiveDamage(attacker, damage, identify);
   }
 
   /// 攻击

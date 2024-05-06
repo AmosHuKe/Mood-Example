@@ -118,7 +118,7 @@ class HumanPlayer extends SimplePlayer
 
   /// 受伤触发
   @override
-  void receiveDamage(AttackFromEnum attacker, double damage, dynamic from) {
+  bool receiveDamage(AttackOriginEnum attacker, double damage, dynamic from) {
     if (!isDead) {
       showDamage(
         damage,
@@ -136,11 +136,11 @@ class HumanPlayer extends SimplePlayer
       //   gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.7));
       // });
     }
-    super.receiveDamage(attacker, damage, from);
+    return super.receiveDamage(attacker, damage, from);
   }
 
   @override
-  void die() {
+  void onDie() {
     animation?.playOnce(
       SpriteSheetPlayer.getDie(),
       onFinish: () {
@@ -148,7 +148,7 @@ class HumanPlayer extends SimplePlayer
       },
       runToTheEnd: true,
     );
-    super.die();
+    super.onDie();
   }
 
   /// 攻击动画

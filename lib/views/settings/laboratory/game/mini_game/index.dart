@@ -129,7 +129,7 @@ class _GameState extends State<Game> {
             ],
           ), // required
           map: WorldMapByTiled(
-            TiledReader.asset('$assetsPath/tiles/mini_game_map.json'),
+            WorldMapReader.fromAsset('$assetsPath/tiles/mini_game_map.json'),
             forceTileSize: Vector2(tileSize, tileSize),
             objectsBuilder: {
               'light': (properties) => Light(

@@ -100,7 +100,7 @@ class Orc extends SimpleEnemy
 
   /// 死亡
   @override
-  void die() {
+  void onDie() {
     _canMove = false;
     gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.7));
 
@@ -113,12 +113,12 @@ class Orc extends SimpleEnemy
       },
       runToTheEnd: true,
     );
-    super.die();
+    super.onDie();
   }
 
   /// 受伤触发
   @override
-  void receiveDamage(AttackFromEnum attacker, double damage, identify) {
+  bool receiveDamage(AttackOriginEnum attacker, double damage, identify) {
     if (!isDead) {
       /// 伤害显示
       showDamage(
@@ -130,7 +130,7 @@ class Orc extends SimpleEnemy
       /// 受伤动画
       // _addDamageAnimation();
     }
-    super.receiveDamage(attacker, damage, identify);
+    return super.receiveDamage(attacker, damage, identify);
   }
 
   /// 攻击动画

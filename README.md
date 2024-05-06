@@ -103,9 +103,9 @@ Windows:
 [√] Flutter (Channel stable, 3.19.6, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
 [√] Visual Studio - develop Windows apps (Visual Studio Community 2022 17.9.6)
-[√] Android Studio (version 2023.2)
+[√] Android Studio (version 2023.3)
 [√] IntelliJ IDEA Ultimate Edition (version 2024.1)
-[√] VS Code (version 1.88.1)
+[√] VS Code (version 1.89.0)
 ```  
 
 macOS:   

@@ -190,16 +190,16 @@ class HumanPlayer extends SimplePlayer
 
   /// 受伤触发
   @override
-  void receiveDamage(AttackFromEnum attacker, double damage, dynamic from) {
+  bool receiveDamage(AttackOriginEnum attacker, double damage, dynamic from) {
     handleReceiveDamage(damage);
-    super.receiveDamage(attacker, damage, from);
+    return super.receiveDamage(attacker, damage, from);
   }
 
   /// 死亡
   @override
-  void die() {
+  void onDie() {
     handleDie();
-    super.die();
+    super.onDie();
   }
 
   /// 受伤触发
@@ -371,7 +371,7 @@ class HumanPlayer extends SimplePlayer
       withDecorationCollision: false,
       speed: maxSpeed * (tileSize / 10),
       damage: 50.0 + Random().nextInt(10),
-      attackFrom: AttackFromEnum.PLAYER_OR_ALLY,
+      attackFrom: AttackOriginEnum.PLAYER_OR_ALLY,
       marginFromOrigin: 30,
       collision: RectangleHitbox(
         size: Vector2(tileSize, tileSize),
@@ -395,7 +395,7 @@ class HumanPlayer extends SimplePlayer
       withDecorationCollision: false,
       speed: maxSpeed * (tileSize / 10),
       damage: 50.0 + Random().nextInt(20),
-      attackFrom: AttackFromEnum.PLAYER_OR_ALLY,
+      attackFrom: AttackOriginEnum.PLAYER_OR_ALLY,
       marginFromOrigin: 35,
       collision: RectangleHitbox(
         size: Vector2(tileSize, tileSize),
