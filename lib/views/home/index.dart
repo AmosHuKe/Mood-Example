@@ -369,21 +369,20 @@ class NoticeCard extends StatelessWidget {
                 child: AnimatedPress(
                   child: OutlinedButton(
                     style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all(Colors.white),
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.black87),
-                      textStyle: MaterialStateProperty.all(
+                      foregroundColor: WidgetStateProperty.all(Colors.white),
+                      backgroundColor: WidgetStateProperty.all(Colors.black87),
+                      textStyle: WidgetStateProperty.all(
                         TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      shape: MaterialStateProperty.all(
+                      shape: WidgetStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14.sp),
                         ),
                       ),
-                      overlayColor: MaterialStateProperty.all(Colors.white10),
+                      overlayColor: WidgetStateProperty.all(Colors.white10),
                     ),
                     onPressed: () => {
                       /// 导航到新路由

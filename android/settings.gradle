@@ -5,18 +5,17 @@ pluginManagement {
         def flutterSdkPath = properties.getProperty("flutter.sdk")
         assert flutterSdkPath != null, "flutter.sdk not set in local.properties"
         return flutterSdkPath
-    }
-    settings.ext.flutterSdkPath = flutterSdkPath()
+    }()
 
-    includeBuild("${settings.ext.flutterSdkPath}/packages/flutter_tools/gradle")
+    includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
 
     repositories {
         // google()
         // mavenCentral()
         // gradlePluginPortal()
-        maven{ url 'https://maven.aliyun.com/repository/public' }
-        maven{ url 'https://maven.aliyun.com/repository/google' }
-        maven{ url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven{ url "https://maven.aliyun.com/repository/public" }
+        maven{ url "https://maven.aliyun.com/repository/google" }
+        maven{ url "https://maven.aliyun.com/repository/gradle-plugin" }
     }
 }
 

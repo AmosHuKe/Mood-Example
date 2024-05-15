@@ -2,15 +2,17 @@ allprojects {
     repositories {
         // google()
         // jcenter()
-        maven{ url 'https://maven.aliyun.com/repository/public' }
-        maven{ url 'https://maven.aliyun.com/repository/google' }
+        maven{ url "https://maven.aliyun.com/repository/public" }
+        maven{ url "https://maven.aliyun.com/repository/google" }
     }
 }
 
-rootProject.buildDir = '../build'
+rootProject.buildDir = "../build"
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-    project.evaluationDependsOn(':app')
+}
+subprojects {
+    project.evaluationDependsOn(":app")
 }
 
 tasks.register("clean", Delete) {

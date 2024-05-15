@@ -12,9 +12,9 @@
 </h1> 
 
 <p align="center">
-  <a href="/CHANGELOG.md"><img alt="Mood-Example v1.9.9" src="https://img.shields.io/badge/Mood--Example-v1.9.9-3e4663"/></a> 
-  <a href="https://flutter.dev/"><img alt="Flutter v3.19.6" src="https://img.shields.io/badge/Flutter-v3.19.6-0468D7"/></a> 
-  <a href="https://dart.dev/"><img alt="Dart v3.3.4" src="https://img.shields.io/badge/Dart-v3.3.4-04599C"/></a> 
+  <a href="/CHANGELOG.md"><img alt="Mood-Example v1.9.10" src="https://img.shields.io/badge/Mood--Example-v1.9.10-3e4663"/></a> 
+  <a href="https://flutter.dev/"><img alt="Flutter v3.22.0" src="https://img.shields.io/badge/Flutter-v3.22.0-0468D7"/></a> 
+  <a href="https://dart.dev/"><img alt="Dart v3.4.0" src="https://img.shields.io/badge/Dart-v3.4.0-04599C"/></a> 
   <a href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/License-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -100,27 +100,27 @@
 
 Windows:   
 ```
-[√] Flutter (Channel stable, 3.19.6, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
+[√] Flutter (Channel stable, 3.22.0, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
 [√] Visual Studio - develop Windows apps (Visual Studio Community 2022 17.9.6)
 [√] Android Studio (version 2023.3)
 [√] IntelliJ IDEA Ultimate Edition (version 2024.1)
-[√] VS Code (version 1.89.0)
+[√] VS Code (version 1.89.1)
 ```  
 
 macOS:   
 ```
-[✓] Flutter (Channel stable, 3.19.6, on macOS 14.4.1 23E224 darwin-x64, locale zh-Hans-CN)
+[✓] Flutter (Channel stable, 3.22.0, on macOS 14.4.1 23E224 darwin-x64, locale zh-Hans-CN)
 [✓] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
-[✓] Xcode - develop for iOS and macOS (Xcode 15.3)
-[✓] Android Studio (version 2023.2)
-[✓] VS Code (version 1.88.1)
+[✓] Xcode - develop for iOS and macOS (Xcode 15.4)
+[✓] Android Studio (version 2023.3)
+[✓] VS Code (version 1.89.1)
 ```  
 
 
 ### 🛠️ i18n l10n  
 
-官方国际化教程：[中文站](https://flutter.cn/docs/ui/accessibility-and-internationalization/internationalization) | [英文站](https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization)  
+官方国际化教程：[中文站](https://docs.flutter.cn/ui/accessibility-and-internationalization/internationalization) | [英文站](https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization)  
 
 ```sh
 ├── lib/

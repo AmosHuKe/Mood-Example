@@ -193,17 +193,17 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
               builder: (context, child) => OutlinedButton(
                 key: const Key('widget_next_button'),
                 style: ButtonStyle(
-                  padding: MaterialStateProperty.all(EdgeInsets.all(20.w)),
-                  foregroundColor: MaterialStateProperty.all(Colors.white),
-                  backgroundColor: MaterialStateProperty.all(
+                  padding: WidgetStateProperty.all(EdgeInsets.all(20.w)),
+                  foregroundColor: WidgetStateProperty.all(Colors.white),
+                  backgroundColor: WidgetStateProperty.all(
                     _stepButtonColorAnimation.value,
                   ),
-                  textStyle: MaterialStateProperty.all(
+                  textStyle: WidgetStateProperty.all(
                     TextStyle(
                       fontSize: 240.sp,
                     ),
                   ),
-                  shape: MaterialStateProperty.all(
+                  shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50.h),
                       side: const BorderSide(
@@ -211,7 +211,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
                       ),
                     ),
                   ),
-                  overlayColor: MaterialStateProperty.all(Colors.white10),
+                  overlayColor: WidgetStateProperty.all(Colors.white10),
                 ),
                 onPressed: () {
                   if (swiperIndex == _swiperList.length - 1) {

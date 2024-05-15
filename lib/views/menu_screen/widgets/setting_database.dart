@@ -236,7 +236,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                 color: Colors.transparent,
                                 child: TextButton(
                                   style: ButtonStyle(
-                                    shape: MaterialStateProperty.all(
+                                    shape: WidgetStateProperty.all(
                                       const CircleBorder(),
                                     ),
                                   ),
@@ -292,8 +292,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                       color: Colors.transparent,
                       child: TextButton(
                         style: ButtonStyle(
-                          shape:
-                              MaterialStateProperty.all(const CircleBorder()),
+                          shape: WidgetStateProperty.all(const CircleBorder()),
                         ),
                         onPressed: () async {
                           final String filePath =

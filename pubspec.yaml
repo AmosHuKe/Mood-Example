@@ -1,7 +1,7 @@
 name: moodexample
 description: 管理自己的情绪，记录当下所见所想。
 publish_to: 'none'
-version: 1.9.9+454
+version: 1.9.10+455
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
@@ -12,7 +12,7 @@ dependencies:
   flutter_localizations: # l10n
     sdk: flutter
   intl: ^0.19.0 # i18n/l10n 处理
-  path: ^1.8.3
+  path: ^1.9.0
   path_provider: ^2.1.3 # 路径
   flutter_screenutil: ^5.9.0 # UI 自适应工具
   provider: ^6.1.2 # 状态管理
@@ -24,7 +24,7 @@ dependencies:
   table_calendar: ^3.1.1 # 日历
   flutter_slidable: ^3.1.0 # 滑动操作项
   card_swiper: ^3.0.1 # 轮播
-  fl_chart: ^0.67.0 # 图表
+  fl_chart: ^0.68.0 # 图表
   excel: ^4.0.3 # Excel
   share_plus: ^9.0.0 # 分享
   file_picker: ^8.0.3 # 文件选择
@@ -36,16 +36,16 @@ dependencies:
   animations: ^2.0.11 # 动画
   bonfire: 3.8.5 # 游戏引擎相关
   flame: 1.17.0 # 游戏引擎相关
-  flutter_screen_lock: ^9.0.2 # 密码锁
+  flutter_screen_lock: # ^9.0.2 # 密码锁
+    git: https://github.com/Allenxuxu/flutter_screen_lock
   local_auth: ^2.2.0 # 本地认证
   local_auth_android: ^1.0.38 # 本地认证
-  local_auth_darwin: ^1.2.2 # 本地认证
+  local_auth_darwin: ^1.3.0 # 本地认证
   flutter_tilt: ^3.0.1 # 倾斜视差
   remixicon: ^1.2.0 # Remixicon
 
 # https://dart.dev/tools/pub/dependencies#dependency-overrides
 dependency_overrides:
-  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
