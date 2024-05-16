@@ -45,10 +45,10 @@ packages:
     dependency: "direct main"
     description:
       name: bonfire
-      sha256: "55b1506fd18b62239bfe96686ba15888b7bad500410b8368ebd07f5b16c71f8e"
+      sha256: a9e663a20bb1073dd987fbde6b98bb1351b819e5e7c894ffe3c021bf010ff021
       url: "https://pub.dev"
     source: hosted
-    version: "3.8.5"
+    version: "3.8.7"
   boolean_selector:
     dependency: transitive
     description:
@@ -235,20 +235,19 @@ packages:
   flutter_screen_lock:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "9df6900d6998ab5f359ed2477197d4a38bc9fc95"
-      url: "https://github.com/Allenxuxu/flutter_screen_lock"
-    source: git
-    version: "9.0.2"
+      name: flutter_screen_lock
+      sha256: "5c09314747a70d8e1259a1d787f49f4f29d6eae224cd9b2f045e513e8408cbcc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.0.3"
   flutter_screenutil:
     dependency: "direct main"
     description:
       name: flutter_screenutil
-      sha256: "8cf100b8e4973dc570b6415a2090b0bfaa8756ad333db46939efc3e774ee100d"
+      sha256: b372c35a772a1dc84142a3b9c5ee89a390834bd258e5e6a450d9b975b985d1c9
       url: "https://pub.dev"
     source: hosted
-    version: "5.9.0"
+    version: "5.9.1"
   flutter_slidable:
     dependency: "direct main"
     description:
@@ -910,10 +909,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: "0eaf06e3446824099858367950a813472af675116bf63f008a4c2a75ae13e9cb"
+      sha256: a79dbe579cb51ecd6d30b17e0cae4e0ea15e2c0e66f69ad4198f22a6789e94f4
       url: "https://pub.dev"
     source: hosted
-    version: "5.5.0"
+    version: "5.5.1"
   xdg_directories:
     dependency: transitive
     description:
@@ -931,5 +930,5 @@ packages:
     source: hosted
     version: "6.5.0"
 sdks:
-  dart: ">=3.3.0 <4.0.0"
+  dart: ">=3.4.0 <4.0.0"
   flutter: ">=3.19.0"

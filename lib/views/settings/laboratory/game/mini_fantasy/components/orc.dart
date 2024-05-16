@@ -8,7 +8,7 @@ import '../sprite_sheet/sprite_sheet_orc.dart';
 double tileSize = 20.0;
 
 class Orc extends SimpleEnemy
-    with AutomaticRandomMovement, BlockMovementCollision, UseLifeBar {
+    with RandomMovement, BlockMovementCollision, UseLifeBar {
   Orc(Vector2 position)
       : super(
           position: position,
@@ -89,7 +89,7 @@ class Orc extends SimpleEnemy
           runRandomMovement(
             dt,
             speed: speed / 3,
-            maxDistance: (tileSize * 2).toInt(),
+            maxDistance: tileSize * 2,
           );
           return false;
         },

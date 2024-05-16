@@ -9,7 +9,7 @@ import 'boss.dart';
 double tileSize = 20.0;
 
 class Orc extends SimpleEnemy
-    with AutomaticRandomMovement, BlockMovementCollision, UseLifeBar {
+    with RandomMovement, BlockMovementCollision, UseLifeBar {
   Orc(Vector2 position)
       : super(
           position: position,
@@ -89,7 +89,7 @@ class Orc extends SimpleEnemy
           runRandomMovement(
             dt,
             speed: speed,
-            maxDistance: (tileSize * 100).toInt(),
+            maxDistance: tileSize * 100,
           );
           return false;
         },
