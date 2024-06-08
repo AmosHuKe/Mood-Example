@@ -79,55 +79,59 @@ class _GameState extends State<Game> {
         return BonfireWidget(
           debugMode: false,
           showCollisionArea: false,
-          keyboardConfig: KeyboardConfig(
-            acceptedKeys: [
-              LogicalKeyboardKey.space,
-            ],
-          ),
-          joystick: Joystick(
-            directional: JoystickDirectional(
-              spriteBackgroundDirectional:
-                  Sprite.load('$assetsPath/joystick_background.png'),
-              spriteKnobDirectional:
-                  Sprite.load('$assetsPath/joystick_knob.png'),
-              size: 80,
-              isFixed: false,
+          playerControllers: [
+            Joystick(
+              directional: JoystickDirectional(
+                spriteBackgroundDirectional:
+                    Sprite.load('$assetsPath/joystick_background.png'),
+                spriteKnobDirectional:
+                    Sprite.load('$assetsPath/joystick_knob.png'),
+                size: 80,
+                isFixed: false,
+              ),
+              actions: [
+                JoystickAction(
+                  actionId: PlayerAttackType.attackMelee,
+                  sprite: Sprite.load('$assetsPath/joystick_atack.png'),
+                  spritePressed:
+                      Sprite.load('$assetsPath/joystick_atack_selected.png'),
+                  size: 70,
+                  margin: const EdgeInsets.only(bottom: 50, right: 50),
+                ),
+                JoystickAction(
+                  actionId: PlayerAttackType.attackRange,
+                  sprite: Sprite.load('$assetsPath/joystick_atack_range.png'),
+                  spritePressed: Sprite.load(
+                    '$assetsPath/joystick_atack_range_selected.png',
+                  ),
+                  spriteBackgroundDirection:
+                      Sprite.load('$assetsPath/joystick_background.png'),
+                  size: 40,
+                  enableDirection: true,
+                  margin: const EdgeInsets.only(bottom: 30, right: 150),
+                ),
+                JoystickAction(
+                  actionId: PlayerAttackType.attackRangeShotguns,
+                  sprite: Sprite.load('$assetsPath/joystick_atack_range.png'),
+                  spritePressed: Sprite.load(
+                    '$assetsPath/joystick_atack_range_selected.png',
+                  ),
+                  spriteBackgroundDirection:
+                      Sprite.load('$assetsPath/joystick_background.png'),
+                  size: 40,
+                  enableDirection: true,
+                  margin: const EdgeInsets.only(bottom: 90, right: 150),
+                ),
+              ],
             ),
-            actions: [
-              JoystickAction(
-                actionId: PlayerAttackType.attackMelee,
-                sprite: Sprite.load('$assetsPath/joystick_atack.png'),
-                spritePressed:
-                    Sprite.load('$assetsPath/joystick_atack_selected.png'),
-                size: 70,
-                margin: const EdgeInsets.only(bottom: 50, right: 50),
+            Keyboard(
+              config: KeyboardConfig(
+                acceptedKeys: [
+                  LogicalKeyboardKey.space,
+                ],
               ),
-              JoystickAction(
-                actionId: PlayerAttackType.attackRange,
-                sprite: Sprite.load('$assetsPath/joystick_atack_range.png'),
-                spritePressed: Sprite.load(
-                  '$assetsPath/joystick_atack_range_selected.png',
-                ),
-                spriteBackgroundDirection:
-                    Sprite.load('$assetsPath/joystick_background.png'),
-                size: 40,
-                enableDirection: true,
-                margin: const EdgeInsets.only(bottom: 30, right: 150),
-              ),
-              JoystickAction(
-                actionId: PlayerAttackType.attackRangeShotguns,
-                sprite: Sprite.load('$assetsPath/joystick_atack_range.png'),
-                spritePressed: Sprite.load(
-                  '$assetsPath/joystick_atack_range_selected.png',
-                ),
-                spriteBackgroundDirection:
-                    Sprite.load('$assetsPath/joystick_background.png'),
-                size: 40,
-                enableDirection: true,
-                margin: const EdgeInsets.only(bottom: 90, right: 150),
-              ),
-            ],
-          ), // required
+            )
+          ],
           map: WorldMapByTiled(
             WorldMapReader.fromAsset('$assetsPath/tiles/mini_game_map.json'),
             forceTileSize: Vector2(tileSize, tileSize),

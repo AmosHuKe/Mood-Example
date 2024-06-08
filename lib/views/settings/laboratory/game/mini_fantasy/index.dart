@@ -71,21 +71,25 @@ class Game extends StatelessWidget {
         return BonfireWidget(
           debugMode: false,
           showCollisionArea: false,
-          keyboardConfig: KeyboardConfig(
-            acceptedKeys: [
-              LogicalKeyboardKey.space,
-            ],
-          ),
-          joystick: Joystick(
-            directional: JoystickDirectional(),
-            actions: [
-              JoystickAction(
-                actionId: 1,
-                color: Colors.deepOrange,
-                margin: const EdgeInsets.all(65),
+          playerControllers: [
+            Joystick(
+              directional: JoystickDirectional(),
+              actions: [
+                JoystickAction(
+                  actionId: 1,
+                  color: Colors.deepOrange,
+                  margin: const EdgeInsets.all(65),
+                ),
+              ],
+            ),
+            Keyboard(
+              config: KeyboardConfig(
+                acceptedKeys: [
+                  LogicalKeyboardKey.space,
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
           map: WorldMapByTiled(
             WorldMapReader.fromAsset('$assetsPath/tiles/map.json'),
             forceTileSize: Vector2(tileSize, tileSize),

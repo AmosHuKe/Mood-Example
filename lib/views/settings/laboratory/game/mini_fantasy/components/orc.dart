@@ -32,7 +32,7 @@ class Orc extends SimpleEnemy
     /// 生命条
     setupLifeBar(
       size: Vector2(tileSize * 1.5, tileSize / 5),
-      barLifeDrawPosition: BarLifeDrawPorition.top,
+      barLifeDrawPosition: BarLifeDrawPosition.top,
       showLifeText: false,
       borderWidth: 2,
       borderColor: Colors.white.withOpacity(0.5),
