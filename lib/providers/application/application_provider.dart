@@ -26,7 +26,7 @@ class ApplicationProvider extends ChangeNotifier {
   bool _keyBiometric = false;
 
   /// 获取-主题模式
-  void loadThemeMode() async {
+  Future<void> loadThemeMode() async {
     _themeMode = await PreferencesDB.db.getAppThemeDarkMode();
     notifyListeners();
   }
@@ -39,7 +39,7 @@ class ApplicationProvider extends ChangeNotifier {
   }
 
   /// 获取-多主题模式
-  void loadMultipleThemesMode() async {
+  Future<void> loadMultipleThemesMode() async {
     _multipleThemesMode = await PreferencesDB.db.getMultipleThemesMode();
     notifyListeners();
   }
@@ -52,7 +52,7 @@ class ApplicationProvider extends ChangeNotifier {
   }
 
   /// 获取-语言是否跟随系统
-  void loadLocaleSystem() async {
+  Future<void> loadLocaleSystem() async {
     _localeSystem = await PreferencesDB.db.getAppIsLocaleSystem();
     notifyListeners();
   }
@@ -65,7 +65,7 @@ class ApplicationProvider extends ChangeNotifier {
   }
 
   /// 获取-语言
-  void loadLocale() async {
+  Future<void> loadLocale() async {
     _locale = await PreferencesDB.db.getAppLocale();
     notifyListeners();
   }
@@ -79,7 +79,7 @@ class ApplicationProvider extends ChangeNotifier {
   }
 
   /// 获取-安全-密码内容
-  void loadKeyPassword() async {
+  Future<void> loadKeyPassword() async {
     _keyPassword = await PreferencesDB.db.getAppKeyPassword();
     notifyListeners();
   }
@@ -92,7 +92,7 @@ class ApplicationProvider extends ChangeNotifier {
   }
 
   /// 获取-安全-生物特征识别是否开启
-  void loadKeyBiometric() async {
+  Future<void> loadKeyBiometric() async {
     _keyBiometric = await PreferencesDB.db.getAppKeyBiometric();
     notifyListeners();
   }

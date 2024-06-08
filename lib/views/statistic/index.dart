@@ -296,8 +296,8 @@ class StatisticWeekMoodLine extends StatelessWidget {
 
         /// 数据为空的占位
         if (moodEmpty) {
-          listData = List.generate((days), (i) {
-            return StatisticMoodScoreAverageRecentlyData(
+          listData = List.generate(days, (i) {
+            return const StatisticMoodScoreAverageRecentlyData(
               datetime: '',
               score: 0,
             );
@@ -320,7 +320,7 @@ class StatisticWeekMoodLine extends StatelessWidget {
         return LineChart(
           LineChartData(
             clipData: const FlClipData.vertical(),
-            maxX: (days + 1),
+            maxX: days + 1,
             minY: -50,
             maxY: 120,
             lineBarsData: [
@@ -430,7 +430,7 @@ class StatisticWeekMoodLine extends StatelessWidget {
                   reservedSize: 18.w,
                   interval: days > 7 ? ((days / 7) + 1) : (days / 7),
                   getTitlesWidget: (value, titleMeta) {
-                    final nowListDate = listFlSpot[(value).toInt()].datetime;
+                    final nowListDate = listFlSpot[value.toInt()].datetime;
                     return Text(
                       (nowListDate.toString() != ''
                           ? nowListDate.toString().substring(8, 10)
@@ -545,7 +545,7 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
         /// 数据为空的占位
         if (listData.isEmpty) {
           listData = List.generate(moodDays, (i) {
-            return StatisticMoodScoreAverageRecentlyData(
+            return const StatisticMoodScoreAverageRecentlyData(
               datetime: '---------- --------',
               score: 0,
             );

@@ -81,7 +81,7 @@ class _InitState extends State<Init> {
   }
 
   /// 应用初始化
-  void init() async {
+  Future<void> init() async {
     final MoodProvider moodProvider = context.read<MoodProvider>();
     final ApplicationProvider applicationProvider =
         context.read<ApplicationProvider>();
@@ -110,13 +110,13 @@ class _InitState extends State<Init> {
   }
 
   /// 锁屏
-  void runLockScreen() async {
+  Future<void> runLockScreen() async {
     if (!mounted) return;
     lockScreen(context);
   }
 
   /// 通知权限判断显示
-  void allowedNotification() async {
+  Future<void> allowedNotification() async {
     bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
     if (!isAllowed) {
       if (!mounted) return;
@@ -125,7 +125,7 @@ class _InitState extends State<Init> {
   }
 
   /// 发送普通通知
-  void sendNotification() async {
+  Future<void> sendNotification() async {
     final bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
     if (!isAllowed) return;
     if (!mounted) return;
@@ -142,7 +142,7 @@ class _InitState extends State<Init> {
   }
 
   /// 发送定时计划通知
-  void sendScheduleNotification() async {
+  Future<void> sendScheduleNotification() async {
     final String localTimeZone =
         await AwesomeNotifications().getLocalTimeZoneIdentifier();
     final bool isAllowed = await AwesomeNotifications().isNotificationAllowed();

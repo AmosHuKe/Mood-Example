@@ -39,7 +39,7 @@ class StatisticService {
     final List<StatisticMoodScoreAverageRecentlyData> dataList = [];
     final nowDate = DateTime.parse(getDatetimeNow('yyyy-MM-dd'));
     // 获取近日日期
-    for (int i = (days - 1); i >= 0; i--) {
+    for (int i = days - 1; i >= 0; i--) {
       final String date =
           DateFormat('yyyy-MM-dd').format(nowDate.subtract(Duration(days: i)));
       // 查询

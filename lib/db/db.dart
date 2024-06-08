@@ -35,7 +35,7 @@ class DB {
   Future close() async => _db?.close();
 
   /// 创建
-  void _onCreate(Database db, int newVersion) async {
+  Future<void> _onCreate(Database db, int newVersion) async {
     print('_onCreate 新版本:$newVersion');
     final batch = db.batch();
 
@@ -52,7 +52,7 @@ class DB {
   }
 
   /// 升级
-  void _onUpgrade(Database db, int oldVersion, int newVersion) async {
+  Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
     print('_onUpgrade 旧版本:$oldVersion');
     print('_onUpgrade 新版本:$newVersion');
 

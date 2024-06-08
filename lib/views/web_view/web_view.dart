@@ -164,7 +164,7 @@ class _WebViewPageState extends State<WebViewPage> {
   }
 
   /// 网页初始化
-  void webViewInit() async {
+  Future<void> webViewInit() async {
     final String pageTitle = await _pageWebViewController.getTitle() ?? '';
     final bool pageCanGoBack = await _pageWebViewController.canGoBack();
     final bool pageCanGoForward = await _pageWebViewController.canGoForward();

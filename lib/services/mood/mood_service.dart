@@ -10,7 +10,7 @@ class MoodService {
   /// 设置心情类别默认值
   static Future<void> setCategoryDefault() async {
     /// 默认值
-    final List<MoodCategoryData> moodCategoryData = [
+    const List<MoodCategoryData> moodCategoryData = [
       MoodCategoryData(icon: '😊', title: '开心'),
       MoodCategoryData(icon: '🎉', title: '惊喜'),
       MoodCategoryData(icon: '🤡', title: '滑稽'),

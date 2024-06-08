@@ -46,13 +46,15 @@ class Orc extends SimpleEnemy
   @override
   Future<void> onLoad() {
     /// 设置碰撞系统
-    add(RectangleHitbox(
-      size: Vector2(
-        size.x * 0.3,
-        size.y * 0.2,
+    add(
+      RectangleHitbox(
+        size: Vector2(
+          size.x * 0.3,
+          size.y * 0.2,
+        ),
+        position: Vector2(tileSize * 1, tileSize * 1.5),
       ),
-      position: Vector2(tileSize * 1, tileSize * 1.5),
-    ));
+    );
     return super.onLoad();
   }
 

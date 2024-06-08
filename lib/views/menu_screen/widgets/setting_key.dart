@@ -65,7 +65,7 @@ class _KeyBodyState extends State<KeyBody> {
   IconData? localAuthIcon;
   String localAuthText = '';
 
-  void init(BuildContext context) async {
+  Future<void> init(BuildContext context) async {
     final ApplicationProvider applicationProvider =
         context.read<ApplicationProvider>();
     final localAuthUtils = await LocalAuthUtils();
@@ -114,8 +114,9 @@ class _KeyBodyState extends State<KeyBody> {
                 onChanged: (value) async {
                   applicationProvider.keyPasswordScreenOpen = false;
                   if (value) {
-                    if (await LocalAuthUtils().localAuthBiometric(context))
+                    if (await LocalAuthUtils().localAuthBiometric(context)) {
                       applicationProvider.keyBiometric = value;
+                    }
                   } else {
                     applicationProvider.keyBiometric = value;
                   }

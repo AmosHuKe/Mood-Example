@@ -24,28 +24,28 @@ class StatisticProvider extends ChangeNotifier {
   List<StatisticDateMoodCountData> _dateMoodCount = [];
 
   /// 获取APP累计使用天数
-  void loadDaysCount() async {
+  Future<void> loadDaysCount() async {
     daysCount = await StatisticService.getAPPUsageDays();
   }
 
   /// 获取APP累计记录条数
-  void loadMoodCount() async {
+  Future<void> loadMoodCount() async {
     moodCount = await StatisticService.getAPPMoodCount();
   }
 
   /// 获取平均情绪波动
-  void loadMoodScoreAverage() async {
+  Future<void> loadMoodScoreAverage() async {
     moodScoreAverage = await StatisticService.getMoodScoreAverage();
   }
 
   /// 获取近日情绪波动
-  void loadMoodScoreAverageRecently({int days = 7}) async {
+  Future<void> loadMoodScoreAverageRecently({int days = 7}) async {
     moodScoreAverageRecently =
         await StatisticService.getMoodScoreAverageRecently(days: days);
   }
 
   /// 获取近日心情数量统计
-  void loadDateMoodCount({int days = 7}) async {
+  Future<void> loadDateMoodCount({int days = 7}) async {
     dateMoodCount = await StatisticService.getDateMoodCount(days: days);
   }
 

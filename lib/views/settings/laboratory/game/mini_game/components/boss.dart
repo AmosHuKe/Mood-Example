@@ -35,13 +35,15 @@ class Boss extends SimpleEnemy
   @override
   Future<void> onLoad() {
     /// 设置碰撞系统
-    add(RectangleHitbox(
-      size: Vector2(
-        size.x * 0.6,
-        size.y * 0.5,
+    add(
+      RectangleHitbox(
+        size: Vector2(
+          size.x * 0.6,
+          size.y * 0.5,
+        ),
+        position: Vector2(tileSize * 1.2, tileSize * 1.5),
       ),
-      position: Vector2(tileSize * 1.2, tileSize * 1.5),
-    ));
+    );
     return super.onLoad();
   }
 

@@ -366,7 +366,7 @@ Future<String> importDatabaseTemplate() async {
     CellIndex.indexByString('E1'),
   );
   sheetObject.cell(CellIndex.indexByString('A1'))
-    ..value = TextCellValue('MoodExample')
+    ..value = const TextCellValue('MoodExample')
     ..cellStyle = CellStyle(
       fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
       fontSize: 10,
@@ -379,30 +379,30 @@ Future<String> importDatabaseTemplate() async {
 
   /// 创建字段标题
   sheetObject.cell(CellIndex.indexByString('A2'))
-    ..value = TextCellValue('表情')
+    ..value = const TextCellValue('表情')
     ..cellStyle = cellStyle.copyWith(
       fontFamilyVal: getFontFamily(FontFamily.Apple_Color_Emoji),
     );
   sheetObject.cell(CellIndex.indexByString('B2'))
-    ..value = TextCellValue('心情')
+    ..value = const TextCellValue('心情')
     ..cellStyle = cellStyle;
   sheetObject.cell(CellIndex.indexByString('C2'))
-    ..value = TextCellValue('内容')
+    ..value = const TextCellValue('内容')
     ..cellStyle = cellStyle;
   sheetObject.cell(CellIndex.indexByString('D2'))
-    ..value = TextCellValue('心情程度')
+    ..value = const TextCellValue('心情程度')
     ..cellStyle = cellStyle;
   sheetObject.cell(CellIndex.indexByString('E2'))
-    ..value = TextCellValue('创建时间')
+    ..value = const TextCellValue('创建时间')
     ..cellStyle = cellStyle;
 
   /// 添加Excel数据
   sheetObject.appendRow([
-    TextCellValue('😊'),
-    TextCellValue('开心'),
-    TextCellValue('今天很开心'),
-    TextCellValue('55'),
-    TextCellValue('2000-11-03'),
+    const TextCellValue('😊'),
+    const TextCellValue('开心'),
+    const TextCellValue('今天很开心'),
+    const TextCellValue('55'),
+    const TextCellValue('2000-11-03'),
   ]);
 
   /// 保存Excel
@@ -585,7 +585,7 @@ Future<String> importDatabaseError(List<List<Data?>> database) async {
       CellIndex.indexByString('B1'),
     );
     sheetObject.cell(CellIndex.indexByString('A1'))
-      ..value = TextCellValue('MoodExample')
+      ..value = const TextCellValue('MoodExample')
       ..cellStyle = CellStyle(
         fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
         fontSize: 10,
@@ -598,12 +598,12 @@ Future<String> importDatabaseError(List<List<Data?>> database) async {
 
     /// 创建字段标题
     sheetObject.cell(CellIndex.indexByString('A2'))
-      ..value = TextCellValue('错误所在行')
+      ..value = const TextCellValue('错误所在行')
       ..cellStyle = cellStyle.copyWith(
         fontFamilyVal: getFontFamily(FontFamily.Apple_Color_Emoji),
       );
     sheetObject.cell(CellIndex.indexByString('B2'))
-      ..value = TextCellValue('错误内容')
+      ..value = const TextCellValue('错误内容')
       ..cellStyle = cellStyle;
 
     /// 添加Excel数据
@@ -857,7 +857,7 @@ Future<String> exportDatabase() async {
     CellIndex.indexByString('F1'),
   );
   sheetObject.cell(CellIndex.indexByString('A1'))
-    ..value = TextCellValue('MoodExample')
+    ..value = const TextCellValue('MoodExample')
     ..cellStyle = CellStyle(
       fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
       fontSize: 10,
@@ -870,24 +870,24 @@ Future<String> exportDatabase() async {
 
   /// 创建字段标题
   sheetObject.cell(CellIndex.indexByString('A2'))
-    ..value = TextCellValue('表情')
+    ..value = const TextCellValue('表情')
     ..cellStyle = cellStyle.copyWith(
       fontFamilyVal: getFontFamily(FontFamily.Apple_Color_Emoji),
     );
   sheetObject.cell(CellIndex.indexByString('B2'))
-    ..value = TextCellValue('心情')
+    ..value = const TextCellValue('心情')
     ..cellStyle = cellStyle;
   sheetObject.cell(CellIndex.indexByString('C2'))
-    ..value = TextCellValue('内容')
+    ..value = const TextCellValue('内容')
     ..cellStyle = cellStyle;
   sheetObject.cell(CellIndex.indexByString('D2'))
-    ..value = TextCellValue('心情程度')
+    ..value = const TextCellValue('心情程度')
     ..cellStyle = cellStyle;
   sheetObject.cell(CellIndex.indexByString('E2'))
-    ..value = TextCellValue('创建时间')
+    ..value = const TextCellValue('创建时间')
     ..cellStyle = cellStyle;
   sheetObject.cell(CellIndex.indexByString('F2'))
-    ..value = TextCellValue('修改时间')
+    ..value = const TextCellValue('修改时间')
     ..cellStyle = cellStyle;
 
   /// 获取所有心情数据并赋值
@@ -897,12 +897,12 @@ Future<String> exportDatabase() async {
   /// 添加Excel数据
   moodAllDataList?.forEach((list) {
     final List<CellValue> dataList = [
-      TextCellValue(list.icon ?? ""),
-      TextCellValue(list.title ?? ""),
-      TextCellValue(list.content ?? ""),
+      TextCellValue(list.icon ?? ''),
+      TextCellValue(list.title ?? ''),
+      TextCellValue(list.content ?? ''),
       TextCellValue(list.score.toString()),
-      TextCellValue(list.createTime ?? ""),
-      TextCellValue(list.updateTime ?? ""),
+      TextCellValue(list.createTime ?? ''),
+      TextCellValue(list.updateTime ?? ''),
     ];
 
     sheetObject.appendRow(dataList);

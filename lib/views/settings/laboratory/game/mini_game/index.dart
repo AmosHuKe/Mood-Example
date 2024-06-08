@@ -130,7 +130,7 @@ class _GameState extends State<Game> {
                   LogicalKeyboardKey.space,
                 ],
               ),
-            )
+            ),
           ],
           map: WorldMapByTiled(
             WorldMapReader.fromAsset('$assetsPath/tiles/mini_game_map.json'),

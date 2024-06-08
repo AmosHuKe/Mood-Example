@@ -58,10 +58,12 @@ class HumanPlayer extends SimplePlayer
   @override
   Future<void> onLoad() {
     /// 设置碰撞系统
-    add(RectangleHitbox(
-      size: Vector2(size.x * 0.2, size.y * 0.15),
-      position: Vector2(tileSize * 1.15, tileSize * 1.5),
-    ));
+    add(
+      RectangleHitbox(
+        size: Vector2(size.x * 0.2, size.y * 0.15),
+        position: Vector2(tileSize * 1.15, tileSize * 1.5),
+      ),
+    );
     return super.onLoad();
   }
 

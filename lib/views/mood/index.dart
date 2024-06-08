@@ -497,7 +497,7 @@ class _CalendarState extends State<Calendar> {
                     ),
                   );
                 }
-                return SizedBox();
+                return const SizedBox();
               },
             ),
           ],

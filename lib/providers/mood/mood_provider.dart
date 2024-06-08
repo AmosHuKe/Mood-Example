@@ -42,7 +42,7 @@ class MoodProvider extends ChangeNotifier {
   }
 
   /// 获取所有心情类别数据列表
-  void loadMoodCategoryAllList() async {
+  Future<void> loadMoodCategoryAllList() async {
     /// 设置心情类别默认值
     final bool setMoodCategoryDefaultresult =
         await MoodProvider.setMoodCategoryDefault();
@@ -53,35 +53,35 @@ class MoodProvider extends ChangeNotifier {
   }
 
   /// 根据日期获取详细数据列表
-  void loadMoodDataList(String datetime) async {
+  Future<void> loadMoodDataList(String datetime) async {
     _moodDataLoading = true;
     notifyListeners();
     moodDataList = await MoodService.getMoodData(datetime);
   }
 
   /// 所有心情详细数据列表
-  void loadMoodDataAllList() async {
+  Future<void> loadMoodDataAllList() async {
     moodAllDataList = await MoodService.getMoodAllData();
   }
 
   /// 获取所有记录心情的日期
-  void loadMoodRecordDateAllList() async {
+  Future<void> loadMoodRecordDateAllList() async {
     moodRecordDate = await MoodService.getMoodRecordDate();
   }
 
   /// 添加心情详细数据
   Future<bool> addMoodData(MoodData moodData) async {
-    return await MoodService.addMoodData(moodData);
+    return MoodService.addMoodData(moodData);
   }
 
   /// 修改心情详细数据
   Future<bool> editMoodData(MoodData moodData) async {
-    return await MoodService.editMood(moodData);
+    return MoodService.editMood(moodData);
   }
 
   /// 删除心情详细数据
   Future<bool> deleteMoodData(MoodData moodData) async {
-    return await MoodService.delMood(moodData);
+    return MoodService.delMood(moodData);
   }
 
   /// 赋值心情数据列表

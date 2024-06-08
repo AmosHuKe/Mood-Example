@@ -56,7 +56,7 @@ class Routes {
   );
   static final Handler _moodContentHandle = Handler(
     handlerFunc: (BuildContext? context, Map<String, dynamic> params) {
-      final MoodData moodData = moodDataFromJson((params['moodData'][0]));
+      final MoodData moodData = moodDataFromJson(params['moodData'][0]);
       return MoodContent(moodData: moodData);
     },
   );

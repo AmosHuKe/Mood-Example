@@ -81,7 +81,7 @@ class _Body3DState extends State<Body3D> {
       controller: controller,
       child: FutureBuilder<List<Face3D>>(
         future: ObjParser().loadFromResources('assets/3d/city/city.obj'),
-        builder: ((context, snapshot) {
+        builder: (context, snapshot) {
           Widget widget;
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasError) {
@@ -100,7 +100,7 @@ class _Body3DState extends State<Body3D> {
             );
           }
           return widget;
-        }),
+        },
       ),
     );
   }
