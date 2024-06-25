@@ -209,7 +209,7 @@ $ flutter test integration_test/app_test.dart
 │   ├── l10n/                                       # l10n 语言包
 │   │   ├── gen/                                    # l10n 语言包生成的文件夹（不用编码，自动生成）
 │   ├── models/                                     # 数据模型
-│   ├── providers/                                  # 业务状态逻辑
+│   ├── providers/                                  # 状态管理
 │   ├── services/                                   # 数据服务
 │   ├── themes/                                     # 主题相关
 │   │   ├── multiple_themes_mode/                   # 多主题配色
@@ -238,9 +238,9 @@ $ flutter test integration_test/app_test.dart
 ├── test/                                           # 测试
 ├── .gitignore                                      # Git 提交仓库忽略文件配置
 ├── .metadata                                       # 当前 workspace 配置记录
-├── analysis_options.yaml                           # Dart 语言代码规范
+├── analysis_options.yaml                           # Dart 代码规范配置
 ├── l10n.yaml                                       # l10n 配置
-├── pubspec.lock                                    # 依赖生成的文件
+├── pubspec.lock                                    # 依赖生成的文件（锁定依赖版本等）
 └── pubspec.yaml                                    # 核心配置文件（项目配置、依赖等）
 ```
 
