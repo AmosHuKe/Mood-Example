@@ -13,8 +13,8 @@
 
 <p align="center">
   <a href="/CHANGELOG.md"><img alt="Mood-Example v1.9.10" src="https://img.shields.io/badge/Mood--Example-v1.9.10-3e4663"/></a> 
-  <a href="https://flutter.dev/"><img alt="Flutter v3.22.2" src="https://img.shields.io/badge/Flutter-v3.22.2-0468D7"/></a> 
-  <a href="https://dart.dev/"><img alt="Dart v3.4.3" src="https://img.shields.io/badge/Dart-v3.4.3-04599C"/></a> 
+  <a href="https://flutter.dev/"><img alt="Flutter v3.22.3" src="https://img.shields.io/badge/Flutter-v3.22.3-0468D7"/></a> 
+  <a href="https://dart.dev/"><img alt="Dart v3.4.4" src="https://img.shields.io/badge/Dart-v3.4.4-04599C"/></a> 
   <a href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/License-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -100,12 +100,12 @@
 
 Windows:   
 ```
-[√] Flutter (Channel stable, 3.22.2, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
+[√] Flutter (Channel stable, 3.22.3, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
 [√] Visual Studio - develop Windows apps (Visual Studio Community 2022 17.9.6)
 [√] Android Studio (version 2023.3)
 [√] IntelliJ IDEA Ultimate Edition (version 2024.1)
-[√] VS Code (version 1.90.0)
+[√] VS Code (version 1.91.1)
 ```  
 
 macOS:   
