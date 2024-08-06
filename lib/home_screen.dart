@@ -4,13 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:remixicon/remixicon.dart';
 
-import 'package:moodexample/themes/app_theme.dart';
-import 'package:moodexample/views/statistic/index.dart' as statistic;
-import 'package:moodexample/l10n/gen/app_localizations.dart';
+import 'themes/app_theme.dart';
+import 'l10n/gen/app_localizations.dart';
+import 'views/statistic/index.dart' as statistic;
 
-import 'package:moodexample/views/home/index.dart';
-import 'package:moodexample/views/mood/index.dart';
-import 'package:moodexample/views/statistic/index.dart';
+import 'views/home/index.dart';
+import 'views/mood/index.dart';
+import 'views/statistic/index.dart';
 
 /// 首页底部Tabbar
 class HomeScreen extends StatefulWidget {

@@ -11,21 +11,21 @@ import 'package:moodexample/models/statistic/statistic_model.dart';
 class StatisticService {
   /// 获取APP累计记录天数
   static Future<int> getAPPUsageDays() async {
-    final list = await DB.db.selectAPPUsageDays();
+    final list = await DB.instance.selectAPPUsageDays();
     print('获取APP使用天数$list');
     return list[0]['dayCount'] ?? 0;
   }
 
   /// 获取APP累计记录条数
   static Future<int> getAPPMoodCount() async {
-    final list = await DB.db.selectAPPMoodCount();
+    final list = await DB.instance.selectAPPMoodCount();
     print('APP累计记录条数$list');
     return list[0]['moodCount'] ?? 0;
   }
 
   /// 获取平均情绪波动
   static Future<int> getMoodScoreAverage() async {
-    final list = await DB.db.selectMoodScoreAverage();
+    final list = await DB.instance.selectMoodScoreAverage();
     print('平均情绪波动$list');
     return list[0]['moodScoreAverage'] ?? 0;
   }
@@ -43,7 +43,7 @@ class StatisticService {
       final String date =
           DateFormat('yyyy-MM-dd').format(nowDate.subtract(Duration(days: i)));
       // 查询
-      final list = await DB.db.selectDateMoodScoreAverage(date);
+      final list = await DB.instance.selectDateMoodScoreAverage(date);
       final int count = list[0]['moodScoreAverage'] ?? 0;
       dataList.add(
         statisticMoodScoreAverageRecentlyDataFromJson(
@@ -69,7 +69,7 @@ class StatisticService {
     final String endTime =
         "${DateFormat("yyyy-MM-dd").format(nowDate)} 23:59:59";
     // 查询
-    final list = await DB.db.selectDateMoodCount(startTime, endTime);
+    final list = await DB.instance.selectDateMoodCount(startTime, endTime);
     for (final value in list) {
       dataList.add(statisticDateMoodCountDataFromJson(json.encode(value)));
     }

@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
-import 'package:moodexample/common/notification.dart';
+import 'common/notification.dart';
 
 import 'application.dart';
 

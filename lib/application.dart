@@ -6,19 +6,19 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
-import 'package:moodexample/themes/app_theme.dart';
-import 'package:moodexample/routes.dart';
-import 'package:moodexample/home_screen.dart';
-import 'package:moodexample/l10n/gen/app_localizations.dart';
 import 'init.dart';
+import 'routes.dart';
+import 'home_screen.dart';
+import 'themes/app_theme.dart';
+import 'l10n/gen/app_localizations.dart';
 
-import 'package:moodexample/widgets/will_pop_scope_route/will_pop_scope_route.dart';
+import 'widgets/will_pop_scope_route/will_pop_scope_route.dart';
 
-import 'package:moodexample/views/menu_screen/menu_screen_left.dart';
+import 'views/menu_screen/menu_screen_left.dart';
 
-import 'package:moodexample/providers/mood/mood_provider.dart';
-import 'package:moodexample/providers/statistic/statistic_provider.dart';
-import 'package:moodexample/providers/application/application_provider.dart';
+import 'providers/mood/mood_provider.dart';
+import 'providers/statistic/statistic_provider.dart';
+import 'providers/application/application_provider.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});
@@ -59,7 +59,6 @@ class Application extends StatelessWidget {
                   .multipleThemesLightMode(),
               darkTheme: AppTheme(getMultipleThemesMode(context))
                   .multipleThemesDarkMode(),
-              // 路由钩子
               onGenerateRoute: router.generator,
               // 国际化
               supportedLocales: S.supportedLocales,
@@ -75,7 +74,6 @@ class Application extends StatelessWidget {
               title: 'Mood',
               navigatorObservers: [FlutterSmartDialog.observer],
               builder: FlutterSmartDialog.init(),
-              // Home
               home: const WillPopScopeRoute(
                 child: Init(
                   child: MenuPage(key: Key('widget_menu_page')),

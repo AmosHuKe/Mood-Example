@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:provider/provider.dart';
 
-import 'package:moodexample/themes/app_theme.dart';
-import 'package:moodexample/common/notification.dart';
-import 'package:moodexample/l10n/gen/app_localizations.dart';
-import 'package:moodexample/db/db.dart';
+import 'themes/app_theme.dart';
+import 'common/notification.dart';
+import 'l10n/gen/app_localizations.dart';
+import 'db/db.dart';
 
-import 'package:moodexample/widgets/lock_screen/lock_screen.dart';
+import 'widgets/lock_screen/lock_screen.dart';
 
-import 'package:moodexample/providers/application/application_provider.dart';
-import 'package:moodexample/providers/mood/mood_provider.dart';
+import 'providers/application/application_provider.dart';
+import 'providers/mood/mood_provider.dart';
 
 class Init extends StatefulWidget {
   const Init({super.key, required this.child});
@@ -87,7 +87,7 @@ class _InitState extends State<Init> {
         context.read<ApplicationProvider>();
 
     // 初始化数据库
-    await DB.db.database;
+    await DB.instance.database;
     // 锁屏
     runLockScreen();
     // 获取所有心情类别

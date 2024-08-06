@@ -9,7 +9,7 @@ class PreferencesDB {
   PreferencesDB._();
   static final PreferencesDB instance = PreferencesDB._();
   SharedPreferencesAsync? _instance;
-  SharedPreferencesAsync get db => _instance ??= SharedPreferencesAsync();
+  SharedPreferencesAsync get sps => _instance ??= SharedPreferencesAsync();
 
   /*** APP相关 ***/
 
@@ -47,45 +47,45 @@ class PreferencesDB {
 
   /// 设置-是否填充完成【心情类别】表默认值
   Future<void> setInitMoodCategoryDefaultType(bool value) async {
-    await db.setBool(initMoodCategoryDefaultType, value);
+    await sps.setBool(initMoodCategoryDefaultType, value);
   }
 
   /// 获取-是否填充完成【心情类别】表默认值
   Future<bool> getInitMoodCategoryDefaultType() async {
-    return await db.getBool(initMoodCategoryDefaultType) ?? false;
+    return await sps.getBool(initMoodCategoryDefaultType) ?? false;
   }
 
   /// 设置-主题外观模式
   Future<void> setAppThemeDarkMode(ThemeMode themeMode) async {
-    await db.setString(appThemeDarkMode, themeMode.name);
+    await sps.setString(appThemeDarkMode, themeMode.name);
   }
 
   /// 获取-主题外观模式
   Future<ThemeMode> getAppThemeDarkMode() async {
     final String themeDarkMode =
-        await db.getString(appThemeDarkMode) ?? 'system';
+        await sps.getString(appThemeDarkMode) ?? 'system';
     return darkThemeMode(themeDarkMode);
   }
 
   /// 设置-多主题模式
   Future<void> setMultipleThemesMode(String value) async {
-    await db.setString(appMultipleThemesMode, value);
+    await sps.setString(appMultipleThemesMode, value);
   }
 
   /// 获取-多主题模式
   Future<String> getMultipleThemesMode() async {
-    return await db.getString(appMultipleThemesMode) ?? 'default';
+    return await sps.getString(appMultipleThemesMode) ?? 'default';
   }
 
   /// 设置-APP地区语言
   Future<void> setAppLocale(Locale locale) async {
     print(locale.toLanguageTag());
-    await db.setString(appLocale, locale.toLanguageTag());
+    await sps.setString(appLocale, locale.toLanguageTag());
   }
 
   /// 获取-APP地区语言
   Future<Locale> getAppLocale() async {
-    final String getAppLocale = await db.getString(appLocale) ?? 'zh';
+    final String getAppLocale = await sps.getString(appLocale) ?? 'zh';
     final appLocaleList = getAppLocale.split('-');
     return Locale(
       appLocaleList[0],
@@ -95,31 +95,31 @@ class PreferencesDB {
 
   /// 设置-APP地区语言是否跟随系统
   Future<void> setAppIsLocaleSystem(bool isLocaleSystem) async {
-    await db.setBool(appIsLocaleSystem, isLocaleSystem);
+    await sps.setBool(appIsLocaleSystem, isLocaleSystem);
   }
 
   /// 获取-APP地区语言是否跟随系统
   Future<bool> getAppIsLocaleSystem() async {
-    return await db.getBool(appIsLocaleSystem) ?? true;
+    return await sps.getBool(appIsLocaleSystem) ?? true;
   }
 
   /// 设置-安全-密码
   Future<void> setAppKeyPassword(String keyPassword) async {
-    await db.setString(appKeyPassword, keyPassword);
+    await sps.setString(appKeyPassword, keyPassword);
   }
 
   /// 获取-安全-密码
   Future<String> getAppKeyPassword() async {
-    return await db.getString(appKeyPassword) ?? '';
+    return await sps.getString(appKeyPassword) ?? '';
   }
 
   /// 设置-安全-生物特征识别是否开启
   Future<void> setAppKeyBiometric(bool keyBiometric) async {
-    await db.setBool(appKeyBiometric, keyBiometric);
+    await sps.setBool(appKeyBiometric, keyBiometric);
   }
 
   /// 获取-安全-生物特征识别是否开启
   Future<bool> getAppKeyBiometric() async {
-    return await db.getBool(appKeyBiometric) ?? false;
+    return await sps.getBool(appKeyBiometric) ?? false;
   }
 }
