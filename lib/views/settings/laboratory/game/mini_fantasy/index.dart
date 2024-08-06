@@ -73,7 +73,9 @@ class Game extends StatelessWidget {
           showCollisionArea: false,
           playerControllers: [
             Joystick(
-              directional: JoystickDirectional(),
+              directional: JoystickDirectional(
+                margin: const EdgeInsets.all(65),
+              ),
               actions: [
                 JoystickAction(
                   actionId: 1,

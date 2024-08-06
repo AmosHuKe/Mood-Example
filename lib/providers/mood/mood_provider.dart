@@ -29,14 +29,14 @@ class MoodProvider extends ChangeNotifier {
   /// 设置心情类别默认值
   static Future<bool> setMoodCategoryDefault() async {
     final bool initMoodCategoryDefaultType =
-        await PreferencesDB.db.getInitMoodCategoryDefaultType();
+        await PreferencesDB.instance.getInitMoodCategoryDefaultType();
     print('心情类别默认值初始化:$initMoodCategoryDefaultType');
     if (!initMoodCategoryDefaultType) {
       print('开始心情类别默认值初始化');
       MoodService.setCategoryDefault();
 
       /// 已赋值默认值标记
-      await PreferencesDB.db.setInitMoodCategoryDefaultType(true);
+      await PreferencesDB.instance.setInitMoodCategoryDefaultType(true);
     }
     return true;
   }

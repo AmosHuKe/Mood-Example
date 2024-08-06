@@ -95,10 +95,18 @@ class Boss extends SimpleEnemy
     super.onDie();
   }
 
+  /// 处理攻击
+  @override
+  bool handleAttack(AttackOriginEnum attacker, double damage, identify) {
+    return super.handleAttack(attacker, damage, identify);
+  }
+
   /// 受伤触发
   @override
-  bool receiveDamage(AttackOriginEnum attacker, double damage, identify) {
+  void onReceiveDamage(AttackOriginEnum attacker, double damage, identify) {
     if (!isDead) {
+      super.onReceiveDamage(attacker, damage, identify);
+
       /// 伤害显示
       showDamage(
         damage,
@@ -106,7 +114,6 @@ class Boss extends SimpleEnemy
         config: TextStyle(color: Colors.amberAccent, fontSize: tileSize / 2),
       );
     }
-    return super.receiveDamage(attacker, damage, identify);
   }
 
   /// 攻击

@@ -118,10 +118,19 @@ class HumanPlayer extends SimplePlayer
     super.onJoystickChangeDirectional(event);
   }
 
+  /// 处理攻击
+  @override
+  bool handleAttack(AttackOriginEnum attacker, double damage, identify) {
+    return super.handleAttack(attacker, damage, identify);
+  }
+
   /// 受伤触发
   @override
-  bool receiveDamage(AttackOriginEnum attacker, double damage, dynamic from) {
+  void onReceiveDamage(AttackOriginEnum attacker, double damage, dynamic from) {
     if (!isDead) {
+      super.onReceiveDamage(attacker, damage, from);
+
+      /// 伤害显示
       showDamage(
         damage,
         initVelocityVertical: -2,
@@ -138,7 +147,6 @@ class HumanPlayer extends SimplePlayer
       //   gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.7));
       // });
     }
-    return super.receiveDamage(attacker, damage, from);
   }
 
   @override

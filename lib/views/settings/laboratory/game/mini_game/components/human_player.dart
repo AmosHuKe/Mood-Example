@@ -190,11 +190,34 @@ class HumanPlayer extends SimplePlayer
     super.onJoystickChangeDirectional(event);
   }
 
+  /// 处理攻击
+  @override
+  bool handleAttack(AttackOriginEnum attacker, double damage, identify) {
+    return super.handleAttack(attacker, damage, identify);
+  }
+
   /// 受伤触发
   @override
-  bool receiveDamage(AttackOriginEnum attacker, double damage, dynamic from) {
-    handleReceiveDamage(damage);
-    return super.receiveDamage(attacker, damage, from);
+  void onReceiveDamage(AttackOriginEnum attacker, double damage, dynamic from) {
+    if (!isDead) {
+      super.onReceiveDamage(attacker, damage, from);
+
+      /// 伤害显示
+      showDamage(
+        damage,
+        initVelocityVertical: -2,
+        config: TextStyle(color: Colors.white, fontSize: tileSize / 2),
+      );
+      // lockMove = true;
+      /// 屏幕变红
+      // gameRef.lighting
+      //     ?.animateToColor(const Color.fromARGB(255, 26, 0, 0).withOpacity(0.7));
+      // idle();
+      // addDamageAnimation(() {
+      //   lockMove = false;
+      //   gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.7));
+      // });
+    }
   }
 
   /// 死亡
@@ -202,24 +225,6 @@ class HumanPlayer extends SimplePlayer
   void onDie() {
     handleDie();
     super.onDie();
-  }
-
-  /// 受伤触发
-  void handleReceiveDamage(double damage) {
-    showDamage(
-      damage,
-      initVelocityVertical: -2,
-      config: TextStyle(color: Colors.white, fontSize: tileSize / 2),
-    );
-    // lockMove = true;
-    /// 屏幕变红
-    // gameRef.lighting
-    //     ?.animateToColor(const Color.fromARGB(255, 26, 0, 0).withOpacity(0.7));
-    // idle();
-    // addDamageAnimation(() {
-    //   lockMove = false;
-    //   gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.7));
-    // });
   }
 
   /// 第一次游玩对话
