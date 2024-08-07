@@ -25,7 +25,7 @@ class _WillPopScopeRouteState extends State<WillPopScopeRoute> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (bool didPop) {
+      onPopInvokedWithResult: (bool didPop, _) {
         if (didPop) return;
         SmartDialog.showToast(S.of(context).widgets_will_pop_scope_route_toast);
         if (lastPressedAt == null ||

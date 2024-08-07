@@ -1,10 +1,10 @@
 name: moodexample
 description: 管理自己的情绪，记录当下所见所想。
 publish_to: 'none'
-version: 1.9.10+459
+version: 1.9.10+460
 
 environment:
-  sdk: ">=3.4.4 <4.0.0"
+  sdk: ^3.5.0
 
 dependencies:
   flutter:
@@ -27,7 +27,7 @@ dependencies:
   fl_chart: ^0.68.0 # 图表
   excel: ^4.0.3 # Excel
   share_plus: ^10.0.0 # 分享
-  file_picker: ^8.0.6 # 文件选择
+  file_picker: ^8.0.7 # 文件选择
   webview_flutter: ^4.8.0 # WebView
   ditredi: ^2.0.2 # 3D 数据集显示
   vector_math: ^2.1.4
@@ -35,9 +35,8 @@ dependencies:
   flutter_timezone: ^2.1.0 # 时区
   animations: ^2.0.11 # 动画
   bonfire: 3.9.8 # 游戏引擎相关
-  flame: 1.17.0 # 游戏引擎相关
   flutter_screen_lock: ^9.1.0 # 密码锁
-  local_auth: ^2.2.0 # 本地认证
+  local_auth: ^2.3.0 # 本地认证
   local_auth_android: ^1.0.43 # 本地认证
   local_auth_darwin: ^1.4.0 # 本地认证
   flutter_tilt: ^3.0.3 # 倾斜视差
@@ -45,6 +44,8 @@ dependencies:
 
 # https://dart.dev/tools/pub/dependencies#dependency-overrides
 dependency_overrides:
+  flame: 1.18.0 # 游戏引擎相关
+  archive: ^3.6.1
 
 dev_dependencies:
   flutter_test:

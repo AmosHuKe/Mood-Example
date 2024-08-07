@@ -15,7 +15,7 @@ import io.dcloud.feature.sdk.DCSDKInitConfig
 import io.dcloud.feature.sdk.MenuActionSheetItem
 import io.flutter.Log
 
-class MainActivity : FlutterFragmentActivity() {
+class MainActivity: FlutterActivity() {
     /* ======================================================= */
     /* Override/Implements Methods                             */
     /* ======================================================= */

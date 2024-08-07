@@ -129,7 +129,7 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
               MaterialPageRoute(
                 builder: (context) => PopScope(
                   canPop: false,
-                  onPopInvoked: (bool didPop) async {
+                  onPopInvokedWithResult: (bool didPop, _) async {
                     if (didPop) return;
                     // 竖屏
                     await Flame.device.setPortrait();

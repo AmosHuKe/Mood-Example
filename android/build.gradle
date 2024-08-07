@@ -1,7 +1,7 @@
 allprojects {
     repositories {
         // google()
-        // jcenter()
+        // mavenCentral()
         maven{ url "https://maven.aliyun.com/repository/public" }
         maven{ url "https://maven.aliyun.com/repository/google" }
     }

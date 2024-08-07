@@ -137,7 +137,7 @@ class _MoodContentState extends State<MoodContent> {
       body: SafeArea(
         child: PopScope(
           canPop: false,
-          onPopInvoked: (bool didPop) {
+          onPopInvokedWithResult: (bool didPop, _) {
             if (didPop) return;
             onClose(context);
           },
