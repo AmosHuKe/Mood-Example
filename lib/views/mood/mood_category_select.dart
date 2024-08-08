@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -85,7 +86,7 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
             borderRadius: BorderRadius.only(bottomRight: Radius.circular(18.w)),
           ),
           child: Icon(Remix.arrow_left_line, size: 24.sp),
-          onTap: () => Navigator.of(context).pop(),
+          onTap: () => context.pop(),
         ),
       ),
       body: const SafeArea(
@@ -238,12 +239,10 @@ class MoodChoiceCard extends StatelessWidget {
               moodData.createTime = _nowDateTime;
               moodData.updateTime = _nowDateTime;
               // 跳转输入内容页
-              Navigator.popAndPushNamed(
-                context,
-                Routes.transformParams(
-                  router: Routes.moodContent,
-                  params: [moodDataToJson(moodData)],
-                ),
+              context.pop();
+              GoRouter.of(context).pushNamed(
+                Routes.moodContent,
+                pathParameters: {'moodData': moodDataToJson(moodData)},
               );
             case MoodCategorySelectType.edit:
               // 关闭当前页并返回数据
@@ -251,7 +250,7 @@ class MoodChoiceCard extends StatelessWidget {
                 icon: icon,
                 title: title,
               );
-              Navigator.pop(context, moodCategoryDataToJson(moodCategoryData));
+              context.pop(moodCategoryDataToJson(moodCategoryData));
           }
         },
       ),

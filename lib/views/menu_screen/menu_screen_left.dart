@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
 import 'package:moodexample/routes.dart';
@@ -220,7 +221,7 @@ class Menu extends StatelessWidget {
           ),
           onTap: () {
             print('实验室');
-            Navigator.pushNamed(context, Routes.settingLaboratory);
+            GoRouter.of(context).pushNamed(Routes.settingLaboratory);
           },
         ),
         MenuList(
@@ -236,15 +237,12 @@ class Menu extends StatelessWidget {
           ),
           onTap: () {
             print('关于');
-            Navigator.pushNamed(
-              context,
-              Routes.transformParams(
-                router: Routes.webViewPage,
-                params: [
-                  ValueConvert('https://github.com/AmosHuKe/Mood-Example')
-                      .encode(),
-                ],
-              ),
+            final String url =
+                ValueConvert('https://github.com/AmosHuKe/Mood-Example')
+                    .encode();
+            GoRouter.of(context).pushNamed(
+              Routes.webViewPage,
+              pathParameters: {'url': url},
             );
           },
         ),

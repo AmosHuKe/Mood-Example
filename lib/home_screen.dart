@@ -2,44 +2,35 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
 import 'themes/app_theme.dart';
 import 'l10n/gen/app_localizations.dart';
 import 'views/statistic/index.dart' as statistic;
 
-import 'views/home/index.dart';
-import 'views/mood/index.dart';
-import 'views/statistic/index.dart';
+import 'views/menu_screen/menu_screen_left.dart';
 
 /// 首页底部Tabbar
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+    required this.navigationShell,
+  });
+
+  /// 当前子路由状态
+  final StatefulNavigationShell navigationShell;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  /// 当前页
-  late int _currentPage = 0;
-
-  /// 页面
-  final List<Widget> _pages = [
-    const HomePage(),
-    const MoodPage(),
-    const StatisticPage(),
-  ];
+  /// 当前页下标
+  late int _currentIndex;
 
   /// Tab 控制
-  late final TabController _pageController = TabController(
-    initialIndex: _currentPage,
-    length: _pages.length,
-    vsync: this,
-  );
-
-  /// PageView 控制
-  final PageController _pageViewController = PageController();
+  late TabController _tabController;
 
   /// 进步按钮动画
   late AnimationController _stepButtonController;
@@ -61,21 +52,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
     _stepButtonAnimation =
         Tween(begin: 0.0, end: 1.0).animate(_stepButtonController);
-    _stepButtonAnimation.addListener(() {
-      setState(() {});
-    });
   }
 
   @override
   void dispose() {
+    /// Tab控制
+    _tabController.dispose();
+
     /// 进步按钮Icon动画
     _stepButtonController.dispose();
-
-    /// Tab控制
-    _pageController.dispose();
-
-    /// PageView控制
-    _pageViewController.dispose();
 
     super.dispose();
   }
@@ -87,12 +72,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     /// Tab icon大小
     final double _tabIconSize = 20.sp;
 
+    /// 当前页下标
+    _currentIndex = widget.navigationShell.currentIndex;
+
+    /// Tab 控制
+    _tabController = TabController(
+      initialIndex: _currentIndex,
+      length: widget.navigationShell.route.branches.length,
+      vsync: this,
+    );
+
     return Scaffold(
-      body: PageView(
-        controller: _pageViewController,
-        physics: const NeverScrollableScrollPhysics(),
-        children: _pages,
-      ),
+      body: widget.navigationShell,
       bottomNavigationBar: DecoratedBox(
         decoration: BoxDecoration(
           color:
@@ -109,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               TabBar(
                 enableFeedback: true,
                 padding: EdgeInsets.only(left: 40.w),
-                controller: _pageController,
+                controller: _tabController,
                 indicatorColor: Colors.transparent,
                 labelStyle: TextStyle(
                   height: 0.5.h,
@@ -147,16 +138,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     ),
                   ),
                 ],
-                onTap: (value) {
-                  switch (value) {
+                onTap: (index) {
+                  switch (index) {
                     case 2:
                       // 统计菜单触发
                       statistic.init(context);
                   }
-                  _pageViewController.jumpToPage(value);
-                  setState(() {
-                    _currentPage = value;
-                  });
+                  widget.navigationShell.goBranch(index);
                 },
               ),
 
@@ -213,6 +201,70 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// 外层抽屉菜单
+class MenuPage extends StatelessWidget {
+  const MenuPage({
+    super.key,
+    required this.navigationShell,
+  });
+
+  /// 当前子路由状态
+  final StatefulNavigationShell navigationShell;
+
+  @override
+  Widget build(BuildContext context) {
+    final _drawerController = ZoomDrawerController();
+
+    return ZoomDrawer(
+      controller: _drawerController,
+      menuScreen: const MenuScreenLeft(),
+      mainScreen: MainScreenBody(navigationShell: navigationShell),
+      borderRadius: 36.w,
+      showShadow: true,
+      disableDragGesture: false,
+      mainScreenTapClose: true,
+      openCurve: Curves.easeOut,
+      closeCurve: Curves.fastOutSlowIn,
+      drawerShadowsBackgroundColor:
+          isDarkMode(context) ? Colors.black26 : Colors.white38,
+      menuBackgroundColor: isDarkMode(context)
+          ? Theme.of(context).primaryColor.withAlpha(155)
+          : Theme.of(context).primaryColor,
+      angle: 0,
+      mainScreenScale: 0.3,
+      slideWidth: MediaQuery.of(context).size.width * 0.70,
+      style: DrawerStyle.defaultStyle,
+    );
+  }
+}
+
+/// 主屏幕逻辑
+class MainScreenBody extends StatelessWidget {
+  const MainScreenBody({
+    super.key,
+    required this.navigationShell,
+  });
+
+  /// 当前子路由状态
+  final StatefulNavigationShell navigationShell;
+
+  @override
+  Widget build(BuildContext context) {
+    /// 监听状态进行改变
+    return ValueListenableBuilder<DrawerState>(
+      valueListenable: ZoomDrawer.of(context)!.stateNotifier,
+      builder: (_, state, child) {
+        print('外层菜单状态：$state');
+        return AbsorbPointer(
+          absorbing: state != DrawerState.closed,
+          child: child,
+        );
+      },
+      child: HomeScreen(navigationShell: navigationShell),
     );
   }
 }

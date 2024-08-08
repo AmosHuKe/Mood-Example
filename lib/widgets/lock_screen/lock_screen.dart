@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -54,7 +55,7 @@ Future<void> lockScreen(BuildContext context) async {
           if (localAuthBiometric) {
             applicationProvider.keyPasswordScreenOpen = false;
             if (context.mounted) {
-              Navigator.pop(context);
+              context.pop();
             }
           }
         },
@@ -66,14 +67,14 @@ Future<void> lockScreen(BuildContext context) async {
             if (localAuthBiometric) {
               applicationProvider.keyPasswordScreenOpen = false;
               if (context.mounted) {
-                Navigator.pop(context);
+                context.pop();
               }
             }
           }
         },
         onUnlocked: () {
           applicationProvider.keyPasswordScreenOpen = false;
-          Navigator.pop(context);
+          context.pop();
         },
       );
     }
@@ -95,7 +96,7 @@ Future<void> createlockScreen(
     confirmTitle: Text(S.of(context).app_setting_security_lock_title_2),
     onConfirmed: (password) {
       onConfirmed(password);
-      Navigator.of(context).pop();
+      context.pop();
     },
     cancelButton: Text(S.of(context).app_setting_security_lock_cancel),
     deleteButton: const Icon(

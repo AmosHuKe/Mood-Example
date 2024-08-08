@@ -24,16 +24,9 @@ class StatisticPage extends StatefulWidget {
   State<StatisticPage> createState() => _StatisticPageState();
 }
 
-class _StatisticPageState extends State<StatisticPage>
-    with AutomaticKeepAliveClientMixin {
-  /// AutomaticKeepAliveClientMixin
-  @override
-  bool get wantKeepAlive => true;
-
+class _StatisticPageState extends State<StatisticPage> {
   @override
   Widget build(BuildContext context) {
-    /// AutomaticKeepAliveClientMixin
-    super.build(context);
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: const SafeArea(

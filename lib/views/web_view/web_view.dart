@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -93,7 +94,7 @@ class _WebViewPageState extends State<WebViewPage> {
             size: 24.sp,
           ),
           onTap: () {
-            Navigator.of(context).pop();
+            context.pop();
           },
         ),
         actions: [

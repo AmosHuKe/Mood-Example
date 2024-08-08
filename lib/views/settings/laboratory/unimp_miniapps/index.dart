@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
@@ -41,7 +42,7 @@ class _UniMPMiniappsPageState extends State<UniMPMiniappsPage> {
               size: 24.sp,
             ),
             onTap: () {
-              Navigator.of(context).pop();
+              context.pop();
             },
           ),
         ),

@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
+import 'package:moodexample/routes.dart';
 import 'package:moodexample/l10n/gen/app_localizations.dart';
 
 import 'package:moodexample/widgets/animation/animation.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
-
-import 'package:moodexample/views/settings/laboratory/3d/index.dart';
-import 'package:moodexample/views/settings/laboratory/unimp_miniapps/index.dart';
-import 'package:moodexample/views/settings/laboratory/game/index.dart';
-import 'package:moodexample/views/settings/laboratory/ffi/index.dart';
 
 class LaboratoryPage extends StatelessWidget {
   const LaboratoryPage({super.key});
@@ -37,7 +34,7 @@ class LaboratoryPage extends StatelessWidget {
             color: Colors.white,
           ),
           onTap: () {
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
@@ -93,12 +90,7 @@ class LaboratoryBody extends StatelessWidget {
           title: 'uniapp 小程序',
           subtitle: '集成 UniMPSDK 可在 APP 内打开 uniapp 小程序。',
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const UniMPMiniappsPage(),
-              ),
-            );
+            GoRouter.of(context).pushNamed(Routes.laboratoryUniMPMiniapps);
           },
         ),
         ListCard(
@@ -111,12 +103,7 @@ class LaboratoryBody extends StatelessWidget {
           subtitle:
               'obj 格式，CPU 渲染性能较低，3D 来源 https://github.com/pissang/little-big-city',
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Page3D(),
-              ),
-            );
+            GoRouter.of(context).pushNamed(Routes.laboratoryPage3D);
           },
         ),
         ListCard(
@@ -128,12 +115,7 @@ class LaboratoryBody extends StatelessWidget {
           title: '游戏合集',
           subtitle: '基于 Flame、Bonfire 的 2D 游戏。',
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const GamePage(),
-              ),
-            );
+            GoRouter.of(context).pushNamed(Routes.laboratoryGame);
           },
         ),
         ListCard(
@@ -145,12 +127,7 @@ class LaboratoryBody extends StatelessWidget {
           title: 'FFI 异步调用 C/C++',
           subtitle: '通过 FFI 异步调用 C/C++ 并监听',
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const FFIPage(),
-              ),
-            );
+            GoRouter.of(context).pushNamed(Routes.laboratoryFFI);
           },
         ),
         ListCard(

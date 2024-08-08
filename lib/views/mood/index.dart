@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -33,12 +34,7 @@ class MoodPage extends StatefulWidget {
   State<MoodPage> createState() => _MoodPageState();
 }
 
-class _MoodPageState extends State<MoodPage>
-    with AutomaticKeepAliveClientMixin {
-  /// AutomaticKeepAliveClientMixin
-  @override
-  bool get wantKeepAlive => true;
-
+class _MoodPageState extends State<MoodPage> {
   @override
   void initState() {
     super.initState();
@@ -50,8 +46,6 @@ class _MoodPageState extends State<MoodPage>
 
   @override
   Widget build(BuildContext context) {
-    /// AutomaticKeepAliveClientMixin
-    super.build(context);
     return Scaffold(
       floatingActionButton: AnimatedPress(
         child: OpenContainer(
@@ -628,7 +622,7 @@ class MoodCard extends StatelessWidget {
                           child: Text(
                             S.of(context).mood_data_delete_button_cancel,
                           ),
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () => context.pop(),
                         ),
                         CupertinoDialogAction(
                           isDestructiveAction: true,
@@ -640,7 +634,7 @@ class MoodCard extends StatelessWidget {
                             if (result) {
                               // 重新初始化
                               init(context);
-                              Navigator.pop(context);
+                              context.pop();
                             }
                           },
                           child: Text(

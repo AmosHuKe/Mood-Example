@@ -6,8 +6,8 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:moodexample/l10n/gen/app_localizations.dart';
 
 /// 导航返回拦截
-class WillPopScopeRoute extends StatefulWidget {
-  const WillPopScopeRoute({
+class PopScopeRoute extends StatefulWidget {
+  const PopScopeRoute({
     super.key,
     required this.child,
   });
@@ -15,10 +15,10 @@ class WillPopScopeRoute extends StatefulWidget {
   final Widget child;
 
   @override
-  State<WillPopScopeRoute> createState() => _WillPopScopeRouteState();
+  State<PopScopeRoute> createState() => _PopScopeRouteState();
 }
 
-class _WillPopScopeRouteState extends State<WillPopScopeRoute> {
+class _PopScopeRouteState extends State<PopScopeRoute> {
   DateTime? lastPressedAt; //上次点击时间
 
   @override

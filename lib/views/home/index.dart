@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tilt/flutter_tilt.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:animations/animations.dart';
@@ -30,15 +31,9 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with AutomaticKeepAliveClientMixin {
-  /// AutomaticKeepAliveClientMixin
-  @override
-  bool get wantKeepAlive => true;
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    /// AutomaticKeepAliveClientMixin
-    super.build(context);
     return const Scaffold(
       body: SafeArea(
         child: HomeBody(key: Key('widget_home_body')),
@@ -386,10 +381,7 @@ class NoticeCard extends StatelessWidget {
                     ),
                     onPressed: () => {
                       /// 导航到新路由
-                      Navigator.pushNamed(
-                        context,
-                        Routes.onboarding,
-                      ).then((result) {}),
+                      GoRouter.of(context).pushNamed(Routes.onboarding),
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

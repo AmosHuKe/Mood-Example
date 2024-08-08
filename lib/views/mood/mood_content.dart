@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -128,7 +129,7 @@ class _MoodContentState extends State<MoodContent> {
                 if (!mounted) return;
 
                 /// 返回
-                Navigator.of(context).pop();
+                context.pop();
               }
             },
           ),
@@ -161,14 +162,14 @@ class _MoodContentState extends State<MoodContent> {
             CupertinoDialogAction(
               child: Text(S.of(context).mood_content_close_button_cancel),
               onPressed: () {
-                Navigator.pop(context);
+                context.pop();
               },
             ),
             CupertinoDialogAction(
               child: Text(S.of(context).mood_content_close_button_confirm),
               onPressed: () {
-                Navigator.pop(context);
-                Navigator.pop(context);
+                context.pop();
+                context.pop();
               },
             ),
           ],
@@ -220,12 +221,9 @@ class _MoodContentBodyState extends State<MoodContentBody> {
                 ),
                 onTap: () {
                   /// 切换心情
-                  Navigator.pushNamed(
-                    context,
-                    Routes.transformParams(
-                      router: Routes.moodCategorySelect,
-                      params: [MoodCategorySelectType.edit.type],
-                    ),
+                  GoRouter.of(context).pushNamed(
+                    Routes.moodCategorySelect,
+                    pathParameters: {'type': MoodCategorySelectType.edit.type},
                   ).then((result) {
                     if (result == null) return;
                     final MoodCategoryData moodCategoryData =

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:ditredi/ditredi.dart';
+import 'package:go_router/go_router.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:remixicon/remixicon.dart';
@@ -39,7 +40,7 @@ class _Page3DState extends State<Page3D> {
               ),
             ),
             child: Icon(Remix.arrow_left_line, size: 24.sp),
-            onTap: () => Navigator.of(context).pop(),
+            onTap: () => context.pop(),
           ),
         ),
         body: const SafeArea(child: Body3D()),

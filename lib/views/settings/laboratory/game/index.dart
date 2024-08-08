@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:bonfire/bonfire.dart';
 
+import 'package:moodexample/routes.dart';
 import 'package:moodexample/themes/app_theme.dart';
 
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
-import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/index.dart';
 import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/sprite_sheet/sprite_sheet_orc.dart'
     as mini_fantasy;
 import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/sprite_sheet/sprite_sheet_player.dart'
     as mini_fantasy;
-import 'package:moodexample/views/settings/laboratory/game/mini_game/index.dart';
 import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_sheet/sprite_sheet_orc.dart'
     as mini_game;
 import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_sheet/sprite_sheet_player.dart'
@@ -52,7 +52,7 @@ class _GamePageState extends State<GamePage> {
               size: 24.sp,
             ),
             onTap: () {
-              Navigator.of(context).pop();
+              context.pop();
             },
           ),
         ),
@@ -99,12 +99,7 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
             await mini_fantasy.SpriteSheetOrc.load();
             await mini_fantasy.SpriteSheetPlayer.load();
             if (!mounted) return;
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const MiniFantasyPage(),
-              ),
-            );
+            GoRouter.of(context).pushNamed(Routes.laboratoryGameMiniFantasy);
           },
         ),
         ListCard(
@@ -124,20 +119,7 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
             await mini_game.SpriteSheetPlayer.load();
             await mini_game.SpriteSheetOrc.load();
             if (!mounted) return;
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PopScope(
-                  canPop: false,
-                  onPopInvokedWithResult: (bool didPop, _) async {
-                    if (didPop) return;
-                    // 竖屏
-                    await Flame.device.setPortrait();
-                  },
-                  child: const MiniGamePage(),
-                ),
-              ),
-            );
+            GoRouter.of(context).pushNamed(Routes.laboratoryGameMiniGame);
           },
         ),
       ],

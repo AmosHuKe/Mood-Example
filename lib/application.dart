@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
-import 'package:fluro/fluro.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
-import 'init.dart';
 import 'routes.dart';
-import 'home_screen.dart';
 import 'themes/app_theme.dart';
 import 'l10n/gen/app_localizations.dart';
-
-import 'widgets/will_pop_scope_route/will_pop_scope_route.dart';
-
-import 'views/menu_screen/menu_screen_left.dart';
 
 import 'providers/mood/mood_provider.dart';
 import 'providers/statistic/statistic_provider.dart';
@@ -25,16 +17,12 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// 路由
-    final router = FluroRouter();
-    Routes.configureRoutes(router);
-
     return MultiProvider(
       /// 状态管理
       providers: [
+        ChangeNotifierProvider(create: (_) => ApplicationProvider()),
         ChangeNotifierProvider(create: (_) => MoodProvider()),
         ChangeNotifierProvider(create: (_) => StatisticProvider()),
-        ChangeNotifierProvider(create: (_) => ApplicationProvider()),
       ],
       builder: (context, child) {
         final watchApplicationProvider = context.watch<ApplicationProvider>();
@@ -44,7 +32,7 @@ class Application extends StatelessWidget {
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (context, child) {
-            return MaterialApp(
+            return MaterialApp.router(
               // 网格
               debugShowMaterialGrid: false,
               // Debug标志
@@ -59,7 +47,6 @@ class Application extends StatelessWidget {
                   .multipleThemesLightMode(),
               darkTheme: AppTheme(getMultipleThemesMode(context))
                   .multipleThemesDarkMode(),
-              onGenerateRoute: router.generator,
               // 国际化
               supportedLocales: S.supportedLocales,
               localizationsDelegates: S.localizationsDelegates,
@@ -72,69 +59,12 @@ class Application extends StatelessWidget {
                 return null;
               },
               title: 'Mood',
-              navigatorObservers: [FlutterSmartDialog.observer],
               builder: FlutterSmartDialog.init(),
-              home: const WillPopScopeRoute(
-                child: Init(
-                  child: MenuPage(key: Key('widget_menu_page')),
-                ),
-              ),
+              routerConfig: Routes.config,
             );
           },
         );
       },
-    );
-  }
-}
-
-/// 外层抽屉菜单
-class MenuPage extends StatelessWidget {
-  const MenuPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final _drawerController = ZoomDrawerController();
-
-    return ZoomDrawer(
-      controller: _drawerController,
-      menuScreen: const MenuScreenLeft(),
-      mainScreen: const MainScreenBody(),
-      borderRadius: 36.w,
-      showShadow: true,
-      disableDragGesture: false,
-      mainScreenTapClose: true,
-      openCurve: Curves.easeOut,
-      closeCurve: Curves.fastOutSlowIn,
-      drawerShadowsBackgroundColor:
-          isDarkMode(context) ? Colors.black26 : Colors.white38,
-      menuBackgroundColor: isDarkMode(context)
-          ? Theme.of(context).primaryColor.withAlpha(155)
-          : Theme.of(context).primaryColor,
-      angle: 0,
-      mainScreenScale: 0.3,
-      slideWidth: MediaQuery.of(context).size.width * 0.70,
-      style: DrawerStyle.defaultStyle,
-    );
-  }
-}
-
-/// 主屏幕逻辑
-class MainScreenBody extends StatelessWidget {
-  const MainScreenBody({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    /// 监听状态进行改变
-    return ValueListenableBuilder<DrawerState>(
-      valueListenable: ZoomDrawer.of(context)!.stateNotifier,
-      builder: (_, state, child) {
-        print('外层菜单状态：$state');
-        return AbsorbPointer(
-          absorbing: state != DrawerState.closed,
-          child: child,
-        );
-      },
-      child: const HomeScreen(),
     );
   }
 }

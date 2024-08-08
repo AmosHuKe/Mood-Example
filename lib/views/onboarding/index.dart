@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:card_swiper/card_swiper.dart';
 
@@ -215,7 +216,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
                 ),
                 onPressed: () {
                   if (swiperIndex == _swiperList.length - 1) {
-                    Navigator.of(context).pop();
+                    context.pop();
                   } else {
                     _swiperController.next(animation: true);
                   }

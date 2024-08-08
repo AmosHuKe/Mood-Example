@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
 
@@ -26,7 +27,7 @@ Future<T?> showModalBottomDetail<T>({
             Semantics(
               button: true,
               label: '返回',
-              onTap: () => Navigator.of(context).pop(),
+              onTap: () => context.pop(),
               child: Container(
                 key: const Key('widget_move_modal_bottom_sheet'),
                 margin: EdgeInsets.all(12.w),

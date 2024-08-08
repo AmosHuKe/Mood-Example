@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:bonfire/bonfire.dart';
 
@@ -47,7 +48,7 @@ class _MiniFantasyPageState extends State<MiniFantasyPage> {
               size: 24.sp,
             ),
             onTap: () {
-              Navigator.of(context).pop();
+              context.pop();
             },
           ),
         ),

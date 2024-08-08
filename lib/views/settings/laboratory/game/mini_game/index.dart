@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:bonfire/bonfire.dart';
 
@@ -49,7 +50,7 @@ class _MiniGamePageState extends State<MiniGamePage> {
             onTap: () async {
               await Flame.device.setPortrait();
               if (!mounted) return;
-              Navigator.of(context).pop();
+              context.pop();
             },
           ),
         ),
