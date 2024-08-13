@@ -2,7 +2,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:bonfire/bonfire.dart';
@@ -35,17 +34,16 @@ class _MiniGamePageState extends State<MiniGamePage> {
           backgroundColor: const Color(0xFFF6F8FA),
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
-          titleTextStyle: TextStyle(color: Colors.black, fontSize: 14.r),
+          titleTextStyle: const TextStyle(color: Colors.black, fontSize: 14),
           title: const Text('MiniGame'),
           leading: ActionButton(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppTheme.backgroundColor1,
-              borderRadius:
-                  BorderRadius.only(bottomRight: Radius.circular(18.r)),
+              borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
             ),
-            child: Icon(
+            child: const Icon(
               Remix.arrow_left_line,
-              size: 24.r,
+              size: 24,
             ),
             onTap: () async {
               await Flame.device.setPortrait();
@@ -79,7 +77,7 @@ class _GameState extends State<Game> {
         final tileSize = max(constraints.maxHeight, constraints.maxWidth) / 20;
         return BonfireWidget(
           debugMode: false,
-          showCollisionArea: false,
+          showCollisionArea: true,
           playerControllers: [
             Joystick(
               directional: JoystickDirectional(
@@ -88,6 +86,7 @@ class _GameState extends State<Game> {
                 spriteKnobDirectional:
                     Sprite.load('$assetsPath/joystick_knob.png'),
                 size: 80,
+                margin: const EdgeInsets.only(bottom: 50, left: 50),
                 isFixed: false,
               ),
               actions: [

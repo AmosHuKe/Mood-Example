@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
@@ -24,28 +23,28 @@ class SettingKey extends StatelessWidget {
       children: [
         /// 安全
         Padding(
-          padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 2.w),
+          padding: const EdgeInsets.only(left: 6, top: 6, bottom: 2),
           child: Text(
             S.of(context).app_setting_security,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 14.sp,
+              fontSize: 20,
             ),
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 14.w),
+          padding: const EdgeInsets.only(left: 6, top: 6, bottom: 14),
           child: Text(
             S.of(context).app_setting_security_content,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.normal,
-              fontSize: 12.sp,
+              fontSize: 14,
             ),
           ),
         ),
 
         const KeyBody(),
-        SizedBox(height: 48.w),
+        const SizedBox(height: 48),
       ],
     );
   }
@@ -60,7 +59,7 @@ class KeyBody extends StatefulWidget {
 }
 
 class _KeyBodyState extends State<KeyBody> {
-  final _titleIconSize = 18.sp;
+  final double _titleIconSize = 18;
   List<BiometricType> localAuthList = [];
   IconData? localAuthIcon;
   String localAuthText = '';
@@ -104,7 +103,7 @@ class _KeyBodyState extends State<KeyBody> {
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium!
-                  .copyWith(fontSize: 14.sp, fontWeight: FontWeight.normal),
+                  .copyWith(fontSize: 14, fontWeight: FontWeight.normal),
             ),
             trailing: Semantics(
               label: localAuthText,
@@ -142,7 +141,7 @@ class _KeyBodyState extends State<KeyBody> {
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium!
-                    .copyWith(fontSize: 14.sp, fontWeight: FontWeight.normal),
+                    .copyWith(fontSize: 14, fontWeight: FontWeight.normal),
               ),
               trailing: Semantics(
                 label: S.of(context).app_setting_security_lock,

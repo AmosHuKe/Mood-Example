@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tilt/flutter_tilt.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -67,14 +66,14 @@ class _HomeBodyState extends State<HomeBody> {
           backgroundColor: Colors.transparent,
           flexibleSpace: Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.symmetric(horizontal: 24.w),
+            margin: const EdgeInsets.symmetric(horizontal: 24),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   S.of(context).home_hi,
-                  style: TextStyle(
-                    fontSize: 48.sp,
+                  style: const TextStyle(
+                    fontSize: 48,
                     fontWeight: FontWeight.bold,
                   ),
                   semanticsLabel:
@@ -82,24 +81,24 @@ class _HomeBodyState extends State<HomeBody> {
                 ),
                 Image.asset(
                   'assets/images/woolly/woolly-yellow-star.png',
-                  height: 60.w,
+                  height: 60,
                   excludeFromSemantics: true,
                 ),
               ],
             ),
           ),
-          collapsedHeight: 100.w,
-          expandedHeight: 100.w,
+          collapsedHeight: 100,
+          expandedHeight: 100,
         ),
         SliverToBoxAdapter(
           child: Padding(
-            padding: EdgeInsets.only(bottom: 48.h),
+            padding: const EdgeInsets.only(bottom: 48),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /// 头部
                 Padding(
-                  padding: EdgeInsets.only(top: 12.w, left: 24.w, right: 24.w),
+                  padding: const EdgeInsets.only(top: 12, left: 24, right: 24),
                   child: Semantics(
                     container: true,
                     child: const Header(),
@@ -107,31 +106,31 @@ class _HomeBodyState extends State<HomeBody> {
                 ),
 
                 /// 情绪选项卡
-                Padding(
-                  padding: EdgeInsets.only(top: 12.w),
-                  child: const OptionMood(key: Key('widget_option_mood')),
+                const Padding(
+                  padding: EdgeInsets.only(top: 12),
+                  child: OptionMood(key: Key('widget_option_mood')),
                 ),
 
                 /// 公告卡片
-                Padding(
-                  padding: EdgeInsets.all(24.w),
-                  child: const MergeSemantics(child: NoticeCard()),
+                const Padding(
+                  padding: EdgeInsets.all(24),
+                  child: MergeSemantics(child: NoticeCard()),
                 ),
 
                 /// 相关文章
                 Padding(
-                  padding: EdgeInsets.all(24.w),
+                  padding: const EdgeInsets.all(24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Semantics(
                         container: true,
                         child: Padding(
-                          padding: EdgeInsets.only(bottom: 24.w),
+                          padding: const EdgeInsets.only(bottom: 24),
                           child: Text(
                             S.of(context).home_help_title,
-                            style: TextStyle(
-                              fontSize: 24.sp,
+                            style: const TextStyle(
+                              fontSize: 24,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -158,19 +157,21 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          S.of(context).home_moodChoice_title,
-          style: TextStyle(
-            fontWeight: FontWeight.normal,
-            fontSize: 20.sp,
+        Expanded(
+          child: Text(
+            S.of(context).home_moodChoice_title,
+            style: const TextStyle(
+              fontWeight: FontWeight.normal,
+              fontSize: 24,
+            ),
           ),
         ),
         Consumer<MoodProvider>(
           builder: (_, moodProvider, child) {
             /// 加载数据的占位
             if (moodProvider.moodCategoryList.isEmpty) {
-              return Align(
-                child: CupertinoActivityIndicator(radius: 12.sp),
+              return const Align(
+                child: CupertinoActivityIndicator(radius: 12),
               );
             }
             return const SizedBox();
@@ -202,7 +203,7 @@ class _OptionMoodState extends State<OptionMood> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.w),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       scrollDirection: Axis.horizontal,
       physics: const AlwaysScrollableScrollPhysics(
         parent: BouncingScrollPhysics(),
@@ -221,7 +222,7 @@ class _OptionMoodState extends State<OptionMood> {
 
           /// 显示
           return Wrap(
-            spacing: 24.w, // 主轴(水平)方向间距
+            spacing: 24, // 主轴(水平)方向间距
             alignment: WrapAlignment.spaceBetween, //沿主轴方向居中
             children: widgetList,
           );
@@ -248,7 +249,7 @@ class OptionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// 图标大小
-    final double _iconSize = 32.sp;
+    final double _iconSize = 32;
 
     return Consumer<ApplicationProvider>(
       builder: (_, applicationProvider, child) {
@@ -264,17 +265,17 @@ class OptionCard extends StatelessWidget {
                 children: [
                   AnimatedPress(
                     child: Container(
-                      constraints: BoxConstraints(minWidth: 52.w),
+                      constraints: const BoxConstraints(minWidth: 52),
                       decoration: BoxDecoration(
                         color: isDarkMode(context)
                             ? const Color(0xFF2B3034)
                             : AppTheme.backgroundColor1,
-                        borderRadius: BorderRadius.circular(18.w),
+                        borderRadius: BorderRadius.circular(18),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 8.w,
-                          vertical: 18.w,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 18,
                         ),
                         child: Align(
                           child: Text(
@@ -286,11 +287,11 @@ class OptionCard extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 10.w),
+                    padding: const EdgeInsets.only(top: 10),
                     child: Text(
                       title,
-                      style: TextStyle(
-                        fontSize: 14.sp,
+                      style: const TextStyle(
+                        fontSize: 14,
                       ),
                     ),
                   ),
@@ -303,7 +304,7 @@ class OptionCard extends StatelessWidget {
           middleColor: Colors.transparent,
           closedElevation: 0,
           closedShape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18.w),
+            borderRadius: BorderRadius.circular(18),
           ),
           closedColor: Colors.transparent,
           openBuilder: (_, closeContainer) {
@@ -339,27 +340,27 @@ class NoticeCard extends StatelessWidget {
       childLayout: ChildLayout(
         outer: [
           Positioned(
-            right: -20.w,
+            right: -20,
             child: TiltParallax(
               size: const Offset(15, 15),
               child: Image.asset(
                 'assets/images/onboarding/onboarding_3.png',
                 fit: BoxFit.contain,
-                width: 180.w,
+                width: 180,
               ),
             ),
           ),
         ],
         inner: [
           Positioned(
-            left: 24.w,
-            bottom: 24.w,
+            left: 24,
+            bottom: 24,
             child: TiltParallax(
               size: const Offset(5, 5),
               child: Container(
-                constraints: BoxConstraints(
-                  minHeight: 45.w,
-                  minWidth: 95.w,
+                constraints: const BoxConstraints(
+                  minHeight: 45,
+                  minWidth: 95,
                 ),
                 child: AnimatedPress(
                   child: OutlinedButton(
@@ -367,14 +368,14 @@ class NoticeCard extends StatelessWidget {
                       foregroundColor: WidgetStateProperty.all(Colors.white),
                       backgroundColor: WidgetStateProperty.all(Colors.black87),
                       textStyle: WidgetStateProperty.all(
-                        TextStyle(
-                          fontSize: 14.sp,
+                        const TextStyle(
+                          fontSize: 14,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
                       shape: WidgetStateProperty.all(
                         RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14.sp),
+                          borderRadius: BorderRadius.circular(14),
                         ),
                       ),
                       overlayColor: WidgetStateProperty.all(Colors.white10),
@@ -387,21 +388,21 @@ class NoticeCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(right: 4.w),
+                          padding: const EdgeInsets.only(right: 4),
                           child: Text(
                             S.of(context).home_upgrade_button,
                             strutStyle: const StrutStyle(
                               forceStrutHeight: false,
                               leading: 1,
                             ),
-                            style: TextStyle(
-                              fontSize: 14.sp,
+                            style: const TextStyle(
+                              fontSize: 14,
                             ),
                           ),
                         ),
-                        Icon(
+                        const Icon(
                           Remix.play_circle_fill,
-                          size: 24.sp,
+                          size: 24,
                         ),
                       ],
                     ),
@@ -417,21 +418,21 @@ class NoticeCard extends StatelessWidget {
             size: const Offset(-16, -16),
             child: shadow(
               opacity: 0.2,
-              margin: EdgeInsets.only(left: 24.w, right: 24.w, top: 32.w),
+              margin: const EdgeInsets.only(left: 24, right: 24, top: 32),
             ),
           ),
           TiltParallax(
             size: const Offset(-8, -8),
             child: shadow(
               opacity: 0.4,
-              margin: EdgeInsets.only(left: 12.w, right: 12.w, top: 16.w),
+              margin: const EdgeInsets.only(left: 12, right: 12, top: 16),
             ),
           ),
         ],
       ),
-      child: SizedBox(
-        height: 190.w,
-        child: const ActionCard(),
+      child: const SizedBox(
+        height: 190,
+        child: ActionCard(),
       ),
     );
   }
@@ -442,11 +443,11 @@ class NoticeCard extends StatelessWidget {
     required double opacity,
   }) {
     return Container(
-      height: 190.w,
+      height: 190,
       margin: margin,
       decoration: BoxDecoration(
         color: const Color(0xFFFFBBBB).withOpacity(opacity),
-        borderRadius: BorderRadius.circular(24.sp),
+        borderRadius: BorderRadius.circular(24),
       ),
     );
   }
@@ -459,41 +460,45 @@ class ActionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(24.w),
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
           colors: [Color(0xFFFFBBBB), Color(0xFFFFBBBB), Color(0xFFFFC5C5)],
         ),
-        borderRadius: BorderRadius.circular(30.w),
+        borderRadius: BorderRadius.circular(30),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           /// 文字和按钮
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                S.of(context).home_upgrade_title,
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 8.w),
-                child: Text(
-                  S.of(context).home_upgrade_content,
-                  style: TextStyle(
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  S.of(context).home_upgrade_title,
+                  style: const TextStyle(
                     color: Colors.black87,
-                    fontSize: 16.sp,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w900,
                   ),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Text(
+                      S.of(context).home_upgrade_content,
+                      style: const TextStyle(
+                        color: Colors.black87,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -507,194 +512,202 @@ class Article extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 16.w, // 主轴(水平)方向间距
-      runSpacing: 24.w, // 纵轴（垂直）方向间距
-      crossAxisAlignment: WrapCrossAlignment.end,
-      children: [
-        OpenContainer(
-          useRootNavigator: true,
-          clipBehavior: Clip.none,
-          transitionType: ContainerTransitionType.fadeThrough,
-          transitionDuration: const Duration(milliseconds: 450),
-          closedBuilder: (_, openContainer) {
-            return ArticleCard(
-              key: const Key('widget_home_article_1'),
-              height: 220.w,
-              width: 148.w,
-              gradient: const LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: [
-                  Color(0xFFFFCEBD),
-                  Color(0xFFFFCEBD),
-                  Color(0xFFFFDCCF),
-                ],
-              ),
-              onTap: () {
-                openContainer();
-              },
-              children: [
-                Stack(
-                  clipBehavior: Clip.none,
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    /// 图片或装饰
-                    Positioned(
-                      bottom: -12.w,
-                      left: 0.w,
-                      child: Image.asset(
-                        'assets/images/onboarding/onboarding_2.png',
-                        fit: BoxFit.contain,
-                        height: 120.w,
-                      ),
-                    ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final double availableWidth = constraints.maxWidth;
+        final double minWidth = 120;
+        final double maxWidth = 200;
+        final double widgetWidth =
+            (availableWidth / 2 - 8).clamp(minWidth, maxWidth);
 
-                    /// 文字和按钮
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          S.of(context).home_help_article_title_1,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 6.w),
-                          child: Text(
-                            S.of(context).home_help_article_content_1,
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 12.sp,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 4.w),
-                          child: Icon(
-                            Remix.arrow_right_circle_fill,
-                            size: 24.sp,
-                            color: Colors.black87,
-                          ),
-                        ),
-                        SizedBox(height: 100.w),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            );
-          },
-          openElevation: 0,
-          openColor: Theme.of(context).scaffoldBackgroundColor,
-          middleColor: Theme.of(context).scaffoldBackgroundColor,
-          closedElevation: 0,
-          closedShape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(17.w),
-          ),
-          closedColor: const Color(0xFFFFCEBD),
-          openBuilder: (_, closeContainer) {
-            return WebViewPage(
-              url: ValueConvert('https://github.com/AmosHuKe/Mood-Example')
-                  .encode(),
-            );
-          },
-        ),
-        OpenContainer(
-          useRootNavigator: true,
-          clipBehavior: Clip.none,
-          transitionType: ContainerTransitionType.fadeThrough,
-          transitionDuration: const Duration(milliseconds: 450),
-          closedBuilder: (_, openContainer) {
-            return ArticleCard(
-              key: const Key('widget_home_article_2'),
-              height: 200.w,
-              width: 148.w,
-              mainAxisAlignment: MainAxisAlignment.end,
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFFFFD390),
-                  Color(0xFFFFD390),
-                  Color(0xFFFFE1B3),
-                ],
-              ),
-              onTap: () {
-                openContainer();
-              },
-              children: [
-                Stack(
-                  clipBehavior: Clip.none,
-                  alignment: Alignment.topCenter,
+        return Wrap(
+          spacing: 16, // 主轴(水平)方向间距
+          runSpacing: 24, // 纵轴（垂直）方向间距
+          crossAxisAlignment: WrapCrossAlignment.end,
+          children: [
+            OpenContainer(
+              useRootNavigator: true,
+              clipBehavior: Clip.none,
+              transitionType: ContainerTransitionType.fadeThrough,
+              transitionDuration: const Duration(milliseconds: 450),
+              closedBuilder: (_, openContainer) {
+                return ArticleCard(
+                  key: const Key('widget_home_article_1'),
+                  width: widgetWidth,
+                  gradient: const LinearGradient(
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight,
+                    colors: [
+                      Color(0xFFFFCEBD),
+                      Color(0xFFFFCEBD),
+                      Color(0xFFFFDCCF),
+                    ],
+                  ),
+                  onTap: () {
+                    openContainer();
+                  },
                   children: [
-                    /// 图片或装饰
-                    Positioned(
-                      top: -48.w,
-                      left: 0.w,
-                      child: Image.asset(
-                        'assets/images/onboarding/onboarding_1.png',
-                        fit: BoxFit.contain,
-                        height: 120.w,
-                      ),
-                    ),
-
-                    /// 文字和按钮
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Stack(
+                      clipBehavior: Clip.none,
+                      alignment: Alignment.bottomCenter,
                       children: [
-                        SizedBox(height: 72.w),
-                        Text(
-                          S.of(context).home_help_article_title_2,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w900,
+                        /// 图片或装饰
+                        Positioned(
+                          bottom: -12,
+                          left: 0,
+                          child: Image.asset(
+                            'assets/images/onboarding/onboarding_2.png',
+                            fit: BoxFit.contain,
+                            height: 120,
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 6.w),
-                          child: Text(
-                            S.of(context).home_help_article_content_2,
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 12.sp,
+
+                        /// 文字和按钮
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              S.of(context).home_help_article_title_1,
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w900,
+                              ),
                             ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 4.w),
-                          child: Icon(
-                            Remix.arrow_right_circle_fill,
-                            size: 24.sp,
-                            color: Colors.black87,
-                          ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 6),
+                              child: Text(
+                                S.of(context).home_help_article_content_1,
+                                style: const TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 4),
+                              child: Icon(
+                                Remix.arrow_right_circle_fill,
+                                size: 24,
+                                color: Colors.black87,
+                              ),
+                            ),
+                            const SizedBox(height: 100),
+                          ],
                         ),
                       ],
                     ),
                   ],
-                ),
-              ],
-            );
-          },
-          openElevation: 0,
-          openColor: Theme.of(context).scaffoldBackgroundColor,
-          middleColor: Theme.of(context).scaffoldBackgroundColor,
-          closedElevation: 0,
-          closedShape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(17.w),
-          ),
-          closedColor: const Color(0xFFFFD390),
-          openBuilder: (_, closeContainer) {
-            return WebViewPage(
-              url: ValueConvert('https://amoshk.top/').encode(),
-            );
-          },
-        ),
-      ],
+                );
+              },
+              openElevation: 0,
+              openColor: Theme.of(context).scaffoldBackgroundColor,
+              middleColor: Theme.of(context).scaffoldBackgroundColor,
+              closedElevation: 0,
+              closedShape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(17),
+              ),
+              closedColor: const Color(0xFFFFCEBD),
+              openBuilder: (_, closeContainer) {
+                return WebViewPage(
+                  url: ValueConvert('https://github.com/AmosHuKe/Mood-Example')
+                      .encode(),
+                );
+              },
+            ),
+            OpenContainer(
+              useRootNavigator: true,
+              clipBehavior: Clip.none,
+              transitionType: ContainerTransitionType.fadeThrough,
+              transitionDuration: const Duration(milliseconds: 450),
+              closedBuilder: (_, openContainer) {
+                return ArticleCard(
+                  key: const Key('widget_home_article_2'),
+                  width: widgetWidth,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFFFFD390),
+                      Color(0xFFFFD390),
+                      Color(0xFFFFE1B3),
+                    ],
+                  ),
+                  onTap: () {
+                    openContainer();
+                  },
+                  children: [
+                    Stack(
+                      clipBehavior: Clip.none,
+                      alignment: Alignment.topCenter,
+                      children: [
+                        /// 图片或装饰
+                        Positioned(
+                          top: -64,
+                          left: 0,
+                          child: Image.asset(
+                            'assets/images/onboarding/onboarding_1.png',
+                            fit: BoxFit.contain,
+                            height: 120,
+                          ),
+                        ),
+
+                        /// 文字和按钮
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 72),
+                            Text(
+                              S.of(context).home_help_article_title_2,
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 6),
+                              child: Text(
+                                S.of(context).home_help_article_content_2,
+                                style: const TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 4),
+                              child: Icon(
+                                Remix.arrow_right_circle_fill,
+                                size: 24,
+                                color: Colors.black87,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                );
+              },
+              openElevation: 0,
+              openColor: Theme.of(context).scaffoldBackgroundColor,
+              middleColor: Theme.of(context).scaffoldBackgroundColor,
+              closedElevation: 0,
+              closedShape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(17),
+              ),
+              closedColor: const Color(0xFFFFD390),
+              openBuilder: (_, closeContainer) {
+                return WebViewPage(
+                  url: ValueConvert('https://amoshk.top/').encode(),
+                );
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -703,7 +716,6 @@ class Article extends StatelessWidget {
 class ArticleCard extends StatelessWidget {
   const ArticleCard({
     super.key,
-    required this.height,
     required this.width,
     required this.gradient,
     this.crossAxisAlignment = CrossAxisAlignment.start,
@@ -711,9 +723,6 @@ class ArticleCard extends StatelessWidget {
     required this.children,
     this.onTap,
   });
-
-  /// 高
-  final double height;
 
   /// 宽
   final double width;
@@ -740,10 +749,10 @@ class ArticleCard extends StatelessWidget {
         onTap: onTap,
         child: Container(
           width: width,
-          padding: EdgeInsets.all(14.w),
+          padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
             gradient: gradient,
-            borderRadius: BorderRadius.circular(17.w),
+            borderRadius: BorderRadius.circular(18),
           ),
           child: Column(
             mainAxisAlignment: mainAxisAlignment,

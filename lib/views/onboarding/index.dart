@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -94,8 +93,8 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     /// 内容字体样式
-    final textContentStyle = TextStyle(
-      fontSize: 18.sp,
+    final textContentStyle = const TextStyle(
+      fontSize: 18,
       fontWeight: FontWeight.w400,
     );
 
@@ -106,7 +105,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
         image: Image.asset(
           'assets/images/onboarding/onboarding_1.png',
           fit: BoxFit.cover,
-          height: 320.h,
+          height: 320,
         ),
         describe: Column(
           children: [
@@ -122,7 +121,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
         image: Image.asset(
           'assets/images/onboarding/onboarding_2.png',
           fit: BoxFit.cover,
-          height: 320.h,
+          height: 320,
         ),
         describe: Column(
           children: [
@@ -142,7 +141,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
         image: Image.asset(
           'assets/images/onboarding/onboarding_3.png',
           fit: BoxFit.cover,
-          height: 320.h,
+          height: 320,
         ),
         describe: Text(
           S.of(context).onboarding_content_3_1,
@@ -175,10 +174,10 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
               builder: DotSwiperPaginationBuilder(
                 activeColor: isDarkMode(context) ? Colors.white : Colors.black,
                 color: Colors.grey,
-                size: 8.w,
-                space: 10.w,
+                size: 8,
+                space: 10,
               ),
-              margin: EdgeInsets.only(bottom: 24.h),
+              margin: const EdgeInsets.only(bottom: 24),
             ),
             controller: _swiperController,
             indicatorLayout: PageIndicatorLayout.WARM,
@@ -187,26 +186,26 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 24.h),
+          padding: const EdgeInsets.symmetric(vertical: 24),
           child: AnimatedPress(
             child: AnimatedBuilder(
               animation: _stepButtonColorAnimation,
               builder: (context, child) => OutlinedButton(
                 key: const Key('widget_next_button'),
                 style: ButtonStyle(
-                  padding: WidgetStateProperty.all(EdgeInsets.all(20.w)),
+                  padding: WidgetStateProperty.all(const EdgeInsets.all(20)),
                   foregroundColor: WidgetStateProperty.all(Colors.white),
                   backgroundColor: WidgetStateProperty.all(
                     _stepButtonColorAnimation.value,
                   ),
                   textStyle: WidgetStateProperty.all(
-                    TextStyle(
-                      fontSize: 240.sp,
+                    const TextStyle(
+                      fontSize: 240,
                     ),
                   ),
                   shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.h),
+                      borderRadius: BorderRadius.circular(100),
                       side: const BorderSide(
                         width: 0,
                       ),
@@ -225,7 +224,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
                   angle: _stepButtonCurve.value * 1.58,
                   child: Icon(
                     Remix.arrow_right_line,
-                    size: 24.sp,
+                    size: 24,
                     semanticLabel:
                         swiperIndex == _swiperList.length - 1 ? '开始' : '下一页',
                   ),
@@ -264,17 +263,17 @@ class TextImageSwiper extends StatelessWidget {
       children: [
         Align(child: image),
         Padding(
-          padding: EdgeInsets.only(left: 32.w, right: 32.w),
+          padding: const EdgeInsets.only(left: 32, right: 32),
           child: Text(
             title,
-            style: TextStyle(
-              fontSize: 32.sp,
+            style: const TextStyle(
+              fontSize: 32,
               fontWeight: FontWeight.w900,
             ),
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 14.h, left: 32.w, right: 32.w),
+          padding: const EdgeInsets.only(top: 14, left: 32, right: 32),
           child: describe,
         ),
       ],

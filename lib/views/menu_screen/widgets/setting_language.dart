@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import 'package:moodexample/config/language.dart';
@@ -38,7 +37,7 @@ class SettingLanguage extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium!
-                    .copyWith(fontSize: 14.sp, fontWeight: FontWeight.normal),
+                    .copyWith(fontSize: 14, fontWeight: FontWeight.normal),
               ),
               onChanged: (_) => applicationProvider.localeSystem = true,
             );
@@ -58,7 +57,7 @@ class SettingLanguage extends StatelessWidget {
                   title: Text(
                     _languageConfig[index].language,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontSize: 14.sp,
+                          fontSize: 14,
                           fontWeight: FontWeight.normal,
                         ),
                   ),

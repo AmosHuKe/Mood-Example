@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -22,15 +21,15 @@ class LaboratoryPage extends StatelessWidget {
         floatingActionButton: ActionButton(
           key: const Key('widget_laboratory_back_button'),
           semanticsLabel: '返回',
-          width: 48.w,
-          height: 48.w,
+          width: 48,
+          height: 48,
           decoration: BoxDecoration(
             color: Theme.of(context).primaryColor,
-            borderRadius: BorderRadius.circular(18.w),
+            borderRadius: BorderRadius.circular(18),
           ),
-          child: Icon(
+          child: const Icon(
             Remix.arrow_left_line,
-            size: 18.sp,
+            size: 18,
             color: Colors.white,
           ),
           onTap: () {
@@ -53,38 +52,33 @@ class LaboratoryBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: EdgeInsets.only(
-        left: 14.w,
-        right: 14.w,
-        top: 24.w,
-        bottom: 20.h,
-      ),
+      padding: const EdgeInsets.only(left: 14, right: 14, top: 24, bottom: 20),
       physics: const AlwaysScrollableScrollPhysics(
         parent: BouncingScrollPhysics(),
       ),
       children: [
         /// 标题
         Container(
-          margin: EdgeInsets.only(bottom: 32.h),
+          margin: const EdgeInsets.only(bottom: 32),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 S.of(context).app_setting_laboratory,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black87,
-                  fontSize: 36.sp,
+                  fontSize: 36,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Icon(Remix.flask_line, size: 48.sp, color: Colors.black12),
+              const Icon(Remix.flask_line, size: 48, color: Colors.black12),
             ],
           ),
         ),
         ListCard(
-          leading: Icon(
+          leading: const Icon(
             Remix.mini_program_line,
-            size: 32.sp,
+            size: 32,
             color: Colors.black87,
           ),
           title: 'uniapp 小程序',
@@ -94,9 +88,9 @@ class LaboratoryBody extends StatelessWidget {
           },
         ),
         ListCard(
-          leading: Icon(
+          leading: const Icon(
             Remix.building_2_line,
-            size: 32.sp,
+            size: 32,
             color: Colors.black87,
           ),
           title: '3D 城市',
@@ -107,9 +101,9 @@ class LaboratoryBody extends StatelessWidget {
           },
         ),
         ListCard(
-          leading: Icon(
+          leading: const Icon(
             Remix.gamepad_line,
-            size: 32.sp,
+            size: 32,
             color: Colors.black87,
           ),
           title: '游戏合集',
@@ -119,9 +113,9 @@ class LaboratoryBody extends StatelessWidget {
           },
         ),
         ListCard(
-          leading: Icon(
+          leading: const Icon(
             Remix.align_vertically,
-            size: 32.sp,
+            size: 32,
             color: Colors.black87,
           ),
           title: 'FFI 异步调用 C/C++',
@@ -130,10 +124,10 @@ class LaboratoryBody extends StatelessWidget {
             GoRouter.of(context).pushNamed(Routes.laboratoryFFI);
           },
         ),
-        ListCard(
+        const ListCard(
           leading: Icon(
             Remix.account_box_line,
-            size: 32.sp,
+            size: 32,
             color: Colors.black87,
           ),
           title: '...',
@@ -170,13 +164,13 @@ class ListCard extends StatelessWidget {
     return AnimatedPress(
       scaleEnd: 0.95,
       child: Card(
-        margin: EdgeInsets.symmetric(vertical: 12.w),
+        margin: const EdgeInsets.symmetric(vertical: 12),
         shadowColor: Colors.black38,
         shape: ContinuousRectangleBorder(
-          borderRadius: BorderRadius.circular(48.sp),
+          borderRadius: BorderRadius.circular(48),
         ),
         child: Padding(
-          padding: EdgeInsets.all(14.w),
+          padding: const EdgeInsets.all(14),
           child: Column(
             children: [
               ListTile(

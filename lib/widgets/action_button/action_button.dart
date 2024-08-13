@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:moodexample/themes/app_theme.dart';
 
 /// 操作按钮
@@ -30,12 +28,12 @@ class ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double _width = width ?? 48.w;
-    final double _height = height ?? 48.w;
+    final double _width = width ?? 48;
+    final double _height = height ?? 48;
     final Decoration _decoration = decoration ??
         BoxDecoration(
           color: AppTheme.backgroundColor1,
-          borderRadius: BorderRadius.circular(18.w),
+          borderRadius: BorderRadius.circular(18),
         );
 
     ///

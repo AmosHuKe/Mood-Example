@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
@@ -13,15 +12,15 @@ Future<T?> showModalBottomDetail<T>({
   return showModalBottomSheet<T>(
     context: context,
     barrierColor: isDarkMode(context) ? Colors.black45 : Colors.black54,
-    shape: RoundedRectangleBorder(
+    shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(32.w),
-        topRight: Radius.circular(32.w),
+        topLeft: Radius.circular(32),
+        topRight: Radius.circular(32),
       ),
     ),
     builder: (BuildContext context) {
       return Container(
-        margin: EdgeInsets.symmetric(horizontal: 12.w),
+        margin: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
           children: [
             Semantics(
@@ -30,14 +29,14 @@ Future<T?> showModalBottomDetail<T>({
               onTap: () => context.pop(),
               child: Container(
                 key: const Key('widget_move_modal_bottom_sheet'),
-                margin: EdgeInsets.all(12.w),
-                height: 4.w,
-                width: 24.w,
+                margin: const EdgeInsets.all(12),
+                height: 4,
+                width: 24,
                 decoration: BoxDecoration(
                   color: isDarkMode(context)
                       ? const Color(0xFF2B3034)
                       : Colors.grey,
-                  borderRadius: BorderRadius.circular(8.w),
+                  borderRadius: BorderRadius.circular(8),
                 ),
               ),
             ),

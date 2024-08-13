@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:ditredi/ditredi.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:remixicon/remixicon.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
@@ -30,16 +29,16 @@ class _Page3DState extends State<Page3D> {
           backgroundColor: const Color(0xFFF6F8FA),
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
-          titleTextStyle: TextStyle(color: Colors.black, fontSize: 14.sp),
+          titleTextStyle: const TextStyle(color: Colors.black, fontSize: 14),
           title: const Text('3D 城市'),
           leading: ActionButton(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppTheme.backgroundColor1,
               borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(18.w),
+                bottomRight: Radius.circular(18),
               ),
             ),
-            child: Icon(Remix.arrow_left_line, size: 24.sp),
+            child: const Icon(Remix.arrow_left_line, size: 24),
             onTap: () => context.pop(),
           ),
         ),
@@ -65,7 +64,7 @@ class _Body3DState extends State<Body3D> {
       light: vector.Vector3(-50, -50, 50),
       lightStrength: 1.2,
       ambientLightStrength: 0.6,
-      userScale: 1.5.sp,
+      userScale: 1.5,
     );
     super.initState();
   }

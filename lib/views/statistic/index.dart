@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
@@ -62,6 +61,8 @@ void init(BuildContext context) {
 class StatisticBody extends StatelessWidget {
   const StatisticBody({super.key});
 
+  final EdgeInsets listPadding = const EdgeInsets.symmetric(horizontal: 24);
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -79,15 +80,15 @@ class StatisticBody extends StatelessWidget {
           flexibleSpace: Align(
             child: Container(
               width: double.maxFinite,
-              margin: EdgeInsets.symmetric(horizontal: 24.w),
+              margin: const EdgeInsets.symmetric(horizontal: 24),
               child: Wrap(
                 alignment: WrapAlignment.spaceBetween,
                 crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
                   Text(
                     S.of(context).statistic_title,
-                    style: TextStyle(
-                      fontSize: 36.sp,
+                    style: const TextStyle(
+                      fontSize: 36,
                       fontWeight: FontWeight.bold,
                     ),
                     semanticsLabel:
@@ -137,8 +138,8 @@ class StatisticBody extends StatelessWidget {
               ),
             ),
           ),
-          collapsedHeight: 100.w,
-          expandedHeight: 100.w,
+          collapsedHeight: 100,
+          expandedHeight: 100,
         ),
 
         /// 下拉加载
@@ -149,29 +150,28 @@ class StatisticBody extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: Padding(
-            padding: EdgeInsets.only(bottom: 48.h),
+            padding: const EdgeInsets.only(bottom: 48),
             child: Column(
               children: [
                 /// 总体统计
-                const OverallStatistics(),
+                Padding(
+                  padding: listPadding,
+                  child: const OverallStatistics(),
+                ),
+
+                const SizedBox(height: 12),
 
                 /// 情绪波动（线）
                 Padding(
-                  padding: EdgeInsets.only(
-                    top: 12.w,
-                    left: 24.w,
-                    right: 24.w,
-                  ),
+                  padding: listPadding,
                   child: const StatisticMoodLine(),
                 ),
 
+                const SizedBox(height: 12),
+
                 /// 情绪波动
                 Padding(
-                  padding: EdgeInsets.only(
-                    top: 12.w,
-                    left: 24.w,
-                    right: 24.w,
-                  ),
+                  padding: listPadding,
                   child: Consumer<StatisticProvider>(
                     builder: (_, statisticProvider, child) {
                       return StatisticLayout(
@@ -179,20 +179,18 @@ class StatisticBody extends StatelessWidget {
                         subTitle: S.of(context).statistic_moodScore_content(
                               statisticProvider.moodDays,
                             ),
-                        height: 180.w,
+                        height: 180,
                         statistic: const StatisticWeekMood(),
                       );
                     },
                   ),
                 ),
 
+                const SizedBox(height: 12),
+
                 /// 心情统计
                 Padding(
-                  padding: EdgeInsets.only(
-                    top: 12.w,
-                    left: 24.w,
-                    right: 24.w,
-                  ),
+                  padding: listPadding,
                   child: Consumer<StatisticProvider>(
                     builder: (_, statisticProvider, child) {
                       return StatisticLayout(
@@ -201,7 +199,7 @@ class StatisticBody extends StatelessWidget {
                             S.of(context).statistic_moodStatistics_content(
                                   statisticProvider.moodDays,
                                 ),
-                        height: 320.w,
+                        height: 320,
                         statistic: const StatisticCategoryMood(),
                       );
                     },
@@ -242,7 +240,7 @@ class StatisticMoodLine extends StatelessWidget {
           subTitle: S
               .of(context)
               .statistic_moodScoreAverage_content(statisticProvider.moodDays),
-          height: 240.w,
+          height: 240,
           statistic: const StatisticWeekMoodLine(),
         );
       },
@@ -329,7 +327,7 @@ class StatisticWeekMoodLine extends StatelessWidget {
                 preventCurveOverShooting: true,
                 gradient: LinearGradient(colors: gradientColors),
                 // colors: gradientColors,
-                barWidth: 2.sp,
+                barWidth: 2,
                 // shadow: Shadow(
                 //   color:Theme.of(context).primaryColor.withOpacity(0.4),
                 //   blurRadius: 4,
@@ -353,8 +351,8 @@ class StatisticWeekMoodLine extends StatelessWidget {
             lineTouchData: LineTouchData(
               touchTooltipData: LineTouchTooltipData(
                 fitInsideHorizontally: true,
-                tooltipRoundedRadius: 24.sp,
-                tooltipMargin: 24.w,
+                tooltipRoundedRadius: 24,
+                tooltipMargin: 24,
                 getTooltipColor: (_) => Theme.of(context).primaryColor,
                 getTooltipItems: (List<LineBarSpot> touchedSpots) {
                   return touchedSpots.map((barSpot) {
@@ -369,17 +367,17 @@ class StatisticWeekMoodLine extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: '${listFlSpot[i].score} ',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 14.sp,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         TextSpan(
                           text: listFlSpot[i].datetime.substring(5, 10),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 10.sp,
+                            fontSize: 12,
                             fontWeight: FontWeight.normal,
                           ),
                         ),
@@ -420,7 +418,7 @@ class StatisticWeekMoodLine extends StatelessWidget {
               bottomTitles: AxisTitles(
                 sideTitles: SideTitles(
                   showTitles: true,
-                  reservedSize: 18.w,
+                  reservedSize: 18,
                   interval: days > 7 ? ((days / 7) + 1) : (days / 7),
                   getTitlesWidget: (value, titleMeta) {
                     final nowListDate = listFlSpot[value.toInt()].datetime;
@@ -428,10 +426,10 @@ class StatisticWeekMoodLine extends StatelessWidget {
                       (nowListDate.toString() != ''
                           ? nowListDate.toString().substring(8, 10)
                           : ''),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: AppTheme.subColor,
                         fontWeight: FontWeight.normal,
-                        fontSize: 12.sp,
+                        fontSize: 14,
                       ),
                     );
                   },
@@ -465,48 +463,37 @@ class OverallStatistics extends StatelessWidget {
       physics: const AlwaysScrollableScrollPhysics(
         parent: BouncingScrollPhysics(),
       ),
-      child: Padding(
-        padding: EdgeInsets.only(
-          top: 24.w,
-          left: 24.w,
-          right: 24.w,
-        ),
-        child: Consumer<StatisticProvider>(
-          builder: (_, statisticProvider, child) {
-            return IntrinsicHeight(
-              child: Row(
-                children: [
-                  StatisticsCard(
-                    icon: Remix.time_line,
-                    title: S.of(context).statistic_overall_daysCount_title(
-                          statisticProvider.daysCount,
-                        ),
-                    subTitle:
-                        S.of(context).statistic_overall_daysCount_subTitle,
-                  ),
-                  StatisticsCard(
-                    icon: Remix.file_list_2_line,
-                    title: S.of(context).statistic_overall_moodCount_title(
-                          statisticProvider.moodCount,
-                        ),
-                    subTitle:
-                        S.of(context).statistic_overall_moodCount_subTitle,
-                  ),
-                  StatisticsCard(
-                    icon: Remix.pulse_line,
-                    title:
-                        S.of(context).statistic_overall_moodScoreAverage_title(
-                              statisticProvider.moodScoreAverage,
-                            ),
-                    subTitle: S
-                        .of(context)
-                        .statistic_overall_moodScoreAverage_subTitle,
-                  ),
-                ],
+      child: Consumer<StatisticProvider>(
+        builder: (_, statisticProvider, child) {
+          return Wrap(
+            spacing: 12,
+            runSpacing: 12,
+            children: [
+              StatisticsCard(
+                icon: Remix.time_line,
+                title: S.of(context).statistic_overall_daysCount_title(
+                      statisticProvider.daysCount,
+                    ),
+                subTitle: S.of(context).statistic_overall_daysCount_subTitle,
               ),
-            );
-          },
-        ),
+              StatisticsCard(
+                icon: Remix.file_list_2_line,
+                title: S.of(context).statistic_overall_moodCount_title(
+                      statisticProvider.moodCount,
+                    ),
+                subTitle: S.of(context).statistic_overall_moodCount_subTitle,
+              ),
+              StatisticsCard(
+                icon: Remix.pulse_line,
+                title: S.of(context).statistic_overall_moodScoreAverage_title(
+                      statisticProvider.moodScoreAverage,
+                    ),
+                subTitle:
+                    S.of(context).statistic_overall_moodScoreAverage_subTitle,
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -547,10 +534,10 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
 
         /// 根据数据适应每条数据宽度
         final double barWidth = switch (moodDays) {
-          7 => 14.w,
-          15 => 10.w,
-          30 => 4.w,
-          _ => 14.w,
+          7 => 14,
+          15 => 10,
+          30 => 4,
+          _ => 14,
         };
 
         ///
@@ -566,7 +553,7 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
             }),
             barTouchData: BarTouchData(
               touchTooltipData: BarTouchTooltipData(
-                tooltipRoundedRadius: 12.sp,
+                tooltipRoundedRadius: 12,
                 getTooltipColor: (_) => Theme.of(context).primaryColor,
                 getTooltipItem: (group, groupIndex, rod, rodIndex) {
                   return BarTooltipItem(
@@ -575,17 +562,17 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
                     children: [
                       TextSpan(
                         text: '${rod.toY}\n',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 14.sp,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       TextSpan(
                         text: listData[group.x].datetime.substring(5, 10),
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 10.sp,
+                          fontSize: 12,
                           fontWeight: FontWeight.normal,
                         ),
                       ),
@@ -613,9 +600,9 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
                 sideTitles: SideTitles(
                   showTitles: true,
                   getTitlesWidget: (value, titleMeta) {
-                    return Text(
+                    return const Text(
                       '',
-                      style: TextStyle(fontSize: 12.sp),
+                      style: TextStyle(fontSize: 14),
                     );
                   },
                 ),
@@ -662,8 +649,8 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
                     Theme.of(context).primaryColor.withOpacity(0.4),
                   ],
           ),
-          width: width ?? 14.w,
-          borderRadius: BorderRadius.circular(14.w),
+          width: width ?? 14,
+          borderRadius: BorderRadius.circular(14),
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
             color: isDarkMode(context)
@@ -700,10 +687,10 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
 
         /// 空占位
         if (listData.isEmpty) {
-          return Empty(
-            padding: EdgeInsets.only(top: 48.w),
-            width: 120.w,
-            height: 100.w,
+          return const Empty(
+            padding: EdgeInsets.only(top: 48),
+            width: 120,
+            height: 100,
           );
         }
 
@@ -714,9 +701,9 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
               final item = listData[i];
 
               /// 样式
-              final isTouched = i == _touchedIndex;
-              final fontSize = isTouched ? 20.sp : 14.sp;
-              final radius = isTouched ? 120.w : 100.w;
+              final bool isTouched = i == _touchedIndex;
+              final double fontSize = isTouched ? 20 : 14;
+              final double radius = isTouched ? 120 : 100;
 
               return makeSectionData(
                 double.parse(item.count.toString()),
@@ -724,9 +711,9 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
                 radius: radius,
                 fontSize: fontSize,
                 color: statisticColors[i],
-                badgeFontSize: 16.sp,
-                badgeHeight: 28.w,
-                badgeWidth: 28.w,
+                badgeFontSize: 16,
+                badgeHeight: 28,
+                badgeWidth: 28,
               );
             }),
             pieTouchData: PieTouchData(
@@ -795,7 +782,7 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
             ),
           ],
         ),
-        padding: EdgeInsets.all(1.w),
+        padding: const EdgeInsets.all(1),
         child: Center(
           child: Text(
             title ?? '',
@@ -805,8 +792,8 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
           ),
         ),
       ),
-      badgePositionPercentageOffset: 0.9.w,
-      titlePositionPercentageOffset: 0.6.w,
+      badgePositionPercentageOffset: 0.9,
+      titlePositionPercentageOffset: 0.6,
     );
   }
 }
@@ -837,36 +824,37 @@ class StatisticsCard extends StatelessWidget {
       excludeSemantics: true,
       child: Card(
         elevation: 0,
+        margin: const EdgeInsets.all(0),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.sp),
+          borderRadius: BorderRadius.circular(16),
         ),
         child: Container(
-          constraints: BoxConstraints(
-            minWidth: 72.w,
-            minHeight: 110.w,
+          constraints: const BoxConstraints(
+            minWidth: 88,
+            minHeight: 110,
           ),
-          margin: EdgeInsets.all(12.w),
+          margin: const EdgeInsets.all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: 36.w,
-                height: 36.w,
+                width: 36,
+                height: 36,
                 decoration: const BoxDecoration(
                   color: Colors.black,
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   icon,
-                  size: 18.sp,
+                  size: 18,
                   color: Colors.white,
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 20.w, bottom: 10.w),
+                padding: const EdgeInsets.only(top: 20, bottom: 10, left: 6),
                 child: Text(
                   title,
-                  style: TextStyle(fontSize: 14.sp),
+                  style: const TextStyle(fontSize: 14),
                   strutStyle: const StrutStyle(
                     forceStrutHeight: false,
                     leading: 1.5,
@@ -875,9 +863,9 @@ class StatisticsCard extends StatelessWidget {
               ),
               Text(
                 subTitle,
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppTheme.subColor,
-                  fontSize: 12.sp,
+                  fontSize: 12,
                 ),
               ),
             ],
@@ -918,39 +906,36 @@ class StatisticLayout extends StatelessWidget {
       excludeSemantics: true,
       child: Card(
         elevation: 0,
+        margin: const EdgeInsets.all(0),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.sp),
+          borderRadius: BorderRadius.circular(16),
         ),
         child: Container(
           height: height,
-          margin: EdgeInsets.all(24.w),
-          child: Stack(
+          margin: const EdgeInsets.all(24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 4.w),
-                  Text(
-                    subTitle,
-                    style: TextStyle(
-                      color: AppTheme.subColor,
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                  SizedBox(height: 38.w),
-                  Expanded(child: statistic),
-                ],
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
+              const SizedBox(height: 4),
+              Text(
+                subTitle,
+                style: const TextStyle(
+                  color: AppTheme.subColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+              const SizedBox(height: 38),
+              Expanded(child: statistic),
             ],
           ),
         ),
@@ -992,13 +977,13 @@ class FilterBottom extends StatelessWidget {
         child: GestureDetector(
           onTap: onTap,
           child: Container(
-            width: 40.w,
-            height: 40.w,
-            margin: EdgeInsets.symmetric(horizontal: 6.w),
+            width: 42,
+            height: 42,
+            margin: const EdgeInsets.symmetric(horizontal: 6),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: checked ? primaryColor : Theme.of(context).cardColor,
-              borderRadius: BorderRadius.circular(14.sp),
+              borderRadius: BorderRadius.circular(14),
               boxShadow: checked
                   ? [
                       BoxShadow(
@@ -1021,7 +1006,7 @@ class FilterBottom extends StatelessWidget {
                     : isDarkMode(context)
                         ? Colors.white
                         : Colors.black87,
-                fontSize: 12.sp,
+                fontSize: 12,
               ),
             ),
           ),

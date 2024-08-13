@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:file_picker/file_picker.dart';
@@ -48,16 +47,16 @@ class _SettingDatabaseState extends State<SettingDatabase>
             Tab(
               child: Text(
                 S.of(context).app_setting_database_export_data,
-                style: TextStyle(
-                  fontSize: 14.sp,
+                style: const TextStyle(
+                  fontSize: 14,
                 ),
               ),
             ),
             Tab(
               child: Text(
                 S.of(context).app_setting_database_import_data,
-                style: TextStyle(
-                  fontSize: 14.sp,
+                style: const TextStyle(
+                  fontSize: 14,
                 ),
               ),
             ),
@@ -72,13 +71,13 @@ class _SettingDatabaseState extends State<SettingDatabase>
             children: [
               /// 导出数据
               Container(
-                margin: EdgeInsets.only(top: 64.h),
+                margin: const EdgeInsets.only(top: 64),
                 child: const ExportDatabaseBody(),
               ),
 
               /// 导入数据
               Container(
-                margin: EdgeInsets.only(top: 64.h),
+                margin: const EdgeInsets.only(top: 64),
                 child: const ImportDatabaseBody(),
               ),
             ],
@@ -115,8 +114,8 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
             /// 导入按钮
             AnimatedPress(
               child: Container(
-                width: 128.h,
-                height: 128.h,
+                width: 156,
+                height: 156,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
@@ -137,9 +136,9 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                   shape: BoxShape.circle,
                 ),
                 child: _isImport
-                    ? CupertinoActivityIndicator(
-                        radius: 14.sp,
-                        color: const Color(0xFFFFFFFF),
+                    ? const CupertinoActivityIndicator(
+                        radius: 14,
+                        color: Color(0xFFFFFFFF),
                       )
                     : Material(
                         color: Colors.transparent,
@@ -148,9 +147,9 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                           splashColor: Colors.white10,
                           highlightColor: Colors.white10,
                           icon: const Icon(Remix.arrow_up_line),
-                          iconSize: 48.sp,
+                          iconSize: 48,
                           color: const Color(0xFFFFFFFF),
-                          padding: EdgeInsets.all(22.w),
+                          padding: const EdgeInsets.all(22),
                           onPressed: () async {
                             setState(() {
                               _isImport = true;
@@ -209,9 +208,9 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                     return _errorPath.isNotEmpty
                         ? AnimatedPress(
                             child: Container(
-                              width: 64.h,
-                              height: 64.h,
-                              padding: EdgeInsets.only(left: 12.w),
+                              width: 64,
+                              height: 64,
+                              padding: const EdgeInsets.only(left: 12),
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   begin: Alignment.bottomCenter,
@@ -248,9 +247,9 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                     S
                                         .of(context)
                                         .app_setting_database_import_data_button_error,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.white,
-                                      fontSize: 12.sp,
+                                      fontSize: 12,
                                     ),
                                     semanticsLabel: '导入错误原因下载',
                                   ),
@@ -265,9 +264,9 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                 /// 下载模板
                 AnimatedPress(
                   child: Container(
-                    width: 64.h,
-                    height: 64.h,
-                    margin: EdgeInsets.only(left: 12.w, top: 12.w),
+                    width: 64,
+                    height: 64,
+                    margin: const EdgeInsets.only(left: 12, top: 12),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
@@ -305,9 +304,9 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                           S
                               .of(context)
                               .app_setting_database_import_data_button_template,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 12.sp,
+                            fontSize: 12,
                           ),
                           semanticsLabel: '导入模板下载',
                         ),
@@ -735,8 +734,8 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
       children: [
         AnimatedPress(
           child: Container(
-            width: 128.h,
-            height: 128.h,
+            width: 156,
+            height: 156,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
@@ -757,9 +756,9 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
               shape: BoxShape.circle,
             ),
             child: _isExport
-                ? CupertinoActivityIndicator(
-                    radius: 14.sp,
-                    color: const Color(0xFFFFFFFF),
+                ? const CupertinoActivityIndicator(
+                    radius: 14,
+                    color: Color(0xFFFFFFFF),
                   )
                 : Material(
                     color: Colors.transparent,
@@ -768,9 +767,9 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
                       splashColor: Colors.white10,
                       highlightColor: Colors.white10,
                       icon: const Icon(Remix.arrow_down_line),
-                      iconSize: 48.sp,
+                      iconSize: 48,
                       color: const Color(0xFFFFFFFF),
-                      padding: EdgeInsets.all(22.w),
+                      padding: const EdgeInsets.all(22),
                       onPressed: () async {
                         try {
                           /// 没文件则进行生成

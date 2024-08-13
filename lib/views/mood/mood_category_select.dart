@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
@@ -76,16 +75,17 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         foregroundColor: Theme.of(context).textTheme.displayLarge!.color,
         shadowColor: Colors.transparent,
-        titleTextStyle: TextStyle(color: Colors.black, fontSize: 14.sp),
+        titleTextStyle: const TextStyle(color: Colors.black, fontSize: 14),
         leading: ActionButton(
           semanticsLabel: '关闭',
           decoration: BoxDecoration(
             color: isDarkMode(context)
                 ? Theme.of(context).cardColor
                 : AppTheme.backgroundColor1,
-            borderRadius: BorderRadius.only(bottomRight: Radius.circular(18.w)),
+            borderRadius:
+                const BorderRadius.only(bottomRight: Radius.circular(18)),
           ),
-          child: Icon(Remix.arrow_left_line, size: 24.sp),
+          child: const Icon(Remix.arrow_left_line, size: 24),
           onTap: () => context.pop(),
         ),
       ),
@@ -110,11 +110,11 @@ class MoodCategorySelectBody extends StatelessWidget {
       children: [
         /// 标题
         Padding(
-          padding: EdgeInsets.only(
-            left: 24.w,
-            right: 24.w,
-            top: 24.w,
-            bottom: 48.w,
+          padding: const EdgeInsets.only(
+            left: 24,
+            right: 24,
+            top: 24,
+            bottom: 48,
           ),
           child: Column(
             children: [
@@ -122,20 +122,20 @@ class MoodCategorySelectBody extends StatelessWidget {
                 _moodCategorySelectType == MoodCategorySelectType.edit
                     ? S.of(context).mood_category_select_title_2
                     : S.of(context).mood_category_select_title_1,
-                style: TextStyle(
-                  fontSize: 24.sp,
+                style: const TextStyle(
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 4.w),
+                padding: const EdgeInsets.only(top: 4),
                 child: Text(
                   _moodCategorySelectType == MoodCategorySelectType.edit
                       ? ''
                       : LocaleDatetime.yMMMd(context, _nowDateTime),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: AppTheme.subColor,
-                    fontSize: 14.sp,
+                    fontSize: 14,
                     fontWeight: FontWeight.normal,
                   ),
                 ),
@@ -159,7 +159,7 @@ class MoodChoice extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       child: Padding(
-        padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 48.w),
+        padding: const EdgeInsets.only(left: 24, right: 24, bottom: 48),
         child: Consumer<MoodProvider>(
           builder: (_, moodProvider, child) {
             final List<Widget> widgetList = [];
@@ -171,8 +171,8 @@ class MoodChoice extends StatelessWidget {
 
             /// 显示
             return Wrap(
-              spacing: 24.w,
-              runSpacing: 24.w,
+              spacing: 24,
+              runSpacing: 24,
               children: widgetList,
             );
           },
@@ -201,28 +201,28 @@ class MoodChoiceCard extends StatelessWidget {
     return AnimatedPress(
       child: GestureDetector(
         child: Container(
-          width: 128.w,
-          height: 128.w,
+          width: 128,
+          height: 128,
           decoration: BoxDecoration(
             color: Theme.of(context).cardColor,
-            borderRadius: BorderRadius.circular(32.w),
+            borderRadius: BorderRadius.circular(32),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: EdgeInsets.only(bottom: 6.w),
+                padding: const EdgeInsets.only(bottom: 6),
                 child: Text(
                   icon,
-                  style: TextStyle(
-                    fontSize: 32.sp,
+                  style: const TextStyle(
+                    fontSize: 32,
                   ),
                 ),
               ),
               Text(
                 title,
-                style: TextStyle(
-                  fontSize: 16.sp,
+                style: const TextStyle(
+                  fontSize: 16,
                   fontWeight: FontWeight.w400,
                 ),
               ),

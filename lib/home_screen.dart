@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
@@ -70,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     final ThemeData appTheme = Theme.of(context);
 
     /// Tab icon大小
-    final double _tabIconSize = 20.sp;
+    final double _tabIconSize = 20;
 
     /// 当前页下标
     _currentIndex = widget.navigationShell.currentIndex;
@@ -99,17 +98,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               /// 菜单
               TabBar(
                 enableFeedback: true,
-                padding: EdgeInsets.only(left: 40.w),
+                padding: const EdgeInsets.only(left: 40),
                 controller: _tabController,
                 indicatorColor: Colors.transparent,
-                labelStyle: TextStyle(
-                  height: 0.5.h,
-                  fontSize: 10.sp,
+                labelStyle: const TextStyle(
+                  height: 0.5,
+                  fontSize: 10,
                   fontWeight: FontWeight.bold,
                 ),
-                unselectedLabelStyle: TextStyle(
-                  height: 0.5.h,
-                  fontSize: 10.sp,
+                unselectedLabelStyle: const TextStyle(
+                  height: 0.5,
+                  fontSize: 10,
                   fontWeight: FontWeight.bold,
                 ),
                 tabs: [
@@ -155,15 +154,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 child: GestureDetector(
                   key: const Key('tab_screen_left'),
                   child: Container(
-                    width: 36.w,
-                    height: 42.w,
+                    width: 42,
+                    height: 42,
                     decoration: BoxDecoration(
                       color: isDarkMode(context)
                           ? Colors.black12
                           : AppTheme.backgroundColor1,
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(14.sp),
-                        bottomRight: Radius.circular(14.sp),
+                      borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(14),
+                        bottomRight: Radius.circular(14),
                       ),
                     ),
                     child: ValueListenableBuilder<DrawerState>(
@@ -182,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           ),
                           child: Icon(
                             Remix.arrow_right_line,
-                            size: 14.sp,
+                            size: 16,
                             color: isDarkMode(context)
                                 ? const Color(0xFFEFEFEF)
                                 : Colors.black,
@@ -223,7 +222,7 @@ class MenuPage extends StatelessWidget {
       controller: _drawerController,
       menuScreen: const MenuScreenLeft(),
       mainScreen: MainScreenBody(navigationShell: navigationShell),
-      borderRadius: 36.w,
+      borderRadius: 36,
       showShadow: true,
       disableDragGesture: false,
       mainScreenTapClose: true,

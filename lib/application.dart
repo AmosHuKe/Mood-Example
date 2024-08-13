@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 import 'routes.dart';
@@ -27,42 +26,35 @@ class Application extends StatelessWidget {
       builder: (context, child) {
         final watchApplicationProvider = context.watch<ApplicationProvider>();
 
-        return ScreenUtilInit(
-          designSize: const Size(AppTheme.wdp, AppTheme.hdp),
-          minTextAdapt: true,
-          splitScreenMode: true,
-          builder: (context, child) {
-            return MaterialApp.router(
-              // 网格
-              debugShowMaterialGrid: false,
-              // Debug标志
-              debugShowCheckedModeBanner: false,
-              // 打开性能监控，覆盖在屏幕最上面
-              showPerformanceOverlay: false,
-              // 语义视图（无障碍）
-              showSemanticsDebugger: false,
-              // 主题
-              themeMode: watchApplicationProvider.themeMode,
-              theme: AppTheme(getMultipleThemesMode(context))
-                  .multipleThemesLightMode(),
-              darkTheme: AppTheme(getMultipleThemesMode(context))
-                  .multipleThemesDarkMode(),
-              // 国际化
-              supportedLocales: S.supportedLocales,
-              localizationsDelegates: S.localizationsDelegates,
-              locale: watchApplicationProvider.localeSystem
-                  ? null
-                  : watchApplicationProvider.locale,
-              localeListResolutionCallback: (locales, supportedLocales) {
-                print('当前地区语言$locales');
-                print('设备支持的地区语言$supportedLocales');
-                return null;
-              },
-              title: 'Mood',
-              builder: FlutterSmartDialog.init(),
-              routerConfig: Routes.config,
-            );
+        return MaterialApp.router(
+          // 网格
+          debugShowMaterialGrid: false,
+          // Debug标志
+          debugShowCheckedModeBanner: false,
+          // 打开性能监控，覆盖在屏幕最上面
+          showPerformanceOverlay: false,
+          // 语义视图（无障碍）
+          showSemanticsDebugger: false,
+          // 主题
+          themeMode: watchApplicationProvider.themeMode,
+          theme: AppTheme(getMultipleThemesMode(context))
+              .multipleThemesLightMode(),
+          darkTheme:
+              AppTheme(getMultipleThemesMode(context)).multipleThemesDarkMode(),
+          // 国际化
+          supportedLocales: S.supportedLocales,
+          localizationsDelegates: S.localizationsDelegates,
+          locale: watchApplicationProvider.localeSystem
+              ? null
+              : watchApplicationProvider.locale,
+          localeListResolutionCallback: (locales, supportedLocales) {
+            print('当前地区语言$locales');
+            print('设备支持的地区语言$supportedLocales');
+            return null;
           },
+          title: 'Mood',
+          builder: FlutterSmartDialog.init(),
+          routerConfig: Routes.config,
         );
       },
     );

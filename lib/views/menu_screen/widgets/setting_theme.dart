@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -25,33 +24,33 @@ class SettingTheme extends StatelessWidget {
       children: [
         /// 主题外观设置
         Padding(
-          padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 14.w),
+          padding: const EdgeInsets.only(left: 6, top: 6, bottom: 14),
           child: Text(
             S.of(context).app_setting_theme_appearance,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 14.sp,
+              fontSize: 14,
             ),
           ),
         ),
 
         const DarkThemeBody(),
-        SizedBox(height: 36.w),
+        const SizedBox(height: 36),
 
         /// 多主题设置-可浅色、深色模式独立配色方案
         Padding(
-          padding: EdgeInsets.only(left: 6.w, top: 6.w, bottom: 14.w),
+          padding: const EdgeInsets.only(left: 6, top: 6, bottom: 14),
           child: Text(
             S.of(context).app_setting_theme_themes,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 14.sp,
+              fontSize: 14,
             ),
           ),
         ),
 
         const MultipleThemesBody(),
-        SizedBox(height: 48.w),
+        const SizedBox(height: 48),
       ],
     );
   }
@@ -69,8 +68,8 @@ class DarkThemeBody extends StatelessWidget {
         return Wrap(
           alignment: WrapAlignment.center,
           direction: Axis.horizontal,
-          runSpacing: 16.w,
-          spacing: 16.w,
+          runSpacing: 16,
+          spacing: 16,
           children: [
             ThemeCard(
               title: S.of(context).app_setting_theme_appearance_system,
@@ -90,7 +89,7 @@ class DarkThemeBody extends StatelessWidget {
                               ? Colors.black87
                               : const Color(0xFFEFEFEF),
                           fontWeight: FontWeight.bold,
-                          fontSize: 14.sp,
+                          fontSize: 14,
                         ),
                       ),
                     ),
@@ -108,7 +107,7 @@ class DarkThemeBody extends StatelessWidget {
                               ? const Color(0xFFEFEFEF)
                               : Colors.black87,
                           fontWeight: FontWeight.bold,
-                          fontSize: 14.sp,
+                          fontSize: 14,
                         ),
                       ),
                     ),
@@ -123,12 +122,12 @@ class DarkThemeBody extends StatelessWidget {
               child: Container(
                 alignment: Alignment.center,
                 color: const Color(0xFFF6F8FA),
-                child: Text(
+                child: const Text(
                   'Aa',
                   style: TextStyle(
                     color: Colors.black87,
                     fontWeight: FontWeight.bold,
-                    fontSize: 18.sp,
+                    fontSize: 18,
                   ),
                 ),
               ),
@@ -140,12 +139,12 @@ class DarkThemeBody extends StatelessWidget {
               child: Container(
                 alignment: Alignment.center,
                 color: const Color(0xFF111315),
-                child: Text(
+                child: const Text(
                   'Aa',
                   style: TextStyle(
-                    color: const Color(0xFFEFEFEF),
+                    color: Color(0xFFEFEFEF),
                     fontWeight: FontWeight.bold,
-                    fontSize: 18.sp,
+                    fontSize: 18,
                   ),
                 ),
               ),
@@ -178,12 +177,12 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
       builder: (_, applicationProvider, child) {
         final multipleThemesMode = applicationProvider.multipleThemesMode;
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.w),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Wrap(
-            alignment: WrapAlignment.start,
+            alignment: WrapAlignment.center,
             direction: Axis.horizontal,
-            runSpacing: 16.w,
-            spacing: 16.w,
+            runSpacing: 16,
+            spacing: 16,
             children: List.generate(
               appMultipleThemesModeKey.length,
               (generator) {
@@ -242,19 +241,19 @@ class MultipleThemesCard extends StatelessWidget {
               alignment: AlignmentDirectional.bottomEnd,
               children: [
                 Container(
-                  width: 64.w,
-                  height: 64.w,
+                  width: 64,
+                  height: 64,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     border: isSelected
                         ? Border.all(
-                            width: 3.w,
+                            width: 3,
                             color: isDarkMode(context)
                                 ? Colors.white
                                 : Colors.black,
                           )
                         : Border.all(
-                            width: 3.w,
+                            width: 3,
                             color: isDarkMode(context)
                                 ? Colors.white12
                                 : Colors.black12,
@@ -271,10 +270,10 @@ class MultipleThemesCard extends StatelessWidget {
                       return const SizedBox();
                     }
                     return Padding(
-                      padding: EdgeInsets.only(right: 12.w, bottom: 12.w),
+                      padding: const EdgeInsets.only(right: 12, bottom: 12),
                       child: Icon(
                         Remix.checkbox_circle_fill,
-                        size: 20.sp,
+                        size: 20,
                         color:
                             isDarkMode(context) ? Colors.white : Colors.black,
                       ),
@@ -324,26 +323,26 @@ class ThemeCard extends StatelessWidget {
               alignment: AlignmentDirectional.bottomEnd,
               children: [
                 Container(
-                  width: 100.w,
-                  height: 72.w,
+                  width: 100,
+                  height: 72,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18.w),
+                    borderRadius: BorderRadius.circular(18),
                     border: isSelected
                         ? Border.all(
-                            width: 3.w,
+                            width: 3,
                             color: isDarkMode(context)
                                 ? Colors.white
                                 : Colors.black,
                           )
                         : Border.all(
-                            width: 3.w,
+                            width: 3,
                             color: isDarkMode(context)
                                 ? Colors.white12
                                 : Colors.black12,
                           ),
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(14.w),
+                    borderRadius: BorderRadius.circular(14),
                     child: ExcludeSemantics(child: child),
                   ),
                 ),
@@ -353,10 +352,10 @@ class ThemeCard extends StatelessWidget {
                       return const SizedBox();
                     }
                     return Padding(
-                      padding: EdgeInsets.only(right: 8.w, bottom: 8.w),
+                      padding: const EdgeInsets.only(right: 8, bottom: 8),
                       child: Icon(
                         Remix.checkbox_circle_fill,
-                        size: 20.sp,
+                        size: 20,
                         color:
                             isDarkMode(context) ? Colors.white : Colors.black,
                       ),
@@ -366,10 +365,11 @@ class ThemeCard extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(top: 4.w),
+              padding: const EdgeInsets.only(top: 4),
               child: Text(
                 title ?? '',
-                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
               ),
             ),
           ],

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -41,31 +40,31 @@ class MenuScreenLeftBody extends StatelessWidget {
         parent: BouncingScrollPhysics(),
       ),
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(
-            top: 72.w,
-            bottom: 48.w,
-            left: 24.w,
-            right: 24.w,
+            top: 72,
+            bottom: 48,
+            left: 24,
+            right: 24,
           ),
-          child: const Header(),
+          child: Header(),
         ),
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(
-            bottom: 24.w,
-            left: 24.w,
-            right: 24.w,
+            bottom: 24,
+            left: 24,
+            right: 24,
           ),
-          child: const Menu(),
+          child: Menu(),
         ),
 
         /// 插画
         BlockSemanticsToDrawerClosed(
           child: Container(
-            padding: EdgeInsets.only(left: 24.w, bottom: 24.w),
+            padding: const EdgeInsets.only(left: 24, bottom: 24),
             child: Image.asset(
               'assets/images/woolly/woolly-comet-2.png',
-              width: 240.w,
+              width: 240,
             ),
           ),
         ),
@@ -87,20 +86,20 @@ class Header extends StatelessWidget {
         children: [
           ClipRRect(
             key: const Key('widget_menu_screen_left_logo'),
-            borderRadius: BorderRadius.circular(14.sp),
+            borderRadius: BorderRadius.circular(14),
             child: Image.asset(
               'assets/images/logo.png',
-              width: 42.w,
-              height: 42.w,
+              width: 42,
+              height: 42,
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 12.w),
+          const Padding(
+            padding: EdgeInsets.only(left: 12),
             child: Text(
               'Mood',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 28.sp,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
               semanticsLabel: '',
@@ -118,8 +117,8 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _titleTextSize = 14.sp;
-    final _titleIconSize = 20.sp;
+    final double _titleTextSize = 14;
+    final double _titleIconSize = 20;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -275,8 +274,8 @@ class MenuList extends StatelessWidget {
         title: title,
         textColor: Colors.white,
         iconColor: Colors.white,
-        minLeadingWidth: 0.w,
-        horizontalTitleGap: 28.w,
+        minLeadingWidth: 0,
+        horizontalTitleGap: 28,
         onTap: onTap,
       ),
     );

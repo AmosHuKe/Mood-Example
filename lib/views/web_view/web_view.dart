@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -77,7 +76,7 @@ class _WebViewPageState extends State<WebViewPage> {
         shadowColor: Colors.transparent,
         titleTextStyle: TextStyle(
           color: Theme.of(context).textTheme.bodyMedium!.color,
-          fontSize: 14.sp,
+          fontSize: 14,
         ),
         title: Text(_pageTitle),
         leading: ActionButton(
@@ -87,11 +86,12 @@ class _WebViewPageState extends State<WebViewPage> {
             color: isDarkMode(context)
                 ? Theme.of(context).cardColor
                 : AppTheme.backgroundColor1,
-            borderRadius: BorderRadius.only(bottomRight: Radius.circular(18.w)),
+            borderRadius:
+                const BorderRadius.only(bottomRight: Radius.circular(18)),
           ),
-          child: Icon(
+          child: const Icon(
             Remix.close_fill,
-            size: 24.sp,
+            size: 24,
           ),
           onTap: () {
             context.pop();

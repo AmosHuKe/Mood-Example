@@ -2,6 +2,7 @@
 - [升级] Flutter 3.24.0
 - [升级] Package 升级及适配
 - [修改] 路由管理 fluro 替换为 go_router
+- [移除] flutter_screenutil package
 
 # 1.9.9
 - [升级] Flutter 3.19.6

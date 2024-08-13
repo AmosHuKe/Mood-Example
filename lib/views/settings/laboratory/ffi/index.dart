@@ -4,7 +4,6 @@ import 'dart:isolate';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -141,29 +140,29 @@ class _FFIPageState extends State<FFIPage> {
           backgroundColor: const Color(0xFFF6F8FA),
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
-          titleTextStyle: TextStyle(color: Colors.black, fontSize: 14.sp),
+          titleTextStyle: const TextStyle(color: Colors.black, fontSize: 14),
           title: const Text('FFI 异步调用 C/C++'),
           leading: ActionButton(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppTheme.backgroundColor1,
               borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(18.w),
+                bottomRight: Radius.circular(18),
               ),
             ),
-            child: Icon(Remix.arrow_left_line, size: 24.sp),
+            child: const Icon(Remix.arrow_left_line, size: 24),
             onTap: () => context.pop(),
           ),
         ),
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(12.w),
+            padding: const EdgeInsets.all(12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   '接收端口 ${_receivePort1.sendPort.nativePort} 信息：',
-                  style: TextStyle(
-                    fontSize: 14.sp,
+                  style: const TextStyle(
+                    fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -171,15 +170,15 @@ class _FFIPageState extends State<FFIPage> {
                     ? const CupertinoActivityIndicator()
                     : Text(
                         _testText1,
-                        style: TextStyle(
-                          fontSize: 14.sp,
+                        style: const TextStyle(
+                          fontSize: 14,
                         ),
                       ),
-                SizedBox(height: 24.w),
+                const SizedBox(height: 24),
                 Text(
                   '接收端口 ${_receivePort2.sendPort.nativePort} 信息：',
-                  style: TextStyle(
-                    fontSize: 14.sp,
+                  style: const TextStyle(
+                    fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -187,8 +186,8 @@ class _FFIPageState extends State<FFIPage> {
                     ? const CupertinoActivityIndicator()
                     : Text(
                         _testText2,
-                        style: TextStyle(
-                          fontSize: 14.sp,
+                        style: const TextStyle(
+                          fontSize: 14,
                         ),
                       ),
               ],

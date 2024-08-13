@@ -1,7 +1,7 @@
 name: moodexample
 description: 管理自己的情绪，记录当下所见所想。
 publish_to: 'none'
-version: 1.9.10+461
+version: 1.9.10+462
 
 environment:
   sdk: ^3.5.0
@@ -14,7 +14,6 @@ dependencies:
   intl: ^0.19.0 # i18n/l10n 处理
   path: ^1.9.0
   path_provider: ^2.1.4 # 路径
-  flutter_screenutil: ^5.9.3 # UI 自适应工具
   provider: ^6.1.2 # 状态管理
   sqflite: ^2.3.3+1 # 数据库
   shared_preferences: ^2.3.1 # 共享存储
