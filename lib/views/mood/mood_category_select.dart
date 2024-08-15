@@ -61,9 +61,6 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
 
     /// 当前选择的时间
     _nowDateTime = moodProvider.nowDateTime.toString().substring(0, 10);
-
-    /// 获取所有心情类别
-    moodProvider.loadMoodCategoryAllList();
   }
 
   @override

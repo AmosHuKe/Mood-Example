@@ -8,6 +8,10 @@ import 'package:moodexample/services/mood/mood_service.dart';
 
 // 心情页相关
 class MoodProvider extends ChangeNotifier {
+  MoodProvider() {
+    load();
+  }
+
   /// 心情数据List
   List<MoodData> _moodDataList = [];
 
@@ -26,8 +30,14 @@ class MoodProvider extends ChangeNotifier {
   /// 所有心情数据List
   List<MoodData>? _moodAllDataList = [];
 
+  Future<void> load() async {
+    await loadMoodCategoryAllList();
+    await loadMoodRecordDateAllList();
+    await loadMoodDataList();
+  }
+
   /// 设置心情类别默认值
-  static Future<bool> setMoodCategoryDefault() async {
+  Future<bool> _setMoodCategoryDefault() async {
     final bool initMoodCategoryDefaultType =
         await PreferencesDB.instance.getInitMoodCategoryDefaultType();
     print('心情类别默认值初始化:$initMoodCategoryDefaultType');
@@ -44,8 +54,7 @@ class MoodProvider extends ChangeNotifier {
   /// 获取所有心情类别数据列表
   Future<void> loadMoodCategoryAllList() async {
     /// 设置心情类别默认值
-    final bool setMoodCategoryDefaultresult =
-        await MoodProvider.setMoodCategoryDefault();
+    final bool setMoodCategoryDefaultresult = await _setMoodCategoryDefault();
     if (setMoodCategoryDefaultresult) {
       /// 获取所有心情类别
       moodCategoryList = await MoodService.getMoodCategoryAll();
@@ -53,10 +62,12 @@ class MoodProvider extends ChangeNotifier {
   }
 
   /// 根据日期获取详细数据列表
-  Future<void> loadMoodDataList(String datetime) async {
+  Future<void> loadMoodDataList() async {
     _moodDataLoading = true;
     notifyListeners();
-    moodDataList = await MoodService.getMoodData(datetime);
+    moodDataList = await MoodService.getMoodData(
+      _nowDateTime.toString().substring(0, 10),
+    );
   }
 
   /// 所有心情详细数据列表

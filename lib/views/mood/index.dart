@@ -37,10 +37,6 @@ class _MoodPageState extends State<MoodPage> {
   @override
   void initState() {
     super.initState();
-
-    WidgetsBinding.instance.endOfFrame.then((_) {
-      if (mounted) init(context);
-    });
   }
 
   @override
@@ -107,21 +103,6 @@ class _MoodPageState extends State<MoodPage> {
   }
 }
 
-/// 初始化
-void init(BuildContext context) {
-  final MoodProvider moodProvider = context.read<MoodProvider>();
-
-  /// 获取所有记录心情的日期
-  moodProvider.loadMoodRecordDateAllList();
-
-  /// 处理日期
-  final String moodDatetime =
-      moodProvider.nowDateTime.toString().substring(0, 10);
-
-  /// 获取心情数据
-  moodProvider.loadMoodDataList(moodDatetime);
-}
-
 /// 主体
 class MoodBody extends StatelessWidget {
   const MoodBody({super.key});
@@ -168,7 +149,8 @@ class MoodBody extends StatelessWidget {
         /// 下拉加载
         CupertinoSliverRefreshControl(
           onRefresh: () async {
-            init(context);
+            final MoodProvider moodProvider = context.read<MoodProvider>();
+            moodProvider.load();
           },
         ),
 
@@ -402,15 +384,11 @@ class _CalendarState extends State<Calendar> {
               /// 赋值当前选择的日期
               moodProvider.nowDateTime = selectedDay;
 
-              /// 处理赋值新日期
-              final String moodDatetime =
-                  selectedDay.toString().substring(0, 10);
-
               /// 开启加载
               moodProvider.moodDataLoading = true;
 
               /// 获取心情数据
-              moodProvider.loadMoodDataList(moodDatetime);
+              moodProvider.loadMoodDataList();
             },
             onCalendarCreated: (pageController) {
               /// 初始化触发一次
@@ -631,8 +609,10 @@ class MoodCard extends StatelessWidget {
                             final bool result =
                                 await moodProvider.deleteMoodData(moodData);
                             if (result) {
-                              // 重新初始化
-                              init(context);
+                              /// 重新初始化
+                              final MoodProvider moodProvider =
+                                  context.read<MoodProvider>();
+                              moodProvider.load();
                               context.pop();
                             }
                           },

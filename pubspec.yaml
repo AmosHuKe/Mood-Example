@@ -1,7 +1,7 @@
 name: moodexample
 description: 管理自己的情绪，记录当下所见所想。
 publish_to: 'none'
-version: 1.9.10+462
+version: 1.9.10+463
 
 environment:
   sdk: ^3.5.0

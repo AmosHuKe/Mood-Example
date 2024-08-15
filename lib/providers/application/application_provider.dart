@@ -4,6 +4,15 @@ import 'package:moodexample/db/preferences_db.dart';
 
 /// App相关
 class ApplicationProvider extends ChangeNotifier {
+  ApplicationProvider() {
+    loadThemeMode();
+    loadMultipleThemesMode();
+    loadLocaleSystem();
+    loadLocale();
+    loadKeyPassword();
+    loadKeyBiometric();
+  }
+
   /// 主题模式
   ThemeMode _themeMode = ThemeMode.system;
 

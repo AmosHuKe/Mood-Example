@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:provider/provider.dart';
 
 import 'themes/app_theme.dart';
 import 'common/notification.dart';
@@ -11,9 +10,6 @@ import 'l10n/gen/app_localizations.dart';
 import 'db/db.dart';
 
 import 'widgets/lock_screen/lock_screen.dart';
-
-import 'providers/application/application_provider.dart';
-import 'providers/mood/mood_provider.dart';
 
 class Init extends StatefulWidget {
   const Init({super.key, required this.child});
@@ -46,9 +42,7 @@ class _InitState extends State<Init> {
     );
 
     /// 初始化
-    WidgetsBinding.instance.endOfFrame.then((_) {
-      if (mounted) init();
-    });
+    init();
   }
 
   @override
@@ -82,24 +76,10 @@ class _InitState extends State<Init> {
 
   /// 应用初始化
   Future<void> init() async {
-    final MoodProvider moodProvider = context.read<MoodProvider>();
-    final ApplicationProvider applicationProvider =
-        context.read<ApplicationProvider>();
-
     // 初始化数据库
     await DB.instance.database;
     // 锁屏
     runLockScreen();
-    // 获取所有心情类别
-    moodProvider.loadMoodCategoryAllList();
-    // 触发获取APP主题深色模式
-    applicationProvider.loadThemeMode();
-    // 触发获取APP多主题模式
-    applicationProvider.loadMultipleThemesMode();
-    // 触发获取APP地区语言
-    applicationProvider.loadLocale();
-    // 触发获取APP地区语言是否跟随系统
-    applicationProvider.loadLocaleSystem();
     // 通知权限判断显示
     allowedNotification();
 

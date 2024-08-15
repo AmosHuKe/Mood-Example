@@ -105,8 +105,6 @@ class _MoodContentState extends State<MoodContent> {
 
               /// 是否操作成功
               late bool result = false;
-              final String nowDateTime =
-                  moodProvider.nowDateTime.toString().substring(0, 10);
 
               /// 存在ID的操作（代表修改）
               if (_moodData.moodId != null) {
@@ -121,7 +119,7 @@ class _MoodContentState extends State<MoodContent> {
               }
               if (result) {
                 /// 获取心情数据
-                moodProvider.loadMoodDataList(nowDateTime);
+                moodProvider.loadMoodDataList();
 
                 /// 获取所有已记录心情的日期
                 moodProvider.loadMoodRecordDateAllList();

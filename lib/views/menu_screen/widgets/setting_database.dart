@@ -179,18 +179,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                   /// 更新心情数据
                                   final MoodProvider moodProvider =
                                       context.read<MoodProvider>();
-
-                                  /// 获取所有有记录心情的日期
-                                  moodProvider.loadMoodRecordDateAllList();
-
-                                  /// 处理日期
-                                  final String moodDatetime = moodProvider
-                                      .nowDateTime
-                                      .toString()
-                                      .substring(0, 10);
-
-                                  /// 获取心情数据
-                                  moodProvider.loadMoodDataList(moodDatetime);
+                                  moodProvider.load();
                               }
                             } catch (e) {
                               print('$e');

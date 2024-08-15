@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
 import 'themes/app_theme.dart';
 import 'l10n/gen/app_localizations.dart';
-import 'views/statistic/index.dart' as statistic;
+
+import 'providers/statistic/statistic_provider.dart';
 
 import 'views/menu_screen/menu_screen_left.dart';
 
@@ -70,6 +72,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
     /// Tab icon大小
     final double _tabIconSize = 20;
+
+    final StatisticProvider statisticProvider =
+        context.read<StatisticProvider>();
 
     /// 当前页下标
     _currentIndex = widget.navigationShell.currentIndex;
@@ -141,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   switch (index) {
                     case 2:
                       // 统计菜单触发
-                      statistic.init(context);
+                      statisticProvider.load();
                   }
                   widget.navigationShell.goBranch(index);
                 },

@@ -35,29 +35,6 @@ class _StatisticPageState extends State<StatisticPage> {
   }
 }
 
-/// 初始化
-void init(BuildContext context) {
-  final StatisticProvider statisticProvider = context.read<StatisticProvider>();
-
-  /// 统计的天数
-  final int moodDays = statisticProvider.moodDays;
-
-  /// 统计-APP累计使用天数
-  statisticProvider.loadDaysCount();
-
-  /// 统计-APP累计记录条数
-  statisticProvider.loadMoodCount();
-
-  /// 统计-平均情绪波动
-  statisticProvider.loadMoodScoreAverage();
-
-  /// 统计-近日情绪波动
-  statisticProvider.loadMoodScoreAverageRecently(days: moodDays);
-
-  /// 统计-近日心情数量统计
-  statisticProvider.loadDateMoodCount(days: moodDays);
-}
-
 class StatisticBody extends StatelessWidget {
   const StatisticBody({super.key});
 
@@ -65,6 +42,9 @@ class StatisticBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final StatisticProvider readStatisticProvider =
+        context.read<StatisticProvider>();
+
     return CustomScrollView(
       physics: const AlwaysScrollableScrollPhysics(
         parent: BouncingScrollPhysics(),
@@ -107,7 +87,7 @@ class StatisticBody extends StatelessWidget {
                             onTap: () {
                               if (moodDays == 7) return;
                               statisticProvider.moodDays = 7;
-                              init(context);
+                              statisticProvider.load();
                             },
                           ),
                           FilterBottom(
@@ -117,7 +97,7 @@ class StatisticBody extends StatelessWidget {
                             onTap: () {
                               if (moodDays == 15) return;
                               statisticProvider.moodDays = 15;
-                              init(context);
+                              statisticProvider.load();
                             },
                           ),
                           FilterBottom(
@@ -127,7 +107,7 @@ class StatisticBody extends StatelessWidget {
                             onTap: () {
                               if (moodDays == 30) return;
                               statisticProvider.moodDays = 30;
-                              init(context);
+                              statisticProvider.load();
                             },
                           ),
                         ],
@@ -145,7 +125,7 @@ class StatisticBody extends StatelessWidget {
         /// 下拉加载
         CupertinoSliverRefreshControl(
           onRefresh: () async {
-            init(context);
+            readStatisticProvider.load();
           },
         ),
         SliverToBoxAdapter(
