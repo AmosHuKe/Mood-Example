@@ -4,8 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
-import 'widgets/pop_scope_route/pop_scope_route.dart';
-
 import 'models/mood/mood_model.dart';
 
 import 'init.dart';
@@ -117,12 +115,10 @@ class Routes {
           StatefulNavigationShell navigationShell,
         ) {
           /// 主屏幕
-          return PopScopeRoute(
-            child: Init(
-              child: MenuPage(
-                key: const Key('widget_menu_page'),
-                navigationShell: navigationShell,
-              ),
+          return Init(
+            child: MenuPage(
+              key: const Key('widget_menu_page'),
+              navigationShell: navigationShell,
             ),
           );
         },

@@ -94,8 +94,7 @@ class LaboratoryBody extends StatelessWidget {
             color: Colors.black87,
           ),
           title: '3D 城市',
-          subtitle:
-              'obj 格式，CPU 渲染性能较低，3D 来源 https://github.com/pissang/little-big-city',
+          subtitle: '3D 来源 https://github.com/pissang/little-big-city',
           onPressed: () {
             GoRouter.of(context).pushNamed(Routes.laboratoryPage3D);
           },
