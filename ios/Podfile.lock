@@ -83,6 +83,7 @@ PODS:
   - SwiftyGif (5.4.5)
   - webview_flutter_wkwebview (0.0.1):
     - Flutter
+    - FlutterMacOS
 
 DEPENDENCIES:
   - awesome_notifications (from `.symlinks/plugins/awesome_notifications/ios`)
@@ -97,7 +98,7 @@ DEPENDENCIES:
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sqflite (from `.symlinks/plugins/sqflite/darwin`)
-  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
+  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/darwin`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -133,7 +134,7 @@ EXTERNAL SOURCES:
   sqflite:
     :path: ".symlinks/plugins/sqflite/darwin"
   webview_flutter_wkwebview:
-    :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
+    :path: ".symlinks/plugins/webview_flutter_wkwebview/darwin"
 
 SPEC CHECKSUMS:
   awesome_notifications: 66d28ab7174ca2823b04d275cb043e0a4a3eb9cf
@@ -154,7 +155,7 @@ SPEC CHECKSUMS:
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   sqflite: 673a0e54cc04b7d6dba8d24fb8095b31c3a99eec
   SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
-  webview_flutter_wkwebview: 2a23822e9039b7b1bc52e5add778e5d89ad488d1
+  webview_flutter_wkwebview: 0982481e3d9c78fd5c6f62a002fcd24fc791f1e4
 
 PODFILE CHECKSUM: 40845afeabd2130029d6c109942a8d6ace455ebd
 
