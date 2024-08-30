@@ -82,6 +82,9 @@ typedef void (^DCUniMPKeepAliveCallback)(id result, BOOL keepAlive);
 /// 释放SDK资源
 + (void)destory;
 
+/// 设置是否开启 web 内容检查器（iOS16.4 及以上版本有效）
++ (void)setWebContentInspection:(BOOL)inspectable;
+
 #pragma mark - 小程序应用相关方法
 
 /// 小程序打开状态，调用此方法可获取小程序对应的 DCUniMPViewController 实例
