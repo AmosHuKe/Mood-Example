@@ -87,7 +87,7 @@
 - [x] 本地通知  
 - [x] 动画  
 - [x] 实验室（占用 APP 大部分包体积，源码位置查看项目结构）  
-  - [x] uniapp 小程序（UniMPSDK v3.98）  
+  - [x] uniapp 小程序（UniMPSDK v4.15）  
   - [x] 3D 城市（obj 格式）  
   - [x] 游戏合集（Bonfire, Flame）  
   - [x] FFI 异步调用 C/C++  

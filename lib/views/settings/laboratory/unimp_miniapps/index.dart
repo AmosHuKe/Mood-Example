@@ -88,9 +88,9 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('UniMPSDK_Android 版本：3.98-20231127'),
+              Text('UniMPSDK_Android 版本：4.15'),
               Text('UniMPSDK_iOS 版本：3.98'),
-              Text('HBuilderX 版本：3.98'),
+              Text('HBuilderX 版本：4.15'),
             ],
           ),
         ),
@@ -102,7 +102,7 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
             size: 32,
             color: Colors.black87,
           ),
-          title: 'uView',
+          title: 'uView2.0',
           subtitle: 'uView UI，是 uni-app 生态优秀的 UI 框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水',
           onPressed: () async {
             await callNativeMethod('__UNI__F87B0CE');

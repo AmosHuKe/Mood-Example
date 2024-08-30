@@ -72,9 +72,9 @@ dependencies {
     // libs UniMPSDK
     implementation fileTree(include: ["*.jar"], dir: "libs")
     implementation fileTree(include: ["*.aar"], dir: "libs")
-    implementation "androidx.recyclerview:recyclerview:1.0.0"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
-    implementation "androidx.appcompat:appcompat:1.0.0"
+    implementation "androidx.appcompat:appcompat:1.1.0"
     implementation "com.alibaba:fastjson:1.2.83"
     implementation "com.facebook.fresco:fresco:2.5.0"
     implementation "com.facebook.fresco:animated-gif:2.5.0"
