@@ -59,14 +59,16 @@ class _InitState extends State<Init> {
       isDarkMode(context)
           ? SystemUiOverlayStyle.dark.copyWith(
               statusBarColor: Colors.transparent,
-              statusBarBrightness: Brightness.light,
+              systemNavigationBarIconBrightness: Brightness.light,
               statusBarIconBrightness: Brightness.light,
+              statusBarBrightness: Brightness.light,
               systemNavigationBarColor: Colors.transparent,
             )
           : SystemUiOverlayStyle.light.copyWith(
               statusBarColor: Colors.transparent,
-              statusBarBrightness: Brightness.dark,
+              systemNavigationBarIconBrightness: Brightness.light,
               statusBarIconBrightness: Brightness.dark,
+              statusBarBrightness: Brightness.dark,
               systemNavigationBarColor: Colors.transparent,
             ),
     );

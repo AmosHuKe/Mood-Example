@@ -34,9 +34,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SafeArea(
-        child: HomeBody(key: Key('widget_home_body')),
-      ),
+      body: HomeBody(key: Key('widget_home_body')),
     );
   }
 }
@@ -64,27 +62,29 @@ class _HomeBodyState extends State<HomeBody> {
           elevation: 0,
           forceMaterialTransparency: true,
           backgroundColor: Colors.transparent,
-          flexibleSpace: Container(
-            alignment: Alignment.center,
-            margin: const EdgeInsets.symmetric(horizontal: 24),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  S.of(context).home_hi,
-                  style: const TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.bold,
+          flexibleSpace: SafeArea(
+            child: Container(
+              alignment: Alignment.center,
+              margin: const EdgeInsets.symmetric(horizontal: 24),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    S.of(context).home_hi,
+                    style: const TextStyle(
+                      fontSize: 48,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    semanticsLabel:
+                        S.of(context).app_bottomNavigationBar_title_home,
                   ),
-                  semanticsLabel:
-                      S.of(context).app_bottomNavigationBar_title_home,
-                ),
-                Image.asset(
-                  'assets/images/woolly/woolly-yellow-star.png',
-                  height: 60,
-                  excludeFromSemantics: true,
-                ),
-              ],
+                  Image.asset(
+                    'assets/images/woolly/woolly-yellow-star.png',
+                    height: 60,
+                    excludeFromSemantics: true,
+                  ),
+                ],
+              ),
             ),
           ),
           collapsedHeight: 100,

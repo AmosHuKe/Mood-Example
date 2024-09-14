@@ -96,9 +96,7 @@ class _MoodPageState extends State<MoodPage> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      body: const SafeArea(
-        child: MoodBody(key: Key('widget_mood_body')),
-      ),
+      body: const MoodBody(key: Key('widget_mood_body')),
     );
   }
 }
@@ -119,27 +117,29 @@ class MoodBody extends StatelessWidget {
           elevation: 0,
           forceMaterialTransparency: true,
           backgroundColor: Colors.transparent,
-          flexibleSpace: Container(
-            alignment: Alignment.center,
-            margin: const EdgeInsets.symmetric(horizontal: 24),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  S.of(context).mood_title,
-                  style: const TextStyle(
-                    fontSize: 36,
-                    fontWeight: FontWeight.bold,
+          flexibleSpace: SafeArea(
+            child: Container(
+              alignment: Alignment.center,
+              margin: const EdgeInsets.symmetric(horizontal: 24),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    S.of(context).mood_title,
+                    style: const TextStyle(
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    semanticsLabel:
+                        S.of(context).app_bottomNavigationBar_title_mood,
                   ),
-                  semanticsLabel:
-                      S.of(context).app_bottomNavigationBar_title_mood,
-                ),
-                Image.asset(
-                  'assets/images/woolly/woolly-heart.png',
-                  height: 60,
-                  excludeFromSemantics: true,
-                ),
-              ],
+                  Image.asset(
+                    'assets/images/woolly/woolly-heart.png',
+                    height: 60,
+                    excludeFromSemantics: true,
+                  ),
+                ],
+              ),
             ),
           ),
           collapsedHeight: 100,

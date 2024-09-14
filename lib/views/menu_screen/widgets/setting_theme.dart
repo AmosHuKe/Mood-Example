@@ -188,8 +188,7 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
               (generator) {
                 final String key = appMultipleThemesModeKey[generator];
                 final Color primaryColor =
-                    appMultipleThemesMode[key]![AppMultipleThemesMode.light]!
-                        .primaryColor;
+                    appMultipleThemesMode[key]!.lightTheme().primaryColor;
                 return MultipleThemesCard(
                   key: Key('widget_multiple_themes_card_$key'),
                   selected: multipleThemesMode == key,

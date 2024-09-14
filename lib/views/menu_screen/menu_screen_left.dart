@@ -22,9 +22,7 @@ class MenuScreenLeft extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: const SafeArea(
-        child: MenuScreenLeftBody(),
-      ),
+      child: const MenuScreenLeftBody(),
       onTap: () => ZoomDrawer.of(context)?.toggle.call(),
     );
   }
@@ -82,30 +80,32 @@ class Header extends StatelessWidget {
     return Semantics(
       button: true,
       label: '关闭设置',
-      child: Row(
-        children: [
-          ClipRRect(
-            key: const Key('widget_menu_screen_left_logo'),
-            borderRadius: BorderRadius.circular(14),
-            child: Image.asset(
-              'assets/images/logo.png',
-              width: 42,
-              height: 42,
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 12),
-            child: Text(
-              'Mood',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
+      child: SafeArea(
+        child: Row(
+          children: [
+            ClipRRect(
+              key: const Key('widget_menu_screen_left_logo'),
+              borderRadius: BorderRadius.circular(14),
+              child: Image.asset(
+                'assets/images/logo.png',
+                width: 42,
+                height: 42,
               ),
-              semanticsLabel: '',
             ),
-          ),
-        ],
+            const Padding(
+              padding: EdgeInsets.only(left: 12),
+              child: Text(
+                'Mood',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
+                semanticsLabel: '',
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

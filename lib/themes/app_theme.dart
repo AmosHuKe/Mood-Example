@@ -35,6 +35,15 @@ String getMultipleThemesMode(BuildContext context) {
   return multipleThemesMode;
 }
 
+/// 多主题
+abstract class AppMultipleTheme {
+  /// 亮色
+  ThemeData lightTheme();
+
+  /// 深色
+  ThemeData darkTheme();
+}
+
 /// 主题基础
 class AppTheme {
   AppTheme(this.multipleThemesMode);
@@ -54,24 +63,16 @@ class AppTheme {
   static const backgroundColor3 = Color(0xFFF3F2F3);
 
   /// 多主题 light
-  ThemeData? multipleThemesLightMode() {
-    ThemeData? lightTheme =
-        appMultipleThemesMode['default']![AppMultipleThemesMode.light];
-    if (appMultipleThemesMode[multipleThemesMode] != null) {
-      lightTheme = appMultipleThemesMode[multipleThemesMode]![
-          AppMultipleThemesMode.light];
-    }
-    return lightTheme;
+  ThemeData multipleThemesLightMode() {
+    return appMultipleThemesMode[multipleThemesMode] != null
+        ? appMultipleThemesMode[multipleThemesMode]!.lightTheme()
+        : appMultipleThemesMode['default']!.lightTheme();
   }
 
   /// 多主题 dark
-  ThemeData? multipleThemesDarkMode() {
-    ThemeData? darkTheme =
-        appMultipleThemesMode['default']![AppMultipleThemesMode.dark];
-    if (appMultipleThemesMode[multipleThemesMode] != null) {
-      darkTheme = appMultipleThemesMode[multipleThemesMode]![
-          AppMultipleThemesMode.dark];
-    }
-    return darkTheme;
+  ThemeData multipleThemesDarkMode() {
+    return appMultipleThemesMode[multipleThemesMode] != null
+        ? appMultipleThemesMode[multipleThemesMode]!.darkTheme()
+        : appMultipleThemesMode['default']!.darkTheme();
   }
 }

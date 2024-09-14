@@ -28,9 +28,7 @@ class _StatisticPageState extends State<StatisticPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: const SafeArea(
-        child: StatisticBody(key: Key('widget_statistic_body')),
-      ),
+      body: const StatisticBody(key: Key('widget_statistic_body')),
     );
   }
 }
@@ -57,64 +55,66 @@ class StatisticBody extends StatelessWidget {
           elevation: 0,
           forceMaterialTransparency: true,
           backgroundColor: Colors.transparent,
-          flexibleSpace: Align(
-            child: Container(
-              width: double.maxFinite,
-              margin: const EdgeInsets.symmetric(horizontal: 24),
-              child: Wrap(
-                alignment: WrapAlignment.spaceBetween,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                children: [
-                  Text(
-                    S.of(context).statistic_title,
-                    style: const TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
+          flexibleSpace: SafeArea(
+            child: Align(
+              child: Container(
+                width: double.maxFinite,
+                margin: const EdgeInsets.symmetric(horizontal: 24),
+                child: Wrap(
+                  alignment: WrapAlignment.spaceBetween,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Text(
+                      S.of(context).statistic_title,
+                      style: const TextStyle(
+                        fontSize: 36,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      semanticsLabel:
+                          S.of(context).app_bottomNavigationBar_title_statistic,
                     ),
-                    semanticsLabel:
-                        S.of(context).app_bottomNavigationBar_title_statistic,
-                  ),
-                  Consumer<StatisticProvider>(
-                    builder: (context, statisticProvider, child) {
-                      final int moodDays = statisticProvider.moodDays;
-                      return Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          FilterBottom(
-                            S.of(context).statistic_filter_7d,
-                            checked: moodDays == 7,
-                            semanticsLabel: '筛选7日统计数据',
-                            onTap: () {
-                              if (moodDays == 7) return;
-                              statisticProvider.moodDays = 7;
-                              statisticProvider.load();
-                            },
-                          ),
-                          FilterBottom(
-                            S.of(context).statistic_filter_15d,
-                            checked: moodDays == 15,
-                            semanticsLabel: '筛选15日统计数据',
-                            onTap: () {
-                              if (moodDays == 15) return;
-                              statisticProvider.moodDays = 15;
-                              statisticProvider.load();
-                            },
-                          ),
-                          FilterBottom(
-                            S.of(context).statistic_filter_30d,
-                            checked: moodDays == 30,
-                            semanticsLabel: '筛选30日统计数据',
-                            onTap: () {
-                              if (moodDays == 30) return;
-                              statisticProvider.moodDays = 30;
-                              statisticProvider.load();
-                            },
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                ],
+                    Consumer<StatisticProvider>(
+                      builder: (context, statisticProvider, child) {
+                        final int moodDays = statisticProvider.moodDays;
+                        return Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            FilterBottom(
+                              S.of(context).statistic_filter_7d,
+                              checked: moodDays == 7,
+                              semanticsLabel: '筛选7日统计数据',
+                              onTap: () {
+                                if (moodDays == 7) return;
+                                statisticProvider.moodDays = 7;
+                                statisticProvider.load();
+                              },
+                            ),
+                            FilterBottom(
+                              S.of(context).statistic_filter_15d,
+                              checked: moodDays == 15,
+                              semanticsLabel: '筛选15日统计数据',
+                              onTap: () {
+                                if (moodDays == 15) return;
+                                statisticProvider.moodDays = 15;
+                                statisticProvider.load();
+                              },
+                            ),
+                            FilterBottom(
+                              S.of(context).statistic_filter_30d,
+                              checked: moodDays == 30,
+                              semanticsLabel: '筛选30日统计数据',
+                              onTap: () {
+                                if (moodDays == 30) return;
+                                statisticProvider.moodDays = 30;
+                                statisticProvider.load();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

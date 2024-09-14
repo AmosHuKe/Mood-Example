@@ -236,10 +236,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_smart_dialog
-      sha256: "3d376ba47f64391cc657f706815b32dd6ff2e0f80553a5c9f33b812ba7c59462"
+      sha256: "6b5fd32cd2900745df30c1d95ef597ea0ee1ee8cfa557eab62010e3db1d3d717"
       url: "https://pub.dev"
     source: hosted
-    version: "4.9.8"
+    version: "4.9.8+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -249,18 +249,18 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_tilt
-      sha256: "0ee5b68b19736b2ecd889b85d691db8fd2e5661aabb7aca12e4146b9f0061965"
+      sha256: "2b7518157a7652fa100a94cacaf09e27878d8c0294d8de5f271c81e007ab1197"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.5"
+    version: "3.0.6"
   flutter_timezone:
     dependency: "direct main"
     description:
       name: flutter_timezone
-      sha256: "06150cc6dde7a0309acc3f1c38380819ae774be4d942934c824c4fa64efadffa"
+      sha256: ea53c61c9152f271a5e30624a624184804947b6a733ff2b64186bb2579446892
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.1"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -805,10 +805,10 @@ packages:
     dependency: transitive
     description:
       name: uuid
-      sha256: "83d37c7ad7aaf9aa8e275490669535c8080377cfa7a7004c24dfac53afffaa90"
+      sha256: f33d6bb662f0e4f79dcd7ada2e6170f3b3a2530c28fc41f49a411ddedd576a77
       url: "https://pub.dev"
     source: hosted
-    version: "4.4.2"
+    version: "4.5.0"
   vector_math:
     dependency: "direct main"
     description:
