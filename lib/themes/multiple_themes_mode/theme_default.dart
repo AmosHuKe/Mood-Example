@@ -90,6 +90,7 @@ class AppThemeDefault implements AppMultipleTheme {
   }
 
   /// 深色主题
+  @override
   ThemeData darkTheme() {
     return ThemeData(
       useMaterial3: false,

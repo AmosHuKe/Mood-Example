@@ -697,7 +697,7 @@ class Article extends StatelessWidget {
               closedColor: const Color(0xFFFFD390),
               openBuilder: (_, closeContainer) {
                 return WebViewPage(
-                  url: ValueConvert('https://amoshk.top/').encode(),
+                  url: ValueConvert('https://amooos.com/').encode(),
                 );
               },
             ),
