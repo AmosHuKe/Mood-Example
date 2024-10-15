@@ -202,14 +202,8 @@ class MoodBody extends StatelessWidget {
                     final MoodData moodData = moodProvider.moodDataList[index];
 
                     return MoodCard(
-                      key: Key(moodData.moodId.toString()),
-                      moodId: moodData.moodId ?? -1,
-                      icon: moodData.icon ?? '',
-                      title: moodData.title ?? '',
-                      datetime: moodData.createTime ?? '',
-                      score: moodData.score ?? 0,
-                      content: moodData.content,
-                      createTime: moodData.createTime ?? '',
+                      key: Key(moodData.mood_id.toString()),
+                      moodData: moodData,
                     );
                   },
                   childCount: moodProvider.moodDataList.length,
@@ -454,7 +448,7 @@ class _CalendarState extends State<Calendar> {
               builder: (context) {
                 int recordedIndex = -1;
                 for (int i = 0; i < list.length; i++) {
-                  if (list[i].recordDate ==
+                  if (list[i].record_date ==
                       DateFormat('yyyy-MM-dd').format(day)) {
                     recordedIndex = i;
                   }
@@ -482,35 +476,10 @@ class _CalendarState extends State<Calendar> {
 class MoodCard extends StatelessWidget {
   const MoodCard({
     super.key,
-    required this.moodId,
-    required this.icon,
-    required this.title,
-    required this.datetime,
-    required this.content,
-    required this.score,
-    required this.createTime,
+    required this.moodData,
   });
 
-  /// moodId
-  final int moodId;
-
-  /// Icon
-  final String icon;
-
-  /// 标题
-  final String title;
-
-  /// 日期时间
-  final String datetime;
-
-  /// 内容
-  final String? content;
-
-  /// 分数
-  final int score;
-
-  /// 创建日期
-  final String createTime;
+  final MoodData moodData;
 
   @override
   Widget build(BuildContext context) {
@@ -553,14 +522,6 @@ class MoodCard extends StatelessWidget {
                 ),
                 closedColor: const Color(0xFFD6F2E2),
                 openBuilder: (_, closeContainer) {
-                  /// 赋值编辑心情详细数据
-                  final MoodData moodData = MoodData();
-                  moodData.moodId = moodId;
-                  moodData.icon = icon;
-                  moodData.title = title;
-                  moodData.score = score;
-                  moodData.content = content;
-                  moodData.createTime = createTime;
                   return MoodContent(moodData: moodData);
                 },
               ),
@@ -605,7 +566,6 @@ class MoodCard extends StatelessWidget {
                           isDestructiveAction: true,
                           onPressed: () async {
                             final moodProvider = context.read<MoodProvider>();
-                            final MoodData moodData = MoodData(moodId: moodId);
                             final bool result =
                                 await moodProvider.deleteMoodData(moodData);
                             if (result) {
@@ -667,7 +627,7 @@ class MoodCard extends StatelessWidget {
                               ),
                               child: ExcludeSemantics(
                                 child: Text(
-                                  icon,
+                                  moodData.icon,
                                   style: const TextStyle(fontSize: 20),
                                 ),
                               ),
@@ -681,7 +641,7 @@ class MoodCard extends StatelessWidget {
                                   children: [
                                     ExcludeSemantics(
                                       child: Text(
-                                        title,
+                                        moodData.title,
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: const TextStyle(
@@ -693,14 +653,14 @@ class MoodCard extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 4),
                                       child: Text(
-                                        datetime,
+                                        moodData.create_time,
                                         style: const TextStyle(
                                           color: AppTheme.subColor,
                                           fontSize: 14,
                                           fontWeight: FontWeight.normal,
                                         ),
                                         semanticsLabel:
-                                            '${LocaleDatetime.yMMMd(context, datetime)} 心情：$title',
+                                            '${LocaleDatetime.yMMMd(context, moodData.create_time)} 心情：${moodData.title}',
                                       ),
                                     ),
                                   ],
@@ -723,13 +683,13 @@ class MoodCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Text(
-                          score.toString(),
+                          moodData.score.toString(),
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                           ),
                           semanticsLabel:
-                              '${S.of(context).mood_data_score_title}：$score',
+                              '${S.of(context).mood_data_score_title}：${moodData.score}',
                         ),
                       ),
                     ],
@@ -743,18 +703,19 @@ class MoodCard extends StatelessWidget {
                       bottom: 20,
                     ),
                     child: Text(
-                      content ?? S.of(context).mood_data_content_empty,
+                      moodData.content ?? S.of(context).mood_data_content_empty,
                       maxLines: 5,
                       overflow: TextOverflow.ellipsis,
                       softWrap: true,
                       style: TextStyle(
-                        color: content != null
+                        color: moodData.content != null
                             ? Theme.of(context).textTheme.bodyMedium!.color
                             : AppTheme.subColor,
                         fontSize: 14,
                       ),
-                      semanticsLabel:
-                          content != null ? '记录内容：$content' : '没有记录内容',
+                      semanticsLabel: moodData.content != null
+                          ? '记录内容：${moodData.content}'
+                          : '没有记录内容',
                     ),
                   ),
                 ],
@@ -762,13 +723,7 @@ class MoodCard extends StatelessWidget {
             ),
             onTap: () => showModalBottomDetail(
               context: context,
-              child: MoodDetail(
-                icon: icon,
-                title: title,
-                score: score,
-                content: content,
-                createTime: createTime,
-              ),
+              child: MoodDetail(moodData: moodData),
             ),
           ),
         ),
@@ -781,27 +736,10 @@ class MoodCard extends StatelessWidget {
 class MoodDetail extends StatelessWidget {
   const MoodDetail({
     super.key,
-    required this.icon,
-    required this.title,
-    required this.score,
-    required this.createTime,
-    this.content,
+    required this.moodData,
   });
 
-  /// 图标
-  final String icon;
-
-  /// 标题
-  final String title;
-
-  /// 分数
-  final int score;
-
-  /// 内容
-  final String? content;
-
-  /// 创建日期
-  final String createTime;
+  final MoodData moodData;
 
   @override
   Widget build(BuildContext context) {
@@ -813,14 +751,14 @@ class MoodDetail extends StatelessWidget {
         Align(
           heightFactor: 2,
           child: Text(
-            LocaleDatetime.yMMMd(context, createTime),
+            LocaleDatetime.yMMMd(context, moodData.create_time),
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: AppTheme.subColor,
             ),
             semanticsLabel:
-                '${LocaleDatetime.yMMMd(context, createTime)} 心情：$title',
+                '${LocaleDatetime.yMMMd(context, moodData.create_time)} 心情：${moodData.title}',
           ),
         ),
         Padding(
@@ -835,8 +773,8 @@ class MoodDetail extends StatelessWidget {
               /// 心情卡片
               ExcludeSemantics(
                 child: MoodChoiceCard(
-                  icon: icon,
-                  title: title,
+                  icon: moodData.icon,
+                  title: moodData.title,
                 ),
               ),
 
@@ -853,7 +791,7 @@ class MoodDetail extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        score.toString(),
+                        moodData.score.toString(),
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -881,16 +819,18 @@ class MoodDetail extends StatelessWidget {
             borderRadius: BorderRadius.circular(32),
           ),
           child: Text(
-            content ?? S.of(context).mood_data_content_empty,
+            moodData.content ?? S.of(context).mood_data_content_empty,
             style: TextStyle(
-              color: content != null
+              color: moodData.content != null
                   ? isDarkMode(context)
                       ? Colors.white
                       : Colors.black87
                   : AppTheme.subColor,
               fontSize: 14,
             ),
-            semanticsLabel: content != null ? '记录内容：$content' : '没有记录内容',
+            semanticsLabel: moodData.content != null
+                ? '记录内容：${moodData.content}'
+                : '没有记录内容',
           ),
         ),
       ],

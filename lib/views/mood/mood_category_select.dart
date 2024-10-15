@@ -230,11 +230,13 @@ class MoodChoiceCard extends StatelessWidget {
           switch (_moodCategorySelectType) {
             case MoodCategorySelectType.add:
               // 关闭当前页并跳转输入内容页
-              final MoodData moodData = MoodData();
-              moodData.icon = icon;
-              moodData.title = title;
-              moodData.createTime = _nowDateTime;
-              moodData.updateTime = _nowDateTime;
+              final MoodData moodData = MoodData(
+                icon: icon,
+                title: title,
+                create_time: _nowDateTime,
+                update_time: _nowDateTime,
+              );
+
               // 跳转输入内容页
               context.pop();
               GoRouter.of(context).pushNamed(

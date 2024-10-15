@@ -7,6 +7,8 @@ import 'package:moodexample/models/mood/mood_category_model.dart';
 
 /// 心情相关
 class MoodService {
+  const MoodService._();
+
   /// 设置心情类别默认值
   static Future<void> setCategoryDefault() async {
     /// 默认值

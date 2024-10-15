@@ -25,9 +25,10 @@ class StatisticMoodScoreAverageRecentlyData {
         score: json['score'],
       );
 
-  // 记录日期
+  /// 记录日期
   final String datetime;
-  // 分数
+
+  /// 分数
   final int score;
 
   Map<String, dynamic> toJson() => {
@@ -59,11 +60,13 @@ class StatisticDateMoodCountData {
         count: json['count'],
       );
 
-  // 图标
+  /// 图标
   final String icon;
-  // 心情（标题）
+
+  /// 心情（标题）
   final String title;
-  // 数量
+
+  /// 数量
   final int count;
 
   Map<String, dynamic> toJson() => {

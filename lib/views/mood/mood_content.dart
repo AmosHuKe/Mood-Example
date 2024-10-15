@@ -58,7 +58,7 @@ class _MoodContentState extends State<MoodContent> {
         shadowColor: Colors.transparent,
         centerTitle: true,
         title: Text(
-          LocaleDatetime.yMMMd(context, _moodData.createTime ?? ''),
+          LocaleDatetime.yMMMd(context, _moodData.create_time),
           style: const TextStyle(
             fontSize: 14,
           ),
@@ -107,10 +107,10 @@ class _MoodContentState extends State<MoodContent> {
               late bool result = false;
 
               /// 存在ID的操作（代表修改）
-              if (_moodData.moodId != null) {
+              if (_moodData.mood_id != null) {
                 /// 修改心情数据
                 /// 赋值修改时间
-                _moodData.updateTime =
+                _moodData.update_time =
                     DateTime.now().toString().substring(0, 10);
                 result = await moodProvider.editMoodData(_moodData);
               } else {

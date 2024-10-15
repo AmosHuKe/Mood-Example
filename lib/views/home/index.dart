@@ -307,11 +307,13 @@ class OptionCard extends StatelessWidget {
             // 跳转输入内容页
             final String nowDateTime =
                 DateTime.now().toString().substring(0, 10);
-            final MoodData moodData = MoodData();
-            moodData.icon = icon;
-            moodData.title = title;
-            moodData.createTime = nowDateTime;
-            moodData.updateTime = nowDateTime;
+            final MoodData moodData = MoodData(
+              icon: icon,
+              title: title,
+              create_time: nowDateTime,
+              update_time: nowDateTime,
+            );
+
             return MoodContent(moodData: moodData);
           },
         );

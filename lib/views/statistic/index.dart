@@ -520,7 +520,6 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
           _ => 14,
         };
 
-        ///
         return BarChart(
           BarChartData(
             barGroups: List<BarChartGroupData>.generate(listData.length, (i) {

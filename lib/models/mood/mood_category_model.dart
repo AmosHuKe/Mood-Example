@@ -20,9 +20,10 @@ class MoodCategoryData {
         title: json['title'],
       );
 
-  // 表情
+  /// 表情
   final String icon;
-  // 标题
+
+  /// 标题
   final String title;
 
   Map<String, dynamic> toJson() => {

@@ -9,6 +9,8 @@ import 'package:moodexample/models/statistic/statistic_model.dart';
 
 /// 统计相关
 class StatisticService {
+  const StatisticService._();
+
   /// 获取APP累计记录天数
   static Future<int> getAPPUsageDays() async {
     final list = await DB.instance.selectAPPUsageDays();

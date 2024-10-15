@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -199,7 +198,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                             child: Container(
                               width: 64,
                               height: 64,
-                              padding: const EdgeInsets.only(left: 12),
+                              margin: const EdgeInsets.only(left: 12),
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   begin: Alignment.bottomCenter,
@@ -390,7 +389,7 @@ Future<String> importDatabaseTemplate() async {
     TextCellValue('开心'),
     TextCellValue('今天很开心'),
     TextCellValue('55'),
-    TextCellValue('2000-11-03'),
+    TextCellValue('2000-01-01'),
   ]);
 
   /// 保存Excel
@@ -416,14 +415,14 @@ Future<Map> importDatabase(BuildContext context) async {
     await FilePicker.platform.clearTemporaryFiles();
 
     /// 选择文件
-    final FilePickerResult? result = await FilePicker.platform.pickFiles(
+    final FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['xlsx', 'xls'],
+      allowedExtensions: ['xlsx'],
       allowMultiple: false,
     );
-    if (result != null) {
+    if (pickedFile != null) {
       /// 文件路径、内容
-      final file = result.files.single.path ?? '';
+      final file = pickedFile.files.single.path ?? '';
       final bytes = File(file).readAsBytesSync();
       final excel = Excel.decodeBytes(bytes);
       for (final table in excel.tables.keys) {
@@ -454,7 +453,7 @@ Future<Map> importDatabase(BuildContext context) async {
       /// 未选择文件
     }
   } catch (e) {
-    print('$e');
+    print('Error: $e');
   }
   return returnResults;
 }
@@ -467,14 +466,12 @@ Future importDatabaseStart(
   final moodProvider = context.read<MoodProvider>();
 
   /// 心情数据
-  final Map<String, dynamic> moodData = {
-    'icon': '',
-    'title': '',
-    'score': 50,
-    'content': null,
-    'createTime': '',
-    'updateTime': '',
-  };
+  final MoodData moodData = MoodData(
+    icon: '',
+    title: '',
+    create_time: '',
+    update_time: '',
+  );
   int dataIndex = 0;
   for (final row in database) {
     for (final data in row) {
@@ -482,42 +479,43 @@ Future importDatabaseStart(
       if (dataIndex < 3) {
         break;
       }
+
       final int? colIndex = data?.columnIndex;
-      final dynamic value = data?.value;
+      final CellValue? value = data?.value;
       switch (colIndex) {
         /// 表情
         case 0:
-          moodData['icon'] = value.toString();
+          moodData.icon = value.toString();
 
         /// 心情
         case 1:
-          moodData['title'] = value.toString();
+          moodData.title = value.toString();
 
         /// 内容
         case 2:
-          moodData['content'] = value.toString();
+          moodData.content = value.toString();
 
         /// 心情程度
         case 3:
-          moodData['score'] = double.parse(value.toString()).toInt();
+          moodData.score = double.parse(value.toString()).toInt();
 
         /// 创建日期、修改日期
         case 4:
-          final moodDate =
-              DateFormat('yyyy-MM-dd').parse(value).toString().substring(0, 10);
-          moodData['createTime'] = moodDate;
-          moodData['updateTime'] = moodDate;
+          final moodDate = DateFormat('yyyy-MM-dd')
+              .parse(value.toString())
+              .toString()
+              .substring(0, 10);
+          moodData.create_time = moodDate;
+          moodData.update_time = moodDate;
       }
 
       /// 导入数据（一组数据完成）
       if (colIndex == 4) {
-        print('${moodDataFromJson(json.encode(moodData))}');
+        print('$moodData');
 
         /// 是否操作成功
-        late bool result = false;
-        result = await moodProvider.addMoodData(
-          moodDataFromJson(json.encode(moodData)),
-        );
+        bool result = false;
+        result = await moodProvider.addMoodData(moodData);
         print('是否导入成功$result');
       }
     }
@@ -630,10 +628,7 @@ Future<List<List<CellValue>>> importDatabaseErrorCheck(
       continue;
     }
     for (final data in row) {
-      final dynamic value = data?.value;
-      // print(data);
-      // print(value);
-      // print(_rowIndex);
+      final CellValue? value = data?.value;
       switch (rowIndex) {
         /// 表情
         case 0:
@@ -649,12 +644,11 @@ Future<List<List<CellValue>>> importDatabaseErrorCheck(
 
         /// 内容
         case 2:
+          break;
 
         /// 心情程度
         case 3:
-          final tryValue = double.tryParse(value.toString()) == null
-              ? null
-              : double.parse(value.toString()).toInt();
+          final int? tryValue = int.tryParse(value.toString());
           if (tryValue == null) {
             errorText += '【心情程度只能为0-100整数】 ';
           }
@@ -667,7 +661,7 @@ Future<List<List<CellValue>>> importDatabaseErrorCheck(
           String? tryValue;
           try {
             tryValue = DateFormat('yyyy-MM-dd')
-                .parse(value)
+                .parse(value.toString())
                 .toString()
                 .substring(0, 10);
           } catch (e) {
@@ -675,7 +669,7 @@ Future<List<List<CellValue>>> importDatabaseErrorCheck(
           }
           print(tryValue);
           if (tryValue == null) {
-            errorText += '【创建时间只能为文本，如2000-11-03】 ';
+            errorText += '【创建时间只能为文本，如2000-01-01】 ';
           }
       }
 
@@ -879,18 +873,18 @@ Future<String> exportDatabase() async {
     ..cellStyle = cellStyle;
 
   /// 获取所有心情数据并赋值
-  moodProvider.loadMoodDataAllList();
+  await moodProvider.loadMoodDataAllList();
   final moodAllDataList = moodProvider.moodAllDataList;
 
   /// 添加Excel数据
   moodAllDataList?.forEach((list) {
     final List<CellValue> dataList = [
-      TextCellValue(list.icon ?? ''),
-      TextCellValue(list.title ?? ''),
+      TextCellValue(list.icon),
+      TextCellValue(list.title),
       TextCellValue(list.content ?? ''),
       TextCellValue(list.score.toString()),
-      TextCellValue(list.createTime ?? ''),
-      TextCellValue(list.updateTime ?? ''),
+      TextCellValue(list.create_time),
+      TextCellValue(list.update_time),
     ];
 
     sheetObject.appendRow(dataList);

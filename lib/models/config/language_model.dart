@@ -8,8 +8,9 @@ class LanguageData {
     this.locale,
   );
 
-  // 语言名称
+  /// 语言名称
   final String language;
-  // Locale
+
+  /// Locale
   final Locale locale;
 }
