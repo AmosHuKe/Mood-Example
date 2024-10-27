@@ -33,40 +33,43 @@ class MenuScreenLeftBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      physics: const AlwaysScrollableScrollPhysics(
-        parent: BouncingScrollPhysics(),
-      ),
-      children: [
-        const Padding(
-          padding: EdgeInsets.only(
-            top: 72,
-            bottom: 48,
-            left: 24,
-            right: 24,
-          ),
-          child: Header(),
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: ListView(
+        physics: const AlwaysScrollableScrollPhysics(
+          parent: BouncingScrollPhysics(),
         ),
-        const Padding(
-          padding: EdgeInsets.only(
-            bottom: 24,
-            left: 24,
-            right: 24,
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(
+              top: 72,
+              bottom: 48,
+              left: 24,
+              right: 24,
+            ),
+            child: Header(),
           ),
-          child: Menu(),
-        ),
+          const Padding(
+            padding: EdgeInsets.only(
+              bottom: 24,
+              left: 24,
+              right: 24,
+            ),
+            child: Menu(),
+          ),
 
-        /// 插画
-        BlockSemanticsToDrawerClosed(
-          child: Container(
-            padding: const EdgeInsets.only(left: 24, bottom: 24),
-            child: Image.asset(
-              'assets/images/woolly/woolly-comet-2.png',
-              width: 240,
+          /// 插画
+          BlockSemanticsToDrawerClosed(
+            child: Container(
+              padding: const EdgeInsets.only(left: 24, bottom: 24),
+              child: Image.asset(
+                'assets/images/woolly/woolly-comet-2.png',
+                width: 240,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
