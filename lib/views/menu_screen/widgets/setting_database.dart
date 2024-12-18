@@ -126,7 +126,8 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Theme.of(context).primaryColor.withOpacity(0.2),
+                      color:
+                          Theme.of(context).primaryColor.withValues(alpha: 0.2),
                       offset: const Offset(0, 5.0),
                       blurRadius: 15.0,
                       spreadRadius: 2.0,
@@ -211,7 +212,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                 boxShadow: [
                                   BoxShadow(
                                     color: const Color(0xFFf5222d)
-                                        .withOpacity(0.2),
+                                        .withValues(alpha: 0.2),
                                     offset: const Offset(0, 5.0),
                                     blurRadius: 15.0,
                                     spreadRadius: 2.0,
@@ -266,8 +267,9 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color:
-                              Theme.of(context).primaryColor.withOpacity(0.2),
+                          color: Theme.of(context)
+                              .primaryColor
+                              .withValues(alpha: 0.2),
                           offset: const Offset(0, 5.0),
                           blurRadius: 15.0,
                           spreadRadius: 2.0,
@@ -730,7 +732,7 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Theme.of(context).primaryColor.withOpacity(0.2),
+                  color: Theme.of(context).primaryColor.withValues(alpha: 0.2),
                   offset: const Offset(0, 5.0),
                   blurRadius: 15.0,
                   spreadRadius: 2.0,

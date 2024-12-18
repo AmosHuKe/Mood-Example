@@ -14,7 +14,7 @@ class Light extends GameDecoration {
       LightingConfig(
         radius: width * 2,
         blurBorder: width * 1.5,
-        color: Colors.orange.withOpacity(0.2),
+        color: Colors.orange.withValues(alpha: 0.2),
         withPulse: true,
       ),
     );

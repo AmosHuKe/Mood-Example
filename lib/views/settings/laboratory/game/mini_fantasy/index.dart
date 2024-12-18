@@ -104,7 +104,7 @@ class Game extends StatelessWidget {
           ),
           player: HumanPlayer(Vector2(4 * tileSize, 4 * tileSize)),
           cameraConfig: CameraConfig(zoom: 1),
-          lightingColorGame: Colors.black.withOpacity(0.7),
+          lightingColorGame: Colors.black.withValues(alpha: 0.7),
           // progress: Container(
           //   color: Colors.black,
           //   child: const Center(
@@ -121,7 +121,8 @@ class Game extends StatelessWidget {
                   margin: const EdgeInsets.all(20),
                   borderRadius: BorderRadius.circular(100),
                   size: Vector2.all(constraints.maxHeight / 5),
-                  border: Border.all(color: Colors.white.withOpacity(0.5)),
+                  border:
+                      Border.all(color: Colors.white.withValues(alpha: 0.5)),
                   playerColor: Colors.green,
                   enemyColor: Colors.red,
                   npcColor: Colors.red,

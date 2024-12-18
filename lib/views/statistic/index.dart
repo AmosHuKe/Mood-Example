@@ -235,17 +235,17 @@ class StatisticWeekMoodLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Color> gradientColors = [
-      Theme.of(context).primaryColor.withOpacity(0.1),
-      Theme.of(context).primaryColor.withOpacity(0.4),
-      Theme.of(context).primaryColor.withOpacity(0.6),
+      Theme.of(context).primaryColor.withValues(alpha: 0.1),
+      Theme.of(context).primaryColor.withValues(alpha: 0.4),
+      Theme.of(context).primaryColor.withValues(alpha: 0.6),
       Theme.of(context).primaryColor,
       Theme.of(context).primaryColor,
       Theme.of(context).primaryColor,
       Theme.of(context).primaryColor,
       Theme.of(context).primaryColor,
-      Theme.of(context).primaryColor.withOpacity(0.6),
-      Theme.of(context).primaryColor.withOpacity(0.4),
-      Theme.of(context).primaryColor.withOpacity(0.1),
+      Theme.of(context).primaryColor.withValues(alpha: 0.6),
+      Theme.of(context).primaryColor.withValues(alpha: 0.4),
+      Theme.of(context).primaryColor.withValues(alpha: 0.1),
     ];
     return Consumer<StatisticProvider>(
       builder: (_, statisticProvider, child) {
@@ -321,7 +321,7 @@ class StatisticWeekMoodLine extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Theme.of(context).primaryColor.withOpacity(0.1),
+                      Theme.of(context).primaryColor.withValues(alpha: 0.1),
                       Theme.of(context).cardColor,
                     ],
                   ),
@@ -373,15 +373,15 @@ class StatisticWeekMoodLine extends StatelessWidget {
               getDrawingHorizontalLine: (value) {
                 return FlLine(
                   color: isDarkMode(context)
-                      ? Colors.white.withOpacity(0.1)
-                      : Colors.black.withOpacity(0.1),
+                      ? Colors.white.withValues(alpha: 0.1)
+                      : Colors.black.withValues(alpha: 0.1),
                   strokeWidth: 0.6,
                 );
               },
               getDrawingVerticalLine: (value) {
                 return FlLine(
                   color: isDarkMode(context)
-                      ? Colors.white.withOpacity(0.1)
+                      ? Colors.white.withValues(alpha: 0.1)
                       : Colors.black12,
                   strokeWidth: 0,
                 );
@@ -419,7 +419,7 @@ class StatisticWeekMoodLine extends StatelessWidget {
             borderData: FlBorderData(
               show: true,
               border: Border.all(
-                color: Theme.of(context).primaryColor.withOpacity(0.1),
+                color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
                 width: 0.2,
               ),
             ),
@@ -620,12 +620,12 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
             end: Alignment.topCenter,
             colors: isTouched
                 ? [
-                    Theme.of(context).primaryColor.withOpacity(0.4),
+                    Theme.of(context).primaryColor.withValues(alpha: 0.4),
                     Theme.of(context).primaryColor,
                   ]
                 : [
                     Theme.of(context).primaryColor,
-                    Theme.of(context).primaryColor.withOpacity(0.4),
+                    Theme.of(context).primaryColor.withValues(alpha: 0.4),
                   ],
           ),
           width: width ?? 14,
@@ -754,7 +754,7 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(.2),
+              color: Colors.black.withValues(alpha: 0.2),
               offset: const Offset(0, 0),
               blurRadius: 4,
             ),
@@ -965,13 +965,15 @@ class FilterBottom extends StatelessWidget {
               boxShadow: checked
                   ? [
                       BoxShadow(
-                        color: Theme.of(context).primaryColor.withOpacity(0.2),
+                        color: Theme.of(context)
+                            .primaryColor
+                            .withValues(alpha: 0.2),
                         blurRadius: 6,
                       ),
                     ]
                   : [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.02),
+                        color: Colors.black.withValues(alpha: 0.02),
                         blurRadius: 6,
                       ),
                     ],

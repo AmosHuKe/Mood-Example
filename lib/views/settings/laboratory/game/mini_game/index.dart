@@ -149,7 +149,7 @@ class _GameState extends State<Game> {
             // smoothCameraSpeed: 2,
           ),
           player: HumanPlayer(Vector2(tileSize * 15, tileSize * 13)),
-          lightingColorGame: Colors.black.withOpacity(0.7),
+          lightingColorGame: Colors.black.withValues(alpha: 0.7),
           // progress: Container(
           //   color: Colors.black,
           //   child: const Center(
@@ -167,7 +167,7 @@ class _GameState extends State<Game> {
                 borderRadius: BorderRadius.circular(100),
                 size: Vector2.all(constraints.maxHeight / 3),
                 zoom: 0.6,
-                border: Border.all(color: Colors.white.withOpacity(0.5)),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.5)),
                 enemyColor: Colors.red,
               );
             },

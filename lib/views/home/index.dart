@@ -444,7 +444,7 @@ class NoticeCard extends StatelessWidget {
       height: 190,
       margin: margin,
       decoration: BoxDecoration(
-        color: const Color(0xFFFFBBBB).withOpacity(opacity),
+        color: const Color(0xFFFFBBBB).withValues(alpha: opacity),
         borderRadius: BorderRadius.circular(24),
       ),
     );

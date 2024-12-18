@@ -1,4 +1,7 @@
-# 1.9.10 (Unreleased)
+# 1.9.11 (Unreleased)
+- [升级] Flutter 3.27.1
+
+# 1.9.10
 - [升级] Flutter 3.24.5
 - [升级] Package 升级及适配
 - [升级] UniMPSDK 4.15

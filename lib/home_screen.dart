@@ -93,7 +93,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           color:
               appTheme.bottomNavigationBarTheme.backgroundColor ?? Colors.white,
           boxShadow: [
-            BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 24),
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.04),
+              blurRadius: 24,
+            ),
           ],
         ),
         child: SafeArea(

@@ -35,7 +35,7 @@ class Orc extends SimpleEnemy
       barLifeDrawPosition: BarLifeDrawPosition.top,
       showLifeText: false,
       borderWidth: 2,
-      borderColor: Colors.white.withOpacity(0.5),
+      borderColor: Colors.white.withValues(alpha: 0.5),
       borderRadius: BorderRadius.circular(2),
       textOffset: Vector2(6, tileSize * 0.2),
     );
@@ -104,7 +104,7 @@ class Orc extends SimpleEnemy
   @override
   void onDie() {
     _canMove = false;
-    gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.7));
+    gameRef.lighting?.animateToColor(Colors.black.withValues(alpha: 0.7));
 
     /// 死亡动画
     animation?.playOnce(

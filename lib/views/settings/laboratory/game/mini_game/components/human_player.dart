@@ -54,7 +54,7 @@ class HumanPlayer extends SimplePlayer
       barLifeDrawPosition: BarLifeDrawPosition.top,
       showLifeText: false,
       borderWidth: 2,
-      borderColor: Colors.white.withOpacity(0.5),
+      borderColor: Colors.white.withValues(alpha: 0.5),
       borderRadius: BorderRadius.circular(2),
       textOffset: Vector2(8, tileSize * 0.2),
     );
@@ -387,7 +387,7 @@ class HumanPlayer extends SimplePlayer
       lightingConfig: LightingConfig(
         radius: tileSize * 0.9,
         blurBorder: tileSize / 2,
-        color: Colors.deepOrangeAccent.withOpacity(0.4),
+        color: Colors.deepOrangeAccent.withValues(alpha: 0.4),
       ),
     );
   }
@@ -411,7 +411,7 @@ class HumanPlayer extends SimplePlayer
       lightingConfig: LightingConfig(
         radius: tileSize * 0.9,
         blurBorder: tileSize / 2,
-        color: Colors.deepOrangeAccent.withOpacity(0.4),
+        color: Colors.deepOrangeAccent.withValues(alpha: 0.4),
       ),
     );
   }

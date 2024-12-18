@@ -84,7 +84,7 @@ class _MoodPageState extends State<MoodPage> {
           },
           openElevation: 0,
           openColor: Theme.of(context).scaffoldBackgroundColor,
-          middleColor: Theme.of(context).primaryColor.withOpacity(0.2),
+          middleColor: Theme.of(context).primaryColor.withValues(alpha: 0.2),
           closedElevation: 0,
           closedShape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(28),
@@ -240,7 +240,7 @@ class _CalendarState extends State<Calendar> {
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 6),
+          BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 6),
         ],
         borderRadius: BorderRadius.circular(18),
       ),
@@ -322,7 +322,8 @@ class _CalendarState extends State<Calendar> {
                 ],
                 boxShadow: [
                   BoxShadow(
-                    color: Theme.of(context).primaryColor.withOpacity(0.2),
+                    color:
+                        Theme.of(context).primaryColor.withValues(alpha: 0.2),
                     blurRadius: 6,
                   ),
                 ],
@@ -332,7 +333,7 @@ class _CalendarState extends State<Calendar> {
                 day: day,
                 textStyle: TextStyle(
                   color: isDarkMode(context)
-                      ? AppTheme.subColor.withOpacity(0.6)
+                      ? AppTheme.subColor.withValues(alpha: 0.6)
                       : AppTheme.subColor,
                 ),
               ),
@@ -343,8 +344,8 @@ class _CalendarState extends State<Calendar> {
                   day: day,
                   moodRecordDate: moodRecordDate,
                   bodyColors: [
-                    Theme.of(context).primaryColor.withOpacity(0.2),
-                    Theme.of(context).primaryColor.withOpacity(0.2),
+                    Theme.of(context).primaryColor.withValues(alpha: 0.2),
+                    Theme.of(context).primaryColor.withValues(alpha: 0.2),
                   ],
                   textStyle: TextStyle(
                     color: isDarkMode(context) ? Colors.white : Colors.black87,
