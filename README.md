@@ -8,7 +8,7 @@
 <h1 align="center"> 
   <img alt="Logo" src="./README/logo/logo.png" width="48px" style="border-radius:16px;" /> Mood Example
 
-  [![Sparkline](https://stars.medv.io/AmosHuKe/Mood-Example.svg)](https://stars.medv.io/AmosHuKe/Mood-Example)
+  <!-- [![Sparkline](https://stars.medv.io/AmosHuKe/Mood-Example.svg)](https://stars.medv.io/AmosHuKe/Mood-Example) -->
 </h1> 
 
 <p align="center">
@@ -53,8 +53,8 @@
 ## 🐦 简介
 
 `情绪记录` 样例工程  
-管理自己的情绪，记录当下所见所想，以及其他`实验室`功能（不定时更新一些功能）  
-运用 `Flutter` 的实践工程，主要目的是学习、实践。  
+管理自己的情绪，记录当下所见所想，以及其他`实验室`功能（不定期更新一些功能）  
+运用 `Flutter` 的工程，主要目的是学习、实践。  
 
 > [!NOTE]  
 > 注意：由于是学习实践工程，所以重点在于学习，许多业务逻辑可能并不符合现实。  
