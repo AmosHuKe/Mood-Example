@@ -6,7 +6,7 @@ import 'package:bonfire/bonfire.dart';
 import '../sprite_sheet/sprite_sheet_boss.dart';
 import 'orc.dart';
 
-double tileSize = 20.0;
+const double tileSize = 20.0;
 
 class Boss extends SimpleEnemy
     with RandomMovement, BlockMovementCollision, UseLifeBar {
@@ -111,7 +111,10 @@ class Boss extends SimpleEnemy
       showDamage(
         damage,
         initVelocityVertical: -2,
-        config: TextStyle(color: Colors.amberAccent, fontSize: tileSize / 2),
+        config: const TextStyle(
+          color: Colors.amberAccent,
+          fontSize: tileSize / 2,
+        ),
       );
     }
   }

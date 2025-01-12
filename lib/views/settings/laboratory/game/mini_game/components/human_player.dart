@@ -10,7 +10,7 @@ import '../util/custom_sprite_animation_widget.dart';
 import 'boss.dart';
 import 'orc.dart';
 
-double tileSize = 20.0;
+const double tileSize = 20.0;
 
 enum PlayerAttackType {
   attackMelee,
@@ -206,7 +206,7 @@ class HumanPlayer extends SimplePlayer
       showDamage(
         damage,
         initVelocityVertical: -2,
-        config: TextStyle(color: Colors.white, fontSize: tileSize / 2),
+        config: const TextStyle(color: Colors.white, fontSize: tileSize / 2),
       );
       // lockMove = true;
       /// 屏幕变红

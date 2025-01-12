@@ -6,7 +6,7 @@ import 'package:bonfire/bonfire.dart';
 import '../sprite_sheet/sprite_sheet_player.dart';
 import 'orc.dart';
 
-double tileSize = 20.0;
+const double tileSize = 20.0;
 
 class HumanPlayer extends SimplePlayer
     with BlockMovementCollision, Lighting, UseLifeBar {
@@ -134,7 +134,7 @@ class HumanPlayer extends SimplePlayer
       showDamage(
         damage,
         initVelocityVertical: -2,
-        config: TextStyle(color: Colors.white, fontSize: tileSize / 2),
+        config: const TextStyle(color: Colors.white, fontSize: tileSize / 2),
       );
       // lockMove = true;
       /// 屏幕变红
