@@ -41,10 +41,7 @@ class _MiniGamePageState extends State<MiniGamePage> {
               color: AppTheme.backgroundColor1,
               borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
             ),
-            child: const Icon(
-              Remix.arrow_left_line,
-              size: 24,
-            ),
+            child: const Icon(Remix.arrow_left_line, size: 24),
             onTap: () async {
               await Flame.device.setPortrait();
               if (!mounted) return;
@@ -52,9 +49,7 @@ class _MiniGamePageState extends State<MiniGamePage> {
             },
           ),
         ),
-        body: const SafeArea(
-          child: Game(),
-        ),
+        body: const SafeArea(child: Game()),
       ),
     );
   }
@@ -81,10 +76,12 @@ class _GameState extends State<Game> {
           playerControllers: [
             Joystick(
               directional: JoystickDirectional(
-                spriteBackgroundDirectional:
-                    Sprite.load('$assetsPath/joystick_background.png'),
-                spriteKnobDirectional:
-                    Sprite.load('$assetsPath/joystick_knob.png'),
+                spriteBackgroundDirectional: Sprite.load(
+                  '$assetsPath/joystick_background.png',
+                ),
+                spriteKnobDirectional: Sprite.load(
+                  '$assetsPath/joystick_knob.png',
+                ),
                 size: 80,
                 margin: const EdgeInsets.only(bottom: 50, left: 50),
                 isFixed: false,
@@ -93,8 +90,9 @@ class _GameState extends State<Game> {
                 JoystickAction(
                   actionId: PlayerAttackType.attackMelee,
                   sprite: Sprite.load('$assetsPath/joystick_atack.png'),
-                  spritePressed:
-                      Sprite.load('$assetsPath/joystick_atack_selected.png'),
+                  spritePressed: Sprite.load(
+                    '$assetsPath/joystick_atack_selected.png',
+                  ),
                   size: 70,
                   margin: const EdgeInsets.only(bottom: 50, right: 50),
                 ),
@@ -104,8 +102,9 @@ class _GameState extends State<Game> {
                   spritePressed: Sprite.load(
                     '$assetsPath/joystick_atack_range_selected.png',
                   ),
-                  spriteBackgroundDirection:
-                      Sprite.load('$assetsPath/joystick_background.png'),
+                  spriteBackgroundDirection: Sprite.load(
+                    '$assetsPath/joystick_background.png',
+                  ),
                   size: 40,
                   enableDirection: true,
                   margin: const EdgeInsets.only(bottom: 30, right: 150),
@@ -116,8 +115,9 @@ class _GameState extends State<Game> {
                   spritePressed: Sprite.load(
                     '$assetsPath/joystick_atack_range_selected.png',
                   ),
-                  spriteBackgroundDirection:
-                      Sprite.load('$assetsPath/joystick_background.png'),
+                  spriteBackgroundDirection: Sprite.load(
+                    '$assetsPath/joystick_background.png',
+                  ),
                   size: 40,
                   enableDirection: true,
                   margin: const EdgeInsets.only(bottom: 90, right: 150),
@@ -125,18 +125,15 @@ class _GameState extends State<Game> {
               ],
             ),
             Keyboard(
-              config: KeyboardConfig(
-                acceptedKeys: [
-                  LogicalKeyboardKey.space,
-                ],
-              ),
+              config: KeyboardConfig(acceptedKeys: [LogicalKeyboardKey.space]),
             ),
           ],
           map: WorldMapByTiled(
             WorldMapReader.fromAsset('$assetsPath/tiles/mini_game_map.json'),
             forceTileSize: Vector2(tileSize, tileSize),
             objectsBuilder: {
-              'light': (properties) => Light(
+              'light':
+                  (properties) => Light(
                     position: properties.position,
                     size: properties.size,
                   ),
@@ -172,9 +169,7 @@ class _GameState extends State<Game> {
               );
             },
           },
-          initialActiveOverlays: const [
-            'miniMap',
-          ],
+          initialActiveOverlays: const ['miniMap'],
         );
       },
     );

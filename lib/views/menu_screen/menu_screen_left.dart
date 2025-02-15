@@ -41,20 +41,11 @@ class MenuScreenLeftBody extends StatelessWidget {
         ),
         children: [
           const Padding(
-            padding: EdgeInsets.only(
-              top: 72,
-              bottom: 48,
-              left: 24,
-              right: 24,
-            ),
+            padding: EdgeInsets.only(top: 72, bottom: 48, left: 24, right: 24),
             child: Header(),
           ),
           const Padding(
-            padding: EdgeInsets.only(
-              bottom: 24,
-              left: 24,
-              right: 24,
-            ),
+            padding: EdgeInsets.only(bottom: 24, left: 24, right: 24),
             child: Menu(),
           ),
 
@@ -120,23 +111,15 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double _titleTextSize = 14;
-    final double _titleIconSize = 20;
+    final TextStyle menuTextStyle = const TextStyle(fontSize: 14, height: 1);
+    final double menuIconSize = 20;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MenuList(
-          icon: Icon(
-            Remix.database_2_line,
-            size: _titleIconSize,
-          ),
-          title: Text(
-            S.of(context).app_setting_database,
-            style: TextStyle(
-              fontSize: _titleTextSize,
-            ),
-          ),
+        MenuItem(
+          icon: Icon(Remix.database_2_line, size: menuIconSize),
+          title: Text(S.of(context).app_setting_database, style: menuTextStyle),
           onTap: () {
             print('数据');
 
@@ -147,38 +130,19 @@ class Menu extends StatelessWidget {
             );
           },
         ),
-        MenuList(
-          icon: Icon(
-            Remix.shield_keyhole_line,
-            size: _titleIconSize,
-          ),
-          title: Text(
-            S.of(context).app_setting_security,
-            style: TextStyle(
-              fontSize: _titleTextSize,
-            ),
-          ),
+        MenuItem(
+          icon: Icon(Remix.shield_keyhole_line, size: menuIconSize),
+          title: Text(S.of(context).app_setting_security, style: menuTextStyle),
           onTap: () {
             print('安全');
 
             /// 底部内容弹出
-            showModalBottomDetail(
-              context: context,
-              child: const SettingKey(),
-            );
+            showModalBottomDetail(context: context, child: const SettingKey());
           },
         ),
-        MenuList(
-          icon: Icon(
-            Remix.bubble_chart_line,
-            size: _titleIconSize,
-          ),
-          title: Text(
-            S.of(context).app_setting_theme,
-            style: TextStyle(
-              fontSize: _titleTextSize,
-            ),
-          ),
+        MenuItem(
+          icon: Icon(Remix.bubble_chart_line, size: menuIconSize),
+          title: Text(S.of(context).app_setting_theme, style: menuTextStyle),
           onTap: () {
             print('主题');
 
@@ -189,17 +153,9 @@ class Menu extends StatelessWidget {
             );
           },
         ),
-        MenuList(
-          icon: Icon(
-            Remix.global_line,
-            size: _titleIconSize,
-          ),
-          title: Text(
-            S.of(context).app_setting_language,
-            style: TextStyle(
-              fontSize: _titleTextSize,
-            ),
-          ),
+        MenuItem(
+          icon: Icon(Remix.global_line, size: menuIconSize),
+          title: Text(S.of(context).app_setting_language, style: menuTextStyle),
           onTap: () {
             print('语言');
 
@@ -210,42 +166,29 @@ class Menu extends StatelessWidget {
             );
           },
         ),
-        MenuList(
-          icon: Icon(
-            Remix.flask_line,
-            size: _titleIconSize,
-          ),
+        MenuItem(
+          icon: Icon(Remix.flask_line, size: menuIconSize),
           title: Text(
             S.of(context).app_setting_laboratory,
-            style: TextStyle(
-              fontSize: _titleTextSize,
-            ),
+            style: menuTextStyle,
           ),
           onTap: () {
             print('实验室');
             GoRouter.of(context).pushNamed(Routes.settingLaboratory);
           },
         ),
-        MenuList(
-          icon: Icon(
-            Remix.heart_3_line,
-            size: _titleIconSize,
-          ),
-          title: Text(
-            S.of(context).app_setting_about,
-            style: TextStyle(
-              fontSize: _titleTextSize,
-            ),
-          ),
+        MenuItem(
+          icon: Icon(Remix.heart_3_line, size: menuIconSize),
+          title: Text(S.of(context).app_setting_about, style: menuTextStyle),
           onTap: () {
             print('关于');
             final String url =
-                ValueConvert('https://github.com/AmosHuKe/Mood-Example')
-                    .encode();
-            GoRouter.of(context).pushNamed(
-              Routes.webViewPage,
-              pathParameters: {'url': url},
-            );
+                ValueConvert(
+                  'https://github.com/AmosHuKe/Mood-Example',
+                ).encode();
+            GoRouter.of(
+              context,
+            ).pushNamed(Routes.webViewPage, pathParameters: {'url': url});
           },
         ),
       ],
@@ -254,13 +197,8 @@ class Menu extends StatelessWidget {
 }
 
 /// 菜单列表
-class MenuList extends StatelessWidget {
-  const MenuList({
-    super.key,
-    this.icon,
-    required this.title,
-    this.onTap,
-  });
+class MenuItem extends StatelessWidget {
+  const MenuItem({super.key, this.icon, required this.title, this.onTap});
 
   // 图标
   final Widget? icon;
@@ -287,10 +225,7 @@ class MenuList extends StatelessWidget {
 
 /// 侧栏关闭状态下就不显示语义
 class BlockSemanticsToDrawerClosed extends StatelessWidget {
-  const BlockSemanticsToDrawerClosed({
-    super.key,
-    required this.child,
-  });
+  const BlockSemanticsToDrawerClosed({super.key, required this.child});
 
   final Widget child;
 
@@ -298,10 +233,11 @@ class BlockSemanticsToDrawerClosed extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder<DrawerState>(
       valueListenable: ZoomDrawer.of(context)!.stateNotifier,
-      builder: (_, state, child) => BlockSemantics(
-        blocking: state == DrawerState.closed,
-        child: child,
-      ),
+      builder:
+          (_, state, child) => BlockSemantics(
+            blocking: state == DrawerState.closed,
+            child: child,
+          ),
       child: child,
     );
   }

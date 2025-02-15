@@ -134,18 +134,12 @@ class StatisticBody extends StatelessWidget {
             child: Column(
               children: [
                 /// 总体统计
-                Padding(
-                  padding: listPadding,
-                  child: const OverallStatistics(),
-                ),
+                Padding(padding: listPadding, child: const OverallStatistics()),
 
                 const SizedBox(height: 12),
 
                 /// 情绪波动（线）
-                Padding(
-                  padding: listPadding,
-                  child: const StatisticMoodLine(),
-                ),
+                Padding(padding: listPadding, child: const StatisticMoodLine()),
 
                 const SizedBox(height: 12),
 
@@ -156,7 +150,9 @@ class StatisticBody extends StatelessWidget {
                     builder: (_, statisticProvider, child) {
                       return StatisticLayout(
                         title: S.of(context).statistic_moodScore_title,
-                        subTitle: S.of(context).statistic_moodScore_content(
+                        subTitle: S
+                            .of(context)
+                            .statistic_moodScore_content(
                               statisticProvider.moodDays,
                             ),
                         height: 180,
@@ -175,10 +171,11 @@ class StatisticBody extends StatelessWidget {
                     builder: (_, statisticProvider, child) {
                       return StatisticLayout(
                         title: S.of(context).statistic_moodStatistics_title,
-                        subTitle:
-                            S.of(context).statistic_moodStatistics_content(
-                                  statisticProvider.moodDays,
-                                ),
+                        subTitle: S
+                            .of(context)
+                            .statistic_moodStatistics_content(
+                              statisticProvider.moodDays,
+                            ),
                         height: 320,
                         statistic: const StatisticCategoryMood(),
                       );
@@ -372,29 +369,34 @@ class StatisticWeekMoodLine extends StatelessWidget {
               drawVerticalLine: true,
               getDrawingHorizontalLine: (value) {
                 return FlLine(
-                  color: isDarkMode(context)
-                      ? Colors.white.withValues(alpha: 0.1)
-                      : Colors.black.withValues(alpha: 0.1),
+                  color:
+                      isDarkMode(context)
+                          ? Colors.white.withValues(alpha: 0.1)
+                          : Colors.black.withValues(alpha: 0.1),
                   strokeWidth: 0.6,
                 );
               },
               getDrawingVerticalLine: (value) {
                 return FlLine(
-                  color: isDarkMode(context)
-                      ? Colors.white.withValues(alpha: 0.1)
-                      : Colors.black12,
+                  color:
+                      isDarkMode(context)
+                          ? Colors.white.withValues(alpha: 0.1)
+                          : Colors.black12,
                   strokeWidth: 0,
                 );
               },
             ),
             titlesData: FlTitlesData(
               show: true,
-              leftTitles:
-                  const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-              rightTitles:
-                  const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-              topTitles:
-                  const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              leftTitles: const AxisTitles(
+                sideTitles: SideTitles(showTitles: false),
+              ),
+              rightTitles: const AxisTitles(
+                sideTitles: SideTitles(showTitles: false),
+              ),
+              topTitles: const AxisTitles(
+                sideTitles: SideTitles(showTitles: false),
+              ),
               bottomTitles: AxisTitles(
                 sideTitles: SideTitles(
                   showTitles: true,
@@ -451,21 +453,27 @@ class OverallStatistics extends StatelessWidget {
             children: [
               StatisticsCard(
                 icon: Remix.time_line,
-                title: S.of(context).statistic_overall_daysCount_title(
+                title: S
+                    .of(context)
+                    .statistic_overall_daysCount_title(
                       statisticProvider.daysCount,
                     ),
                 subTitle: S.of(context).statistic_overall_daysCount_subTitle,
               ),
               StatisticsCard(
                 icon: Remix.file_list_2_line,
-                title: S.of(context).statistic_overall_moodCount_title(
+                title: S
+                    .of(context)
+                    .statistic_overall_moodCount_title(
                       statisticProvider.moodCount,
                     ),
                 subTitle: S.of(context).statistic_overall_moodCount_subTitle,
               ),
               StatisticsCard(
                 icon: Remix.pulse_line,
-                title: S.of(context).statistic_overall_moodScoreAverage_title(
+                title: S
+                    .of(context)
+                    .statistic_overall_moodScoreAverage_title(
                       statisticProvider.moodScoreAverage,
                     ),
                 subTitle:
@@ -573,23 +581,23 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
             ),
             maxY: 100,
             titlesData: FlTitlesData(
-              topTitles:
-                  const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              topTitles: const AxisTitles(
+                sideTitles: SideTitles(showTitles: false),
+              ),
               bottomTitles: AxisTitles(
                 sideTitles: SideTitles(
                   showTitles: true,
                   getTitlesWidget: (value, titleMeta) {
-                    return const Text(
-                      '',
-                      style: TextStyle(fontSize: 14),
-                    );
+                    return const Text('', style: TextStyle(fontSize: 14));
                   },
                 ),
               ),
-              leftTitles:
-                  const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-              rightTitles:
-                  const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              leftTitles: const AxisTitles(
+                sideTitles: SideTitles(showTitles: false),
+              ),
+              rightTitles: const AxisTitles(
+                sideTitles: SideTitles(showTitles: false),
+              ),
             ),
             gridData: const FlGridData(show: false),
             borderData: FlBorderData(show: false),
@@ -618,23 +626,25 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
           gradient: LinearGradient(
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
-            colors: isTouched
-                ? [
-                    Theme.of(context).primaryColor.withValues(alpha: 0.4),
-                    Theme.of(context).primaryColor,
-                  ]
-                : [
-                    Theme.of(context).primaryColor,
-                    Theme.of(context).primaryColor.withValues(alpha: 0.4),
-                  ],
+            colors:
+                isTouched
+                    ? [
+                      Theme.of(context).primaryColor.withValues(alpha: 0.4),
+                      Theme.of(context).primaryColor,
+                    ]
+                    : [
+                      Theme.of(context).primaryColor,
+                      Theme.of(context).primaryColor.withValues(alpha: 0.4),
+                    ],
           ),
           width: width ?? 14,
           borderRadius: BorderRadius.circular(14),
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
-            color: isDarkMode(context)
-                ? const Color(0xFF2B3034)
-                : AppTheme.backgroundColor1,
+            color:
+                isDarkMode(context)
+                    ? const Color(0xFF2B3034)
+                    : AppTheme.backgroundColor1,
             fromY: 100,
           ),
         ),
@@ -711,9 +721,7 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
                 });
               },
             ),
-            borderData: FlBorderData(
-              show: false,
-            ),
+            borderData: FlBorderData(show: false),
             sectionsSpace: 0,
             centerSpaceRadius: 0,
           ),
@@ -762,12 +770,7 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
         ),
         padding: const EdgeInsets.all(1),
         child: Center(
-          child: Text(
-            title ?? '',
-            style: TextStyle(
-              fontSize: badgeFontSize,
-            ),
-          ),
+          child: Text(title ?? '', style: TextStyle(fontSize: badgeFontSize)),
         ),
       ),
       badgePositionPercentageOffset: 0.9,
@@ -803,14 +806,9 @@ class StatisticsCard extends StatelessWidget {
       child: Card(
         elevation: 0,
         margin: const EdgeInsets.all(0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         child: Container(
-          constraints: const BoxConstraints(
-            minWidth: 88,
-            minHeight: 110,
-          ),
+          constraints: const BoxConstraints(minWidth: 88, minHeight: 110),
           margin: const EdgeInsets.all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -822,11 +820,7 @@ class StatisticsCard extends StatelessWidget {
                   color: Colors.black,
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
-                  icon,
-                  size: 18,
-                  color: Colors.white,
-                ),
+                child: Icon(icon, size: 18, color: Colors.white),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20, bottom: 10, left: 6),
@@ -841,10 +835,7 @@ class StatisticsCard extends StatelessWidget {
               ),
               Text(
                 subTitle,
-                style: const TextStyle(
-                  color: AppTheme.subColor,
-                  fontSize: 12,
-                ),
+                style: const TextStyle(color: AppTheme.subColor, fontSize: 12),
               ),
             ],
           ),
@@ -885,9 +876,7 @@ class StatisticLayout extends StatelessWidget {
       child: Card(
         elevation: 0,
         margin: const EdgeInsets.all(0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         child: Container(
           height: height,
           margin: const EdgeInsets.all(24),
@@ -962,28 +951,30 @@ class FilterBottom extends StatelessWidget {
             decoration: BoxDecoration(
               color: checked ? primaryColor : Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(14),
-              boxShadow: checked
-                  ? [
-                      BoxShadow(
-                        color: Theme.of(context)
-                            .primaryColor
-                            .withValues(alpha: 0.2),
-                        blurRadius: 6,
-                      ),
-                    ]
-                  : [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.02),
-                        blurRadius: 6,
-                      ),
-                    ],
+              boxShadow:
+                  checked
+                      ? [
+                        BoxShadow(
+                          color: Theme.of(
+                            context,
+                          ).primaryColor.withValues(alpha: 0.2),
+                          blurRadius: 6,
+                        ),
+                      ]
+                      : [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.02),
+                          blurRadius: 6,
+                        ),
+                      ],
             ),
             child: Text(
               text,
               style: TextStyle(
-                color: checked
-                    ? Colors.white
-                    : isDarkMode(context)
+                color:
+                    checked
+                        ? Colors.white
+                        : isDarkMode(context)
                         ? Colors.white
                         : Colors.black87,
                 fontSize: 12,

@@ -11,20 +11,19 @@ class SpriteSheetOrc {
 
   static Future load() async {
     spriteSheetOrcRun = await Flame.images.load('$assetsPath/orc_run.png');
-    spriteSheetOrcAttack =
-        await Flame.images.load('$assetsPath/orc_attack.png');
+    spriteSheetOrcAttack = await Flame.images.load(
+      '$assetsPath/orc_attack.png',
+    );
     spriteSheetOrcIdle = await Flame.images.load('$assetsPath/orc_idle.png');
-    spriteSheetOrcDamage =
-        await Flame.images.load('$assetsPath/orc_damage.png');
+    spriteSheetOrcDamage = await Flame.images.load(
+      '$assetsPath/orc_damage.png',
+    );
     spriteSheetOrcDie = await Flame.images.load('$assetsPath/orc_die.png');
   }
 
   static Future<SpriteAnimation> getRunBottomRight() {
     return spriteSheetOrcRun
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 4,
-        )
+        .getAnimation(size: Vector2.all(21), amount: 4)
         .asFuture();
   }
 
@@ -60,10 +59,7 @@ class SpriteSheetOrc {
 
   static Future<SpriteAnimation> getIdleBottomRight() {
     return spriteSheetOrcIdle
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 16,
-        )
+        .getAnimation(size: Vector2.all(21), amount: 16)
         .asFuture();
   }
 
@@ -146,11 +142,7 @@ class SpriteSheetOrc {
 
   static Future<SpriteAnimation> getDamageBottomRight() {
     return spriteSheetOrcDamage
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 4,
-          loop: false,
-        )
+        .getAnimation(size: Vector2.all(21), amount: 4, loop: false)
         .asFuture();
   }
 
@@ -190,11 +182,7 @@ class SpriteSheetOrc {
   /// 死亡动画
   static Future<SpriteAnimation> getDie() {
     return spriteSheetOrcDie
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 12,
-          loop: false,
-        )
+        .getAnimation(size: Vector2.all(21), amount: 12, loop: false)
         .asFuture();
   }
 }

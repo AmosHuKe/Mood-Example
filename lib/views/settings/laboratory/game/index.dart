@@ -45,18 +45,13 @@ class _GamePageState extends State<GamePage> {
               color: AppTheme.backgroundColor1,
               borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
             ),
-            child: const Icon(
-              Remix.arrow_left_line,
-              size: 24,
-            ),
+            child: const Icon(Remix.arrow_left_line, size: 24),
             onTap: () {
               context.pop();
             },
           ),
         ),
-        body: const SafeArea(
-          child: UniMPMiniappsBody(),
-        ),
+        body: const SafeArea(child: UniMPMiniappsBody()),
       ),
     );
   }
@@ -159,10 +154,7 @@ class ListCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                TextButton(
-                  onPressed: onPressed,
-                  child: const Text('打开'),
-                ),
+                TextButton(onPressed: onPressed, child: const Text('打开')),
                 const SizedBox(width: 8),
               ],
             ),

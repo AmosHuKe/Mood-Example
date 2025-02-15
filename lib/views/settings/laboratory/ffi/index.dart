@@ -62,15 +62,16 @@ class _FFIPageState extends State<FFIPage> {
   /// 初始化 FFI
   void ffiInit() {
     /// 加载库 符号表
-    _dl = Platform.isAndroid
-        ? DynamicLibrary.open('libffi.so')
-        : DynamicLibrary.process();
+    _dl =
+        Platform.isAndroid
+            ? DynamicLibrary.open('libffi.so')
+            : DynamicLibrary.process();
 
     /// 查找 DartApi 初始化函数
-    final DartInitializeApiDL initDartApiDL =
-        _dl.lookupFunction<NativeDartInitializeApiDL, DartInitializeApiDL>(
-      'InitDartApiDL',
-    );
+    final DartInitializeApiDL initDartApiDL = _dl
+        .lookupFunction<NativeDartInitializeApiDL, DartInitializeApiDL>(
+          'InitDartApiDL',
+        );
 
     /// 调用初始化函数，并判断是否成功
     final int dartApiInited = initDartApiDL(NativeApi.initializeApiDLData);
@@ -96,10 +97,10 @@ class _FFIPageState extends State<FFIPage> {
     });
 
     /// 查找 注册线程函数
-    final RegisterSendPort registerSendPort =
-        _dl.lookupFunction<NativeRegisterSendPort, RegisterSendPort>(
-      'RegisterSendPort',
-    );
+    final RegisterSendPort registerSendPort = _dl
+        .lookupFunction<NativeRegisterSendPort, RegisterSendPort>(
+          'RegisterSendPort',
+        );
 
     /// 调用 开启线程并传入参数
     registerSendPort(_receivePort1.sendPort.nativePort, 3);
@@ -119,10 +120,10 @@ class _FFIPageState extends State<FFIPage> {
     });
 
     /// 查找 注册线程函数
-    final RegisterSendPort registerSendPort =
-        _dl.lookupFunction<NativeRegisterSendPort, RegisterSendPort>(
-      'RegisterSendPort',
-    );
+    final RegisterSendPort registerSendPort = _dl
+        .lookupFunction<NativeRegisterSendPort, RegisterSendPort>(
+          'RegisterSendPort',
+        );
 
     /// 调用 开启线程并传入参数
     registerSendPort(_receivePort2.sendPort.nativePort, 1);
@@ -145,9 +146,7 @@ class _FFIPageState extends State<FFIPage> {
           leading: ActionButton(
             decoration: const BoxDecoration(
               color: AppTheme.backgroundColor1,
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(18),
-              ),
+              borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
             ),
             child: const Icon(Remix.arrow_left_line, size: 24),
             onTap: () => context.pop(),
@@ -168,12 +167,7 @@ class _FFIPageState extends State<FFIPage> {
                 ),
                 _testLoading1
                     ? const CupertinoActivityIndicator()
-                    : Text(
-                        _testText1,
-                        style: const TextStyle(
-                          fontSize: 14,
-                        ),
-                      ),
+                    : Text(_testText1, style: const TextStyle(fontSize: 14)),
                 const SizedBox(height: 24),
                 Text(
                   '接收端口 ${_receivePort2.sendPort.nativePort} 信息：',
@@ -184,12 +178,7 @@ class _FFIPageState extends State<FFIPage> {
                 ),
                 _testLoading2
                     ? const CupertinoActivityIndicator()
-                    : Text(
-                        _testText2,
-                        style: const TextStyle(
-                          fontSize: 14,
-                        ),
-                      ),
+                    : Text(_testText2, style: const TextStyle(fontSize: 14)),
               ],
             ),
           ),

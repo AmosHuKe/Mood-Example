@@ -10,25 +10,25 @@ const double tileSize = 20.0;
 class Orc extends SimpleEnemy
     with RandomMovement, BlockMovementCollision, UseLifeBar {
   Orc(Vector2 position)
-      : super(
-          position: position,
-          animation: SimpleDirectionAnimation(
-            idleLeft: SpriteSheetOrc.getIdleBottomLeft(),
-            idleRight: SpriteSheetOrc.getIdleBottomRight(),
-            idleDownRight: SpriteSheetOrc.getIdleBottomRight(),
-            idleDownLeft: SpriteSheetOrc.getIdleBottomLeft(),
-            idleUpRight: SpriteSheetOrc.getIdleTopRight(),
-            idleUpLeft: SpriteSheetOrc.getIdleTopLeft(),
-            idleUp: SpriteSheetOrc.getIdleTopRight(),
-            idleDown: SpriteSheetOrc.getIdleBottomRight(),
-            runLeft: SpriteSheetOrc.getRunBottomLeft(),
-            runRight: SpriteSheetOrc.getRunBottomRight(),
-            runUpLeft: SpriteSheetOrc.getRunTopLeft(),
-            runUpRight: SpriteSheetOrc.getRunTopRight(),
-          ),
-          speed: tileSize * 3 + Random().nextInt(20),
-          size: Vector2.all(tileSize * 2.9),
-        ) {
+    : super(
+        position: position,
+        animation: SimpleDirectionAnimation(
+          idleLeft: SpriteSheetOrc.getIdleBottomLeft(),
+          idleRight: SpriteSheetOrc.getIdleBottomRight(),
+          idleDownRight: SpriteSheetOrc.getIdleBottomRight(),
+          idleDownLeft: SpriteSheetOrc.getIdleBottomLeft(),
+          idleUpRight: SpriteSheetOrc.getIdleTopRight(),
+          idleUpLeft: SpriteSheetOrc.getIdleTopLeft(),
+          idleUp: SpriteSheetOrc.getIdleTopRight(),
+          idleDown: SpriteSheetOrc.getIdleBottomRight(),
+          runLeft: SpriteSheetOrc.getRunBottomLeft(),
+          runRight: SpriteSheetOrc.getRunBottomRight(),
+          runUpLeft: SpriteSheetOrc.getRunTopLeft(),
+          runUpRight: SpriteSheetOrc.getRunTopRight(),
+        ),
+        speed: tileSize * 3 + Random().nextInt(20),
+        size: Vector2.all(tileSize * 2.9),
+      ) {
     /// 生命条
     setupLifeBar(
       size: Vector2(tileSize * 1.5, tileSize / 5),
@@ -48,10 +48,7 @@ class Orc extends SimpleEnemy
     /// 设置碰撞系统
     add(
       RectangleHitbox(
-        size: Vector2(
-          size.x * 0.3,
-          size.y * 0.2,
-        ),
+        size: Vector2(size.x * 0.3, size.y * 0.2),
         position: Vector2(tileSize * 1, tileSize * 1.5),
       ),
     );
@@ -88,11 +85,7 @@ class Orc extends SimpleEnemy
         // 未发现
         notObserved: () {
           /// 随机移动
-          runRandomMovement(
-            dt,
-            speed: speed / 3,
-            maxDistance: tileSize * 2,
-          );
+          runRandomMovement(dt, speed: speed / 3, maxDistance: tileSize * 2);
           return false;
         },
       );
@@ -174,10 +167,7 @@ class Orc extends SimpleEnemy
       case Direction.downRight:
         newAnimation = SpriteSheetOrc.getAttackBottomRight();
     }
-    animation?.playOnce(
-      newAnimation,
-      runToTheEnd: true,
-    );
+    animation?.playOnce(newAnimation, runToTheEnd: true);
   }
 
   /// 受伤动画

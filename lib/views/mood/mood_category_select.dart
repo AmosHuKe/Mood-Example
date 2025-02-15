@@ -30,18 +30,13 @@ enum MoodCategorySelectType {
 
   final String type;
 
-  static MoodCategorySelectType fromString(String type) => values.firstWhere(
-        (e) => e.type == type,
-        orElse: () => add,
-      );
+  static MoodCategorySelectType fromString(String type) =>
+      values.firstWhere((e) => e.type == type, orElse: () => add);
 }
 
 /// 新增心情页
 class MoodCategorySelect extends StatefulWidget {
-  const MoodCategorySelect({
-    super.key,
-    required this.type,
-  });
+  const MoodCategorySelect({super.key, required this.type});
 
   /// 状态
   final String type;
@@ -76,11 +71,13 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
         leading: ActionButton(
           semanticsLabel: '关闭',
           decoration: BoxDecoration(
-            color: isDarkMode(context)
-                ? Theme.of(context).cardColor
-                : AppTheme.backgroundColor1,
-            borderRadius:
-                const BorderRadius.only(bottomRight: Radius.circular(18)),
+            color:
+                isDarkMode(context)
+                    ? Theme.of(context).cardColor
+                    : AppTheme.backgroundColor1,
+            borderRadius: const BorderRadius.only(
+              bottomRight: Radius.circular(18),
+            ),
           ),
           child: const Icon(Remix.arrow_left_line, size: 24),
           onTap: () => context.pop(),
@@ -167,11 +164,7 @@ class MoodChoice extends StatelessWidget {
             }
 
             /// 显示
-            return Wrap(
-              spacing: 24,
-              runSpacing: 24,
-              children: widgetList,
-            );
+            return Wrap(spacing: 24, runSpacing: 24, children: widgetList);
           },
         ),
       ),
@@ -181,11 +174,7 @@ class MoodChoice extends StatelessWidget {
 
 /// 心情选择卡片
 class MoodChoiceCard extends StatelessWidget {
-  const MoodChoiceCard({
-    super.key,
-    required this.icon,
-    required this.title,
-  });
+  const MoodChoiceCard({super.key, required this.icon, required this.title});
 
   /// 图标
   final String icon;
@@ -209,12 +198,7 @@ class MoodChoiceCard extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 6),
-                child: Text(
-                  icon,
-                  style: const TextStyle(
-                    fontSize: 32,
-                  ),
-                ),
+                child: Text(icon, style: const TextStyle(fontSize: 32)),
               ),
               Text(
                 title,

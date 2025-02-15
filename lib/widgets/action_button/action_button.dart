@@ -30,7 +30,8 @@ class ActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final double _width = width ?? 48;
     final double _height = height ?? 48;
-    final Decoration _decoration = decoration ??
+    final Decoration _decoration =
+        decoration ??
         BoxDecoration(
           color: AppTheme.backgroundColor1,
           borderRadius: BorderRadius.circular(18),

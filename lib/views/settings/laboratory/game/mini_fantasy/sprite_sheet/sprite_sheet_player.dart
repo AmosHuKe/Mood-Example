@@ -19,70 +19,75 @@ class SpriteSheetPlayer {
 
   static Future load() async {
     spriteSheetPlayerRun = await Flame.images.load('$assetsPath/human_run.png');
-    spriteSheetPlayerAttack =
-        await Flame.images.load('$assetsPath/human_attack.png');
-    spriteSheetPlayerIdle =
-        await Flame.images.load('$assetsPath/human_idle.png');
+    spriteSheetPlayerAttack = await Flame.images.load(
+      '$assetsPath/human_attack.png',
+    );
+    spriteSheetPlayerIdle = await Flame.images.load(
+      '$assetsPath/human_idle.png',
+    );
     spriteSheetPlayerDie = await Flame.images.load('$assetsPath/human_die.png');
-    spriteSheetPlayerDamage =
-        await Flame.images.load('$assetsPath/human_damage.png');
-    runBottomRight = spriteSheetPlayerRun
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 4,
-        )
-        .asFuture();
-    runBottomLeft = spriteSheetPlayerRun
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 4,
-          position: Vector2(0, 21),
-        )
-        .asFuture();
-    runTopRight = spriteSheetPlayerRun
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 4,
-          position: Vector2(0, 42),
-        )
-        .asFuture();
-    runTopLeft = spriteSheetPlayerRun
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 4,
-          position: Vector2(0, 63),
-        )
-        .asFuture();
+    spriteSheetPlayerDamage = await Flame.images.load(
+      '$assetsPath/human_damage.png',
+    );
+    runBottomRight =
+        spriteSheetPlayerRun
+            .getAnimation(size: Vector2.all(21), amount: 4)
+            .asFuture();
+    runBottomLeft =
+        spriteSheetPlayerRun
+            .getAnimation(
+              size: Vector2.all(21),
+              amount: 4,
+              position: Vector2(0, 21),
+            )
+            .asFuture();
+    runTopRight =
+        spriteSheetPlayerRun
+            .getAnimation(
+              size: Vector2.all(21),
+              amount: 4,
+              position: Vector2(0, 42),
+            )
+            .asFuture();
+    runTopLeft =
+        spriteSheetPlayerRun
+            .getAnimation(
+              size: Vector2.all(21),
+              amount: 4,
+              position: Vector2(0, 63),
+            )
+            .asFuture();
 
-    idleBottomRight = spriteSheetPlayerIdle
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 16,
-        )
-        .asFuture();
-    idleBottomLeft = spriteSheetPlayerIdle
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 16,
-          position: Vector2(0, 21),
-        )
-        .asFuture();
+    idleBottomRight =
+        spriteSheetPlayerIdle
+            .getAnimation(size: Vector2.all(21), amount: 16)
+            .asFuture();
+    idleBottomLeft =
+        spriteSheetPlayerIdle
+            .getAnimation(
+              size: Vector2.all(21),
+              amount: 16,
+              position: Vector2(0, 21),
+            )
+            .asFuture();
 
-    idleTopRight = spriteSheetPlayerIdle
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 16,
-          position: Vector2(0, 42),
-        )
-        .asFuture();
+    idleTopRight =
+        spriteSheetPlayerIdle
+            .getAnimation(
+              size: Vector2.all(21),
+              amount: 16,
+              position: Vector2(0, 42),
+            )
+            .asFuture();
 
-    idleTopLeft = spriteSheetPlayerIdle
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 16,
-          position: Vector2(0, 63),
-        )
-        .asFuture();
+    idleTopLeft =
+        spriteSheetPlayerIdle
+            .getAnimation(
+              size: Vector2.all(21),
+              amount: 16,
+              position: Vector2(0, 63),
+            )
+            .asFuture();
 
     return Future.value();
   }
@@ -136,21 +141,13 @@ class SpriteSheetPlayer {
 
   static Future<SpriteAnimation> getDie() {
     return spriteSheetPlayerDie
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 12,
-          loop: false,
-        )
+        .getAnimation(size: Vector2.all(21), amount: 12, loop: false)
         .asFuture();
   }
 
   static Future<SpriteAnimation> getDamageTopRight() {
     return spriteSheetPlayerDamage
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 4,
-          loop: false,
-        )
+        .getAnimation(size: Vector2.all(21), amount: 4, loop: false)
         .asFuture();
   }
 

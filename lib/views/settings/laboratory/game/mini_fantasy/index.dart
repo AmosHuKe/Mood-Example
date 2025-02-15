@@ -41,18 +41,13 @@ class _MiniFantasyPageState extends State<MiniFantasyPage> {
               color: AppTheme.backgroundColor1,
               borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
             ),
-            child: const Icon(
-              Remix.arrow_left_line,
-              size: 24,
-            ),
+            child: const Icon(Remix.arrow_left_line, size: 24),
             onTap: () {
               context.pop();
             },
           ),
         ),
-        body: const SafeArea(
-          child: Game(),
-        ),
+        body: const SafeArea(child: Game()),
       ),
     );
   }
@@ -84,21 +79,15 @@ class Game extends StatelessWidget {
               ],
             ),
             Keyboard(
-              config: KeyboardConfig(
-                acceptedKeys: [
-                  LogicalKeyboardKey.space,
-                ],
-              ),
+              config: KeyboardConfig(acceptedKeys: [LogicalKeyboardKey.space]),
             ),
           ],
           map: WorldMapByTiled(
             WorldMapReader.fromAsset('$assetsPath/tiles/map.json'),
             forceTileSize: Vector2(tileSize, tileSize),
             objectsBuilder: {
-              'light': (properties) => Light(
-                    properties.position,
-                    properties.size,
-                  ),
+              'light':
+                  (properties) => Light(properties.position, properties.size),
               'orc': (properties) => Orc(properties.position),
             },
           ),
@@ -115,22 +104,22 @@ class Game extends StatelessWidget {
           //   ),
           // ),
           overlayBuilderMap: {
-            'miniMap': (context, game) => MiniMap(
+            'miniMap':
+                (context, game) => MiniMap(
                   game: game,
                   zoom: 0.8,
                   margin: const EdgeInsets.all(20),
                   borderRadius: BorderRadius.circular(100),
                   size: Vector2.all(constraints.maxHeight / 5),
-                  border:
-                      Border.all(color: Colors.white.withValues(alpha: 0.5)),
+                  border: Border.all(
+                    color: Colors.white.withValues(alpha: 0.5),
+                  ),
                   playerColor: Colors.green,
                   enemyColor: Colors.red,
                   npcColor: Colors.red,
                 ),
           },
-          initialActiveOverlays: const [
-            'miniMap',
-          ],
+          initialActiveOverlays: const ['miniMap'],
         );
       },
     );

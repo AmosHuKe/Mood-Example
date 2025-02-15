@@ -26,20 +26,14 @@ class SettingKey extends StatelessWidget {
           padding: const EdgeInsets.only(left: 6, top: 6, bottom: 2),
           child: Text(
             S.of(context).app_setting_security,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 6, top: 6, bottom: 14),
           child: Text(
             S.of(context).app_setting_security_content,
-            style: const TextStyle(
-              fontWeight: FontWeight.normal,
-              fontSize: 14,
-            ),
+            style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
           ),
         ),
 
@@ -100,10 +94,10 @@ class _KeyBodyState extends State<KeyBody> {
             ),
             title: Text(
               localAuthText,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(fontSize: 14, fontWeight: FontWeight.normal),
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              ),
             ),
             trailing: Semantics(
               label: localAuthText,
@@ -132,16 +126,17 @@ class _KeyBodyState extends State<KeyBody> {
               leading: Icon(
                 Remix.lock_line,
                 size: _titleIconSize,
-                color: isDarkMode(context)
-                    ? Colors.white
-                    : const Color(0xFF202427),
+                color:
+                    isDarkMode(context)
+                        ? Colors.white
+                        : const Color(0xFF202427),
               ),
               title: Text(
                 S.of(context).app_setting_security_lock,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(fontSize: 14, fontWeight: FontWeight.normal),
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
               ),
               trailing: Semantics(
                 label: S.of(context).app_setting_security_lock,

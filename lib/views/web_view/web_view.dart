@@ -11,10 +11,7 @@ import 'package:moodexample/widgets/action_button/action_button.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 
 class WebViewPage extends StatefulWidget {
-  const WebViewPage({
-    super.key,
-    required this.url,
-  });
+  const WebViewPage({super.key, required this.url});
 
   final String url;
 
@@ -33,36 +30,37 @@ class _WebViewPageState extends State<WebViewPage> {
     super.initState();
 
     final String url = ValueConvert(widget.url).decode();
-    _pageWebViewController = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onProgress: (int progress) {
-            print('加载中：$progress');
-            if (!mounted) return;
-            setState(() {
-              _pageTitle =
-                  '${S.of(context).web_view_loading_text} ${progress - 1}%';
-            });
-          },
-          onPageStarted: (String url) {
-            print('开始加载：$url');
-            if (!mounted) return;
-            setState(() {
-              _pageTitle = url;
-            });
-          },
-          onPageFinished: (String url) {
-            print('加载完成：$url');
-            if (!mounted) return;
-            webViewInit();
-          },
-          onWebResourceError: (WebResourceError error) {
-            print('加载错误：$error');
-          },
-        ),
-      )
-      ..loadRequest(Uri.parse(url));
+    _pageWebViewController =
+        WebViewController()
+          ..setJavaScriptMode(JavaScriptMode.unrestricted)
+          ..setNavigationDelegate(
+            NavigationDelegate(
+              onProgress: (int progress) {
+                print('加载中：$progress');
+                if (!mounted) return;
+                setState(() {
+                  _pageTitle =
+                      '${S.of(context).web_view_loading_text} ${progress - 1}%';
+                });
+              },
+              onPageStarted: (String url) {
+                print('开始加载：$url');
+                if (!mounted) return;
+                setState(() {
+                  _pageTitle = url;
+                });
+              },
+              onPageFinished: (String url) {
+                print('加载完成：$url');
+                if (!mounted) return;
+                webViewInit();
+              },
+              onWebResourceError: (WebResourceError error) {
+                print('加载错误：$error');
+              },
+            ),
+          )
+          ..loadRequest(Uri.parse(url));
   }
 
   @override
@@ -83,16 +81,15 @@ class _WebViewPageState extends State<WebViewPage> {
           key: const Key('widget_web_view_close'),
           semanticsLabel: '返回',
           decoration: BoxDecoration(
-            color: isDarkMode(context)
-                ? Theme.of(context).cardColor
-                : AppTheme.backgroundColor1,
-            borderRadius:
-                const BorderRadius.only(bottomRight: Radius.circular(18)),
+            color:
+                isDarkMode(context)
+                    ? Theme.of(context).cardColor
+                    : AppTheme.backgroundColor1,
+            borderRadius: const BorderRadius.only(
+              bottomRight: Radius.circular(18),
+            ),
           ),
-          child: const Icon(
-            Remix.close_fill,
-            size: 24,
-          ),
+          child: const Icon(Remix.close_fill, size: 24),
           onTap: () {
             context.pop();
           },
@@ -113,50 +110,50 @@ class _WebViewPageState extends State<WebViewPage> {
         builder: (_) {
           return _canGoBack || _canGoForward
               ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Builder(
-                      builder: (_) {
-                        return _canGoBack
-                            ? Expanded(
-                                child: IconButton(
-                                  onPressed: () async {
-                                    await _pageWebViewController.goBack();
-                                  },
-                                  icon: Icon(
-                                    Remix.arrow_left_s_line,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .color,
-                                  ),
-                                ),
-                              )
-                            : const SizedBox();
-                      },
-                    ),
-                    Builder(
-                      builder: (_) {
-                        return _canGoForward
-                            ? Expanded(
-                                child: IconButton(
-                                  onPressed: () async {
-                                    await _pageWebViewController.goForward();
-                                  },
-                                  icon: Icon(
-                                    Remix.arrow_right_s_line,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .color,
-                                  ),
-                                ),
-                              )
-                            : const SizedBox();
-                      },
-                    ),
-                  ],
-                )
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Builder(
+                    builder: (_) {
+                      return _canGoBack
+                          ? Expanded(
+                            child: IconButton(
+                              onPressed: () async {
+                                await _pageWebViewController.goBack();
+                              },
+                              icon: Icon(
+                                Remix.arrow_left_s_line,
+                                color:
+                                    Theme.of(
+                                      context,
+                                    ).textTheme.bodyMedium!.color,
+                              ),
+                            ),
+                          )
+                          : const SizedBox();
+                    },
+                  ),
+                  Builder(
+                    builder: (_) {
+                      return _canGoForward
+                          ? Expanded(
+                            child: IconButton(
+                              onPressed: () async {
+                                await _pageWebViewController.goForward();
+                              },
+                              icon: Icon(
+                                Remix.arrow_right_s_line,
+                                color:
+                                    Theme.of(
+                                      context,
+                                    ).textTheme.bodyMedium!.color,
+                              ),
+                            ),
+                          )
+                          : const SizedBox();
+                    },
+                  ),
+                ],
+              )
               : const SizedBox();
         },
       ),

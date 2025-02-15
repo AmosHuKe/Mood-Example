@@ -57,21 +57,18 @@ class AppThemeDefault implements AppMultipleTheme {
         unselectedLabelColor: Color(0xFFAFB8BF),
       ),
       // 回弹波浪颜色
-      primarySwatch: const MaterialColor(
-        0xFF545454,
-        {
-          50: Color(0xFF545454),
-          100: Color(0xFF545454),
-          200: Color(0xFF545454),
-          300: Color(0xFF545454),
-          400: Color(0xFF545454),
-          500: Color(0xFF545454),
-          600: Color(0xFF545454),
-          700: Color(0xFF545454),
-          800: Color(0xFF545454),
-          900: Color(0xFF545454),
-        },
-      ),
+      primarySwatch: const MaterialColor(0xFF545454, {
+        50: Color(0xFF545454),
+        100: Color(0xFF545454),
+        200: Color(0xFF545454),
+        300: Color(0xFF545454),
+        400: Color(0xFF545454),
+        500: Color(0xFF545454),
+        600: Color(0xFF545454),
+        700: Color(0xFF545454),
+        800: Color(0xFF545454),
+        900: Color(0xFF545454),
+      }),
       // 点击时水波颜色
       splashColor: Colors.transparent,
       // 点击时背景高亮颜色
@@ -79,8 +76,9 @@ class AppThemeDefault implements AppMultipleTheme {
       // Card
       cardColor: Colors.white,
       // bottomSheet
-      bottomSheetTheme:
-          const BottomSheetThemeData(modalBackgroundColor: Color(0xFFF6F8FA)),
+      bottomSheetTheme: const BottomSheetThemeData(
+        modalBackgroundColor: Color(0xFFF6F8FA),
+      ),
       // Radio
       radioTheme: RadioThemeData(
         fillColor: WidgetStateProperty.all(const Color(0xFF111315)),
@@ -130,21 +128,18 @@ class AppThemeDefault implements AppMultipleTheme {
         unselectedLabelColor: Color(0xFF6F767E),
       ),
       // 回弹波浪颜色
-      primarySwatch: const MaterialColor(
-        0xFF545454,
-        {
-          50: Color(0xFF545454),
-          100: Color(0xFF545454),
-          200: Color(0xFF545454),
-          300: Color(0xFF545454),
-          400: Color(0xFF545454),
-          500: Color(0xFF545454),
-          600: Color(0xFF545454),
-          700: Color(0xFF545454),
-          800: Color(0xFF545454),
-          900: Color(0xFF545454),
-        },
-      ),
+      primarySwatch: const MaterialColor(0xFF545454, {
+        50: Color(0xFF545454),
+        100: Color(0xFF545454),
+        200: Color(0xFF545454),
+        300: Color(0xFF545454),
+        400: Color(0xFF545454),
+        500: Color(0xFF545454),
+        600: Color(0xFF545454),
+        700: Color(0xFF545454),
+        800: Color(0xFF545454),
+        900: Color(0xFF545454),
+      }),
       // 点击时水波颜色
       splashColor: Colors.transparent,
       // 点击时背景高亮颜色
@@ -152,8 +147,9 @@ class AppThemeDefault implements AppMultipleTheme {
       // Card
       cardColor: const Color(0xFF202427),
       // bottomSheet
-      bottomSheetTheme:
-          const BottomSheetThemeData(modalBackgroundColor: Color(0xFF111315)),
+      bottomSheetTheme: const BottomSheetThemeData(
+        modalBackgroundColor: Color(0xFF111315),
+      ),
       // Radio
       radioTheme: RadioThemeData(
         fillColor: WidgetStateProperty.all(const Color(0xFFEFEFEF)),

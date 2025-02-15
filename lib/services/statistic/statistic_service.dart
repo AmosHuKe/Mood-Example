@@ -36,14 +36,15 @@ class StatisticService {
   ///
   /// [days] 往前获取的天数
   static Future<List<StatisticMoodScoreAverageRecentlyData>>
-      getMoodScoreAverageRecently({int days = 7}) async {
+  getMoodScoreAverageRecently({int days = 7}) async {
     /// 数据
     final List<StatisticMoodScoreAverageRecentlyData> dataList = [];
     final nowDate = DateTime.parse(getDatetimeNow('yyyy-MM-dd'));
     // 获取近日日期
     for (int i = days - 1; i >= 0; i--) {
-      final String date =
-          DateFormat('yyyy-MM-dd').format(nowDate.subtract(Duration(days: i)));
+      final String date = DateFormat(
+        'yyyy-MM-dd',
+      ).format(nowDate.subtract(Duration(days: i)));
       // 查询
       final list = await DB.instance.selectDateMoodScoreAverage(date);
       final int count = list[0]['moodScoreAverage'] ?? 0;

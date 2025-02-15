@@ -11,9 +11,10 @@ class LocaleDatetime {
   /// [format] 时间格式
   ///
   /// @return [String] 日期如：2000-01-01
-  static String yMMMd(BuildContext context, String format) => format.isNotEmpty
-      ? DateFormat.yMMMMd(S.of(context).localeName).format(
-          DateFormat('yyyy-MM-dd').parse(format),
-        )
-      : '';
+  static String yMMMd(BuildContext context, String format) =>
+      format.isNotEmpty
+          ? DateFormat.yMMMMd(
+            S.of(context).localeName,
+          ).format(DateFormat('yyyy-MM-dd').parse(format))
+          : '';
 }

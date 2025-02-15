@@ -43,14 +43,11 @@ Future<void> lockScreen(BuildContext context) async {
         correctString: password,
         title: Text(s.app_setting_security_lock_screen_title),
         canCancel: false,
-        deleteButton: const Icon(
-          Remix.delete_back_2_fill,
-          semanticLabel: '删除',
-        ),
+        deleteButton: const Icon(Remix.delete_back_2_fill, semanticLabel: '删除'),
         customizedButtonChild: customizedButtonChild,
         customizedButtonTap: () async {
-          final bool localAuthBiometric =
-              await localAuthUtils.localAuthBiometric(context);
+          final bool localAuthBiometric = await localAuthUtils
+              .localAuthBiometric(context);
           if (localAuthBiometric) {
             applicationProvider.keyPasswordScreenOpen = false;
             if (context.mounted) {
@@ -61,8 +58,8 @@ Future<void> lockScreen(BuildContext context) async {
         onOpened: () async {
           applicationProvider.keyPasswordScreenOpen = true;
           if (canAppKeyBiometric) {
-            final bool localAuthBiometric =
-                await localAuthUtils.localAuthBiometric(context);
+            final bool localAuthBiometric = await localAuthUtils
+                .localAuthBiometric(context);
             if (localAuthBiometric) {
               applicationProvider.keyPasswordScreenOpen = false;
               if (context.mounted) {
@@ -98,10 +95,7 @@ Future<void> createlockScreen(
       context.pop();
     },
     cancelButton: Text(S.of(context).app_setting_security_lock_cancel),
-    deleteButton: const Icon(
-      Remix.delete_back_2_fill,
-      semanticLabel: '删除',
-    ),
+    deleteButton: const Icon(Remix.delete_back_2_fill, semanticLabel: '删除'),
     footer: TextButton(
       onPressed: () {
         // 重新输入

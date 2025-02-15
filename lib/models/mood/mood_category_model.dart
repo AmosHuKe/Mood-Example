@@ -9,16 +9,10 @@ String moodCategoryDataToJson(MoodCategoryData data) =>
 /// 心情类别数据
 @immutable
 class MoodCategoryData {
-  const MoodCategoryData({
-    required this.icon,
-    required this.title,
-  });
+  const MoodCategoryData({required this.icon, required this.title});
 
   factory MoodCategoryData.fromJson(Map<String, dynamic> json) =>
-      MoodCategoryData(
-        icon: json['icon'],
-        title: json['title'],
-      );
+      MoodCategoryData(icon: json['icon'], title: json['title']);
 
   /// 表情
   final String icon;
@@ -26,8 +20,5 @@ class MoodCategoryData {
   /// 标题
   final String title;
 
-  Map<String, dynamic> toJson() => {
-        'icon': icon,
-        'title': title,
-      };
+  Map<String, dynamic> toJson() => {'icon': icon, 'title': title};
 }

@@ -14,10 +14,7 @@ import 'views/menu_screen/menu_screen_left.dart';
 
 /// 首页底部Tabbar
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({
-    super.key,
-    required this.navigationShell,
-  });
+  const HomeScreen({super.key, required this.navigationShell});
 
   /// 当前子路由状态
   final StatefulNavigationShell navigationShell;
@@ -51,8 +48,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       parent: _stepButtonController,
       curve: Curves.fastOutSlowIn,
     );
-    _stepButtonAnimation =
-        Tween(begin: 0.0, end: 1.0).animate(_stepButtonController);
+    _stepButtonAnimation = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(_stepButtonController);
   }
 
   @override
@@ -123,26 +122,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   Tab(
                     key: const Key('tab_home'),
                     text: S.of(context).app_bottomNavigationBar_title_home,
-                    icon: Icon(
-                      Remix.home_line,
-                      size: _tabIconSize,
-                    ),
+                    icon: Icon(Remix.home_line, size: _tabIconSize),
                   ),
                   Tab(
                     key: const Key('tab_mood'),
                     text: S.of(context).app_bottomNavigationBar_title_mood,
-                    icon: Icon(
-                      Remix.heart_3_line,
-                      size: _tabIconSize,
-                    ),
+                    icon: Icon(Remix.heart_3_line, size: _tabIconSize),
                   ),
                   Tab(
                     key: const Key('tab_statistic'),
                     text: S.of(context).app_bottomNavigationBar_title_statistic,
-                    icon: Icon(
-                      Remix.bar_chart_line,
-                      size: _tabIconSize,
-                    ),
+                    icon: Icon(Remix.bar_chart_line, size: _tabIconSize),
                   ),
                 ],
                 onTap: (index) {
@@ -165,9 +155,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     width: 42,
                     height: 42,
                     decoration: BoxDecoration(
-                      color: isDarkMode(context)
-                          ? Colors.black12
-                          : AppTheme.backgroundColor1,
+                      color:
+                          isDarkMode(context)
+                              ? Colors.black12
+                              : AppTheme.backgroundColor1,
                       borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(14),
                         bottomRight: Radius.circular(14),
@@ -183,16 +174,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         }
                         return AnimatedBuilder(
                           animation: _stepButtonAnimation,
-                          builder: (context, child) => Transform.rotate(
-                            angle: _stepButtonCurve.value * 3.14,
-                            child: child,
-                          ),
+                          builder:
+                              (context, child) => Transform.rotate(
+                                angle: _stepButtonCurve.value * 3.14,
+                                child: child,
+                              ),
                           child: Icon(
                             Remix.arrow_right_line,
                             size: 16,
-                            color: isDarkMode(context)
-                                ? const Color(0xFFEFEFEF)
-                                : Colors.black,
+                            color:
+                                isDarkMode(context)
+                                    ? const Color(0xFFEFEFEF)
+                                    : Colors.black,
                           ),
                         );
                       },
@@ -214,20 +207,21 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
 /// 外层抽屉菜单
 class MenuPage extends StatelessWidget {
-  const MenuPage({
-    super.key,
-    required this.navigationShell,
-  });
+  const MenuPage({super.key, required this.navigationShell});
 
   /// 当前子路由状态
   final StatefulNavigationShell navigationShell;
 
   @override
   Widget build(BuildContext context) {
-    final _drawerController = ZoomDrawerController();
+    final appTheme = Theme.of(context);
+    final isDark = isDarkMode(context);
+    final primaryColor = appTheme.primaryColor;
+    final drawerController = ZoomDrawerController();
+    final slideWidth = MediaQuery.of(context).size.width * 0.70;
 
     return ZoomDrawer(
-      controller: _drawerController,
+      controller: drawerController,
       menuScreen: const MenuScreenLeft(),
       mainScreen: MainScreenBody(navigationShell: navigationShell),
       borderRadius: 36,
@@ -236,14 +230,11 @@ class MenuPage extends StatelessWidget {
       mainScreenTapClose: true,
       openCurve: Curves.easeOut,
       closeCurve: Curves.fastOutSlowIn,
-      drawerShadowsBackgroundColor:
-          isDarkMode(context) ? Colors.black26 : Colors.white38,
-      menuBackgroundColor: isDarkMode(context)
-          ? Theme.of(context).primaryColor.withAlpha(155)
-          : Theme.of(context).primaryColor,
+      drawerShadowsBackgroundColor: isDark ? Colors.black26 : Colors.white38,
+      menuBackgroundColor: isDark ? primaryColor.withAlpha(155) : primaryColor,
       angle: 0,
       mainScreenScale: 0.3,
-      slideWidth: MediaQuery.of(context).size.width * 0.70,
+      slideWidth: slideWidth == 0 ? 250.0 : slideWidth,
       style: DrawerStyle.defaultStyle,
     );
   }
@@ -251,10 +242,7 @@ class MenuPage extends StatelessWidget {
 
 /// 主屏幕逻辑
 class MainScreenBody extends StatelessWidget {
-  const MainScreenBody({
-    super.key,
-    required this.navigationShell,
-  });
+  const MainScreenBody({super.key, required this.navigationShell});
 
   /// 当前子路由状态
   final StatefulNavigationShell navigationShell;

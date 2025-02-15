@@ -58,19 +58,19 @@ class _InitState extends State<Init> {
     SystemChrome.setSystemUIOverlayStyle(
       isDarkMode(context)
           ? SystemUiOverlayStyle.dark.copyWith(
-              statusBarColor: Colors.transparent,
-              systemNavigationBarIconBrightness: Brightness.light,
-              statusBarIconBrightness: Brightness.light,
-              statusBarBrightness: Brightness.light,
-              systemNavigationBarColor: Colors.transparent,
-            )
+            statusBarColor: Colors.transparent,
+            systemNavigationBarIconBrightness: Brightness.light,
+            statusBarIconBrightness: Brightness.light,
+            statusBarBrightness: Brightness.light,
+            systemNavigationBarColor: Colors.transparent,
+          )
           : SystemUiOverlayStyle.light.copyWith(
-              statusBarColor: Colors.transparent,
-              systemNavigationBarIconBrightness: Brightness.light,
-              statusBarIconBrightness: Brightness.dark,
-              statusBarBrightness: Brightness.dark,
-              systemNavigationBarColor: Colors.transparent,
-            ),
+            statusBarColor: Colors.transparent,
+            systemNavigationBarIconBrightness: Brightness.light,
+            statusBarIconBrightness: Brightness.dark,
+            statusBarBrightness: Brightness.dark,
+            systemNavigationBarColor: Colors.transparent,
+          ),
     );
 
     return widget.child;
@@ -154,32 +154,38 @@ class _InitState extends State<Init> {
     bool userAuthorized = false;
     await showCupertinoDialog<void>(
       context: context,
-      builder: (BuildContext context) => Theme(
-        data: isDarkMode(context) ? ThemeData.dark() : ThemeData.light(),
-        child: CupertinoAlertDialog(
-          key: const Key('notification_rationale_dialog'),
-          title: Text(S.of(context).local_notification_dialog_allow_title),
-          content: Text(S.of(context).local_notification_dialog_allow_content),
-          actions: <CupertinoDialogAction>[
-            CupertinoDialogAction(
-              key: const Key('notification_rationale_close'),
-              child: Text(S.of(context).local_notification_dialog_allow_cancel),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+      builder:
+          (BuildContext context) => Theme(
+            data: isDarkMode(context) ? ThemeData.dark() : ThemeData.light(),
+            child: CupertinoAlertDialog(
+              key: const Key('notification_rationale_dialog'),
+              title: Text(S.of(context).local_notification_dialog_allow_title),
+              content: Text(
+                S.of(context).local_notification_dialog_allow_content,
+              ),
+              actions: <CupertinoDialogAction>[
+                CupertinoDialogAction(
+                  key: const Key('notification_rationale_close'),
+                  child: Text(
+                    S.of(context).local_notification_dialog_allow_cancel,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                CupertinoDialogAction(
+                  key: const Key('notification_rationale_ok'),
+                  child: Text(
+                    S.of(context).local_notification_dialog_allow_confirm,
+                  ),
+                  onPressed: () {
+                    userAuthorized = true;
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
             ),
-            CupertinoDialogAction(
-              key: const Key('notification_rationale_ok'),
-              child:
-                  Text(S.of(context).local_notification_dialog_allow_confirm),
-              onPressed: () {
-                userAuthorized = true;
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
+          ),
     );
     return userAuthorized &&
         await AwesomeNotifications().requestPermissionToSendNotifications();

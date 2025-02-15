@@ -11,13 +11,13 @@ const double tileSize = 20.0;
 class Boss extends SimpleEnemy
     with RandomMovement, BlockMovementCollision, UseLifeBar {
   Boss(Vector2 position)
-      : super(
-          position: position,
-          animation: SpriteSheetBoss.bossAnimations(),
-          life: 400,
-          speed: tileSize * 0.5 + Random().nextInt(60),
-          size: Vector2.all(tileSize * 5),
-        ) {
+    : super(
+        position: position,
+        animation: SpriteSheetBoss.bossAnimations(),
+        life: 400,
+        speed: tileSize * 0.5 + Random().nextInt(60),
+        size: Vector2.all(tileSize * 5),
+      ) {
     /// 生命条
     setupLifeBar(
       size: Vector2(tileSize * 2.5, tileSize / 5),
@@ -37,10 +37,7 @@ class Boss extends SimpleEnemy
     /// 设置碰撞系统
     add(
       RectangleHitbox(
-        size: Vector2(
-          size.x * 0.6,
-          size.y * 0.5,
-        ),
+        size: Vector2(size.x * 0.6, size.y * 0.5),
         position: Vector2(tileSize * 1.2, tileSize * 1.5),
       ),
     );

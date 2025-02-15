@@ -33,9 +33,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: HomeBody(key: Key('widget_home_body')),
-    );
+    return const Scaffold(body: HomeBody(key: Key('widget_home_body')));
   }
 }
 
@@ -99,10 +97,7 @@ class _HomeBodyState extends State<HomeBody> {
                 /// 头部
                 Padding(
                   padding: const EdgeInsets.only(top: 12, left: 24, right: 24),
-                  child: Semantics(
-                    container: true,
-                    child: const Header(),
-                  ),
+                  child: Semantics(container: true, child: const Header()),
                 ),
 
                 /// 情绪选项卡
@@ -160,19 +155,14 @@ class Header extends StatelessWidget {
         Expanded(
           child: Text(
             S.of(context).home_moodChoice_title,
-            style: const TextStyle(
-              fontWeight: FontWeight.normal,
-              fontSize: 24,
-            ),
+            style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 24),
           ),
         ),
         Consumer<MoodProvider>(
           builder: (_, moodProvider, child) {
             /// 加载数据的占位
             if (moodProvider.moodCategoryList.isEmpty) {
-              return const Align(
-                child: CupertinoActivityIndicator(radius: 12),
-              );
+              return const Align(child: CupertinoActivityIndicator(radius: 12));
             }
             return const SizedBox();
           },
@@ -211,9 +201,7 @@ class _OptionMoodState extends State<OptionMood> {
 
           /// 数据渲染
           for (final MoodCategoryData list in moodProvider.moodCategoryList) {
-            widgetList.add(
-              OptionCard(title: list.title, icon: list.icon),
-            );
+            widgetList.add(OptionCard(title: list.title, icon: list.icon));
           }
 
           /// 显示
@@ -230,11 +218,7 @@ class _OptionMoodState extends State<OptionMood> {
 
 /// 小型选项卡片
 class OptionCard extends StatelessWidget {
-  const OptionCard({
-    super.key,
-    required this.title,
-    required this.icon,
-  });
+  const OptionCard({super.key, required this.title, required this.icon});
 
   /// 标题
   final String title;
@@ -263,9 +247,10 @@ class OptionCard extends StatelessWidget {
                     child: Container(
                       constraints: const BoxConstraints(minWidth: 52),
                       decoration: BoxDecoration(
-                        color: isDarkMode(context)
-                            ? const Color(0xFF2B3034)
-                            : AppTheme.backgroundColor1,
+                        color:
+                            isDarkMode(context)
+                                ? const Color(0xFF2B3034)
+                                : AppTheme.backgroundColor1,
                         borderRadius: BorderRadius.circular(18),
                       ),
                       child: Padding(
@@ -284,12 +269,7 @@ class OptionCard extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
-                    child: Text(
-                      title,
-                      style: const TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
+                    child: Text(title, style: const TextStyle(fontSize: 14)),
                   ),
                 ],
               ),
@@ -305,8 +285,10 @@ class OptionCard extends StatelessWidget {
           closedColor: Colors.transparent,
           openBuilder: (_, closeContainer) {
             // 跳转输入内容页
-            final String nowDateTime =
-                DateTime.now().toString().substring(0, 10);
+            final String nowDateTime = DateTime.now().toString().substring(
+              0,
+              10,
+            );
             final MoodData moodData = MoodData(
               icon: icon,
               title: title,
@@ -356,10 +338,7 @@ class NoticeCard extends StatelessWidget {
             child: TiltParallax(
               size: const Offset(5, 5),
               child: Container(
-                constraints: const BoxConstraints(
-                  minHeight: 45,
-                  minWidth: 95,
-                ),
+                constraints: const BoxConstraints(minHeight: 45, minWidth: 95),
                 child: AnimatedPress(
                   child: OutlinedButton(
                     style: ButtonStyle(
@@ -378,10 +357,11 @@ class NoticeCard extends StatelessWidget {
                       ),
                       overlayColor: WidgetStateProperty.all(Colors.white10),
                     ),
-                    onPressed: () => {
-                      /// 导航到新路由
-                      GoRouter.of(context).pushNamed(Routes.onboarding),
-                    },
+                    onPressed:
+                        () => {
+                          /// 导航到新路由
+                          GoRouter.of(context).pushNamed(Routes.onboarding),
+                        },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -393,15 +373,10 @@ class NoticeCard extends StatelessWidget {
                               forceStrutHeight: false,
                               leading: 1,
                             ),
-                            style: const TextStyle(
-                              fontSize: 14,
-                            ),
+                            style: const TextStyle(fontSize: 14),
                           ),
                         ),
-                        const Icon(
-                          Remix.play_circle_fill,
-                          size: 24,
-                        ),
+                        const Icon(Remix.play_circle_fill, size: 24),
                       ],
                     ),
                   ),
@@ -428,18 +403,12 @@ class NoticeCard extends StatelessWidget {
           ),
         ],
       ),
-      child: const SizedBox(
-        height: 190,
-        child: ActionCard(),
-      ),
+      child: const SizedBox(height: 190, child: ActionCard()),
     );
   }
 
   /// 阴影
-  Widget shadow({
-    EdgeInsetsGeometry? margin,
-    required double opacity,
-  }) {
+  Widget shadow({EdgeInsetsGeometry? margin, required double opacity}) {
     return Container(
       height: 190,
       margin: margin,
@@ -515,8 +484,10 @@ class Article extends StatelessWidget {
         final double availableWidth = constraints.maxWidth;
         final double minWidth = 120;
         final double maxWidth = 200;
-        final double widgetWidth =
-            (availableWidth / 2 - 8).clamp(minWidth, maxWidth);
+        final double widgetWidth = (availableWidth / 2 - 8).clamp(
+          minWidth,
+          maxWidth,
+        );
 
         return Wrap(
           spacing: 16, // 主轴(水平)方向间距
@@ -608,8 +579,10 @@ class Article extends StatelessWidget {
               closedColor: const Color(0xFFFFCEBD),
               openBuilder: (_, closeContainer) {
                 return WebViewPage(
-                  url: ValueConvert('https://github.com/AmosHuKe/Mood-Example')
-                      .encode(),
+                  url:
+                      ValueConvert(
+                        'https://github.com/AmosHuKe/Mood-Example',
+                      ).encode(),
                 );
               },
             ),

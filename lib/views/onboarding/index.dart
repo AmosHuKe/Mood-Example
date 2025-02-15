@@ -15,11 +15,7 @@ class Onboarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-        child: SwiperBody(),
-      ),
-    );
+    return const Scaffold(body: SafeArea(child: SwiperBody()));
   }
 }
 
@@ -63,8 +59,10 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
       parent: _stepButtonController,
       curve: Curves.linearToEaseOut,
     );
-    _stepButtonAnimation =
-        Tween(begin: 0.0, end: 1.0).animate(_stepButtonController);
+    _stepButtonAnimation = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(_stepButtonController);
     _stepButtonAnimation.addListener(() {
       setState(() {});
     });
@@ -109,10 +107,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
         ),
         describe: Column(
           children: [
-            Text(
-              S.of(context).onboarding_content_1_1,
-              style: textContentStyle,
-            ),
+            Text(S.of(context).onboarding_content_1_1, style: textContentStyle),
           ],
         ),
       ),
@@ -125,14 +120,8 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
         ),
         describe: Column(
           children: [
-            Text(
-              S.of(context).onboarding_content_2_1,
-              style: textContentStyle,
-            ),
-            Text(
-              S.of(context).onboarding_content_2_2,
-              style: textContentStyle,
-            ),
+            Text(S.of(context).onboarding_content_2_1, style: textContentStyle),
+            Text(S.of(context).onboarding_content_2_2, style: textContentStyle),
           ],
         ),
       ),
@@ -190,46 +179,47 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
           child: AnimatedPress(
             child: AnimatedBuilder(
               animation: _stepButtonColorAnimation,
-              builder: (context, child) => OutlinedButton(
-                key: const Key('widget_next_button'),
-                style: ButtonStyle(
-                  padding: WidgetStateProperty.all(const EdgeInsets.all(20)),
-                  foregroundColor: WidgetStateProperty.all(Colors.white),
-                  backgroundColor: WidgetStateProperty.all(
-                    _stepButtonColorAnimation.value,
-                  ),
-                  textStyle: WidgetStateProperty.all(
-                    const TextStyle(
-                      fontSize: 240,
+              builder:
+                  (context, child) => OutlinedButton(
+                    key: const Key('widget_next_button'),
+                    style: ButtonStyle(
+                      padding: WidgetStateProperty.all(
+                        const EdgeInsets.all(20),
+                      ),
+                      foregroundColor: WidgetStateProperty.all(Colors.white),
+                      backgroundColor: WidgetStateProperty.all(
+                        _stepButtonColorAnimation.value,
+                      ),
+                      textStyle: WidgetStateProperty.all(
+                        const TextStyle(fontSize: 240),
+                      ),
+                      shape: WidgetStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100),
+                          side: const BorderSide(width: 0),
+                        ),
+                      ),
+                      overlayColor: WidgetStateProperty.all(Colors.white10),
                     ),
-                  ),
-                  shape: WidgetStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
-                      side: const BorderSide(
-                        width: 0,
+                    onPressed: () {
+                      if (swiperIndex == _swiperList.length - 1) {
+                        context.pop();
+                      } else {
+                        _swiperController.next(animation: true);
+                      }
+                    },
+                    child: Transform.rotate(
+                      angle: _stepButtonCurve.value * 1.58,
+                      child: Icon(
+                        Remix.arrow_right_line,
+                        size: 24,
+                        semanticLabel:
+                            swiperIndex == _swiperList.length - 1
+                                ? '开始'
+                                : '下一页',
                       ),
                     ),
                   ),
-                  overlayColor: WidgetStateProperty.all(Colors.white10),
-                ),
-                onPressed: () {
-                  if (swiperIndex == _swiperList.length - 1) {
-                    context.pop();
-                  } else {
-                    _swiperController.next(animation: true);
-                  }
-                },
-                child: Transform.rotate(
-                  angle: _stepButtonCurve.value * 1.58,
-                  child: Icon(
-                    Remix.arrow_right_line,
-                    size: 24,
-                    semanticLabel:
-                        swiperIndex == _swiperList.length - 1 ? '开始' : '下一页',
-                  ),
-                ),
-              ),
             ),
           ),
         ),
@@ -266,10 +256,7 @@ class TextImageSwiper extends StatelessWidget {
           padding: const EdgeInsets.only(left: 32, right: 32),
           child: Text(
             title,
-            style: const TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.w900,
-            ),
+            style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w900),
           ),
         ),
         Padding(

@@ -34,9 +34,7 @@ class _Page3DState extends State<Page3D> {
           leading: ActionButton(
             decoration: const BoxDecoration(
               color: AppTheme.backgroundColor1,
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(18),
-              ),
+              borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
             ),
             child: const Icon(Remix.arrow_left_line, size: 24),
             onTap: () => context.pop(),
@@ -88,16 +86,12 @@ class _Body3DState extends State<Body3D> {
               widget = const Text('3D模型加载出错了');
             } else {
               widget = DiTreDi(
-                figures: [
-                  Mesh3D(snapshot.requireData),
-                ],
+                figures: [Mesh3D(snapshot.requireData)],
                 controller: controller,
               );
             }
           } else {
-            widget = const Align(
-              child: CircularProgressIndicator(),
-            );
+            widget = const Align(child: CircularProgressIndicator());
           }
           return widget;
         },

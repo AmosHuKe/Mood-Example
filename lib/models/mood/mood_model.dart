@@ -17,14 +17,14 @@ class MoodData {
   });
 
   factory MoodData.fromJson(Map<String, dynamic> json) => MoodData(
-        mood_id: json['mood_id'],
-        icon: json['icon'],
-        title: json['title'],
-        score: json['score'],
-        content: json['content'],
-        create_time: json['create_time'],
-        update_time: json['update_time'],
-      );
+    mood_id: json['mood_id'],
+    icon: json['icon'],
+    title: json['title'],
+    score: json['score'],
+    content: json['content'],
+    create_time: json['create_time'],
+    update_time: json['update_time'],
+  );
 
   /// ID
   int? mood_id;
@@ -48,14 +48,14 @@ class MoodData {
   String update_time;
 
   Map<String, dynamic> toJson() => {
-        'mood_id': mood_id,
-        'icon': icon,
-        'title': title,
-        'score': score,
-        'content': content,
-        'create_time': create_time,
-        'update_time': update_time,
-      };
+    'mood_id': mood_id,
+    'icon': icon,
+    'title': title,
+    'score': score,
+    'content': content,
+    'create_time': create_time,
+    'update_time': update_time,
+  };
 }
 
 MoodRecordData moodRecordDataFromJson(String str) =>
@@ -65,15 +65,10 @@ String moodRecordDataToJson(MoodRecordData data) => json.encode(data.toJson());
 /// 心情记录日期数据
 @immutable
 class MoodRecordData {
-  const MoodRecordData({
-    required this.record_date,
-    required this.icon,
-  });
+  const MoodRecordData({required this.record_date, required this.icon});
 
-  factory MoodRecordData.fromJson(Map<String, dynamic> json) => MoodRecordData(
-        record_date: json['record_date'],
-        icon: json['icon'],
-      );
+  factory MoodRecordData.fromJson(Map<String, dynamic> json) =>
+      MoodRecordData(record_date: json['record_date'], icon: json['icon']);
 
   /// 记录日期
   final String record_date;
@@ -81,8 +76,5 @@ class MoodRecordData {
   /// 图标
   final String icon;
 
-  Map<String, dynamic> toJson() => {
-        'record_date': record_date,
-        'icon': icon,
-      };
+  Map<String, dynamic> toJson() => {'record_date': record_date, 'icon': icon};
 }

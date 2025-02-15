@@ -12,34 +12,30 @@ import 'orc.dart';
 
 const double tileSize = 20.0;
 
-enum PlayerAttackType {
-  attackMelee,
-  attackRange,
-  attackRangeShotguns,
-}
+enum PlayerAttackType { attackMelee, attackRange, attackRangeShotguns }
 
 class HumanPlayer extends SimplePlayer
     with BlockMovementCollision, Lighting, UseLifeBar {
   HumanPlayer(Vector2 position)
-      : super(
-          position: position,
-          animation: SimpleDirectionAnimation(
-            idleLeft: SpriteSheetPlayer.idleBottomLeft,
-            idleRight: SpriteSheetPlayer.idleBottomRight,
-            idleUp: SpriteSheetPlayer.idleTopRight,
-            idleUpLeft: SpriteSheetPlayer.idleTopLeft,
-            idleUpRight: SpriteSheetPlayer.idleTopRight,
-            runLeft: SpriteSheetPlayer.runBottomLeft,
-            runRight: SpriteSheetPlayer.runBottomRight,
-            runUpLeft: SpriteSheetPlayer.runTopLeft,
-            runUpRight: SpriteSheetPlayer.runTopRight,
-            runDownLeft: SpriteSheetPlayer.runBottomLeft,
-            runDownRight: SpriteSheetPlayer.runBottomRight,
-          ),
-          speed: maxSpeed,
-          life: 500,
-          size: Vector2.all(tileSize * 3.2),
-        ) {
+    : super(
+        position: position,
+        animation: SimpleDirectionAnimation(
+          idleLeft: SpriteSheetPlayer.idleBottomLeft,
+          idleRight: SpriteSheetPlayer.idleBottomRight,
+          idleUp: SpriteSheetPlayer.idleTopRight,
+          idleUpLeft: SpriteSheetPlayer.idleTopLeft,
+          idleUpRight: SpriteSheetPlayer.idleTopRight,
+          runLeft: SpriteSheetPlayer.runBottomLeft,
+          runRight: SpriteSheetPlayer.runBottomRight,
+          runUpLeft: SpriteSheetPlayer.runTopLeft,
+          runUpRight: SpriteSheetPlayer.runTopRight,
+          runDownLeft: SpriteSheetPlayer.runBottomLeft,
+          runDownRight: SpriteSheetPlayer.runBottomRight,
+        ),
+        speed: maxSpeed,
+        life: 500,
+        size: Vector2.all(tileSize * 3.2),
+      ) {
     /// 发光
     setupLighting(
       LightingConfig(
@@ -234,27 +230,22 @@ class HumanPlayer extends SimplePlayer
       gameRef.camera.moveToTargetAnimated(
         target: this,
         onComplete: () {
-          TalkDialog.show(
-            gameRef.context,
-            [
-              Say(
-                text: [
-                  const TextSpan(text: '你...好...陌...生...人...'),
-                  const TextSpan(
-                    text: '  怪物已经向你冲来！！！',
-                    style: TextStyle(
-                      color: Colors.red,
-                    ),
-                  ),
-                ],
-                person: CustomSpriteAnimationWidget(
-                  animation: SpriteSheetPlayer.idleBottomRight,
+          TalkDialog.show(gameRef.context, [
+            Say(
+              text: [
+                const TextSpan(text: '你...好...陌...生...人...'),
+                const TextSpan(
+                  text: '  怪物已经向你冲来！！！',
+                  style: TextStyle(color: Colors.red),
                 ),
-                personSayDirection: PersonSayDirection.LEFT,
-                speed: 100,
+              ],
+              person: CustomSpriteAnimationWidget(
+                animation: SpriteSheetPlayer.idleBottomRight,
               ),
-            ],
-          );
+              personSayDirection: PersonSayDirection.LEFT,
+              speed: 100,
+            ),
+          ]);
         },
       );
     }
@@ -265,21 +256,16 @@ class HumanPlayer extends SimplePlayer
     final Vector2 playerPosition =
         gameRef.player?.position ?? Vector2(position.x, position.y);
     gameRef.camera.moveToTargetAnimated(target: this, onComplete: () {});
-    TalkDialog.show(
-      gameRef.context,
-      [
-        Say(
-          text: [
-            const TextSpan(text: '恩... 好像失败了...'),
-          ],
-          person: CustomSpriteAnimationWidget(
-            animation: SpriteSheetPlayer.getDamageTopRight(),
-          ),
-          personSayDirection: PersonSayDirection.LEFT,
-          speed: 100,
+    TalkDialog.show(gameRef.context, [
+      Say(
+        text: [const TextSpan(text: '恩... 好像失败了...')],
+        person: CustomSpriteAnimationWidget(
+          animation: SpriteSheetPlayer.getDamageTopRight(),
         ),
-      ],
-    );
+        personSayDirection: PersonSayDirection.LEFT,
+        speed: 100,
+      ),
+    ]);
     animation?.playOnce(
       SpriteSheetPlayer.getDie(),
       onFinish: () {
@@ -345,11 +331,7 @@ class HumanPlayer extends SimplePlayer
   /// 远程攻击
   void handleActionAttackRange(double dt) {
     /// 远程攻击触发（发射间隔）
-    final bool execRangeAttackInterval = checkInterval(
-      'AttackRange',
-      150,
-      dt,
-    );
+    final bool execRangeAttackInterval = checkInterval('AttackRange', 150, dt);
     if (executingRangeAttack && execRangeAttackInterval) {
       actionAttackRange(radAngleRangeAttack);
     }
@@ -477,10 +459,6 @@ class HumanPlayer extends SimplePlayer
       case Direction.downRight:
         newAnimation = SpriteSheetPlayer.getDamageBottomRight();
     }
-    animation?.playOnce(
-      newAnimation,
-      runToTheEnd: true,
-      onFinish: onFinish,
-    );
+    animation?.playOnce(newAnimation, runToTheEnd: true, onFinish: onFinish);
   }
 }

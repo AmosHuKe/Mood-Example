@@ -11,25 +11,25 @@ const double tileSize = 20.0;
 class HumanPlayer extends SimplePlayer
     with BlockMovementCollision, Lighting, UseLifeBar {
   HumanPlayer(Vector2 position)
-      : super(
-          position: position,
-          animation: SimpleDirectionAnimation(
-            idleLeft: SpriteSheetPlayer.idleBottomLeft,
-            idleRight: SpriteSheetPlayer.idleBottomRight,
-            idleUp: SpriteSheetPlayer.idleTopRight,
-            idleUpLeft: SpriteSheetPlayer.idleTopLeft,
-            idleUpRight: SpriteSheetPlayer.idleTopRight,
-            runLeft: SpriteSheetPlayer.runBottomLeft,
-            runRight: SpriteSheetPlayer.runBottomRight,
-            runUpLeft: SpriteSheetPlayer.runTopLeft,
-            runUpRight: SpriteSheetPlayer.runTopRight,
-            runDownLeft: SpriteSheetPlayer.runBottomLeft,
-            runDownRight: SpriteSheetPlayer.runBottomRight,
-          ),
-          speed: maxSpeed,
-          life: 1000,
-          size: Vector2.all(tileSize * 2.9),
-        ) {
+    : super(
+        position: position,
+        animation: SimpleDirectionAnimation(
+          idleLeft: SpriteSheetPlayer.idleBottomLeft,
+          idleRight: SpriteSheetPlayer.idleBottomRight,
+          idleUp: SpriteSheetPlayer.idleTopRight,
+          idleUpLeft: SpriteSheetPlayer.idleTopLeft,
+          idleUpRight: SpriteSheetPlayer.idleTopRight,
+          runLeft: SpriteSheetPlayer.runBottomLeft,
+          runRight: SpriteSheetPlayer.runBottomRight,
+          runUpLeft: SpriteSheetPlayer.runTopLeft,
+          runUpRight: SpriteSheetPlayer.runTopRight,
+          runDownLeft: SpriteSheetPlayer.runBottomLeft,
+          runDownRight: SpriteSheetPlayer.runBottomRight,
+        ),
+        speed: maxSpeed,
+        life: 1000,
+        size: Vector2.all(tileSize * 2.9),
+      ) {
     /// 发光
     setupLighting(
       LightingConfig(

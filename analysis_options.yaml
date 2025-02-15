@@ -11,7 +11,6 @@ analyzer:
     deprecated_member_use_from_same_package: ignore
     non_constant_identifier_names: error
     prefer_single_quotes: warning
-    require_trailing_commas: warning
     todo: ignore
 
 linter:
@@ -28,7 +27,6 @@ linter:
     prefer_final_in_for_each: true
     prefer_final_locals: true
     prefer_single_quotes: true
-    require_trailing_commas: true
     sort_constructors_first: true
     sort_unnamed_constructors_first: true
     unnecessary_await_in_return: true

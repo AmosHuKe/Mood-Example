@@ -9,10 +9,6 @@ class CustomSpriteAnimationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 100,
-      height: 100,
-      child: animation.asWidget(),
-    );
+    return SizedBox(width: 100, height: 100, child: animation.asWidget());
   }
 }

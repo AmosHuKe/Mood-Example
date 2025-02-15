@@ -25,10 +25,7 @@ late MoodData _moodData;
 
 /// 心情内容创建页
 class MoodContent extends StatefulWidget {
-  const MoodContent({
-    super.key,
-    required this.moodData,
-  });
+  const MoodContent({super.key, required this.moodData});
 
   /// 心情详细数据
   final MoodData moodData;
@@ -59,24 +56,21 @@ class _MoodContentState extends State<MoodContent> {
         centerTitle: true,
         title: Text(
           LocaleDatetime.yMMMd(context, _moodData.create_time),
-          style: const TextStyle(
-            fontSize: 14,
-          ),
+          style: const TextStyle(fontSize: 14),
         ),
         leading: ActionButton(
           key: const Key('widget_action_button_close'),
           semanticsLabel: '关闭',
           decoration: BoxDecoration(
-            color: isDarkMode(context)
-                ? Theme.of(context).cardColor
-                : AppTheme.backgroundColor1,
-            borderRadius:
-                const BorderRadius.only(bottomRight: Radius.circular(18)),
+            color:
+                isDarkMode(context)
+                    ? Theme.of(context).cardColor
+                    : AppTheme.backgroundColor1,
+            borderRadius: const BorderRadius.only(
+              bottomRight: Radius.circular(18),
+            ),
           ),
-          child: const Icon(
-            Remix.close_fill,
-            size: 24,
-          ),
+          child: const Icon(Remix.close_fill, size: 24),
           onTap: () {
             onClose(context);
           },
@@ -86,18 +80,21 @@ class _MoodContentState extends State<MoodContent> {
             key: const Key('widget_mood_actions_button'),
             semanticsLabel: '确认记录',
             decoration: BoxDecoration(
-              color: isDarkMode(context)
-                  ? Theme.of(context).cardColor
-                  : const Color(0xFFD6F2E2),
-              borderRadius:
-                  const BorderRadius.only(bottomLeft: Radius.circular(18)),
+              color:
+                  isDarkMode(context)
+                      ? Theme.of(context).cardColor
+                      : const Color(0xFFD6F2E2),
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(18),
+              ),
             ),
             child: Icon(
               Remix.check_fill,
               size: 24,
-              color: isDarkMode(context)
-                  ? Theme.of(context).textTheme.displayLarge!.color
-                  : const Color(0xFF587966),
+              color:
+                  isDarkMode(context)
+                      ? Theme.of(context).textTheme.displayLarge!.color
+                      : const Color(0xFF587966),
             ),
             onTap: () async {
               FocusScope.of(context).unfocus();
@@ -110,8 +107,10 @@ class _MoodContentState extends State<MoodContent> {
               if (_moodData.mood_id != null) {
                 /// 修改心情数据
                 /// 赋值修改时间
-                _moodData.update_time =
-                    DateTime.now().toString().substring(0, 10);
+                _moodData.update_time = DateTime.now().toString().substring(
+                  0,
+                  10,
+                );
                 result = await moodProvider.editMoodData(_moodData);
               } else {
                 /// 创建心情数据
@@ -151,28 +150,29 @@ class _MoodContentState extends State<MoodContent> {
     FocusScope.of(context).unfocus();
     showCupertinoDialog<void>(
       context: context,
-      builder: (BuildContext context) => Theme(
-        data: isDarkMode(context) ? ThemeData.dark() : ThemeData.light(),
-        child: CupertinoAlertDialog(
-          title: Text(S.of(context).mood_content_close_button_title),
-          content: Text(S.of(context).mood_content_close_button_content),
-          actions: <CupertinoDialogAction>[
-            CupertinoDialogAction(
-              child: Text(S.of(context).mood_content_close_button_cancel),
-              onPressed: () {
-                context.pop();
-              },
+      builder:
+          (BuildContext context) => Theme(
+            data: isDarkMode(context) ? ThemeData.dark() : ThemeData.light(),
+            child: CupertinoAlertDialog(
+              title: Text(S.of(context).mood_content_close_button_title),
+              content: Text(S.of(context).mood_content_close_button_content),
+              actions: <CupertinoDialogAction>[
+                CupertinoDialogAction(
+                  child: Text(S.of(context).mood_content_close_button_cancel),
+                  onPressed: () {
+                    context.pop();
+                  },
+                ),
+                CupertinoDialogAction(
+                  child: Text(S.of(context).mood_content_close_button_confirm),
+                  onPressed: () {
+                    context.pop();
+                    context.pop();
+                  },
+                ),
+              ],
             ),
-            CupertinoDialogAction(
-              child: Text(S.of(context).mood_content_close_button_confirm),
-              onPressed: () {
-                context.pop();
-                context.pop();
-              },
-            ),
-          ],
-        ),
-      ),
+          ),
     );
     return null;
   }
@@ -194,11 +194,7 @@ class _MoodContentBodyState extends State<MoodContentBody> {
       ),
       children: [
         Padding(
-          padding: const EdgeInsets.only(
-            top: 24,
-            left: 24,
-            right: 24,
-          ),
+          padding: const EdgeInsets.only(top: 24, left: 24, right: 24),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -219,37 +215,32 @@ class _MoodContentBodyState extends State<MoodContentBody> {
                 ),
                 onTap: () {
                   /// 切换心情
-                  GoRouter.of(context).pushNamed(
-                    Routes.moodCategorySelect,
-                    pathParameters: {'type': MoodCategorySelectType.edit.type},
-                  ).then((result) {
-                    if (result == null) return;
-                    final MoodCategoryData moodCategoryData =
-                        moodCategoryDataFromJson(result.toString());
-                    setState(() {
-                      _moodData.icon = moodCategoryData.icon;
-                      _moodData.title = moodCategoryData.title;
-                    });
-                  });
+                  GoRouter.of(context)
+                      .pushNamed(
+                        Routes.moodCategorySelect,
+                        pathParameters: {
+                          'type': MoodCategorySelectType.edit.type,
+                        },
+                      )
+                      .then((result) {
+                        if (result == null) return;
+                        final MoodCategoryData moodCategoryData =
+                            moodCategoryDataFromJson(result.toString());
+                        setState(() {
+                          _moodData.icon = moodCategoryData.icon;
+                          _moodData.title = moodCategoryData.title;
+                        });
+                      });
                 },
               ),
 
               /// 打分
-              const Expanded(
-                child: Align(
-                  child: MoodScore(),
-                ),
-              ),
+              const Expanded(child: Align(child: MoodScore())),
             ],
           ),
         ),
         const Padding(
-          padding: EdgeInsets.only(
-            top: 24,
-            bottom: 48,
-            left: 24,
-            right: 24,
-          ),
+          padding: EdgeInsets.only(top: 24, bottom: 48, left: 24, right: 24),
           child: AddContent(),
         ),
       ],
@@ -259,11 +250,7 @@ class _MoodContentBodyState extends State<MoodContentBody> {
 
 /// 心情选择卡片
 class MoodChoiceCard extends StatelessWidget {
-  const MoodChoiceCard({
-    super.key,
-    this.icon,
-    this.title,
-  });
+  const MoodChoiceCard({super.key, this.icon, this.title});
 
   /// 图标
   final String? icon;
@@ -286,19 +273,14 @@ class MoodChoiceCard extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 6),
-              child: Text(
-                icon ?? '',
-                style: const TextStyle(
-                  fontSize: 32,
-                ),
-              ),
+              child: Text(icon ?? '', style: const TextStyle(fontSize: 32)),
             ),
             Text(
               title ?? '',
               style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ],
         ),
@@ -343,16 +325,14 @@ class _AddContentState extends State<AddContent> {
               scrollPhysics: const AlwaysScrollableScrollPhysics(
                 parent: BouncingScrollPhysics(),
               ),
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium!.copyWith(fontSize: 14),
               decoration: InputDecoration(
                 hintText: S.of(context).mood_content_hintText,
-                hintStyle: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(fontSize: 14),
+                hintStyle: Theme.of(
+                  context,
+                ).textTheme.bodyMedium!.copyWith(fontSize: 14),
                 border: InputBorder.none,
                 filled: true,
                 fillColor: Theme.of(context).cardColor,
@@ -407,10 +387,7 @@ class _MoodScoreState extends State<MoodScore> {
           padding: const EdgeInsets.only(bottom: 12, left: 24, right: 24),
           child: Text(
             (moodScore ~/ 1).toString(),
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
         Slider(

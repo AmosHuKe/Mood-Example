@@ -1,5 +1,5 @@
 # 1.9.11 (Unreleased)
-- [升级] Flutter 3.27.1
+- [升级] Flutter 3.29.0
 
 # 1.9.10
 - [升级] Flutter 3.24.5

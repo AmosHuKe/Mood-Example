@@ -180,10 +180,7 @@ class ListCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(
-                    onPressed: onPressed,
-                    child: const Text('打开'),
-                  ),
+                  TextButton(onPressed: onPressed, child: const Text('打开')),
                   const SizedBox(width: 8),
                 ],
               ),

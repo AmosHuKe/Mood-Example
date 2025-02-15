@@ -27,10 +27,7 @@ class SettingTheme extends StatelessWidget {
           padding: const EdgeInsets.only(left: 6, top: 6, bottom: 14),
           child: Text(
             S.of(context).app_setting_theme_appearance,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-            ),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
           ),
         ),
 
@@ -42,10 +39,7 @@ class SettingTheme extends StatelessWidget {
           padding: const EdgeInsets.only(left: 6, top: 6, bottom: 14),
           child: Text(
             S.of(context).app_setting_theme_themes,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-            ),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
           ),
         ),
 
@@ -79,15 +73,17 @@ class DarkThemeBody extends StatelessWidget {
                   Expanded(
                     child: Container(
                       alignment: Alignment.center,
-                      color: isDarkMode(context)
-                          ? const Color(0xFFF6F8FA)
-                          : const Color(0xFF111315),
+                      color:
+                          isDarkMode(context)
+                              ? const Color(0xFFF6F8FA)
+                              : const Color(0xFF111315),
                       child: Text(
                         'Aa',
                         style: TextStyle(
-                          color: isDarkMode(context)
-                              ? Colors.black87
-                              : const Color(0xFFEFEFEF),
+                          color:
+                              isDarkMode(context)
+                                  ? Colors.black87
+                                  : const Color(0xFFEFEFEF),
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                         ),
@@ -97,15 +93,17 @@ class DarkThemeBody extends StatelessWidget {
                   Expanded(
                     child: Container(
                       alignment: Alignment.center,
-                      color: isDarkMode(context)
-                          ? const Color(0xFF111315)
-                          : const Color(0xFFF6F8FA),
+                      color:
+                          isDarkMode(context)
+                              ? const Color(0xFF111315)
+                              : const Color(0xFFF6F8FA),
                       child: Text(
                         'Aa',
                         style: TextStyle(
-                          color: isDarkMode(context)
-                              ? const Color(0xFFEFEFEF)
-                              : Colors.black87,
+                          color:
+                              isDarkMode(context)
+                                  ? const Color(0xFFEFEFEF)
+                                  : Colors.black87,
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                         ),
@@ -170,8 +168,9 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
   Widget build(BuildContext context) {
     /// 获取多主题Key
     final List appMultipleThemesModeKey = [];
-    appMultipleThemesMode
-        .forEach((key, value) => appMultipleThemesModeKey.add(key));
+    appMultipleThemesMode.forEach(
+      (key, value) => appMultipleThemesModeKey.add(key),
+    );
 
     return Consumer<ApplicationProvider>(
       builder: (_, applicationProvider, child) {
@@ -183,26 +182,25 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
             direction: Axis.horizontal,
             runSpacing: 16,
             spacing: 16,
-            children: List.generate(
-              appMultipleThemesModeKey.length,
-              (generator) {
-                final String key = appMultipleThemesModeKey[generator];
-                final Color primaryColor =
-                    appMultipleThemesMode[key]!.lightTheme().primaryColor;
-                return MultipleThemesCard(
-                  key: Key('widget_multiple_themes_card_$key'),
-                  selected: multipleThemesMode == key,
-                  child: Container(
-                    alignment: Alignment.center,
-                    color: primaryColor,
-                  ),
-                  onTap: () {
-                    print('主题:$key');
-                    applicationProvider.multipleThemesMode = key;
-                  },
-                );
-              },
-            ),
+            children: List.generate(appMultipleThemesModeKey.length, (
+              generator,
+            ) {
+              final String key = appMultipleThemesModeKey[generator];
+              final Color primaryColor =
+                  appMultipleThemesMode[key]!.lightTheme().primaryColor;
+              return MultipleThemesCard(
+                key: Key('widget_multiple_themes_card_$key'),
+                selected: multipleThemesMode == key,
+                child: Container(
+                  alignment: Alignment.center,
+                  color: primaryColor,
+                ),
+                onTap: () {
+                  print('主题:$key');
+                  applicationProvider.multipleThemesMode = key;
+                },
+              );
+            }),
           ),
         );
       },
@@ -212,12 +210,7 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
 
 /// 多主题卡片
 class MultipleThemesCard extends StatelessWidget {
-  const MultipleThemesCard({
-    super.key,
-    this.child,
-    this.selected,
-    this.onTap,
-  });
+  const MultipleThemesCard({super.key, this.child, this.selected, this.onTap});
 
   /// 卡片内容
   final Widget? child;
@@ -244,19 +237,22 @@ class MultipleThemesCard extends StatelessWidget {
                   height: 64,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    border: isSelected
-                        ? Border.all(
-                            width: 3,
-                            color: isDarkMode(context)
-                                ? Colors.white
-                                : Colors.black,
-                          )
-                        : Border.all(
-                            width: 3,
-                            color: isDarkMode(context)
-                                ? Colors.white12
-                                : Colors.black12,
-                          ),
+                    border:
+                        isSelected
+                            ? Border.all(
+                              width: 3,
+                              color:
+                                  isDarkMode(context)
+                                      ? Colors.white
+                                      : Colors.black,
+                            )
+                            : Border.all(
+                              width: 3,
+                              color:
+                                  isDarkMode(context)
+                                      ? Colors.white12
+                                      : Colors.black12,
+                            ),
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(50),
@@ -326,19 +322,22 @@ class ThemeCard extends StatelessWidget {
                   height: 72,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
-                    border: isSelected
-                        ? Border.all(
-                            width: 3,
-                            color: isDarkMode(context)
-                                ? Colors.white
-                                : Colors.black,
-                          )
-                        : Border.all(
-                            width: 3,
-                            color: isDarkMode(context)
-                                ? Colors.white12
-                                : Colors.black12,
-                          ),
+                    border:
+                        isSelected
+                            ? Border.all(
+                              width: 3,
+                              color:
+                                  isDarkMode(context)
+                                      ? Colors.white
+                                      : Colors.black,
+                            )
+                            : Border.all(
+                              width: 3,
+                              color:
+                                  isDarkMode(context)
+                                      ? Colors.white12
+                                      : Colors.black12,
+                            ),
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(14),
@@ -367,8 +366,10 @@ class ThemeCard extends StatelessWidget {
               padding: const EdgeInsets.only(top: 4),
               child: Text(
                 title ?? '',
-                style:
-                    const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],

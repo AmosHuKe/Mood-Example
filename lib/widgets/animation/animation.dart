@@ -4,11 +4,7 @@ import 'package:flutter/material.dart';
 
 /// 动画-按下
 class AnimatedPress extends StatefulWidget {
-  const AnimatedPress({
-    super.key,
-    required this.child,
-    this.scaleEnd = 0.9,
-  });
+  const AnimatedPress({super.key, required this.child, this.scaleEnd = 0.9});
 
   final Widget child;
 
@@ -71,8 +67,9 @@ class _AnimatedPressState extends State<AnimatedPress>
       onPointerUp: (_) => controllerReverse(),
       child: AnimatedBuilder(
         animation: _controller,
-        builder: (context, child) =>
-            Transform.scale(scale: _scale.value, child: child),
+        builder:
+            (context, child) =>
+                Transform.scale(scale: _scale.value, child: child),
         child: widget.child,
       ),
     );

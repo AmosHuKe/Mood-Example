@@ -9,12 +9,10 @@ class AppThemeOrange implements AppMultipleTheme {
   static const primaryColor = Color(0xFFA77E86);
 
   @override
-  ThemeData lightTheme() => AppThemeDefault().lightTheme().copyWith(
-        primaryColor: primaryColor,
-      );
+  ThemeData lightTheme() =>
+      AppThemeDefault().lightTheme().copyWith(primaryColor: primaryColor);
 
   @override
-  ThemeData darkTheme() => AppThemeDefault().darkTheme().copyWith(
-        primaryColor: primaryColor,
-      );
+  ThemeData darkTheme() =>
+      AppThemeDefault().darkTheme().copyWith(primaryColor: primaryColor);
 }

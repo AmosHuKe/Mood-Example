@@ -2,12 +2,11 @@ import 'dart:convert';
 import 'package:flutter/widgets.dart';
 
 StatisticMoodScoreAverageRecentlyData
-    statisticMoodScoreAverageRecentlyDataFromJson(String str) =>
-        StatisticMoodScoreAverageRecentlyData.fromJson(json.decode(str));
+statisticMoodScoreAverageRecentlyDataFromJson(String str) =>
+    StatisticMoodScoreAverageRecentlyData.fromJson(json.decode(str));
 String statisticMoodScoreAverageRecentlyDataToJson(
   StatisticMoodScoreAverageRecentlyData data,
-) =>
-    json.encode(data.toJson());
+) => json.encode(data.toJson());
 
 /// 近日情绪波动数据
 @immutable
@@ -19,11 +18,10 @@ class StatisticMoodScoreAverageRecentlyData {
 
   factory StatisticMoodScoreAverageRecentlyData.fromJson(
     Map<String, dynamic> json,
-  ) =>
-      StatisticMoodScoreAverageRecentlyData(
-        datetime: json['datetime'],
-        score: json['score'],
-      );
+  ) => StatisticMoodScoreAverageRecentlyData(
+    datetime: json['datetime'],
+    score: json['score'],
+  );
 
   /// 记录日期
   final String datetime;
@@ -31,10 +29,7 @@ class StatisticMoodScoreAverageRecentlyData {
   /// 分数
   final int score;
 
-  Map<String, dynamic> toJson() => {
-        'datetime': datetime,
-        'score': score,
-      };
+  Map<String, dynamic> toJson() => {'datetime': datetime, 'score': score};
 }
 
 StatisticDateMoodCountData statisticDateMoodCountDataFromJson(String str) =>
@@ -51,9 +46,7 @@ class StatisticDateMoodCountData {
     required this.count,
   });
 
-  factory StatisticDateMoodCountData.fromJson(
-    Map<String, dynamic> json,
-  ) =>
+  factory StatisticDateMoodCountData.fromJson(Map<String, dynamic> json) =>
       StatisticDateMoodCountData(
         icon: json['icon'],
         title: json['title'],
@@ -70,8 +63,8 @@ class StatisticDateMoodCountData {
   final int count;
 
   Map<String, dynamic> toJson() => {
-        'icon': icon,
-        'title': title,
-        'count': count,
-      };
+    'icon': icon,
+    'title': title,
+    'count': count,
+  };
 }

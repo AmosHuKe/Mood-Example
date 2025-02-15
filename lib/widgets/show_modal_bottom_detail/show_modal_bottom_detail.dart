@@ -33,9 +33,10 @@ Future<T?> showModalBottomDetail<T>({
                 height: 4,
                 width: 24,
                 decoration: BoxDecoration(
-                  color: isDarkMode(context)
-                      ? const Color(0xFF2B3034)
-                      : Colors.grey,
+                  color:
+                      isDarkMode(context)
+                          ? const Color(0xFF2B3034)
+                          : Colors.grey,
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
