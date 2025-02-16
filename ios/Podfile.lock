@@ -1,7 +1,7 @@
 PODS:
-  - awesome_notifications (0.9.3):
+  - awesome_notifications (0.10.0):
     - Flutter
-    - IosAwnCore (~> 0.9.3)
+    - IosAwnCore (~> 0.10.0)
   - CropViewController (2.6.1)
   - DKCamera (1.6.7)
   - DKImagePickerController (4.3.4):
@@ -29,27 +29,27 @@ PODS:
     - DKImagePickerController/Core
     - DKPhotoGallery
   - DKImagePickerController/Resource (4.3.4)
-  - DKPhotoGallery (0.0.17):
-    - DKPhotoGallery/Core (= 0.0.17)
-    - DKPhotoGallery/Model (= 0.0.17)
-    - DKPhotoGallery/Preview (= 0.0.17)
-    - DKPhotoGallery/Resource (= 0.0.17)
+  - DKPhotoGallery (0.0.19):
+    - DKPhotoGallery/Core (= 0.0.19)
+    - DKPhotoGallery/Model (= 0.0.19)
+    - DKPhotoGallery/Preview (= 0.0.19)
+    - DKPhotoGallery/Resource (= 0.0.19)
     - SDWebImage
     - SwiftyGif
-  - DKPhotoGallery/Core (0.0.17):
+  - DKPhotoGallery/Core (0.0.19):
     - DKPhotoGallery/Model
     - DKPhotoGallery/Preview
     - SDWebImage
     - SwiftyGif
-  - DKPhotoGallery/Model (0.0.17):
+  - DKPhotoGallery/Model (0.0.19):
     - SDWebImage
     - SwiftyGif
-  - DKPhotoGallery/Preview (0.0.17):
+  - DKPhotoGallery/Preview (0.0.19):
     - DKPhotoGallery/Model
     - DKPhotoGallery/Resource
     - SDWebImage
     - SwiftyGif
-  - DKPhotoGallery/Resource (0.0.17):
+  - DKPhotoGallery/Resource (0.0.19):
     - SDWebImage
     - SwiftyGif
   - file_picker (0.0.1):
@@ -60,16 +60,16 @@ PODS:
     - Flutter
   - integration_test (0.0.1):
     - Flutter
-  - IosAwnCore (0.9.3)
+  - IosAwnCore (0.10.0)
   - local_auth_darwin (0.0.1):
     - Flutter
     - FlutterMacOS
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - SDWebImage (5.19.1):
-    - SDWebImage/Core (= 5.19.1)
-  - SDWebImage/Core (5.19.1)
+  - SDWebImage (5.20.0):
+    - SDWebImage/Core (= 5.20.0)
+  - SDWebImage/Core (5.20.0)
   - sensors_plus (0.0.1):
     - Flutter
   - share_plus (0.0.1):
@@ -137,26 +137,26 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/darwin"
 
 SPEC CHECKSUMS:
-  awesome_notifications: 66d28ab7174ca2823b04d275cb043e0a4a3eb9cf
+  awesome_notifications: dd5518ff1c80be03d4f1c40f04da9d9cc2a37af5
   CropViewController: 58fb440f30dac788b129d2a1f24cffdcb102669c
   DKCamera: a902b66921fca14b7a75266feb8c7568aa7caa71
   DKImagePickerController: b512c28220a2b8ac7419f21c491fc8534b7601ac
-  DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
-  file_picker: 09aa5ec1ab24135ccd7a1621c46c84134bfd6655
+  DKPhotoGallery: b3834fecb755ee09a593d7c9e389d8b5d6deed60
+  file_picker: b159e0c068aef54932bb15dc9fd1571818edaf49
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_timezone: ffb07bdad3c6276af8dada0f11978d8a1f8a20bb
+  flutter_timezone: ac3da59ac941ff1c98a2e1f0293420e020120282
   integration_test: 252f60fa39af5e17c3aa9899d35d908a0721b573
-  IosAwnCore: b8601fbb37f7b3560f31b84ebf55a72f65812e05
+  IosAwnCore: 653786a911089012092ce831f2945cd339855a89
   local_auth_darwin: 66e40372f1c29f383a314c738c7446e2f7fdadc3
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
-  SDWebImage: 40b0b4053e36c660a764958bff99eed16610acbb
+  SDWebImage: 73c6079366fea25fa4bb9640d5fb58f0893facd8
   sensors_plus: 7229095999f30740798f0eeef5cd120357a8f4f2
   share_plus: 8b6f8b3447e494cca5317c8c3073de39b3600d1f
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   sqflite_darwin: 5a7236e3b501866c1c9befc6771dfd73ffb8702d
   SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
-  webview_flutter_wkwebview: 0982481e3d9c78fd5c6f62a002fcd24fc791f1e4
+  webview_flutter_wkwebview: a4af96a051138e28e29f60101d094683b9f82188
 
 PODFILE CHECKSUM: 40845afeabd2130029d6c109942a8d6ace455ebd
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2
