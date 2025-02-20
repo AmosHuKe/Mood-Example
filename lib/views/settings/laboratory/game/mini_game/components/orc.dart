@@ -8,8 +8,7 @@ import 'boss.dart';
 
 const double tileSize = 20.0;
 
-class Orc extends SimpleEnemy
-    with RandomMovement, BlockMovementCollision, UseLifeBar {
+class Orc extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLifeBar {
   Orc(Vector2 position)
     : super(
         position: position,
@@ -127,10 +126,7 @@ class Orc extends SimpleEnemy
       showDamage(
         damage,
         initVelocityVertical: -2,
-        config: const TextStyle(
-          color: Colors.amberAccent,
-          fontSize: tileSize / 2,
-        ),
+        config: const TextStyle(color: Colors.amberAccent, fontSize: tileSize / 2),
       );
 
       /// 受伤动画

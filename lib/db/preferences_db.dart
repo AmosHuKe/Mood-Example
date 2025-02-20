@@ -62,8 +62,7 @@ class PreferencesDB {
 
   /// 获取-主题外观模式
   Future<ThemeMode> getAppThemeDarkMode() async {
-    final String themeDarkMode =
-        await sps.getString(appThemeDarkMode) ?? 'system';
+    final themeDarkMode = await sps.getString(appThemeDarkMode) ?? 'system';
     return darkThemeMode(themeDarkMode);
   }
 
@@ -85,12 +84,9 @@ class PreferencesDB {
 
   /// 获取-APP地区语言
   Future<Locale> getAppLocale() async {
-    final String getAppLocale = await sps.getString(appLocale) ?? 'zh';
+    final getAppLocale = await sps.getString(appLocale) ?? 'zh';
     final appLocaleList = getAppLocale.split('-');
-    return Locale(
-      appLocaleList[0],
-      appLocaleList.length > 1 ? appLocaleList[1] : '',
-    );
+    return Locale(appLocaleList[0], appLocaleList.length > 1 ? appLocaleList[1] : '');
   }
 
   /// 设置-APP地区语言是否跟随系统

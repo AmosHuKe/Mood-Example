@@ -1,27 +1,18 @@
 import 'dart:convert';
 import 'package:flutter/widgets.dart';
 
-StatisticMoodScoreAverageRecentlyData
-statisticMoodScoreAverageRecentlyDataFromJson(String str) =>
+StatisticMoodScoreAverageRecentlyData statisticMoodScoreAverageRecentlyDataFromJson(String str) =>
     StatisticMoodScoreAverageRecentlyData.fromJson(json.decode(str));
-String statisticMoodScoreAverageRecentlyDataToJson(
-  StatisticMoodScoreAverageRecentlyData data,
-) => json.encode(data.toJson());
+String statisticMoodScoreAverageRecentlyDataToJson(StatisticMoodScoreAverageRecentlyData data) =>
+    json.encode(data.toJson());
 
 /// 近日情绪波动数据
 @immutable
 class StatisticMoodScoreAverageRecentlyData {
-  const StatisticMoodScoreAverageRecentlyData({
-    required this.datetime,
-    required this.score,
-  });
+  const StatisticMoodScoreAverageRecentlyData({required this.datetime, required this.score});
 
-  factory StatisticMoodScoreAverageRecentlyData.fromJson(
-    Map<String, dynamic> json,
-  ) => StatisticMoodScoreAverageRecentlyData(
-    datetime: json['datetime'],
-    score: json['score'],
-  );
+  factory StatisticMoodScoreAverageRecentlyData.fromJson(Map<String, dynamic> json) =>
+      StatisticMoodScoreAverageRecentlyData(datetime: json['datetime'], score: json['score']);
 
   /// 记录日期
   final String datetime;
@@ -40,18 +31,10 @@ String statisticDateMoodCountDataToJson(StatisticDateMoodCountData data) =>
 /// 近日心情数量统计数据
 @immutable
 class StatisticDateMoodCountData {
-  const StatisticDateMoodCountData({
-    required this.icon,
-    required this.title,
-    required this.count,
-  });
+  const StatisticDateMoodCountData({required this.icon, required this.title, required this.count});
 
   factory StatisticDateMoodCountData.fromJson(Map<String, dynamic> json) =>
-      StatisticDateMoodCountData(
-        icon: json['icon'],
-        title: json['title'],
-        count: json['count'],
-      );
+      StatisticDateMoodCountData(icon: json['icon'], title: json['title'], count: json['count']);
 
   /// 图标
   final String icon;
@@ -62,9 +45,5 @@ class StatisticDateMoodCountData {
   /// 数量
   final int count;
 
-  Map<String, dynamic> toJson() => {
-    'icon': icon,
-    'title': title,
-    'count': count,
-  };
+  Map<String, dynamic> toJson() => {'icon': icon, 'title': title, 'count': count};
 }

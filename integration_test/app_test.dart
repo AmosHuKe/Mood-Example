@@ -4,7 +4,7 @@ import 'package:integration_test/integration_test.dart';
 import 'package:intl/intl.dart';
 import 'package:moodexample/l10n/gen/app_localizations.dart';
 
-import 'package:moodexample/main.dart' as app;
+import 'package:moodexample/application.dart' show Application;
 
 import 'package:moodexample/config/language.dart';
 import 'package:moodexample/config/multiple_themes.dart';
@@ -12,31 +12,26 @@ import 'package:moodexample/config/multiple_themes.dart';
 void main() {
   /// 集成测试环境的初始化
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+
   group('基础操作测试', () {
     testWidgets('切换底部菜单 Tab', (WidgetTester tester) async {
-      app.main();
+      await tester.pumpWidget(const Application());
       await tester.pumpAndSettle();
 
-      final Finder widgetTabHome = find.byKey(const Key('tab_home'));
-      final Finder widgetTabMood = find.byKey(const Key('tab_mood'));
-      final Finder widgetTabStatistic = find.byKey(const Key('tab_statistic'));
-      final Finder notificationRationaleDialog = find.byKey(
-        const Key('notification_rationale_dialog'),
-      );
-      final Finder notificationRationaleOK = find.byKey(
-        const Key('notification_rationale_ok'),
-      );
-      final Finder notificationRationaleClose = find.byKey(
-        const Key('notification_rationale_close'),
-      );
+      final widgetTabHome = find.byKey(const Key('tab_home'));
+      final widgetTabMood = find.byKey(const Key('tab_mood'));
+      final widgetTabStatistic = find.byKey(const Key('tab_statistic'));
+      final notificationRationaleDialog = find.byKey(const Key('notification_rationale_dialog'));
+      final notificationRationaleOK = find.byKey(const Key('notification_rationale_ok'));
+      final notificationRationaleClose = find.byKey(const Key('notification_rationale_close'));
 
       /// 通知权限
       if (await notificationRationaleDialog.tryEvaluate()) {
         expect(notificationRationaleOK, findsOneWidget);
         expect(notificationRationaleClose, findsOneWidget);
         await tester.tap(notificationRationaleClose);
+        await tester.pumpAndSettle();
       }
-      await tester.pumpAndSettle();
 
       /// 检查菜单是否存在
       expect(widgetTabHome, findsOneWidget);
@@ -55,78 +50,46 @@ void main() {
     });
 
     testWidgets('侧栏基础操作', (WidgetTester tester) async {
-      app.main();
+      await tester.pumpWidget(const Application());
       await tester.pumpAndSettle();
       await Future.delayed(const Duration(seconds: 3));
-      final BuildContext context = tester.element(
-        find.byKey(const Key('widget_menu_page')),
-      );
-      final l10n = S.of(context);
+      final BuildContext context = tester.element(find.byKey(const Key('widget_menu_page')));
+      final l10n = AppL10n.of(context);
 
-      final List appMultipleThemesModeKey = [];
-      final List language = [];
-      final Finder widgetTabScreenLeft = find.byKey(
-        const Key('tab_screen_left'),
-      );
-      final Finder widgetMoveModalBottomSheet = find.byKey(
-        const Key('widget_move_modal_bottom_sheet'),
-      );
-      final Finder widgetLaboratoryPage = find.byKey(
-        const Key('widget_laboratory_page'),
-      );
-      final Finder widgetLaboratoryBackButton = find.byKey(
-        const Key('widget_laboratory_back_button'),
-      );
-      final Finder widgetMenuScreenLeftLogo = find.byKey(
-        const Key('widget_menu_screen_left_logo'),
-      );
-      final Finder widgetWebViewClose = find.byKey(
-        const Key('widget_web_view_close'),
-      );
-      final Finder textData = find.text(l10n.app_setting_database);
-      final Finder textDataExport = find.text(
-        l10n.app_setting_database_export_data,
-      );
-      final Finder textDataImport = find.text(
-        l10n.app_setting_database_import_data,
-      );
-      final Finder textSecurity = find.text(l10n.app_setting_security);
-      final Finder textTheme = find.text(l10n.app_setting_theme);
-      final Finder textThemeSetting = find.text(
-        l10n.app_setting_theme_appearance,
-      );
-      final Finder textThemeSettingSystem = find.text(
-        l10n.app_setting_theme_appearance_system,
-      );
-      final Finder textThemeSettingLight = find.text(
-        l10n.app_setting_theme_appearance_light,
-      );
-      final Finder textThemeSettingDark = find.text(
-        l10n.app_setting_theme_appearance_dark,
-      );
-      final Finder textLanguage = find.text(l10n.app_setting_language);
-      final Finder textLanguageChinese = find.text('简体中文');
-      final Finder textLanguageEnglish = find.text('English');
-      final Finder textLanguageSystem = find.text('System');
-      final Finder textLaboratory = find.text(l10n.app_setting_laboratory);
-      final Finder textAbout = find.text(l10n.app_setting_about);
-      final Finder notificationRationaleDialog = find.byKey(
-        const Key('notification_rationale_dialog'),
-      );
-      final Finder notificationRationaleOK = find.byKey(
-        const Key('notification_rationale_ok'),
-      );
-      final Finder notificationRationaleClose = find.byKey(
-        const Key('notification_rationale_close'),
-      );
+      final appMultipleThemesModeKey = [];
+      final language = [];
+      final widgetTabScreenLeft = find.byKey(const Key('tab_screen_left'));
+      final widgetMoveModalBottomSheet = find.byKey(const Key('widget_move_modal_bottom_sheet'));
+      final widgetLaboratoryPage = find.byKey(const Key('widget_laboratory_page'));
+      final widgetLaboratoryBackButton = find.byKey(const Key('widget_laboratory_back_button'));
+      final widgetMenuScreenLeftLogo = find.byKey(const Key('widget_menu_screen_left_logo'));
+      final widgetWebViewClose = find.byKey(const Key('widget_web_view_close'));
+      final textData = find.text(l10n.app_setting_database);
+      final textDataExport = find.text(l10n.app_setting_database_export_data);
+      final textDataImport = find.text(l10n.app_setting_database_import_data);
+      final textSecurity = find.text(l10n.app_setting_security);
+      final textTheme = find.text(l10n.app_setting_theme);
+      final textThemeSetting = find.text(l10n.app_setting_theme_appearance);
+      final textThemeSettingSystem = find.text(l10n.app_setting_theme_appearance_system);
+      final textThemeSettingLight = find.text(l10n.app_setting_theme_appearance_light);
+      final textThemeSettingDark = find.text(l10n.app_setting_theme_appearance_dark);
+      final textLanguage = find.text(l10n.app_setting_language);
+      final textLanguageChinese = find.text('简体中文');
+      final textLanguageEnglish = find.text('English');
+      final textLanguageSystem = find.text('System');
+      final textLaboratory = find.text(l10n.app_setting_laboratory);
+      final textAbout = find.text(l10n.app_setting_about);
+      final notificationRationaleDialog = find.byKey(const Key('notification_rationale_dialog'));
+      final notificationRationaleOK = find.byKey(const Key('notification_rationale_ok'));
+      final notificationRationaleClose = find.byKey(const Key('notification_rationale_close'));
 
       /// 通知权限
       if (await notificationRationaleDialog.tryEvaluate()) {
         expect(notificationRationaleOK, findsOneWidget);
         expect(notificationRationaleClose, findsOneWidget);
         await tester.tap(notificationRationaleClose);
+        await tester.pumpAndSettle();
       }
-      await tester.pumpAndSettle();
 
       /// 打开侧栏
       expect(widgetTabScreenLeft, findsOneWidget);
@@ -144,11 +107,7 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(textDataExport);
 
-      await tester.fling(
-        widgetMoveModalBottomSheet,
-        const Offset(0, 400),
-        2400.0,
-      );
+      await tester.fling(widgetMoveModalBottomSheet, const Offset(0, 400), 2400.0);
       await tester.pumpAndSettle();
 
       /// 安全操作
@@ -156,11 +115,7 @@ void main() {
       await tester.tap(textSecurity);
       await tester.pumpAndSettle();
 
-      await tester.fling(
-        widgetMoveModalBottomSheet,
-        const Offset(0, 400),
-        2400.0,
-      );
+      await tester.fling(widgetMoveModalBottomSheet, const Offset(0, 400), 2400.0);
       await tester.pumpAndSettle();
 
       /// 主题操作
@@ -169,9 +124,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(textThemeSetting, findsOneWidget);
 
-      appMultipleThemesMode.forEach(
-        (key, value) => appMultipleThemesModeKey.add(key),
-      );
+      appMultipleThemesMode.forEach((key, value) => appMultipleThemesModeKey.add(key));
 
       await tester.tap(textThemeSettingLight);
       await tester.pumpAndSettle();
@@ -189,15 +142,9 @@ void main() {
 
       await tester.tap(textThemeSettingSystem);
       await tester.pumpAndSettle();
-      await tester.tap(
-        find.byKey(const Key('widget_multiple_themes_card_default')),
-      );
+      await tester.tap(find.byKey(const Key('widget_multiple_themes_card_default')));
 
-      await tester.fling(
-        widgetMoveModalBottomSheet,
-        const Offset(0, 400),
-        2400.0,
-      );
+      await tester.fling(widgetMoveModalBottomSheet, const Offset(0, 400), 2400.0);
       await tester.pumpAndSettle();
 
       /// 语言操作
@@ -221,11 +168,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(textLanguageChinese, findsOneWidget);
 
-      await tester.fling(
-        widgetMoveModalBottomSheet,
-        const Offset(0, 400),
-        2400.0,
-      );
+      await tester.fling(widgetMoveModalBottomSheet, const Offset(0, 400), 2400.0);
       await tester.pumpAndSettle();
 
       /// 实验室操作
@@ -254,60 +197,40 @@ void main() {
     });
 
     testWidgets('首页基础操作', (WidgetTester tester) async {
-      app.main();
+      await tester.pumpWidget(const Application());
       await tester.pumpAndSettle();
       await Future.delayed(const Duration(seconds: 3));
-      final BuildContext context = tester.element(
-        find.byKey(const Key('widget_menu_page')),
-      );
-      final l10n = S.of(context);
+      final BuildContext context = tester.element(find.byKey(const Key('widget_menu_page')));
+      final l10n = AppL10n.of(context);
 
       // Finder widgetHomeBody = find.byKey(const Key("widget_home_body"));
-      final Finder widgetTabHome = find.byKey(const Key('tab_home'));
-      final Finder widgetOptionMood = find.byKey(
-        const Key('widget_option_mood'),
-      );
-      final Finder widgetActionButtonClose = find.byKey(
-        const Key('widget_action_button_close'),
-      );
-      final Finder widgetNextButton = find.byKey(
-        const Key('widget_next_button'),
-      );
-      final Finder widgetWebViewClose = find.byKey(
-        const Key('widget_web_view_close'),
-      );
-      final Finder widgetHomeArticle1 = find.byKey(
-        const Key('widget_home_article_1'),
-      );
-      final Finder widgetHomeArticle2 = find.byKey(
-        const Key('widget_home_article_2'),
-      );
-      final Finder textHi = find.text(l10n.home_hi);
-      final Finder textHelp = find.text(l10n.home_help_title);
-      final Finder textHappy = find.text('开心');
-      final Finder textAngry = find.text('生气');
-      final Finder textOK = find.text(l10n.mood_content_close_button_confirm);
-      final Finder textLook = find.text(l10n.home_upgrade_button);
-      final Finder textGLSX = find.text(l10n.onboarding_title_1);
-      final Finder textJXTJ = find.text(l10n.onboarding_title_2);
-      final Finder textJKKS = find.text(l10n.onboarding_title_3);
-      final Finder notificationRationaleDialog = find.byKey(
-        const Key('notification_rationale_dialog'),
-      );
-      final Finder notificationRationaleOK = find.byKey(
-        const Key('notification_rationale_ok'),
-      );
-      final Finder notificationRationaleClose = find.byKey(
-        const Key('notification_rationale_close'),
-      );
+      final widgetTabHome = find.byKey(const Key('tab_home'));
+      final widgetOptionMood = find.byKey(const Key('widget_option_mood'));
+      final widgetActionButtonClose = find.byKey(const Key('widget_action_button_close'));
+      final widgetNextButton = find.byKey(const Key('widget_next_button'));
+      final widgetWebViewClose = find.byKey(const Key('widget_web_view_close'));
+      final widgetHomeArticle1 = find.byKey(const Key('widget_home_article_1'));
+      final widgetHomeArticle2 = find.byKey(const Key('widget_home_article_2'));
+      final textHi = find.text(l10n.home_hi);
+      final textHelp = find.text(l10n.home_help_title);
+      final textHappy = find.text('开心');
+      final textAngry = find.text('生气');
+      final textOK = find.text(l10n.mood_content_close_button_confirm);
+      final textLook = find.text(l10n.home_upgrade_button);
+      final textGLSX = find.text(l10n.onboarding_title_1);
+      final textJXTJ = find.text(l10n.onboarding_title_2);
+      final textJKKS = find.text(l10n.onboarding_title_3);
+      final notificationRationaleDialog = find.byKey(const Key('notification_rationale_dialog'));
+      final notificationRationaleOK = find.byKey(const Key('notification_rationale_ok'));
+      final notificationRationaleClose = find.byKey(const Key('notification_rationale_close'));
 
       /// 通知权限
       if (await notificationRationaleDialog.tryEvaluate()) {
         expect(notificationRationaleOK, findsOneWidget);
         expect(notificationRationaleClose, findsOneWidget);
         await tester.tap(notificationRationaleClose);
+        await tester.pumpAndSettle();
       }
-      await tester.pumpAndSettle();
 
       /// 切换到首页，滑动验证内容存在
       await tester.tap(widgetTabHome);
@@ -380,66 +303,48 @@ void main() {
     });
 
     testWidgets('心情页基础操作', (WidgetTester tester) async {
-      app.main();
+      await tester.pumpWidget(const Application());
       await tester.pumpAndSettle();
       await Future.delayed(const Duration(seconds: 3));
-      final BuildContext context = tester.element(
-        find.byKey(const Key('widget_menu_page')),
-      );
-      final l10n = S.of(context);
+      final BuildContext context = tester.element(find.byKey(const Key('widget_menu_page')));
+      final l10n = AppL10n.of(context);
 
-      final String nowDay = DateFormat('dd').format(DateTime.now());
-      final String nowDay1 = DateFormat(
-        'dd',
-      ).format(DateTime.now().subtract(const Duration(days: 1)));
-      final Finder widgetTabMood = find.byKey(const Key('tab_mood'));
-      final Finder widgeMoodBody = find.byKey(const Key('widget_mood_body'));
-      final Finder widgetAddMoodButton = find.byKey(
-        const Key('widget_add_mood_button'),
-      );
-      final Finder widgetMoodBodyCalendar = find.byKey(
-        const Key('widget_mood_body_calendar'),
-      );
-      final Finder widgetMoodCategorySelectBody = find.byKey(
+      final nowDay = DateFormat('dd').format(DateTime.now());
+      final nowDay1 = DateFormat('dd').format(DateTime.now().subtract(const Duration(days: 1)));
+      final widgetTabMood = find.byKey(const Key('tab_mood'));
+      final widgeMoodBody = find.byKey(const Key('widget_mood_body'));
+      final widgetAddMoodButton = find.byKey(const Key('widget_add_mood_button'));
+      final widgetMoodBodyCalendar = find.byKey(const Key('widget_mood_body_calendar'));
+      final widgetMoodCategorySelectBody = find.byKey(
         const Key('widget_mood_category_select_body'),
       );
-      final Finder widgetMoodActionsButton = find.byKey(
-        const Key('widget_mood_actions_button'),
-      );
-      final Finder widgetMoveModalBottomSheet = find.byKey(
-        const Key('widget_move_modal_bottom_sheet'),
-      );
-      final Finder widgetMoodCardSlidableActionButtonEdit = find.byKey(
+      final widgetMoodActionsButton = find.byKey(const Key('widget_mood_actions_button'));
+      final widgetMoveModalBottomSheet = find.byKey(const Key('widget_move_modal_bottom_sheet'));
+      final widgetMoodCardSlidableActionButtonEdit = find.byKey(
         const Key('widget_mood_card_slidable_action_button_edit'),
       );
-      final Finder widgetMoodCardSlidableActionButtonDelete = find.byKey(
+      final widgetMoodCardSlidableActionButtonDelete = find.byKey(
         const Key('widget_mood_card_slidable_action_button_delete'),
       );
-      final Finder textMood = find.text(l10n.mood_title);
-      final Finder textNowDay = find.text(nowDay);
-      final Finder textNowDay1 = find.text(nowDay1);
-      final Finder textXZGJRH = find.text(l10n.mood_category_select_title_1);
-      final Finder textHYZXQ = find.text(l10n.mood_category_select_title_2);
-      final Finder textXQCD = find.text(l10n.mood_data_score_title);
-      final Finder textHappy = find.text('开心');
-      final Finder textAngry = find.text('生气');
-      final Finder notificationRationaleDialog = find.byKey(
-        const Key('notification_rationale_dialog'),
-      );
-      final Finder notificationRationaleOK = find.byKey(
-        const Key('notification_rationale_ok'),
-      );
-      final Finder notificationRationaleClose = find.byKey(
-        const Key('notification_rationale_close'),
-      );
+      final textMood = find.text(l10n.mood_title);
+      final textNowDay = find.text(nowDay);
+      final textNowDay1 = find.text(nowDay1);
+      final textXZGJRH = find.text(l10n.mood_category_select_title_1);
+      final textHYZXQ = find.text(l10n.mood_category_select_title_2);
+      final textXQCD = find.text(l10n.mood_data_score_title);
+      final textHappy = find.text('开心');
+      final textAngry = find.text('生气');
+      final notificationRationaleDialog = find.byKey(const Key('notification_rationale_dialog'));
+      final notificationRationaleOK = find.byKey(const Key('notification_rationale_ok'));
+      final notificationRationaleClose = find.byKey(const Key('notification_rationale_close'));
 
       /// 通知权限
       if (await notificationRationaleDialog.tryEvaluate()) {
         expect(notificationRationaleOK, findsOneWidget);
         expect(notificationRationaleClose, findsOneWidget);
         await tester.tap(notificationRationaleClose);
+        await tester.pumpAndSettle();
       }
-      await tester.pumpAndSettle();
 
       /// 心情页基础操作
       await tester.tap(widgetTabMood);
@@ -475,18 +380,10 @@ void main() {
       await tester.pumpAndSettle();
       expect(textXZGJRH, findsOneWidget);
       expect(textHappy, findsOneWidget);
-      await tester.fling(
-        widgetMoodCategorySelectBody,
-        const Offset(0, -500),
-        2400.0,
-      );
+      await tester.fling(widgetMoodCategorySelectBody, const Offset(0, -500), 2400.0);
       await tester.pumpAndSettle();
       expect(textAngry, findsOneWidget);
-      await tester.fling(
-        widgetMoodCategorySelectBody,
-        const Offset(0, 500),
-        2400.0,
-      );
+      await tester.fling(widgetMoodCategorySelectBody, const Offset(0, 500), 2400.0);
       await tester.pumpAndSettle();
       expect(textHappy, findsOneWidget);
       await tester.tap(textHappy);
@@ -497,11 +394,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(textHYZXQ, findsOneWidget);
       expect(textHappy, findsOneWidget);
-      await tester.fling(
-        widgetMoodCategorySelectBody,
-        const Offset(0, -500),
-        2400.0,
-      );
+      await tester.fling(widgetMoodCategorySelectBody, const Offset(0, -500), 2400.0);
       await tester.pumpAndSettle();
       expect(textAngry, findsOneWidget);
       await tester.tap(textAngry);
@@ -516,11 +409,7 @@ void main() {
       await tester.tap(textAngry.last);
       await tester.pumpAndSettle();
       expect(textAngry, findsWidgets);
-      await tester.fling(
-        widgetMoveModalBottomSheet,
-        const Offset(0, 400),
-        2400.0,
-      );
+      await tester.fling(widgetMoveModalBottomSheet, const Offset(0, 400), 2400.0);
       await tester.pumpAndSettle();
       await tester.fling(textAngry.last, const Offset(-400, 0), 2400.0);
       await tester.pumpAndSettle();
@@ -533,44 +422,31 @@ void main() {
     });
 
     testWidgets('统计页基础操作', (WidgetTester tester) async {
-      app.main();
+      await tester.pumpWidget(const Application());
       await tester.pumpAndSettle();
       await Future.delayed(const Duration(seconds: 3));
-      final BuildContext context = tester.element(
-        find.byKey(const Key('widget_menu_page')),
-      );
-      final l10n = S.of(context);
+      final BuildContext context = tester.element(find.byKey(const Key('widget_menu_page')));
+      final l10n = AppL10n.of(context);
 
-      final Finder widgetTabStatistic = find.byKey(const Key('tab_statistic'));
-      final Finder widgetStatisticBody = find.byKey(
-        const Key('widget_statistic_body'),
-      );
-      final Finder textStatistic = find.text(l10n.statistic_title);
-      final Finder textMoodStatistic = find.text(
-        l10n.statistic_moodStatistics_title,
-      );
-      final Finder textMoodDay7 = find.text(l10n.statistic_filter_7d);
-      final Finder textMoodDay15 = find.text(l10n.statistic_filter_15d);
-      final Finder textMoodDay30 = find.text(l10n.statistic_filter_30d);
-      Finder textMoodDesc(int day) =>
-          find.text(l10n.statistic_moodScoreAverage_content(day));
-      final Finder notificationRationaleDialog = find.byKey(
-        const Key('notification_rationale_dialog'),
-      );
-      final Finder notificationRationaleOK = find.byKey(
-        const Key('notification_rationale_ok'),
-      );
-      final Finder notificationRationaleClose = find.byKey(
-        const Key('notification_rationale_close'),
-      );
+      final widgetTabStatistic = find.byKey(const Key('tab_statistic'));
+      final widgetStatisticBody = find.byKey(const Key('widget_statistic_body'));
+      final textStatistic = find.text(l10n.statistic_title);
+      final textMoodStatistic = find.text(l10n.statistic_moodStatistics_title);
+      final textMoodDay7 = find.text(l10n.statistic_filter_7d);
+      final textMoodDay15 = find.text(l10n.statistic_filter_15d);
+      final textMoodDay30 = find.text(l10n.statistic_filter_30d);
+      Finder textMoodDesc(int day) => find.text(l10n.statistic_moodScoreAverage_content(day));
+      final notificationRationaleDialog = find.byKey(const Key('notification_rationale_dialog'));
+      final notificationRationaleOK = find.byKey(const Key('notification_rationale_ok'));
+      final notificationRationaleClose = find.byKey(const Key('notification_rationale_close'));
 
       /// 通知权限
       if (await notificationRationaleDialog.tryEvaluate()) {
         expect(notificationRationaleOK, findsOneWidget);
         expect(notificationRationaleClose, findsOneWidget);
         await tester.tap(notificationRationaleClose);
+        await tester.pumpAndSettle();
       }
-      await tester.pumpAndSettle();
 
       /// 统计页基础操作
       await tester.tap(widgetTabStatistic);

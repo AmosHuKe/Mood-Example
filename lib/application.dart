@@ -37,19 +37,12 @@ class Application extends StatelessWidget {
           showSemanticsDebugger: false,
           // 主题
           themeMode: watchApplicationProvider.themeMode,
-          theme:
-              AppTheme(
-                getMultipleThemesMode(context),
-              ).multipleThemesLightMode(),
-          darkTheme:
-              AppTheme(getMultipleThemesMode(context)).multipleThemesDarkMode(),
+          theme: AppTheme(getMultipleThemesMode(context)).multipleThemesLightMode(),
+          darkTheme: AppTheme(getMultipleThemesMode(context)).multipleThemesDarkMode(),
           // 国际化
-          supportedLocales: S.supportedLocales,
-          localizationsDelegates: S.localizationsDelegates,
-          locale:
-              watchApplicationProvider.localeSystem
-                  ? null
-                  : watchApplicationProvider.locale,
+          supportedLocales: AppL10n.supportedLocales,
+          localizationsDelegates: AppL10n.localizationsDelegates,
+          locale: watchApplicationProvider.localeSystem ? null : watchApplicationProvider.locale,
           localeListResolutionCallback: (locales, supportedLocales) {
             print('当前地区语言$locales');
             print('设备支持的地区语言$supportedLocales');

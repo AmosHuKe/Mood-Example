@@ -14,7 +14,7 @@ class LocaleDatetime {
   static String yMMMd(BuildContext context, String format) =>
       format.isNotEmpty
           ? DateFormat.yMMMMd(
-            S.of(context).localeName,
+            AppL10n.of(context).localeName,
           ).format(DateFormat('yyyy-MM-dd').parse(format))
           : '';
 }

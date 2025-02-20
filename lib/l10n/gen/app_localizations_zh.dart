@@ -5,8 +5,8 @@ import 'app_localizations.dart';
 // ignore_for_file: type=lint
 
 /// The translations for Chinese (`zh`).
-class SZh extends S {
-  SZh([String locale = 'zh']) : super(locale);
+class AppL10nZh extends AppL10n {
+  AppL10nZh([String locale = 'zh']) : super(locale);
 
   @override
   String get app_bottomNavigationBar_title_home => '首页';
@@ -36,8 +36,7 @@ class SZh extends S {
   String get app_setting_database_import_data_button_template => '模板';
 
   @override
-  String get app_setting_database_import_data_toast_error =>
-      '导入失败，请下载错误数据，修改后再试。';
+  String get app_setting_database_import_data_toast_error => '导入失败，请下载错误数据，修改后再试。';
 
   @override
   String get app_setting_database_import_data_toast_success => '导入成功';
@@ -316,8 +315,8 @@ class SZh extends S {
 }
 
 /// The translations for Chinese, as used in China (`zh_CN`).
-class SZhCn extends SZh {
-  SZhCn() : super('zh_CN');
+class AppL10nZhCn extends AppL10nZh {
+  AppL10nZhCn() : super('zh_CN');
 
   @override
   String get app_bottomNavigationBar_title_home => '首页';
@@ -347,8 +346,7 @@ class SZhCn extends SZh {
   String get app_setting_database_import_data_button_template => '模板';
 
   @override
-  String get app_setting_database_import_data_toast_error =>
-      '导入失败，请下载错误数据，修改后再试。';
+  String get app_setting_database_import_data_toast_error => '导入失败，请下载错误数据，修改后再试。';
 
   @override
   String get app_setting_database_import_data_toast_success => '导入成功';
@@ -627,8 +625,8 @@ class SZhCn extends SZh {
 }
 
 /// The translations for Chinese, as used in Hong Kong (`zh_HK`).
-class SZhHk extends SZh {
-  SZhHk() : super('zh_HK');
+class AppL10nZhHk extends AppL10nZh {
+  AppL10nZhHk() : super('zh_HK');
 
   @override
   String get app_bottomNavigationBar_title_home => '首頁';
@@ -658,8 +656,7 @@ class SZhHk extends SZh {
   String get app_setting_database_import_data_button_template => '模板';
 
   @override
-  String get app_setting_database_import_data_toast_error =>
-      '導入失敗，請下載錯誤數據，修改後再試。';
+  String get app_setting_database_import_data_toast_error => '導入失敗，請下載錯誤數據，修改後再試。';
 
   @override
   String get app_setting_database_import_data_toast_success => '導入成功';
@@ -938,8 +935,8 @@ class SZhHk extends SZh {
 }
 
 /// The translations for Chinese, as used in Taiwan (`zh_TW`).
-class SZhTw extends SZh {
-  SZhTw() : super('zh_TW');
+class AppL10nZhTw extends AppL10nZh {
+  AppL10nZhTw() : super('zh_TW');
 
   @override
   String get app_bottomNavigationBar_title_home => '首頁';
@@ -969,8 +966,7 @@ class SZhTw extends SZh {
   String get app_setting_database_import_data_button_template => '模板';
 
   @override
-  String get app_setting_database_import_data_toast_error =>
-      '導入失敗，請下載錯誤數據，修改後再試。';
+  String get app_setting_database_import_data_toast_error => '導入失敗，請下載錯誤數據，修改後再試。';
 
   @override
   String get app_setting_database_import_data_toast_success => '導入成功';

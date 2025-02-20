@@ -9,13 +9,12 @@ import 'package:moodexample/providers/application/application_provider.dart';
 /// 是否深色模式
 bool isDarkMode(BuildContext context) {
   Theme.of(context);
-  final ThemeMode themeMode = context.read<ApplicationProvider>().themeMode;
-  if (themeMode == ThemeMode.system) {
-    return View.of(context).platformDispatcher.platformBrightness ==
-        Brightness.dark;
-  } else {
-    return themeMode == ThemeMode.dark;
-  }
+  final themeMode = context.read<ApplicationProvider>().themeMode;
+  return switch (themeMode) {
+    ThemeMode.system => View.of(context).platformDispatcher.platformBrightness == Brightness.dark,
+    ThemeMode.dark => true,
+    _ => false,
+  };
 }
 
 /// 当前深色模式
@@ -30,9 +29,7 @@ ThemeMode darkThemeMode(String mode) => switch (mode) {
 
 /// 当前多主题
 String getMultipleThemesMode(BuildContext context) {
-  final String multipleThemesMode =
-      context.read<ApplicationProvider>().multipleThemesMode;
-  return multipleThemesMode;
+  return context.read<ApplicationProvider>().multipleThemesMode;
 }
 
 /// 多主题
@@ -49,10 +46,6 @@ class AppTheme {
   AppTheme(this.multipleThemesMode);
 
   String multipleThemesMode = 'default';
-
-  /// 设备参考大小
-  static const double wdp = 360.0;
-  static const double hdp = 690.0;
 
   /// 次要颜色
   static const subColor = Color(0xFFAFB8BF);

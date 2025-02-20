@@ -1,6 +1,6 @@
 arb-dir: lib/l10n
 format: true
-output-class: S
+output-class: AppL10n
 output-dir: lib/l10n/gen
 output-localization-file: app_localizations.dart
 template-arb-file: app_en.arb

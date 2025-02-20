@@ -14,61 +14,45 @@ class LocalAuthUtils {
 
   /// 设备是否支持生物特征识别
   Future<bool> localAuthSupported() async {
-    final bool canAuthenticateWithBiometrics = await auth.canCheckBiometrics;
-    final bool canAuthenticate =
-        canAuthenticateWithBiometrics || await auth.isDeviceSupported();
+    final canAuthenticateWithBiometrics = await auth.canCheckBiometrics;
+    final canAuthenticate = canAuthenticateWithBiometrics || await auth.isDeviceSupported();
     return canAuthenticate;
   }
 
   /// 获取支持的识别列表
-  Future<List<BiometricType>> localAuthList() async {
-    final List<BiometricType> availableBiometrics =
-        await auth.getAvailableBiometrics();
-    return availableBiometrics;
-  }
+  Future<List<BiometricType>> localAuthList() async => auth.getAvailableBiometrics();
 
   /// 是否支持生物识别
   Future<bool> canLocalAuthBiometrics() async {
-    final List<BiometricType> availableBiometrics = await localAuthList();
-    if (availableBiometrics.contains(BiometricType.weak) ||
-        availableBiometrics.contains(BiometricType.fingerprint) ||
-        availableBiometrics.contains(BiometricType.face)) {
-      return true;
-    } else {
-      return false;
-    }
+    final availableBiometrics = await localAuthList();
+    return availableBiometrics.isNotEmpty;
   }
 
   /// 生物特征识别认证
   Future<bool> localAuthBiometric(BuildContext context) async {
-    final s = S.of(context);
-    final bool canAuthenticate = await localAuthSupported();
-    final bool canAuthenticateBiometrics = await canLocalAuthBiometrics();
+    final appL10n = AppL10n.of(context);
+    final canAuthenticate = await localAuthSupported();
+    final canAuthenticateBiometrics = await canLocalAuthBiometrics();
     if (!canAuthenticate) return false;
     if (canAuthenticateBiometrics) {
       try {
-        final bool didAuthenticate = await auth.authenticate(
-          localizedReason: s.app_setting_security_localauth_localizedreason,
-          options: const AuthenticationOptions(
-            biometricOnly: true,
-            stickyAuth: true,
-          ),
+        final didAuthenticate = await auth.authenticate(
+          localizedReason: appL10n.app_setting_security_localauth_localizedreason,
+          options: const AuthenticationOptions(biometricOnly: true, stickyAuth: true),
           authMessages: <AuthMessages>[
             AndroidAuthMessages(
-              signInTitle: s.app_setting_security_localauth_signIntitle,
+              signInTitle: appL10n.app_setting_security_localauth_signIntitle,
               biometricHint: '',
-              cancelButton: s.app_setting_security_localauth_cancel,
+              cancelButton: appL10n.app_setting_security_localauth_cancel,
             ),
-            IOSAuthMessages(
-              cancelButton: s.app_setting_security_localauth_cancel,
-            ),
+            IOSAuthMessages(cancelButton: appL10n.app_setting_security_localauth_cancel),
           ],
         );
         return didAuthenticate;
       } on PlatformException catch (e) {
         print(e.toString());
         if (e.code == 'LockedOut') {
-          SmartDialog.showToast(s.app_setting_security_localauth_error_1);
+          SmartDialog.showToast(appL10n.app_setting_security_localauth_error_1);
         }
         return false;
       }
@@ -77,41 +61,29 @@ class LocalAuthUtils {
   }
 
   /// 识别图标
-  IconData? localAuthIcon(List<BiometricType> localAuthList) {
-    IconData? authIcon;
-    if (localAuthList.contains(BiometricType.weak)) {
-      authIcon = Remix.body_scan_line;
-    }
-    if (localAuthList.contains(BiometricType.iris)) {
-      authIcon = Remix.eye_line;
-    }
-    if (localAuthList.contains(BiometricType.face)) {
-      authIcon = Remix.body_scan_line;
-    }
-    if (localAuthList.contains(BiometricType.fingerprint)) {
-      authIcon = Remix.fingerprint_line;
-    }
+  static IconData? localAuthIcon(List<BiometricType> localAuthList) {
+    final authIcon = switch (localAuthList) {
+      [BiometricType.weak, ...] => Remix.body_scan_line,
+      [BiometricType.strong, ...] => Remix.body_scan_line,
+      [BiometricType.iris, ...] => Remix.eye_line,
+      [BiometricType.face, ...] => Remix.body_scan_line,
+      [BiometricType.fingerprint, ...] => Remix.fingerprint_line,
+      [] => null,
+    };
     return authIcon;
   }
 
   /// 识别文字
-  String localAuthText(
-    BuildContext context,
-    List<BiometricType> localAuthList,
-  ) {
-    String authText = '';
-    if (localAuthList.contains(BiometricType.weak)) {
-      authText = S.of(context).app_setting_security_biometric_weak;
-    }
-    if (localAuthList.contains(BiometricType.iris)) {
-      authText = S.of(context).app_setting_security_biometric_iris;
-    }
-    if (localAuthList.contains(BiometricType.face)) {
-      authText = S.of(context).app_setting_security_biometric_face;
-    }
-    if (localAuthList.contains(BiometricType.fingerprint)) {
-      authText = S.of(context).app_setting_security_biometric_fingerprint;
-    }
+  static String localAuthText(BuildContext context, List<BiometricType> localAuthList) {
+    final appL10n = AppL10n.of(context);
+    final authText = switch (localAuthList) {
+      [BiometricType.weak, ...] => appL10n.app_setting_security_biometric_weak,
+      [BiometricType.strong, ...] => appL10n.app_setting_security_biometric_weak,
+      [BiometricType.iris, ...] => appL10n.app_setting_security_biometric_iris,
+      [BiometricType.face, ...] => appL10n.app_setting_security_biometric_face,
+      [BiometricType.fingerprint, ...] => appL10n.app_setting_security_biometric_fingerprint,
+      [] => '',
+    };
     return authText;
   }
 }

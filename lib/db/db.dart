@@ -14,18 +14,18 @@ class DB {
   Future<Database> get database async => _instance ??= await createDatabase();
 
   /// 数据库版本号
-  static const int _version = 1;
+  static const int version = 1;
 
   /// 数据库名称
-  static const String _databaseName = 'moodDB.db';
+  static const String databaseName = 'moodDB.db';
 
   /// 创建
   Future<Database> createDatabase() async {
-    final String dbPath = await getDatabasesPath();
-    final String path = join(dbPath, _databaseName);
-    final Database db = await openDatabase(
+    final dbPath = await getDatabasesPath();
+    final path = join(dbPath, databaseName);
+    final db = await openDatabase(
       path,
-      version: _version,
+      version: version,
       onCreate: _onCreate,
       onUpgrade: _onUpgrade,
     );
@@ -83,14 +83,14 @@ class DB {
   /// 新增心情详情
   Future<bool> insertMood(MoodData moodData) async {
     final db = await database;
-    final int result = await db.insert(MoodInfo.tableName, moodData.toJson());
+    final result = await db.insert(MoodInfo.tableName, moodData.toJson());
     return result > 0;
   }
 
   /// 修改心情详情
   Future<bool> updateMood(MoodData moodData) async {
     final db = await database;
-    final int result = await db.update(
+    final result = await db.update(
       MoodInfo.tableName,
       moodData.toJson(),
       where: '${MoodInfo.mood_id} = ?',
@@ -102,7 +102,7 @@ class DB {
   /// 删除心情
   Future<bool> deleteMood(MoodData moodData) async {
     final db = await database;
-    final int result = await db.delete(
+    final result = await db.delete(
       MoodInfo.tableName,
       where: '${MoodInfo.mood_id} = ?',
       whereArgs: [moodData.mood_id],
@@ -126,10 +126,7 @@ class DB {
   /// 查询所有心情详情
   Future<List> selectAllMood() async {
     final db = await database;
-    final List list = await db.query(
-      MoodInfo.tableName,
-      orderBy: '${MoodInfo.create_time} desc',
-    );
+    final List list = await db.query(MoodInfo.tableName, orderBy: '${MoodInfo.create_time} desc');
     return list;
   }
 
@@ -143,14 +140,9 @@ class DB {
   }
 
   /// 设置默认心情类别
-  Future<bool> insertMoodCategoryDefault(
-    MoodCategoryData moodCategoryData,
-  ) async {
+  Future<bool> insertMoodCategoryDefault(MoodCategoryData moodCategoryData) async {
     final db = await database;
-    final int result = await db.insert(
-      MoodInfoCategory.tableName,
-      moodCategoryData.toJson(),
-    );
+    final result = await db.insert(MoodInfoCategory.tableName, moodCategoryData.toJson());
     return result > 0;
   }
 
@@ -204,9 +196,9 @@ class DB {
 
   /// 统计-按日期时间段获取心情数量统计
   ///
-  /// - [startTime] 开始时间 例如 2022-01-01 00:00:00
+  /// - [beginTime] 开始时间 例如 2022-01-01 00:00:00
   /// - [endTime] 结束时间 例如 2022-01-01 23:59:59
-  Future<List> selectDateMoodCount(String startTime, String endTime) async {
+  Future<List> selectDateMoodCount(String beginTime, String endTime) async {
     final db = await database;
     final List count = await db.rawQuery(
       '''
@@ -220,7 +212,7 @@ class DB {
         group by ${MoodInfo.title} 
         order by count asc
       ''',
-      [startTime, endTime],
+      [beginTime, endTime],
     );
     return count;
   }

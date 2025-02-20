@@ -3,8 +3,7 @@ import 'package:flutter/widgets.dart';
 
 MoodCategoryData moodCategoryDataFromJson(String str) =>
     MoodCategoryData.fromJson(json.decode(str));
-String moodCategoryDataToJson(MoodCategoryData data) =>
-    json.encode(data.toJson());
+String moodCategoryDataToJson(MoodCategoryData data) => json.encode(data.toJson());
 
 /// 心情类别数据
 @immutable

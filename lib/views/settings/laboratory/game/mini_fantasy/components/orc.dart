@@ -7,8 +7,7 @@ import '../sprite_sheet/sprite_sheet_orc.dart';
 
 const double tileSize = 20.0;
 
-class Orc extends SimpleEnemy
-    with RandomMovement, BlockMovementCollision, UseLifeBar {
+class Orc extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLifeBar {
   Orc(Vector2 position)
     : super(
         position: position,
@@ -80,7 +79,7 @@ class Orc extends SimpleEnemy
         radiusVision: tileSize * 5,
         closePlayer: (comp) {
           /// 抵达玩家，开始攻击
-          _execAttack();
+          execAttack();
         },
         // 未发现
         notObserved: () {
@@ -127,19 +126,16 @@ class Orc extends SimpleEnemy
       showDamage(
         damage,
         initVelocityVertical: -2,
-        config: const TextStyle(
-          color: Colors.amberAccent,
-          fontSize: tileSize / 2,
-        ),
+        config: const TextStyle(color: Colors.amberAccent, fontSize: tileSize / 2),
       );
 
       /// 受伤动画
-      // _addDamageAnimation();
+      // addDamageAnimation();
     }
   }
 
   /// 攻击动画
-  void _addAttackAnimation() {
+  void addAttackAnimation() {
     Future<SpriteAnimation> newAnimation;
     switch (lastDirection) {
       case Direction.left:
@@ -171,7 +167,7 @@ class Orc extends SimpleEnemy
   }
 
   /// 受伤动画
-  // void _addDamageAnimation() {
+  // void addDamageAnimation() {
   //   _canMove = false;
   //   Future<SpriteAnimation> newAnimation;
   //   switch (lastDirection) {
@@ -210,13 +206,13 @@ class Orc extends SimpleEnemy
   // }
 
   /// 攻击
-  void _execAttack() {
+  void execAttack() {
     simpleAttackMelee(
       damage: 50 + Random().nextDouble() * 200,
       size: Vector2.all(tileSize * 1.5),
       interval: 800,
       execute: () {
-        _addAttackAnimation();
+        addAttackAnimation();
       },
     );
   }

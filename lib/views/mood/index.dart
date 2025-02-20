@@ -35,12 +35,11 @@ class MoodPage extends StatefulWidget {
 
 class _MoodPageState extends State<MoodPage> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final themePrimaryColor = theme.primaryColor;
+    final appL10n = AppL10n.of(context);
+
     return Scaffold(
       floatingActionButton: AnimatedPress(
         child: OpenContainer(
@@ -52,7 +51,7 @@ class _MoodPageState extends State<MoodPage> {
             return FloatingActionButton.extended(
               key: const Key('widget_add_mood_button'),
               heroTag: 'addmood',
-              backgroundColor: Theme.of(context).primaryColor,
+              backgroundColor: themePrimaryColor,
               hoverElevation: 0,
               focusElevation: 0,
               elevation: 0,
@@ -63,7 +62,7 @@ class _MoodPageState extends State<MoodPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 4),
                     child: Text(
-                      S.of(context).mood_add_button,
+                      appL10n.mood_add_button,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 14,
@@ -79,16 +78,13 @@ class _MoodPageState extends State<MoodPage> {
             );
           },
           openElevation: 0,
-          openColor: Theme.of(context).scaffoldBackgroundColor,
-          middleColor: Theme.of(context).primaryColor.withValues(alpha: 0.2),
+          openColor: theme.scaffoldBackgroundColor,
+          middleColor: themePrimaryColor.withValues(alpha: 0.2),
           closedElevation: 0,
-          closedShape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(28),
-          ),
-          closedColor: Theme.of(context).scaffoldBackgroundColor,
+          closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+          closedColor: theme.scaffoldBackgroundColor,
           openBuilder:
-              (_, closeContainer) =>
-                  MoodCategorySelect(type: MoodCategorySelectType.add.type),
+              (_, closeContainer) => MoodCategorySelect(type: MoodCategorySelectType.add.type),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -103,10 +99,10 @@ class MoodBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appL10n = AppL10n.of(context);
+
     return CustomScrollView(
-      physics: const AlwaysScrollableScrollPhysics(
-        parent: BouncingScrollPhysics(),
-      ),
+      physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       slivers: [
         SliverAppBar(
           pinned: false,
@@ -121,13 +117,9 @@ class MoodBody extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    S.of(context).mood_title,
-                    style: const TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    semanticsLabel:
-                        S.of(context).app_bottomNavigationBar_title_mood,
+                    appL10n.mood_title,
+                    style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                    semanticsLabel: appL10n.app_bottomNavigationBar_title_mood,
                   ),
                   Image.asset(
                     'assets/images/woolly/woolly-heart.png',
@@ -145,15 +137,13 @@ class MoodBody extends StatelessWidget {
         /// 下拉加载
         CupertinoSliverRefreshControl(
           onRefresh: () async {
-            final MoodProvider moodProvider = context.read<MoodProvider>();
+            final moodProvider = context.read<MoodProvider>();
             moodProvider.load();
           },
         ),
 
         /// 日历
-        const SliverToBoxAdapter(
-          child: Calendar(key: Key('widget_mood_body_calendar')),
-        ),
+        const SliverToBoxAdapter(child: Calendar(key: Key('widget_mood_body_calendar'))),
 
         /// 心情数据列表
         Consumer<MoodProvider>(
@@ -163,23 +153,17 @@ class MoodBody extends StatelessWidget {
               return SliverFixedExtentList(
                 itemExtent: 280,
                 delegate: SliverChildBuilderDelegate((builder, index) {
-                  return const Align(
-                    child: CupertinoActivityIndicator(radius: 12),
-                  );
+                  return const Align(child: CupertinoActivityIndicator(radius: 12));
                 }, childCount: 1),
               );
             }
 
             /// 没有数据的占位
-            if ((moodProvider.moodDataList.length) <= 0) {
+            if (moodProvider.moodDataList.length <= 0) {
               return SliverFixedExtentList(
                 itemExtent: 280,
                 delegate: SliverChildBuilderDelegate((builder, index) {
-                  return const Empty(
-                    padding: EdgeInsets.only(top: 64),
-                    height: 160,
-                    width: 90,
-                  );
+                  return const Empty(padding: EdgeInsets.only(top: 64), height: 160, width: 90);
                 }, childCount: 1),
               );
             }
@@ -188,12 +172,8 @@ class MoodBody extends StatelessWidget {
             return SlidableAutoCloseBehavior(
               child: SliverList(
                 delegate: SliverChildBuilderDelegate((context, index) {
-                  final MoodData moodData = moodProvider.moodDataList[index];
-
-                  return MoodCard(
-                    key: Key(moodData.mood_id.toString()),
-                    moodData: moodData,
-                  );
+                  final moodData = moodProvider.moodDataList[index];
+                  return MoodCard(key: Key(moodData.mood_id.toString()), moodData: moodData);
                 }, childCount: moodProvider.moodDataList.length),
               ),
             );
@@ -217,32 +197,34 @@ class Calendar extends StatefulWidget {
 
 class _CalendarState extends State<Calendar> {
   /// 日历版式
-  late CalendarFormat _calendarFormat = CalendarFormat.week;
+  CalendarFormat calendarFormat = CalendarFormat.week;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final themePrimaryColor = theme.primaryColor;
+    final appL10n = AppL10n.of(context);
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
-        boxShadow: [
-          BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 6),
-        ],
+        color: theme.cardColor,
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 6)],
         borderRadius: BorderRadius.circular(18),
       ),
       child: Consumer<MoodProvider>(
         builder: (context, moodProvider, child) {
           /// 当前选中得日期
-          late final _nowDateTime = moodProvider.nowDateTime;
+          final nowDateTime = moodProvider.nowDateTime;
 
           return TableCalendar(
-            locale: S.of(context).localeName,
+            locale: appL10n.localeName,
             firstDay: DateTime.utc(2021, 10, 01),
             lastDay: DateTime.now(),
-            focusedDay: _nowDateTime,
+            focusedDay: nowDateTime,
             startingDayOfWeek: StartingDayOfWeek.monday,
-            calendarFormat: _calendarFormat,
+            calendarFormat: calendarFormat,
             formatAnimationCurve: Curves.linearToEaseOut,
             pageAnimationCurve: Curves.linearToEaseOut,
             rowHeight: 52,
@@ -264,14 +246,9 @@ class _CalendarState extends State<Calendar> {
                 color: AppTheme.subColor,
                 semanticLabel: '日历向后翻页',
               ),
-              formatButtonTextStyle: TextStyle(
-                fontSize: 10,
-                color: AppTheme.subColor,
-              ),
+              formatButtonTextStyle: TextStyle(fontSize: 10, color: AppTheme.subColor),
               formatButtonDecoration: BoxDecoration(
-                border: Border.fromBorderSide(
-                  BorderSide(color: AppTheme.backgroundColor1),
-                ),
+                border: Border.fromBorderSide(BorderSide(color: AppTheme.backgroundColor1)),
                 borderRadius: BorderRadius.all(Radius.circular(6)),
               ),
             ),
@@ -286,30 +263,19 @@ class _CalendarState extends State<Calendar> {
             // 自定义界面构建
             calendarBuilders: CalendarBuilders(
               defaultBuilder: (context, day, focusedDay) {
-                final List<MoodRecordData> moodRecordDate =
-                    moodProvider.moodRecordDate;
+                final moodRecordDate = moodProvider.moodRecordDate;
                 return calenderBuilder(
                   day: day,
                   moodRecordDate: moodRecordDate,
-                  textStyle: TextStyle(
-                    color: isDarkMode(context) ? Colors.white : Colors.black87,
-                  ),
+                  textStyle: TextStyle(color: isDarkMode(context) ? Colors.white : Colors.black87),
                 );
               },
               selectedBuilder:
                   (context, day, focusedDay) => calenderBuilder(
                     day: day,
-                    bodyColors: [
-                      Theme.of(context).primaryColor,
-                      Theme.of(context).primaryColor,
-                    ],
+                    bodyColors: [themePrimaryColor, themePrimaryColor],
                     boxShadow: [
-                      BoxShadow(
-                        color: Theme.of(
-                          context,
-                        ).primaryColor.withValues(alpha: 0.2),
-                        blurRadius: 6,
-                      ),
+                      BoxShadow(color: themePrimaryColor.withValues(alpha: 0.2), blurRadius: 6),
                     ],
                     textStyle: const TextStyle(color: Colors.white),
                   ),
@@ -324,18 +290,15 @@ class _CalendarState extends State<Calendar> {
                     ),
                   ),
               todayBuilder: (context, day, focusedDay) {
-                final List<MoodRecordData> moodRecordDate =
-                    moodProvider.moodRecordDate;
+                final moodRecordDate = moodProvider.moodRecordDate;
                 return calenderBuilder(
                   day: day,
                   moodRecordDate: moodRecordDate,
                   bodyColors: [
-                    Theme.of(context).primaryColor.withValues(alpha: 0.2),
-                    Theme.of(context).primaryColor.withValues(alpha: 0.2),
+                    themePrimaryColor.withValues(alpha: 0.2),
+                    themePrimaryColor.withValues(alpha: 0.2),
                   ],
-                  textStyle: TextStyle(
-                    color: isDarkMode(context) ? Colors.white : Colors.black87,
-                  ),
+                  textStyle: TextStyle(color: isDarkMode(context) ? Colors.white : Colors.black87),
                 );
               },
               disabledBuilder:
@@ -343,23 +306,20 @@ class _CalendarState extends State<Calendar> {
                     day: day,
                     textStyle: TextStyle(
                       color:
-                          isDarkMode(context)
-                              ? const Color(0x20BFBFBF)
-                              : const Color(0x50BFBFBF),
+                          isDarkMode(context) ? const Color(0x20BFBFBF) : const Color(0x50BFBFBF),
                     ),
                   ),
             ),
-            onFormatChanged:
-                (format) => setState(() => _calendarFormat = format),
+            onFormatChanged: (format) => setState(() => calendarFormat = format),
             availableCalendarFormats: const {
               CalendarFormat.month: '小',
               CalendarFormat.twoWeeks: '大',
               CalendarFormat.week: '中',
             },
-            selectedDayPredicate: (day) => isSameDay(_nowDateTime, day),
+            selectedDayPredicate: (day) => isSameDay(nowDateTime, day),
             onDaySelected: (selectedDay, focusedDay) {
               /// 之前选择的日期
-              final DateTime oldSelectedDay = moodProvider.nowDateTime;
+              final oldSelectedDay = moodProvider.nowDateTime;
 
               /// 选择的日期相同则不操作
               if (oldSelectedDay == selectedDay) return;
@@ -410,18 +370,16 @@ class _CalendarState extends State<Calendar> {
     List<BoxShadow>? boxShadow,
     required TextStyle textStyle,
   }) {
-    final String nowDate = DateFormat('yyyy-MM-dd').format(day);
+    final nowDate = DateFormat('yyyy-MM-dd').format(day);
 
     /// 所有已记录心情的日期
-    final List<MoodRecordData> list = moodRecordDate ?? [];
+    final list = moodRecordDate ?? [];
 
     return Container(
       width: 36,
       height: 48,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: bodyColors ?? [Colors.transparent, Colors.transparent],
-        ),
+        gradient: LinearGradient(colors: bodyColors ?? [Colors.transparent, Colors.transparent]),
         boxShadow: boxShadow,
         borderRadius: BorderRadius.circular(12),
       ),
@@ -432,20 +390,16 @@ class _CalendarState extends State<Calendar> {
             Text(nowDate.substring(8, 10), style: textStyle),
             Builder(
               builder: (context) {
-                int recordedIndex = -1;
-                for (int i = 0; i < list.length; i++) {
-                  if (list[i].record_date ==
-                      DateFormat('yyyy-MM-dd').format(day)) {
+                var recordedIndex = -1;
+                for (var i = 0; i < list.length; i++) {
+                  if (list[i].record_date == DateFormat('yyyy-MM-dd').format(day)) {
                     recordedIndex = i;
                   }
                 }
                 if (recordedIndex > -1) {
                   return Container(
                     margin: const EdgeInsets.only(top: 28),
-                    child: Text(
-                      list[recordedIndex].icon,
-                      style: const TextStyle(fontSize: 8),
-                    ),
+                    child: Text(list[recordedIndex].icon, style: const TextStyle(fontSize: 8)),
                   );
                 }
                 return const SizedBox();
@@ -466,6 +420,9 @@ class MoodCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final appL10n = AppL10n.of(context);
+
     return Slidable(
       key: key,
       endActionPane: ActionPane(
@@ -479,9 +436,7 @@ class MoodCard extends StatelessWidget {
                 transitionDuration: const Duration(milliseconds: 450),
                 closedBuilder: (_, openContainer) {
                   return ActionButton(
-                    key: const Key(
-                      'widget_mood_card_slidable_action_button_edit',
-                    ),
+                    key: const Key('widget_mood_card_slidable_action_button_edit'),
                     semanticsLabel: '编辑',
                     width: 56,
                     height: 56,
@@ -490,19 +445,14 @@ class MoodCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(18),
                     ),
                     onTap: openContainer,
-                    child: const Icon(
-                      Remix.edit_box_line,
-                      color: Color(0xFF587966),
-                    ),
+                    child: const Icon(Remix.edit_box_line, color: Color(0xFF587966)),
                   );
                 },
                 openElevation: 0,
-                openColor: Theme.of(context).scaffoldBackgroundColor,
-                middleColor: Theme.of(context).scaffoldBackgroundColor,
+                openColor: theme.scaffoldBackgroundColor,
+                middleColor: theme.scaffoldBackgroundColor,
                 closedElevation: 0,
-                closedShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18),
-                ),
+                closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
                 closedColor: const Color(0xFFD6F2E2),
                 openBuilder: (_, closeContainer) {
                   return MoodContent(moodData: moodData);
@@ -513,9 +463,7 @@ class MoodCard extends StatelessWidget {
           Expanded(
             child: Align(
               child: ActionButton(
-                key: const Key(
-                  'widget_mood_card_slidable_action_button_delete',
-                ),
+                key: const Key('widget_mood_card_slidable_action_button_delete'),
                 semanticsLabel: '删除',
                 width: 56,
                 height: 56,
@@ -524,55 +472,34 @@ class MoodCard extends StatelessWidget {
                   color: const Color(0xFFFEE5E4),
                   borderRadius: BorderRadius.circular(18),
                 ),
-                child: const Icon(
-                  Remix.delete_bin_line,
-                  color: Color(0xFFC04A4A),
-                ),
+                child: const Icon(Remix.delete_bin_line, color: Color(0xFFC04A4A)),
                 onTap:
                     () => showCupertinoDialog<void>(
                       context: context,
                       builder:
                           (BuildContext context) => Theme(
-                            data:
-                                isDarkMode(context)
-                                    ? ThemeData.dark()
-                                    : ThemeData.light(),
+                            data: isDarkMode(context) ? ThemeData.dark() : ThemeData.light(),
                             child: CupertinoAlertDialog(
-                              title: Text(
-                                S.of(context).mood_data_delete_button_title,
-                              ),
-                              content: Text(
-                                S.of(context).mood_data_delete_button_content,
-                              ),
+                              title: Text(appL10n.mood_data_delete_button_title),
+                              content: Text(appL10n.mood_data_delete_button_content),
                               actions: <CupertinoDialogAction>[
                                 CupertinoDialogAction(
-                                  child: Text(
-                                    S
-                                        .of(context)
-                                        .mood_data_delete_button_cancel,
-                                  ),
+                                  child: Text(appL10n.mood_data_delete_button_cancel),
                                   onPressed: () => context.pop(),
                                 ),
                                 CupertinoDialogAction(
                                   isDestructiveAction: true,
                                   onPressed: () async {
-                                    final moodProvider =
-                                        context.read<MoodProvider>();
-                                    final bool result = await moodProvider
-                                        .deleteMoodData(moodData);
+                                    final moodProvider = context.read<MoodProvider>();
+                                    final result = await moodProvider.deleteMoodData(moodData);
                                     if (result) {
                                       /// 重新初始化
-                                      final MoodProvider moodProvider =
-                                          context.read<MoodProvider>();
+                                      final moodProvider = context.read<MoodProvider>();
                                       moodProvider.load();
                                       context.pop();
                                     }
                                   },
-                                  child: Text(
-                                    S
-                                        .of(context)
-                                        .mood_data_delete_button_confirm,
-                                  ),
+                                  child: Text(appL10n.mood_data_delete_button_confirm),
                                 ),
                               ],
                             ),
@@ -592,7 +519,7 @@ class MoodCard extends StatelessWidget {
             child: Container(
               constraints: const BoxConstraints(minHeight: 120),
               decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
+                color: theme.cardColor,
                 borderRadius: BorderRadius.circular(18),
               ),
               padding: const EdgeInsets.all(12),
@@ -619,17 +546,12 @@ class MoodCard extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(14),
                               ),
                               child: ExcludeSemantics(
-                                child: Text(
-                                  moodData.icon,
-                                  style: const TextStyle(fontSize: 20),
-                                ),
+                                child: Text(moodData.icon, style: const TextStyle(fontSize: 20)),
                               ),
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                ),
+                                padding: const EdgeInsets.symmetric(horizontal: 12),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -666,10 +588,7 @@ class MoodCard extends StatelessWidget {
                       ),
                       Container(
                         alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 6,
-                          horizontal: 12,
-                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
                         decoration: BoxDecoration(
                           color:
                               isDarkMode(context)
@@ -679,12 +598,8 @@ class MoodCard extends StatelessWidget {
                         ),
                         child: Text(
                           moodData.score.toString(),
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          semanticsLabel:
-                              '${S.of(context).mood_data_score_title}：${moodData.score}',
+                          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                          semanticsLabel: '${appL10n.mood_data_score_title}：${moodData.score}',
                         ),
                       ),
                     ],
@@ -692,37 +607,29 @@ class MoodCard extends StatelessWidget {
 
                   /// 内容
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left: 60,
-                      top: 20,
-                      bottom: 20,
-                    ),
+                    padding: const EdgeInsets.only(left: 60, top: 20, bottom: 20),
                     child: Text(
-                      moodData.content ?? S.of(context).mood_data_content_empty,
+                      moodData.content ?? appL10n.mood_data_content_empty,
                       maxLines: 5,
                       overflow: TextOverflow.ellipsis,
                       softWrap: true,
                       style: TextStyle(
                         color:
                             moodData.content != null
-                                ? Theme.of(context).textTheme.bodyMedium!.color
+                                ? theme.textTheme.bodyMedium!.color
                                 : AppTheme.subColor,
                         fontSize: 14,
                       ),
                       semanticsLabel:
-                          moodData.content != null
-                              ? '记录内容：${moodData.content}'
-                              : '没有记录内容',
+                          moodData.content != null ? '记录内容：${moodData.content}' : '没有记录内容',
                     ),
                   ),
                 ],
               ),
             ),
             onTap:
-                () => showModalBottomDetail(
-                  context: context,
-                  child: MoodDetail(moodData: moodData),
-                ),
+                () =>
+                    showModalBottomDetail(context: context, child: MoodDetail(moodData: moodData)),
           ),
         ),
       ),
@@ -738,10 +645,10 @@ class MoodDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appL10n = AppL10n.of(context);
+
     return ListView(
-      physics: const AlwaysScrollableScrollPhysics(
-        parent: BouncingScrollPhysics(),
-      ),
+      physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       children: [
         Align(
           heightFactor: 2,
@@ -762,12 +669,7 @@ class MoodDetail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               /// 心情卡片
-              ExcludeSemantics(
-                child: MoodChoiceCard(
-                  icon: moodData.icon,
-                  title: moodData.title,
-                ),
-              ),
+              ExcludeSemantics(child: MoodChoiceCard(icon: moodData.icon, title: moodData.title)),
 
               /// 打分
               Expanded(
@@ -777,16 +679,13 @@ class MoodDetail extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 12),
                         child: Text(
-                          S.of(context).mood_data_score_title,
+                          appL10n.mood_data_score_title,
                           style: const TextStyle(fontSize: 16),
                         ),
                       ),
                       Text(
                         moodData.score.toString(),
-                        style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -798,19 +697,14 @@ class MoodDetail extends StatelessWidget {
 
         /// 内容
         Container(
-          margin: const EdgeInsets.only(
-            top: 24,
-            bottom: 48,
-            left: 24,
-            right: 24,
-          ),
+          margin: const EdgeInsets.only(top: 24, bottom: 48, left: 24, right: 24),
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
             color: isDarkMode(context) ? const Color(0xFF202427) : Colors.white,
             borderRadius: BorderRadius.circular(32),
           ),
           child: Text(
-            moodData.content ?? S.of(context).mood_data_content_empty,
+            moodData.content ?? appL10n.mood_data_content_empty,
             style: TextStyle(
               color:
                   moodData.content != null
@@ -820,10 +714,7 @@ class MoodDetail extends StatelessWidget {
                       : AppTheme.subColor,
               fontSize: 14,
             ),
-            semanticsLabel:
-                moodData.content != null
-                    ? '记录内容：${moodData.content}'
-                    : '没有记录内容',
+            semanticsLabel: moodData.content != null ? '记录内容：${moodData.content}' : '没有记录内容',
           ),
         ),
       ],

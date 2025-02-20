@@ -35,16 +35,15 @@ class StatisticService {
   /// 获取近日情绪波动
   ///
   /// [days] 往前获取的天数
-  static Future<List<StatisticMoodScoreAverageRecentlyData>>
-  getMoodScoreAverageRecently({int days = 7}) async {
+  static Future<List<StatisticMoodScoreAverageRecentlyData>> getMoodScoreAverageRecently({
+    int days = 7,
+  }) async {
     /// 数据
-    final List<StatisticMoodScoreAverageRecentlyData> dataList = [];
+    final dataList = <StatisticMoodScoreAverageRecentlyData>[];
     final nowDate = DateTime.parse(getDatetimeNow('yyyy-MM-dd'));
     // 获取近日日期
-    for (int i = days - 1; i >= 0; i--) {
-      final String date = DateFormat(
-        'yyyy-MM-dd',
-      ).format(nowDate.subtract(Duration(days: i)));
+    for (var i = days - 1; i >= 0; i--) {
+      final date = DateFormat('yyyy-MM-dd').format(nowDate.subtract(Duration(days: i)));
       // 查询
       final list = await DB.instance.selectDateMoodScoreAverage(date);
       final int count = list[0]['moodScoreAverage'] ?? 0;
@@ -60,19 +59,16 @@ class StatisticService {
   /// 获取近日心情数量统计
   ///
   /// [days] 往前获取的天数
-  static Future<List<StatisticDateMoodCountData>> getDateMoodCount({
-    int days = 7,
-  }) async {
+  static Future<List<StatisticDateMoodCountData>> getDateMoodCount({int days = 7}) async {
     /// 数据
-    final List<StatisticDateMoodCountData> dataList = [];
+    final dataList = <StatisticDateMoodCountData>[];
     final nowDate = DateTime.parse(getDatetimeNow('yyyy-MM-dd'));
     // 获取近7日日期
-    final String startTime =
+    final beginTime =
         "${DateFormat("yyyy-MM-dd").format(nowDate.subtract(Duration(days: days)))} 00:00:00";
-    final String endTime =
-        "${DateFormat("yyyy-MM-dd").format(nowDate)} 23:59:59";
+    final endTime = "${DateFormat("yyyy-MM-dd").format(nowDate)} 23:59:59";
     // 查询
-    final list = await DB.instance.selectDateMoodCount(startTime, endTime);
+    final list = await DB.instance.selectDateMoodCount(beginTime, endTime);
     for (final value in list) {
       dataList.add(statisticDateMoodCountDataFromJson(json.encode(value)));
     }

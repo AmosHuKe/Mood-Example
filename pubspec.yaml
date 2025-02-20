@@ -1,7 +1,7 @@
 name: moodexample
 description: 管理自己的情绪，记录当下所见所想。
 publish_to: 'none'
-version: 1.9.11+471
+version: 1.9.11+472
 
 environment:
   sdk: ^3.7.0
@@ -30,11 +30,7 @@ dependencies:
   webview_flutter: ^4.10.0 # WebView
   ditredi: ^2.0.2 # 3D 数据集显示
   vector_math: ^2.1.4
-  awesome_notifications: # 本地通知
-    git:
-      # 临时处理
-      url: https://github.com/rwrz/awesome_notifications.git
-      ref: drop_android_v1_embedding
+  awesome_notifications: ^0.10.1 # 本地通知
   flutter_timezone: ^4.1.0 # 时区
   animations: ^2.0.11 # 动画
   bonfire: 3.12.5 # 游戏引擎相关

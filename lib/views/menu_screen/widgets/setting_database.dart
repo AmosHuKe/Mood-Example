@@ -26,32 +26,30 @@ class SettingDatabase extends StatefulWidget {
   State<SettingDatabase> createState() => _SettingDatabaseState();
 }
 
-class _SettingDatabaseState extends State<SettingDatabase>
-    with TickerProviderStateMixin {
-  late final TabController _tabController = TabController(
-    length: 2,
-    vsync: this,
-  );
+class _SettingDatabaseState extends State<SettingDatabase> with TickerProviderStateMixin {
+  late final TabController tabController = TabController(length: 2, vsync: this);
 
   @override
   Widget build(BuildContext context) {
+    final appL10n = AppL10n.of(context);
+
     return Column(
       children: [
         TabBar(
-          controller: _tabController,
+          controller: tabController,
           indicatorColor: Colors.transparent,
           labelStyle: const TextStyle(fontWeight: FontWeight.w900),
           unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
           tabs: [
             Tab(
               child: Text(
-                S.of(context).app_setting_database_export_data,
+                appL10n.app_setting_database_export_data,
                 style: const TextStyle(fontSize: 14),
               ),
             ),
             Tab(
               child: Text(
-                S.of(context).app_setting_database_import_data,
+                appL10n.app_setting_database_import_data,
                 style: const TextStyle(fontSize: 14),
               ),
             ),
@@ -59,22 +57,14 @@ class _SettingDatabaseState extends State<SettingDatabase>
         ),
         Expanded(
           child: TabBarView(
-            controller: _tabController,
-            physics: const AlwaysScrollableScrollPhysics(
-              parent: BouncingScrollPhysics(),
-            ),
+            controller: tabController,
+            physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
             children: [
               /// 导出数据
-              Container(
-                margin: const EdgeInsets.only(top: 64),
-                child: const ExportDatabaseBody(),
-              ),
+              Container(margin: const EdgeInsets.only(top: 64), child: const ExportDatabaseBody()),
 
               /// 导入数据
-              Container(
-                margin: const EdgeInsets.only(top: 64),
-                child: const ImportDatabaseBody(),
-              ),
+              Container(margin: const EdgeInsets.only(top: 64), child: const ImportDatabaseBody()),
             ],
           ),
         ),
@@ -93,13 +83,17 @@ class ImportDatabaseBody extends StatefulWidget {
 
 class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
   /// 数据错误位置
-  String _errorPath = '';
+  String errorPath = '';
 
   /// 数据是否正在导入
-  bool _isImport = false;
+  bool isImport = false;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final themePrimaryColor = theme.primaryColor;
+    final appL10n = AppL10n.of(context);
+
     return Column(
       children: [
         Row(
@@ -115,16 +109,11 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                   gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
-                    colors: [
-                      Theme.of(context).primaryColor,
-                      Theme.of(context).primaryColor.withAlpha(140),
-                    ],
+                    colors: [themePrimaryColor, themePrimaryColor.withAlpha(140)],
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Theme.of(
-                        context,
-                      ).primaryColor.withValues(alpha: 0.2),
+                      color: themePrimaryColor.withValues(alpha: 0.2),
                       offset: const Offset(0, 5.0),
                       blurRadius: 15.0,
                       spreadRadius: 2.0,
@@ -133,11 +122,8 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                   shape: BoxShape.circle,
                 ),
                 child:
-                    _isImport
-                        ? const CupertinoActivityIndicator(
-                          radius: 14,
-                          color: Color(0xFFFFFFFF),
-                        )
+                    isImport
+                        ? const CupertinoActivityIndicator(radius: 14, color: Color(0xFFFFFFFF))
                         : Material(
                           color: Colors.transparent,
                           child: IconButton(
@@ -150,35 +136,32 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                             padding: const EdgeInsets.all(22),
                             onPressed: () async {
                               setState(() {
-                                _isImport = true;
-                                _errorPath = '';
+                                isImport = true;
+                                errorPath = '';
                               });
                               try {
-                                final Map results = await importDatabase(
-                                  context,
-                                );
+                                final results = await importDatabase(context);
                                 if (!mounted) return;
                                 setState(() {
-                                  _isImport = false;
+                                  isImport = false;
                                 });
                                 switch (results['state']) {
                                   case 0:
-                                    _errorPath = results['errorPath'];
+                                    errorPath = results['errorPath'];
                                     SmartDialog.showToast(
-                                      S
-                                          .of(context)
-                                          .app_setting_database_import_data_toast_error,
+                                      AppL10n.of(
+                                        context,
+                                      ).app_setting_database_import_data_toast_error,
                                     );
                                   case 1:
                                     SmartDialog.showToast(
-                                      S
-                                          .of(context)
-                                          .app_setting_database_import_data_toast_success,
+                                      AppL10n.of(
+                                        context,
+                                      ).app_setting_database_import_data_toast_success,
                                     );
 
                                     /// 更新心情数据
-                                    final MoodProvider moodProvider =
-                                        context.read<MoodProvider>();
+                                    final moodProvider = context.read<MoodProvider>();
                                     moodProvider.load();
                                 }
                               } catch (e) {
@@ -194,7 +177,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                 /// 错误文件下载
                 Builder(
                   builder: (context) {
-                    return _errorPath.isNotEmpty
+                    return errorPath.isNotEmpty
                         ? AnimatedPress(
                           child: Container(
                             width: 64,
@@ -211,9 +194,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: const Color(
-                                    0xFFf5222d,
-                                  ).withValues(alpha: 0.2),
+                                  color: const Color(0xFFf5222d).withValues(alpha: 0.2),
                                   offset: const Offset(0, 5.0),
                                   blurRadius: 15.0,
                                   spreadRadius: 2.0,
@@ -225,22 +206,15 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                               color: Colors.transparent,
                               child: TextButton(
                                 style: ButtonStyle(
-                                  shape: WidgetStateProperty.all(
-                                    const CircleBorder(),
-                                  ),
+                                  shape: WidgetStateProperty.all(const CircleBorder()),
                                 ),
                                 onPressed: () async {
                                   /// 分享文件
-                                  Share.shareXFiles([XFile(_errorPath)]);
+                                  Share.shareXFiles([XFile(errorPath)]);
                                 },
                                 child: Text(
-                                  S
-                                      .of(context)
-                                      .app_setting_database_import_data_button_error,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                  ),
+                                  appL10n.app_setting_database_import_data_button_error,
+                                  style: const TextStyle(color: Colors.white, fontSize: 12),
                                   semanticsLabel: '导入错误原因下载',
                                 ),
                               ),
@@ -261,16 +235,11 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
-                        colors: [
-                          Theme.of(context).primaryColor,
-                          Theme.of(context).primaryColor.withAlpha(140),
-                        ],
+                        colors: [themePrimaryColor, themePrimaryColor.withAlpha(140)],
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Theme.of(
-                            context,
-                          ).primaryColor.withValues(alpha: 0.2),
+                          color: themePrimaryColor.withValues(alpha: 0.2),
                           offset: const Offset(0, 5.0),
                           blurRadius: 15.0,
                           spreadRadius: 2.0,
@@ -281,24 +250,16 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                     child: Material(
                       color: Colors.transparent,
                       child: TextButton(
-                        style: ButtonStyle(
-                          shape: WidgetStateProperty.all(const CircleBorder()),
-                        ),
+                        style: ButtonStyle(shape: WidgetStateProperty.all(const CircleBorder())),
                         onPressed: () async {
-                          final String filePath =
-                              await importDatabaseTemplate();
+                          final filePath = await importDatabaseTemplate();
 
                           /// 分享文件
                           Share.shareXFiles([XFile(filePath)]);
                         },
                         child: Text(
-                          S
-                              .of(context)
-                              .app_setting_database_import_data_button_template,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                          ),
+                          appL10n.app_setting_database_import_data_button_template,
+                          style: const TextStyle(color: Colors.white, fontSize: 12),
                           semanticsLabel: '导入模板下载',
                         ),
                       ),
@@ -320,8 +281,8 @@ Future<String> importDatabaseTemplate() async {
   final directory = (await getTemporaryDirectory()).path;
 
   /// 保存文件路径及名称
-  final String filePath = '$directory/system/database/importTemplate';
-  final String fileName = '$filePath/MoodExample导入模板.xlsx';
+  final filePath = '$directory/system/database/importTemplate';
+  final fileName = '$filePath/MoodExample导入模板.xlsx';
 
   /// 删除之前的缓存
   try {
@@ -331,16 +292,16 @@ Future<String> importDatabaseTemplate() async {
   }
 
   /// 创建Excel
-  final Excel excel = Excel.createExcel();
+  final excel = Excel.createExcel();
 
   /// 创建工作薄
-  final Sheet sheetObject = excel['MoodExample'];
+  final sheetObject = excel['MoodExample'];
 
   /// 设置默认工作薄
   excel.setDefaultSheet('MoodExample');
 
   /// 单元格样式
-  final CellStyle cellStyle = CellStyle(
+  final cellStyle = CellStyle(
     fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
     fontSize: 10,
     bold: true,
@@ -351,10 +312,7 @@ Future<String> importDatabaseTemplate() async {
   );
 
   /// 创建大标题
-  sheetObject.merge(
-    CellIndex.indexByString('A1'),
-    CellIndex.indexByString('E1'),
-  );
+  sheetObject.merge(CellIndex.indexByString('A1'), CellIndex.indexByString('E1'));
   sheetObject.cell(CellIndex.indexByString('A1'))
     ..value = TextCellValue('MoodExample')
     ..cellStyle = CellStyle(
@@ -370,9 +328,7 @@ Future<String> importDatabaseTemplate() async {
   /// 创建字段标题
   sheetObject.cell(CellIndex.indexByString('A2'))
     ..value = TextCellValue('表情')
-    ..cellStyle = cellStyle.copyWith(
-      fontFamilyVal: getFontFamily(FontFamily.Apple_Color_Emoji),
-    );
+    ..cellStyle = cellStyle.copyWith(fontFamilyVal: getFontFamily(FontFamily.Apple_Color_Emoji));
   sheetObject.cell(CellIndex.indexByString('B2'))
     ..value = TextCellValue('心情')
     ..cellStyle = cellStyle;
@@ -409,7 +365,7 @@ Future<String> importDatabaseTemplate() async {
 /// 导入数据
 Future<Map> importDatabase(BuildContext context) async {
   print('导入数据');
-  final Map returnResults = {
+  final returnResults = <String, dynamic>{
     'state': null, // 状态，0: 有错误 1: 导入成功
     'errorPath': '', // 错误文件位置
   };
@@ -418,7 +374,7 @@ Future<Map> importDatabase(BuildContext context) async {
     await FilePicker.platform.clearTemporaryFiles();
 
     /// 选择文件
-    final FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
+    final pickedFile = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['xlsx'],
       allowMultiple: false,
@@ -435,9 +391,7 @@ Future<Map> importDatabase(BuildContext context) async {
         /// 判断是否是需要的工作表
         if (table == 'MoodExample') {
           /// 检测导入表是否符合标准，否则导出错误提示的Excel文件
-          final errorPath = await importDatabaseError(
-            excel.tables['MoodExample']!.rows,
-          );
+          final errorPath = await importDatabaseError(excel.tables['MoodExample']!.rows);
           print('错误文件$errorPath');
 
           if (errorPath.isNotEmpty) {
@@ -445,10 +399,7 @@ Future<Map> importDatabase(BuildContext context) async {
             returnResults['errorPath'] = errorPath;
           } else {
             /// 导入数据操作
-            await importDatabaseStart(
-              context,
-              excel.tables['MoodExample']!.rows,
-            );
+            await importDatabaseStart(context, excel.tables['MoodExample']!.rows);
             returnResults['state'] = 1;
           }
         }
@@ -463,20 +414,12 @@ Future<Map> importDatabase(BuildContext context) async {
 }
 
 /// 正式导入数据
-Future importDatabaseStart(
-  BuildContext context,
-  List<List<Data?>> database,
-) async {
+Future importDatabaseStart(BuildContext context, List<List<Data?>> database) async {
   final moodProvider = context.read<MoodProvider>();
 
   /// 心情数据
-  final MoodData moodData = MoodData(
-    icon: '',
-    title: '',
-    create_time: '',
-    update_time: '',
-  );
-  int dataIndex = 0;
+  final moodData = MoodData(icon: '', title: '', create_time: '', update_time: '');
+  var dataIndex = 0;
   for (final row in database) {
     for (final data in row) {
       dataIndex++;
@@ -484,30 +427,30 @@ Future importDatabaseStart(
         break;
       }
 
-      final int? colIndex = data?.columnIndex;
-      final CellValue? value = data?.value;
+      final colIndex = data?.columnIndex;
+      final cellValue = data?.value;
       switch (colIndex) {
         /// 表情
         case 0:
-          moodData.icon = value.toString();
+          moodData.icon = cellValue.toString();
 
         /// 心情
         case 1:
-          moodData.title = value.toString();
+          moodData.title = cellValue.toString();
 
         /// 内容
         case 2:
-          moodData.content = value.toString();
+          moodData.content = cellValue.toString();
 
         /// 心情程度
         case 3:
-          moodData.score = double.parse(value.toString()).toInt();
+          moodData.score = double.parse(cellValue.toString()).toInt();
 
         /// 创建日期、修改日期
         case 4:
           final moodDate = DateFormat(
             'yyyy-MM-dd',
-          ).parse(value.toString()).toString().substring(0, 10);
+          ).parse(cellValue.toString()).toString().substring(0, 10);
           moodData.create_time = moodDate;
           moodData.update_time = moodDate;
       }
@@ -517,7 +460,7 @@ Future importDatabaseStart(
         print('$moodData');
 
         /// 是否操作成功
-        bool result = false;
+        var result = false;
         result = await moodProvider.addMoodData(moodData);
         print('是否导入成功$result');
       }
@@ -527,19 +470,19 @@ Future importDatabaseStart(
 
 /// 导入数据错误处理
 Future<String> importDatabaseError(List<List<Data?>> database) async {
-  String errorPath = '';
+  var errorPath = '';
   final errorData = await importDatabaseErrorCheck(database);
 
   /// 存在错误就开始存储错误文件
   if (errorData.isNotEmpty) {
-    final DateTime now = DateTime.now();
+    final now = DateTime.now();
 
     /// 获取APP文件临时根路径
     final directory = (await getTemporaryDirectory()).path;
 
     /// 保存文件路径及名称
-    final String filePath = '$directory/system/database/importError';
-    final String fileName = '$filePath/MoodExample导入错误内容_$now.xlsx';
+    final filePath = '$directory/system/database/importError';
+    final fileName = '$filePath/MoodExample导入错误内容_$now.xlsx';
 
     /// 删除之前的缓存
     try {
@@ -549,16 +492,16 @@ Future<String> importDatabaseError(List<List<Data?>> database) async {
     }
 
     /// 创建Excel
-    final Excel excelError = Excel.createExcel();
+    final excelError = Excel.createExcel();
 
     /// 创建工作薄
-    final Sheet sheetObject = excelError['MoodExample'];
+    final sheetObject = excelError['MoodExample'];
 
     /// 设置默认工作薄
     excelError.setDefaultSheet('MoodExample');
 
     /// 单元格样式
-    final CellStyle cellStyle = CellStyle(
+    final cellStyle = CellStyle(
       fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
       fontSize: 10,
       bold: true,
@@ -569,10 +512,7 @@ Future<String> importDatabaseError(List<List<Data?>> database) async {
     );
 
     /// 创建大标题
-    sheetObject.merge(
-      CellIndex.indexByString('A1'),
-      CellIndex.indexByString('B1'),
-    );
+    sheetObject.merge(CellIndex.indexByString('A1'), CellIndex.indexByString('B1'));
     sheetObject.cell(CellIndex.indexByString('A1'))
       ..value = TextCellValue('MoodExample')
       ..cellStyle = CellStyle(
@@ -588,9 +528,7 @@ Future<String> importDatabaseError(List<List<Data?>> database) async {
     /// 创建字段标题
     sheetObject.cell(CellIndex.indexByString('A2'))
       ..value = TextCellValue('错误所在行')
-      ..cellStyle = cellStyle.copyWith(
-        fontFamilyVal: getFontFamily(FontFamily.Apple_Color_Emoji),
-      );
+      ..cellStyle = cellStyle.copyWith(fontFamilyVal: getFontFamily(FontFamily.Apple_Color_Emoji));
     sheetObject.cell(CellIndex.indexByString('B2'))
       ..value = TextCellValue('错误内容')
       ..cellStyle = cellStyle;
@@ -614,34 +552,32 @@ Future<String> importDatabaseError(List<List<Data?>> database) async {
 }
 
 /// 导入数据错误检测
-Future<List<List<CellValue>>> importDatabaseErrorCheck(
-  List<List<Data?>> database,
-) async {
+Future<List<List<CellValue>>> importDatabaseErrorCheck(List<List<Data?>> database) async {
   /// 错误内容
-  final List<List<CellValue>> errorData = [];
+  final errorData = <List<CellValue>>[];
 
   /// 错误原因
-  String errorText = '';
+  var errorText = '';
 
-  int dataIndex = 0;
-  int rowIndex = 0;
+  var dataIndex = 0;
+  var rowIndex = 0;
   for (final row in database) {
     dataIndex++;
     if (dataIndex < 3) {
       continue;
     }
     for (final data in row) {
-      final CellValue? value = data?.value;
+      final cellValue = data?.value;
       switch (rowIndex) {
         /// 表情
         case 0:
-          if (value == null) {
+          if (cellValue == null) {
             errorText += '【表情必填】 ';
           }
 
         /// 心情
         case 1:
-          if (value == null) {
+          if (cellValue == null) {
             errorText += '【心情必填】 ';
           }
 
@@ -651,7 +587,7 @@ Future<List<List<CellValue>>> importDatabaseErrorCheck(
 
         /// 心情程度
         case 3:
-          final int? tryValue = int.tryParse(value.toString());
+          final tryValue = int.tryParse(cellValue.toString());
           if (tryValue == null) {
             errorText += '【心情程度只能为0-100整数】 ';
           }
@@ -665,7 +601,7 @@ Future<List<List<CellValue>>> importDatabaseErrorCheck(
           try {
             tryValue = DateFormat(
               'yyyy-MM-dd',
-            ).parse(value.toString()).toString().substring(0, 10);
+            ).parse(cellValue.toString()).toString().substring(0, 10);
           } catch (e) {
             tryValue = null;
           }
@@ -678,10 +614,7 @@ Future<List<List<CellValue>>> importDatabaseErrorCheck(
       /// 导入数据（一组数据完成）并且错误内容不为空
       if (rowIndex == 4 && errorText.isNotEmpty) {
         print('一组数据');
-        errorData.add([
-          TextCellValue('第$dataIndex行'),
-          TextCellValue(errorText),
-        ]);
+        errorData.add([TextCellValue('第$dataIndex行'), TextCellValue(errorText)]);
       }
 
       /// 重置
@@ -709,12 +642,16 @@ class ExportDatabaseBody extends StatefulWidget {
 
 class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
   /// 数据导出位置
-  String _exportPath = '';
+  String exportPath = '';
 
   /// 数据是否正在导出
-  bool _isExport = false;
+  bool isExport = false;
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final themePrimaryColor = theme.primaryColor;
+    final appL10n = AppL10n.of(context);
+
     return Column(
       children: [
         AnimatedPress(
@@ -725,14 +662,11 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [
-                  Theme.of(context).primaryColor,
-                  Theme.of(context).primaryColor.withAlpha(140),
-                ],
+                colors: [themePrimaryColor, themePrimaryColor.withAlpha(140)],
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Theme.of(context).primaryColor.withValues(alpha: 0.2),
+                  color: themePrimaryColor.withValues(alpha: 0.2),
                   offset: const Offset(0, 5.0),
                   blurRadius: 15.0,
                   spreadRadius: 2.0,
@@ -741,11 +675,8 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
               shape: BoxShape.circle,
             ),
             child:
-                _isExport
-                    ? const CupertinoActivityIndicator(
-                      radius: 14,
-                      color: Color(0xFFFFFFFF),
-                    )
+                isExport
+                    ? const CupertinoActivityIndicator(radius: 14, color: Color(0xFFFFFFFF))
                     : Material(
                       color: Colors.transparent,
                       child: IconButton(
@@ -759,32 +690,27 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
                         onPressed: () async {
                           try {
                             /// 没文件则进行生成
-                            if (_exportPath.isEmpty) {
+                            if (exportPath.isEmpty) {
                               setState(() {
-                                _isExport = true;
+                                isExport = true;
                               });
-                              await Future.delayed(
-                                const Duration(milliseconds: 1000),
-                                () async {
-                                  _exportPath = await exportDatabase();
-                                },
-                              );
+                              await Future.delayed(const Duration(milliseconds: 1000), () async {
+                                exportPath = await exportDatabase();
+                              });
                             }
 
                             /// 有文件则直接分享
-                            if (_exportPath.isNotEmpty) {
+                            if (exportPath.isNotEmpty) {
                               setState(() {
-                                _isExport = false;
+                                isExport = false;
                               });
                               if (!mounted) return;
                               SmartDialog.showToast(
-                                S
-                                    .of(context)
-                                    .app_setting_database_export_data_toast_success,
+                                appL10n.app_setting_database_export_data_toast_success,
                               );
 
                               /// 分享文件
-                              Share.shareXFiles([XFile(_exportPath)]);
+                              Share.shareXFiles([XFile(exportPath)]);
                             }
                           } catch (e) {
                             print('$e');
@@ -801,15 +727,15 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
 
 /// 导出数据
 Future<String> exportDatabase() async {
-  final MoodProvider moodProvider = MoodProvider();
-  final DateTime now = DateTime.now();
+  final moodProvider = MoodProvider();
+  final now = DateTime.now();
 
   /// 获取APP文件临时根路径
   final directory = (await getTemporaryDirectory()).path;
 
   /// 保存文件路径及名称
-  final String filePath = '$directory/system/database/export';
-  final String fileName = '$filePath/MoodExample_$now.xlsx';
+  final filePath = '$directory/system/database/export';
+  final fileName = '$filePath/MoodExample_$now.xlsx';
 
   /// 删除之前的缓存
   try {
@@ -819,16 +745,16 @@ Future<String> exportDatabase() async {
   }
 
   /// 创建Excel
-  final Excel excel = Excel.createExcel();
+  final excel = Excel.createExcel();
 
   /// 创建工作薄
-  final Sheet sheetObject = excel['MoodExample'];
+  final sheetObject = excel['MoodExample'];
 
   /// 设置默认工作薄
   excel.setDefaultSheet('MoodExample');
 
   /// 单元格样式
-  final CellStyle cellStyle = CellStyle(
+  final cellStyle = CellStyle(
     fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
     fontSize: 10,
     bold: true,
@@ -839,10 +765,7 @@ Future<String> exportDatabase() async {
   );
 
   /// 创建大标题
-  sheetObject.merge(
-    CellIndex.indexByString('A1'),
-    CellIndex.indexByString('F1'),
-  );
+  sheetObject.merge(CellIndex.indexByString('A1'), CellIndex.indexByString('F1'));
   sheetObject.cell(CellIndex.indexByString('A1'))
     ..value = TextCellValue('MoodExample')
     ..cellStyle = CellStyle(
@@ -858,9 +781,7 @@ Future<String> exportDatabase() async {
   /// 创建字段标题
   sheetObject.cell(CellIndex.indexByString('A2'))
     ..value = TextCellValue('表情')
-    ..cellStyle = cellStyle.copyWith(
-      fontFamilyVal: getFontFamily(FontFamily.Apple_Color_Emoji),
-    );
+    ..cellStyle = cellStyle.copyWith(fontFamilyVal: getFontFamily(FontFamily.Apple_Color_Emoji));
   sheetObject.cell(CellIndex.indexByString('B2'))
     ..value = TextCellValue('心情')
     ..cellStyle = cellStyle;
@@ -883,7 +804,7 @@ Future<String> exportDatabase() async {
 
   /// 添加Excel数据
   moodAllDataList?.forEach((list) {
-    final List<CellValue> dataList = [
+    final cellValueList = <CellValue>[
       TextCellValue(list.icon),
       TextCellValue(list.title),
       TextCellValue(list.content ?? ''),
@@ -892,7 +813,7 @@ Future<String> exportDatabase() async {
       TextCellValue(list.update_time),
     ];
 
-    sheetObject.appendRow(dataList);
+    sheetObject.appendRow(cellValueList);
   });
 
   /// 保存Excel

@@ -52,8 +52,7 @@ class StatisticProvider extends ChangeNotifier {
 
   /// 获取近日情绪波动
   Future<void> loadMoodScoreAverageRecently() async {
-    moodScoreAverageRecently =
-        await StatisticService.getMoodScoreAverageRecently(days: _moodDays);
+    moodScoreAverageRecently = await StatisticService.getMoodScoreAverageRecently(days: _moodDays);
   }
 
   /// 获取近日心情数量统计

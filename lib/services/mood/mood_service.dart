@@ -12,7 +12,7 @@ class MoodService {
   /// 设置心情类别默认值
   static Future<void> setCategoryDefault() async {
     /// 默认值
-    const List<MoodCategoryData> moodCategoryData = [
+    const moodCategoryData = [
       MoodCategoryData(icon: '😊', title: '开心'),
       MoodCategoryData(icon: '🎉', title: '惊喜'),
       MoodCategoryData(icon: '🤡', title: '滑稽'),
@@ -31,7 +31,7 @@ class MoodService {
   /// 获取所有心情类别
   static Future<List<MoodCategoryData>> getMoodCategoryAll() async {
     final moodCategoryData = await DB.instance.selectMoodCategoryAll();
-    final List<MoodCategoryData> moodCategoryDataList = [];
+    final moodCategoryDataList = <MoodCategoryData>[];
     // 转换模型
     for (final value in moodCategoryData) {
       moodCategoryDataList.add(moodCategoryDataFromJson(json.encode(value)));
@@ -42,7 +42,7 @@ class MoodService {
   /// 添加心情详情数据
   static Future<bool> addMoodData(MoodData moodData) async {
     // 添加数据
-    final bool result = await DB.instance.insertMood(moodData);
+    final result = await DB.instance.insertMood(moodData);
     return result;
   }
 
@@ -50,7 +50,7 @@ class MoodService {
   static Future<List<MoodData>> getMoodData(String datetime) async {
     // 查询心情数据
     final moodData = await DB.instance.selectMood(datetime);
-    final List<MoodData> MoodDataList = [];
+    final MoodDataList = <MoodData>[];
     for (final value in moodData) {
       // 转换模型
       MoodDataList.add(moodDataFromJson(json.encode(value)));
@@ -62,7 +62,7 @@ class MoodService {
   static Future<List<MoodRecordData>> getMoodRecordDate() async {
     // 查询
     final list = await DB.instance.selectMoodRecordDate();
-    late final List<MoodRecordData> dataList = [];
+    late final dataList = <MoodRecordData>[];
     for (final value in list) {
       // 转换模型
       dataList.add(moodRecordDataFromJson(json.encode(value)));
@@ -73,14 +73,14 @@ class MoodService {
   /// 修改心情详细数据
   static Future<bool> editMood(MoodData moodData) async {
     // 修改数据
-    final bool result = await DB.instance.updateMood(moodData);
+    final result = await DB.instance.updateMood(moodData);
     return result;
   }
 
   /// 删除心情详细数据
   static Future<bool> delMood(MoodData moodData) async {
     // 删除数据
-    final bool result = await DB.instance.deleteMood(moodData);
+    final result = await DB.instance.deleteMood(moodData);
     return result;
   }
 
@@ -88,7 +88,7 @@ class MoodService {
   static Future<List<MoodData>> getMoodAllData() async {
     // 查询心情数据
     final moodData = await DB.instance.selectAllMood();
-    final List<MoodData> moodDataList = [];
+    final moodDataList = <MoodData>[];
     for (final value in moodData) {
       // 转换模型
       moodDataList.add(moodDataFromJson(json.encode(value)));

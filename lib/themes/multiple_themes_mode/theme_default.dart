@@ -48,9 +48,7 @@ class AppThemeDefault implements AppMultipleTheme {
         ),
       ),
       // bottomNavigationBar
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: Colors.white,
-      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(backgroundColor: Colors.white),
       // TabBar
       tabBarTheme: const TabBarTheme(
         labelColor: Colors.black,
@@ -76,9 +74,7 @@ class AppThemeDefault implements AppMultipleTheme {
       // Card
       cardColor: Colors.white,
       // bottomSheet
-      bottomSheetTheme: const BottomSheetThemeData(
-        modalBackgroundColor: Color(0xFFF6F8FA),
-      ),
+      bottomSheetTheme: const BottomSheetThemeData(modalBackgroundColor: Color(0xFFF6F8FA)),
       // Radio
       radioTheme: RadioThemeData(
         fillColor: WidgetStateProperty.all(const Color(0xFF111315)),
@@ -147,9 +143,7 @@ class AppThemeDefault implements AppMultipleTheme {
       // Card
       cardColor: const Color(0xFF202427),
       // bottomSheet
-      bottomSheetTheme: const BottomSheetThemeData(
-        modalBackgroundColor: Color(0xFF111315),
-      ),
+      bottomSheetTheme: const BottomSheetThemeData(modalBackgroundColor: Color(0xFF111315)),
       // Radio
       radioTheme: RadioThemeData(
         fillColor: WidgetStateProperty.all(const Color(0xFFEFEFEF)),

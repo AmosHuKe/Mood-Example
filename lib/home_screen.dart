@@ -25,62 +25,58 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   /// 当前页下标
-  late int _currentIndex;
+  late int currentIndex;
 
   /// Tab 控制
-  late TabController _tabController;
+  late TabController tabController;
 
   /// 进步按钮动画
-  late AnimationController _stepButtonController;
-  late Animation<double> _stepButtonAnimation;
-  late CurvedAnimation _stepButtonCurve;
+  late AnimationController stepButtonController;
+  late Animation<double> stepButtonAnimation;
+  late CurvedAnimation stepButtonCurve;
 
   @override
   void initState() {
     super.initState();
 
     /// 进步按钮Icon动画
-    _stepButtonController = AnimationController(
+    stepButtonController = AnimationController(
       duration: const Duration(milliseconds: 500),
       vsync: this,
     );
-    _stepButtonCurve = CurvedAnimation(
-      parent: _stepButtonController,
-      curve: Curves.fastOutSlowIn,
-    );
-    _stepButtonAnimation = Tween(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(_stepButtonController);
+    stepButtonCurve = CurvedAnimation(parent: stepButtonController, curve: Curves.fastOutSlowIn);
+    stepButtonAnimation = Tween(begin: 0.0, end: 1.0).animate(stepButtonController);
   }
 
   @override
   void dispose() {
-    /// Tab控制
-    _tabController.dispose();
+    /// Tab 控制
+    tabController.dispose();
 
-    /// 进步按钮Icon动画
-    _stepButtonController.dispose();
+    /// 进步按钮 Icon 动画
+    stepButtonController.dispose();
 
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData appTheme = Theme.of(context);
+    final theme = Theme.of(context);
+    final isDark = isDarkMode(context);
+    final appL10n = AppL10n.of(context);
+    final zoomDrawer = ZoomDrawer.of(context);
 
-    /// Tab icon大小
-    final double _tabIconSize = 20;
+    /// Tab Icon 大小
+    const double tabIconSize = 20;
 
-    final StatisticProvider statisticProvider =
-        context.read<StatisticProvider>();
+    final statisticProvider = context.read<StatisticProvider>();
 
     /// 当前页下标
-    _currentIndex = widget.navigationShell.currentIndex;
+    currentIndex = widget.navigationShell.currentIndex;
 
     /// Tab 控制
-    _tabController = TabController(
-      initialIndex: _currentIndex,
+    tabController = TabController(
+      initialIndex: currentIndex,
       length: widget.navigationShell.route.branches.length,
       vsync: this,
     );
@@ -89,14 +85,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       body: widget.navigationShell,
       bottomNavigationBar: DecoratedBox(
         decoration: BoxDecoration(
-          color:
-              appTheme.bottomNavigationBarTheme.backgroundColor ?? Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.04),
-              blurRadius: 24,
-            ),
-          ],
+          color: theme.bottomNavigationBarTheme.backgroundColor ?? Colors.white,
+          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 24)],
         ),
         child: SafeArea(
           child: Stack(
@@ -106,13 +96,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               TabBar(
                 enableFeedback: true,
                 padding: const EdgeInsets.only(left: 40),
-                controller: _tabController,
+                controller: tabController,
                 indicatorColor: Colors.transparent,
-                labelStyle: const TextStyle(
-                  height: 0.5,
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                ),
+                labelStyle: const TextStyle(height: 0.5, fontSize: 10, fontWeight: FontWeight.bold),
                 unselectedLabelStyle: const TextStyle(
                   height: 0.5,
                   fontSize: 10,
@@ -121,18 +107,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 tabs: [
                   Tab(
                     key: const Key('tab_home'),
-                    text: S.of(context).app_bottomNavigationBar_title_home,
-                    icon: Icon(Remix.home_line, size: _tabIconSize),
+                    text: appL10n.app_bottomNavigationBar_title_home,
+                    icon: const Icon(Remix.home_line, size: tabIconSize),
                   ),
                   Tab(
                     key: const Key('tab_mood'),
-                    text: S.of(context).app_bottomNavigationBar_title_mood,
-                    icon: Icon(Remix.heart_3_line, size: _tabIconSize),
+                    text: appL10n.app_bottomNavigationBar_title_mood,
+                    icon: const Icon(Remix.heart_3_line, size: tabIconSize),
                   ),
                   Tab(
                     key: const Key('tab_statistic'),
-                    text: S.of(context).app_bottomNavigationBar_title_statistic,
-                    icon: Icon(Remix.bar_chart_line, size: _tabIconSize),
+                    text: appL10n.app_bottomNavigationBar_title_statistic,
+                    icon: const Icon(Remix.bar_chart_line, size: tabIconSize),
                   ),
                 ],
                 onTap: (index) {
@@ -155,45 +141,41 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     width: 42,
                     height: 42,
                     decoration: BoxDecoration(
-                      color:
-                          isDarkMode(context)
-                              ? Colors.black12
-                              : AppTheme.backgroundColor1,
+                      color: isDark ? Colors.black12 : AppTheme.backgroundColor1,
                       borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(14),
                         bottomRight: Radius.circular(14),
                       ),
                     ),
                     child: ValueListenableBuilder<DrawerState>(
-                      valueListenable: ZoomDrawer.of(context)!.stateNotifier,
+                      valueListenable: zoomDrawer!.stateNotifier,
                       builder: (_, state, child) {
-                        if (state == DrawerState.closed) {
-                          _stepButtonController.reverse();
-                        } else {
-                          _stepButtonController.forward();
+                        switch (state) {
+                          case DrawerState.closed:
+                            stepButtonController.reverse();
+                          case _:
+                            stepButtonController.forward();
                         }
+
                         return AnimatedBuilder(
-                          animation: _stepButtonAnimation,
-                          builder:
-                              (context, child) => Transform.rotate(
-                                angle: _stepButtonCurve.value * 3.14,
-                                child: child,
-                              ),
+                          animation: stepButtonAnimation,
+                          builder: (context, child) {
+                            return Transform.rotate(
+                              angle: stepButtonCurve.value * 3.14,
+                              child: child,
+                            );
+                          },
                           child: Icon(
                             Remix.arrow_right_line,
                             size: 16,
-                            color:
-                                isDarkMode(context)
-                                    ? const Color(0xFFEFEFEF)
-                                    : Colors.black,
+                            color: isDark ? const Color(0xFFEFEFEF) : Colors.black,
                           ),
                         );
                       },
                     ),
                   ),
                   onTap: () {
-                    /// 侧栏操作
-                    ZoomDrawer.of(context)?.toggle.call();
+                    zoomDrawer.toggle.call();
                   },
                 ),
               ),
@@ -214,9 +196,9 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appTheme = Theme.of(context);
+    final theme = Theme.of(context);
+    final themePrimaryColor = theme.primaryColor;
     final isDark = isDarkMode(context);
-    final primaryColor = appTheme.primaryColor;
     final drawerController = ZoomDrawerController();
     final slideWidth = MediaQuery.of(context).size.width * 0.70;
 
@@ -231,7 +213,7 @@ class MenuPage extends StatelessWidget {
       openCurve: Curves.easeOut,
       closeCurve: Curves.fastOutSlowIn,
       drawerShadowsBackgroundColor: isDark ? Colors.black26 : Colors.white38,
-      menuBackgroundColor: isDark ? primaryColor.withAlpha(155) : primaryColor,
+      menuBackgroundColor: isDark ? themePrimaryColor.withAlpha(155) : themePrimaryColor,
       angle: 0,
       mainScreenScale: 0.3,
       slideWidth: slideWidth == 0 ? 250.0 : slideWidth,
@@ -253,11 +235,7 @@ class MainScreenBody extends StatelessWidget {
     return ValueListenableBuilder<DrawerState>(
       valueListenable: ZoomDrawer.of(context)!.stateNotifier,
       builder: (_, state, child) {
-        print('外层菜单状态：$state');
-        return AbsorbPointer(
-          absorbing: state != DrawerState.closed,
-          child: child,
-        );
+        return AbsorbPointer(absorbing: state != DrawerState.closed, child: child);
       },
       child: HomeScreen(navigationShell: navigationShell),
     );

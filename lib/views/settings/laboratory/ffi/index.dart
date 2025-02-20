@@ -28,19 +28,18 @@ class FFIPage extends StatefulWidget {
 }
 
 class _FFIPageState extends State<FFIPage> {
-  ///
-  late DynamicLibrary _dl;
+  late DynamicLibrary dl;
 
   /// 接收端口1
-  final ReceivePort _receivePort1 = ReceivePort();
+  final ReceivePort receivePort1 = ReceivePort();
 
   /// 接收端口2
-  final ReceivePort _receivePort2 = ReceivePort();
+  final ReceivePort receivePort2 = ReceivePort();
 
-  late String _testText1 = '';
-  late String _testText2 = '';
-  late bool _testLoading1 = true;
-  late bool _testLoading2 = true;
+  String testText1 = '';
+  String testText2 = '';
+  bool testLoading1 = true;
+  bool testLoading2 = true;
 
   @override
   void initState() {
@@ -53,8 +52,8 @@ class _FFIPageState extends State<FFIPage> {
 
   @override
   void dispose() {
-    _receivePort1.close();
-    _receivePort2.close();
+    receivePort1.close();
+    receivePort2.close();
 
     super.dispose();
   }
@@ -62,19 +61,15 @@ class _FFIPageState extends State<FFIPage> {
   /// 初始化 FFI
   void ffiInit() {
     /// 加载库 符号表
-    _dl =
-        Platform.isAndroid
-            ? DynamicLibrary.open('libffi.so')
-            : DynamicLibrary.process();
+    dl = Platform.isAndroid ? DynamicLibrary.open('libffi.so') : DynamicLibrary.process();
 
     /// 查找 DartApi 初始化函数
-    final DartInitializeApiDL initDartApiDL = _dl
-        .lookupFunction<NativeDartInitializeApiDL, DartInitializeApiDL>(
-          'InitDartApiDL',
-        );
+    final initDartApiDL = dl.lookupFunction<NativeDartInitializeApiDL, DartInitializeApiDL>(
+      'InitDartApiDL',
+    );
 
     /// 调用初始化函数，并判断是否成功
-    final int dartApiInited = initDartApiDL(NativeApi.initializeApiDLData);
+    final dartApiInited = initDartApiDL(NativeApi.initializeApiDLData);
 
     if (dartApiInited == 0) {
       print('初始化 Dart Native API 成功');
@@ -86,47 +81,45 @@ class _FFIPageState extends State<FFIPage> {
   /// FFI 测试1
   void ffiTest1() {
     /// 监听接收端口
-    _receivePort1.listen((message) {
+    receivePort1.listen((message) {
       setState(() {
-        _testText1 = '$message\ntype=${message.runtimeType}';
-        _testLoading1 = false;
+        testText1 = '$message\ntype=${message.runtimeType}';
+        testLoading1 = false;
       });
 
       /// 关闭端口
-      _receivePort1.close();
+      receivePort1.close();
     });
 
     /// 查找 注册线程函数
-    final RegisterSendPort registerSendPort = _dl
-        .lookupFunction<NativeRegisterSendPort, RegisterSendPort>(
-          'RegisterSendPort',
-        );
+    final registerSendPort = dl.lookupFunction<NativeRegisterSendPort, RegisterSendPort>(
+      'RegisterSendPort',
+    );
 
     /// 调用 开启线程并传入参数
-    registerSendPort(_receivePort1.sendPort.nativePort, 3);
+    registerSendPort(receivePort1.sendPort.nativePort, 3);
   }
 
   /// FFI 测试2
   void ffiTest2() {
     /// 监听接收端口
-    _receivePort2.listen((message) {
+    receivePort2.listen((message) {
       setState(() {
-        _testText2 = '$message\ntype=${message.runtimeType}';
-        _testLoading2 = false;
+        testText2 = '$message\ntype=${message.runtimeType}';
+        testLoading2 = false;
       });
 
       /// 关闭端口
-      _receivePort2.close();
+      receivePort2.close();
     });
 
     /// 查找 注册线程函数
-    final RegisterSendPort registerSendPort = _dl
-        .lookupFunction<NativeRegisterSendPort, RegisterSendPort>(
-          'RegisterSendPort',
-        );
+    final registerSendPort = dl.lookupFunction<NativeRegisterSendPort, RegisterSendPort>(
+      'RegisterSendPort',
+    );
 
     /// 调用 开启线程并传入参数
-    registerSendPort(_receivePort2.sendPort.nativePort, 1);
+    registerSendPort(receivePort2.sendPort.nativePort, 1);
   }
 
   @override
@@ -159,26 +152,20 @@ class _FFIPageState extends State<FFIPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '接收端口 ${_receivePort1.sendPort.nativePort} 信息：',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  '接收端口 ${receivePort1.sendPort.nativePort} 信息：',
+                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
-                _testLoading1
+                testLoading1
                     ? const CupertinoActivityIndicator()
-                    : Text(_testText1, style: const TextStyle(fontSize: 14)),
+                    : Text(testText1, style: const TextStyle(fontSize: 14)),
                 const SizedBox(height: 24),
                 Text(
-                  '接收端口 ${_receivePort2.sendPort.nativePort} 信息：',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  '接收端口 ${receivePort2.sendPort.nativePort} 信息：',
+                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
-                _testLoading2
+                testLoading2
                     ? const CupertinoActivityIndicator()
-                    : Text(_testText2, style: const TextStyle(fontSize: 14)),
+                    : Text(testText2, style: const TextStyle(fontSize: 14)),
               ],
             ),
           ),

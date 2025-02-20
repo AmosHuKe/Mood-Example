@@ -17,27 +17,24 @@ class SettingLanguage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appL10n = AppL10n.of(context);
+
     return ListView(
-      physics: const AlwaysScrollableScrollPhysics(
-        parent: BouncingScrollPhysics(),
-      ),
+      physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       children: [
         /// 跟随系统
         Selector<ApplicationProvider, bool>(
-          selector:
-              (_, applicationProvider) => applicationProvider.localeSystem,
+          selector: (_, applicationProvider) => applicationProvider.localeSystem,
           builder: (_, localeSystem, child) {
-            final ApplicationProvider applicationProvider =
-                context.read<ApplicationProvider>();
+            final applicationProvider = context.read<ApplicationProvider>();
             return RadioListTile<bool>(
               value: localeSystem,
               groupValue: true,
               title: Text(
-                S.of(context).app_setting_language_system,
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal,
-                ),
+                appL10n.app_setting_language_system,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium!.copyWith(fontSize: 14, fontWeight: FontWeight.normal),
               ),
               onChanged: (_) => applicationProvider.localeSystem = true,
             );
@@ -51,16 +48,12 @@ class SettingLanguage extends StatelessWidget {
               children: List<Widget>.generate(_languageConfig.length, (index) {
                 return RadioListTile<Locale>(
                   value: _languageConfig[index].locale,
-                  groupValue:
-                      !applicationProvider.localeSystem
-                          ? applicationProvider.locale
-                          : null,
+                  groupValue: !applicationProvider.localeSystem ? applicationProvider.locale : null,
                   title: Text(
                     _languageConfig[index].language,
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium!.copyWith(fontSize: 14, fontWeight: FontWeight.normal),
                   ),
                   onChanged: (value) => applicationProvider.locale = value!,
                 );

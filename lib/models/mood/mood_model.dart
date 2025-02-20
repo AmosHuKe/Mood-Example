@@ -58,8 +58,7 @@ class MoodData {
   };
 }
 
-MoodRecordData moodRecordDataFromJson(String str) =>
-    MoodRecordData.fromJson(json.decode(str));
+MoodRecordData moodRecordDataFromJson(String str) => MoodRecordData.fromJson(json.decode(str));
 String moodRecordDataToJson(MoodRecordData data) => json.encode(data.toJson());
 
 /// 心情记录日期数据

@@ -8,8 +8,7 @@ import 'orc.dart';
 
 const double tileSize = 20.0;
 
-class HumanPlayer extends SimplePlayer
-    with BlockMovementCollision, Lighting, UseLifeBar {
+class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, UseLifeBar {
   HumanPlayer(Vector2 position)
     : super(
         position: position,
@@ -32,11 +31,7 @@ class HumanPlayer extends SimplePlayer
       ) {
     /// 发光
     setupLighting(
-      LightingConfig(
-        radius: width / 2,
-        blurBorder: width / 2,
-        color: Colors.transparent,
-      ),
+      LightingConfig(radius: width / 2, blurBorder: width / 2, color: Colors.transparent),
     );
 
     /// 生命条
@@ -97,14 +92,10 @@ class HumanPlayer extends SimplePlayer
             event.id == 1) &&
         event.event == ActionEvent.DOWN) {
       /// 攻击动画
-      _addAttackAnimation();
+      addAttackAnimation();
 
       /// 攻击范围
-      simpleAttackMelee(
-        damage: 10,
-        size: Vector2.all(tileSize * 1.5),
-        withPush: false,
-      );
+      simpleAttackMelee(damage: 10, size: Vector2.all(tileSize * 1.5), withPush: false);
     }
     super.onJoystickAction(event);
   }
@@ -142,7 +133,7 @@ class HumanPlayer extends SimplePlayer
       //     ?.animateToColor(const Color(0xFF630000).withOpacity(0.7));
 
       // idle();
-      // _addDamageAnimation(() {
+      // addDamageAnimation(() {
       //   lockMove = false;
       //   gameRef.lighting?.animateToColor(Colors.black.withOpacity(0.7));
       // });
@@ -162,7 +153,7 @@ class HumanPlayer extends SimplePlayer
   }
 
   /// 攻击动画
-  void _addAttackAnimation() {
+  void addAttackAnimation() {
     Future<SpriteAnimation> newAnimation;
     switch (lastDirection) {
       case Direction.left:
@@ -194,7 +185,7 @@ class HumanPlayer extends SimplePlayer
   }
 
   /// 受伤动画
-  // void _addDamageAnimation(VoidCallback onFinish) {
+  // void addDamageAnimation(VoidCallback onFinish) {
   //   Future<SpriteAnimation> newAnimation;
   //   switch (lastDirection) {
   //     case Direction.left:

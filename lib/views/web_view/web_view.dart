@@ -20,17 +20,17 @@ class WebViewPage extends StatefulWidget {
 }
 
 class _WebViewPageState extends State<WebViewPage> {
-  late WebViewController _pageWebViewController;
-  String _pageTitle = '';
-  bool _canGoBack = false;
-  bool _canGoForward = false;
+  late WebViewController pageWebViewController;
+  String pageTitle = '';
+  bool canGoBack = false;
+  bool canGoForward = false;
 
   @override
   void initState() {
     super.initState();
 
-    final String url = ValueConvert(widget.url).decode();
-    _pageWebViewController =
+    final url = ValueBase64(widget.url).decode();
+    pageWebViewController =
         WebViewController()
           ..setJavaScriptMode(JavaScriptMode.unrestricted)
           ..setNavigationDelegate(
@@ -38,16 +38,16 @@ class _WebViewPageState extends State<WebViewPage> {
               onProgress: (int progress) {
                 print('加载中：$progress');
                 if (!mounted) return;
+                final appL10n = AppL10n.of(context);
                 setState(() {
-                  _pageTitle =
-                      '${S.of(context).web_view_loading_text} ${progress - 1}%';
+                  pageTitle = '${appL10n.web_view_loading_text} ${progress - 1}%';
                 });
               },
               onPageStarted: (String url) {
                 print('开始加载：$url');
                 if (!mounted) return;
                 setState(() {
-                  _pageTitle = url;
+                  pageTitle = url;
                 });
               },
               onPageFinished: (String url) {
@@ -65,29 +65,23 @@ class _WebViewPageState extends State<WebViewPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         forceMaterialTransparency: true,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        foregroundColor: Theme.of(context).textTheme.displayLarge!.color,
+        backgroundColor: theme.scaffoldBackgroundColor,
+        foregroundColor: theme.textTheme.displayLarge!.color,
         shadowColor: Colors.transparent,
-        titleTextStyle: TextStyle(
-          color: Theme.of(context).textTheme.bodyMedium!.color,
-          fontSize: 14,
-        ),
-        title: Text(_pageTitle),
+        titleTextStyle: TextStyle(color: theme.textTheme.bodyMedium!.color, fontSize: 14),
+        title: Text(pageTitle),
         leading: ActionButton(
           key: const Key('widget_web_view_close'),
           semanticsLabel: '返回',
           decoration: BoxDecoration(
-            color:
-                isDarkMode(context)
-                    ? Theme.of(context).cardColor
-                    : AppTheme.backgroundColor1,
-            borderRadius: const BorderRadius.only(
-              bottomRight: Radius.circular(18),
-            ),
+            color: isDarkMode(context) ? theme.cardColor : AppTheme.backgroundColor1,
+            borderRadius: const BorderRadius.only(bottomRight: Radius.circular(18)),
           ),
           child: const Icon(Remix.close_fill, size: 24),
           onTap: () {
@@ -99,7 +93,7 @@ class _WebViewPageState extends State<WebViewPage> {
             child: IconButton(
               tooltip: '刷新',
               onPressed: () async {
-                await _pageWebViewController.reload();
+                await pageWebViewController.reload();
               },
               icon: const Icon(Remix.refresh_line),
             ),
@@ -108,24 +102,21 @@ class _WebViewPageState extends State<WebViewPage> {
       ),
       bottomNavigationBar: Builder(
         builder: (_) {
-          return _canGoBack || _canGoForward
+          return canGoBack || canGoForward
               ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Builder(
                     builder: (_) {
-                      return _canGoBack
+                      return canGoBack
                           ? Expanded(
                             child: IconButton(
                               onPressed: () async {
-                                await _pageWebViewController.goBack();
+                                await pageWebViewController.goBack();
                               },
                               icon: Icon(
                                 Remix.arrow_left_s_line,
-                                color:
-                                    Theme.of(
-                                      context,
-                                    ).textTheme.bodyMedium!.color,
+                                color: theme.textTheme.bodyMedium!.color,
                               ),
                             ),
                           )
@@ -134,18 +125,15 @@ class _WebViewPageState extends State<WebViewPage> {
                   ),
                   Builder(
                     builder: (_) {
-                      return _canGoForward
+                      return canGoForward
                           ? Expanded(
                             child: IconButton(
                               onPressed: () async {
-                                await _pageWebViewController.goForward();
+                                await pageWebViewController.goForward();
                               },
                               icon: Icon(
                                 Remix.arrow_right_s_line,
-                                color:
-                                    Theme.of(
-                                      context,
-                                    ).textTheme.bodyMedium!.color,
+                                color: theme.textTheme.bodyMedium!.color,
                               ),
                             ),
                           )
@@ -157,19 +145,19 @@ class _WebViewPageState extends State<WebViewPage> {
               : const SizedBox();
         },
       ),
-      body: WebViewWidget(controller: _pageWebViewController),
+      body: WebViewWidget(controller: pageWebViewController),
     );
   }
 
   /// 网页初始化
   Future<void> webViewInit() async {
-    final String pageTitle = await _pageWebViewController.getTitle() ?? '';
-    final bool pageCanGoBack = await _pageWebViewController.canGoBack();
-    final bool pageCanGoForward = await _pageWebViewController.canGoForward();
+    final pageTitleName = await pageWebViewController.getTitle() ?? '';
+    final pageCanGoBack = await pageWebViewController.canGoBack();
+    final pageCanGoForward = await pageWebViewController.canGoForward();
     setState(() {
-      _pageTitle = pageTitle;
-      _canGoBack = pageCanGoBack;
-      _canGoForward = pageCanGoForward;
+      pageTitle = pageTitleName;
+      canGoBack = pageCanGoBack;
+      canGoForward = pageCanGoForward;
     });
   }
 }

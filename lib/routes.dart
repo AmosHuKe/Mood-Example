@@ -80,35 +80,39 @@ class Routes {
   /// Key
 
   /// 根路由
-  static final GlobalKey<NavigatorState> _rootNavigatorKey =
-      GlobalKey<NavigatorState>(debugLabel: 'root');
+  static final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>(
+    debugLabel: 'root',
+  );
 
   /// 子路由-主屏幕
-  // static final GlobalKey<NavigatorState> _shellHomeScreenNavigatorKey =
+  // static final GlobalKey<NavigatorState> shellHomeScreenNavigatorKey =
   //     GlobalKey<NavigatorState>(debugLabel: 'shellHomeScreen');
 
   /// 子路由-主屏幕-主页
-  static final GlobalKey<NavigatorState> _shellHomeNavigatorKey =
-      GlobalKey<NavigatorState>(debugLabel: 'shellHome');
+  static final GlobalKey<NavigatorState> shellHomeNavigatorKey = GlobalKey<NavigatorState>(
+    debugLabel: 'shellHome',
+  );
 
   /// 子路由-主屏幕-心情详情列表页
-  static final GlobalKey<NavigatorState> _shellMoodNavigatorKey =
-      GlobalKey<NavigatorState>(debugLabel: 'shellMood');
+  static final GlobalKey<NavigatorState> shellMoodNavigatorKey = GlobalKey<NavigatorState>(
+    debugLabel: 'shellMood',
+  );
 
   /// 子路由-主屏幕-统计页
-  static final GlobalKey<NavigatorState> _shellStatisticNavigatorKey =
-      GlobalKey<NavigatorState>(debugLabel: 'shellStatistic');
+  static final GlobalKey<NavigatorState> shellStatisticNavigatorKey = GlobalKey<NavigatorState>(
+    debugLabel: 'shellStatistic',
+  );
 
   /// 路由配置
   static final config = GoRouter(
     debugLogDiagnostics: true,
-    navigatorKey: _rootNavigatorKey,
+    navigatorKey: rootNavigatorKey,
     observers: [FlutterSmartDialog.observer],
     initialLocation: '/$home',
     routes: [
       /// 主屏幕（有状态嵌套路由）
       StatefulShellRoute.indexedStack(
-        parentNavigatorKey: _rootNavigatorKey,
+        parentNavigatorKey: rootNavigatorKey,
         builder: (
           BuildContext context,
           GoRouterState state,
@@ -116,44 +120,33 @@ class Routes {
         ) {
           /// 主屏幕
           return Init(
-            child: MenuPage(
-              key: const Key('widget_menu_page'),
-              navigationShell: navigationShell,
-            ),
+            child: MenuPage(key: const Key('widget_menu_page'), navigationShell: navigationShell),
           );
         },
         branches: [
           /// 主页
           StatefulShellBranch(
-            navigatorKey: _shellHomeNavigatorKey,
+            navigatorKey: shellHomeNavigatorKey,
             initialLocation: '/$home',
             routes: [
               /// 主页
-              GoRoute(
-                path: '/$home',
-                name: home,
-                builder: (context, state) => const HomePage(),
-              ),
+              GoRoute(path: '/$home', name: home, builder: (context, state) => const HomePage()),
             ],
           ),
 
           /// 心情详情列表页
           StatefulShellBranch(
-            navigatorKey: _shellMoodNavigatorKey,
+            navigatorKey: shellMoodNavigatorKey,
             initialLocation: '/$mood',
             routes: [
               /// 心情详情列表页
-              GoRoute(
-                path: '/$mood',
-                name: mood,
-                builder: (context, state) => const MoodPage(),
-              ),
+              GoRoute(path: '/$mood', name: mood, builder: (context, state) => const MoodPage()),
             ],
           ),
 
           /// 统计页
           StatefulShellBranch(
-            navigatorKey: _shellStatisticNavigatorKey,
+            navigatorKey: shellStatisticNavigatorKey,
             initialLocation: '/$statistic',
             routes: [
               /// 统计页
@@ -171,16 +164,11 @@ class Routes {
       GoRoute(
         path: '/$onboarding',
         name: onboarding,
-        parentNavigatorKey: _rootNavigatorKey,
+        parentNavigatorKey: rootNavigatorKey,
         pageBuilder:
             (_, state) => CustomTransitionPage(
               child: const Onboarding(),
-              transitionsBuilder: (
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              ) {
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 return CupertinoPageTransition(
                   primaryRouteAnimation: animation,
                   secondaryRouteAnimation: secondaryAnimation,
@@ -195,18 +183,11 @@ class Routes {
       GoRoute(
         path: '/$moodCategorySelect/:type',
         name: moodCategorySelect,
-        parentNavigatorKey: _rootNavigatorKey,
+        parentNavigatorKey: rootNavigatorKey,
         pageBuilder:
             (_, state) => CustomTransitionPage(
-              child: MoodCategorySelect(
-                type: state.pathParameters['type'] ?? '',
-              ),
-              transitionsBuilder: (
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              ) {
+              child: MoodCategorySelect(type: state.pathParameters['type'] ?? ''),
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 return CupertinoPageTransition(
                   primaryRouteAnimation: animation,
                   secondaryRouteAnimation: secondaryAnimation,
@@ -221,20 +202,13 @@ class Routes {
       GoRoute(
         path: '/$moodContent/:moodData',
         name: moodContent,
-        parentNavigatorKey: _rootNavigatorKey,
+        parentNavigatorKey: rootNavigatorKey,
         pageBuilder: (_, state) {
-          final MoodData moodData = moodDataFromJson(
-            state.pathParameters['moodData'] ?? '',
-          );
+          final moodData = moodDataFromJson(state.pathParameters['moodData'] ?? '');
 
           return CustomTransitionPage(
             child: MoodContent(moodData: moodData),
-            transitionsBuilder: (
-              context,
-              animation,
-              secondaryAnimation,
-              child,
-            ) {
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
               return CupertinoPageTransition(
                 primaryRouteAnimation: animation,
                 secondaryRouteAnimation: secondaryAnimation,
@@ -250,16 +224,11 @@ class Routes {
       GoRoute(
         path: '/$settingLaboratory',
         name: settingLaboratory,
-        parentNavigatorKey: _rootNavigatorKey,
+        parentNavigatorKey: rootNavigatorKey,
         pageBuilder:
             (_, state) => CustomTransitionPage(
               child: const LaboratoryPage(),
-              transitionsBuilder: (
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              ) {
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 return CupertinoPageTransition(
                   primaryRouteAnimation: animation,
                   secondaryRouteAnimation: secondaryAnimation,
@@ -274,16 +243,11 @@ class Routes {
       GoRoute(
         path: '/$laboratoryUniMPMiniapps',
         name: laboratoryUniMPMiniapps,
-        parentNavigatorKey: _rootNavigatorKey,
+        parentNavigatorKey: rootNavigatorKey,
         pageBuilder:
             (_, state) => CustomTransitionPage(
               child: const UniMPMiniappsPage(),
-              transitionsBuilder: (
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              ) {
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 return CupertinoPageTransition(
                   primaryRouteAnimation: animation,
                   secondaryRouteAnimation: secondaryAnimation,
@@ -298,16 +262,11 @@ class Routes {
       GoRoute(
         path: '/$laboratoryPage3D',
         name: laboratoryPage3D,
-        parentNavigatorKey: _rootNavigatorKey,
+        parentNavigatorKey: rootNavigatorKey,
         pageBuilder:
             (_, state) => CustomTransitionPage(
               child: const Page3D(),
-              transitionsBuilder: (
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              ) {
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 return CupertinoPageTransition(
                   primaryRouteAnimation: animation,
                   secondaryRouteAnimation: secondaryAnimation,
@@ -322,16 +281,11 @@ class Routes {
       GoRoute(
         path: '/$laboratoryGame',
         name: laboratoryGame,
-        parentNavigatorKey: _rootNavigatorKey,
+        parentNavigatorKey: rootNavigatorKey,
         pageBuilder:
             (_, state) => CustomTransitionPage(
               child: const GamePage(),
-              transitionsBuilder: (
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              ) {
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 return CupertinoPageTransition(
                   primaryRouteAnimation: animation,
                   secondaryRouteAnimation: secondaryAnimation,
@@ -348,12 +302,7 @@ class Routes {
             pageBuilder:
                 (_, state) => CustomTransitionPage(
                   child: const MiniFantasyPage(),
-                  transitionsBuilder: (
-                    context,
-                    animation,
-                    secondaryAnimation,
-                    child,
-                  ) {
+                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
                     return CupertinoPageTransition(
                       primaryRouteAnimation: animation,
                       secondaryRouteAnimation: secondaryAnimation,
@@ -379,12 +328,7 @@ class Routes {
                     },
                     child: const MiniGamePage(),
                   ),
-                  transitionsBuilder: (
-                    context,
-                    animation,
-                    secondaryAnimation,
-                    child,
-                  ) {
+                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
                     return CupertinoPageTransition(
                       primaryRouteAnimation: animation,
                       secondaryRouteAnimation: secondaryAnimation,
@@ -401,16 +345,11 @@ class Routes {
       GoRoute(
         path: '/$laboratoryFFI',
         name: laboratoryFFI,
-        parentNavigatorKey: _rootNavigatorKey,
+        parentNavigatorKey: rootNavigatorKey,
         pageBuilder:
             (_, state) => CustomTransitionPage(
               child: const FFIPage(),
-              transitionsBuilder: (
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              ) {
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 return CupertinoPageTransition(
                   primaryRouteAnimation: animation,
                   secondaryRouteAnimation: secondaryAnimation,
@@ -425,16 +364,11 @@ class Routes {
       GoRoute(
         path: '/$webViewPage/:url',
         name: webViewPage,
-        parentNavigatorKey: _rootNavigatorKey,
+        parentNavigatorKey: rootNavigatorKey,
         pageBuilder:
             (_, state) => CustomTransitionPage(
               child: WebViewPage(url: state.pathParameters['url'] ?? ''),
-              transitionsBuilder: (
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              ) {
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 return CupertinoPageTransition(
                   primaryRouteAnimation: animation,
                   secondaryRouteAnimation: secondaryAnimation,

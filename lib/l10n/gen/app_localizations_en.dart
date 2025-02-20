@@ -5,8 +5,8 @@ import 'app_localizations.dart';
 // ignore_for_file: type=lint
 
 /// The translations for English (`en`).
-class SEn extends S {
-  SEn([String locale = 'en']) : super(locale);
+class AppL10nEn extends AppL10n {
+  AppL10nEn([String locale = 'en']) : super(locale);
 
   @override
   String get app_bottomNavigationBar_title_home => 'Home';
@@ -24,8 +24,7 @@ class SEn extends S {
   String get app_setting_database_export_data => 'Export data';
 
   @override
-  String get app_setting_database_export_data_toast_success =>
-      'Export succeeded';
+  String get app_setting_database_export_data_toast_success => 'Export succeeded';
 
   @override
   String get app_setting_database_import_data => 'Import data';
@@ -41,15 +40,13 @@ class SEn extends S {
       'Import failed. Please download the wrong data, modify it and try again.';
 
   @override
-  String get app_setting_database_import_data_toast_success =>
-      'Import succeeded';
+  String get app_setting_database_import_data_toast_success => 'Import succeeded';
 
   @override
   String get app_setting_security => 'Security';
 
   @override
-  String get app_setting_security_content =>
-      'You need to unlock the app when you reopen it.';
+  String get app_setting_security_content => 'You need to unlock the app when you reopen it.';
 
   @override
   String get app_setting_security_lock => 'Security lock';
@@ -79,19 +76,16 @@ class SEn extends S {
   String get app_setting_security_lock_resetinput => 'Reset input';
 
   @override
-  String get app_setting_security_lock_error_1 =>
-      'The two passwords are inconsistent';
+  String get app_setting_security_lock_error_1 => 'The two passwords are inconsistent';
 
   @override
   String get app_setting_security_lock_screen_title => 'Security lock';
 
   @override
-  String get app_setting_security_localauth_localizedreason =>
-      'Please identify';
+  String get app_setting_security_localauth_localizedreason => 'Please identify';
 
   @override
-  String get app_setting_security_localauth_signIntitle =>
-      'Authentication required';
+  String get app_setting_security_localauth_signIntitle => 'Authentication required';
 
   @override
   String get app_setting_security_localauth_cancel => 'Cancel';
@@ -137,8 +131,7 @@ class SEn extends S {
   String get onboarding_content_1_1 => 'Release all your feelings';
 
   @override
-  String get onboarding_content_1_2 =>
-      'Easily record what you see and think every moment';
+  String get onboarding_content_1_2 => 'Easily record what you see and think every moment';
 
   @override
   String get onboarding_title_2 => 'Careful statistics';
@@ -153,8 +146,7 @@ class SEn extends S {
   String get onboarding_title_3 => 'Start now';
 
   @override
-  String get onboarding_content_3_1 =>
-      'Start recording a better version of yourself now';
+  String get onboarding_content_3_1 => 'Start recording a better version of yourself now';
 
   @override
   String get home_hi => 'Hi~';
@@ -185,8 +177,7 @@ class SEn extends S {
   String get home_help_article_title_2 => 'Emotion management';
 
   @override
-  String get home_help_article_content_2 =>
-      'How to better manage your emotions...';
+  String get home_help_article_content_2 => 'How to better manage your emotions...';
 
   @override
   String get mood_title => 'Mood';
@@ -225,8 +216,7 @@ class SEn extends S {
   String get mood_content_close_button_title => 'Confirm closing?';
 
   @override
-  String get mood_content_close_button_content =>
-      'The content will not be saved';
+  String get mood_content_close_button_content => 'The content will not be saved';
 
   @override
   String get mood_content_close_button_cancel => 'Cancel';
@@ -268,8 +258,7 @@ class SEn extends S {
   }
 
   @override
-  String get statistic_overall_moodScoreAverage_subTitle =>
-      'Average\ntotal score';
+  String get statistic_overall_moodScoreAverage_subTitle => 'Average\ntotal score';
 
   @override
   String statistic_moodScoreAverage_title(Object moodScoreAverage) {
@@ -323,8 +312,7 @@ class SEn extends S {
   String get local_notification_dialog_allow_confirm => 'Settings';
 
   @override
-  String get local_notification_schedule_title =>
-      '📅 Scheduling a Notification';
+  String get local_notification_schedule_title => '📅 Scheduling a Notification';
 
   @override
   String get local_notification_schedule_body => 'Every 1 minute';

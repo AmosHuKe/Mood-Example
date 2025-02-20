@@ -73,9 +73,7 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
 
     return ListView(
       padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 20),
-      physics: const AlwaysScrollableScrollPhysics(
-        parent: BouncingScrollPhysics(),
-      ),
+      physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       children: [
         /// 版本
         const Padding(
@@ -92,11 +90,7 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
 
         /// 小程序
         ListCard(
-          leading: const Icon(
-            Remix.mini_program_fill,
-            size: 32,
-            color: Colors.black87,
-          ),
+          leading: const Icon(Remix.mini_program_fill, size: 32, color: Colors.black87),
           title: 'uView2.0',
           subtitle: 'uView UI，是 uni-app 生态优秀的 UI 框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水',
           onPressed: () async {
@@ -104,11 +98,7 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
           },
         ),
         ListCard(
-          leading: const Icon(
-            Remix.mini_program_fill,
-            size: 32,
-            color: Colors.black87,
-          ),
+          leading: const Icon(Remix.mini_program_fill, size: 32, color: Colors.black87),
           title: 'hello-uniapp',
           subtitle: '演示 uni-app 框架的组件、接口、模板等',
           onPressed: () async {
@@ -151,11 +141,7 @@ class ListCard extends StatelessWidget {
         padding: const EdgeInsets.all(14),
         child: Column(
           children: [
-            ListTile(
-              leading: leading,
-              title: Text(title),
-              subtitle: Text(subtitle),
-            ),
+            ListTile(leading: leading, title: Text(title), subtitle: Text(subtitle)),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

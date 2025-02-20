@@ -13,8 +13,7 @@ import 'package:moodexample/common/utils_intl.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 
-import 'package:moodexample/views/mood/mood_category_select.dart'
-    show MoodCategorySelectType;
+import 'package:moodexample/views/mood/mood_category_select.dart' show MoodCategorySelectType;
 
 import 'package:moodexample/models/mood/mood_model.dart';
 import 'package:moodexample/models/mood/mood_category_model.dart';
@@ -46,12 +45,14 @@ class _MoodContentState extends State<MoodContent> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         forceMaterialTransparency: true,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        foregroundColor: Theme.of(context).textTheme.displayLarge!.color,
+        backgroundColor: theme.scaffoldBackgroundColor,
+        foregroundColor: theme.textTheme.displayLarge!.color,
         shadowColor: Colors.transparent,
         centerTitle: true,
         title: Text(
@@ -62,13 +63,8 @@ class _MoodContentState extends State<MoodContent> {
           key: const Key('widget_action_button_close'),
           semanticsLabel: '关闭',
           decoration: BoxDecoration(
-            color:
-                isDarkMode(context)
-                    ? Theme.of(context).cardColor
-                    : AppTheme.backgroundColor1,
-            borderRadius: const BorderRadius.only(
-              bottomRight: Radius.circular(18),
-            ),
+            color: isDarkMode(context) ? theme.cardColor : AppTheme.backgroundColor1,
+            borderRadius: const BorderRadius.only(bottomRight: Radius.circular(18)),
           ),
           child: const Icon(Remix.close_fill, size: 24),
           onTap: () {
@@ -80,37 +76,29 @@ class _MoodContentState extends State<MoodContent> {
             key: const Key('widget_mood_actions_button'),
             semanticsLabel: '确认记录',
             decoration: BoxDecoration(
-              color:
-                  isDarkMode(context)
-                      ? Theme.of(context).cardColor
-                      : const Color(0xFFD6F2E2),
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(18),
-              ),
+              color: isDarkMode(context) ? theme.cardColor : const Color(0xFFD6F2E2),
+              borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(18)),
             ),
             child: Icon(
               Remix.check_fill,
               size: 24,
               color:
                   isDarkMode(context)
-                      ? Theme.of(context).textTheme.displayLarge!.color
+                      ? theme.textTheme.displayLarge!.color
                       : const Color(0xFF587966),
             ),
             onTap: () async {
               FocusScope.of(context).unfocus();
-              final MoodProvider moodProvider = context.read<MoodProvider>();
+              final moodProvider = context.read<MoodProvider>();
 
               /// 是否操作成功
-              late bool result = false;
+              var result = false;
 
               /// 存在ID的操作（代表修改）
               if (_moodData.mood_id != null) {
                 /// 修改心情数据
                 /// 赋值修改时间
-                _moodData.update_time = DateTime.now().toString().substring(
-                  0,
-                  10,
-                );
+                _moodData.update_time = DateTime.now().toString().substring(0, 10);
                 result = await moodProvider.editMoodData(_moodData);
               } else {
                 /// 创建心情数据
@@ -147,6 +135,7 @@ class _MoodContentState extends State<MoodContent> {
 
   /// 关闭返回
   Function? onClose(BuildContext context) {
+    final appL10n = AppL10n.of(context);
     FocusScope.of(context).unfocus();
     showCupertinoDialog<void>(
       context: context,
@@ -154,17 +143,17 @@ class _MoodContentState extends State<MoodContent> {
           (BuildContext context) => Theme(
             data: isDarkMode(context) ? ThemeData.dark() : ThemeData.light(),
             child: CupertinoAlertDialog(
-              title: Text(S.of(context).mood_content_close_button_title),
-              content: Text(S.of(context).mood_content_close_button_content),
+              title: Text(appL10n.mood_content_close_button_title),
+              content: Text(appL10n.mood_content_close_button_content),
               actions: <CupertinoDialogAction>[
                 CupertinoDialogAction(
-                  child: Text(S.of(context).mood_content_close_button_cancel),
+                  child: Text(appL10n.mood_content_close_button_cancel),
                   onPressed: () {
                     context.pop();
                   },
                 ),
                 CupertinoDialogAction(
-                  child: Text(S.of(context).mood_content_close_button_confirm),
+                  child: Text(appL10n.mood_content_close_button_confirm),
                   onPressed: () {
                     context.pop();
                     context.pop();
@@ -189,9 +178,7 @@ class _MoodContentBodyState extends State<MoodContentBody> {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      physics: const AlwaysScrollableScrollPhysics(
-        parent: BouncingScrollPhysics(),
-      ),
+      physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 24, left: 24, right: 24),
@@ -206,10 +193,7 @@ class _MoodContentBodyState extends State<MoodContentBody> {
                       button: true,
                       label: '当前选择心情：${_moodData.title}，再次选择换一种心情',
                       excludeSemantics: true,
-                      child: MoodChoiceCard(
-                        icon: _moodData.icon,
-                        title: _moodData.title,
-                      ),
+                      child: MoodChoiceCard(icon: _moodData.icon, title: _moodData.title),
                     );
                   },
                 ),
@@ -218,14 +202,11 @@ class _MoodContentBodyState extends State<MoodContentBody> {
                   GoRouter.of(context)
                       .pushNamed(
                         Routes.moodCategorySelect,
-                        pathParameters: {
-                          'type': MoodCategorySelectType.edit.type,
-                        },
+                        pathParameters: {'type': MoodCategorySelectType.edit.type},
                       )
                       .then((result) {
                         if (result == null) return;
-                        final MoodCategoryData moodCategoryData =
-                            moodCategoryDataFromJson(result.toString());
+                        final moodCategoryData = moodCategoryDataFromJson(result.toString());
                         setState(() {
                           _moodData.icon = moodCategoryData.icon;
                           _moodData.title = moodCategoryData.title;
@@ -277,10 +258,9 @@ class MoodChoiceCard extends StatelessWidget {
             ),
             Text(
               title ?? '',
-              style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.displayLarge!.copyWith(fontSize: 16, fontWeight: FontWeight.w400),
             ),
           ],
         ),
@@ -299,18 +279,18 @@ class AddContent extends StatefulWidget {
 
 class _AddContentState extends State<AddContent> {
   /// 内容表单
-  final GlobalKey<FormState> _formContentKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formContentKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final appL10n = AppL10n.of(context);
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-      decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
-        borderRadius: BorderRadius.circular(32),
-      ),
+      decoration: BoxDecoration(color: theme.cardColor, borderRadius: BorderRadius.circular(32)),
       child: Form(
-        key: _formContentKey,
+        key: formContentKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -322,31 +302,17 @@ class _AddContentState extends State<AddContent> {
               keyboardType: TextInputType.multiline,
               maxLines: 10,
               maxLength: 5000,
-              scrollPhysics: const AlwaysScrollableScrollPhysics(
-                parent: BouncingScrollPhysics(),
-              ),
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium!.copyWith(fontSize: 14),
+              scrollPhysics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+              style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
               decoration: InputDecoration(
-                hintText: S.of(context).mood_content_hintText,
-                hintStyle: Theme.of(
-                  context,
-                ).textTheme.bodyMedium!.copyWith(fontSize: 14),
+                hintText: appL10n.mood_content_hintText,
+                hintStyle: theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
                 border: InputBorder.none,
                 filled: true,
-                fillColor: Theme.of(context).cardColor,
+                fillColor: theme.cardColor,
               ),
-              buildCounter: (
-                context, {
-                required currentLength,
-                required isFocused,
-                maxLength,
-              }) {
-                return Text(
-                  '$currentLength/$maxLength',
-                  style: const TextStyle(fontSize: 12),
-                );
+              buildCounter: (context, {required currentLength, required isFocused, maxLength}) {
+                return Text('$currentLength/$maxLength', style: const TextStyle(fontSize: 12));
               },
               onChanged: (value) {
                 _moodData.content = value;
@@ -369,19 +335,19 @@ class MoodScore extends StatefulWidget {
 
 class _MoodScoreState extends State<MoodScore> {
   /// 心情分数
-  double moodScore =
-      _moodData.score != null ? double.parse(_moodData.score.toString()) : 50;
+  double moodScore = _moodData.score != null ? double.parse(_moodData.score.toString()) : 50;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final themePrimaryColor = theme.primaryColor;
+    final appL10n = AppL10n.of(context);
+
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 12, left: 24, right: 24),
-          child: Text(
-            S.of(context).mood_data_score_title,
-            style: const TextStyle(fontSize: 16),
-          ),
+          child: Text(appL10n.mood_data_score_title, style: const TextStyle(fontSize: 16)),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 12, left: 24, right: 24),
@@ -395,8 +361,8 @@ class _MoodScoreState extends State<MoodScore> {
           label: '心情程度调整',
           min: 0.0,
           max: 100.0,
-          activeColor: Theme.of(context).primaryColor,
-          thumbColor: Theme.of(context).primaryColor,
+          activeColor: themePrimaryColor,
+          thumbColor: themePrimaryColor,
           semanticFormatterCallback: (value) => '当前心情程度：${value ~/ 1}',
           onChanged: (value) {
             setState(() {

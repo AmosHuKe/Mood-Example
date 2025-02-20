@@ -14,6 +14,9 @@ class LaboratoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final themePrimaryColor = theme.primaryColor;
+
     return Theme(
       data: ThemeData(useMaterial3: false),
       child: Scaffold(
@@ -24,23 +27,16 @@ class LaboratoryPage extends StatelessWidget {
           width: 48,
           height: 48,
           decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
+            color: themePrimaryColor,
             borderRadius: BorderRadius.circular(18),
           ),
-          child: const Icon(
-            Remix.arrow_left_line,
-            size: 18,
-            color: Colors.white,
-          ),
+          child: const Icon(Remix.arrow_left_line, size: 18, color: Colors.white),
           onTap: () {
             context.pop();
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-        body: const SafeArea(
-          key: Key('widget_laboratory_page'),
-          child: LaboratoryBody(),
-        ),
+        body: const SafeArea(key: Key('widget_laboratory_page'), child: LaboratoryBody()),
       ),
     );
   }
@@ -51,11 +47,11 @@ class LaboratoryBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appL10n = AppL10n.of(context);
+
     return ListView(
       padding: const EdgeInsets.only(left: 14, right: 14, top: 24, bottom: 20),
-      physics: const AlwaysScrollableScrollPhysics(
-        parent: BouncingScrollPhysics(),
-      ),
+      physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       children: [
         /// 标题
         Container(
@@ -64,7 +60,7 @@ class LaboratoryBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                S.of(context).app_setting_laboratory,
+                appL10n.app_setting_laboratory,
                 style: const TextStyle(
                   color: Colors.black87,
                   fontSize: 36,
@@ -76,11 +72,7 @@ class LaboratoryBody extends StatelessWidget {
           ),
         ),
         ListCard(
-          leading: const Icon(
-            Remix.mini_program_line,
-            size: 32,
-            color: Colors.black87,
-          ),
+          leading: const Icon(Remix.mini_program_line, size: 32, color: Colors.black87),
           title: 'uniapp 小程序',
           subtitle: '集成 UniMPSDK 可在 APP 内打开 uniapp 小程序。',
           onPressed: () {
@@ -88,11 +80,7 @@ class LaboratoryBody extends StatelessWidget {
           },
         ),
         ListCard(
-          leading: const Icon(
-            Remix.building_2_line,
-            size: 32,
-            color: Colors.black87,
-          ),
+          leading: const Icon(Remix.building_2_line, size: 32, color: Colors.black87),
           title: '3D 城市',
           subtitle: '3D 来源 https://github.com/pissang/little-big-city',
           onPressed: () {
@@ -100,11 +88,7 @@ class LaboratoryBody extends StatelessWidget {
           },
         ),
         ListCard(
-          leading: const Icon(
-            Remix.gamepad_line,
-            size: 32,
-            color: Colors.black87,
-          ),
+          leading: const Icon(Remix.gamepad_line, size: 32, color: Colors.black87),
           title: '游戏合集',
           subtitle: '基于 Flame、Bonfire 的 2D 游戏。',
           onPressed: () {
@@ -112,11 +96,7 @@ class LaboratoryBody extends StatelessWidget {
           },
         ),
         ListCard(
-          leading: const Icon(
-            Remix.align_vertically,
-            size: 32,
-            color: Colors.black87,
-          ),
+          leading: const Icon(Remix.align_vertically, size: 32, color: Colors.black87),
           title: 'FFI 异步调用 C/C++',
           subtitle: '通过 FFI 异步调用 C/C++ 并监听',
           onPressed: () {
@@ -124,11 +104,7 @@ class LaboratoryBody extends StatelessWidget {
           },
         ),
         const ListCard(
-          leading: Icon(
-            Remix.account_box_line,
-            size: 32,
-            color: Colors.black87,
-          ),
+          leading: Icon(Remix.account_box_line, size: 32, color: Colors.black87),
           title: '...',
           subtitle: '......',
         ),
@@ -165,18 +141,12 @@ class ListCard extends StatelessWidget {
       child: Card(
         margin: const EdgeInsets.symmetric(vertical: 12),
         shadowColor: Colors.black38,
-        shape: ContinuousRectangleBorder(
-          borderRadius: BorderRadius.circular(48),
-        ),
+        shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(48)),
         child: Padding(
           padding: const EdgeInsets.all(14),
           child: Column(
             children: [
-              ListTile(
-                leading: leading,
-                title: Text(title),
-                subtitle: Text(subtitle),
-              ),
+              ListTile(leading: leading, title: Text(title), subtitle: Text(subtitle)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [

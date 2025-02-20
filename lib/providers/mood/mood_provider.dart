@@ -38,7 +38,7 @@ class MoodProvider extends ChangeNotifier {
 
   /// 设置心情类别默认值
   Future<bool> _setMoodCategoryDefault() async {
-    final bool initMoodCategoryDefaultType =
+    final initMoodCategoryDefaultType =
         await PreferencesDB.instance.getInitMoodCategoryDefaultType();
     print('心情类别默认值初始化:$initMoodCategoryDefaultType');
     if (!initMoodCategoryDefaultType) {
@@ -54,7 +54,7 @@ class MoodProvider extends ChangeNotifier {
   /// 获取所有心情类别数据列表
   Future<void> loadMoodCategoryAllList() async {
     /// 设置心情类别默认值
-    final bool setMoodCategoryDefaultresult = await _setMoodCategoryDefault();
+    final setMoodCategoryDefaultresult = await _setMoodCategoryDefault();
     if (setMoodCategoryDefaultresult) {
       /// 获取所有心情类别
       moodCategoryList = await MoodService.getMoodCategoryAll();
@@ -65,9 +65,7 @@ class MoodProvider extends ChangeNotifier {
   Future<void> loadMoodDataList() async {
     _moodDataLoading = true;
     notifyListeners();
-    moodDataList = await MoodService.getMoodData(
-      _nowDateTime.toString().substring(0, 10),
-    );
+    moodDataList = await MoodService.getMoodData(_nowDateTime.toString().substring(0, 10));
   }
 
   /// 所有心情详细数据列表

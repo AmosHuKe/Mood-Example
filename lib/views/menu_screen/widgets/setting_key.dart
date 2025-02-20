@@ -18,6 +18,8 @@ class SettingKey extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appL10n = AppL10n.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -25,14 +27,14 @@ class SettingKey extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 6, top: 6, bottom: 2),
           child: Text(
-            S.of(context).app_setting_security,
+            appL10n.app_setting_security,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 6, top: 6, bottom: 14),
           child: Text(
-            S.of(context).app_setting_security_content,
+            appL10n.app_setting_security_content,
             style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
           ),
         ),
@@ -53,18 +55,17 @@ class KeyBody extends StatefulWidget {
 }
 
 class _KeyBodyState extends State<KeyBody> {
-  final double _titleIconSize = 18;
+  static const double titleIconSize = 18;
   List<BiometricType> localAuthList = [];
   IconData? localAuthIcon;
   String localAuthText = '';
 
   Future<void> init(BuildContext context) async {
-    final ApplicationProvider applicationProvider =
-        context.read<ApplicationProvider>();
+    final applicationProvider = context.read<ApplicationProvider>();
     final localAuthUtils = await LocalAuthUtils();
     localAuthList = await localAuthUtils.localAuthList();
-    localAuthIcon = localAuthUtils.localAuthIcon(localAuthList);
-    localAuthText = localAuthUtils.localAuthText(context, localAuthList);
+    localAuthIcon = LocalAuthUtils.localAuthIcon(localAuthList);
+    localAuthText = LocalAuthUtils.localAuthText(context, localAuthList);
 
     /// 获取-安全-生物特征识别是否开启
     applicationProvider.loadKeyBiometric();
@@ -78,25 +79,28 @@ class _KeyBodyState extends State<KeyBody> {
 
   @override
   Widget build(BuildContext context) {
+    final appL10n = AppL10n.of(context);
+    final localAuthUtils = LocalAuthUtils();
+
     return Consumer<ApplicationProvider>(
       builder: (_, applicationProvider, child) {
-        final String keyPassword = applicationProvider.keyPassword;
-        final bool keyBiometric = applicationProvider.keyBiometric;
+        final keyPassword = applicationProvider.keyPassword;
+        final keyBiometric = applicationProvider.keyBiometric;
 
         Widget biometricsAuth = const SizedBox();
         if (keyPassword != '' && localAuthText != '') {
           biometricsAuth = ListTile(
             leading: Icon(
               localAuthIcon,
-              size: _titleIconSize,
-              color:
-                  isDarkMode(context) ? Colors.white : const Color(0xFF202427),
+              size: titleIconSize,
+              color: isDarkMode(context) ? Colors.white : const Color(0xFF202427),
             ),
             title: Text(
               localAuthText,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 fontSize: 14,
                 fontWeight: FontWeight.normal,
+                height: 1.0,
               ),
             ),
             trailing: Semantics(
@@ -107,7 +111,7 @@ class _KeyBodyState extends State<KeyBody> {
                 onChanged: (value) async {
                   applicationProvider.keyPasswordScreenOpen = false;
                   if (value) {
-                    if (await LocalAuthUtils().localAuthBiometric(context)) {
+                    if (await localAuthUtils.localAuthBiometric(context)) {
                       applicationProvider.keyBiometric = value;
                     }
                   } else {
@@ -125,21 +129,19 @@ class _KeyBodyState extends State<KeyBody> {
             ListTile(
               leading: Icon(
                 Remix.lock_line,
-                size: _titleIconSize,
-                color:
-                    isDarkMode(context)
-                        ? Colors.white
-                        : const Color(0xFF202427),
+                size: titleIconSize,
+                color: isDarkMode(context) ? Colors.white : const Color(0xFF202427),
               ),
               title: Text(
-                S.of(context).app_setting_security_lock,
+                appL10n.app_setting_security_lock,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
+                  height: 1.0,
                 ),
               ),
               trailing: Semantics(
-                label: S.of(context).app_setting_security_lock,
+                label: appL10n.app_setting_security_lock,
                 checked: keyPassword != '',
                 child: CupertinoSwitch(
                   value: keyPassword != '',
@@ -148,8 +150,7 @@ class _KeyBodyState extends State<KeyBody> {
                     if (value) {
                       createlockScreen(
                         context,
-                        (password) =>
-                            applicationProvider.keyPassword = password,
+                        (password) => applicationProvider.keyPassword = password,
                       );
                     } else {
                       applicationProvider.keyPassword = '';

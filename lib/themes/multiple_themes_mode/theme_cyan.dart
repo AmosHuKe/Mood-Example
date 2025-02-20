@@ -9,10 +9,8 @@ class AppThemeCyan implements AppMultipleTheme {
   static const primaryColor = Color(0xFF19686A);
 
   @override
-  ThemeData lightTheme() =>
-      AppThemeDefault().lightTheme().copyWith(primaryColor: primaryColor);
+  ThemeData lightTheme() => AppThemeDefault().lightTheme().copyWith(primaryColor: primaryColor);
 
   @override
-  ThemeData darkTheme() =>
-      AppThemeDefault().darkTheme().copyWith(primaryColor: primaryColor);
+  ThemeData darkTheme() => AppThemeDefault().darkTheme().copyWith(primaryColor: primaryColor);
 }

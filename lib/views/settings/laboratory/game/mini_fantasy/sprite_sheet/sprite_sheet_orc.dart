@@ -11,96 +11,59 @@ class SpriteSheetOrc {
 
   static Future load() async {
     spriteSheetOrcRun = await Flame.images.load('$assetsPath/orc_run.png');
-    spriteSheetOrcAttack = await Flame.images.load(
-      '$assetsPath/orc_attack.png',
-    );
+    spriteSheetOrcAttack = await Flame.images.load('$assetsPath/orc_attack.png');
     spriteSheetOrcIdle = await Flame.images.load('$assetsPath/orc_idle.png');
-    spriteSheetOrcDamage = await Flame.images.load(
-      '$assetsPath/orc_damage.png',
-    );
+    spriteSheetOrcDamage = await Flame.images.load('$assetsPath/orc_damage.png');
     spriteSheetOrcDie = await Flame.images.load('$assetsPath/orc_die.png');
   }
 
   static Future<SpriteAnimation> getRunBottomRight() {
-    return spriteSheetOrcRun
-        .getAnimation(size: Vector2.all(21), amount: 4)
-        .asFuture();
+    return spriteSheetOrcRun.getAnimation(size: Vector2.all(21), amount: 4).asFuture();
   }
 
   static Future<SpriteAnimation> getRunBottomLeft() {
     return spriteSheetOrcRun
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 4,
-          position: Vector2(0, 21),
-        )
+        .getAnimation(size: Vector2.all(21), amount: 4, position: Vector2(0, 21))
         .asFuture();
   }
 
   static Future<SpriteAnimation> getRunTopRight() {
     return spriteSheetOrcRun
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 4,
-          position: Vector2(0, 42),
-        )
+        .getAnimation(size: Vector2.all(21), amount: 4, position: Vector2(0, 42))
         .asFuture();
   }
 
   static Future<SpriteAnimation> getRunTopLeft() {
     return spriteSheetOrcRun
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 4,
-          position: Vector2(0, 63),
-        )
+        .getAnimation(size: Vector2.all(21), amount: 4, position: Vector2(0, 63))
         .asFuture();
   }
 
   static Future<SpriteAnimation> getIdleBottomRight() {
-    return spriteSheetOrcIdle
-        .getAnimation(size: Vector2.all(21), amount: 16)
-        .asFuture();
+    return spriteSheetOrcIdle.getAnimation(size: Vector2.all(21), amount: 16).asFuture();
   }
 
   static Future<SpriteAnimation> getIdleBottomLeft() {
     return spriteSheetOrcIdle
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 16,
-          position: Vector2(0, 21),
-        )
+        .getAnimation(size: Vector2.all(21), amount: 16, position: Vector2(0, 21))
         .asFuture();
   }
 
   static Future<SpriteAnimation> getIdleTopRight() {
     return spriteSheetOrcIdle
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 16,
-          position: Vector2(0, 42),
-        )
+        .getAnimation(size: Vector2.all(21), amount: 16, position: Vector2(0, 42))
         .asFuture();
   }
 
   static Future<SpriteAnimation> getIdleTopLeft() {
     return spriteSheetOrcIdle
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 16,
-          position: Vector2(0, 63),
-        )
+        .getAnimation(size: Vector2.all(21), amount: 16, position: Vector2(0, 63))
         .asFuture();
   }
 
   static Future<SpriteAnimation> getAttackBottomRight() {
     return spriteSheetOrcAttack
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 4,
-          loop: false,
-          stepTime: animSpeed,
-        )
+        .getAnimation(size: Vector2.all(21), amount: 4, loop: false, stepTime: animSpeed)
         .asFuture();
   }
 
@@ -148,34 +111,19 @@ class SpriteSheetOrc {
 
   static Future<SpriteAnimation> getDamageBottomLeft() {
     return spriteSheetOrcDamage
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 4,
-          position: Vector2(0, 21),
-          loop: false,
-        )
+        .getAnimation(size: Vector2.all(21), amount: 4, position: Vector2(0, 21), loop: false)
         .asFuture();
   }
 
   static Future<SpriteAnimation> getDamageTopRight() {
     return spriteSheetOrcDamage
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 4,
-          position: Vector2(0, 42),
-          loop: false,
-        )
+        .getAnimation(size: Vector2.all(21), amount: 4, position: Vector2(0, 42), loop: false)
         .asFuture();
   }
 
   static Future<SpriteAnimation> getDamageTopLeft() {
     return spriteSheetOrcDamage
-        .getAnimation(
-          size: Vector2.all(21),
-          amount: 4,
-          position: Vector2(0, 63),
-          loop: false,
-        )
+        .getAnimation(size: Vector2.all(21), amount: 4, position: Vector2(0, 63), loop: false)
         .asFuture();
   }
 

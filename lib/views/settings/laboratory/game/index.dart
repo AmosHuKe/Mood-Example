@@ -69,17 +69,11 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 20),
-      physics: const AlwaysScrollableScrollPhysics(
-        parent: BouncingScrollPhysics(),
-      ),
+      physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       children: [
         /// 小程序
         ListCard(
-          leading: const Icon(
-            Remix.gamepad_line,
-            size: 32,
-            color: Colors.black87,
-          ),
+          leading: const Icon(Remix.gamepad_line, size: 32, color: Colors.black87),
           title: 'Mini Fantasy',
           subtitle: '2D 地牢风格游戏，基于 Mini Fantasy 示例，修改了一些奇怪的东西。',
           onPressed: () async {
@@ -91,11 +85,7 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
           },
         ),
         ListCard(
-          leading: const Icon(
-            Remix.gamepad_line,
-            size: 32,
-            color: Colors.black87,
-          ),
+          leading: const Icon(Remix.gamepad_line, size: 32, color: Colors.black87),
           title: '疯狂射击、怪物生成',
           subtitle:
               '素材来源：https://github.com/RafaelBarbosatec/mini_fantasy、https://0x72.itch.io/dungeontileset-ii',
@@ -146,11 +136,7 @@ class ListCard extends StatelessWidget {
         padding: const EdgeInsets.all(14),
         child: Column(
           children: [
-            ListTile(
-              leading: leading,
-              title: Text(title),
-              subtitle: Text(subtitle),
-            ),
+            ListTile(leading: leading, title: Text(title), subtitle: Text(subtitle)),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

@@ -17,7 +17,6 @@ import 'package:moodexample/widgets/animation/animation.dart';
 import 'package:moodexample/views/mood/mood_content.dart';
 import 'package:moodexample/views/web_view/web_view.dart';
 
-import 'package:moodexample/models/mood/mood_category_model.dart';
 import 'package:moodexample/models/mood/mood_model.dart';
 import 'package:moodexample/providers/mood/mood_provider.dart';
 import 'package:moodexample/providers/application/application_provider.dart';
@@ -48,10 +47,10 @@ class HomeBody extends StatefulWidget {
 class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
+    final appL10n = AppL10n.of(context);
+
     return CustomScrollView(
-      physics: const AlwaysScrollableScrollPhysics(
-        parent: BouncingScrollPhysics(),
-      ),
+      physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       primary: false,
       shrinkWrap: false,
       slivers: [
@@ -68,13 +67,9 @@ class _HomeBodyState extends State<HomeBody> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    S.of(context).home_hi,
-                    style: const TextStyle(
-                      fontSize: 48,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    semanticsLabel:
-                        S.of(context).app_bottomNavigationBar_title_home,
+                    appL10n.home_hi,
+                    style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+                    semanticsLabel: appL10n.app_bottomNavigationBar_title_home,
                   ),
                   Image.asset(
                     'assets/images/woolly/woolly-yellow-star.png',
@@ -123,11 +118,8 @@ class _HomeBodyState extends State<HomeBody> {
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 24),
                           child: Text(
-                            S.of(context).home_help_title,
-                            style: const TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            appL10n.home_help_title,
+                            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
@@ -150,11 +142,13 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appL10n = AppL10n.of(context);
+
     return Row(
       children: [
         Expanded(
           child: Text(
-            S.of(context).home_moodChoice_title,
+            appL10n.home_moodChoice_title,
             style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 24),
           ),
         ),
@@ -191,16 +185,14 @@ class _OptionMoodState extends State<OptionMood> {
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       scrollDirection: Axis.horizontal,
-      physics: const AlwaysScrollableScrollPhysics(
-        parent: BouncingScrollPhysics(),
-      ),
+      physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       child: Consumer<MoodProvider>(
         builder: (_, moodProvider, child) {
           /// 所有心情类型数据
-          final List<Widget> widgetList = [];
+          final widgetList = <Widget>[];
 
           /// 数据渲染
-          for (final MoodCategoryData list in moodProvider.moodCategoryList) {
+          for (final list in moodProvider.moodCategoryList) {
             widgetList.add(OptionCard(title: list.title, icon: list.icon));
           }
 
@@ -228,8 +220,10 @@ class OptionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = isDarkMode(context);
+
     /// 图标大小
-    final double _iconSize = 32;
+    const double iconSize = 32;
 
     return Consumer<ApplicationProvider>(
       builder: (_, applicationProvider, child) {
@@ -247,23 +241,12 @@ class OptionCard extends StatelessWidget {
                     child: Container(
                       constraints: const BoxConstraints(minWidth: 52),
                       decoration: BoxDecoration(
-                        color:
-                            isDarkMode(context)
-                                ? const Color(0xFF2B3034)
-                                : AppTheme.backgroundColor1,
+                        color: isDark ? const Color(0xFF2B3034) : AppTheme.backgroundColor1,
                         borderRadius: BorderRadius.circular(18),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 18,
-                        ),
-                        child: Align(
-                          child: Text(
-                            icon,
-                            style: TextStyle(fontSize: _iconSize),
-                          ),
-                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 18),
+                        child: Align(child: Text(icon, style: const TextStyle(fontSize: iconSize))),
                       ),
                     ),
                   ),
@@ -279,17 +262,12 @@ class OptionCard extends StatelessWidget {
           openColor: Colors.transparent,
           middleColor: Colors.transparent,
           closedElevation: 0,
-          closedShape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18),
-          ),
+          closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
           closedColor: Colors.transparent,
           openBuilder: (_, closeContainer) {
             // 跳转输入内容页
-            final String nowDateTime = DateTime.now().toString().substring(
-              0,
-              10,
-            );
-            final MoodData moodData = MoodData(
+            final nowDateTime = DateTime.now().toString().substring(0, 10);
+            final moodData = MoodData(
               icon: icon,
               title: title,
               create_time: nowDateTime,
@@ -310,6 +288,8 @@ class NoticeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appL10n = AppL10n.of(context);
+
     return Tilt(
       tiltConfig: const TiltConfig(
         leaveDuration: Duration(seconds: 1),
@@ -345,15 +325,10 @@ class NoticeCard extends StatelessWidget {
                       foregroundColor: WidgetStateProperty.all(Colors.white),
                       backgroundColor: WidgetStateProperty.all(Colors.black87),
                       textStyle: WidgetStateProperty.all(
-                        const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
+                        const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                       ),
                       shape: WidgetStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
+                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                       ),
                       overlayColor: WidgetStateProperty.all(Colors.white10),
                     ),
@@ -368,11 +343,8 @@ class NoticeCard extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(right: 4),
                           child: Text(
-                            S.of(context).home_upgrade_button,
-                            strutStyle: const StrutStyle(
-                              forceStrutHeight: false,
-                              leading: 1,
-                            ),
+                            appL10n.home_upgrade_button,
+                            strutStyle: const StrutStyle(forceStrutHeight: false, leading: 1),
                             style: const TextStyle(fontSize: 14),
                           ),
                         ),
@@ -426,6 +398,8 @@ class ActionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appL10n = AppL10n.of(context);
+
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -445,7 +419,7 @@ class ActionCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  S.of(context).home_upgrade_title,
+                  appL10n.home_upgrade_title,
                   style: const TextStyle(
                     color: Colors.black87,
                     fontSize: 20,
@@ -456,11 +430,8 @@ class ActionCard extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8),
                     child: Text(
-                      S.of(context).home_upgrade_content,
-                      style: const TextStyle(
-                        color: Colors.black87,
-                        fontSize: 16,
-                      ),
+                      appL10n.home_upgrade_content,
+                      style: const TextStyle(color: Colors.black87, fontSize: 16),
                     ),
                   ),
                 ),
@@ -479,15 +450,15 @@ class Article extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final appL10n = AppL10n.of(context);
+
     return LayoutBuilder(
       builder: (context, constraints) {
-        final double availableWidth = constraints.maxWidth;
-        final double minWidth = 120;
-        final double maxWidth = 200;
-        final double widgetWidth = (availableWidth / 2 - 8).clamp(
-          minWidth,
-          maxWidth,
-        );
+        final availableWidth = constraints.maxWidth;
+        const double minWidth = 120;
+        const double maxWidth = 200;
+        final widgetWidth = (availableWidth / 2 - 8).clamp(minWidth, maxWidth);
 
         return Wrap(
           spacing: 16, // 主轴(水平)方向间距
@@ -506,11 +477,7 @@ class Article extends StatelessWidget {
                   gradient: const LinearGradient(
                     begin: Alignment.bottomLeft,
                     end: Alignment.topRight,
-                    colors: [
-                      Color(0xFFFFCEBD),
-                      Color(0xFFFFCEBD),
-                      Color(0xFFFFDCCF),
-                    ],
+                    colors: [Color(0xFFFFCEBD), Color(0xFFFFCEBD), Color(0xFFFFDCCF)],
                   ),
                   onTap: () {
                     openContainer();
@@ -536,7 +503,7 @@ class Article extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              S.of(context).home_help_article_title_1,
+                              appL10n.home_help_article_title_1,
                               style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
@@ -546,11 +513,8 @@ class Article extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 6),
                               child: Text(
-                                S.of(context).home_help_article_content_1,
-                                style: const TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 14,
-                                ),
+                                appL10n.home_help_article_content_1,
+                                style: const TextStyle(color: Colors.black87, fontSize: 14),
                               ),
                             ),
                             const Padding(
@@ -570,19 +534,14 @@ class Article extends StatelessWidget {
                 );
               },
               openElevation: 0,
-              openColor: Theme.of(context).scaffoldBackgroundColor,
-              middleColor: Theme.of(context).scaffoldBackgroundColor,
+              openColor: theme.scaffoldBackgroundColor,
+              middleColor: theme.scaffoldBackgroundColor,
               closedElevation: 0,
-              closedShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(17),
-              ),
+              closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),
               closedColor: const Color(0xFFFFCEBD),
               openBuilder: (_, closeContainer) {
                 return WebViewPage(
-                  url:
-                      ValueConvert(
-                        'https://github.com/AmosHuKe/Mood-Example',
-                      ).encode(),
+                  url: ValueBase64('https://github.com/AmosHuKe/Mood-Example').encode(),
                 );
               },
             ),
@@ -599,11 +558,7 @@ class Article extends StatelessWidget {
                   gradient: const LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [
-                      Color(0xFFFFD390),
-                      Color(0xFFFFD390),
-                      Color(0xFFFFE1B3),
-                    ],
+                    colors: [Color(0xFFFFD390), Color(0xFFFFD390), Color(0xFFFFE1B3)],
                   ),
                   onTap: () {
                     openContainer();
@@ -630,7 +585,7 @@ class Article extends StatelessWidget {
                           children: [
                             const SizedBox(height: 72),
                             Text(
-                              S.of(context).home_help_article_title_2,
+                              appL10n.home_help_article_title_2,
                               style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
@@ -640,11 +595,8 @@ class Article extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 6),
                               child: Text(
-                                S.of(context).home_help_article_content_2,
-                                style: const TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 14,
-                                ),
+                                appL10n.home_help_article_content_2,
+                                style: const TextStyle(color: Colors.black87, fontSize: 14),
                               ),
                             ),
                             const Padding(
@@ -663,17 +615,13 @@ class Article extends StatelessWidget {
                 );
               },
               openElevation: 0,
-              openColor: Theme.of(context).scaffoldBackgroundColor,
-              middleColor: Theme.of(context).scaffoldBackgroundColor,
+              openColor: theme.scaffoldBackgroundColor,
+              middleColor: theme.scaffoldBackgroundColor,
               closedElevation: 0,
-              closedShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(17),
-              ),
+              closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),
               closedColor: const Color(0xFFFFD390),
               openBuilder: (_, closeContainer) {
-                return WebViewPage(
-                  url: ValueConvert('https://amooos.com/').encode(),
-                );
+                return WebViewPage(url: ValueBase64('https://amooos.com/').encode());
               },
             ),
           ],
@@ -721,10 +669,7 @@ class ArticleCard extends StatelessWidget {
         child: Container(
           width: width,
           padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(
-            gradient: gradient,
-            borderRadius: BorderRadius.circular(18),
-          ),
+          decoration: BoxDecoration(gradient: gradient, borderRadius: BorderRadius.circular(18)),
           child: Column(
             mainAxisAlignment: mainAxisAlignment,
             crossAxisAlignment: crossAxisAlignment,

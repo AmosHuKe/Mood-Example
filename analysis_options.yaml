@@ -1,5 +1,8 @@
 includes: package:flutter_lints/flutter.yaml
 
+formatter:
+  page_width: 100
+
 analyzer:
   exclude: [lib/l10n/gen/**]
   errors:
@@ -21,6 +24,7 @@ linter:
     avoid_void_async: true
     curly_braces_in_flow_control_structures: true
     library_annotations: false
+    omit_local_variable_types: true
     prefer_const_constructors: true
     prefer_const_constructors_in_immutables: false
     prefer_final_fields: true

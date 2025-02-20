@@ -14,8 +14,7 @@ const double tileSize = 20.0;
 
 enum PlayerAttackType { attackMelee, attackRange, attackRangeShotguns }
 
-class HumanPlayer extends SimplePlayer
-    with BlockMovementCollision, Lighting, UseLifeBar {
+class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, UseLifeBar {
   HumanPlayer(Vector2 position)
     : super(
         position: position,
@@ -38,11 +37,7 @@ class HumanPlayer extends SimplePlayer
       ) {
     /// 发光
     setupLighting(
-      LightingConfig(
-        radius: width * 2,
-        blurBorder: width * 6,
-        color: Colors.transparent,
-      ),
+      LightingConfig(radius: width * 2, blurBorder: width * 6, color: Colors.transparent),
     );
     // 生命条
     setupLifeBar(
@@ -142,16 +137,11 @@ class HumanPlayer extends SimplePlayer
       addAttackAnimation();
 
       /// 攻击范围
-      simpleAttackMelee(
-        damage: 50,
-        size: Vector2.all(tileSize),
-        withPush: false,
-      );
+      simpleAttackMelee(damage: 50, size: Vector2.all(tileSize), withPush: false);
     }
 
     /// 远程攻击
-    if (event.id == LogicalKeyboardKey.select.keyId ||
-        event.id == PlayerAttackType.attackRange) {
+    if (event.id == LogicalKeyboardKey.select.keyId || event.id == PlayerAttackType.attackRange) {
       if (event.event == ActionEvent.MOVE) {
         executingRangeAttack = true;
         radAngleRangeAttack = event.radAngle;
@@ -234,14 +224,9 @@ class HumanPlayer extends SimplePlayer
             Say(
               text: [
                 const TextSpan(text: '你...好...陌...生...人...'),
-                const TextSpan(
-                  text: '  怪物已经向你冲来！！！',
-                  style: TextStyle(color: Colors.red),
-                ),
+                const TextSpan(text: '  怪物已经向你冲来！！！', style: TextStyle(color: Colors.red)),
               ],
-              person: CustomSpriteAnimationWidget(
-                animation: SpriteSheetPlayer.idleBottomRight,
-              ),
+              person: CustomSpriteAnimationWidget(animation: SpriteSheetPlayer.idleBottomRight),
               personSayDirection: PersonSayDirection.LEFT,
               speed: 100,
             ),
@@ -253,15 +238,12 @@ class HumanPlayer extends SimplePlayer
 
   /// 死亡触发
   void handleDie() {
-    final Vector2 playerPosition =
-        gameRef.player?.position ?? Vector2(position.x, position.y);
+    final playerPosition = gameRef.player?.position ?? Vector2(position.x, position.y);
     gameRef.camera.moveToTargetAnimated(target: this, onComplete: () {});
     TalkDialog.show(gameRef.context, [
       Say(
         text: [const TextSpan(text: '恩... 好像失败了...')],
-        person: CustomSpriteAnimationWidget(
-          animation: SpriteSheetPlayer.getDamageTopRight(),
-        ),
+        person: CustomSpriteAnimationWidget(animation: SpriteSheetPlayer.getDamageTopRight()),
         personSayDirection: PersonSayDirection.LEFT,
         speed: 100,
       ),
@@ -292,7 +274,7 @@ class HumanPlayer extends SimplePlayer
       print('Orc 生成了');
 
       /// 生成
-      for (int i = 0; i < 4; i++) {
+      for (var i = 0; i < 4; i++) {
         gameRef.add(
           Orc(
             Vector2(
@@ -315,7 +297,7 @@ class HumanPlayer extends SimplePlayer
       print('Boss 生成了');
 
       /// 生成
-      for (int i = 0; i < 2; i++) {
+      for (var i = 0; i < 2; i++) {
         gameRef.add(
           Boss(
             Vector2(
@@ -331,7 +313,7 @@ class HumanPlayer extends SimplePlayer
   /// 远程攻击
   void handleActionAttackRange(double dt) {
     /// 远程攻击触发（发射间隔）
-    final bool execRangeAttackInterval = checkInterval('AttackRange', 150, dt);
+    final execRangeAttackInterval = checkInterval('AttackRange', 150, dt);
     if (executingRangeAttack && execRangeAttackInterval) {
       actionAttackRange(radAngleRangeAttack);
     }
@@ -340,11 +322,7 @@ class HumanPlayer extends SimplePlayer
   /// 远程混乱攻击
   void handleActionAttackRangeShotguns(double dt) {
     /// 远程混乱攻击触发（发射间隔）
-    final bool execRangeShotgunsAttackInterval = checkInterval(
-      'AttackRangeShotguns',
-      50,
-      dt,
-    );
+    final execRangeShotgunsAttackInterval = checkInterval('AttackRangeShotguns', 50, dt);
     if (executingRangeShotgunsAttack && execRangeShotgunsAttackInterval) {
       actionAttackRangeShotguns(radAngleRangeShotgunsAttack);
     }

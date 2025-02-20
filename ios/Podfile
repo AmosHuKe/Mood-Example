@@ -46,4 +46,16 @@ post_install do |installer|
       config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "i386 arm64"
     end
   end
+
+  ################  Awesome Notifications pod modification  ###################
+  awesome_pod_file = File.expand_path(File.join('plugins', 'awesome_notifications', 'ios', 'Scripts', 'AwesomePodFile'), '.symlinks')
+  require awesome_pod_file
+  update_awesome_pod_build_settings(installer)
+  ################  Awesome Notifications pod modification  ###################
 end
+
+################  Awesome Notifications pod modification  ###################
+awesome_pod_file = File.expand_path(File.join('plugins', 'awesome_notifications', 'ios', 'Scripts', 'AwesomePodFile'), '.symlinks')
+require awesome_pod_file
+update_awesome_main_target_settings('Runner', File.dirname(File.realpath(__FILE__)), flutter_root)
+################  Awesome Notifications pod modification  ###################

@@ -67,9 +67,7 @@ class Game extends StatelessWidget {
           showCollisionArea: false,
           playerControllers: [
             Joystick(
-              directional: JoystickDirectional(
-                margin: const EdgeInsets.all(65),
-              ),
+              directional: JoystickDirectional(margin: const EdgeInsets.all(65)),
               actions: [
                 JoystickAction(
                   actionId: 1,
@@ -78,16 +76,13 @@ class Game extends StatelessWidget {
                 ),
               ],
             ),
-            Keyboard(
-              config: KeyboardConfig(acceptedKeys: [LogicalKeyboardKey.space]),
-            ),
+            Keyboard(config: KeyboardConfig(acceptedKeys: [LogicalKeyboardKey.space])),
           ],
           map: WorldMapByTiled(
             WorldMapReader.fromAsset('$assetsPath/tiles/map.json'),
             forceTileSize: Vector2(tileSize, tileSize),
             objectsBuilder: {
-              'light':
-                  (properties) => Light(properties.position, properties.size),
+              'light': (properties) => Light(properties.position, properties.size),
               'orc': (properties) => Orc(properties.position),
             },
           ),
@@ -111,9 +106,7 @@ class Game extends StatelessWidget {
                   margin: const EdgeInsets.all(20),
                   borderRadius: BorderRadius.circular(100),
                   size: Vector2.all(constraints.maxHeight / 5),
-                  border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.5),
-                  ),
+                  border: Border.all(color: Colors.white.withValues(alpha: 0.5)),
                   playerColor: Colors.green,
                   enemyColor: Colors.red,
                   npcColor: Colors.red,

@@ -36,27 +36,19 @@ class MenuScreenLeftBody extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: ListView(
-        physics: const AlwaysScrollableScrollPhysics(
-          parent: BouncingScrollPhysics(),
-        ),
+        physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
         children: [
           const Padding(
             padding: EdgeInsets.only(top: 72, bottom: 48, left: 24, right: 24),
             child: Header(),
           ),
-          const Padding(
-            padding: EdgeInsets.only(bottom: 24, left: 24, right: 24),
-            child: Menu(),
-          ),
+          const Padding(padding: EdgeInsets.only(bottom: 24, left: 24, right: 24), child: Menu()),
 
           /// 插画
           BlockSemanticsToDrawerClosed(
             child: Container(
               padding: const EdgeInsets.only(left: 24, bottom: 24),
-              child: Image.asset(
-                'assets/images/woolly/woolly-comet-2.png',
-                width: 240,
-              ),
+              child: Image.asset('assets/images/woolly/woolly-comet-2.png', width: 240),
             ),
           ),
         ],
@@ -80,21 +72,13 @@ class Header extends StatelessWidget {
             ClipRRect(
               key: const Key('widget_menu_screen_left_logo'),
               borderRadius: BorderRadius.circular(14),
-              child: Image.asset(
-                'assets/images/logo.png',
-                width: 42,
-                height: 42,
-              ),
+              child: Image.asset('assets/images/logo.png', width: 42, height: 42),
             ),
             const Padding(
               padding: EdgeInsets.only(left: 12),
               child: Text(
                 'Mood',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
                 semanticsLabel: '',
               ),
             ),
@@ -111,28 +95,26 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle menuTextStyle = const TextStyle(fontSize: 14, height: 1);
-    final double menuIconSize = 20;
+    final appL10n = AppL10n.of(context);
+    const menuTextStyle = TextStyle(fontSize: 14, height: 1);
+    const menuIconSize = 20.0;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         MenuItem(
-          icon: Icon(Remix.database_2_line, size: menuIconSize),
-          title: Text(S.of(context).app_setting_database, style: menuTextStyle),
+          icon: const Icon(Remix.database_2_line, size: menuIconSize),
+          title: Text(appL10n.app_setting_database, style: menuTextStyle),
           onTap: () {
             print('数据');
 
             /// 底部内容弹出
-            showModalBottomDetail(
-              context: context,
-              child: const SettingDatabase(),
-            );
+            showModalBottomDetail(context: context, child: const SettingDatabase());
           },
         ),
         MenuItem(
-          icon: Icon(Remix.shield_keyhole_line, size: menuIconSize),
-          title: Text(S.of(context).app_setting_security, style: menuTextStyle),
+          icon: const Icon(Remix.shield_keyhole_line, size: menuIconSize),
+          title: Text(appL10n.app_setting_security, style: menuTextStyle),
           onTap: () {
             print('安全');
 
@@ -141,54 +123,40 @@ class Menu extends StatelessWidget {
           },
         ),
         MenuItem(
-          icon: Icon(Remix.bubble_chart_line, size: menuIconSize),
-          title: Text(S.of(context).app_setting_theme, style: menuTextStyle),
+          icon: const Icon(Remix.bubble_chart_line, size: menuIconSize),
+          title: Text(appL10n.app_setting_theme, style: menuTextStyle),
           onTap: () {
             print('主题');
 
             /// 底部内容弹出
-            showModalBottomDetail(
-              context: context,
-              child: const SettingTheme(),
-            );
+            showModalBottomDetail(context: context, child: const SettingTheme());
           },
         ),
         MenuItem(
-          icon: Icon(Remix.global_line, size: menuIconSize),
-          title: Text(S.of(context).app_setting_language, style: menuTextStyle),
+          icon: const Icon(Remix.global_line, size: menuIconSize),
+          title: Text(appL10n.app_setting_language, style: menuTextStyle),
           onTap: () {
             print('语言');
 
             /// 底部内容弹出
-            showModalBottomDetail(
-              context: context,
-              child: const SettingLanguage(),
-            );
+            showModalBottomDetail(context: context, child: const SettingLanguage());
           },
         ),
         MenuItem(
-          icon: Icon(Remix.flask_line, size: menuIconSize),
-          title: Text(
-            S.of(context).app_setting_laboratory,
-            style: menuTextStyle,
-          ),
+          icon: const Icon(Remix.flask_line, size: menuIconSize),
+          title: Text(appL10n.app_setting_laboratory, style: menuTextStyle),
           onTap: () {
             print('实验室');
             GoRouter.of(context).pushNamed(Routes.settingLaboratory);
           },
         ),
         MenuItem(
-          icon: Icon(Remix.heart_3_line, size: menuIconSize),
-          title: Text(S.of(context).app_setting_about, style: menuTextStyle),
+          icon: const Icon(Remix.heart_3_line, size: menuIconSize),
+          title: Text(appL10n.app_setting_about, style: menuTextStyle),
           onTap: () {
             print('关于');
-            final String url =
-                ValueConvert(
-                  'https://github.com/AmosHuKe/Mood-Example',
-                ).encode();
-            GoRouter.of(
-              context,
-            ).pushNamed(Routes.webViewPage, pathParameters: {'url': url});
+            final url = ValueBase64('https://github.com/AmosHuKe/Mood-Example').encode();
+            GoRouter.of(context).pushNamed(Routes.webViewPage, pathParameters: {'url': url});
           },
         ),
       ],
@@ -234,10 +202,7 @@ class BlockSemanticsToDrawerClosed extends StatelessWidget {
     return ValueListenableBuilder<DrawerState>(
       valueListenable: ZoomDrawer.of(context)!.stateNotifier,
       builder:
-          (_, state, child) => BlockSemantics(
-            blocking: state == DrawerState.closed,
-            child: child,
-          ),
+          (_, state, child) => BlockSemantics(blocking: state == DrawerState.closed, child: child),
       child: child,
     );
   }

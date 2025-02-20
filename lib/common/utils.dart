@@ -10,11 +10,7 @@ import 'package:intl/intl.dart';
 /// [format] 时间格式，与 [DateFormat] 规则相同
 ///
 /// @return [String] 日期
-String getDatetimeNow(String format) {
-  final DateTime now = DateTime.now();
-  final String formattedDate = DateFormat(format).format(now);
-  return formattedDate.toString();
-}
+String getDatetimeNow(String format) => DateFormat(format).format(DateTime.now()).toString();
 
 /// 统计颜色块
 const List<Color> statisticColors = [
@@ -41,8 +37,8 @@ const List<Color> statisticColors = [
 /// 内容基础加密/解密转换
 ///
 /// [value] 内容
-class ValueConvert {
-  ValueConvert(this.value);
+class ValueBase64 {
+  ValueBase64(this.value);
   String value;
   String encode() => base64Encode(utf8.encode(value));
   String decode() => utf8.decode(base64Decode(value));

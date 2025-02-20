@@ -36,12 +36,11 @@ packages:
   awesome_notifications:
     dependency: "direct main"
     description:
-      path: "."
-      ref: drop_android_v1_embedding
-      resolved-ref: "579708759bb5d51cfb1ea562379c73681d58c23b"
-      url: "https://github.com/rwrz/awesome_notifications.git"
-    source: git
-    version: "0.10.0"
+      name: awesome_notifications
+      sha256: "0d5fa4457f2ba4e536adc3ef6af709cdcecf4a05a1f3035981e9afa2f899b2a8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.1"
   bonfire:
     dependency: "direct main"
     description:

@@ -13,26 +13,26 @@ import 'package:moodexample/providers/application/application_provider.dart';
 
 /// 锁屏
 Future<void> lockScreen(BuildContext context) async {
-  final s = S.of(context);
-  final ApplicationProvider applicationProvider =
-      context.read<ApplicationProvider>();
+  final theme = Theme.of(context);
+  final appL10n = AppL10n.of(context);
+  final applicationProvider = context.read<ApplicationProvider>();
   applicationProvider.loadKeyPassword();
   applicationProvider.loadKeyBiometric();
 
-  final String password = applicationProvider.keyPassword;
+  final password = applicationProvider.keyPassword;
   final localAuthUtils = await LocalAuthUtils();
 
   /// 支持生物特征识别处理
   Widget? customizedButtonChild;
-  final bool canAppKeyBiometric = applicationProvider.keyBiometric;
-  final bool canLocalAuthBiometrics =
-      await localAuthUtils.canLocalAuthBiometrics();
+  final canAppKeyBiometric = applicationProvider.keyBiometric;
+  final canLocalAuthBiometrics = await localAuthUtils.canLocalAuthBiometrics();
   if (canAppKeyBiometric && canLocalAuthBiometrics) {
     final localAuthList = await localAuthUtils.localAuthList();
     customizedButtonChild = Icon(
-      await localAuthUtils.localAuthIcon(localAuthList),
+      await LocalAuthUtils.localAuthIcon(localAuthList),
       size: 28,
-      semanticLabel: s.app_setting_security_biometric_weak,
+      semanticLabel: appL10n.app_setting_security_biometric_weak,
+      color: theme.textTheme.bodyMedium?.color,
     );
   }
 
@@ -41,13 +41,16 @@ Future<void> lockScreen(BuildContext context) async {
       screenLock(
         context: context,
         correctString: password,
-        title: Text(s.app_setting_security_lock_screen_title),
+        title: Text(appL10n.app_setting_security_lock_screen_title),
         canCancel: false,
-        deleteButton: const Icon(Remix.delete_back_2_fill, semanticLabel: '删除'),
+        deleteButton: Icon(
+          Remix.delete_back_2_fill,
+          semanticLabel: '删除',
+          color: theme.textTheme.bodyMedium?.color,
+        ),
         customizedButtonChild: customizedButtonChild,
         customizedButtonTap: () async {
-          final bool localAuthBiometric = await localAuthUtils
-              .localAuthBiometric(context);
+          final localAuthBiometric = await localAuthUtils.localAuthBiometric(context);
           if (localAuthBiometric) {
             applicationProvider.keyPasswordScreenOpen = false;
             if (context.mounted) {
@@ -58,8 +61,7 @@ Future<void> lockScreen(BuildContext context) async {
         onOpened: () async {
           applicationProvider.keyPasswordScreenOpen = true;
           if (canAppKeyBiometric) {
-            final bool localAuthBiometric = await localAuthUtils
-                .localAuthBiometric(context);
+            final localAuthBiometric = await localAuthUtils.localAuthBiometric(context);
             if (localAuthBiometric) {
               applicationProvider.keyPasswordScreenOpen = false;
               if (context.mounted) {
@@ -82,29 +84,41 @@ Future<void> lockScreen(BuildContext context) async {
 /// [onConfirmed] 密码确认后的操作
 Future<void> createlockScreen(
   BuildContext context,
-  Function(String password) onConfirmed,
+  void Function(String password) onConfirmed,
 ) async {
+  final theme = Theme.of(context);
+  final appL10n = AppL10n.of(context);
   final controller = InputController();
   screenLockCreate(
     context: context,
     inputController: controller,
-    title: Text(S.of(context).app_setting_security_lock_title_1),
-    confirmTitle: Text(S.of(context).app_setting_security_lock_title_2),
+    title: Text(appL10n.app_setting_security_lock_title_1),
+    confirmTitle: Text(appL10n.app_setting_security_lock_title_2),
     onConfirmed: (password) {
       onConfirmed(password);
       context.pop();
     },
-    cancelButton: Text(S.of(context).app_setting_security_lock_cancel),
-    deleteButton: const Icon(Remix.delete_back_2_fill, semanticLabel: '删除'),
+    cancelButton: Text(
+      appL10n.app_setting_security_lock_cancel,
+      style: TextStyle(fontSize: 14, color: theme.textTheme.bodyMedium?.color),
+    ),
+    deleteButton: Icon(
+      Remix.delete_back_2_fill,
+      semanticLabel: '删除',
+      color: theme.textTheme.bodyMedium?.color,
+    ),
     footer: TextButton(
       onPressed: () {
         // 重新输入
         controller.unsetConfirmed();
       },
-      child: Text(S.of(context).app_setting_security_lock_resetinput),
+      child: Text(
+        appL10n.app_setting_security_lock_resetinput,
+        style: TextStyle(fontSize: 14, color: theme.textTheme.bodyMedium?.color),
+      ),
     ),
     onError: (value) {
-      SmartDialog.showToast(S.of(context).app_setting_security_lock_error_1);
+      SmartDialog.showToast(appL10n.app_setting_security_lock_error_1);
     },
   );
 }

@@ -21,14 +21,14 @@ class Init extends StatefulWidget {
 }
 
 class _InitState extends State<Init> {
-  late final AppLifecycleListener _appLifecycleListener;
+  late final AppLifecycleListener appLifecycleListener;
 
   @override
   void initState() {
     super.initState();
 
     /// App 生命周期
-    _appLifecycleListener = AppLifecycleListener(
+    appLifecycleListener = AppLifecycleListener(
       onResume: () => print('App Resume'),
       onInactive: () => print('App Inactive'),
       onHide: () => print('App Hide'),
@@ -47,31 +47,33 @@ class _InitState extends State<Init> {
 
   @override
   void dispose() {
-    _appLifecycleListener.dispose();
+    appLifecycleListener.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final isDark = isDarkMode(context);
+    final systemUiOverlayStyle =
+        isDark
+            ? SystemUiOverlayStyle.dark.copyWith(
+              statusBarColor: Colors.transparent,
+              systemNavigationBarIconBrightness: Brightness.light,
+              statusBarIconBrightness: Brightness.light,
+              statusBarBrightness: Brightness.light,
+              systemNavigationBarColor: Colors.transparent,
+            )
+            : SystemUiOverlayStyle.light.copyWith(
+              statusBarColor: Colors.transparent,
+              systemNavigationBarIconBrightness: Brightness.dark,
+              statusBarIconBrightness: Brightness.dark,
+              statusBarBrightness: Brightness.dark,
+              systemNavigationBarColor: Colors.transparent,
+            );
+
     /// 沉浸模式（全屏模式）
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    SystemChrome.setSystemUIOverlayStyle(
-      isDarkMode(context)
-          ? SystemUiOverlayStyle.dark.copyWith(
-            statusBarColor: Colors.transparent,
-            systemNavigationBarIconBrightness: Brightness.light,
-            statusBarIconBrightness: Brightness.light,
-            statusBarBrightness: Brightness.light,
-            systemNavigationBarColor: Colors.transparent,
-          )
-          : SystemUiOverlayStyle.light.copyWith(
-            statusBarColor: Colors.transparent,
-            systemNavigationBarIconBrightness: Brightness.light,
-            statusBarIconBrightness: Brightness.dark,
-            statusBarBrightness: Brightness.dark,
-            systemNavigationBarColor: Colors.transparent,
-          ),
-    );
+    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
 
     return widget.child;
   }
@@ -82,6 +84,9 @@ class _InitState extends State<Init> {
     await DB.instance.database;
     // 锁屏
     runLockScreen();
+
+    /// 通知初始化
+    NotificationController.initializeLocalNotifications();
     // 通知权限判断显示
     allowedNotification();
 
@@ -99,24 +104,28 @@ class _InitState extends State<Init> {
 
   /// 通知权限判断显示
   Future<void> allowedNotification() async {
-    bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
-    if (!isAllowed) {
-      if (!mounted) return;
-      isAllowed = await displayNotificationRationale(context);
-    }
+    final awesomeNotifications = AwesomeNotifications();
+    await awesomeNotifications.isNotificationAllowed().then((isAllowed) async {
+      if (!isAllowed) {
+        if (!mounted) return;
+        await displayNotificationRationale(context);
+      }
+    });
   }
 
   /// 发送普通通知
   Future<void> sendNotification() async {
-    final bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
+    final appL10n = AppL10n.of(context);
+    final awesomeNotifications = AwesomeNotifications();
+    final isAllowed = await awesomeNotifications.isNotificationAllowed();
     if (!isAllowed) return;
     if (!mounted) return;
-    await AwesomeNotifications().createNotification(
+    await awesomeNotifications.createNotification(
       content: NotificationContent(
         id: 1,
         channelKey: 'notification',
-        title: S.of(context).local_notification_welcome_title,
-        body: S.of(context).local_notification_welcome_body,
+        title: appL10n.local_notification_welcome_title,
+        body: appL10n.local_notification_welcome_body,
         actionType: ActionType.Default,
         category: NotificationCategory.Event,
       ),
@@ -125,22 +134,23 @@ class _InitState extends State<Init> {
 
   /// 发送定时计划通知
   Future<void> sendScheduleNotification() async {
-    final String localTimeZone =
-        await AwesomeNotifications().getLocalTimeZoneIdentifier();
-    final bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
+    final appL10n = AppL10n.of(context);
+    final awesomeNotifications = AwesomeNotifications();
+    final localTimeZone = await awesomeNotifications.getLocalTimeZoneIdentifier();
+    final isAllowed = await awesomeNotifications.isNotificationAllowed();
     if (!isAllowed) return;
     if (!mounted) return;
-    await AwesomeNotifications().createNotification(
+    await awesomeNotifications.createNotification(
       content: NotificationContent(
         id: -1, // 随机ID
         channelKey: 'notification',
-        title: S.of(context).local_notification_schedule_title,
-        body: S.of(context).local_notification_schedule_body,
+        title: appL10n.local_notification_schedule_title,
+        body: appL10n.local_notification_schedule_body,
         actionType: ActionType.Default,
         category: NotificationCategory.Event,
       ),
       schedule: NotificationCalendar(
-        second: 0, // 当秒到达0时将会通知，意味着每个分钟的整点会通知
+        second: 0, // 当秒到达 0 时将会通知，意味着每个分钟的整点会通知
         timeZone: localTimeZone,
         allowWhileIdle: true,
         preciseAlarm: true,
@@ -151,43 +161,40 @@ class _InitState extends State<Init> {
 
   /// 通知权限
   static Future<bool> displayNotificationRationale(BuildContext context) async {
-    bool userAuthorized = false;
+    final isDark = isDarkMode(context);
+    final appL10n = AppL10n.of(context);
+    final awesomeNotifications = AwesomeNotifications();
+    var userAuthorized = false;
     await showCupertinoDialog<void>(
       context: context,
-      builder:
-          (BuildContext context) => Theme(
-            data: isDarkMode(context) ? ThemeData.dark() : ThemeData.light(),
-            child: CupertinoAlertDialog(
-              key: const Key('notification_rationale_dialog'),
-              title: Text(S.of(context).local_notification_dialog_allow_title),
-              content: Text(
-                S.of(context).local_notification_dialog_allow_content,
+      builder: (BuildContext context) {
+        return Theme(
+          data: isDark ? ThemeData.dark() : ThemeData.light(),
+          child: CupertinoAlertDialog(
+            key: const Key('notification_rationale_dialog'),
+            title: Text(appL10n.local_notification_dialog_allow_title),
+            content: Text(appL10n.local_notification_dialog_allow_content),
+            actions: <CupertinoDialogAction>[
+              CupertinoDialogAction(
+                key: const Key('notification_rationale_close'),
+                child: Text(appL10n.local_notification_dialog_allow_cancel),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
-              actions: <CupertinoDialogAction>[
-                CupertinoDialogAction(
-                  key: const Key('notification_rationale_close'),
-                  child: Text(
-                    S.of(context).local_notification_dialog_allow_cancel,
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                CupertinoDialogAction(
-                  key: const Key('notification_rationale_ok'),
-                  child: Text(
-                    S.of(context).local_notification_dialog_allow_confirm,
-                  ),
-                  onPressed: () {
-                    userAuthorized = true;
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
-            ),
+              CupertinoDialogAction(
+                key: const Key('notification_rationale_ok'),
+                child: Text(appL10n.local_notification_dialog_allow_confirm),
+                onPressed: () {
+                  userAuthorized = true;
+                  Navigator.pop(context);
+                },
+              ),
+            ],
           ),
+        );
+      },
     );
-    return userAuthorized &&
-        await AwesomeNotifications().requestPermissionToSendNotifications();
+    return userAuthorized && await awesomeNotifications.requestPermissionToSendNotifications();
   }
 }

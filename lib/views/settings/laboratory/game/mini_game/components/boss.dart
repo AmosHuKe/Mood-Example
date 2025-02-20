@@ -8,8 +8,7 @@ import 'orc.dart';
 
 const double tileSize = 20.0;
 
-class Boss extends SimpleEnemy
-    with RandomMovement, BlockMovementCollision, UseLifeBar {
+class Boss extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLifeBar {
   Boss(Vector2 position)
     : super(
         position: position,
@@ -72,11 +71,7 @@ class Boss extends SimpleEnemy
         // 未发现
         notObserved: () {
           /// 随机移动
-          runRandomMovement(
-            dt,
-            speed: speed / 1.5,
-            maxDistance: tileSize * 100,
-          );
+          runRandomMovement(dt, speed: speed / 1.5, maxDistance: tileSize * 100);
           return false;
         },
       );
@@ -108,21 +103,13 @@ class Boss extends SimpleEnemy
       showDamage(
         damage,
         initVelocityVertical: -2,
-        config: const TextStyle(
-          color: Colors.amberAccent,
-          fontSize: tileSize / 2,
-        ),
+        config: const TextStyle(color: Colors.amberAccent, fontSize: tileSize / 2),
       );
     }
   }
 
   /// 攻击
   void execAttack() {
-    simpleAttackMelee(
-      damage: 20,
-      size: Vector2.all(tileSize * 5),
-      interval: 800,
-      execute: () {},
-    );
+    simpleAttackMelee(damage: 20, size: Vector2.all(tileSize * 5), interval: 800, execute: () {});
   }
 }
