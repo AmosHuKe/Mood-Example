@@ -4,7 +4,6 @@ publish_to: 'none'
 version: 1.9.11+472
 
 environment:
-  # TODO: 如果使用 ^3.7.0 会使用新的格式化方案，导致部分格式强行在一行，暂时使用以下，详见：https://github.com/dart-lang/dart_style/issues/1253
   sdk: ^3.7.0
 
 dependencies:
