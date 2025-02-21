@@ -96,7 +96,7 @@ abstract class AppL10n {
     Locale('zh'),
     Locale('zh', 'CN'),
     Locale('zh', 'HK'),
-    Locale('zh', 'TW')
+    Locale('zh', 'TW'),
   ];
 
   /// No description provided for @app_bottomNavigationBar_title_home.
@@ -722,8 +722,10 @@ AppL10n lookupAppL10n(Locale locale) {
       return AppL10nZh();
   }
 
-  throw FlutterError('AppL10n.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+  throw FlutterError(
+    'AppL10n.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.',
+  );
 }
