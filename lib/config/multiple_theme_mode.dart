@@ -17,10 +17,8 @@ enum MultipleThemeMode {
   cyan,
   purple;
 
-  static MultipleThemeMode fromString(String appMultipleThemeMode) => values.firstWhere(
-        (e) => e.name == appMultipleThemeMode,
-        orElse: () => kDefault,
-      );
+  static MultipleThemeMode fromString(String appMultipleThemeMode) =>
+      values.firstWhere((e) => e.name == appMultipleThemeMode, orElse: () => kDefault);
 }
 
 extension MultipleThemeModeExtension on MultipleThemeMode {

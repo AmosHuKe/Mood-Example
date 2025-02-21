@@ -99,10 +99,10 @@ class _KeyBodyState extends State<KeyBody> {
             title: Text(
               localAuthText,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                    height: 1.0,
-                  ),
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+                height: 1.0,
+              ),
             ),
             trailing: Semantics(
               label: localAuthText,
@@ -136,10 +136,10 @@ class _KeyBodyState extends State<KeyBody> {
               title: Text(
                 appL10n.app_setting_security_lock,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                      height: 1.0,
-                    ),
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                  height: 1.0,
+                ),
               ),
               trailing: Semantics(
                 label: appL10n.app_setting_security_lock,

@@ -333,9 +333,9 @@ class NoticeCard extends StatelessWidget {
                       ),
                       overlayColor: WidgetStateProperty.all(Colors.white10),
                     ),
-                    onPressed: () => {
+                    onPressed: () {
                       /// 导航到新路由
-                      GoRouter.of(context).pushNamed(Routes.onboarding),
+                      GoRouter.of(context).pushNamed(Routes.onboarding);
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

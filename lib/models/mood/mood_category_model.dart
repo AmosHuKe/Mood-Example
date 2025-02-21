@@ -1,3 +1,4 @@
+// dart format width=60
 import 'package:flutter/widgets.dart';
 
 /// 心情类别数据
@@ -22,16 +23,10 @@ class MoodCategoryData {
   final String title;
 
   Map<String, dynamic> toJson() {
-    return {
-      'icon': icon,
-      'title': title,
-    };
+    return {'icon': icon, 'title': title};
   }
 
-  MoodCategoryData copyWith({
-    String? icon,
-    String? title,
-  }) {
+  MoodCategoryData copyWith({String? icon, String? title}) {
     return MoodCategoryData(
       icon: icon ?? this.icon,
       title: title ?? this.title,
@@ -47,8 +42,5 @@ class MoodCategoryData {
           title == other.title;
 
   @override
-  int get hashCode => Object.hashAll([
-        icon,
-        title,
-      ]);
+  int get hashCode => Object.hashAll([icon, title]);
 }

@@ -138,28 +138,30 @@ class _MoodContentState extends State<MoodContent> {
     FocusScope.of(context).unfocus();
     showCupertinoDialog<void>(
       context: context,
-      builder: (BuildContext context) => Theme(
-        data: isDark ? ThemeData.dark() : ThemeData.light(),
-        child: CupertinoAlertDialog(
-          title: Text(appL10n.mood_content_close_button_title),
-          content: Text(appL10n.mood_content_close_button_content),
-          actions: <CupertinoDialogAction>[
-            CupertinoDialogAction(
-              child: Text(appL10n.mood_content_close_button_cancel),
-              onPressed: () {
-                context.pop();
-              },
-            ),
-            CupertinoDialogAction(
-              child: Text(appL10n.mood_content_close_button_confirm),
-              onPressed: () {
-                context.pop();
-                context.pop();
-              },
-            ),
-          ],
-        ),
-      ),
+      builder: (BuildContext context) {
+        return Theme(
+          data: isDark ? ThemeData.dark() : ThemeData.light(),
+          child: CupertinoAlertDialog(
+            title: Text(appL10n.mood_content_close_button_title),
+            content: Text(appL10n.mood_content_close_button_content),
+            actions: <CupertinoDialogAction>[
+              CupertinoDialogAction(
+                child: Text(appL10n.mood_content_close_button_cancel),
+                onPressed: () {
+                  context.pop();
+                },
+              ),
+              CupertinoDialogAction(
+                child: Text(appL10n.mood_content_close_button_confirm),
+                onPressed: () {
+                  context.pop();
+                  context.pop();
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
     return null;
   }
@@ -197,17 +199,19 @@ class _MoodContentBodyState extends State<MoodContentBody> {
                 ),
                 onTap: () {
                   /// 切换心情
-                  GoRouter.of(context).pushNamed<Map<String, Object?>>(
-                    Routes.moodCategorySelect,
-                    pathParameters: {'type': MoodCategorySelectType.edit.type},
-                  ).then((result) {
-                    if (result == null) return;
-                    final moodCategoryData = MoodCategoryData.fromJson(result);
-                    setState(() {
-                      _moodData.icon = moodCategoryData.icon;
-                      _moodData.title = moodCategoryData.title;
-                    });
-                  });
+                  GoRouter.of(context)
+                      .pushNamed<Map<String, Object?>>(
+                        Routes.moodCategorySelect,
+                        pathParameters: {'type': MoodCategorySelectType.edit.type},
+                      )
+                      .then((result) {
+                        if (result == null) return;
+                        final moodCategoryData = MoodCategoryData.fromJson(result);
+                        setState(() {
+                          _moodData.icon = moodCategoryData.icon;
+                          _moodData.title = moodCategoryData.title;
+                        });
+                      });
                 },
               ),
 
@@ -256,9 +260,10 @@ class MoodChoiceCard extends StatelessWidget {
             ),
             Text(
               title ?? '',
-              style: Theme.of(
-                context,
-              ).textTheme.displayLarge!.copyWith(fontSize: 16, fontWeight: FontWeight.w400),
+              style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                fontSize: 16,
+                fontWeight: FontWeight.w400, // dart format
+              ),
             ),
           ],
         ),

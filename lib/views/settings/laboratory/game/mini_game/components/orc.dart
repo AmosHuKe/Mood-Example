@@ -10,25 +10,25 @@ const double tileSize = 20.0;
 
 class Orc extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLifeBar {
   Orc(Vector2 position)
-      : super(
-          position: position,
-          animation: SimpleDirectionAnimation(
-            idleLeft: SpriteSheetOrc.getIdleBottomLeft(),
-            idleRight: SpriteSheetOrc.getIdleBottomRight(),
-            idleDownRight: SpriteSheetOrc.getIdleBottomRight(),
-            idleDownLeft: SpriteSheetOrc.getIdleBottomLeft(),
-            idleUpRight: SpriteSheetOrc.getIdleTopRight(),
-            idleUpLeft: SpriteSheetOrc.getIdleTopLeft(),
-            idleUp: SpriteSheetOrc.getIdleTopRight(),
-            idleDown: SpriteSheetOrc.getIdleBottomRight(),
-            runLeft: SpriteSheetOrc.getRunBottomLeft(),
-            runRight: SpriteSheetOrc.getRunBottomRight(),
-            runUpLeft: SpriteSheetOrc.getRunTopLeft(),
-            runUpRight: SpriteSheetOrc.getRunTopRight(),
-          ),
-          speed: tileSize * 0.1 + Random().nextInt(60),
-          size: Vector2.all(tileSize * 5),
-        ) {
+    : super(
+        position: position,
+        animation: SimpleDirectionAnimation(
+          idleLeft: SpriteSheetOrc.getIdleBottomLeft(),
+          idleRight: SpriteSheetOrc.getIdleBottomRight(),
+          idleDownRight: SpriteSheetOrc.getIdleBottomRight(),
+          idleDownLeft: SpriteSheetOrc.getIdleBottomLeft(),
+          idleUpRight: SpriteSheetOrc.getIdleTopRight(),
+          idleUpLeft: SpriteSheetOrc.getIdleTopLeft(),
+          idleUp: SpriteSheetOrc.getIdleTopRight(),
+          idleDown: SpriteSheetOrc.getIdleBottomRight(),
+          runLeft: SpriteSheetOrc.getRunBottomLeft(),
+          runRight: SpriteSheetOrc.getRunBottomRight(),
+          runUpLeft: SpriteSheetOrc.getRunTopLeft(),
+          runUpRight: SpriteSheetOrc.getRunTopRight(),
+        ),
+        speed: tileSize * 0.1 + Random().nextInt(60),
+        size: Vector2.all(tileSize * 5),
+      ) {
     /// 生命条
     setupLifeBar(
       size: Vector2(tileSize * 1.5, tileSize / 5),

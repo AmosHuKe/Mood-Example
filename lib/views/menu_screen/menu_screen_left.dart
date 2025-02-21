@@ -201,8 +201,12 @@ class BlockSemanticsToDrawerClosed extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder<DrawerState>(
       valueListenable: ZoomDrawer.of(context)!.stateNotifier,
-      builder: (_, state, child) =>
-          BlockSemantics(blocking: state == DrawerState.closed, child: child),
+      builder: (_, state, child) {
+        return BlockSemantics(
+          blocking: state == DrawerState.closed,
+          child: child, // dart format
+        );
+      },
       child: child,
     );
   }

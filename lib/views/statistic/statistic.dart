@@ -339,9 +339,10 @@ class StatisticWeekMoodLine extends StatelessWidget {
               drawVerticalLine: true,
               getDrawingHorizontalLine: (value) {
                 return FlLine(
-                  color: isDark
-                      ? Colors.white.withValues(alpha: 0.1)
-                      : Colors.black.withValues(alpha: 0.1),
+                  color:
+                      isDark
+                          ? Colors.white.withValues(alpha: 0.1)
+                          : Colors.black.withValues(alpha: 0.1),
                   strokeWidth: 0.6,
                 );
               },
@@ -564,6 +565,8 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
     final theme = Theme.of(context);
     final themePrimaryColor = theme.primaryColor;
     final isDark = AppTheme(context).isDarkMode;
+    final colorTouched = [themePrimaryColor.withValues(alpha: 0.4), themePrimaryColor];
+    final colorUntouched = [themePrimaryColor, themePrimaryColor.withValues(alpha: 0.4)];
 
     return BarChartGroupData(
       x: x,
@@ -574,9 +577,7 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
           gradient: LinearGradient(
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
-            colors: isTouched
-                ? [themePrimaryColor.withValues(alpha: 0.4), themePrimaryColor]
-                : [themePrimaryColor, themePrimaryColor.withValues(alpha: 0.4)],
+            colors: isTouched ? colorTouched : colorUntouched,
           ),
           width: width ?? 14,
           borderRadius: BorderRadius.circular(14),
@@ -849,6 +850,12 @@ class FilterBottom extends StatelessWidget {
     final theme = Theme.of(context);
     final themePrimaryColor = theme.primaryColor;
     final isDark = AppTheme(context).isDarkMode;
+    final boxShadowChecked = [
+      BoxShadow(color: themePrimaryColor.withValues(alpha: 0.2), blurRadius: 6),
+    ];
+    final boxShadowUnchecked = [
+      BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 6),
+    ];
 
     return AnimatedPress(
       child: Semantics(
@@ -865,18 +872,12 @@ class FilterBottom extends StatelessWidget {
             decoration: BoxDecoration(
               color: checked ? themePrimaryColor : theme.cardColor,
               borderRadius: BorderRadius.circular(14),
-              boxShadow: checked
-                  ? [BoxShadow(color: themePrimaryColor.withValues(alpha: 0.2), blurRadius: 6)]
-                  : [BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 6)],
+              boxShadow: checked ? boxShadowChecked : boxShadowUnchecked,
             ),
             child: Text(
               text,
               style: TextStyle(
-                color: checked
-                    ? Colors.white
-                    : isDark
-                        ? Colors.white
-                        : Colors.black87,
+                color: checked ? Colors.white : (isDark ? Colors.white : Colors.black87),
                 fontSize: 12,
               ),
             ),

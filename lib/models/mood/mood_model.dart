@@ -1,3 +1,4 @@
+// dart format width=60
 import 'package:flutter/widgets.dart';
 
 /// 心情详细数据
@@ -92,14 +93,14 @@ class MoodData {
 
   @override
   int get hashCode => Object.hashAll([
-        mood_id,
-        icon,
-        title,
-        score,
-        content,
-        create_time,
-        update_time,
-      ]);
+    mood_id,
+    icon,
+    title,
+    score,
+    content,
+    create_time,
+    update_time,
+  ]);
 }
 
 /// 心情记录日期数据
@@ -124,10 +125,7 @@ class MoodRecordData {
   final String icon;
 
   Map<String, dynamic> toJson() {
-    return {
-      'record_date': record_date,
-      'icon': icon,
-    };
+    return {'record_date': record_date, 'icon': icon};
   }
 
   MoodRecordData copyWith({
@@ -149,8 +147,5 @@ class MoodRecordData {
           icon == other.icon;
 
   @override
-  int get hashCode => Object.hashAll([
-        record_date,
-        icon,
-      ]);
+  int get hashCode => Object.hashAll([record_date, icon]);
 }

@@ -54,21 +54,21 @@ class _InitState extends State<Init> {
   @override
   Widget build(BuildContext context) {
     final isDark = AppTheme(context).isDarkMode;
-    final systemUiOverlayStyle = isDark
-        ? SystemUiOverlayStyle.dark.copyWith(
-            statusBarColor: Colors.transparent,
-            systemNavigationBarIconBrightness: Brightness.light,
-            statusBarIconBrightness: Brightness.light,
-            statusBarBrightness: Brightness.light,
-            systemNavigationBarColor: Colors.transparent,
-          )
-        : SystemUiOverlayStyle.light.copyWith(
-            statusBarColor: Colors.transparent,
-            systemNavigationBarIconBrightness: Brightness.dark,
-            statusBarIconBrightness: Brightness.dark,
-            statusBarBrightness: Brightness.dark,
-            systemNavigationBarColor: Colors.transparent,
-          );
+    final systemUiOverlayStyleLight = SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarIconBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.dark,
+      systemNavigationBarColor: Colors.transparent,
+    );
+    final systemUiOverlayStyleDark = SystemUiOverlayStyle.dark.copyWith(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarIconBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.light,
+      systemNavigationBarColor: Colors.transparent,
+    );
+    final systemUiOverlayStyle = isDark ? systemUiOverlayStyleDark : systemUiOverlayStyleLight;
 
     /// 沉浸模式（全屏模式）
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);

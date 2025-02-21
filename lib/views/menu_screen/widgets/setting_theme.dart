@@ -192,7 +192,12 @@ class _MultipleThemeBodyState extends State<MultipleThemeBody> {
 
 /// 多主题卡片
 class MultipleThemeCard extends StatelessWidget {
-  const MultipleThemeCard({super.key, this.child, this.selected, this.onTap});
+  const MultipleThemeCard({
+    super.key,
+    this.child,
+    this.selected,
+    this.onTap, // dart format
+  });
 
   /// 卡片内容
   final Widget? child;
@@ -207,6 +212,9 @@ class MultipleThemeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = AppTheme(context).isDarkMode;
     final isSelected = selected ?? false;
+    final borderSelected = Border.all(width: 3, color: isDark ? Colors.white : Colors.black);
+    final borderUnselected = Border.all(width: 3, color: isDark ? Colors.white12 : Colors.black12);
+    final borderStyle = isSelected ? borderSelected : borderUnselected;
 
     return AnimatedPress(
       child: GestureDetector(
@@ -221,15 +229,7 @@ class MultipleThemeCard extends StatelessWidget {
                   height: 64,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    border: isSelected
-                        ? Border.all(
-                            width: 3,
-                            color: isDark ? Colors.white : Colors.black,
-                          )
-                        : Border.all(
-                            width: 3,
-                            color: isDark ? Colors.white12 : Colors.black12,
-                          ),
+                    border: borderStyle,
                   ),
                   child: ClipRRect(borderRadius: BorderRadius.circular(50), child: child),
                 ),
@@ -259,7 +259,13 @@ class MultipleThemeCard extends StatelessWidget {
 
 /// 主题模式卡片
 class ThemeCard extends StatelessWidget {
-  const ThemeCard({super.key, this.child, this.title, this.selected, this.onTap});
+  const ThemeCard({
+    super.key,
+    this.child,
+    this.title,
+    this.selected,
+    this.onTap, // dart format
+  });
 
   /// 卡片内容
   final Widget? child;
@@ -277,6 +283,9 @@ class ThemeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = AppTheme(context).isDarkMode;
     final isSelected = selected ?? false;
+    final borderSelected = Border.all(width: 3, color: isDark ? Colors.white : Colors.black);
+    final borderUnselected = Border.all(width: 3, color: isDark ? Colors.white12 : Colors.black12);
+    final borderStyle = isSelected ? borderSelected : borderUnselected;
 
     return AnimatedPress(
       child: GestureDetector(
@@ -291,15 +300,7 @@ class ThemeCard extends StatelessWidget {
                   height: 72,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
-                    border: isSelected
-                        ? Border.all(
-                            width: 3,
-                            color: isDark ? Colors.white : Colors.black,
-                          )
-                        : Border.all(
-                            width: 3,
-                            color: isDark ? Colors.white12 : Colors.black12,
-                          ),
+                    border: borderStyle,
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(14),

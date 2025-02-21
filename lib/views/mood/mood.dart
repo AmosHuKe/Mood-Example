@@ -83,8 +83,8 @@ class _MoodPageState extends State<MoodPage> {
           closedElevation: 0,
           closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
           closedColor: theme.scaffoldBackgroundColor,
-          openBuilder: (_, closeContainer) =>
-              MoodCategorySelect(type: MoodCategorySelectType.add.type),
+          openBuilder:
+              (_, closeContainer) => MoodCategorySelect(type: MoodCategorySelectType.add.type),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -156,7 +156,7 @@ class MoodBody extends StatelessWidget {
                   (builder, index) {
                     return const Align(child: CupertinoActivityIndicator(radius: 12));
                   },
-                  childCount: 1,
+                  childCount: 1, // dart format
                 ),
               );
             }
@@ -169,7 +169,7 @@ class MoodBody extends StatelessWidget {
                   (builder, index) {
                     return const Empty(padding: EdgeInsets.only(top: 64), height: 160, width: 90);
                   },
-                  childCount: 1,
+                  childCount: 1, // dart format
                 ),
               );
             }
@@ -182,7 +182,7 @@ class MoodBody extends StatelessWidget {
                     final moodData = moodProvider.moodDataList[index];
                     return MoodCard(key: Key(moodData.mood_id.toString()), moodData: moodData);
                   },
-                  childCount: moodProvider.moodDataList.length,
+                  childCount: moodProvider.moodDataList.length, // dart format
                 ),
               ),
             );
@@ -280,22 +280,25 @@ class _CalendarState extends State<Calendar> {
                   textStyle: TextStyle(color: isDark ? Colors.white : Colors.black87),
                 );
               },
-              selectedBuilder: (context, day, focusedDay) => calenderBuilder(
-                day: day,
-                bodyColors: [themePrimaryColor, themePrimaryColor],
-                boxShadow: [
-                  BoxShadow(color: themePrimaryColor.withValues(alpha: 0.2), blurRadius: 6),
-                ],
-                textStyle: const TextStyle(color: Colors.white),
-              ),
-              outsideBuilder: (context, day, focusedDay) => calenderBuilder(
-                day: day,
-                textStyle: TextStyle(
-                  color: isDark
-                      ? AppTheme.staticSubColor.withValues(alpha: 0.6)
-                      : AppTheme.staticSubColor,
-                ),
-              ),
+              selectedBuilder: (context, day, focusedDay) {
+                return calenderBuilder(
+                  day: day,
+                  bodyColors: [themePrimaryColor, themePrimaryColor],
+                  boxShadow: [
+                    BoxShadow(color: themePrimaryColor.withValues(alpha: 0.2), blurRadius: 6),
+                  ],
+                  textStyle: const TextStyle(color: Colors.white),
+                );
+              },
+              outsideBuilder: (context, day, focusedDay) {
+                const staticSubColor = AppTheme.staticSubColor;
+                return calenderBuilder(
+                  day: day,
+                  textStyle: TextStyle(
+                    color: isDark ? staticSubColor.withValues(alpha: 0.6) : staticSubColor,
+                  ),
+                );
+              },
               todayBuilder: (context, day, focusedDay) {
                 final moodRecordDate = moodProvider.moodRecordDate;
                 return calenderBuilder(
@@ -308,12 +311,14 @@ class _CalendarState extends State<Calendar> {
                   textStyle: TextStyle(color: isDark ? Colors.white : Colors.black87),
                 );
               },
-              disabledBuilder: (context, day, focusedDay) => calenderBuilder(
-                day: day,
-                textStyle: TextStyle(
-                  color: isDark ? const Color(0x20BFBFBF) : const Color(0x50BFBFBF),
-                ),
-              ),
+              disabledBuilder: (context, day, focusedDay) {
+                return calenderBuilder(
+                  day: day,
+                  textStyle: TextStyle(
+                    color: isDark ? const Color(0x20BFBFBF) : const Color(0x50BFBFBF),
+                  ),
+                );
+              },
             ),
             onFormatChanged: (format) => setState(() => calendarFormat = format),
             availableCalendarFormats: const {
@@ -479,36 +484,40 @@ class MoodCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18),
                 ),
                 child: const Icon(Remix.delete_bin_line, color: Color(0xFFC04A4A)),
-                onTap: () => showCupertinoDialog<void>(
-                  context: context,
-                  builder: (BuildContext context) => Theme(
-                    data: isDark ? ThemeData.dark() : ThemeData.light(),
-                    child: CupertinoAlertDialog(
-                      title: Text(appL10n.mood_data_delete_button_title),
-                      content: Text(appL10n.mood_data_delete_button_content),
-                      actions: <CupertinoDialogAction>[
-                        CupertinoDialogAction(
-                          child: Text(appL10n.mood_data_delete_button_cancel),
-                          onPressed: () => context.pop(),
+                onTap: () {
+                  showCupertinoDialog<void>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Theme(
+                        data: isDark ? ThemeData.dark() : ThemeData.light(),
+                        child: CupertinoAlertDialog(
+                          title: Text(appL10n.mood_data_delete_button_title),
+                          content: Text(appL10n.mood_data_delete_button_content),
+                          actions: <CupertinoDialogAction>[
+                            CupertinoDialogAction(
+                              child: Text(appL10n.mood_data_delete_button_cancel),
+                              onPressed: () => context.pop(),
+                            ),
+                            CupertinoDialogAction(
+                              isDestructiveAction: true,
+                              onPressed: () async {
+                                final moodProvider = context.read<MoodProvider>();
+                                final result = await moodProvider.deleteMoodData(moodData);
+                                if (result) {
+                                  /// 重新初始化
+                                  final moodProvider = context.read<MoodProvider>();
+                                  moodProvider.load();
+                                  context.pop();
+                                }
+                              },
+                              child: Text(appL10n.mood_data_delete_button_confirm),
+                            ),
+                          ],
                         ),
-                        CupertinoDialogAction(
-                          isDestructiveAction: true,
-                          onPressed: () async {
-                            final moodProvider = context.read<MoodProvider>();
-                            final result = await moodProvider.deleteMoodData(moodData);
-                            if (result) {
-                              /// 重新初始化
-                              final moodProvider = context.read<MoodProvider>();
-                              moodProvider.load();
-                              context.pop();
-                            }
-                          },
-                          child: Text(appL10n.mood_data_delete_button_confirm),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                      );
+                    },
+                  );
+                },
               ),
             ),
           ),
@@ -543,9 +552,10 @@ class MoodCard extends StatelessWidget {
                               height: 48,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                color: isDark
-                                    ? const Color(0xFF2B3034)
-                                    : AppTheme.staticBackgroundColor3,
+                                color:
+                                    isDark
+                                        ? const Color(0xFF2B3034)
+                                        : AppTheme.staticBackgroundColor3,
                                 borderRadius: BorderRadius.circular(14),
                               ),
                               child: ExcludeSemantics(
@@ -614,9 +624,10 @@ class MoodCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       softWrap: true,
                       style: TextStyle(
-                        color: moodData.content != null
-                            ? theme.textTheme.bodyMedium!.color
-                            : AppTheme.staticSubColor,
+                        color:
+                            moodData.content != null
+                                ? theme.textTheme.bodyMedium!.color
+                                : AppTheme.staticSubColor,
                         fontSize: 14,
                       ),
                       semanticsLabel:
@@ -626,8 +637,9 @@ class MoodCard extends StatelessWidget {
                 ],
               ),
             ),
-            onTap: () =>
-                showModalBottomDetail(context: context, child: MoodDetail(moodData: moodData)),
+            onTap: () {
+              showModalBottomDetail(context: context, child: MoodDetail(moodData: moodData));
+            },
           ),
         ),
       ),
@@ -705,11 +717,12 @@ class MoodDetail extends StatelessWidget {
           child: Text(
             moodData.content ?? appL10n.mood_data_content_empty,
             style: TextStyle(
-              color: moodData.content != null
-                  ? isDark
-                      ? Colors.white
-                      : Colors.black87
-                  : AppTheme.staticSubColor,
+              color:
+                  moodData.content != null
+                      ? isDark
+                          ? Colors.white
+                          : Colors.black87
+                      : AppTheme.staticSubColor,
               fontSize: 14,
             ),
             semanticsLabel: moodData.content != null ? '记录内容：${moodData.content}' : '没有记录内容',

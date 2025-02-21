@@ -121,54 +121,55 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                   ],
                   shape: BoxShape.circle,
                 ),
-                child: isImport
-                    ? const CupertinoActivityIndicator(radius: 14, color: Color(0xFFFFFFFF))
-                    : Material(
-                        color: Colors.transparent,
-                        child: IconButton(
-                          tooltip: '导入数据按钮',
-                          splashColor: Colors.white10,
-                          highlightColor: Colors.white10,
-                          icon: const Icon(Remix.arrow_up_line),
-                          iconSize: 48,
-                          color: const Color(0xFFFFFFFF),
-                          padding: const EdgeInsets.all(22),
-                          onPressed: () async {
-                            setState(() {
-                              isImport = true;
-                              errorPath = '';
-                            });
-                            try {
-                              final results = await importDatabase(context);
-                              if (!mounted) return;
+                child:
+                    isImport
+                        ? const CupertinoActivityIndicator(radius: 14, color: Color(0xFFFFFFFF))
+                        : Material(
+                          color: Colors.transparent,
+                          child: IconButton(
+                            tooltip: '导入数据按钮',
+                            splashColor: Colors.white10,
+                            highlightColor: Colors.white10,
+                            icon: const Icon(Remix.arrow_up_line),
+                            iconSize: 48,
+                            color: const Color(0xFFFFFFFF),
+                            padding: const EdgeInsets.all(22),
+                            onPressed: () async {
                               setState(() {
-                                isImport = false;
+                                isImport = true;
+                                errorPath = '';
                               });
-                              switch (results['state']) {
-                                case 0:
-                                  errorPath = results['errorPath'];
-                                  SmartDialog.showToast(
-                                    AppL10n.of(
-                                      context,
-                                    ).app_setting_database_import_data_toast_error,
-                                  );
-                                case 1:
-                                  SmartDialog.showToast(
-                                    AppL10n.of(
-                                      context,
-                                    ).app_setting_database_import_data_toast_success,
-                                  );
+                              try {
+                                final results = await importDatabase(context);
+                                if (!mounted) return;
+                                setState(() {
+                                  isImport = false;
+                                });
+                                switch (results['state']) {
+                                  case 0:
+                                    errorPath = results['errorPath'];
+                                    SmartDialog.showToast(
+                                      AppL10n.of(
+                                        context,
+                                      ).app_setting_database_import_data_toast_error,
+                                    );
+                                  case 1:
+                                    SmartDialog.showToast(
+                                      AppL10n.of(
+                                        context,
+                                      ).app_setting_database_import_data_toast_success,
+                                    );
 
-                                  /// 更新心情数据
-                                  final moodProvider = context.read<MoodProvider>();
-                                  moodProvider.load();
+                                    /// 更新心情数据
+                                    final moodProvider = context.read<MoodProvider>();
+                                    moodProvider.load();
+                                }
+                              } catch (e) {
+                                print('$e');
                               }
-                            } catch (e) {
-                              print('$e');
-                            }
-                          },
+                            },
+                          ),
                         ),
-                      ),
               ),
             ),
             Column(
@@ -178,48 +179,48 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                   builder: (context) {
                     return errorPath.isNotEmpty
                         ? AnimatedPress(
-                            child: Container(
-                              width: 64,
-                              height: 64,
-                              margin: const EdgeInsets.only(left: 12),
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
-                                  colors: [
-                                    const Color(0xFFf5222d),
-                                    const Color(0xFFf5222d).withAlpha(140),
-                                  ],
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: const Color(0xFFf5222d).withValues(alpha: 0.2),
-                                    offset: const Offset(0, 5.0),
-                                    blurRadius: 15.0,
-                                    spreadRadius: 2.0,
-                                  ),
+                          child: Container(
+                            width: 64,
+                            height: 64,
+                            margin: const EdgeInsets.only(left: 12),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                                colors: [
+                                  const Color(0xFFf5222d),
+                                  const Color(0xFFf5222d).withAlpha(140),
                                 ],
-                                shape: BoxShape.circle,
                               ),
-                              child: Material(
-                                color: Colors.transparent,
-                                child: TextButton(
-                                  style: ButtonStyle(
-                                    shape: WidgetStateProperty.all(const CircleBorder()),
-                                  ),
-                                  onPressed: () async {
-                                    /// 分享文件
-                                    Share.shareXFiles([XFile(errorPath)]);
-                                  },
-                                  child: Text(
-                                    appL10n.app_setting_database_import_data_button_error,
-                                    style: const TextStyle(color: Colors.white, fontSize: 12),
-                                    semanticsLabel: '导入错误原因下载',
-                                  ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color(0xFFf5222d).withValues(alpha: 0.2),
+                                  offset: const Offset(0, 5.0),
+                                  blurRadius: 15.0,
+                                  spreadRadius: 2.0,
+                                ),
+                              ],
+                              shape: BoxShape.circle,
+                            ),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: TextButton(
+                                style: ButtonStyle(
+                                  shape: WidgetStateProperty.all(const CircleBorder()),
+                                ),
+                                onPressed: () async {
+                                  /// 分享文件
+                                  Share.shareXFiles([XFile(errorPath)]);
+                                },
+                                child: Text(
+                                  appL10n.app_setting_database_import_data_button_error,
+                                  style: const TextStyle(color: Colors.white, fontSize: 12),
+                                  semanticsLabel: '导入错误原因下载',
                                 ),
                               ),
                             ),
-                          )
+                          ),
+                        )
                         : const SizedBox();
                   },
                 ),
@@ -673,49 +674,50 @@ class _ExportDatabaseBodyState extends State<ExportDatabaseBody> {
               ],
               shape: BoxShape.circle,
             ),
-            child: isExport
-                ? const CupertinoActivityIndicator(radius: 14, color: Color(0xFFFFFFFF))
-                : Material(
-                    color: Colors.transparent,
-                    child: IconButton(
-                      tooltip: '导出数据按钮',
-                      splashColor: Colors.white10,
-                      highlightColor: Colors.white10,
-                      icon: const Icon(Remix.arrow_down_line),
-                      iconSize: 48,
-                      color: const Color(0xFFFFFFFF),
-                      padding: const EdgeInsets.all(22),
-                      onPressed: () async {
-                        try {
-                          /// 没文件则进行生成
-                          if (exportPath.isEmpty) {
-                            setState(() {
-                              isExport = true;
-                            });
-                            await Future.delayed(const Duration(milliseconds: 1000), () async {
-                              exportPath = await exportDatabase();
-                            });
-                          }
+            child:
+                isExport
+                    ? const CupertinoActivityIndicator(radius: 14, color: Color(0xFFFFFFFF))
+                    : Material(
+                      color: Colors.transparent,
+                      child: IconButton(
+                        tooltip: '导出数据按钮',
+                        splashColor: Colors.white10,
+                        highlightColor: Colors.white10,
+                        icon: const Icon(Remix.arrow_down_line),
+                        iconSize: 48,
+                        color: const Color(0xFFFFFFFF),
+                        padding: const EdgeInsets.all(22),
+                        onPressed: () async {
+                          try {
+                            /// 没文件则进行生成
+                            if (exportPath.isEmpty) {
+                              setState(() {
+                                isExport = true;
+                              });
+                              await Future.delayed(const Duration(milliseconds: 1000), () async {
+                                exportPath = await exportDatabase();
+                              });
+                            }
 
-                          /// 有文件则直接分享
-                          if (exportPath.isNotEmpty) {
-                            setState(() {
-                              isExport = false;
-                            });
-                            if (!mounted) return;
-                            SmartDialog.showToast(
-                              appL10n.app_setting_database_export_data_toast_success,
-                            );
+                            /// 有文件则直接分享
+                            if (exportPath.isNotEmpty) {
+                              setState(() {
+                                isExport = false;
+                              });
+                              if (!mounted) return;
+                              SmartDialog.showToast(
+                                appL10n.app_setting_database_export_data_toast_success,
+                              );
 
-                            /// 分享文件
-                            Share.shareXFiles([XFile(exportPath)]);
+                              /// 分享文件
+                              Share.shareXFiles([XFile(exportPath)]);
+                            }
+                          } catch (e) {
+                            print('$e');
                           }
-                        } catch (e) {
-                          print('$e');
-                        }
-                      },
+                        },
+                      ),
                     ),
-                  ),
           ),
         ),
       ],

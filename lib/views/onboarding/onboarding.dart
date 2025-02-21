@@ -16,7 +16,7 @@ class OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SafeArea(child: SwiperBody()),
+      body: SafeArea(child: SwiperBody()), // dart format
     );
   }
 }
@@ -168,37 +168,39 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
           child: AnimatedPress(
             child: AnimatedBuilder(
               animation: stepButtonColorAnimation,
-              builder: (context, child) => OutlinedButton(
-                key: const Key('widget_next_button'),
-                style: ButtonStyle(
-                  padding: WidgetStateProperty.all(const EdgeInsets.all(20)),
-                  foregroundColor: WidgetStateProperty.all(Colors.white),
-                  backgroundColor: WidgetStateProperty.all(stepButtonColorAnimation.value),
-                  textStyle: WidgetStateProperty.all(const TextStyle(fontSize: 240)),
-                  shape: WidgetStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
-                      side: const BorderSide(width: 0),
+              builder: (context, child) {
+                return OutlinedButton(
+                  key: const Key('widget_next_button'),
+                  style: ButtonStyle(
+                    padding: WidgetStateProperty.all(const EdgeInsets.all(20)),
+                    foregroundColor: WidgetStateProperty.all(Colors.white),
+                    backgroundColor: WidgetStateProperty.all(stepButtonColorAnimation.value),
+                    textStyle: WidgetStateProperty.all(const TextStyle(fontSize: 240)),
+                    shape: WidgetStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100),
+                        side: const BorderSide(width: 0),
+                      ),
+                    ),
+                    overlayColor: WidgetStateProperty.all(Colors.white10),
+                  ),
+                  onPressed: () {
+                    if (swiperIndex == swiperList.length - 1) {
+                      context.pop();
+                    } else {
+                      swiperController.next(animation: true);
+                    }
+                  },
+                  child: Transform.rotate(
+                    angle: stepButtonCurve.value * 1.58,
+                    child: Icon(
+                      Remix.arrow_right_line,
+                      size: 24,
+                      semanticLabel: swiperIndex == swiperList.length - 1 ? '开始' : '下一页',
                     ),
                   ),
-                  overlayColor: WidgetStateProperty.all(Colors.white10),
-                ),
-                onPressed: () {
-                  if (swiperIndex == swiperList.length - 1) {
-                    context.pop();
-                  } else {
-                    swiperController.next(animation: true);
-                  }
-                },
-                child: Transform.rotate(
-                  angle: stepButtonCurve.value * 1.58,
-                  child: Icon(
-                    Remix.arrow_right_line,
-                    size: 24,
-                    semanticLabel: swiperIndex == swiperList.length - 1 ? '开始' : '下一页',
-                  ),
-                ),
-              ),
+                );
+              },
             ),
           ),
         ),
@@ -233,9 +235,15 @@ class TextImageSwiper extends StatelessWidget {
         Align(child: image),
         Padding(
           padding: const EdgeInsets.only(left: 32, right: 32),
-          child: Text(title, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w900)),
+          child: Text(
+            title,
+            style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w900), // dart format
+          ),
         ),
-        Padding(padding: const EdgeInsets.only(top: 14, left: 32, right: 32), child: describe),
+        Padding(
+          padding: const EdgeInsets.only(top: 14, left: 32, right: 32),
+          child: describe, // dart format
+        ),
       ],
     );
   }

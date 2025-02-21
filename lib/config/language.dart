@@ -12,8 +12,6 @@ enum Language {
   final String title;
   final Locale locale;
 
-  static Language fromString(String language) => values.firstWhere(
-        (e) => e.name == language,
-        orElse: () => zhCN,
-      );
+  static Language fromString(String language) =>
+      values.firstWhere((e) => e.name == language, orElse: () => zhCN);
 }

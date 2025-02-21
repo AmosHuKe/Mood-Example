@@ -99,17 +99,19 @@ class Game extends StatelessWidget {
           //   ),
           // ),
           overlayBuilderMap: {
-            'miniMap': (context, game) => MiniMap(
-                  game: game,
-                  zoom: 0.8,
-                  margin: const EdgeInsets.all(20),
-                  borderRadius: BorderRadius.circular(100),
-                  size: Vector2.all(constraints.maxHeight / 5),
-                  border: Border.all(color: Colors.white.withValues(alpha: 0.5)),
-                  playerColor: Colors.green,
-                  enemyColor: Colors.red,
-                  npcColor: Colors.red,
-                ),
+            'miniMap': (context, game) {
+              return MiniMap(
+                game: game,
+                zoom: 0.8,
+                margin: const EdgeInsets.all(20),
+                borderRadius: BorderRadius.circular(100),
+                size: Vector2.all(constraints.maxHeight / 5),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.5)),
+                playerColor: Colors.green,
+                enemyColor: Colors.red,
+                npcColor: Colors.red,
+              );
+            },
           },
           initialActiveOverlays: const ['miniMap'],
         );

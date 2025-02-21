@@ -94,6 +94,10 @@ class MoodCategorySelectBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appL10n = AppL10n.of(context);
+    final titleText = switch (_moodCategorySelectType) {
+      MoodCategorySelectType.add => appL10n.mood_category_select_title_1,
+      MoodCategorySelectType.edit => appL10n.mood_category_select_title_2,
+    };
 
     return ListView(
       physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
@@ -104,11 +108,8 @@ class MoodCategorySelectBody extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                switch (_moodCategorySelectType) {
-                  MoodCategorySelectType.add => appL10n.mood_category_select_title_1,
-                  MoodCategorySelectType.edit => appL10n.mood_category_select_title_2,
-                },
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                titleText,
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold), // dart format
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 4),

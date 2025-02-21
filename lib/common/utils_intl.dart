@@ -6,12 +6,13 @@ import '../l10n/gen/app_localizations.dart';
 class LocaleDatetime {
   /// 年月日格式化
   ///
-  /// [format] 时间格式
+  /// - [format] 时间格式
   ///
   /// @return [String] 日期如：2000-01-01
-  static String yMMMd(BuildContext context, String format) => format.isNotEmpty
-      ? DateFormat.yMMMMd(
-          AppL10n.of(context).localeName,
-        ).format(DateFormat('yyyy-MM-dd').parse(format))
-      : '';
+  static String yMMMd(BuildContext context, String format) {
+    final localeName = AppL10n.of(context).localeName;
+    return format.isNotEmpty
+        ? DateFormat.yMMMMd(localeName).format(DateFormat('yyyy-MM-dd').parse(format))
+        : '';
+  }
 }

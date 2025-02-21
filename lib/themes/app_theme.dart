@@ -45,9 +45,9 @@ class AppTheme implements AppMultipleTheme {
   ///
   /// [themeMode] : [ThemeMode.system.name]
   static ThemeMode themeModeFromString(String themeMode) => ThemeMode.values.firstWhere(
-        (e) => e.name == themeMode,
-        orElse: () => ThemeMode.system,
-      );
+    (e) => e.name == themeMode,
+    orElse: () => ThemeMode.system, // dart format
+  );
 
   /// 是否深色模式
   bool get isDarkMode {
