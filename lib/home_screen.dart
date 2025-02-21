@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = isDarkMode(context);
+    final isDark = AppTheme(context).isDarkMode;
     final appL10n = AppL10n.of(context);
     final zoomDrawer = ZoomDrawer.of(context);
 
@@ -141,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     width: 42,
                     height: 42,
                     decoration: BoxDecoration(
-                      color: isDark ? Colors.black12 : AppTheme.backgroundColor1,
+                      color: isDark ? Colors.black12 : AppTheme.staticBackgroundColor1,
                       borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(14),
                         bottomRight: Radius.circular(14),
@@ -198,7 +198,7 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final themePrimaryColor = theme.primaryColor;
-    final isDark = isDarkMode(context);
+    final isDark = AppTheme(context).isDarkMode;
     final drawerController = ZoomDrawerController();
     final slideWidth = MediaQuery.of(context).size.width * 0.70;
 

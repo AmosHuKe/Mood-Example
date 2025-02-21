@@ -7,7 +7,7 @@ import 'package:moodexample/l10n/gen/app_localizations.dart';
 import 'package:moodexample/application.dart' show Application;
 
 import 'package:moodexample/config/language.dart';
-import 'package:moodexample/config/multiple_themes.dart';
+import 'package:moodexample/config/multiple_theme_mode.dart';
 
 void main() {
   /// 集成测试环境的初始化
@@ -56,7 +56,7 @@ void main() {
       final BuildContext context = tester.element(find.byKey(const Key('widget_menu_page')));
       final l10n = AppL10n.of(context);
 
-      final appMultipleThemesModeKey = [];
+      final multipleThemeMode = MultipleThemeMode.values;
       final language = [];
       final widgetTabScreenLeft = find.byKey(const Key('tab_screen_left'));
       final widgetMoveModalBottomSheet = find.byKey(const Key('widget_move_modal_bottom_sheet'));
@@ -124,25 +124,25 @@ void main() {
       await tester.pumpAndSettle();
       expect(textThemeSetting, findsOneWidget);
 
-      appMultipleThemesMode.forEach((key, value) => appMultipleThemesModeKey.add(key));
-
       await tester.tap(textThemeSettingLight);
       await tester.pumpAndSettle();
-      await Future.forEach(appMultipleThemesModeKey, (key) async {
-        await tester.tap(find.byKey(Key('widget_multiple_themes_card_$key')));
+      await Future.forEach(multipleThemeMode, (key) async {
+        await tester.tap(find.byKey(Key('widget_multiple_theme_card_${key.name}')));
         await tester.pumpAndSettle();
       });
 
       await tester.tap(textThemeSettingDark);
       await tester.pumpAndSettle();
-      await Future.forEach(appMultipleThemesModeKey, (key) async {
-        await tester.tap(find.byKey(Key('widget_multiple_themes_card_$key')));
+      await Future.forEach(multipleThemeMode, (key) async {
+        await tester.tap(find.byKey(Key('widget_multiple_theme_card_${key.name}')));
         await tester.pumpAndSettle();
       });
 
       await tester.tap(textThemeSettingSystem);
       await tester.pumpAndSettle();
-      await tester.tap(find.byKey(const Key('widget_multiple_themes_card_default')));
+      await tester.tap(
+        find.byKey(Key('widget_multiple_theme_card_${MultipleThemeMode.kDefault.name}')),
+      );
 
       await tester.fling(widgetMoveModalBottomSheet, const Offset(0, 400), 2400.0);
       await tester.pumpAndSettle();
@@ -152,8 +152,8 @@ void main() {
       await tester.tap(textLanguage);
       await tester.pumpAndSettle();
 
-      for (final element in languageConfig) {
-        language.add(element.language);
+      for (final element in Language.values) {
+        language.add(element.title);
       }
 
       await Future.forEach(language, (e) async {

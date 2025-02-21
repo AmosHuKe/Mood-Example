@@ -46,6 +46,7 @@ class _MoodContentState extends State<MoodContent> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDark = AppTheme(context).isDarkMode;
 
     return Scaffold(
       appBar: AppBar(
@@ -63,7 +64,7 @@ class _MoodContentState extends State<MoodContent> {
           key: const Key('widget_action_button_close'),
           semanticsLabel: '关闭',
           decoration: BoxDecoration(
-            color: isDarkMode(context) ? theme.cardColor : AppTheme.backgroundColor1,
+            color: isDark ? theme.cardColor : AppTheme.staticBackgroundColor1,
             borderRadius: const BorderRadius.only(bottomRight: Radius.circular(18)),
           ),
           child: const Icon(Remix.close_fill, size: 24),
@@ -76,16 +77,13 @@ class _MoodContentState extends State<MoodContent> {
             key: const Key('widget_mood_actions_button'),
             semanticsLabel: '确认记录',
             decoration: BoxDecoration(
-              color: isDarkMode(context) ? theme.cardColor : const Color(0xFFD6F2E2),
+              color: isDark ? theme.cardColor : const Color(0xFFD6F2E2),
               borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(18)),
             ),
             child: Icon(
               Remix.check_fill,
               size: 24,
-              color:
-                  isDarkMode(context)
-                      ? theme.textTheme.displayLarge!.color
-                      : const Color(0xFF587966),
+              color: isDark ? theme.textTheme.displayLarge!.color : const Color(0xFF587966),
             ),
             onTap: () async {
               FocusScope.of(context).unfocus();
@@ -135,33 +133,33 @@ class _MoodContentState extends State<MoodContent> {
 
   /// 关闭返回
   Function? onClose(BuildContext context) {
+    final isDark = AppTheme(context).isDarkMode;
     final appL10n = AppL10n.of(context);
     FocusScope.of(context).unfocus();
     showCupertinoDialog<void>(
       context: context,
-      builder:
-          (BuildContext context) => Theme(
-            data: isDarkMode(context) ? ThemeData.dark() : ThemeData.light(),
-            child: CupertinoAlertDialog(
-              title: Text(appL10n.mood_content_close_button_title),
-              content: Text(appL10n.mood_content_close_button_content),
-              actions: <CupertinoDialogAction>[
-                CupertinoDialogAction(
-                  child: Text(appL10n.mood_content_close_button_cancel),
-                  onPressed: () {
-                    context.pop();
-                  },
-                ),
-                CupertinoDialogAction(
-                  child: Text(appL10n.mood_content_close_button_confirm),
-                  onPressed: () {
-                    context.pop();
-                    context.pop();
-                  },
-                ),
-              ],
+      builder: (BuildContext context) => Theme(
+        data: isDark ? ThemeData.dark() : ThemeData.light(),
+        child: CupertinoAlertDialog(
+          title: Text(appL10n.mood_content_close_button_title),
+          content: Text(appL10n.mood_content_close_button_content),
+          actions: <CupertinoDialogAction>[
+            CupertinoDialogAction(
+              child: Text(appL10n.mood_content_close_button_cancel),
+              onPressed: () {
+                context.pop();
+              },
             ),
-          ),
+            CupertinoDialogAction(
+              child: Text(appL10n.mood_content_close_button_confirm),
+              onPressed: () {
+                context.pop();
+                context.pop();
+              },
+            ),
+          ],
+        ),
+      ),
     );
     return null;
   }
@@ -199,19 +197,17 @@ class _MoodContentBodyState extends State<MoodContentBody> {
                 ),
                 onTap: () {
                   /// 切换心情
-                  GoRouter.of(context)
-                      .pushNamed(
-                        Routes.moodCategorySelect,
-                        pathParameters: {'type': MoodCategorySelectType.edit.type},
-                      )
-                      .then((result) {
-                        if (result == null) return;
-                        final moodCategoryData = moodCategoryDataFromJson(result.toString());
-                        setState(() {
-                          _moodData.icon = moodCategoryData.icon;
-                          _moodData.title = moodCategoryData.title;
-                        });
-                      });
+                  GoRouter.of(context).pushNamed<Map<String, Object?>>(
+                    Routes.moodCategorySelect,
+                    pathParameters: {'type': MoodCategorySelectType.edit.type},
+                  ).then((result) {
+                    if (result == null) return;
+                    final moodCategoryData = MoodCategoryData.fromJson(result);
+                    setState(() {
+                      _moodData.icon = moodCategoryData.icon;
+                      _moodData.title = moodCategoryData.title;
+                    });
+                  });
                 },
               ),
 
@@ -241,12 +237,14 @@ class MoodChoiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = AppTheme(context).isDarkMode;
+
     return AnimatedPress(
       child: Container(
         width: 128,
         height: 128,
         decoration: BoxDecoration(
-          color: isDarkMode(context) ? const Color(0xFF202427) : Colors.white,
+          color: isDark ? const Color(0xFF202427) : Colors.white,
           borderRadius: BorderRadius.circular(32),
         ),
         child: Column(

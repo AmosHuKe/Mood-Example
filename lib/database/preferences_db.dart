@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:moodexample/themes/app_theme.dart';
+import '../config/language.dart';
+import '../config/multiple_theme_mode.dart';
+import '../themes/app_theme.dart';
 
 /// shared_preferences
 class PreferencesDB {
@@ -18,13 +20,13 @@ class PreferencesDB {
 
   /// 主题外观模式
   ///
-  /// system(默认)：跟随系统 light：普通 dark：深色
-  static const appThemeDarkMode = 'appThemeDarkMode';
+  /// [ThemeMode]
+  static const appThemeMode = 'appThemeMode';
 
   /// 多主题模式
   ///
-  /// default(默认)
-  static const appMultipleThemesMode = 'appMultipleThemesMode';
+  /// [MultipleThemeMode]
+  static const appMultipleThemeMode = 'appMultipleThemeMode';
 
   /// APP地区语言
   static const appLocale = 'appLocale';
@@ -38,12 +40,12 @@ class PreferencesDB {
   /// 安全-生物特征识别是否开启
   static const appKeyBiometric = 'appKeyBiometric';
 
-  /*** 数据库相关 ***/
+  ////// 数据库相关
 
   /// 是否填充完成【心情类别】表默认值
   static const initMoodCategoryDefaultType = 'initMoodCategoryDefaultType';
 
-  /*** shared_preferences ***/
+  ////// shared_preferences
 
   /// 设置-是否填充完成【心情类别】表默认值
   Future<void> setInitMoodCategoryDefaultType(bool value) async {
@@ -56,24 +58,26 @@ class PreferencesDB {
   }
 
   /// 设置-主题外观模式
-  Future<void> setAppThemeDarkMode(ThemeMode themeMode) async {
-    await sps.setString(appThemeDarkMode, themeMode.name);
+  Future<void> setAppThemeMode(ThemeMode themeMode) async {
+    await sps.setString(appThemeMode, themeMode.name);
   }
 
   /// 获取-主题外观模式
-  Future<ThemeMode> getAppThemeDarkMode() async {
-    final themeDarkMode = await sps.getString(appThemeDarkMode) ?? 'system';
-    return darkThemeMode(themeDarkMode);
+  Future<ThemeMode> getAppThemeMode() async {
+    final themeDarkMode = await sps.getString(appThemeMode) ?? ThemeMode.system.name;
+    return AppTheme.themeModeFromString(themeDarkMode);
   }
 
   /// 设置-多主题模式
-  Future<void> setMultipleThemesMode(String value) async {
-    await sps.setString(appMultipleThemesMode, value);
+  Future<void> setMultipleThemeMode(String value) async {
+    await sps.setString(appMultipleThemeMode, value);
   }
 
   /// 获取-多主题模式
-  Future<String> getMultipleThemesMode() async {
-    return await sps.getString(appMultipleThemesMode) ?? 'default';
+  Future<MultipleThemeMode> getMultipleThemeMode() async {
+    final appThemeMode =
+        await sps.getString(appMultipleThemeMode) ?? MultipleThemeMode.kDefault.name;
+    return MultipleThemeMode.fromString(appThemeMode);
   }
 
   /// 设置-APP地区语言
@@ -84,7 +88,7 @@ class PreferencesDB {
 
   /// 获取-APP地区语言
   Future<Locale> getAppLocale() async {
-    final getAppLocale = await sps.getString(appLocale) ?? 'zh';
+    final getAppLocale = await sps.getString(appLocale) ?? Language.zhCN.locale.toLanguageTag();
     final appLocaleList = getAppLocale.split('-');
     return Locale(appLocaleList[0], appLocaleList.length > 1 ? appLocaleList[1] : '');
   }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-
-import 'package:moodexample/db/preferences_db.dart';
+import '../../config/multiple_theme_mode.dart';
+import '../../database/preferences_db.dart';
 
 /// App相关
 class ApplicationProvider extends ChangeNotifier {
   ApplicationProvider() {
     loadThemeMode();
-    loadMultipleThemesMode();
+    loadMultipleThemeMode();
     loadLocaleSystem();
     loadLocale();
     loadKeyPassword();
@@ -17,7 +17,7 @@ class ApplicationProvider extends ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.system;
 
   /// 多主题模式
-  String _multipleThemesMode = 'default';
+  MultipleThemeMode _multipleThemeMode = MultipleThemeMode.kDefault;
 
   /// 语言是否跟随系统
   bool _localeSystem = true;
@@ -36,27 +36,27 @@ class ApplicationProvider extends ChangeNotifier {
 
   /// 获取-主题模式
   Future<void> loadThemeMode() async {
-    _themeMode = await PreferencesDB.instance.getAppThemeDarkMode();
+    _themeMode = await PreferencesDB.instance.getAppThemeMode();
     notifyListeners();
   }
 
   /// 设置-主题模式
   set themeMode(ThemeMode themeMode) {
-    PreferencesDB.instance.setAppThemeDarkMode(themeMode);
+    PreferencesDB.instance.setAppThemeMode(themeMode);
     _themeMode = themeMode;
     notifyListeners();
   }
 
   /// 获取-多主题模式
-  Future<void> loadMultipleThemesMode() async {
-    _multipleThemesMode = await PreferencesDB.instance.getMultipleThemesMode();
+  Future<void> loadMultipleThemeMode() async {
+    _multipleThemeMode = await PreferencesDB.instance.getMultipleThemeMode();
     notifyListeners();
   }
 
   /// 设置-多主题模式
-  set multipleThemesMode(String multipleThemesMode) {
-    PreferencesDB.instance.setMultipleThemesMode(multipleThemesMode);
-    _multipleThemesMode = multipleThemesMode;
+  set multipleThemeMode(MultipleThemeMode multipleThemeMode) {
+    PreferencesDB.instance.setMultipleThemeMode(multipleThemeMode.name);
+    _multipleThemeMode = multipleThemeMode;
     notifyListeners();
   }
 
@@ -120,7 +120,7 @@ class ApplicationProvider extends ChangeNotifier {
   }
 
   ThemeMode get themeMode => _themeMode;
-  String get multipleThemesMode => _multipleThemesMode;
+  MultipleThemeMode get multipleThemeMode => _multipleThemeMode;
   Locale get locale => _locale;
   bool get localeSystem => _localeSystem;
   String get keyPassword => _keyPassword;

@@ -33,7 +33,7 @@ class _Page3DState extends State<Page3D> {
           title: const Text('3D 城市'),
           leading: ActionButton(
             decoration: const BoxDecoration(
-              color: AppTheme.backgroundColor1,
+              color: AppTheme.staticBackgroundColor1,
               borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
             ),
             child: const Icon(Remix.arrow_left_line, size: 24),

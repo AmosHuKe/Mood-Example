@@ -4,18 +4,22 @@ class NotificationController {
   /// 初始化
   static Future<void> initializeLocalNotifications() async {
     final awesomeNotifications = AwesomeNotifications();
-    await awesomeNotifications.initialize('resource://drawable/app_icon', [
-      NotificationChannel(
-        channelKey: 'notification',
-        channelName: '通知',
-        channelDescription: 'Mood通知',
-        playSound: true,
-        onlyAlertOnce: true,
-        groupAlertBehavior: GroupAlertBehavior.Children,
-        importance: NotificationImportance.High,
-        defaultPrivacy: NotificationPrivacy.Private,
-      ),
-    ], debug: true);
+    await awesomeNotifications.initialize(
+      'resource://drawable/app_icon',
+      [
+        NotificationChannel(
+          channelKey: 'notification',
+          channelName: '通知',
+          channelDescription: 'Mood通知',
+          playSound: true,
+          onlyAlertOnce: true,
+          groupAlertBehavior: GroupAlertBehavior.Children,
+          importance: NotificationImportance.High,
+          defaultPrivacy: NotificationPrivacy.Private,
+        ),
+      ],
+      debug: true,
+    );
   }
 
   // 重置小红点计数器

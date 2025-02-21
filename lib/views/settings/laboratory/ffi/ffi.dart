@@ -138,7 +138,7 @@ class _FFIPageState extends State<FFIPage> {
           title: const Text('FFI 异步调用 C/C++'),
           leading: ActionButton(
             decoration: const BoxDecoration(
-              color: AppTheme.backgroundColor1,
+              color: AppTheme.staticBackgroundColor1,
               borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
             ),
             child: const Icon(Remix.arrow_left_line, size: 24),

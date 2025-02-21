@@ -220,7 +220,7 @@ class OptionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = isDarkMode(context);
+    final isDark = AppTheme(context).isDarkMode;
 
     /// 图标大小
     const double iconSize = 32;
@@ -241,7 +241,7 @@ class OptionCard extends StatelessWidget {
                     child: Container(
                       constraints: const BoxConstraints(minWidth: 52),
                       decoration: BoxDecoration(
-                        color: isDark ? const Color(0xFF2B3034) : AppTheme.backgroundColor1,
+                        color: isDark ? const Color(0xFF2B3034) : AppTheme.staticBackgroundColor1,
                         borderRadius: BorderRadius.circular(18),
                       ),
                       child: Padding(
@@ -291,6 +291,7 @@ class NoticeCard extends StatelessWidget {
     final appL10n = AppL10n.of(context);
 
     return Tilt(
+      disable: Utils.envTestMode,
       tiltConfig: const TiltConfig(
         leaveDuration: Duration(seconds: 1),
         leaveCurve: Curves.elasticOut,
@@ -332,11 +333,10 @@ class NoticeCard extends StatelessWidget {
                       ),
                       overlayColor: WidgetStateProperty.all(Colors.white10),
                     ),
-                    onPressed:
-                        () => {
-                          /// 导航到新路由
-                          GoRouter.of(context).pushNamed(Routes.onboarding),
-                        },
+                    onPressed: () => {
+                      /// 导航到新路由
+                      GoRouter.of(context).pushNamed(Routes.onboarding),
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

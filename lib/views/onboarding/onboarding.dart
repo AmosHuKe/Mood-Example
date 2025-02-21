@@ -10,12 +10,14 @@ import 'package:moodexample/l10n/gen/app_localizations.dart';
 import 'package:moodexample/widgets/animation/animation.dart';
 
 /// 引导页
-class Onboarding extends StatelessWidget {
-  const Onboarding({super.key});
+class OnboardingPage extends StatelessWidget {
+  const OnboardingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: SafeArea(child: SwiperBody()));
+    return const Scaffold(
+      body: SafeArea(child: SwiperBody()),
+    );
   }
 }
 
@@ -84,6 +86,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = AppTheme(context).isDarkMode;
     final appL10n = AppL10n.of(context);
 
     /// 内容字体样式
@@ -147,7 +150,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
             },
             pagination: SwiperPagination(
               builder: DotSwiperPaginationBuilder(
-                activeColor: isDarkMode(context) ? Colors.white : Colors.black,
+                activeColor: isDark ? Colors.white : Colors.black,
                 color: Colors.grey,
                 size: 8,
                 space: 10,
@@ -165,38 +168,37 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
           child: AnimatedPress(
             child: AnimatedBuilder(
               animation: stepButtonColorAnimation,
-              builder:
-                  (context, child) => OutlinedButton(
-                    key: const Key('widget_next_button'),
-                    style: ButtonStyle(
-                      padding: WidgetStateProperty.all(const EdgeInsets.all(20)),
-                      foregroundColor: WidgetStateProperty.all(Colors.white),
-                      backgroundColor: WidgetStateProperty.all(stepButtonColorAnimation.value),
-                      textStyle: WidgetStateProperty.all(const TextStyle(fontSize: 240)),
-                      shape: WidgetStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(100),
-                          side: const BorderSide(width: 0),
-                        ),
-                      ),
-                      overlayColor: WidgetStateProperty.all(Colors.white10),
-                    ),
-                    onPressed: () {
-                      if (swiperIndex == swiperList.length - 1) {
-                        context.pop();
-                      } else {
-                        swiperController.next(animation: true);
-                      }
-                    },
-                    child: Transform.rotate(
-                      angle: stepButtonCurve.value * 1.58,
-                      child: Icon(
-                        Remix.arrow_right_line,
-                        size: 24,
-                        semanticLabel: swiperIndex == swiperList.length - 1 ? '开始' : '下一页',
-                      ),
+              builder: (context, child) => OutlinedButton(
+                key: const Key('widget_next_button'),
+                style: ButtonStyle(
+                  padding: WidgetStateProperty.all(const EdgeInsets.all(20)),
+                  foregroundColor: WidgetStateProperty.all(Colors.white),
+                  backgroundColor: WidgetStateProperty.all(stepButtonColorAnimation.value),
+                  textStyle: WidgetStateProperty.all(const TextStyle(fontSize: 240)),
+                  shape: WidgetStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                      side: const BorderSide(width: 0),
                     ),
                   ),
+                  overlayColor: WidgetStateProperty.all(Colors.white10),
+                ),
+                onPressed: () {
+                  if (swiperIndex == swiperList.length - 1) {
+                    context.pop();
+                  } else {
+                    swiperController.next(animation: true);
+                  }
+                },
+                child: Transform.rotate(
+                  angle: stepButtonCurve.value * 1.58,
+                  child: Icon(
+                    Remix.arrow_right_line,
+                    size: 24,
+                    semanticLabel: swiperIndex == swiperList.length - 1 ? '开始' : '下一页',
+                  ),
+                ),
+              ),
             ),
           ),
         ),

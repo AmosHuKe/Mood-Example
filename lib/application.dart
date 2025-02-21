@@ -25,6 +25,7 @@ class Application extends StatelessWidget {
       ],
       builder: (context, child) {
         final watchApplicationProvider = context.watch<ApplicationProvider>();
+        final appTheme = AppTheme(context);
 
         return MaterialApp.router(
           // 网格
@@ -36,10 +37,10 @@ class Application extends StatelessWidget {
           // 语义视图（无障碍）
           showSemanticsDebugger: false,
           // 主题
-          themeMode: watchApplicationProvider.themeMode,
-          theme: AppTheme(getMultipleThemesMode(context)).multipleThemesLightMode(),
-          darkTheme: AppTheme(getMultipleThemesMode(context)).multipleThemesDarkMode(),
-          // 国际化
+          themeMode: appTheme.themeMode,
+          theme: appTheme.lightTheme(),
+          darkTheme: appTheme.darkTheme(),
+          // 国际化 / 本地化
           supportedLocales: AppL10n.supportedLocales,
           localizationsDelegates: AppL10n.localizationsDelegates,
           locale: watchApplicationProvider.localeSystem ? null : watchApplicationProvider.locale,

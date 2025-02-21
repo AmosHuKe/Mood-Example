@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
-
-import 'package:moodexample/models/statistic/statistic_model.dart';
-import 'package:moodexample/services/statistic/statistic_service.dart';
+import '../../models/statistic/statistic_model.dart';
+import '../../services/statistic/statistic_service.dart';
 
 /// 统计相关
 class StatisticProvider extends ChangeNotifier {

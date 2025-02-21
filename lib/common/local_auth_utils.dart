@@ -7,7 +7,7 @@ import 'package:local_auth_darwin/local_auth_darwin.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
-import 'package:moodexample/l10n/gen/app_localizations.dart';
+import '../l10n/gen/app_localizations.dart';
 
 class LocalAuthUtils {
   final LocalAuthentication auth = LocalAuthentication();

@@ -212,6 +212,7 @@ class StatisticWeekMoodLine extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final themePrimaryColor = theme.primaryColor;
+    final isDark = AppTheme(context).isDarkMode;
 
     final gradientColors = [
       themePrimaryColor.withValues(alpha: 0.1),
@@ -338,16 +339,15 @@ class StatisticWeekMoodLine extends StatelessWidget {
               drawVerticalLine: true,
               getDrawingHorizontalLine: (value) {
                 return FlLine(
-                  color:
-                      isDarkMode(context)
-                          ? Colors.white.withValues(alpha: 0.1)
-                          : Colors.black.withValues(alpha: 0.1),
+                  color: isDark
+                      ? Colors.white.withValues(alpha: 0.1)
+                      : Colors.black.withValues(alpha: 0.1),
                   strokeWidth: 0.6,
                 );
               },
               getDrawingVerticalLine: (value) {
                 return FlLine(
-                  color: isDarkMode(context) ? Colors.white.withValues(alpha: 0.1) : Colors.black12,
+                  color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.black12,
                   strokeWidth: 0,
                 );
               },
@@ -367,7 +367,7 @@ class StatisticWeekMoodLine extends StatelessWidget {
                     return Text(
                       (nowListDate.toString() != '' ? nowListDate.toString().substring(8, 10) : ''),
                       style: const TextStyle(
-                        color: AppTheme.subColor,
+                        color: AppTheme.staticSubColor,
                         fontWeight: FontWeight.normal,
                         fontSize: 14,
                       ),
@@ -563,6 +563,8 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
   }) {
     final theme = Theme.of(context);
     final themePrimaryColor = theme.primaryColor;
+    final isDark = AppTheme(context).isDarkMode;
+
     return BarChartGroupData(
       x: x,
       barRods: [
@@ -572,16 +574,15 @@ class _StatisticWeekMoodState extends State<StatisticWeekMood> {
           gradient: LinearGradient(
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
-            colors:
-                isTouched
-                    ? [themePrimaryColor.withValues(alpha: 0.4), themePrimaryColor]
-                    : [themePrimaryColor, themePrimaryColor.withValues(alpha: 0.4)],
+            colors: isTouched
+                ? [themePrimaryColor.withValues(alpha: 0.4), themePrimaryColor]
+                : [themePrimaryColor, themePrimaryColor.withValues(alpha: 0.4)],
           ),
           width: width ?? 14,
           borderRadius: BorderRadius.circular(14),
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
-            color: isDarkMode(context) ? const Color(0xFF2B3034) : AppTheme.backgroundColor1,
+            color: isDark ? const Color(0xFF2B3034) : AppTheme.staticBackgroundColor1,
             fromY: 100,
           ),
         ),
@@ -631,7 +632,7 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
                 title: item.icon,
                 radius: radius,
                 fontSize: fontSize,
-                color: statisticColors[i],
+                color: Utils.statisticColors[i],
                 badgeFontSize: 16,
                 badgeHeight: 28,
                 badgeWidth: 28,
@@ -752,7 +753,7 @@ class StatisticsCard extends StatelessWidget {
                   strutStyle: const StrutStyle(forceStrutHeight: false, leading: 1.5),
                 ),
               ),
-              Text(subTitle, style: const TextStyle(color: AppTheme.subColor, fontSize: 12)),
+              Text(subTitle, style: const TextStyle(color: AppTheme.staticSubColor, fontSize: 12)),
             ],
           ),
         ),
@@ -806,7 +807,7 @@ class StatisticLayout extends StatelessWidget {
               Text(
                 subTitle,
                 style: const TextStyle(
-                  color: AppTheme.subColor,
+                  color: AppTheme.staticSubColor,
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
                 ),
@@ -847,6 +848,7 @@ class FilterBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final themePrimaryColor = theme.primaryColor;
+    final isDark = AppTheme(context).isDarkMode;
 
     return AnimatedPress(
       child: Semantics(
@@ -863,18 +865,16 @@ class FilterBottom extends StatelessWidget {
             decoration: BoxDecoration(
               color: checked ? themePrimaryColor : theme.cardColor,
               borderRadius: BorderRadius.circular(14),
-              boxShadow:
-                  checked
-                      ? [BoxShadow(color: themePrimaryColor.withValues(alpha: 0.2), blurRadius: 6)]
-                      : [BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 6)],
+              boxShadow: checked
+                  ? [BoxShadow(color: themePrimaryColor.withValues(alpha: 0.2), blurRadius: 6)]
+                  : [BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 6)],
             ),
             child: Text(
               text,
               style: TextStyle(
-                color:
-                    checked
-                        ? Colors.white
-                        : isDarkMode(context)
+                color: checked
+                    ? Colors.white
+                    : isDark
                         ? Colors.white
                         : Colors.black87,
                 fontSize: 12,

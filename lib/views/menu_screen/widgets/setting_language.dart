@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:moodexample/config/language.dart';
 import 'package:moodexample/l10n/gen/app_localizations.dart';
 
-import 'package:moodexample/models/config/language_model.dart';
 import 'package:moodexample/providers/application/application_provider.dart';
 
 /// 语言设置
@@ -13,7 +12,7 @@ class SettingLanguage extends StatelessWidget {
   const SettingLanguage({super.key});
 
   /// 语言列表
-  List<LanguageData> get _languageConfig => languageConfig;
+  List<Language> get languageList => Language.values;
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +44,12 @@ class SettingLanguage extends StatelessWidget {
         Consumer<ApplicationProvider>(
           builder: (_, applicationProvider, child) {
             return Column(
-              children: List<Widget>.generate(_languageConfig.length, (index) {
+              children: List<Widget>.generate(languageList.length, (index) {
                 return RadioListTile<Locale>(
-                  value: _languageConfig[index].locale,
+                  value: languageList[index].locale,
                   groupValue: !applicationProvider.localeSystem ? applicationProvider.locale : null,
                   title: Text(
-                    _languageConfig[index].language,
+                    languageList[index].title,
                     style: Theme.of(
                       context,
                     ).textTheme.bodyMedium!.copyWith(fontSize: 14, fontWeight: FontWeight.normal),

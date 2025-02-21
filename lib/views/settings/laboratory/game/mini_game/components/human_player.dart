@@ -16,25 +16,25 @@ enum PlayerAttackType { attackMelee, attackRange, attackRangeShotguns }
 
 class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, UseLifeBar {
   HumanPlayer(Vector2 position)
-    : super(
-        position: position,
-        animation: SimpleDirectionAnimation(
-          idleLeft: SpriteSheetPlayer.idleBottomLeft,
-          idleRight: SpriteSheetPlayer.idleBottomRight,
-          idleUp: SpriteSheetPlayer.idleTopRight,
-          idleUpLeft: SpriteSheetPlayer.idleTopLeft,
-          idleUpRight: SpriteSheetPlayer.idleTopRight,
-          runLeft: SpriteSheetPlayer.runBottomLeft,
-          runRight: SpriteSheetPlayer.runBottomRight,
-          runUpLeft: SpriteSheetPlayer.runTopLeft,
-          runUpRight: SpriteSheetPlayer.runTopRight,
-          runDownLeft: SpriteSheetPlayer.runBottomLeft,
-          runDownRight: SpriteSheetPlayer.runBottomRight,
-        ),
-        speed: maxSpeed,
-        life: 500,
-        size: Vector2.all(tileSize * 3.2),
-      ) {
+      : super(
+          position: position,
+          animation: SimpleDirectionAnimation(
+            idleLeft: SpriteSheetPlayer.idleBottomLeft,
+            idleRight: SpriteSheetPlayer.idleBottomRight,
+            idleUp: SpriteSheetPlayer.idleTopRight,
+            idleUpLeft: SpriteSheetPlayer.idleTopLeft,
+            idleUpRight: SpriteSheetPlayer.idleTopRight,
+            runLeft: SpriteSheetPlayer.runBottomLeft,
+            runRight: SpriteSheetPlayer.runBottomRight,
+            runUpLeft: SpriteSheetPlayer.runTopLeft,
+            runUpRight: SpriteSheetPlayer.runTopRight,
+            runDownLeft: SpriteSheetPlayer.runBottomLeft,
+            runDownRight: SpriteSheetPlayer.runBottomRight,
+          ),
+          speed: maxSpeed,
+          life: 500,
+          size: Vector2.all(tileSize * 3.2),
+        ) {
     /// 发光
     setupLighting(
       LightingConfig(radius: width * 2, blurBorder: width * 6, color: Colors.transparent),

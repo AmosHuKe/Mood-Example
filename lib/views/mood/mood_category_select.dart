@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -60,6 +61,7 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDark = AppTheme(context).isDarkMode;
 
     return Scaffold(
       appBar: AppBar(
@@ -72,7 +74,7 @@ class _MoodCategorySelectState extends State<MoodCategorySelect> {
         leading: ActionButton(
           semanticsLabel: '关闭',
           decoration: BoxDecoration(
-            color: isDarkMode(context) ? theme.cardColor : AppTheme.backgroundColor1,
+            color: isDark ? theme.cardColor : AppTheme.staticBackgroundColor1,
             borderRadius: const BorderRadius.only(bottomRight: Radius.circular(18)),
           ),
           child: const Icon(Remix.arrow_left_line, size: 24),
@@ -101,10 +103,13 @@ class MoodCategorySelectBody extends StatelessWidget {
           padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 48),
           child: Column(
             children: [
-              Text(switch (_moodCategorySelectType) {
-                MoodCategorySelectType.add => appL10n.mood_category_select_title_1,
-                MoodCategorySelectType.edit => appL10n.mood_category_select_title_2,
-              }, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              Text(
+                switch (_moodCategorySelectType) {
+                  MoodCategorySelectType.add => appL10n.mood_category_select_title_1,
+                  MoodCategorySelectType.edit => appL10n.mood_category_select_title_2,
+                },
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 4),
                 child: Text(
@@ -113,7 +118,7 @@ class MoodCategorySelectBody extends StatelessWidget {
                     MoodCategorySelectType.edit => '',
                   },
                   style: const TextStyle(
-                    color: AppTheme.subColor,
+                    color: AppTheme.staticSubColor,
                     fontSize: 14,
                     fontWeight: FontWeight.normal,
                   ),
@@ -204,12 +209,12 @@ class MoodChoiceCard extends StatelessWidget {
               context.pop();
               GoRouter.of(context).pushNamed(
                 Routes.moodContent,
-                pathParameters: {'moodData': moodDataToJson(moodData)},
+                pathParameters: {'moodData': jsonEncode(moodData.toJson())},
               );
             case MoodCategorySelectType.edit:
               // 关闭当前页并返回数据
               final moodCategoryData = MoodCategoryData(icon: icon, title: title);
-              context.pop(moodCategoryDataToJson(moodCategoryData));
+              context.pop<Map<String, Object?>>(moodCategoryData.toJson());
           }
         },
       ),

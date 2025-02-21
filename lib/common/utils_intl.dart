@@ -1,8 +1,6 @@
 import 'package:flutter/widgets.dart';
-
 import 'package:intl/intl.dart';
-
-import 'package:moodexample/l10n/gen/app_localizations.dart';
+import '../l10n/gen/app_localizations.dart';
 
 /// 国际化日期
 class LocaleDatetime {
@@ -11,10 +9,9 @@ class LocaleDatetime {
   /// [format] 时间格式
   ///
   /// @return [String] 日期如：2000-01-01
-  static String yMMMd(BuildContext context, String format) =>
-      format.isNotEmpty
-          ? DateFormat.yMMMMd(
-            AppL10n.of(context).localeName,
-          ).format(DateFormat('yyyy-MM-dd').parse(format))
-          : '';
+  static String yMMMd(BuildContext context, String format) => format.isNotEmpty
+      ? DateFormat.yMMMMd(
+          AppL10n.of(context).localeName,
+        ).format(DateFormat('yyyy-MM-dd').parse(format))
+      : '';
 }

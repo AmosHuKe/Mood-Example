@@ -38,7 +38,7 @@ class _MiniFantasyPageState extends State<MiniFantasyPage> {
           title: const Text('MiniFantasy'),
           leading: ActionButton(
             decoration: const BoxDecoration(
-              color: AppTheme.backgroundColor1,
+              color: AppTheme.staticBackgroundColor1,
               borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
             ),
             child: const Icon(Remix.arrow_left_line, size: 24),
@@ -99,8 +99,7 @@ class Game extends StatelessWidget {
           //   ),
           // ),
           overlayBuilderMap: {
-            'miniMap':
-                (context, game) => MiniMap(
+            'miniMap': (context, game) => MiniMap(
                   game: game,
                   zoom: 0.8,
                   margin: const EdgeInsets.all(20),

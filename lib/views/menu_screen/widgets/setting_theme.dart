@@ -5,7 +5,7 @@ import 'package:remixicon/remixicon.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/l10n/gen/app_localizations.dart';
-import 'package:moodexample/config/multiple_themes.dart';
+import 'package:moodexample/config/multiple_theme_mode.dart';
 
 import 'package:moodexample/widgets/animation/animation.dart';
 
@@ -43,7 +43,7 @@ class SettingTheme extends StatelessWidget {
           ),
         ),
 
-        const MultipleThemesBody(),
+        const MultipleThemeBody(),
         const SizedBox(height: 48),
       ],
     );
@@ -56,6 +56,7 @@ class DarkThemeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = AppTheme(context).isDarkMode;
     final appL10n = AppL10n.of(context);
 
     return Consumer<ApplicationProvider>(
@@ -75,12 +76,11 @@ class DarkThemeBody extends StatelessWidget {
                   Expanded(
                     child: Container(
                       alignment: Alignment.center,
-                      color:
-                          isDarkMode(context) ? const Color(0xFFF6F8FA) : const Color(0xFF111315),
+                      color: isDark ? const Color(0xFFF6F8FA) : const Color(0xFF111315),
                       child: Text(
                         'Aa',
                         style: TextStyle(
-                          color: isDarkMode(context) ? Colors.black87 : const Color(0xFFEFEFEF),
+                          color: isDark ? Colors.black87 : const Color(0xFFEFEFEF),
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                         ),
@@ -90,12 +90,11 @@ class DarkThemeBody extends StatelessWidget {
                   Expanded(
                     child: Container(
                       alignment: Alignment.center,
-                      color:
-                          isDarkMode(context) ? const Color(0xFF111315) : const Color(0xFFF6F8FA),
+                      color: isDark ? const Color(0xFF111315) : const Color(0xFFF6F8FA),
                       child: Text(
                         'Aa',
                         style: TextStyle(
-                          color: isDarkMode(context) ? const Color(0xFFEFEFEF) : Colors.black87,
+                          color: isDark ? const Color(0xFFEFEFEF) : Colors.black87,
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                         ),
@@ -148,23 +147,22 @@ class DarkThemeBody extends StatelessWidget {
 }
 
 /// 多主题设置
-class MultipleThemesBody extends StatefulWidget {
-  const MultipleThemesBody({super.key});
+class MultipleThemeBody extends StatefulWidget {
+  const MultipleThemeBody({super.key});
 
   @override
-  State<MultipleThemesBody> createState() => _MultipleThemesBodyState();
+  State<MultipleThemeBody> createState() => _MultipleThemeBodyState();
 }
 
-class _MultipleThemesBodyState extends State<MultipleThemesBody> {
+class _MultipleThemeBodyState extends State<MultipleThemeBody> {
   @override
   Widget build(BuildContext context) {
-    /// 获取多主题Key
-    final appMultipleThemesModeKey = <String>[];
-    appMultipleThemesMode.forEach((key, value) => appMultipleThemesModeKey.add(key));
+    /// 获取多主题
+    final multipleThemeModeList = MultipleThemeMode.values;
 
     return Consumer<ApplicationProvider>(
       builder: (_, applicationProvider, child) {
-        final multipleThemesMode = applicationProvider.multipleThemesMode;
+        final multipleThemeMode = applicationProvider.multipleThemeMode;
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Wrap(
@@ -172,16 +170,16 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
             direction: Axis.horizontal,
             runSpacing: 16,
             spacing: 16,
-            children: List.generate(appMultipleThemesModeKey.length, (generator) {
-              final key = appMultipleThemesModeKey[generator];
-              final primaryColor = appMultipleThemesMode[key]!.lightTheme().primaryColor;
-              return MultipleThemesCard(
-                key: Key('widget_multiple_themes_card_$key'),
-                selected: multipleThemesMode == key,
+            children: List.generate(multipleThemeModeList.length, (index) {
+              final appMultipleThemeMode = multipleThemeModeList[index];
+              final primaryColor = appMultipleThemeMode.data.lightTheme().primaryColor;
+              return MultipleThemeCard(
+                key: Key('widget_multiple_theme_card_${appMultipleThemeMode.name}'),
+                selected: multipleThemeMode == appMultipleThemeMode,
                 child: Container(alignment: Alignment.center, color: primaryColor),
                 onTap: () {
-                  print('主题:$key');
-                  applicationProvider.multipleThemesMode = key;
+                  print('主题:${appMultipleThemeMode.name}');
+                  applicationProvider.multipleThemeMode = appMultipleThemeMode;
                 },
               );
             }),
@@ -193,8 +191,8 @@ class _MultipleThemesBodyState extends State<MultipleThemesBody> {
 }
 
 /// 多主题卡片
-class MultipleThemesCard extends StatelessWidget {
-  const MultipleThemesCard({super.key, this.child, this.selected, this.onTap});
+class MultipleThemeCard extends StatelessWidget {
+  const MultipleThemeCard({super.key, this.child, this.selected, this.onTap});
 
   /// 卡片内容
   final Widget? child;
@@ -207,7 +205,9 @@ class MultipleThemesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = AppTheme(context).isDarkMode;
     final isSelected = selected ?? false;
+
     return AnimatedPress(
       child: GestureDetector(
         onTap: onTap,
@@ -221,16 +221,15 @@ class MultipleThemesCard extends StatelessWidget {
                   height: 64,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    border:
-                        isSelected
-                            ? Border.all(
-                              width: 3,
-                              color: isDarkMode(context) ? Colors.white : Colors.black,
-                            )
-                            : Border.all(
-                              width: 3,
-                              color: isDarkMode(context) ? Colors.white12 : Colors.black12,
-                            ),
+                    border: isSelected
+                        ? Border.all(
+                            width: 3,
+                            color: isDark ? Colors.white : Colors.black,
+                          )
+                        : Border.all(
+                            width: 3,
+                            color: isDark ? Colors.white12 : Colors.black12,
+                          ),
                   ),
                   child: ClipRRect(borderRadius: BorderRadius.circular(50), child: child),
                 ),
@@ -244,7 +243,7 @@ class MultipleThemesCard extends StatelessWidget {
                       child: Icon(
                         Remix.checkbox_circle_fill,
                         size: 20,
-                        color: isDarkMode(context) ? Colors.white : Colors.black,
+                        color: isDark ? Colors.white : Colors.black,
                       ),
                     );
                   },
@@ -276,7 +275,9 @@ class ThemeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = AppTheme(context).isDarkMode;
     final isSelected = selected ?? false;
+
     return AnimatedPress(
       child: GestureDetector(
         onTap: onTap,
@@ -290,16 +291,15 @@ class ThemeCard extends StatelessWidget {
                   height: 72,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
-                    border:
-                        isSelected
-                            ? Border.all(
-                              width: 3,
-                              color: isDarkMode(context) ? Colors.white : Colors.black,
-                            )
-                            : Border.all(
-                              width: 3,
-                              color: isDarkMode(context) ? Colors.white12 : Colors.black12,
-                            ),
+                    border: isSelected
+                        ? Border.all(
+                            width: 3,
+                            color: isDark ? Colors.white : Colors.black,
+                          )
+                        : Border.all(
+                            width: 3,
+                            color: isDark ? Colors.white12 : Colors.black12,
+                          ),
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(14),
@@ -316,7 +316,7 @@ class ThemeCard extends StatelessWidget {
                       child: Icon(
                         Remix.checkbox_circle_fill,
                         size: 20,
-                        color: isDarkMode(context) ? Colors.white : Colors.black,
+                        color: isDark ? Colors.white : Colors.black,
                       ),
                     );
                   },

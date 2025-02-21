@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
-import 'package:moodexample/db/preferences_db.dart';
-
-import 'package:moodexample/models/mood/mood_model.dart';
-import 'package:moodexample/models/mood/mood_category_model.dart';
-import 'package:moodexample/services/mood/mood_service.dart';
+import '../../database/preferences_db.dart';
+import '../../models/mood/mood_model.dart';
+import '../../models/mood/mood_category_model.dart';
+import '../../services/mood/mood_service.dart';
 
 // 心情页相关
 class MoodProvider extends ChangeNotifier {

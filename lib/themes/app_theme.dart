@@ -2,35 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-import 'package:moodexample/config/multiple_themes.dart';
+import '../../config/multiple_theme_mode.dart';
 
-import 'package:moodexample/providers/application/application_provider.dart';
-
-/// 是否深色模式
-bool isDarkMode(BuildContext context) {
-  Theme.of(context);
-  final themeMode = context.read<ApplicationProvider>().themeMode;
-  return switch (themeMode) {
-    ThemeMode.system => View.of(context).platformDispatcher.platformBrightness == Brightness.dark,
-    ThemeMode.dark => true,
-    _ => false,
-  };
-}
-
-/// 当前深色模式
-///
-/// [mode] system(默认)：跟随系统 light：普通 dark：深色
-ThemeMode darkThemeMode(String mode) => switch (mode) {
-  'system' => ThemeMode.system,
-  'dark' => ThemeMode.dark,
-  'light' => ThemeMode.light,
-  _ => ThemeMode.system,
-};
-
-/// 当前多主题
-String getMultipleThemesMode(BuildContext context) {
-  return context.read<ApplicationProvider>().multipleThemesMode;
-}
+import '../../providers/application/application_provider.dart';
 
 /// 多主题
 abstract class AppMultipleTheme {
@@ -42,30 +16,46 @@ abstract class AppMultipleTheme {
 }
 
 /// 主题基础
-class AppTheme {
-  AppTheme(this.multipleThemesMode);
+class AppTheme implements AppMultipleTheme {
+  AppTheme(this.context);
 
-  String multipleThemesMode = 'default';
+  final BuildContext context;
 
-  /// 次要颜色
-  static const subColor = Color(0xFFAFB8BF);
+  /// 主题模式
+  late ThemeMode themeMode = context.read<ApplicationProvider>().themeMode;
 
-  /// 背景色系列
-  static const backgroundColor1 = Color(0xFFE8ECF0);
-  static const backgroundColor2 = Color(0xFFFCFBFC);
-  static const backgroundColor3 = Color(0xFFF3F2F3);
+  /// 多主题
+  late MultipleThemeMode multipleThemeMode = context.read<ApplicationProvider>().multipleThemeMode;
 
-  /// 多主题 light
-  ThemeData multipleThemesLightMode() {
-    return appMultipleThemesMode[multipleThemesMode] != null
-        ? appMultipleThemesMode[multipleThemesMode]!.lightTheme()
-        : appMultipleThemesMode['default']!.lightTheme();
-  }
+  /// Static 次要颜色
+  static const staticSubColor = Color(0xFFAFB8BF);
 
-  /// 多主题 dark
-  ThemeData multipleThemesDarkMode() {
-    return appMultipleThemesMode[multipleThemesMode] != null
-        ? appMultipleThemesMode[multipleThemesMode]!.darkTheme()
-        : appMultipleThemesMode['default']!.darkTheme();
+  /// Static 背景色系列
+  static const staticBackgroundColor1 = Color(0xFFE8ECF0);
+  static const staticBackgroundColor2 = Color(0xFFFCFBFC);
+  static const staticBackgroundColor3 = Color(0xFFF3F2F3);
+
+  @override
+  ThemeData lightTheme() => multipleThemeMode.data.lightTheme();
+
+  @override
+  ThemeData darkTheme() => multipleThemeMode.data.darkTheme();
+
+  /// 主题模式 FromString
+  ///
+  /// [themeMode] : [ThemeMode.system.name]
+  static ThemeMode themeModeFromString(String themeMode) => ThemeMode.values.firstWhere(
+        (e) => e.name == themeMode,
+        orElse: () => ThemeMode.system,
+      );
+
+  /// 是否深色模式
+  bool get isDarkMode {
+    Theme.of(context);
+    return switch (themeMode) {
+      ThemeMode.system => View.of(context).platformDispatcher.platformBrightness == Brightness.dark,
+      ThemeMode.dark => true,
+      _ => false,
+    };
   }
 }

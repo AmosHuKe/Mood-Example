@@ -7,7 +7,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'themes/app_theme.dart';
 import 'common/notification.dart';
 import 'l10n/gen/app_localizations.dart';
-import 'db/db.dart';
+import 'database/database.dart';
 
 import 'widgets/lock_screen/lock_screen.dart';
 
@@ -53,23 +53,22 @@ class _InitState extends State<Init> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = isDarkMode(context);
-    final systemUiOverlayStyle =
-        isDark
-            ? SystemUiOverlayStyle.dark.copyWith(
-              statusBarColor: Colors.transparent,
-              systemNavigationBarIconBrightness: Brightness.light,
-              statusBarIconBrightness: Brightness.light,
-              statusBarBrightness: Brightness.light,
-              systemNavigationBarColor: Colors.transparent,
-            )
-            : SystemUiOverlayStyle.light.copyWith(
-              statusBarColor: Colors.transparent,
-              systemNavigationBarIconBrightness: Brightness.dark,
-              statusBarIconBrightness: Brightness.dark,
-              statusBarBrightness: Brightness.dark,
-              systemNavigationBarColor: Colors.transparent,
-            );
+    final isDark = AppTheme(context).isDarkMode;
+    final systemUiOverlayStyle = isDark
+        ? SystemUiOverlayStyle.dark.copyWith(
+            statusBarColor: Colors.transparent,
+            systemNavigationBarIconBrightness: Brightness.light,
+            statusBarIconBrightness: Brightness.light,
+            statusBarBrightness: Brightness.light,
+            systemNavigationBarColor: Colors.transparent,
+          )
+        : SystemUiOverlayStyle.light.copyWith(
+            statusBarColor: Colors.transparent,
+            systemNavigationBarIconBrightness: Brightness.dark,
+            statusBarIconBrightness: Brightness.dark,
+            statusBarBrightness: Brightness.dark,
+            systemNavigationBarColor: Colors.transparent,
+          );
 
     /// 沉浸模式（全屏模式）
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
@@ -161,7 +160,7 @@ class _InitState extends State<Init> {
 
   /// 通知权限
   static Future<bool> displayNotificationRationale(BuildContext context) async {
-    final isDark = isDarkMode(context);
+    final isDark = AppTheme(context).isDarkMode;
     final appL10n = AppL10n.of(context);
     final awesomeNotifications = AwesomeNotifications();
     var userAuthorized = false;

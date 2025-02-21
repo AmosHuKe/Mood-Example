@@ -1,9 +1,6 @@
-import 'dart:convert';
-
-import 'package:moodexample/db/db.dart';
-
-import 'package:moodexample/models/mood/mood_model.dart';
-import 'package:moodexample/models/mood/mood_category_model.dart';
+import '../../database/database.dart';
+import '../../models/mood/mood_model.dart';
+import '../../models/mood/mood_category_model.dart';
 
 /// 心情相关
 class MoodService {
@@ -34,7 +31,7 @@ class MoodService {
     final moodCategoryDataList = <MoodCategoryData>[];
     // 转换模型
     for (final value in moodCategoryData) {
-      moodCategoryDataList.add(moodCategoryDataFromJson(json.encode(value)));
+      moodCategoryDataList.add(MoodCategoryData.fromJson(value));
     }
     return moodCategoryDataList;
   }
@@ -53,7 +50,7 @@ class MoodService {
     final MoodDataList = <MoodData>[];
     for (final value in moodData) {
       // 转换模型
-      MoodDataList.add(moodDataFromJson(json.encode(value)));
+      MoodDataList.add(MoodData.fromJson(value));
     }
     return MoodDataList;
   }
@@ -65,7 +62,7 @@ class MoodService {
     late final dataList = <MoodRecordData>[];
     for (final value in list) {
       // 转换模型
-      dataList.add(moodRecordDataFromJson(json.encode(value)));
+      dataList.add(MoodRecordData.fromJson(value));
     }
     return dataList;
   }
@@ -91,7 +88,7 @@ class MoodService {
     final moodDataList = <MoodData>[];
     for (final value in moodData) {
       // 转换模型
-      moodDataList.add(moodDataFromJson(json.encode(value)));
+      moodDataList.add(MoodData.fromJson(value));
     }
     return moodDataList;
   }

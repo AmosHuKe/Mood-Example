@@ -155,7 +155,7 @@ $ flutter run --debug/release/profile/test
 $ flutter clean
 
 # 集成测试
-$ flutter test integration_test/app_test.dart
+$ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 ```
 
 
@@ -201,10 +201,10 @@ $ flutter test integration_test/app_test.dart
 │   │   └── utils.dart                              # 工具
 │   ├── config/                                     # 配置
 │   │   ├── language.dart                           # 语言配置（用于列表选项）
-│   │   └── multiple_themes.dart                    # 多主题配置
-│   ├── db/                                         # 数据存储相关
-│   │   ├── database/                               # sqflite 数据表配置
-│   │   ├── db.dart                                 # sqflite 数据库相关
+│   │   └── multiple_theme_mode.dart                # 多主题配置
+│   ├── database/                                   # 数据存储相关
+│   │   ├── tables/                                 # sqflite 数据表配置
+│   │   ├── database.dart                           # sqflite 数据库相关
 │   │   └── preferences_db.dart                     # shared_preferences 数据相关
 │   ├── l10n/                                       # l10n 语言包
 │   │   ├── gen/                                    # l10n 语言包生成的文件夹（不用编码，自动生成）
@@ -212,8 +212,8 @@ $ flutter test integration_test/app_test.dart
 │   ├── providers/                                  # 状态管理
 │   ├── services/                                   # 数据服务
 │   ├── themes/                                     # 主题相关
-│   │   ├── multiple_themes_mode/                   # 多主题配色
-│   │   │   └── theme_default.dart.dart             # 多主题默认配色
+│   │   ├── multiple_theme_mode/                    # 多主题配色
+│   │   │   └── theme_default.dart                  # 多主题默认配色
 │   │   └── app_theme.dart                          # 主题基础
 │   ├── views/                                      # 视图
 │   │   ├── home/                                   # 首页
@@ -226,7 +226,7 @@ $ flutter test integration_test/app_test.dart
 │   │   │       ├── ffi/                            # ffi 测试
 │   │   │       ├── game/                           # 游戏合集
 │   │   │       ├── unimp_miniapps/                 # uniapp 小程序
-│   │   │       └── index.dart                      # 实验室首页
+│   │   │       └── laboratory.dart                 # 实验室首页
 │   │   ├── statistic/                              # 统计页
 │   │   └── web_view/                               # WebView
 │   ├── widgets/                                    # 通用组件相关
@@ -235,10 +235,9 @@ $ flutter test integration_test/app_test.dart
 │   ├── init.dart                                   # 初始化相关
 │   ├── main.dart                                   # 主应用入口
 │   └── routes.dart                                 # 路由管理
-├── test/                                           # 测试
 ├── .gitignore                                      # Git 提交仓库忽略文件配置
 ├── .metadata                                       # 当前 workspace 配置记录
-├── analysis_options.yaml                           # Dart 代码规范配置
+├── analysis_options.yaml                           # Dart 代码规范/风格配置
 ├── l10n.yaml                                       # l10n 配置
 ├── pubspec.lock                                    # 依赖生成的文件（锁定依赖版本等）
 └── pubspec.yaml                                    # 核心配置文件（项目配置、依赖等）

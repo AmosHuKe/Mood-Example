@@ -79,6 +79,7 @@ class _KeyBodyState extends State<KeyBody> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = AppTheme(context).isDarkMode;
     final appL10n = AppL10n.of(context);
     final localAuthUtils = LocalAuthUtils();
 
@@ -93,15 +94,15 @@ class _KeyBodyState extends State<KeyBody> {
             leading: Icon(
               localAuthIcon,
               size: titleIconSize,
-              color: isDarkMode(context) ? Colors.white : const Color(0xFF202427),
+              color: isDark ? Colors.white : const Color(0xFF202427),
             ),
             title: Text(
               localAuthText,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-                height: 1.0,
-              ),
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                    height: 1.0,
+                  ),
             ),
             trailing: Semantics(
               label: localAuthText,
@@ -130,15 +131,15 @@ class _KeyBodyState extends State<KeyBody> {
               leading: Icon(
                 Remix.lock_line,
                 size: titleIconSize,
-                color: isDarkMode(context) ? Colors.white : const Color(0xFF202427),
+                color: isDark ? Colors.white : const Color(0xFF202427),
               ),
               title: Text(
                 appL10n.app_setting_security_lock,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal,
-                  height: 1.0,
-                ),
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                      height: 1.0,
+                    ),
               ),
               trailing: Semantics(
                 label: appL10n.app_setting_security_lock,
