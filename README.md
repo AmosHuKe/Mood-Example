@@ -198,7 +198,7 @@ $ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 │   │   ├── database/                               # 数据基础设施
 │   │   │   ├── tables/                             # sqflite 数据表配置
 │   │   │   ├── database.dart                       # sqflite 数据库相关
-│   │   │   └── shared_preferences.dart             # shared_preferences 数据相关
+│   │   │   └── shared_preferences_db.dart          # shared_preferences 数据相关
 │   │   └── repositories/                           # 仓库实现层（协调业务逻辑）
 │   ├── domain/                                     # 领域层
 │   │   ├── models/                                 # 数据模型
