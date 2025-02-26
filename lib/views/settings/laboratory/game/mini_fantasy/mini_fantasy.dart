@@ -7,21 +7,14 @@ import 'package:remixicon/remixicon.dart';
 import 'package:bonfire/bonfire.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
-
 import 'package:moodexample/widgets/action_button/action_button.dart';
-
 import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/components/human_player.dart';
 import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/components/light.dart';
 import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/components/orc.dart';
 
-class MiniFantasyPage extends StatefulWidget {
-  const MiniFantasyPage({super.key});
+class MiniFantasyScreen extends StatelessWidget {
+  const MiniFantasyScreen({super.key});
 
-  @override
-  State<MiniFantasyPage> createState() => _MiniFantasyPageState();
-}
-
-class _MiniFantasyPageState extends State<MiniFantasyPage> {
   @override
   Widget build(BuildContext context) {
     return Theme(

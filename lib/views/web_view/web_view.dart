@@ -4,22 +4,22 @@ import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'package:moodexample/common/utils.dart';
-import 'package:moodexample/themes/app_theme.dart';
-import 'package:moodexample/l10n/gen/app_localizations.dart';
-import 'package:moodexample/widgets/action_button/action_button.dart';
-import 'package:moodexample/widgets/animation/animation.dart';
+import '../../utils/utils.dart';
+import '../../themes/app_theme.dart';
+import '../../l10n/gen/app_localizations.dart';
+import '../../widgets/animation/animation.dart';
+import '../../widgets/action_button/action_button.dart';
 
-class WebViewPage extends StatefulWidget {
-  const WebViewPage({super.key, required this.url});
+class WebViewScreen extends StatefulWidget {
+  const WebViewScreen({super.key, required this.url});
 
   final String url;
 
   @override
-  State<WebViewPage> createState() => _WebViewPageState();
+  State<WebViewScreen> createState() => _WebViewScreenState();
 }
 
-class _WebViewPageState extends State<WebViewPage> {
+class _WebViewScreenState extends State<WebViewScreen> {
   late WebViewController pageWebViewController;
   String pageTitle = '';
   bool canGoBack = false;

@@ -7,44 +7,36 @@ import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:animations/animations.dart';
 
-import 'package:moodexample/themes/app_theme.dart';
-import 'package:moodexample/routes.dart';
-import 'package:moodexample/l10n/gen/app_localizations.dart';
-import 'package:moodexample/common/utils.dart';
-
-import 'package:moodexample/widgets/animation/animation.dart';
-
-import 'package:moodexample/views/mood/mood_content.dart';
-import 'package:moodexample/views/web_view/web_view.dart';
-
-import 'package:moodexample/models/mood/mood_model.dart';
-import 'package:moodexample/providers/mood/mood_provider.dart';
-import 'package:moodexample/providers/application/application_provider.dart';
+import '../../router.dart';
+import '../../themes/app_theme.dart';
+import '../../l10n/gen/app_localizations.dart';
+import '../../utils/utils.dart';
+import '../../widgets/animation/animation.dart';
+import '../../views/mood/mood_content_edit.dart';
+import '../../views/web_view/web_view.dart';
+import '../../domain/models/mood/mood_data_model.dart';
+import '../../shared/view_models/application_view_model.dart';
+import 'view_models/home_view_model.dart';
 
 /// 首页
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: HomeBody(key: Key('widget_home_body')));
+    return ChangeNotifierProvider(
+      create: (context) {
+        return HomeViewModel(moodCategoryLoadUseCase: context.read());
+      },
+      child: const Scaffold(body: HomeBody(key: Key('widget_home_body'))),
+    );
   }
 }
 
 /// 首页主体
-class HomeBody extends StatefulWidget {
+class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
 
-  @override
-  State<HomeBody> createState() => _HomeBodyState();
-}
-
-class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
     final appL10n = AppL10n.of(context);
@@ -98,7 +90,7 @@ class _HomeBodyState extends State<HomeBody> {
                 /// 情绪选项卡
                 const Padding(
                   padding: EdgeInsets.only(top: 12),
-                  child: OptionMood(key: Key('widget_option_mood')),
+                  child: MoodOption(key: Key('widget_mood_option')),
                 ),
 
                 /// 公告卡片
@@ -136,7 +128,6 @@ class _HomeBodyState extends State<HomeBody> {
   }
 }
 
-/// 头部
 class Header extends StatelessWidget {
   const Header({super.key});
 
@@ -152,10 +143,10 @@ class Header extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 24),
           ),
         ),
-        Consumer<MoodProvider>(
-          builder: (_, moodProvider, child) {
+        Consumer<HomeViewModel>(
+          builder: (_, homeViewModel, child) {
             /// 加载数据的占位
-            if (moodProvider.moodCategoryList.isEmpty) {
+            if (homeViewModel.loading && homeViewModel.moodCategoryAll.isEmpty) {
               return const Align(child: CupertinoActivityIndicator(radius: 12));
             }
             return const SizedBox();
@@ -167,18 +158,8 @@ class Header extends StatelessWidget {
 }
 
 /// 情绪选项卡
-class OptionMood extends StatefulWidget {
-  const OptionMood({super.key});
-
-  @override
-  State<OptionMood> createState() => _OptionMoodState();
-}
-
-class _OptionMoodState extends State<OptionMood> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class MoodOption extends StatelessWidget {
+  const MoodOption({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -186,13 +167,15 @@ class _OptionMoodState extends State<OptionMood> {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       scrollDirection: Axis.horizontal,
       physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
-      child: Consumer<MoodProvider>(
-        builder: (_, moodProvider, child) {
+      child: Consumer<HomeViewModel>(
+        builder: (_, homeViewModel, child) {
+          if (homeViewModel.loading) return const SizedBox();
+
           /// 所有心情类型数据
           final widgetList = <Widget>[];
 
           /// 数据渲染
-          for (final list in moodProvider.moodCategoryList) {
+          for (final list in homeViewModel.moodCategoryAll) {
             widgetList.add(OptionCard(title: list.title, icon: list.icon));
           }
 
@@ -225,8 +208,8 @@ class OptionCard extends StatelessWidget {
     /// 图标大小
     const double iconSize = 32;
 
-    return Consumer<ApplicationProvider>(
-      builder: (_, applicationProvider, child) {
+    return Consumer<ApplicationViewModel>(
+      builder: (_, applicationViewModel, child) {
         return OpenContainer(
           useRootNavigator: true,
           clipBehavior: Clip.none,
@@ -266,15 +249,15 @@ class OptionCard extends StatelessWidget {
           closedColor: Colors.transparent,
           openBuilder: (_, closeContainer) {
             // 跳转输入内容页
-            final nowDateTime = DateTime.now().toString().substring(0, 10);
-            final moodData = MoodData(
+            final nowDateTime = Utils.datetimeFormatToString(DateTime.now());
+            final moodData = MoodDataModel(
               icon: icon,
               title: title,
+              score: 50,
               create_time: nowDateTime,
               update_time: nowDateTime,
             );
-
-            return MoodContent(moodData: moodData);
+            return MoodContentEditScreen(moodData: moodData);
           },
         );
       },
@@ -413,7 +396,6 @@ class ActionCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// 文字和按钮
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -456,13 +438,13 @@ class Article extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final availableWidth = constraints.maxWidth;
-        const double minWidth = 120;
-        const double maxWidth = 200;
+        const minWidth = 120.0;
+        const maxWidth = 200.0;
         final widgetWidth = (availableWidth / 2 - 8).clamp(minWidth, maxWidth);
 
         return Wrap(
-          spacing: 16, // 主轴(水平)方向间距
-          runSpacing: 24, // 纵轴（垂直）方向间距
+          spacing: 16,
+          runSpacing: 24,
           crossAxisAlignment: WrapCrossAlignment.end,
           children: [
             OpenContainer(
@@ -540,7 +522,7 @@ class Article extends StatelessWidget {
               closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),
               closedColor: const Color(0xFFFFCEBD),
               openBuilder: (_, closeContainer) {
-                return WebViewPage(
+                return WebViewScreen(
                   url: ValueBase64('https://github.com/AmosHuKe/Mood-Example').encode(),
                 );
               },
@@ -621,7 +603,7 @@ class Article extends StatelessWidget {
               closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),
               closedColor: const Color(0xFFFFD390),
               openBuilder: (_, closeContainer) {
-                return WebViewPage(url: ValueBase64('https://amooos.com/').encode());
+                return WebViewScreen(url: ValueBase64('https://amooos.com/').encode());
               },
             ),
           ],
@@ -643,21 +625,11 @@ class ArticleCard extends StatelessWidget {
     this.onTap,
   });
 
-  /// 宽
   final double width;
-
-  /// 背景渐变色
   final Gradient gradient;
-
-  /// Column
   final MainAxisAlignment mainAxisAlignment;
-
-  /// Column
   final CrossAxisAlignment crossAxisAlignment;
-
-  /// 组件
   final List<Widget> children;
-
   final VoidCallback? onTap;
 
   @override

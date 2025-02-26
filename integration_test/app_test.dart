@@ -1,21 +1,25 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:integration_test/integration_test.dart';
-import 'package:intl/intl.dart';
-import 'package:moodexample/l10n/gen/app_localizations.dart';
 
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:integration_test/integration_test.dart';
+
+import 'package:moodexample/l10n/gen/app_localizations.dart';
+import 'package:moodexample/shared/config/language.dart';
+import 'package:moodexample/shared/config/multiple_theme_mode.dart';
+import 'package:moodexample/shared/config/dependencies.dart';
 import 'package:moodexample/application.dart' show Application;
 
-import 'package:moodexample/config/language.dart';
-import 'package:moodexample/config/multiple_theme_mode.dart';
-
 void main() {
-  /// 集成测试环境的初始化
+  /// 集成测试环境初始化
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group('基础操作测试', () {
     testWidgets('切换底部菜单 Tab', (WidgetTester tester) async {
-      await tester.pumpWidget(const Application());
+      await tester.pumpWidget(
+        MultiProvider(providers: Dependencies.providersLocal, child: const Application()),
+      );
       await tester.pumpAndSettle();
 
       final widgetTabHome = find.byKey(const Key('tab_home'));
@@ -50,7 +54,9 @@ void main() {
     });
 
     testWidgets('侧栏基础操作', (WidgetTester tester) async {
-      await tester.pumpWidget(const Application());
+      await tester.pumpWidget(
+        MultiProvider(providers: Dependencies.providersLocal, child: const Application()),
+      );
       await tester.pumpAndSettle();
       await Future.delayed(const Duration(seconds: 3));
       final BuildContext context = tester.element(find.byKey(const Key('widget_menu_page')));
@@ -197,7 +203,9 @@ void main() {
     });
 
     testWidgets('首页基础操作', (WidgetTester tester) async {
-      await tester.pumpWidget(const Application());
+      await tester.pumpWidget(
+        MultiProvider(providers: Dependencies.providersLocal, child: const Application()),
+      );
       await tester.pumpAndSettle();
       await Future.delayed(const Duration(seconds: 3));
       final BuildContext context = tester.element(find.byKey(const Key('widget_menu_page')));
@@ -205,7 +213,7 @@ void main() {
 
       // Finder widgetHomeBody = find.byKey(const Key("widget_home_body"));
       final widgetTabHome = find.byKey(const Key('tab_home'));
-      final widgetOptionMood = find.byKey(const Key('widget_option_mood'));
+      final widgetOptionMood = find.byKey(const Key('widget_mood_option'));
       final widgetActionButtonClose = find.byKey(const Key('widget_action_button_close'));
       final widgetNextButton = find.byKey(const Key('widget_next_button'));
       final widgetWebViewClose = find.byKey(const Key('widget_web_view_close'));
@@ -303,7 +311,9 @@ void main() {
     });
 
     testWidgets('心情页基础操作', (WidgetTester tester) async {
-      await tester.pumpWidget(const Application());
+      await tester.pumpWidget(
+        MultiProvider(providers: Dependencies.providersLocal, child: const Application()),
+      );
       await tester.pumpAndSettle();
       await Future.delayed(const Duration(seconds: 3));
       final BuildContext context = tester.element(find.byKey(const Key('widget_menu_page')));
@@ -422,7 +432,9 @@ void main() {
     });
 
     testWidgets('统计页基础操作', (WidgetTester tester) async {
-      await tester.pumpWidget(const Application());
+      await tester.pumpWidget(
+        MultiProvider(providers: Dependencies.providersLocal, child: const Application()),
+      );
       await tester.pumpAndSettle();
       await Future.delayed(const Duration(seconds: 3));
       final BuildContext context = tester.element(find.byKey(const Key('widget_menu_page')));

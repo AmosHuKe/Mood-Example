@@ -1,15 +1,15 @@
 import 'package:flutter/services.dart';
-import 'package:flutter/material.dart';
-
-import 'application.dart';
+import 'package:flutter/widgets.dart';
+import 'main_local.dart' as local;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   // shared_preferences 模拟器需要使用（防止异常）
-  // SharedPreferences.setMockInitialValues({}); 该操作会清空所有SharedPreferences值
+  // 该操作会清空所有 SharedPreferences 值
+  // SharedPreferences.setMockInitialValues({});
 
-  runApp(const Application());
+  local.main();
 
   /// 强制竖屏
   SystemChrome.setPreferredOrientations(<DeviceOrientation>[

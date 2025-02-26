@@ -7,20 +7,13 @@ import 'package:remixicon/remixicon.dart';
 import 'package:bonfire/bonfire.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
-
 import 'package:moodexample/widgets/action_button/action_button.dart';
-
 import 'package:moodexample/views/settings/laboratory/game/mini_game/components/human_player.dart';
 import 'package:moodexample/views/settings/laboratory/game/mini_game/components/light.dart';
 
-class MiniGamePage extends StatefulWidget {
-  const MiniGamePage({super.key});
+class MiniGameScreen extends StatelessWidget {
+  const MiniGameScreen({super.key});
 
-  @override
-  State<MiniGamePage> createState() => _MiniGamePageState();
-}
-
-class _MiniGamePageState extends State<MiniGamePage> {
   @override
   Widget build(BuildContext context) {
     // 按横屏计算
@@ -44,7 +37,7 @@ class _MiniGamePageState extends State<MiniGamePage> {
             child: const Icon(Remix.arrow_left_line, size: 24),
             onTap: () async {
               await Flame.device.setPortrait();
-              if (!mounted) return;
+              if (!context.mounted) return;
               context.pop();
             },
           ),
@@ -55,18 +48,13 @@ class _MiniGamePageState extends State<MiniGamePage> {
   }
 }
 
-class Game extends StatefulWidget {
+class Game extends StatelessWidget {
   const Game({super.key});
 
   @override
-  State<Game> createState() => _GameState();
-}
-
-class _GameState extends State<Game> {
-  static const assetsPath = 'game/mini_game';
-
-  @override
   Widget build(BuildContext context) {
+    const assetsPath = 'game/mini_game';
+
     return LayoutBuilder(
       builder: (context, constraints) {
         final tileSize = max(constraints.maxHeight, constraints.maxWidth) / 20;

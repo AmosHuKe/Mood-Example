@@ -5,17 +5,11 @@ import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
-
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
-class UniMPMiniappsPage extends StatefulWidget {
-  const UniMPMiniappsPage({super.key});
+class UniMPMiniappsScreen extends StatelessWidget {
+  const UniMPMiniappsScreen({super.key});
 
-  @override
-  State<UniMPMiniappsPage> createState() => _UniMPMiniappsPageState();
-}
-
-class _UniMPMiniappsPageState extends State<UniMPMiniappsPage> {
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -89,7 +83,7 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
         ),
 
         /// 小程序
-        ListCard(
+        OpenCard(
           leading: const Icon(Remix.mini_program_fill, size: 32, color: Colors.black87),
           title: 'uView2.0',
           subtitle: 'uView UI，是 uni-app 生态优秀的 UI 框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水',
@@ -97,7 +91,7 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
             await callNativeMethod('__UNI__F87B0CE');
           },
         ),
-        ListCard(
+        OpenCard(
           leading: const Icon(Remix.mini_program_fill, size: 32, color: Colors.black87),
           title: 'hello-uniapp',
           subtitle: '演示 uni-app 框架的组件、接口、模板等',
@@ -110,8 +104,8 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
   }
 }
 
-class ListCard extends StatelessWidget {
-  const ListCard({
+class OpenCard extends StatelessWidget {
+  const OpenCard({
     super.key,
     required this.title,
     required this.subtitle,

@@ -4,11 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:bonfire/bonfire.dart';
 
-import 'package:moodexample/routes.dart';
+import 'package:moodexample/router.dart';
 import 'package:moodexample/themes/app_theme.dart';
-
 import 'package:moodexample/widgets/action_button/action_button.dart';
-
 import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/sprite_sheet/sprite_sheet_orc.dart'
     as mini_fantasy;
 import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/sprite_sheet/sprite_sheet_player.dart'
@@ -18,14 +16,9 @@ import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_shee
 import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_sheet/sprite_sheet_player.dart'
     as mini_game;
 
-class GamePage extends StatefulWidget {
-  const GamePage({super.key});
+class GameScreen extends StatelessWidget {
+  const GameScreen({super.key});
 
-  @override
-  State<GamePage> createState() => _GamePageState();
-}
-
-class _GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -51,28 +44,22 @@ class _GamePageState extends State<GamePage> {
             },
           ),
         ),
-        body: const SafeArea(child: UniMPMiniappsBody()),
+        body: const SafeArea(child: GameBody()),
       ),
     );
   }
 }
 
-class UniMPMiniappsBody extends StatefulWidget {
-  const UniMPMiniappsBody({super.key});
+class GameBody extends StatelessWidget {
+  const GameBody({super.key});
 
-  @override
-  State<UniMPMiniappsBody> createState() => _UniMPMiniappsBodyState();
-}
-
-class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
   @override
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 20),
       physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       children: [
-        /// 小程序
-        ListCard(
+        GameCard(
           leading: const Icon(Remix.gamepad_line, size: 32, color: Colors.black87),
           title: 'Mini Fantasy',
           subtitle: '2D 地牢风格游戏，基于 Mini Fantasy 示例，修改了一些奇怪的东西。',
@@ -80,11 +67,11 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
             /// 载入游戏静态资源
             await mini_fantasy.SpriteSheetOrc.load();
             await mini_fantasy.SpriteSheetPlayer.load();
-            if (!mounted) return;
+            if (!context.mounted) return;
             GoRouter.of(context).pushNamed(Routes.laboratoryGameMiniFantasy);
           },
         ),
-        ListCard(
+        GameCard(
           leading: const Icon(Remix.gamepad_line, size: 32, color: Colors.black87),
           title: '疯狂射击、怪物生成',
           subtitle:
@@ -96,7 +83,7 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
             /// 载入游戏静态资源
             await mini_game.SpriteSheetPlayer.load();
             await mini_game.SpriteSheetOrc.load();
-            if (!mounted) return;
+            if (!context.mounted) return;
             GoRouter.of(context).pushNamed(Routes.laboratoryGameMiniGame);
           },
         ),
@@ -105,8 +92,8 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
   }
 }
 
-class ListCard extends StatelessWidget {
-  const ListCard({
+class GameCard extends StatelessWidget {
+  const GameCard({
     super.key,
     required this.title,
     required this.subtitle,

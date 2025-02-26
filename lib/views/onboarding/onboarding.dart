@@ -4,31 +4,34 @@ import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:card_swiper/card_swiper.dart';
 
-import 'package:moodexample/themes/app_theme.dart';
-import 'package:moodexample/l10n/gen/app_localizations.dart';
-
-import 'package:moodexample/widgets/animation/animation.dart';
+import '../../themes/app_theme.dart';
+import '../../l10n/gen/app_localizations.dart';
+import '../../widgets/animation/animation.dart';
 
 /// 引导页
-class OnboardingPage extends StatelessWidget {
-  const OnboardingPage({super.key});
+class OnboardingScreen extends StatelessWidget {
+  const OnboardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SafeArea(child: SwiperBody()), // dart format
+      body: SafeArea(child: OnboardingBody()), // dart format
     );
   }
 }
 
-class SwiperBody extends StatefulWidget {
-  const SwiperBody({super.key});
+class OnboardingBody extends StatefulWidget {
+  const OnboardingBody({super.key});
 
   @override
-  State<SwiperBody> createState() => _SwiperBodyState();
+  State<OnboardingBody> createState() => _OnboardingBodyState();
 }
 
-class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
+class _OnboardingBodyState extends State<OnboardingBody> with TickerProviderStateMixin {
+  int swiperIndex = 0;
+  List<Widget> swiperList = [];
+  final SwiperController swiperController = SwiperController();
+
   /// 进步按钮动画
   late AnimationController stepButtonController;
   late Animation<double> stepButtonAnimation;
@@ -37,16 +40,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
   /// 进步按钮颜色动画
   late AnimationController stepButtonColorController;
   late Animation stepButtonColorAnimation;
-  late final Color stepButtonColor = Colors.black;
-
-  /// Swiper下标
-  int swiperIndex = 0;
-
-  /// Swiper内容
-  List<Widget> swiperList = [];
-
-  /// Swiper控制
-  final SwiperController swiperController = SwiperController();
+  final Color stepButtonColor = Colors.black;
 
   @override
   void initState() {
@@ -76,10 +70,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    /// 进步按钮Icon动画
     stepButtonController.dispose();
-
-    /// 进步按钮颜色动画
     stepButtonColorController.dispose();
     super.dispose();
   }
@@ -88,11 +79,7 @@ class _SwiperBodyState extends State<SwiperBody> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final isDark = AppTheme(context).isDarkMode;
     final appL10n = AppL10n.of(context);
-
-    /// 内容字体样式
     const textContentStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.w400);
-
-    /// Swiper内容
     swiperList = [
       TextImageSwiper(
         title: appL10n.onboarding_title_1,

@@ -1,9 +1,8 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-
 import '../app_theme.dart';
 
-/// 主题
+/// 默认主题
 class AppThemeDefault implements AppMultipleTheme {
   /// 主颜色
   static const primaryColor = Color(0xFF3e4663);

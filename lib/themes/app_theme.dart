@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
-
-import '../../config/multiple_theme_mode.dart';
-
-import '../../providers/application/application_provider.dart';
+import '../shared/config/multiple_theme_mode.dart';
+import '../shared/view_models/application_view_model.dart';
 
 /// 多主题
 abstract class AppMultipleTheme {
@@ -18,14 +15,15 @@ abstract class AppMultipleTheme {
 /// 主题基础
 class AppTheme implements AppMultipleTheme {
   AppTheme(this.context);
-
   final BuildContext context;
 
-  /// 主题模式
-  late ThemeMode themeMode = context.read<ApplicationProvider>().themeMode;
+  late final applicationViewModel = context.read<ApplicationViewModel>();
 
-  /// 多主题
-  late MultipleThemeMode multipleThemeMode = context.read<ApplicationProvider>().multipleThemeMode;
+  /// 主题模式
+  late ThemeMode themeMode = applicationViewModel.themeMode;
+
+  /// 多主题模式
+  late MultipleThemeMode multipleThemeMode = applicationViewModel.multipleThemeMode;
 
   /// Static 次要颜色
   static const staticSubColor = Color(0xFFAFB8BF);
@@ -43,7 +41,7 @@ class AppTheme implements AppMultipleTheme {
 
   /// 主题模式 FromString
   ///
-  /// [themeMode] : [ThemeMode.system.name]
+  /// - [themeMode]: [ThemeMode.system.name]
   static ThemeMode themeModeFromString(String themeMode) => ThemeMode.values.firstWhere(
     (e) => e.name == themeMode,
     orElse: () => ThemeMode.system, // dart format

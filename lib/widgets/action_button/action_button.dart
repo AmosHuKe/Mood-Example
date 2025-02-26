@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:moodexample/themes/app_theme.dart';
+import '../../themes/app_theme.dart';
 
 /// 操作按钮
 class ActionButton extends StatelessWidget {

@@ -1,39 +1,33 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-import 'package:remixicon/remixicon.dart';
-import 'package:table_calendar/table_calendar.dart';
-import 'package:animations/animations.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
+import 'package:remixicon/remixicon.dart';
+import 'package:animations/animations.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:table_calendar/table_calendar.dart';
 
-import 'package:moodexample/themes/app_theme.dart';
-import 'package:moodexample/l10n/gen/app_localizations.dart';
-import 'package:moodexample/common/utils_intl.dart';
-
-import 'package:moodexample/widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
-import 'package:moodexample/widgets/empty/empty.dart';
-import 'package:moodexample/widgets/action_button/action_button.dart';
-import 'package:moodexample/widgets/animation/animation.dart';
-
-import 'package:moodexample/views/mood/mood_content.dart';
-import 'package:moodexample/views/mood/mood_category_select.dart'
-    show MoodCategorySelect, MoodCategorySelectType;
-
-import 'package:moodexample/models/mood/mood_model.dart';
-import 'package:moodexample/providers/mood/mood_provider.dart';
+import '../../utils/result.dart';
+import '../../themes/app_theme.dart';
+import '../../l10n/gen/app_localizations.dart';
+import '../../utils/intl_utils.dart';
+import '../../widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
+import '../../widgets/empty/empty.dart';
+import '../../widgets/action_button/action_button.dart';
+import '../../widgets/animation/animation.dart';
+import '../../domain/models/mood/mood_data_model.dart';
+import '../../shared/view_models/mood_view_model.dart';
+import 'view_models/mood_category_select_view_model.dart';
+import 'widgets/mood_option_card.dart';
+import 'mood_content_edit.dart' show MoodContentEditScreen;
+import 'mood_category_select.dart' show MoodCategorySelectScreen;
 
 /// 心情页（记录列表）
-class MoodPage extends StatefulWidget {
-  const MoodPage({super.key});
+class MoodScreen extends StatelessWidget {
+  const MoodScreen({super.key});
 
-  @override
-  State<MoodPage> createState() => _MoodPageState();
-}
-
-class _MoodPageState extends State<MoodPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -83,8 +77,13 @@ class _MoodPageState extends State<MoodPage> {
           closedElevation: 0,
           closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
           closedColor: theme.scaffoldBackgroundColor,
-          openBuilder:
-              (_, closeContainer) => MoodCategorySelect(type: MoodCategorySelectType.add.type),
+          openBuilder: (context, closeContainer) {
+            final moodViewModel = context.read<MoodViewModel>();
+            return MoodCategorySelectScreen(
+              screenType: MoodCategorySelectType.add,
+              selectDateTime: moodViewModel.selectDateTime,
+            );
+          },
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -93,7 +92,6 @@ class _MoodPageState extends State<MoodPage> {
   }
 }
 
-/// 主体
 class MoodBody extends StatelessWidget {
   const MoodBody({super.key});
 
@@ -137,8 +135,8 @@ class MoodBody extends StatelessWidget {
         /// 下拉加载
         CupertinoSliverRefreshControl(
           onRefresh: () async {
-            final moodProvider = context.read<MoodProvider>();
-            moodProvider.load();
+            final moodViewModel = context.read<MoodViewModel>();
+            moodViewModel.load();
           },
         ),
 
@@ -146,31 +144,24 @@ class MoodBody extends StatelessWidget {
         const SliverToBoxAdapter(child: Calendar(key: Key('widget_mood_body_calendar'))),
 
         /// 心情数据列表
-        Consumer<MoodProvider>(
-          builder: (_, moodProvider, child) {
+        Consumer<MoodViewModel>(
+          builder: (_, moodViewModel, child) {
             /// 加载数据的占位
-            if (moodProvider.moodDataLoading) {
-              return SliverFixedExtentList(
-                itemExtent: 280,
-                delegate: SliverChildBuilderDelegate(
-                  (builder, index) {
-                    return const Align(child: CupertinoActivityIndicator(radius: 12));
-                  },
-                  childCount: 1, // dart format
+            if (moodViewModel.moodDataListLoading) {
+              return const SliverToBoxAdapter(
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 130),
+                    child: CupertinoActivityIndicator(radius: 12),
+                  ),
                 ),
               );
             }
 
             /// 没有数据的占位
-            if (moodProvider.moodDataList.length <= 0) {
-              return SliverFixedExtentList(
-                itemExtent: 280,
-                delegate: SliverChildBuilderDelegate(
-                  (builder, index) {
-                    return const Empty(padding: EdgeInsets.only(top: 64), height: 160, width: 90);
-                  },
-                  childCount: 1, // dart format
-                ),
+            if (moodViewModel.moodDataList.length <= 0) {
+              return const SliverToBoxAdapter(
+                child: Empty(padding: EdgeInsets.only(top: 64), height: 160, width: 90),
               );
             }
 
@@ -179,10 +170,10 @@ class MoodBody extends StatelessWidget {
               child: SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    final moodData = moodProvider.moodDataList[index];
+                    final moodData = moodViewModel.moodDataList[index];
                     return MoodCard(key: Key(moodData.mood_id.toString()), moodData: moodData);
                   },
-                  childCount: moodProvider.moodDataList.length, // dart format
+                  childCount: moodViewModel.moodDataList.length, // dart format
                 ),
               ),
             );
@@ -223,16 +214,16 @@ class _CalendarState extends State<Calendar> {
         boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 6)],
         borderRadius: BorderRadius.circular(18),
       ),
-      child: Consumer<MoodProvider>(
-        builder: (context, moodProvider, child) {
-          /// 当前选中得日期
-          final nowDateTime = moodProvider.nowDateTime;
+      child: Consumer<MoodViewModel>(
+        builder: (context, moodViewModel, child) {
+          /// 当前选中的日期
+          final selectDateTime = moodViewModel.selectDateTime;
 
           return TableCalendar(
             locale: appL10n.localeName,
             firstDay: DateTime.utc(2021, 10, 01),
             lastDay: DateTime.now(),
-            focusedDay: nowDateTime,
+            focusedDay: selectDateTime,
             startingDayOfWeek: StartingDayOfWeek.monday,
             calendarFormat: calendarFormat,
             formatAnimationCurve: Curves.linearToEaseOut,
@@ -273,10 +264,10 @@ class _CalendarState extends State<Calendar> {
             // 自定义界面构建
             calendarBuilders: CalendarBuilders(
               defaultBuilder: (context, day, focusedDay) {
-                final moodRecordDate = moodProvider.moodRecordDate;
+                final moodRecordDateAllList = moodViewModel.moodRecordDateAllList;
                 return calenderBuilder(
                   day: day,
-                  moodRecordDate: moodRecordDate,
+                  moodRecordDateList: moodRecordDateAllList,
                   textStyle: TextStyle(color: isDark ? Colors.white : Colors.black87),
                 );
               },
@@ -300,10 +291,10 @@ class _CalendarState extends State<Calendar> {
                 );
               },
               todayBuilder: (context, day, focusedDay) {
-                final moodRecordDate = moodProvider.moodRecordDate;
+                final moodRecordDateAllList = moodViewModel.moodRecordDateAllList;
                 return calenderBuilder(
                   day: day,
-                  moodRecordDate: moodRecordDate,
+                  moodRecordDateList: moodRecordDateAllList,
                   bodyColors: [
                     themePrimaryColor.withValues(alpha: 0.2),
                     themePrimaryColor.withValues(alpha: 0.2),
@@ -326,22 +317,19 @@ class _CalendarState extends State<Calendar> {
               CalendarFormat.twoWeeks: '大',
               CalendarFormat.week: '中',
             },
-            selectedDayPredicate: (day) => isSameDay(nowDateTime, day),
+            selectedDayPredicate: (day) => isSameDay(selectDateTime, day),
             onDaySelected: (selectedDay, focusedDay) {
               /// 之前选择的日期
-              final oldSelectedDay = moodProvider.nowDateTime;
+              final oldSelectedDay = moodViewModel.selectDateTime;
 
               /// 选择的日期相同则不操作
               if (oldSelectedDay == selectedDay) return;
 
               /// 赋值当前选择的日期
-              moodProvider.nowDateTime = selectedDay;
-
-              /// 开启加载
-              moodProvider.moodDataLoading = true;
+              moodViewModel.selectDateTime = selectedDay;
 
               /// 获取心情数据
-              moodProvider.loadMoodDataList();
+              moodViewModel.loadMoodDataList();
             },
             onCalendarCreated: (pageController) {
               /// 初始化触发一次
@@ -366,16 +354,13 @@ class _CalendarState extends State<Calendar> {
 
   /// 日历样式构建
   ///
-  /// [day] 当前日期
-  ///
-  /// [moodRecordDate] 所有已记录心情的日期
-  ///
-  /// [bodyColors] 主背景渐变颜色 - 至少两个
-  ///
-  /// [textStyle] 字体样式
+  /// - [day] 当前日期
+  /// - [moodRecordDateList] 所有已记录心情的日期
+  /// - [bodyColors] 主背景渐变颜色 - 至少两个
+  /// - [textStyle] 字体样式
   Widget calenderBuilder({
     required DateTime day,
-    List<MoodRecordData>? moodRecordDate,
+    List<MoodRecordDateModel>? moodRecordDateList,
     List<Color>? bodyColors,
     List<BoxShadow>? boxShadow,
     required TextStyle textStyle,
@@ -383,7 +368,7 @@ class _CalendarState extends State<Calendar> {
     final nowDate = DateFormat('yyyy-MM-dd').format(day);
 
     /// 所有已记录心情的日期
-    final list = moodRecordDate ?? [];
+    final list = moodRecordDateList ?? [];
 
     return Container(
       width: 36,
@@ -426,7 +411,7 @@ class _CalendarState extends State<Calendar> {
 class MoodCard extends StatelessWidget {
   const MoodCard({super.key, required this.moodData});
 
-  final MoodData moodData;
+  final MoodDataModel moodData;
 
   @override
   Widget build(BuildContext context) {
@@ -466,7 +451,7 @@ class MoodCard extends StatelessWidget {
                 closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
                 closedColor: const Color(0xFFD6F2E2),
                 openBuilder: (_, closeContainer) {
-                  return MoodContent(moodData: moodData);
+                  return MoodContentEditScreen(moodData: moodData);
                 },
               ),
             ),
@@ -501,13 +486,18 @@ class MoodCard extends StatelessWidget {
                             CupertinoDialogAction(
                               isDestructiveAction: true,
                               onPressed: () async {
-                                final moodProvider = context.read<MoodProvider>();
-                                final result = await moodProvider.deleteMoodData(moodData);
-                                if (result) {
-                                  /// 重新初始化
-                                  final moodProvider = context.read<MoodProvider>();
-                                  moodProvider.load();
-                                  context.pop();
+                                final moodViewModel = context.read<MoodViewModel>();
+                                final result = await moodViewModel.deleteMoodData(
+                                  moodData.mood_id!,
+                                );
+                                switch (result) {
+                                  case Success<bool>():
+                                    if (result.value) {
+                                      /// 重新初始化
+                                      moodViewModel.load();
+                                      context.pop();
+                                    }
+                                  case Error<bool>():
                                 }
                               },
                               child: Text(appL10n.mood_data_delete_button_confirm),
@@ -647,11 +637,11 @@ class MoodCard extends StatelessWidget {
   }
 }
 
-/// 心情详情详情展示
+/// 心情详情展示
 class MoodDetail extends StatelessWidget {
   const MoodDetail({super.key, required this.moodData});
 
-  final MoodData moodData;
+  final MoodDataModel moodData;
 
   @override
   Widget build(BuildContext context) {
@@ -680,7 +670,7 @@ class MoodDetail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               /// 心情卡片
-              ExcludeSemantics(child: MoodChoiceCard(icon: moodData.icon, title: moodData.title)),
+              ExcludeSemantics(child: MoodOptionCard(icon: moodData.icon, title: moodData.title)),
 
               /// 打分
               Expanded(

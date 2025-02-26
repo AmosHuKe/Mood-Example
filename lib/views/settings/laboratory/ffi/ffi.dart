@@ -8,7 +8,6 @@ import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
-
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
 /// 类型定义
@@ -20,14 +19,14 @@ typedef DartInitializeApiDL = int Function(Pointer<Void> data);
 typedef NativeRegisterSendPort = Void Function(Int64, Int);
 typedef RegisterSendPort = void Function(int, int);
 
-class FFIPage extends StatefulWidget {
-  const FFIPage({super.key});
+class FFIScreen extends StatefulWidget {
+  const FFIScreen({super.key});
 
   @override
-  State<FFIPage> createState() => _FFIPageState();
+  State<FFIScreen> createState() => _FFIScreenState();
 }
 
-class _FFIPageState extends State<FFIPage> {
+class _FFIScreenState extends State<FFIScreen> {
   late DynamicLibrary dl;
 
   /// 接收端口1

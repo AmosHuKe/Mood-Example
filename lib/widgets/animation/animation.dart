@@ -25,7 +25,6 @@ class _AnimatedPressState extends State<AnimatedPress> with SingleTickerProvider
     super.initState();
     controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 300))
       ..addListener(() {});
-
     curve = CurvedAnimation(
       parent: controller,
       curve: Curves.decelerate,

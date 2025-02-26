@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
 
+import 'package:vector_math/vector_math_64.dart' as vector;
 import 'package:ditredi/ditredi.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vector_math/vector_math_64.dart' as vector;
 import 'package:remixicon/remixicon.dart';
 
 import 'package:moodexample/themes/app_theme.dart';
-
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
-class Page3D extends StatefulWidget {
-  const Page3D({super.key});
+class Demo3DScreen extends StatelessWidget {
+  const Demo3DScreen({super.key});
 
-  @override
-  State<Page3D> createState() => _Page3DState();
-}
-
-class _Page3DState extends State<Page3D> {
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -54,9 +48,11 @@ class Body3D extends StatefulWidget {
 }
 
 class _Body3DState extends State<Body3D> {
-  late DiTreDiController controller = DiTreDiController();
+  late final DiTreDiController controller;
+
   @override
   void initState() {
+    super.initState();
     controller = DiTreDiController();
     controller.update(
       light: vector.Vector3(-50, -50, 50),
@@ -64,7 +60,6 @@ class _Body3DState extends State<Body3D> {
       ambientLightStrength: 0.6,
       userScale: 1.5,
     );
-    super.initState();
   }
 
   @override

@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_screen_lock/flutter_screen_lock.dart';
-import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
+import 'package:flutter_screen_lock/flutter_screen_lock.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
-import 'package:moodexample/common/local_auth_utils.dart';
-import 'package:moodexample/l10n/gen/app_localizations.dart';
+import '../../utils/local_auth_utils.dart';
+import '../../l10n/gen/app_localizations.dart';
+import '../../shared/view_models/security_key_view_model.dart';
 
-import 'package:moodexample/providers/application/application_provider.dart';
-
-/// 锁屏
-Future<void> lockScreen(BuildContext context) async {
+/// 锁屏界面弹出
+///
+/// - [keyPassword] 安全密码
+/// - [keyBiometric] 是否开启安全生物特征识别
+Future<void> lockScreen(
+  BuildContext context, {
+  required String keyPassword,
+  required bool keyBiometric,
+}) async {
   final theme = Theme.of(context);
   final appL10n = AppL10n.of(context);
-  final applicationProvider = context.read<ApplicationProvider>();
-  applicationProvider.loadKeyPassword();
-  applicationProvider.loadKeyBiometric();
-
-  final password = applicationProvider.keyPassword;
   final localAuthUtils = await LocalAuthUtils();
+  final securityKeyViewModel = context.read<SecurityKeyViewModel>();
 
   /// 支持生物特征识别处理
   Widget? customizedButtonChild;
-  final canAppKeyBiometric = applicationProvider.keyBiometric;
   final canLocalAuthBiometrics = await localAuthUtils.canLocalAuthBiometrics();
-  if (canAppKeyBiometric && canLocalAuthBiometrics) {
+  if (keyBiometric && canLocalAuthBiometrics) {
     final localAuthList = await localAuthUtils.localAuthList();
     customizedButtonChild = Icon(
       await LocalAuthUtils.localAuthIcon(localAuthList),
@@ -36,11 +37,11 @@ Future<void> lockScreen(BuildContext context) async {
     );
   }
 
-  if (password != '' && !applicationProvider.keyPasswordScreenOpen) {
+  if (keyPassword != '') {
     if (context.mounted) {
       screenLock(
         context: context,
-        correctString: password,
+        correctString: keyPassword,
         title: Text(appL10n.app_setting_security_lock_screen_title),
         canCancel: false,
         deleteButton: Icon(
@@ -52,18 +53,18 @@ Future<void> lockScreen(BuildContext context) async {
         customizedButtonTap: () async {
           final localAuthBiometric = await localAuthUtils.localAuthBiometric(context);
           if (localAuthBiometric) {
-            applicationProvider.keyPasswordScreenOpen = false;
+            securityKeyViewModel.keyPasswordScreenOpen = false;
             if (context.mounted) {
               context.pop();
             }
           }
         },
         onOpened: () async {
-          applicationProvider.keyPasswordScreenOpen = true;
-          if (canAppKeyBiometric) {
+          securityKeyViewModel.keyPasswordScreenOpen = true;
+          if (keyBiometric) {
             final localAuthBiometric = await localAuthUtils.localAuthBiometric(context);
             if (localAuthBiometric) {
-              applicationProvider.keyPasswordScreenOpen = false;
+              securityKeyViewModel.keyPasswordScreenOpen = false;
               if (context.mounted) {
                 context.pop();
               }
@@ -71,7 +72,7 @@ Future<void> lockScreen(BuildContext context) async {
           }
         },
         onUnlocked: () {
-          applicationProvider.keyPasswordScreenOpen = false;
+          securityKeyViewModel.keyPasswordScreenOpen = false;
           context.pop();
         },
       );
@@ -81,17 +82,17 @@ Future<void> lockScreen(BuildContext context) async {
 
 /// 锁屏创建
 ///
-/// [onConfirmed] 密码确认后的操作
-Future<void> createlockScreen(
+/// - [onConfirmed] 密码确认后的操作
+Future<void> createLockScreen(
   BuildContext context,
   void Function(String password) onConfirmed,
 ) async {
   final theme = Theme.of(context);
   final appL10n = AppL10n.of(context);
-  final controller = InputController();
+  final inputController = InputController();
   screenLockCreate(
     context: context,
-    inputController: controller,
+    inputController: inputController,
     title: Text(appL10n.app_setting_security_lock_title_1),
     confirmTitle: Text(appL10n.app_setting_security_lock_title_2),
     onConfirmed: (password) {
@@ -110,7 +111,7 @@ Future<void> createlockScreen(
     footer: TextButton(
       onPressed: () {
         // 重新输入
-        controller.unsetConfirmed();
+        inputController.unsetConfirmed();
       },
       child: Text(
         appL10n.app_setting_security_lock_resetinput,

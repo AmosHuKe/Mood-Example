@@ -1,12 +1,10 @@
 
-<p align="center">
-  <img alt="Preview1" src="./README/preview/preview1.png">
-</p>
+<p align="center"><img alt="Preview1" src="./README/preview/preview1.png"></p>
 
 <br/>
 
-<h1 align="center"> 
-  <img alt="Logo" src="./README/logo/logo.png" width="48px" style="border-radius:16px;" /> Mood Example
+<h1 align="center">
+  <img alt="Logo" src="./README/logo/logo.png" width="48px" style="border-radius:16px;" /> <span>Mood Example</span>
 
   <!-- [![Sparkline](https://stars.medv.io/AmosHuKe/Mood-Example.svg)](https://stars.medv.io/AmosHuKe/Mood-Example) -->
 </h1> 
@@ -124,12 +122,13 @@ macOS:
 
 ```sh
 ├── lib/
-│   ├── config/
-│   │   └── language.dart   # 语言配置（用于列表选项）
-│   ├── l10n/               # l10n 语言包
-│   │   ├── gen/            # l10n 语言包生成的文件夹（不用编码，自动生成）
-│   │   └── app_zh_CN.arb   # 如 简体中文：zh_CN
-├── l10n.yaml               # l10n 配置
+│   ├── l10n/                   # l10n 语言包
+│   │   ├── gen/                # l10n 语言包生成的文件夹（不用编码，自动生成）
+│   │   └── app_zh_CN.arb       # 如 简体中文：zh_CN
+│   ├── shared/
+│   │   ├── config/
+│   │   │   └── language.dart   # 语言配置
+├── l10n.yaml                   # l10n 配置
 ......
 ```
 
@@ -161,7 +160,7 @@ $ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 
 ## 📑 项目结构
 
-```sh
+```md
 ├── android/                                        # Android 工程文件 
 │   ├── app/                      
 │   │   ├── libs/                                   # 包含 UniMPSDK 依赖库
@@ -194,47 +193,51 @@ $ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 │   │   └── Runner-Bridging-Header.h                # 依赖库引入
 │   └── Podfile                                     # 依赖配置
 ├── lib/                                            # 工程相关文件（主要编码）
-│   ├── common/                                     # 公共相关
-│   │   ├── local_auth_utils.dart                   # 本地认证（生物特征识别）
-│   │   ├── notification.dart                       # 本地通知
-│   │   ├── utils_intl.dart                         # 国际化工具
-│   │   └── utils.dart                              # 工具
-│   ├── config/                                     # 配置
-│   │   ├── language.dart                           # 语言配置（用于列表选项）
-│   │   └── multiple_theme_mode.dart                # 多主题配置
-│   ├── database/                                   # 数据存储相关
-│   │   ├── tables/                                 # sqflite 数据表配置
-│   │   ├── database.dart                           # sqflite 数据库相关
-│   │   └── preferences_db.dart                     # shared_preferences 数据相关
+│   ├── data/                                       # 数据层
+│   │   ├── dao/                                    # 原始数据访问操作
+│   │   ├── database/                               # 数据基础设施
+│   │   │   ├── tables/                             # sqflite 数据表配置
+│   │   │   ├── database.dart                       # sqflite 数据库相关
+│   │   │   └── shared_preferences.dart             # shared_preferences 数据相关
+│   │   └── repositories/                           # 仓库实现层（协调业务逻辑）
+│   ├── domain/                                     # 领域层
+│   │   ├── models/                                 # 数据模型
+│   │   ├── repositories/                           # 仓库抽象层（抽象业务接口）
+│   │   └── use_cases/                              # 业务用例
 │   ├── l10n/                                       # l10n 语言包
 │   │   ├── gen/                                    # l10n 语言包生成的文件夹（不用编码，自动生成）
-│   ├── models/                                     # 数据模型
-│   ├── providers/                                  # 状态管理
-│   ├── services/                                   # 数据服务
+│   ├── shared/                                     # 共享相关
+│   │   ├── config/                                 # 配置
+│   │   │   ├── dependencies.dart                   # 依赖注入
+│   │   │   ├── language.dart                       # 语言配置
+│   │   │   └── multiple_theme_mode.dart            # 多主题配置
+│   │   └── view_models/                            # 视图模型
 │   ├── themes/                                     # 主题相关
 │   │   ├── multiple_theme_mode/                    # 多主题配色
 │   │   │   └── theme_default.dart                  # 多主题默认配色
 │   │   └── app_theme.dart                          # 主题基础
+│   ├── utils/                                      # 工具相关
 │   ├── views/                                      # 视图
 │   │   ├── home/                                   # 首页
-│   │   ├── menu_screen/                            # 侧边设置栏
 │   │   ├── mood/                                   # 心情页
 │   │   ├── onboarding/                             # 用户引导页
-│   │   ├── settings/                               # 侧边设置栏-其他页面组件（实验室等）
-│   │   │   └── laboratory/                         # 实验室
-│   │   │       ├── 3d/                             # 3D 城市
-│   │   │       ├── ffi/                            # ffi 测试
-│   │   │       ├── game/                           # 游戏合集
-│   │   │       ├── unimp_miniapps/                 # uniapp 小程序
-│   │   │       └── laboratory.dart                 # 实验室首页
+│   │   ├── settings/                               # 侧边设置栏-其他页面（实验室等）
+│   │   │   ├── laboratory/                         # 实验室
+│   │   │   │   ├── 3d/                             # 3D 城市
+│   │   │   │   ├── ffi/                            # ffi 测试
+│   │   │   │   ├── game/                           # 游戏合集
+│   │   │   │   ├── unimp_miniapps/                 # uniapp 小程序
+│   │   │   │   └── laboratory.dart                 # 实验室首页
+│   │   │   └── setting_menu.dart                   # 侧边设置栏页
 │   │   ├── statistic/                              # 统计页
-│   │   └── web_view/                               # WebView
-│   ├── widgets/                                    # 通用组件相关
+│   │   ├── web_view/                               # WebView
+│   │   └── main_screen.dart                        # 主屏幕
+│   ├── widgets/                                    # 通用 Widget 相关
 │   ├── application.dart                            # 主应用
-│   ├── home_screen.dart                            # 主应用导航相关
 │   ├── init.dart                                   # 初始化相关
+│   ├── main_local.dart                             # 主应用入口（本地数据依赖注入）
 │   ├── main.dart                                   # 主应用入口
-│   └── routes.dart                                 # 路由管理
+│   └── router.dart                                 # 路由管理
 ├── .gitignore                                      # Git 提交仓库忽略文件配置
 ├── .metadata                                       # 当前 workspace 配置记录
 ├── analysis_options.yaml                           # Dart 代码规范/风格配置

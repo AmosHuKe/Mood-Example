@@ -235,7 +235,7 @@ class AppL10nZh extends AppL10n {
 
   @override
   String statistic_overall_daysCount_title(Object daysCount) {
-    return '$daysCount天';
+    return '$daysCount 天';
   }
 
   @override
@@ -243,7 +243,7 @@ class AppL10nZh extends AppL10n {
 
   @override
   String statistic_overall_moodCount_title(Object moodCount) {
-    return '$moodCount条';
+    return '$moodCount 条';
   }
 
   @override
@@ -259,12 +259,12 @@ class AppL10nZh extends AppL10n {
 
   @override
   String statistic_moodScoreAverage_title(Object moodScoreAverage) {
-    return '平均$moodScoreAverage';
+    return '平均 $moodScoreAverage';
   }
 
   @override
   String statistic_moodScoreAverage_content(Object moodDays) {
-    return '按$moodDays日计算情绪波动';
+    return '按 $moodDays 日计算情绪波动';
   }
 
   @override
@@ -272,7 +272,7 @@ class AppL10nZh extends AppL10n {
 
   @override
   String statistic_moodScore_content(Object moodDays) {
-    return '近$moodDays日情绪波动';
+    return '近 $moodDays 日情绪波动';
   }
 
   @override
@@ -280,7 +280,7 @@ class AppL10nZh extends AppL10n {
 
   @override
   String statistic_moodStatistics_content(Object moodDays) {
-    return '近$moodDays日心情数量统计';
+    return '近 $moodDays 日心情数量统计';
   }
 
   @override
@@ -545,7 +545,7 @@ class AppL10nZhCn extends AppL10nZh {
 
   @override
   String statistic_overall_daysCount_title(Object daysCount) {
-    return '$daysCount天';
+    return '$daysCount 天';
   }
 
   @override
@@ -553,7 +553,7 @@ class AppL10nZhCn extends AppL10nZh {
 
   @override
   String statistic_overall_moodCount_title(Object moodCount) {
-    return '$moodCount条';
+    return '$moodCount 条';
   }
 
   @override
@@ -569,12 +569,12 @@ class AppL10nZhCn extends AppL10nZh {
 
   @override
   String statistic_moodScoreAverage_title(Object moodScoreAverage) {
-    return '平均$moodScoreAverage';
+    return '平均 $moodScoreAverage';
   }
 
   @override
   String statistic_moodScoreAverage_content(Object moodDays) {
-    return '按$moodDays日计算情绪波动';
+    return '按 $moodDays 日计算情绪波动';
   }
 
   @override
@@ -582,7 +582,7 @@ class AppL10nZhCn extends AppL10nZh {
 
   @override
   String statistic_moodScore_content(Object moodDays) {
-    return '近$moodDays日情绪波动';
+    return '近 $moodDays 日情绪波动';
   }
 
   @override
@@ -590,7 +590,7 @@ class AppL10nZhCn extends AppL10nZh {
 
   @override
   String statistic_moodStatistics_content(Object moodDays) {
-    return '近$moodDays日心情数量统计';
+    return '近 $moodDays 日心情数量统计';
   }
 
   @override
@@ -855,7 +855,7 @@ class AppL10nZhHk extends AppL10nZh {
 
   @override
   String statistic_overall_daysCount_title(Object daysCount) {
-    return '$daysCount天';
+    return '$daysCount 天';
   }
 
   @override
@@ -863,7 +863,7 @@ class AppL10nZhHk extends AppL10nZh {
 
   @override
   String statistic_overall_moodCount_title(Object moodCount) {
-    return '$moodCount條';
+    return '$moodCount 條';
   }
 
   @override
@@ -879,12 +879,12 @@ class AppL10nZhHk extends AppL10nZh {
 
   @override
   String statistic_moodScoreAverage_title(Object moodScoreAverage) {
-    return '平均$moodScoreAverage';
+    return '平均 $moodScoreAverage';
   }
 
   @override
   String statistic_moodScoreAverage_content(Object moodDays) {
-    return '按$moodDays日計算情緒波動';
+    return '按 $moodDays 日計算情緒波動';
   }
 
   @override
@@ -892,7 +892,7 @@ class AppL10nZhHk extends AppL10nZh {
 
   @override
   String statistic_moodScore_content(Object moodDays) {
-    return '近$moodDays日情緒波動';
+    return '近 $moodDays 日情緒波動';
   }
 
   @override
@@ -900,7 +900,7 @@ class AppL10nZhHk extends AppL10nZh {
 
   @override
   String statistic_moodStatistics_content(Object moodDays) {
-    return '近$moodDays日心情數量統計';
+    return '近 $moodDays 日心情數量統計';
   }
 
   @override
@@ -1165,7 +1165,7 @@ class AppL10nZhTw extends AppL10nZh {
 
   @override
   String statistic_overall_daysCount_title(Object daysCount) {
-    return '$daysCount天';
+    return '$daysCount 天';
   }
 
   @override
@@ -1173,7 +1173,7 @@ class AppL10nZhTw extends AppL10nZh {
 
   @override
   String statistic_overall_moodCount_title(Object moodCount) {
-    return '$moodCount條';
+    return '$moodCount 條';
   }
 
   @override
@@ -1189,12 +1189,12 @@ class AppL10nZhTw extends AppL10nZh {
 
   @override
   String statistic_moodScoreAverage_title(Object moodScoreAverage) {
-    return '平均$moodScoreAverage';
+    return '平均 $moodScoreAverage';
   }
 
   @override
   String statistic_moodScoreAverage_content(Object moodDays) {
-    return '按$moodDays日計算情緒波動';
+    return '按 $moodDays 日計算情緒波動';
   }
 
   @override
@@ -1202,7 +1202,7 @@ class AppL10nZhTw extends AppL10nZh {
 
   @override
   String statistic_moodScore_content(Object moodDays) {
-    return '近$moodDays日情緒波動';
+    return '近 $moodDays 日情緒波動';
   }
 
   @override
@@ -1210,7 +1210,7 @@ class AppL10nZhTw extends AppL10nZh {
 
   @override
   String statistic_moodStatistics_content(Object moodDays) {
-    return '近$moodDays日心情數量統計';
+    return '近 $moodDays 日心情數量統計';
   }
 
   @override
