@@ -67,11 +67,4 @@ class MoodDataDao {
     ''');
     return list;
   }
-
-  /// 查询所有心情详情
-  Future<List<Map<String, Object?>>> getMoodDataAll() async {
-    final db = await _database.database;
-    final list = await db.query(MoodInfo.tableName, orderBy: '${MoodInfo.create_time} desc');
-    return list;
-  }
 }

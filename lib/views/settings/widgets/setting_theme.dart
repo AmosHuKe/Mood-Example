@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
-import 'package:moodexample/themes/app_theme.dart';
-import 'package:moodexample/l10n/gen/app_localizations.dart';
-import 'package:moodexample/shared/config/multiple_theme_mode.dart';
-
-import 'package:moodexample/widgets/animation/animation.dart';
-
+import '../../../themes/app_theme.dart';
+import '../../../l10n/gen/app_localizations.dart';
+import '../../../widgets/animation/animation.dart';
+import '../../../shared/config/multiple_theme_mode.dart';
 import '../../../shared/view_models/application_view_model.dart';
 
 /// 主题设置

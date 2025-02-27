@@ -10,7 +10,7 @@ abstract final class Utils {
   ///
   /// @return [String] 日期
   static String datetimeFormatToString(DateTime datetime, {String? format}) =>
-      DateFormat(format ?? 'yyyy-MM-dd').format(datetime);
+      DateFormat(format ?? 'yyyy-MM-dd').format(datetime).substring(0, 10);
 
   /// 解析日期时间
   ///
@@ -19,7 +19,7 @@ abstract final class Utils {
   ///
   /// @return [String] 日期
   static String datetimeParseToString(String datetime, {String? format}) =>
-      DateFormat(format ?? 'yyyy-MM-dd').parse(datetime).toString();
+      DateFormat(format ?? 'yyyy-MM-dd').parse(datetime).toString().substring(0, 10);
 
   /// 统计颜色块
   static const List<Color> statisticColors = [

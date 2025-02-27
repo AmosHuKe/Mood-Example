@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:local_auth/local_auth.dart';
-import 'package:moodexample/shared/view_models/security_key_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
 
-import 'package:moodexample/themes/app_theme.dart';
-import 'package:moodexample/widgets/lock_screen/lock_screen.dart';
-import 'package:moodexample/utils/local_auth_utils.dart';
-import 'package:moodexample/l10n/gen/app_localizations.dart';
+import '../../../themes/app_theme.dart';
+import '../../../widgets/lock_screen/lock_screen.dart';
+import '../../../utils/local_auth_utils.dart';
+import '../../../l10n/gen/app_localizations.dart';
+import '../../../shared/view_models/security_key_view_model.dart';
 
 /// 安全
 class SettingKey extends StatelessWidget {

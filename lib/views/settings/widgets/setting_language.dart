@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-import 'package:moodexample/shared/config/language.dart';
-import 'package:moodexample/l10n/gen/app_localizations.dart';
-
+import '../../../l10n/gen/app_localizations.dart';
+import '../../../shared/config/language.dart';
 import '../../../shared/view_models/application_view_model.dart';
 
 /// 语言设置

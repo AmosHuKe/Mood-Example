@@ -200,7 +200,7 @@ $ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 │   │   │   ├── database.dart                       # sqflite 数据库相关
 │   │   │   └── shared_preferences_db.dart          # shared_preferences 数据相关
 │   │   └── repositories/                           # 仓库实现层（协调业务逻辑）
-│   ├── domain/                                     # 领域层
+│   ├── domain/                                     # 领域层（业务抽象）
 │   │   ├── models/                                 # 数据模型
 │   │   ├── repositories/                           # 仓库抽象层（抽象业务接口）
 │   │   └── use_cases/                              # 业务用例

@@ -28,10 +28,6 @@ class MoodViewModel extends ChangeNotifier {
   List<MoodDataModel> _moodDataList = [];
   List<MoodDataModel> get moodDataList => _moodDataList;
 
-  /// 所有心情数据
-  List<MoodDataModel> _moodDataAllList = [];
-  List<MoodDataModel> get moodDataAllList => _moodDataAllList;
-
   /// 所有心情的记录日期数据
   List<MoodRecordDateModel> _moodRecordDateAllList = [];
   List<MoodRecordDateModel> get moodRecordDateAllList => _moodRecordDateAllList;
@@ -99,19 +95,6 @@ class MoodViewModel extends ChangeNotifier {
         return result;
       case Error<bool>():
         return Result.error(result.error);
-    }
-  }
-
-  /// 获取所有心情数据
-  Future<Result<void>> loadMoodDataAllList() async {
-    final moodDataListResult = await _moodDataUseCase.getMoodDataAll();
-    switch (moodDataListResult) {
-      case Success<List<MoodDataModel>>():
-        _moodDataAllList = moodDataListResult.value;
-        notifyListeners();
-        return const Result.success(null);
-      case Error<List<MoodDataModel>>():
-        return Result.error(moodDataListResult.error);
     }
   }
 

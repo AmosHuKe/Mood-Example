@@ -16,9 +16,9 @@ class MoodDataUseCase {
   }
 
   /// 获取所有心情数据
-  Future<Result<List<MoodDataModel>>> getMoodDataAll() async {
-    return _moodDataRepository.getMoodDataAll();
-  }
+  // Future<Result<List<MoodDataModel>>> getMoodDataAll() async {
+  //   return _moodDataRepository.getMoodDataAll();
+  // }
 
   /// 获取所有心情数据的记录日期数据
   Future<Result<List<MoodRecordDateModel>>> getMoodRecordDateAll() async {

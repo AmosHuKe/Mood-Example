@@ -8,7 +8,7 @@ abstract class MoodDataRepository {
   Future<Result<List<MoodDataModel>>> getMoodDataByDateTime(DateTime dateTime);
 
   /// 获取所有心情数据
-  Future<Result<List<MoodDataModel>>> getMoodDataAll();
+  /// Future<Result<List<MoodDataModel>>> getMoodDataAll();
 
   /// 获取所有心情数据的记录日期数据
   Future<Result<List<MoodRecordDateModel>>> getMoodRecordDateAll();

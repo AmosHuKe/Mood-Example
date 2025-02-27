@@ -25,20 +25,6 @@ class MoodDataRepositoryLocal implements MoodDataRepository {
   }
 
   @override
-  Future<Result<List<MoodDataModel>>> getMoodDataAll() async {
-    try {
-      final moodData = await _moodDataDao.getMoodDataAll();
-      return Result.success(
-        moodData.map((value) {
-          return MoodDataModel.fromJson(value);
-        }).toList(),
-      );
-    } on Exception catch (e) {
-      return Result.error(e);
-    }
-  }
-
-  @override
   Future<Result<List<MoodRecordDateModel>>> getMoodRecordDateAll() async {
     try {
       final moodRecordDateData = await _moodDataDao.getMoodRecordDateAll();
