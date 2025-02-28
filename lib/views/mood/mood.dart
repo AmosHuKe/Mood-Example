@@ -1,28 +1,27 @@
+import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
-import 'package:animations/animations.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../router.dart';
+import '../../utils/utils.dart';
 import '../../utils/result.dart';
 import '../../themes/app_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
 import '../../utils/intl_utils.dart';
+import '../../widgets/animation/animation.dart';
 import '../../widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
 import '../../widgets/empty/empty.dart';
 import '../../widgets/action_button/action_button.dart';
-import '../../widgets/animation/animation.dart';
 import '../../domain/models/mood/mood_data_model.dart';
 import '../../shared/view_models/mood_view_model.dart';
 import 'view_models/mood_category_select_view_model.dart';
 import 'widgets/mood_option_card.dart';
-import 'mood_content_edit.dart' show MoodContentEditScreen;
-import 'mood_category_select.dart' show MoodCategorySelectScreen;
 
 /// 心情页（记录列表）
 class MoodScreen extends StatelessWidget {
@@ -32,59 +31,32 @@ class MoodScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final themePrimaryColor = theme.primaryColor;
-    final appL10n = AppL10n.of(context);
 
     return Scaffold(
-      floatingActionButton: AnimatedPress(
-        child: OpenContainer(
-          useRootNavigator: true,
-          clipBehavior: Clip.none,
-          transitionType: ContainerTransitionType.fadeThrough,
-          transitionDuration: const Duration(milliseconds: 450),
-          closedBuilder: (_, openContainer) {
-            return FloatingActionButton.extended(
-              key: const Key('widget_add_mood_button'),
-              heroTag: 'addmood',
-              backgroundColor: themePrimaryColor,
-              hoverElevation: 0,
-              focusElevation: 0,
-              elevation: 0,
-              highlightElevation: 0,
-              label: Row(
-                children: [
-                  const Icon(Remix.add_fill, color: Colors.white, size: 18),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 4),
-                    child: Text(
-                      appL10n.mood_add_button,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              onPressed: () {
-                openContainer();
-              },
-            );
-          },
-          openElevation: 0,
-          openColor: theme.scaffoldBackgroundColor,
-          middleColor: themePrimaryColor.withValues(alpha: 0.2),
-          closedElevation: 0,
-          closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
-          closedColor: theme.scaffoldBackgroundColor,
-          openBuilder: (context, closeContainer) {
-            final moodViewModel = context.read<MoodViewModel>();
-            return MoodCategorySelectScreen(
-              screenType: MoodCategorySelectType.add,
-              selectDateTime: moodViewModel.selectDateTime,
-            );
-          },
+      floatingActionButton: FloatingActionButton(
+        key: const Key('widget_add_mood_button'),
+        heroTag: 'addmood',
+        backgroundColor: themePrimaryColor,
+        hoverElevation: 0,
+        focusElevation: 0,
+        elevation: 0,
+        highlightElevation: 0,
+        child: Container(
+          width: 32,
+          height: 32,
+          decoration: const BoxDecoration(shape: BoxShape.circle),
+          child: const Icon(Remix.add_fill, color: Colors.white, size: 18),
         ),
+        onPressed: () {
+          final moodViewModel = context.read<MoodViewModel>();
+          GoRouter.of(context).pushNamed(
+            Routes.moodCategorySelect,
+            pathParameters: {
+              'type': MoodCategorySelectType.add.name,
+              'selectDateTime': moodViewModel.selectDateTime.toString(),
+            },
+          );
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: const MoodBody(key: Key('widget_mood_body')),
@@ -365,7 +337,7 @@ class _CalendarState extends State<Calendar> {
     List<BoxShadow>? boxShadow,
     required TextStyle textStyle,
   }) {
-    final nowDate = DateFormat('yyyy-MM-dd').format(day);
+    final nowDate = Utils.datetimeFormatToString(day);
 
     /// 所有已记录心情的日期
     final list = moodRecordDateList ?? [];
@@ -387,7 +359,7 @@ class _CalendarState extends State<Calendar> {
               builder: (context) {
                 var recordedIndex = -1;
                 for (var i = 0; i < list.length; i++) {
-                  if (list[i].record_date == DateFormat('yyyy-MM-dd').format(day)) {
+                  if (list[i].record_date == Utils.datetimeFormatToString(day)) {
                     recordedIndex = i;
                   }
                 }
@@ -426,33 +398,22 @@ class MoodCard extends StatelessWidget {
         children: [
           Expanded(
             child: Align(
-              child: OpenContainer(
-                useRootNavigator: true,
-                transitionType: ContainerTransitionType.fadeThrough,
-                transitionDuration: const Duration(milliseconds: 450),
-                closedBuilder: (_, openContainer) {
-                  return ActionButton(
-                    key: const Key('widget_mood_card_slidable_action_button_edit'),
-                    semanticsLabel: '编辑',
-                    width: 56,
-                    height: 56,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFD6F2E2),
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                    onTap: openContainer,
-                    child: const Icon(Remix.edit_box_line, color: Color(0xFF587966)),
+              child: ActionButton(
+                key: const Key('widget_mood_card_slidable_action_button_edit'),
+                semanticsLabel: '编辑',
+                width: 56,
+                height: 56,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFD6F2E2),
+                  borderRadius: BorderRadius.circular(18),
+                ),
+                onTap: () {
+                  GoRouter.of(context).pushNamed(
+                    Routes.moodContentEdit,
+                    pathParameters: {'moodData': jsonEncode(moodData.toJson())},
                   );
                 },
-                openElevation: 0,
-                openColor: theme.scaffoldBackgroundColor,
-                middleColor: theme.scaffoldBackgroundColor,
-                closedElevation: 0,
-                closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-                closedColor: const Color(0xFFD6F2E2),
-                openBuilder: (_, closeContainer) {
-                  return MoodContentEditScreen(moodData: moodData);
-                },
+                child: const Icon(Remix.edit_box_line, color: Color(0xFF587966)),
               ),
             ),
           ),
@@ -480,7 +441,9 @@ class MoodCard extends StatelessWidget {
                           content: Text(appL10n.mood_data_delete_button_content),
                           actions: <CupertinoDialogAction>[
                             CupertinoDialogAction(
+                              isDefaultAction: true,
                               child: Text(appL10n.mood_data_delete_button_cancel),
+                              textStyle: TextStyle(color: theme.textTheme.bodyMedium?.color),
                               onPressed: () => context.pop(),
                             ),
                             CupertinoDialogAction(

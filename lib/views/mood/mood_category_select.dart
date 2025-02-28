@@ -207,7 +207,7 @@ class MoodOptionCard extends StatelessWidget {
                   /// 关闭当前页并跳转输入内容页
                   context.pop();
                   GoRouter.of(context).pushNamed(
-                    Routes.moodContent,
+                    Routes.moodContentEdit,
                     pathParameters: {'moodData': jsonEncode(moodData.toJson())},
                   );
                 case MoodCategorySelectType.edit:

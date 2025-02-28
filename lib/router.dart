@@ -42,10 +42,10 @@ abstract final class Routes {
   /// - [selectDateTime] 当前选择的时间
   static const String moodCategorySelect = 'moodCategorySelect';
 
-  /// 添加心情内容页
+  /// 添加心情内容编辑页
   ///
   /// - [moodData] 心情数据 [MoodDataModel]
-  static const String moodContent = 'moodContent';
+  static const String moodContentEdit = 'moodContentEdit';
 
   /// 统计页
   static const String statistic = 'statistic';
@@ -207,8 +207,8 @@ abstract final class AppRouter {
 
       /// 添加心情内容页
       GoRoute(
-        path: '/${Routes.moodContent}/:moodData',
-        name: Routes.moodContent,
+        path: '/${Routes.moodContentEdit}/:moodData',
+        name: Routes.moodContentEdit,
         parentNavigatorKey: rootNavigatorKey,
         pageBuilder: (_, state) {
           final moodData = MoodDataModel.fromJson(

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -5,15 +6,12 @@ import 'package:flutter_tilt/flutter_tilt.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
-import 'package:animations/animations.dart';
 
 import '../../router.dart';
 import '../../themes/app_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
 import '../../utils/utils.dart';
 import '../../widgets/animation/animation.dart';
-import '../../views/mood/mood_content_edit.dart';
-import '../../views/web_view/web_view.dart';
 import '../../domain/models/mood/mood_data_model.dart';
 import '../../shared/view_models/application_view_model.dart';
 import 'view_models/home_view_model.dart';
@@ -210,44 +208,8 @@ class OptionCard extends StatelessWidget {
 
     return Consumer<ApplicationViewModel>(
       builder: (_, applicationViewModel, child) {
-        return OpenContainer(
-          useRootNavigator: true,
-          clipBehavior: Clip.none,
-          transitionType: ContainerTransitionType.fadeThrough,
-          transitionDuration: const Duration(milliseconds: 450),
-          closedBuilder: (_, openContainer) {
-            return GestureDetector(
-              onTap: openContainer,
-              child: Column(
-                children: [
-                  AnimatedPress(
-                    child: Container(
-                      constraints: const BoxConstraints(minWidth: 52),
-                      decoration: BoxDecoration(
-                        color: isDark ? const Color(0xFF2B3034) : AppTheme.staticBackgroundColor1,
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 18),
-                        child: Align(child: Text(icon, style: const TextStyle(fontSize: iconSize))),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(title, style: const TextStyle(fontSize: 14)),
-                  ),
-                ],
-              ),
-            );
-          },
-          openElevation: 0,
-          openColor: Colors.transparent,
-          middleColor: Colors.transparent,
-          closedElevation: 0,
-          closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-          closedColor: Colors.transparent,
-          openBuilder: (_, closeContainer) {
+        return GestureDetector(
+          onTap: () {
             // 跳转输入内容页
             final nowDateTime = Utils.datetimeFormatToString(DateTime.now());
             final moodData = MoodDataModel(
@@ -257,8 +219,32 @@ class OptionCard extends StatelessWidget {
               create_time: nowDateTime,
               update_time: nowDateTime,
             );
-            return MoodContentEditScreen(moodData: moodData);
+            GoRouter.of(context).pushNamed(
+              Routes.moodContentEdit,
+              pathParameters: {'moodData': jsonEncode(moodData.toJson())},
+            );
           },
+          child: Column(
+            children: [
+              AnimatedPress(
+                child: Container(
+                  constraints: const BoxConstraints(minWidth: 52),
+                  decoration: BoxDecoration(
+                    color: isDark ? const Color(0xFF2B3034) : AppTheme.staticBackgroundColor1,
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 18),
+                    child: Align(child: Text(icon, style: const TextStyle(fontSize: iconSize))),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Text(title, style: const TextStyle(fontSize: 14)),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -432,7 +418,6 @@ class Article extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final appL10n = AppL10n.of(context);
 
     return LayoutBuilder(
@@ -447,164 +432,137 @@ class Article extends StatelessWidget {
           runSpacing: 24,
           crossAxisAlignment: WrapCrossAlignment.end,
           children: [
-            OpenContainer(
-              useRootNavigator: true,
-              clipBehavior: Clip.none,
-              transitionType: ContainerTransitionType.fadeThrough,
-              transitionDuration: const Duration(milliseconds: 450),
-              closedBuilder: (_, openContainer) {
-                return ArticleCard(
-                  key: const Key('widget_home_article_1'),
-                  width: widgetWidth,
-                  gradient: const LinearGradient(
-                    begin: Alignment.bottomLeft,
-                    end: Alignment.topRight,
-                    colors: [Color(0xFFFFCEBD), Color(0xFFFFCEBD), Color(0xFFFFDCCF)],
-                  ),
-                  onTap: () {
-                    openContainer();
+            ArticleCard(
+              key: const Key('widget_home_article_1'),
+              width: widgetWidth,
+              gradient: const LinearGradient(
+                begin: Alignment.bottomLeft,
+                end: Alignment.topRight,
+                colors: [Color(0xFFFFCEBD), Color(0xFFFFCEBD), Color(0xFFFFDCCF)],
+              ),
+              onTap: () {
+                GoRouter.of(context).pushNamed(
+                  Routes.webViewPage,
+                  pathParameters: {
+                    'url': ValueBase64('https://github.com/AmosHuKe/Mood-Example').encode(),
                   },
+                );
+              },
+              children: [
+                Stack(
+                  clipBehavior: Clip.none,
+                  alignment: Alignment.bottomCenter,
                   children: [
-                    Stack(
-                      clipBehavior: Clip.none,
-                      alignment: Alignment.bottomCenter,
+                    /// 图片或装饰
+                    Positioned(
+                      bottom: -12,
+                      left: 0,
+                      child: Image.asset(
+                        'assets/images/onboarding/onboarding_2.png',
+                        fit: BoxFit.contain,
+                        height: 120,
+                      ),
+                    ),
+
+                    /// 文字和按钮
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        /// 图片或装饰
-                        Positioned(
-                          bottom: -12,
-                          left: 0,
-                          child: Image.asset(
-                            'assets/images/onboarding/onboarding_2.png',
-                            fit: BoxFit.contain,
-                            height: 120,
+                        Text(
+                          appL10n.home_help_article_title_1,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w900,
                           ),
                         ),
-
-                        /// 文字和按钮
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              appL10n.home_help_article_title_1,
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w900,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 6),
-                              child: Text(
-                                appL10n.home_help_article_content_1,
-                                style: const TextStyle(color: Colors.black87, fontSize: 14),
-                              ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 4),
-                              child: Icon(
-                                Remix.arrow_right_circle_fill,
-                                size: 24,
-                                color: Colors.black87,
-                              ),
-                            ),
-                            const SizedBox(height: 100),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 6),
+                          child: Text(
+                            appL10n.home_help_article_content_1,
+                            style: const TextStyle(color: Colors.black87, fontSize: 14),
+                          ),
                         ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 4),
+                          child: Icon(
+                            Remix.arrow_right_circle_fill,
+                            size: 24,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        const SizedBox(height: 100),
                       ],
                     ),
                   ],
-                );
-              },
-              openElevation: 0,
-              openColor: theme.scaffoldBackgroundColor,
-              middleColor: theme.scaffoldBackgroundColor,
-              closedElevation: 0,
-              closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),
-              closedColor: const Color(0xFFFFCEBD),
-              openBuilder: (_, closeContainer) {
-                return WebViewScreen(
-                  url: ValueBase64('https://github.com/AmosHuKe/Mood-Example').encode(),
-                );
-              },
+                ),
+              ],
             ),
-            OpenContainer(
-              useRootNavigator: true,
-              clipBehavior: Clip.none,
-              transitionType: ContainerTransitionType.fadeThrough,
-              transitionDuration: const Duration(milliseconds: 450),
-              closedBuilder: (_, openContainer) {
-                return ArticleCard(
-                  key: const Key('widget_home_article_2'),
-                  width: widgetWidth,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Color(0xFFFFD390), Color(0xFFFFD390), Color(0xFFFFE1B3)],
-                  ),
-                  onTap: () {
-                    openContainer();
-                  },
+
+            ArticleCard(
+              key: const Key('widget_home_article_2'),
+              width: widgetWidth,
+              mainAxisAlignment: MainAxisAlignment.end,
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Color(0xFFFFD390), Color(0xFFFFD390), Color(0xFFFFE1B3)],
+              ),
+              onTap: () {
+                GoRouter.of(context).pushNamed(
+                  Routes.webViewPage,
+                  pathParameters: {'url': ValueBase64('https://amooos.com/').encode()},
+                );
+              },
+              children: [
+                Stack(
+                  clipBehavior: Clip.none,
+                  alignment: Alignment.topCenter,
                   children: [
-                    Stack(
-                      clipBehavior: Clip.none,
-                      alignment: Alignment.topCenter,
+                    /// 图片或装饰
+                    Positioned(
+                      top: -64,
+                      left: 0,
+                      child: Image.asset(
+                        'assets/images/onboarding/onboarding_1.png',
+                        fit: BoxFit.contain,
+                        height: 120,
+                      ),
+                    ),
+
+                    /// 文字和按钮
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        /// 图片或装饰
-                        Positioned(
-                          top: -64,
-                          left: 0,
-                          child: Image.asset(
-                            'assets/images/onboarding/onboarding_1.png',
-                            fit: BoxFit.contain,
-                            height: 120,
+                        const SizedBox(height: 72),
+                        Text(
+                          appL10n.home_help_article_title_2,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w900,
                           ),
                         ),
-
-                        /// 文字和按钮
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 72),
-                            Text(
-                              appL10n.home_help_article_title_2,
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w900,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 6),
-                              child: Text(
-                                appL10n.home_help_article_content_2,
-                                style: const TextStyle(color: Colors.black87, fontSize: 14),
-                              ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 4),
-                              child: Icon(
-                                Remix.arrow_right_circle_fill,
-                                size: 24,
-                                color: Colors.black87,
-                              ),
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 6),
+                          child: Text(
+                            appL10n.home_help_article_content_2,
+                            style: const TextStyle(color: Colors.black87, fontSize: 14),
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 4),
+                          child: Icon(
+                            Remix.arrow_right_circle_fill,
+                            size: 24,
+                            color: Colors.black87,
+                          ),
                         ),
                       ],
                     ),
                   ],
-                );
-              },
-              openElevation: 0,
-              openColor: theme.scaffoldBackgroundColor,
-              middleColor: theme.scaffoldBackgroundColor,
-              closedElevation: 0,
-              closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),
-              closedColor: const Color(0xFFFFD390),
-              openBuilder: (_, closeContainer) {
-                return WebViewScreen(url: ValueBase64('https://amooos.com/').encode());
-              },
+                ),
+              ],
             ),
           ],
         );

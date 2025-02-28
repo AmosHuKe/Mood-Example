@@ -123,6 +123,7 @@ class MoodContentEditScreen extends StatelessWidget {
 
   /// 关闭返回
   void onClose(BuildContext context) {
+    final theme = Theme.of(context);
     final isDark = AppTheme(context).isDarkMode;
     final appL10n = AppL10n.of(context);
     FocusScope.of(context).unfocus();
@@ -137,13 +138,16 @@ class MoodContentEditScreen extends StatelessWidget {
             content: Text(appL10n.mood_content_close_button_content),
             actions: <CupertinoDialogAction>[
               CupertinoDialogAction(
+                isDefaultAction: true,
                 child: Text(appL10n.mood_content_close_button_cancel),
+                textStyle: TextStyle(color: theme.textTheme.bodyMedium?.color),
                 onPressed: () {
                   context.pop();
                 },
               ),
               CupertinoDialogAction(
                 child: Text(appL10n.mood_content_close_button_confirm),
+                textStyle: TextStyle(color: theme.textTheme.bodyMedium?.color),
                 onPressed: () {
                   context.pop();
                   context.pop();

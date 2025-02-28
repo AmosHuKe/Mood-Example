@@ -104,6 +104,7 @@ class NotificationViewModel extends ChangeNotifier {
 
   /// 通知权限
   Future<bool> _showNotificationRationale(BuildContext context) async {
+    final theme = Theme.of(context);
     final isDark = AppTheme(context).isDarkMode;
     final appL10n = AppL10n.of(context);
     var userAuthorized = false;
@@ -121,13 +122,16 @@ class NotificationViewModel extends ChangeNotifier {
               CupertinoDialogAction(
                 key: const Key('notification_rationale_close'),
                 child: Text(appL10n.local_notification_dialog_allow_cancel),
+                textStyle: TextStyle(color: theme.textTheme.bodyMedium?.color),
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ),
               CupertinoDialogAction(
                 key: const Key('notification_rationale_ok'),
+                isDefaultAction: true,
                 child: Text(appL10n.local_notification_dialog_allow_confirm),
+                textStyle: TextStyle(color: theme.textTheme.bodyMedium?.color),
                 onPressed: () {
                   userAuthorized = true;
                   Navigator.pop(context);
