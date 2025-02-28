@@ -75,9 +75,9 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('UniMPSDK_Android 版本：4.15'),
+              Text('UniMPSDK_Android 版本：4.45'),
               Text('UniMPSDK_iOS 版本：4.15'),
-              Text('HBuilderX 版本：4.15'),
+              Text('HBuilderX 版本：4.45'),
             ],
           ),
         ),
@@ -85,8 +85,8 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
         /// 小程序
         OpenCard(
           leading: const Icon(Remix.mini_program_fill, size: 32, color: Colors.black87),
-          title: 'uView2.0',
-          subtitle: 'uView UI，是 uni-app 生态优秀的 UI 框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水',
+          title: 'uView UI',
+          subtitle: '多平台快速开发的 UI 框架',
           onPressed: () async {
             await callNativeMethod('__UNI__F87B0CE');
           },

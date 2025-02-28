@@ -31,6 +31,11 @@ android {
         ndk {
             setOf("x86","x86_64","armeabi-v7a","arm64-v8a")
         }
+
+        manifestPlaceholders += mapOf(
+            // UniMPSDK - 宿主包名
+            "apk.applicationId" to "com.example.moodexample"
+        )
     }
 
     buildTypes {
@@ -84,5 +89,5 @@ dependencies {
     implementation("com.facebook.fresco:fresco:2.5.0")
     implementation("com.facebook.fresco:animated-gif:2.5.0")
     implementation("com.github.bumptech.glide:glide:4.9.0")
-    implementation("androidx.webkit:webkit:1.3.0")
+    implementation("androidx.webkit:webkit:1.5.0")
 }
