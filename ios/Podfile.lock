@@ -56,8 +56,6 @@ PODS:
     - DKImagePickerController/PhotoGallery
     - Flutter
   - Flutter (1.0.0)
-  - flutter_timezone (0.0.1):
-    - Flutter
   - integration_test (0.0.1):
     - Flutter
   - IosAwnCore (0.10.0)
@@ -90,7 +88,6 @@ DEPENDENCIES:
   - DKImagePickerController (= 4.3.4)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
-  - flutter_timezone (from `.symlinks/plugins/flutter_timezone/ios`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - local_auth_darwin (from `.symlinks/plugins/local_auth_darwin/darwin`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
@@ -117,8 +114,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/file_picker/ios"
   Flutter:
     :path: Flutter
-  flutter_timezone:
-    :path: ".symlinks/plugins/flutter_timezone/ios"
   integration_test:
     :path: ".symlinks/plugins/integration_test/ios"
   local_auth_darwin:
@@ -144,7 +139,6 @@ SPEC CHECKSUMS:
   DKPhotoGallery: b3834fecb755ee09a593d7c9e389d8b5d6deed60
   file_picker: b159e0c068aef54932bb15dc9fd1571818edaf49
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_timezone: ac3da59ac941ff1c98a2e1f0293420e020120282
   integration_test: 252f60fa39af5e17c3aa9899d35d908a0721b573
   IosAwnCore: 653786a911089012092ce831f2945cd339855a89
   local_auth_darwin: 66e40372f1c29f383a314c738c7446e2f7fdadc3
@@ -157,6 +151,6 @@ SPEC CHECKSUMS:
   SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
   webview_flutter_wkwebview: a4af96a051138e28e29f60101d094683b9f82188
 
-PODFILE CHECKSUM: 40845afeabd2130029d6c109942a8d6ace455ebd
+PODFILE CHECKSUM: b1f22be41d093aff094cdcd57b2b4b1556e15c09
 
 COCOAPODS: 1.16.2
