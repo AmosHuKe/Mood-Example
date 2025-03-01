@@ -2,7 +2,7 @@
 - [升级] Flutter 3.29.0
 - [升级] UniMPSDK 4.45 (Android)
 - [优化] 代码重构
-- [移除] animations package
+- [移除] animations, flutter_timezone package
 
 # 1.9.10
 - [升级] Flutter 3.24.5

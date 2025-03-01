@@ -31,7 +31,6 @@ dependencies:
   ditredi: ^2.0.2 # 3D 数据集显示
   vector_math: ^2.1.4
   awesome_notifications: ^0.10.1 # 本地通知
-  flutter_timezone: ^4.1.0 # 时区
   bonfire: 3.13.4 # 游戏引擎相关
   flame: 1.18.0 # 游戏引擎相关
   flutter_screen_lock: ^9.2.1 # 密码锁
