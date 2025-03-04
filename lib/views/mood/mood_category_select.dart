@@ -82,9 +82,18 @@ class MoodCategorySelectBody extends StatelessWidget {
         /// 标题
         Padding(
           padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 48),
-          child: Consumer<MoodCategorySelectViewModel>(
-            builder: (context, moodCategorySelectViewModel, _) {
-              final screenType = moodCategorySelectViewModel.screenType;
+          child: Selector<
+            MoodCategorySelectViewModel,
+            ({MoodCategorySelectType screenType, DateTime selectDateTime})
+          >(
+            selector: (_, moodCategorySelectViewModel) {
+              return (
+                screenType: moodCategorySelectViewModel.screenType,
+                selectDateTime: moodCategorySelectViewModel.selectDateTime,
+              );
+            },
+            builder: (context, data, _) {
+              final screenType = data.screenType;
               final titleText = switch (screenType) {
                 MoodCategorySelectType.add => appL10n.mood_category_select_title_1,
                 MoodCategorySelectType.edit => appL10n.mood_category_select_title_2,
@@ -92,7 +101,7 @@ class MoodCategorySelectBody extends StatelessWidget {
               final selectDatatimeText = switch (screenType) {
                 MoodCategorySelectType.add => LocaleDatetime.yMMMd(
                   context,
-                  Utils.datetimeFormatToString(moodCategorySelectViewModel.selectDateTime),
+                  Utils.datetimeFormatToString(data.selectDateTime),
                 ),
                 MoodCategorySelectType.edit => '',
               };
@@ -101,10 +110,7 @@ class MoodCategorySelectBody extends StatelessWidget {
                 children: [
                   Text(
                     titleText,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ), // dart format
+                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 4),
@@ -139,14 +145,23 @@ class MoodOption extends StatelessWidget {
     return Align(
       child: Padding(
         padding: const EdgeInsets.only(left: 24, right: 24, bottom: 48),
-        child: Consumer<MoodCategorySelectViewModel>(
-          builder: (_, moodCategorySelectViewModel, child) {
-            if (moodCategorySelectViewModel.loadMoodCategoryAllLoading) {
+        child: Selector<
+          MoodCategorySelectViewModel,
+          ({bool loadMoodCategoryAllLoading, List<MoodCategoryModel> moodCategoryAll})
+        >(
+          selector: (_, moodCategorySelectViewModel) {
+            return (
+              loadMoodCategoryAllLoading: moodCategorySelectViewModel.loadMoodCategoryAllLoading,
+              moodCategoryAll: moodCategorySelectViewModel.moodCategoryAll,
+            );
+          },
+          builder: (context, data, child) {
+            if (data.loadMoodCategoryAllLoading) {
               return const Center(child: CupertinoActivityIndicator(radius: 12));
             }
 
             final widgetList = <Widget>[];
-            for (final list in moodCategorySelectViewModel.moodCategoryAll) {
+            for (final list in data.moodCategoryAll) {
               widgetList.add(MoodOptionCard(icon: list.icon, title: list.title));
             }
             return Wrap(spacing: 24, runSpacing: 24, children: widgetList);
@@ -168,10 +183,19 @@ class MoodOptionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Consumer<MoodCategorySelectViewModel>(
-      builder: (_, moodCategorySelectViewModel, child) {
-        final screenType = moodCategorySelectViewModel.screenType;
-        final selectDateTime = moodCategorySelectViewModel.selectDateTimeToString;
+    return Selector<
+      MoodCategorySelectViewModel,
+      ({MoodCategorySelectType screenType, String selectDateTimeToString})
+    >(
+      selector: (_, moodCategorySelectViewModel) {
+        return (
+          screenType: moodCategorySelectViewModel.screenType,
+          selectDateTimeToString: moodCategorySelectViewModel.selectDateTimeToString,
+        );
+      },
+      builder: (context, data, child) {
+        final screenType = data.screenType;
+        final selectDateTime = data.selectDateTimeToString;
 
         return AnimatedPress(
           child: GestureDetector(
@@ -196,25 +220,29 @@ class MoodOptionCard extends StatelessWidget {
             onTap: () {
               switch (screenType) {
                 case MoodCategorySelectType.add:
-                  final moodData = MoodDataModel(
-                    icon: icon,
-                    title: title,
-                    score: 50,
-                    create_time: selectDateTime,
-                    update_time: selectDateTime,
-                  );
+                  {
+                    final moodData = MoodDataModel(
+                      icon: icon,
+                      title: title,
+                      score: 50,
+                      create_time: selectDateTime,
+                      update_time: selectDateTime,
+                    );
 
-                  /// 关闭当前页并跳转输入内容页
-                  context.pop();
-                  GoRouter.of(context).pushNamed(
-                    Routes.moodContentEdit,
-                    pathParameters: {'moodData': jsonEncode(moodData.toJson())},
-                  );
+                    /// 关闭当前页并跳转输入内容页
+                    context.pop();
+                    GoRouter.of(context).pushNamed(
+                      Routes.moodContentEdit,
+                      pathParameters: {'moodData': jsonEncode(moodData.toJson())},
+                    );
+                  }
                 case MoodCategorySelectType.edit:
-                  final moodCategoryData = MoodCategoryModel(icon: icon, title: title);
+                  {
+                    final moodCategoryData = MoodCategoryModel(icon: icon, title: title);
 
-                  /// 关闭当前页并返回数据
-                  context.pop<MoodCategoryModel>(moodCategoryData);
+                    /// 关闭当前页并返回数据
+                    context.pop<MoodCategoryModel>(moodCategoryData);
+                  }
               }
             },
           ),

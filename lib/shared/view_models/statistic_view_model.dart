@@ -12,7 +12,7 @@ class StatisticViewModel extends ChangeNotifier {
   final StatisticUseCase _statisticUseCase;
 
   /// 筛选统计天数
-  final _statisticFilterDays = [7, 15, 30];
+  static const _statisticFilterDays = [7, 15, 30];
   List<int> get statisticFilterDays => _statisticFilterDays;
 
   /// 选择的统计天数

@@ -103,7 +103,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
             /// 导入按钮
             AnimatedPress(
               child: Selector<SettingDatabaseViewModel, ({bool importLoading})>(
-                selector: (context, settingDatabaseViewModel) {
+                selector: (_, settingDatabaseViewModel) {
                   return (importLoading: settingDatabaseViewModel.importLoading);
                 },
                 builder: (context, data, _) {
@@ -315,7 +315,7 @@ class ExportDatabaseBody extends StatelessWidget {
       children: [
         AnimatedPress(
           child: Selector<SettingDatabaseViewModel, ({bool exportLoading})>(
-            selector: (context, settingDatabaseViewModel) {
+            selector: (_, settingDatabaseViewModel) {
               return (exportLoading: settingDatabaseViewModel.exportLoading);
             },
             builder: (context, data, _) {

@@ -116,10 +116,16 @@ class MoodBody extends StatelessWidget {
         const SliverToBoxAdapter(child: Calendar(key: Key('widget_mood_body_calendar'))),
 
         /// 心情数据列表
-        Consumer<MoodViewModel>(
-          builder: (_, moodViewModel, child) {
+        Selector<MoodViewModel, ({bool moodDataListLoading, List<MoodDataModel> moodDataList})>(
+          selector: (_, moodViewModel) {
+            return (
+              moodDataListLoading: moodViewModel.moodDataListLoading,
+              moodDataList: moodViewModel.moodDataList,
+            );
+          },
+          builder: (context, data, child) {
             /// 加载数据的占位
-            if (moodViewModel.moodDataListLoading) {
+            if (data.moodDataListLoading) {
               return const SliverToBoxAdapter(
                 child: Center(
                   child: Padding(
@@ -131,7 +137,7 @@ class MoodBody extends StatelessWidget {
             }
 
             /// 没有数据的占位
-            if (moodViewModel.moodDataList.length <= 0) {
+            if (data.moodDataList.length <= 0) {
               return const SliverToBoxAdapter(
                 child: Empty(padding: EdgeInsets.only(top: 64), height: 160, width: 90),
               );
@@ -142,10 +148,10 @@ class MoodBody extends StatelessWidget {
               child: SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    final moodData = moodViewModel.moodDataList[index];
+                    final moodData = data.moodDataList[index];
                     return MoodCard(key: Key(moodData.mood_id.toString()), moodData: moodData);
                   },
-                  childCount: moodViewModel.moodDataList.length, // dart format
+                  childCount: data.moodDataList.length, // dart format
                 ),
               ),
             );
@@ -186,10 +192,22 @@ class _CalendarState extends State<Calendar> {
         boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 6)],
         borderRadius: BorderRadius.circular(18),
       ),
-      child: Consumer<MoodViewModel>(
-        builder: (context, moodViewModel, child) {
+      child: Selector<
+        MoodViewModel,
+        ({DateTime selectDateTime, List<MoodRecordDateModel> moodRecordDateAllList})
+      >(
+        selector: (BuildContext, moodViewModel) {
+          return (
+            selectDateTime: moodViewModel.selectDateTime,
+            moodRecordDateAllList: moodViewModel.moodRecordDateAllList,
+          );
+        },
+        builder: (context, data, child) {
           /// 当前选中的日期
-          final selectDateTime = moodViewModel.selectDateTime;
+          final selectDateTime = data.selectDateTime;
+
+          /// 所有心情的记录日期数据
+          final moodRecordDateAllList = data.moodRecordDateAllList;
 
           return TableCalendar(
             locale: appL10n.localeName,
@@ -236,7 +254,6 @@ class _CalendarState extends State<Calendar> {
             // 自定义界面构建
             calendarBuilders: CalendarBuilders(
               defaultBuilder: (context, day, focusedDay) {
-                final moodRecordDateAllList = moodViewModel.moodRecordDateAllList;
                 return calenderBuilder(
                   day: day,
                   moodRecordDateList: moodRecordDateAllList,
@@ -263,7 +280,6 @@ class _CalendarState extends State<Calendar> {
                 );
               },
               todayBuilder: (context, day, focusedDay) {
-                final moodRecordDateAllList = moodViewModel.moodRecordDateAllList;
                 return calenderBuilder(
                   day: day,
                   moodRecordDateList: moodRecordDateAllList,
@@ -292,10 +308,11 @@ class _CalendarState extends State<Calendar> {
             selectedDayPredicate: (day) => isSameDay(selectDateTime, day),
             onDaySelected: (selectedDay, focusedDay) {
               /// 之前选择的日期
-              final oldSelectedDay = moodViewModel.selectDateTime;
+              final oldSelectedDay = selectDateTime;
 
               /// 选择的日期相同则不操作
               if (oldSelectedDay == selectedDay) return;
+              final moodViewModel = context.read<MoodViewModel>();
 
               /// 赋值当前选择的日期
               moodViewModel.selectDateTime = selectedDay;

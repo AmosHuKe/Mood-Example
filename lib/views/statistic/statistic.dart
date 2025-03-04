@@ -68,9 +68,12 @@ class StatisticBody extends StatelessWidget {
                       style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
                       semanticsLabel: appL10n.app_bottomNavigationBar_title_statistic,
                     ),
-                    Consumer<StatisticViewModel>(
-                      builder: (context, statisticViewModel, child) {
-                        final selectDays = statisticViewModel.selectDays;
+                    Selector<StatisticViewModel, ({int selectDays})>(
+                      selector: (_, statisticViewModel) {
+                        return (selectDays: statisticViewModel.selectDays);
+                      },
+                      builder: (context, data, child) {
+                        final selectDays = data.selectDays;
                         return Row(
                           mainAxisSize: MainAxisSize.min,
                           children: List.generate(statisticFilterDays.length, (index) {
@@ -121,17 +124,19 @@ class StatisticBody extends StatelessWidget {
                 /// 情绪波动（条形）
                 Padding(
                   padding: listPadding,
-                  child: Consumer<StatisticViewModel>(
-                    builder: (_, statisticViewModel, child) {
+                  child: Selector<StatisticViewModel, ({int selectDays})>(
+                    selector: (_, statisticViewModel) {
+                      return (selectDays: statisticViewModel.selectDays);
+                    },
+                    builder: (context, data, child) {
                       return StatisticLayout(
                         title: appL10n.statistic_moodScore_title,
-                        subTitle: AppL10n.of(
-                          context,
-                        ).statistic_moodScore_content(statisticViewModel.selectDays),
+                        subTitle: AppL10n.of(context).statistic_moodScore_content(data.selectDays),
                         height: 180,
-                        statistic: const StatisticMoodBar(),
+                        statistic: child!,
                       );
                     },
+                    child: const StatisticMoodBar(),
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -139,17 +144,21 @@ class StatisticBody extends StatelessWidget {
                 /// 心情统计
                 Padding(
                   padding: listPadding,
-                  child: Consumer<StatisticViewModel>(
-                    builder: (_, statisticViewModel, child) {
+                  child: Selector<StatisticViewModel, ({int selectDays})>(
+                    selector: (_, statisticViewModel) {
+                      return (selectDays: statisticViewModel.selectDays);
+                    },
+                    builder: (context, data, child) {
                       return StatisticLayout(
                         title: appL10n.statistic_moodStatistics_title,
                         subTitle: AppL10n.of(
                           context,
-                        ).statistic_moodStatistics_content(statisticViewModel.selectDays),
+                        ).statistic_moodStatistics_content(data.selectDays),
                         height: 320,
-                        statistic: const StatisticCategoryMood(),
+                        statistic: child!,
                       );
                     },
+                    child: const StatisticCategoryMood(),
                   ),
                 ),
               ],
@@ -172,31 +181,37 @@ class OverallStatistics extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
-      child: Consumer<StatisticViewModel>(
-        builder: (_, statisticViewModel, child) {
+      child: Selector<
+        StatisticViewModel,
+        ({int appUsageDays, int appMoodCount, int moodScoreAverage})
+      >(
+        selector: (_, statisticViewModel) {
+          return (
+            appUsageDays: statisticViewModel.appUsageDays,
+            appMoodCount: statisticViewModel.appMoodCount,
+            moodScoreAverage: statisticViewModel.moodScoreAverage,
+          );
+        },
+        builder: (context, data, child) {
           return Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
               StatisticsCard(
                 icon: Remix.time_line,
-                title: AppL10n.of(
-                  context,
-                ).statistic_overall_daysCount_title(statisticViewModel.appUsageDays),
+                title: AppL10n.of(context).statistic_overall_daysCount_title(data.appUsageDays),
                 subTitle: appL10n.statistic_overall_daysCount_subTitle,
               ),
               StatisticsCard(
                 icon: Remix.file_list_2_line,
-                title: AppL10n.of(
-                  context,
-                ).statistic_overall_moodCount_title(statisticViewModel.appMoodCount),
+                title: AppL10n.of(context).statistic_overall_moodCount_title(data.appMoodCount),
                 subTitle: appL10n.statistic_overall_moodCount_subTitle,
               ),
               StatisticsCard(
                 icon: Remix.pulse_line,
                 title: AppL10n.of(
                   context,
-                ).statistic_overall_moodScoreAverage_title(statisticViewModel.moodScoreAverage),
+                ).statistic_overall_moodScoreAverage_title(data.moodScoreAverage),
                 subTitle: appL10n.statistic_overall_moodScoreAverage_subTitle,
               ),
             ],
@@ -215,27 +230,33 @@ class StatisticMoodLine extends StatelessWidget {
   Widget build(BuildContext context) {
     final appL10n = AppL10n.of(context);
 
-    return Consumer<StatisticViewModel>(
-      builder: (_, statisticViewModel, child) {
+    return Selector<
+      StatisticViewModel,
+      ({int selectDays, List<StatisticMoodScoreAverageRecentlyModel> moodScoreAverageRecently})
+    >(
+      selector: (_, statisticViewModel) {
+        return (
+          selectDays: statisticViewModel.selectDays,
+          moodScoreAverageRecently: statisticViewModel.moodScoreAverageRecently,
+        );
+      },
+      builder: (context, data, child) {
         /// 获取数据 计算近日平均
-        final listData = statisticViewModel.moodScoreAverageRecently;
+        final listData = data.moodScoreAverageRecently;
         double moodScoreAverage = 0;
         double moodScoreSum = 0;
         for (var i = 0; i < listData.length; i++) {
           moodScoreSum += listData[i].score;
         }
-        moodScoreAverage = double.parse(
-          (moodScoreSum / statisticViewModel.selectDays).toStringAsFixed(1),
-        );
+        moodScoreAverage = double.parse((moodScoreSum / data.selectDays).toStringAsFixed(1));
         return StatisticLayout(
           title: appL10n.statistic_moodScoreAverage_title(moodScoreAverage.toString()),
-          subTitle: AppL10n.of(
-            context,
-          ).statistic_moodScoreAverage_content(statisticViewModel.selectDays),
+          subTitle: AppL10n.of(context).statistic_moodScoreAverage_content(data.selectDays),
           height: 240,
-          statistic: const StatisticMoodLineBody(),
+          statistic: child!,
         );
       },
+      child: const StatisticMoodLineBody(),
     );
   }
 }
@@ -263,13 +284,23 @@ class StatisticMoodLineBody extends StatelessWidget {
       themePrimaryColor.withValues(alpha: 0.4),
       themePrimaryColor.withValues(alpha: 0.1),
     ];
-    return Consumer<StatisticViewModel>(
-      builder: (_, statisticViewModel, child) {
+
+    return Selector<
+      StatisticViewModel,
+      ({int selectDays, List<StatisticMoodScoreAverageRecentlyModel> moodScoreAverageRecently})
+    >(
+      selector: (_, statisticViewModel) {
+        return (
+          selectDays: statisticViewModel.selectDays,
+          moodScoreAverageRecently: statisticViewModel.moodScoreAverageRecently,
+        );
+      },
+      builder: (context, data, child) {
         /// 获取数据
-        var listData = statisticViewModel.moodScoreAverageRecently;
+        var listData = data.moodScoreAverageRecently;
 
         /// 统计的天数
-        final selectDays = statisticViewModel.selectDays;
+        final selectDays = data.selectDays;
 
         /// 数据数量
         final moodCount = listData.length;
@@ -443,13 +474,22 @@ class _StatisticMoodBarState extends State<StatisticMoodBar> {
     final theme = Theme.of(context);
     final themePrimaryColor = theme.primaryColor;
 
-    return Consumer<StatisticViewModel>(
-      builder: (_, statisticViewModel, child) {
+    return Selector<
+      StatisticViewModel,
+      ({int selectDays, List<StatisticMoodScoreAverageRecentlyModel> moodScoreAverageRecently})
+    >(
+      selector: (_, statisticViewModel) {
+        return (
+          selectDays: statisticViewModel.selectDays,
+          moodScoreAverageRecently: statisticViewModel.moodScoreAverageRecently,
+        );
+      },
+      builder: (context, data, child) {
         /// 获取数据
-        var listData = statisticViewModel.moodScoreAverageRecently;
+        var listData = data.moodScoreAverageRecently;
 
         /// 统计的天数
-        final selectDays = statisticViewModel.selectDays;
+        final selectDays = data.selectDays;
 
         /// 数据为空的占位
         if (listData.isEmpty) {
@@ -597,9 +637,15 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<StatisticViewModel>(
-      builder: (_, statisticViewModel, child) {
-        final listData = statisticViewModel.moodCountRecently;
+    return Selector<
+      StatisticViewModel,
+      ({List<StatisticMoodCountRecentlyModel> moodCountRecently})
+    >(
+      selector: (_, statisticViewModel) {
+        return (moodCountRecently: statisticViewModel.moodCountRecently);
+      },
+      builder: (context, data, child) {
+        final listData = data.moodCountRecently;
 
         /// 空占位
         if (listData.isEmpty) {

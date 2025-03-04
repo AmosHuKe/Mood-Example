@@ -57,9 +57,13 @@ class DarkThemeBody extends StatelessWidget {
     final isDark = AppTheme(context).isDarkMode;
     final appL10n = AppL10n.of(context);
 
-    return Consumer<ApplicationViewModel>(
-      builder: (_, applicationViewModel, child) {
-        final themeMode = applicationViewModel.themeMode;
+    return Selector<ApplicationViewModel, ({ThemeMode themeMode})>(
+      selector: (_, applicationViewModel) {
+        return (themeMode: applicationViewModel.themeMode);
+      },
+      builder: (context, data, child) {
+        final applicationViewModel = context.read<ApplicationViewModel>();
+        final themeMode = data.themeMode;
         return Wrap(
           alignment: WrapAlignment.center,
           direction: Axis.horizontal,
@@ -158,9 +162,12 @@ class _MultipleThemeBodyState extends State<MultipleThemeBody> {
     /// 获取多主题
     final multipleThemeModeList = MultipleThemeMode.values;
 
-    return Consumer<ApplicationViewModel>(
-      builder: (_, applicationViewModel, child) {
-        final multipleThemeMode = applicationViewModel.multipleThemeMode;
+    return Selector<ApplicationViewModel, ({MultipleThemeMode multipleThemeMode})>(
+      selector: (_, applicationViewModel) {
+        return (multipleThemeMode: applicationViewModel.multipleThemeMode);
+      },
+      builder: (context, data, child) {
+        final multipleThemeMode = data.multipleThemeMode;
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Wrap(
@@ -177,6 +184,7 @@ class _MultipleThemeBodyState extends State<MultipleThemeBody> {
                 child: Container(alignment: Alignment.center, color: primaryColor),
                 onTap: () {
                   print('当前选择主题：${appMultipleThemeMode.name}');
+                  final applicationViewModel = context.read<ApplicationViewModel>();
                   applicationViewModel.multipleThemeMode = appMultipleThemeMode;
                 },
               );

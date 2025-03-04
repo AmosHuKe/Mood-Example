@@ -23,7 +23,7 @@ class SettingLanguage extends StatelessWidget {
         /// 跟随系统
         Selector<ApplicationViewModel, bool>(
           selector: (_, applicationViewModel) => applicationViewModel.localeSystem,
-          builder: (_, localeSystem, child) {
+          builder: (context, localeSystem, child) {
             final applicationViewModel = context.read<ApplicationViewModel>();
             return RadioListTile<bool>(
               value: localeSystem,
@@ -40,21 +40,29 @@ class SettingLanguage extends StatelessWidget {
         ),
 
         /// 语言
-        Consumer<ApplicationViewModel>(
-          builder: (_, applicationViewModel, child) {
+        Selector<ApplicationViewModel, ({Locale locale, bool localeSystem})>(
+          selector: (_, applicationViewModel) {
+            return (
+              locale: applicationViewModel.locale,
+              localeSystem: applicationViewModel.localeSystem,
+            );
+          },
+          builder: (context, data, child) {
             return Column(
               children: List<Widget>.generate(languageList.length, (index) {
                 return RadioListTile<Locale>(
                   value: languageList[index].locale,
-                  groupValue:
-                      !applicationViewModel.localeSystem ? applicationViewModel.locale : null,
+                  groupValue: !data.localeSystem ? data.locale : null,
                   title: Text(
                     languageList[index].title,
                     style: Theme.of(
                       context,
                     ).textTheme.bodyMedium!.copyWith(fontSize: 14, fontWeight: FontWeight.normal),
                   ),
-                  onChanged: (value) => applicationViewModel.locale = value!,
+                  onChanged: (value) {
+                    final applicationViewModel = context.read<ApplicationViewModel>();
+                    applicationViewModel.locale = value!;
+                  },
                 );
               }),
             );

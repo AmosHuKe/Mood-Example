@@ -13,7 +13,7 @@ import '../../l10n/gen/app_localizations.dart';
 import '../../utils/utils.dart';
 import '../../widgets/animation/animation.dart';
 import '../../domain/models/mood/mood_data_model.dart';
-import '../../shared/view_models/application_view_model.dart';
+import '../../domain/models/mood/mood_category_model.dart';
 import 'view_models/home_view_model.dart';
 
 /// 首页
@@ -141,10 +141,13 @@ class Header extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 24),
           ),
         ),
-        Consumer<HomeViewModel>(
-          builder: (_, homeViewModel, child) {
+        Selector<HomeViewModel, ({bool loading, List<MoodCategoryModel> moodCategoryAll})>(
+          selector: (_, homeViewModel) {
+            return (loading: homeViewModel.loading, moodCategoryAll: homeViewModel.moodCategoryAll);
+          },
+          builder: (context, data, child) {
             /// 加载数据的占位
-            if (homeViewModel.loading && homeViewModel.moodCategoryAll.isEmpty) {
+            if (data.loading && data.moodCategoryAll.isEmpty) {
               return const Align(child: CupertinoActivityIndicator(radius: 12));
             }
             return const SizedBox();
@@ -165,23 +168,23 @@ class MoodOption extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       scrollDirection: Axis.horizontal,
       physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
-      child: Consumer<HomeViewModel>(
-        builder: (_, homeViewModel, child) {
-          if (homeViewModel.loading) return const SizedBox();
+      child: Selector<HomeViewModel, ({bool loading, List<MoodCategoryModel> moodCategoryAll})>(
+        selector: (_, homeViewModel) {
+          return (loading: homeViewModel.loading, moodCategoryAll: homeViewModel.moodCategoryAll);
+        },
+        builder: (context, data, child) {
+          if (data.loading) return const SizedBox();
 
           /// 所有心情类型数据
           final widgetList = <Widget>[];
-
-          /// 数据渲染
-          for (final list in homeViewModel.moodCategoryAll) {
+          for (final list in data.moodCategoryAll) {
             widgetList.add(OptionCard(title: list.title, icon: list.icon));
           }
 
-          /// 显示
           return Wrap(
-            spacing: 24, // 主轴(水平)方向间距
-            alignment: WrapAlignment.spaceBetween, //沿主轴方向居中
-            children: widgetList,
+            spacing: 24,
+            alignment: WrapAlignment.spaceBetween,
+            children: widgetList, // dart format
           );
         },
       ),
@@ -195,58 +198,50 @@ class OptionCard extends StatelessWidget {
 
   /// 标题
   final String title;
-
-  /// Icon
   final String icon;
 
   @override
   Widget build(BuildContext context) {
     final isDark = AppTheme(context).isDarkMode;
-
-    /// 图标大小
     const double iconSize = 32;
 
-    return Consumer<ApplicationViewModel>(
-      builder: (_, applicationViewModel, child) {
-        return GestureDetector(
-          onTap: () {
-            // 跳转输入内容页
-            final nowDateTime = Utils.datetimeFormatToString(DateTime.now());
-            final moodData = MoodDataModel(
-              icon: icon,
-              title: title,
-              score: 50,
-              create_time: nowDateTime,
-              update_time: nowDateTime,
-            );
-            GoRouter.of(context).pushNamed(
-              Routes.moodContentEdit,
-              pathParameters: {'moodData': jsonEncode(moodData.toJson())},
-            );
-          },
-          child: Column(
-            children: [
-              AnimatedPress(
-                child: Container(
-                  constraints: const BoxConstraints(minWidth: 52),
-                  decoration: BoxDecoration(
-                    color: isDark ? const Color(0xFF2B3034) : AppTheme.staticBackgroundColor1,
-                    borderRadius: BorderRadius.circular(18),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 18),
-                    child: Align(child: Text(icon, style: const TextStyle(fontSize: iconSize))),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Text(title, style: const TextStyle(fontSize: 14)),
-              ),
-            ],
-          ),
+    return GestureDetector(
+      onTap: () {
+        // 跳转输入内容页
+        final nowDateTime = Utils.datetimeFormatToString(DateTime.now());
+        final moodData = MoodDataModel(
+          icon: icon,
+          title: title,
+          score: 50,
+          create_time: nowDateTime,
+          update_time: nowDateTime,
+        );
+        GoRouter.of(context).pushNamed(
+          Routes.moodContentEdit,
+          pathParameters: {'moodData': jsonEncode(moodData.toJson())},
         );
       },
+      child: Column(
+        children: [
+          AnimatedPress(
+            child: Container(
+              constraints: const BoxConstraints(minWidth: 52),
+              decoration: BoxDecoration(
+                color: isDark ? const Color(0xFF2B3034) : AppTheme.staticBackgroundColor1,
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 18),
+                child: Align(child: Text(icon, style: const TextStyle(fontSize: iconSize))),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text(title, style: const TextStyle(fontSize: 14)),
+          ),
+        ],
+      ),
     );
   }
 }

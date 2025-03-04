@@ -82,10 +82,17 @@ class _KeyBodyState extends State<KeyBody> {
     final appL10n = AppL10n.of(context);
     final localAuthUtils = LocalAuthUtils();
 
-    return Consumer<SecurityKeyViewModel>(
-      builder: (_, securityKeyViewModel, child) {
-        final keyPassword = securityKeyViewModel.keyPassword;
-        final keyBiometric = securityKeyViewModel.keyBiometric;
+    return Selector<SecurityKeyViewModel, ({String keyPassword, bool keyBiometric})>(
+      selector: (_, securityKeyViewModel) {
+        return (
+          keyPassword: securityKeyViewModel.keyPassword,
+          keyBiometric: securityKeyViewModel.keyBiometric,
+        );
+      },
+      builder: (context, data, child) {
+        final securityKeyViewModel = context.read<SecurityKeyViewModel>();
+        final keyPassword = data.keyPassword;
+        final keyBiometric = data.keyBiometric;
 
         Widget biometricsAuth = const SizedBox();
         if (keyPassword != '' && localAuthText != '') {

@@ -175,7 +175,7 @@ class MoodContentEditBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Consumer<MoodContentEditViewModel>(
-                builder: (_, moodContentEditViewModel, child) {
+                builder: (context, moodContentEditViewModel, child) {
                   final moodData = moodContentEditViewModel.moodData;
                   return GestureDetector(
                     child: Semantics(
