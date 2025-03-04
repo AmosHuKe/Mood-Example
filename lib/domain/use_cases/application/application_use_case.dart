@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../utils/log_utils.dart';
 import '../../../utils/result.dart';
 import '../../../shared/config/language.dart';
 import '../../../shared/config/multiple_theme_mode.dart';
@@ -10,64 +11,113 @@ class ApplicationUseCase {
 
   final ApplicationRepository _applicationRepository;
 
+  void _log(Object? value, {Result<Object?> result = const Result.success(null)}) {
+    LogUtils.log('${'[${this.runtimeType}]'.blue} ${value}', result: result);
+  }
+
   /// 获取主题模式
   Future<Result<ThemeMode>> getThemeMode() async {
-    return _applicationRepository.getThemeMode();
+    final result = await _applicationRepository.getThemeMode();
+    switch (result) {
+      case Success<ThemeMode>():
+        _log('${getThemeMode.toString()} ${result.value}', result: result);
+        return Result.success(result.value);
+      case Error<ThemeMode>():
+        _log('${getThemeMode.toString()} ${result.error}', result: result);
+        return Result.error(result.error);
+    }
   }
 
   /// 设置主题模式
   Future<Result<bool>> setThemeMode(ThemeMode themeMode) async {
-    return _applicationRepository.setThemeMode(themeMode);
+    final result = await _applicationRepository.setThemeMode(themeMode);
+    switch (result) {
+      case Success<bool>():
+        _log('${setThemeMode.toString()} ${themeMode}', result: result);
+        return Result.success(result.value);
+      case Error<bool>():
+        _log('${setThemeMode.toString()} ${result.error}', result: result);
+        return Result.error(result.error);
+    }
   }
 
   /// 获取多主题模式
   Future<Result<MultipleThemeMode>> getMultipleThemeMode() async {
-    return _applicationRepository.getMultipleThemeMode();
+    final result = await _applicationRepository.getMultipleThemeMode();
+    switch (result) {
+      case Success<MultipleThemeMode>():
+        _log('${getMultipleThemeMode.toString()} ${result.value}', result: result);
+        return Result.success(result.value);
+      case Error<MultipleThemeMode>():
+        _log('${getMultipleThemeMode.toString()} ${result.error}', result: result);
+        return Result.error(result.error);
+    }
   }
 
   /// 设置多主题模式
   Future<Result<bool>> setMultipleThemeMode(MultipleThemeMode multipleThemeMode) async {
-    return _applicationRepository.setMultipleThemeMode(multipleThemeMode);
+    final result = await _applicationRepository.setMultipleThemeMode(multipleThemeMode);
+    switch (result) {
+      case Success<bool>():
+        _log('${setMultipleThemeMode.toString()} ${multipleThemeMode}', result: result);
+        return Result.success(result.value);
+      case Error<bool>():
+        _log('${setMultipleThemeMode.toString()} ${result.error}', result: result);
+        return Result.error(result.error);
+    }
   }
 
   /// 获取语言环境是否跟随系统
   Future<Result<bool>> getLocaleSystem() async {
-    final localeSystemResult = await _applicationRepository.getLocaleSystem();
-    switch (localeSystemResult) {
+    final result = await _applicationRepository.getLocaleSystem();
+    switch (result) {
       case Success<bool?>():
-        return Result.success(localeSystemResult.value ?? true);
+        final resultValue = result.value ?? true;
+        _log('${getLocaleSystem.toString()} ${resultValue}', result: result);
+        return Result.success(resultValue);
       case Error<bool?>():
-        print('ApplicationUseCase error: ${localeSystemResult.error}');
-        return Result.error(localeSystemResult.error);
+        _log('${getLocaleSystem.toString()} ${result.error}', result: result);
+        return Result.error(result.error);
     }
   }
 
   /// 设置语言环境是否跟随系统
   Future<Result<bool>> setLocaleSystem(bool localeSystem) async {
-    return _applicationRepository.setLocaleSystem(localeSystem);
+    final result = await _applicationRepository.setLocaleSystem(localeSystem);
+    switch (result) {
+      case Success<bool>():
+        _log('${setLocaleSystem.toString()} ${localeSystem}', result: result);
+        return Result.success(result.value);
+      case Error<bool>():
+        _log('${setLocaleSystem.toString()} ${result.error}', result: result);
+        return Result.error(result.error);
+    }
   }
 
   /// 获取语言环境
   Future<Result<Locale>> getLocale() async {
-    final localeResult = await _applicationRepository.getLocale();
-    switch (localeResult) {
+    final result = await _applicationRepository.getLocale();
+    switch (result) {
       case Success<Locale?>():
-        return Result.success(localeResult.value ?? Language.zhCN.locale);
+        final resultValue = result.value ?? Language.zhCN.locale;
+        _log('${getLocale.toString()} ${resultValue}', result: result);
+        return Result.success(resultValue);
       case Error<Locale?>():
-        print('ApplicationUseCase error: ${localeResult.error}');
-        return Result.error(localeResult.error);
+        _log('${getLocale.toString()} ${result.error}', result: result);
+        return Result.error(result.error);
     }
   }
 
   /// 设置语言环境
   Future<Result<bool>> setLocale(Locale locale) async {
-    final setLocaleSystemResult = await setLocaleSystem(false);
-    switch (setLocaleSystemResult) {
+    final result = await _applicationRepository.setLocale(locale);
+    switch (result) {
       case Success<bool>():
-        return _applicationRepository.setLocale(locale);
+        _log('${setLocale.toString()} ${locale}', result: result);
+        return setLocaleSystem(false);
       case Error<bool>():
-        print('ApplicationUseCase error: ${setLocaleSystemResult.error}');
-        return Result.error(setLocaleSystemResult.error);
+        _log('${setLocale.toString()} ${result.error}', result: result);
+        return Result.error(result.error);
     }
   }
 }

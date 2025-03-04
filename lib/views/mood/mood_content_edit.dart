@@ -94,7 +94,6 @@ class MoodContentEditScreen extends StatelessWidget {
                     switch (result) {
                       case Success<bool>():
                         if (result.value) {
-                          moodViewModel.load();
                           if (!context.mounted) return;
                           context.pop();
                         }

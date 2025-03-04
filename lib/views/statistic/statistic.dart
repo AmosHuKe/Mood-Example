@@ -664,7 +664,7 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
               final radius = isTouched ? 120.0 : 100.0;
 
               return makeSectionData(
-                double.parse(item.count.toString()),
+                item.count.toDouble(),
                 title: item.icon,
                 radius: radius,
                 fontSize: fontSize,
@@ -693,8 +693,8 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
             sectionsSpace: 0,
             centerSpaceRadius: 0,
           ),
-          duration: const Duration(milliseconds: 250), // Optional
-          curve: Curves.linearToEaseOut, // Optional
+          duration: const Duration(milliseconds: 250),
+          curve: Curves.linearToEaseOut,
         );
       },
     );

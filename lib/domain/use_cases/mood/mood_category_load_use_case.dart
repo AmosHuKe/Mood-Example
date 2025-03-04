@@ -1,3 +1,5 @@
+import 'dart:convert';
+import '../../../utils/log_utils.dart';
 import '../../../utils/result.dart';
 import '../../models/mood/mood_category_model.dart';
 import '../../repositories/mood/mood_category_repository.dart';
@@ -7,6 +9,10 @@ class MoodCategoryLoadUseCase {
     : _moodCategoryRepository = moodCategoryRepository;
 
   final MoodCategoryRepository _moodCategoryRepository;
+
+  void _log(Object? value, {Result<Object?> result = const Result.success(null)}) {
+    LogUtils.log('${'[${this.runtimeType}]'.blue} ${value}', result: result);
+  }
 
   Future<Result<List<MoodCategoryModel>>> execute() async {
     /// 默认值
@@ -27,24 +33,51 @@ class MoodCategoryLoadUseCase {
         {
           /// 是否始化默认值
           if (getInitMoodCategoryDefaultResult.value ?? false) {
-            return _moodCategoryRepository.getMoodCategoryAll();
+            return _getMoodCategoryAll();
           } else {
             final setMoodCategoryDefaultResult = await _moodCategoryRepository
                 .setMoodCategoryDefault(moodCategoryList);
             switch (setMoodCategoryDefaultResult) {
               case Success<bool>():
-                {
-                  return _moodCategoryRepository.getMoodCategoryAll();
-                }
+                _log(
+                  '${execute.toString()} ${setMoodCategoryDefaultResult.value}',
+                  result: setMoodCategoryDefaultResult,
+                );
+                return _getMoodCategoryAll();
               case Error<bool>():
-                print('MoodCategoryInitUseCase error: ${setMoodCategoryDefaultResult.error}');
+                _log(
+                  '${execute.toString()} ${setMoodCategoryDefaultResult.error}',
+                  result: setMoodCategoryDefaultResult,
+                );
                 return Result.error(setMoodCategoryDefaultResult.error);
             }
           }
         }
       case Error<bool?>():
-        print('MoodCategoryInitUseCase error: ${getInitMoodCategoryDefaultResult.error}');
+        _log(
+          '${execute.toString()} ${getInitMoodCategoryDefaultResult.error}',
+          result: getInitMoodCategoryDefaultResult,
+        );
         return Result.error(getInitMoodCategoryDefaultResult.error);
+    }
+  }
+
+  /// 获取所有心情类别
+  Future<Result<List<MoodCategoryModel>>> _getMoodCategoryAll() async {
+    final getMoodCategoryAllResult = await _moodCategoryRepository.getMoodCategoryAll();
+    switch (getMoodCategoryAllResult) {
+      case Success<List<MoodCategoryModel>>():
+        _log(
+          '${_getMoodCategoryAll.toString()} ${json.encode(getMoodCategoryAllResult.value)}',
+          result: getMoodCategoryAllResult,
+        );
+        return Result.success(getMoodCategoryAllResult.value);
+      case Error<List<MoodCategoryModel>>():
+        _log(
+          '${_getMoodCategoryAll.toString()} ${getMoodCategoryAllResult.error}',
+          result: getMoodCategoryAllResult,
+        );
+        return Result.error(getMoodCategoryAllResult.error);
     }
   }
 }

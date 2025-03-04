@@ -473,8 +473,6 @@ class MoodCard extends StatelessWidget {
                                 switch (result) {
                                   case Success<bool>():
                                     if (result.value) {
-                                      /// 重新初始化
-                                      moodViewModel.load();
                                       context.pop();
                                     }
                                   case Error<bool>():

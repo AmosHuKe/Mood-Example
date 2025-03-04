@@ -1,3 +1,4 @@
+import '../../../utils/log_utils.dart';
 import '../../../utils/result.dart';
 import '../../repositories/application/security_key_repository.dart';
 
@@ -7,21 +8,34 @@ class SecurityKeyUseCase {
 
   final SecurityKeyRepository _securityKeyRepository;
 
+  void _log(Object? value, {Result<Object?> result = const Result.success(null)}) {
+    LogUtils.log('${'[${this.runtimeType}]'.blue} ${value}', result: result);
+  }
+
   /// 获取安全密码内容
   Future<Result<String>> getKeyPassword() async {
     final keyPasswordResult = await _securityKeyRepository.getKeyPassword();
     switch (keyPasswordResult) {
       case Success<String?>():
+        _log('${getKeyPassword.toString()} ${keyPasswordResult.value}', result: keyPasswordResult);
         return Result.success(keyPasswordResult.value ?? '');
       case Error<String?>():
-        print('SecurityKeyUseCase error: ${keyPasswordResult.error}');
+        _log('${getKeyPassword.toString()} ${keyPasswordResult.error}', result: keyPasswordResult);
         return Result.error(keyPasswordResult.error);
     }
   }
 
   /// 设置安全密码内容
   Future<Result<bool>> setKeyPassword(String keyPassword) async {
-    return _securityKeyRepository.setKeyPassword(keyPassword);
+    final result = await _securityKeyRepository.setKeyPassword(keyPassword);
+    switch (result) {
+      case Success<bool>():
+        _log('${setKeyPassword.toString()} ${keyPassword}', result: result);
+        return Result.success(result.value);
+      case Error<bool>():
+        _log('${setKeyPassword.toString()} ${result.error}', result: result);
+        return Result.error(result.error);
+    }
   }
 
   /// 获取是否开启安全生物特征识别
@@ -29,15 +43,28 @@ class SecurityKeyUseCase {
     final keyBiometricResult = await _securityKeyRepository.getKeyBiometric();
     switch (keyBiometricResult) {
       case Success<bool?>():
-        return Result.success(keyBiometricResult.value ?? false);
+        final resultValue = keyBiometricResult.value ?? false;
+        _log('${getKeyBiometric.toString()} ${resultValue}', result: keyBiometricResult);
+        return Result.success(resultValue);
       case Error<bool?>():
-        print('SecurityKeyUseCase error: ${keyBiometricResult.error}');
+        _log(
+          '${getKeyBiometric.toString()} ${keyBiometricResult.error}',
+          result: keyBiometricResult,
+        );
         return Result.error(keyBiometricResult.error);
     }
   }
 
   /// 设置是否开启安全生物特征识别
   Future<Result<bool>> setKeyBiometric(bool keyBiometric) async {
-    return _securityKeyRepository.setKeyBiometric(keyBiometric);
+    final result = await _securityKeyRepository.setKeyBiometric(keyBiometric);
+    switch (result) {
+      case Success<bool>():
+        _log('${setKeyBiometric.toString()} ${keyBiometric}', result: result);
+        return Result.success(result.value);
+      case Error<bool>():
+        _log('${setKeyBiometric.toString()} ${result.error}', result: result);
+        return Result.error(result.error);
+    }
   }
 }
