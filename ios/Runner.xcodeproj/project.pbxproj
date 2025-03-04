@@ -50,8 +50,9 @@
 		B07CD9CC2B2CABA2009E3AF9 /* liblibNativeObj.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9C12B2CABA2009E3AF9 /* liblibNativeObj.a */; };
 		B09C54B22875EEAE00FA78D2 /* __UNI__F87B0CE.wgt in Resources */ = {isa = PBXBuildFile; fileRef = B09C54B02875EEAE00FA78D2 /* __UNI__F87B0CE.wgt */; };
 		B09C54B52875F10A00FA78D2 /* __UNI__3BC70CE.wgt in Resources */ = {isa = PBXBuildFile; fileRef = B09C54B42875F10A00FA78D2 /* __UNI__3BC70CE.wgt */; };
-		B0EC8FAF29C189D20016F5FA /* dart_api_dl.c in Sources */ = {isa = PBXBuildFile; fileRef = B0EC8FA729C189D20016F5FA /* dart_api_dl.c */; };
-		B0EC8FB029C189D20016F5FA /* ffi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0EC8FAE29C189D20016F5FA /* ffi.cpp */; };
+		B0F09DB92D76D32100503C78 /* dart_api_dl.c in Sources */ = {isa = PBXBuildFile; fileRef = B0F09DB02D76D32100503C78 /* dart_api_dl.c */; };
+		B0F09DBA2D76D32100503C78 /* ffi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0F09DB72D76D32100503C78 /* ffi.cpp */; };
+		B0F09DBB2D76D32100503C78 /* BUILD.gn in Resources */ = {isa = PBXBuildFile; fileRef = B0F09DAD2D76D32100503C78 /* BUILD.gn */; };
 		E6785185D82D85A9E7DD848B /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2E6ACD1DAB48B7E4C4F77FE /* Pods_Runner.framework */; };
 /* End PBXBuildFile section */
 
@@ -196,14 +197,19 @@
 		B07CD9C12B2CABA2009E3AF9 /* liblibNativeObj.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblibNativeObj.a; sourceTree = "<group>"; };
 		B09C54B02875EEAE00FA78D2 /* __UNI__F87B0CE.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__F87B0CE.wgt; sourceTree = "<group>"; };
 		B09C54B42875F10A00FA78D2 /* __UNI__3BC70CE.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__3BC70CE.wgt; sourceTree = "<group>"; };
-		B0EC8FA629C189D20016F5FA /* dart_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dart_api.h; sourceTree = "<group>"; };
-		B0EC8FA729C189D20016F5FA /* dart_api_dl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dart_api_dl.c; sourceTree = "<group>"; };
-		B0EC8FA829C189D20016F5FA /* dart_version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dart_version.h; sourceTree = "<group>"; };
-		B0EC8FA929C189D20016F5FA /* dart_native_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dart_native_api.h; sourceTree = "<group>"; };
-		B0EC8FAB29C189D20016F5FA /* dart_api_dl_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dart_api_dl_impl.h; sourceTree = "<group>"; };
-		B0EC8FAC29C189D20016F5FA /* dart_tools_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dart_tools_api.h; sourceTree = "<group>"; };
-		B0EC8FAD29C189D20016F5FA /* dart_api_dl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dart_api_dl.h; sourceTree = "<group>"; };
-		B0EC8FAE29C189D20016F5FA /* ffi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ffi.cpp; sourceTree = "<group>"; };
+		B0F09DA72D76D32100503C78 /* dart_io_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dart_io_api.h; sourceTree = "<group>"; };
+		B0F09DA82D76D32100503C78 /* native_assets_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = native_assets_api.h; sourceTree = "<group>"; };
+		B0F09DAA2D76D32100503C78 /* dart_api_dl_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dart_api_dl_impl.h; sourceTree = "<group>"; };
+		B0F09DAC2D76D32100503C78 /* analyze_snapshot_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = analyze_snapshot_api.h; sourceTree = "<group>"; };
+		B0F09DAD2D76D32100503C78 /* BUILD.gn */ = {isa = PBXFileReference; lastKnownFileType = text; path = BUILD.gn; sourceTree = "<group>"; };
+		B0F09DAE2D76D32100503C78 /* dart_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dart_api.h; sourceTree = "<group>"; };
+		B0F09DAF2D76D32100503C78 /* dart_api_dl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dart_api_dl.h; sourceTree = "<group>"; };
+		B0F09DB02D76D32100503C78 /* dart_api_dl.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dart_api_dl.c; sourceTree = "<group>"; };
+		B0F09DB12D76D32100503C78 /* dart_embedder_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dart_embedder_api.h; sourceTree = "<group>"; };
+		B0F09DB22D76D32100503C78 /* dart_native_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dart_native_api.h; sourceTree = "<group>"; };
+		B0F09DB32D76D32100503C78 /* dart_tools_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dart_tools_api.h; sourceTree = "<group>"; };
+		B0F09DB42D76D32100503C78 /* dart_version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dart_version.h; sourceTree = "<group>"; };
+		B0F09DB72D76D32100503C78 /* ffi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ffi.cpp; sourceTree = "<group>"; };
 		E2E6ACD1DAB48B7E4C4F77FE /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -296,7 +302,7 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
-				B0EC8FA329C189D20016F5FA /* Classes */,
+				B0F09DB82D76D32100503C78 /* Classes */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				97C146EF1CF9000F007C117D /* Products */,
@@ -478,43 +484,56 @@
 			path = Libs;
 			sourceTree = "<group>";
 		};
-		B0EC8FA329C189D20016F5FA /* Classes */ = {
+		B0F09DA92D76D32100503C78 /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				B0EC8FA429C189D20016F5FA /* include */,
-				B0EC8FAE29C189D20016F5FA /* ffi.cpp */,
+				B0F09DA72D76D32100503C78 /* dart_io_api.h */,
+				B0F09DA82D76D32100503C78 /* native_assets_api.h */,
 			);
-			path = Classes;
+			path = bin;
 			sourceTree = "<group>";
 		};
-		B0EC8FA429C189D20016F5FA /* include */ = {
+		B0F09DAB2D76D32100503C78 /* internal */ = {
 			isa = PBXGroup;
 			children = (
-				B0EC8FA529C189D20016F5FA /* dart_native_api */,
+				B0F09DAA2D76D32100503C78 /* dart_api_dl_impl.h */,
 			);
-			path = include;
+			path = internal;
 			sourceTree = "<group>";
 		};
-		B0EC8FA529C189D20016F5FA /* dart_native_api */ = {
+		B0F09DB52D76D32100503C78 /* dart_native_api */ = {
 			isa = PBXGroup;
 			children = (
-				B0EC8FA629C189D20016F5FA /* dart_api.h */,
-				B0EC8FA729C189D20016F5FA /* dart_api_dl.c */,
-				B0EC8FA829C189D20016F5FA /* dart_version.h */,
-				B0EC8FA929C189D20016F5FA /* dart_native_api.h */,
-				B0EC8FAA29C189D20016F5FA /* internal */,
-				B0EC8FAC29C189D20016F5FA /* dart_tools_api.h */,
-				B0EC8FAD29C189D20016F5FA /* dart_api_dl.h */,
+				B0F09DA92D76D32100503C78 /* bin */,
+				B0F09DAB2D76D32100503C78 /* internal */,
+				B0F09DAC2D76D32100503C78 /* analyze_snapshot_api.h */,
+				B0F09DAD2D76D32100503C78 /* BUILD.gn */,
+				B0F09DAE2D76D32100503C78 /* dart_api.h */,
+				B0F09DAF2D76D32100503C78 /* dart_api_dl.h */,
+				B0F09DB02D76D32100503C78 /* dart_api_dl.c */,
+				B0F09DB12D76D32100503C78 /* dart_embedder_api.h */,
+				B0F09DB22D76D32100503C78 /* dart_native_api.h */,
+				B0F09DB32D76D32100503C78 /* dart_tools_api.h */,
+				B0F09DB42D76D32100503C78 /* dart_version.h */,
 			);
 			path = dart_native_api;
 			sourceTree = "<group>";
 		};
-		B0EC8FAA29C189D20016F5FA /* internal */ = {
+		B0F09DB62D76D32100503C78 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				B0EC8FAB29C189D20016F5FA /* dart_api_dl_impl.h */,
+				B0F09DB52D76D32100503C78 /* dart_native_api */,
 			);
-			path = internal;
+			path = include;
+			sourceTree = "<group>";
+		};
+		B0F09DB82D76D32100503C78 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B0F09DB62D76D32100503C78 /* include */,
+				B0F09DB72D76D32100503C78 /* ffi.cpp */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -583,6 +602,7 @@
 				B07CD96C2B2CA1B6009E3AF9 /* PandoraApi.bundle in Resources */,
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
 				B07CD96D2B2CA1B6009E3AF9 /* uni-jsframework-vue3.js in Resources */,
+				B0F09DBB2D76D32100503C78 /* BUILD.gn in Resources */,
 				B07CD96E2B2CA1B6009E3AF9 /* unincomponents.ttf in Resources */,
 				B07CD96F2B2CA1B6009E3AF9 /* weex-polyfill.js in Resources */,
 				B07CD96B2B2CA1B6009E3AF9 /* uni-jsframework.js in Resources */,
@@ -676,8 +696,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0EC8FAF29C189D20016F5FA /* dart_api_dl.c in Sources */,
-				B0EC8FB029C189D20016F5FA /* ffi.cpp in Sources */,
+				B0F09DB92D76D32100503C78 /* dart_api_dl.c in Sources */,
+				B0F09DBA2D76D32100503C78 /* ffi.cpp in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 			);

@@ -182,7 +182,7 @@ $ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 ├── ios/                                            # iOS 工程文件
 │   ├── Classes/                                    # Classes（目前存放 FFI 相关文件）
 │   │   ├── include/
-│   │   │   └── dart_native_api                     # DartNativeAPI 接口库
+│   │   │   └── dart_native_api/                    # DartNativeAPI 接口库
 │   │   └── ffi.cpp                                 # FFI 逻辑测试
 │   ├── Runner/                                     # Runner
 │   │   ├── UniMPSDK/                               # 包含 UniMPSDK 内容
