@@ -1,4 +1,5 @@
 // dart format width=80
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -32,33 +33,44 @@ class SettingMenuBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: ListView(
-        physics: const AlwaysScrollableScrollPhysics(
-          parent: BouncingScrollPhysics(),
-        ),
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 72, bottom: 48, left: 24, right: 24),
-            child: Header(),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light.copyWith(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Colors.transparent,
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: ListView(
+          physics: const AlwaysScrollableScrollPhysics(
+            parent: BouncingScrollPhysics(),
           ),
-          const Padding(
-            padding: EdgeInsets.only(bottom: 24, left: 24, right: 24),
-            child: Menu(),
-          ),
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(
+                top: 72,
+                bottom: 48,
+                left: 24,
+                right: 24,
+              ),
+              child: Header(),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 24, left: 24, right: 24),
+              child: Menu(),
+            ),
 
-          /// 插画
-          BlockSemanticsToDrawerClosed(
-            child: Container(
-              padding: const EdgeInsets.only(left: 24, bottom: 24),
-              child: Image.asset(
-                'assets/images/woolly/woolly-comet-2.png',
-                width: 240,
+            /// 插画
+            BlockSemanticsToDrawerClosed(
+              child: Container(
+                padding: const EdgeInsets.only(left: 24, bottom: 24),
+                child: Image.asset(
+                  'assets/images/woolly/woolly-comet-2.png',
+                  width: 240,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

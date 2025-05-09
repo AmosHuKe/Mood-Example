@@ -38,11 +38,8 @@ class AppThemeDefault implements AppMultipleTheme {
       scaffoldBackgroundColor: const Color(0xFFF6F8FA),
       // AppBar
       appBarTheme: AppBarTheme(
-        systemOverlayStyle: SystemUiOverlayStyle.light.copyWith(
+        systemOverlayStyle: SystemUiOverlayStyle.dark.copyWith(
           statusBarColor: Colors.transparent,
-          systemNavigationBarIconBrightness: Brightness.light,
-          statusBarIconBrightness: Brightness.dark,
-          statusBarBrightness: Brightness.dark,
           systemNavigationBarColor: Colors.transparent,
         ),
       ),
@@ -105,11 +102,8 @@ class AppThemeDefault implements AppMultipleTheme {
       scaffoldBackgroundColor: const Color(0xFF111315),
       // AppBar
       appBarTheme: AppBarTheme(
-        systemOverlayStyle: SystemUiOverlayStyle.dark.copyWith(
+        systemOverlayStyle: SystemUiOverlayStyle.light.copyWith(
           statusBarColor: Colors.transparent,
-          systemNavigationBarIconBrightness: Brightness.light,
-          statusBarIconBrightness: Brightness.light,
-          statusBarBrightness: Brightness.light,
           systemNavigationBarColor: Colors.transparent,
         ),
       ),

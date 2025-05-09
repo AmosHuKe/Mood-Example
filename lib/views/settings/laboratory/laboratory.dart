@@ -1,4 +1,5 @@
 // dart format width=80
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -17,32 +18,38 @@ class LaboratoryScreen extends StatelessWidget {
     final theme = Theme.of(context);
     final themePrimaryColor = theme.primaryColor;
 
-    return Theme(
-      data: ThemeData(useMaterial3: false),
-      child: Scaffold(
-        backgroundColor: const Color(0xFFF6F8FA),
-        floatingActionButton: ActionButton(
-          key: const Key('widget_laboratory_back_button'),
-          semanticsLabel: '返回',
-          width: 48,
-          height: 48,
-          decoration: BoxDecoration(
-            color: themePrimaryColor,
-            borderRadius: BorderRadius.circular(18),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark.copyWith(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Colors.transparent,
+      ),
+      child: Theme(
+        data: ThemeData(useMaterial3: false),
+        child: Scaffold(
+          backgroundColor: const Color(0xFFF6F8FA),
+          floatingActionButton: ActionButton(
+            key: const Key('widget_laboratory_back_button'),
+            semanticsLabel: '返回',
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: themePrimaryColor,
+              borderRadius: BorderRadius.circular(18),
+            ),
+            child: const Icon(
+              Remix.arrow_left_line,
+              size: 18,
+              color: Colors.white,
+            ),
+            onTap: () {
+              context.pop();
+            },
           ),
-          child: const Icon(
-            Remix.arrow_left_line,
-            size: 18,
-            color: Colors.white,
+          floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+          body: const SafeArea(
+            key: Key('widget_laboratory_page'),
+            child: LaboratoryBody(),
           ),
-          onTap: () {
-            context.pop();
-          },
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-        body: const SafeArea(
-          key: Key('widget_laboratory_page'),
-          child: LaboratoryBody(),
         ),
       ),
     );
