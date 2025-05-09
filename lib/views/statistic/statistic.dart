@@ -365,7 +365,7 @@ class StatisticMoodLineBody extends StatelessWidget {
             lineTouchData: LineTouchData(
               touchTooltipData: LineTouchTooltipData(
                 fitInsideHorizontally: true,
-                tooltipRoundedRadius: 24,
+                tooltipBorderRadius: BorderRadius.circular(24),
                 tooltipMargin: 24,
                 getTooltipColor: (_) => themePrimaryColor,
                 getTooltipItems: (List<LineBarSpot> touchedSpots) {
@@ -521,7 +521,7 @@ class _StatisticMoodBarState extends State<StatisticMoodBar> {
             }),
             barTouchData: BarTouchData(
               touchTooltipData: BarTouchTooltipData(
-                tooltipRoundedRadius: 12,
+                tooltipBorderRadius: BorderRadius.circular(12),
                 getTooltipColor: (_) => themePrimaryColor,
                 getTooltipItem: (group, groupIndex, rod, rodIndex) {
                   return BarTooltipItem(

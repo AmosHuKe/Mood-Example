@@ -227,7 +227,9 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                 ),
                                 onPressed: () {
                                   /// 分享文件
-                                  Share.shareXFiles([XFile(errorFilePath)]);
+                                  SharePlus.instance.share(
+                                    ShareParams(files: [XFile(errorFilePath)]),
+                                  );
                                 },
                                 child: Text(
                                   appL10n.app_setting_database_import_data_button_error,
@@ -278,7 +280,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                 final filePath = importMoodDataTemplateResult.value;
 
                                 /// 分享文件
-                                Share.shareXFiles([XFile(filePath)]);
+                                SharePlus.instance.share(ShareParams(files: [XFile(filePath)]));
                               }
                             case Error<String>():
                           }
@@ -365,7 +367,9 @@ class ExportDatabaseBody extends StatelessWidget {
                                     );
 
                                     /// 分享文件
-                                    Share.shareXFiles([XFile(exportPath)]);
+                                    SharePlus.instance.share(
+                                      ShareParams(files: [XFile(exportPath)]),
+                                    );
                                   }
                                 case Error<String>():
                               }
