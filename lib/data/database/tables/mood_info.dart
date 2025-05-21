@@ -30,7 +30,8 @@ abstract final class MoodInfo {
   static const String dropTable = 'DROP TABLE IF EXISTS $tableName';
 
   /// 创建数据库
-  static const String createTable = '''
+  static const String createTable =
+      '''
       CREATE TABLE $tableName (
         $mood_id INTEGER PRIMARY KEY,
         $icon TEXT NOT NULL,

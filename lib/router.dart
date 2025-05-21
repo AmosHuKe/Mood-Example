@@ -111,16 +111,16 @@ abstract final class AppRouter {
       /// 主屏幕（有状态嵌套路由）
       StatefulShellRoute.indexedStack(
         parentNavigatorKey: rootNavigatorKey,
-        builder: (
-          BuildContext context,
-          GoRouterState state,
-          StatefulNavigationShell navigationShell,
-        ) {
-          /// 主屏幕
-          return Init(
-            child: MainScreen(key: const Key('widget_menu_page'), navigationShell: navigationShell),
-          );
-        },
+        builder:
+            (BuildContext context, GoRouterState state, StatefulNavigationShell navigationShell) {
+              /// 主屏幕
+              return Init(
+                child: MainScreen(
+                  key: const Key('widget_menu_page'),
+                  navigationShell: navigationShell,
+                ),
+              );
+            },
         branches: [
           /// 主页
           StatefulShellBranch(
@@ -168,18 +168,17 @@ abstract final class AppRouter {
         path: '/${Routes.onboarding}',
         name: Routes.onboarding,
         parentNavigatorKey: rootNavigatorKey,
-        pageBuilder:
-            (_, _) => CustomTransitionPage(
-              child: const OnboardingScreen(),
-              transitionsBuilder: (_, animation, secondaryAnimation, child) {
-                return CupertinoPageTransition(
-                  primaryRouteAnimation: animation,
-                  secondaryRouteAnimation: secondaryAnimation,
-                  linearTransition: false,
-                  child: child,
-                );
-              },
-            ),
+        pageBuilder: (_, _) => CustomTransitionPage(
+          child: const OnboardingScreen(),
+          transitionsBuilder: (_, animation, secondaryAnimation, child) {
+            return CupertinoPageTransition(
+              primaryRouteAnimation: animation,
+              secondaryRouteAnimation: secondaryAnimation,
+              linearTransition: false,
+              child: child,
+            );
+          },
+        ),
       ),
 
       /// 添加心情选择页
@@ -234,18 +233,17 @@ abstract final class AppRouter {
         path: '/${Routes.settingLaboratory}',
         name: Routes.settingLaboratory,
         parentNavigatorKey: rootNavigatorKey,
-        pageBuilder:
-            (_, _) => CustomTransitionPage(
-              child: const LaboratoryScreen(),
-              transitionsBuilder: (_, animation, secondaryAnimation, child) {
-                return CupertinoPageTransition(
-                  primaryRouteAnimation: animation,
-                  secondaryRouteAnimation: secondaryAnimation,
-                  linearTransition: false,
-                  child: child,
-                );
-              },
-            ),
+        pageBuilder: (_, _) => CustomTransitionPage(
+          child: const LaboratoryScreen(),
+          transitionsBuilder: (_, animation, secondaryAnimation, child) {
+            return CupertinoPageTransition(
+              primaryRouteAnimation: animation,
+              secondaryRouteAnimation: secondaryAnimation,
+              linearTransition: false,
+              child: child,
+            );
+          },
+        ),
       ),
 
       /// 设置页-实验室-uniapp 小程序
@@ -253,18 +251,17 @@ abstract final class AppRouter {
         path: '/${Routes.laboratoryUniMPMiniapps}',
         name: Routes.laboratoryUniMPMiniapps,
         parentNavigatorKey: rootNavigatorKey,
-        pageBuilder:
-            (_, _) => CustomTransitionPage(
-              child: const UniMPMiniappsScreen(),
-              transitionsBuilder: (_, animation, secondaryAnimation, child) {
-                return CupertinoPageTransition(
-                  primaryRouteAnimation: animation,
-                  secondaryRouteAnimation: secondaryAnimation,
-                  linearTransition: false,
-                  child: child,
-                );
-              },
-            ),
+        pageBuilder: (_, _) => CustomTransitionPage(
+          child: const UniMPMiniappsScreen(),
+          transitionsBuilder: (_, animation, secondaryAnimation, child) {
+            return CupertinoPageTransition(
+              primaryRouteAnimation: animation,
+              secondaryRouteAnimation: secondaryAnimation,
+              linearTransition: false,
+              child: child,
+            );
+          },
+        ),
       ),
 
       /// 设置页-实验室-3D 城市
@@ -272,18 +269,17 @@ abstract final class AppRouter {
         path: '/${Routes.laboratoryPage3D}',
         name: Routes.laboratoryPage3D,
         parentNavigatorKey: rootNavigatorKey,
-        pageBuilder:
-            (_, _) => CustomTransitionPage(
-              child: const Demo3DScreen(),
-              transitionsBuilder: (_, animation, secondaryAnimation, child) {
-                return CupertinoPageTransition(
-                  primaryRouteAnimation: animation,
-                  secondaryRouteAnimation: secondaryAnimation,
-                  linearTransition: false,
-                  child: child,
-                );
-              },
-            ),
+        pageBuilder: (_, _) => CustomTransitionPage(
+          child: const Demo3DScreen(),
+          transitionsBuilder: (_, animation, secondaryAnimation, child) {
+            return CupertinoPageTransition(
+              primaryRouteAnimation: animation,
+              secondaryRouteAnimation: secondaryAnimation,
+              linearTransition: false,
+              child: child,
+            );
+          },
+        ),
       ),
 
       /// 设置页-实验室-游戏合集
@@ -291,9 +287,24 @@ abstract final class AppRouter {
         path: '/${Routes.laboratoryGame}',
         name: Routes.laboratoryGame,
         parentNavigatorKey: rootNavigatorKey,
-        pageBuilder:
-            (_, _) => CustomTransitionPage(
-              child: const GameScreen(),
+        pageBuilder: (_, _) => CustomTransitionPage(
+          child: const GameScreen(),
+          transitionsBuilder: (_, animation, secondaryAnimation, child) {
+            return CupertinoPageTransition(
+              primaryRouteAnimation: animation,
+              secondaryRouteAnimation: secondaryAnimation,
+              linearTransition: false,
+              child: child,
+            );
+          },
+        ),
+        routes: [
+          /// 设置页-实验室-游戏合集-Mini Fantasy
+          GoRoute(
+            path: Routes.laboratoryGameMiniFantasy,
+            name: Routes.laboratoryGameMiniFantasy,
+            pageBuilder: (_, _) => CustomTransitionPage(
+              child: const MiniFantasyScreen(),
               transitionsBuilder: (_, animation, secondaryAnimation, child) {
                 return CupertinoPageTransition(
                   primaryRouteAnimation: animation,
@@ -303,49 +314,31 @@ abstract final class AppRouter {
                 );
               },
             ),
-        routes: [
-          /// 设置页-实验室-游戏合集-Mini Fantasy
-          GoRoute(
-            path: Routes.laboratoryGameMiniFantasy,
-            name: Routes.laboratoryGameMiniFantasy,
-            pageBuilder:
-                (_, _) => CustomTransitionPage(
-                  child: const MiniFantasyScreen(),
-                  transitionsBuilder: (_, animation, secondaryAnimation, child) {
-                    return CupertinoPageTransition(
-                      primaryRouteAnimation: animation,
-                      secondaryRouteAnimation: secondaryAnimation,
-                      linearTransition: false,
-                      child: child,
-                    );
-                  },
-                ),
           ),
 
           /// 设置页-实验室-游戏合集-疯狂射击、怪物生成
           GoRoute(
             path: Routes.laboratoryGameMiniGame,
             name: Routes.laboratoryGameMiniGame,
-            pageBuilder:
-                (_, _) => CustomTransitionPage(
-                  child: PopScope(
-                    canPop: false,
-                    onPopInvokedWithResult: (bool didPop, _) async {
-                      if (didPop) return;
-                      // 竖屏
-                      await Flame.device.setPortrait();
-                    },
-                    child: const MiniGameScreen(),
-                  ),
-                  transitionsBuilder: (_, animation, secondaryAnimation, child) {
-                    return CupertinoPageTransition(
-                      primaryRouteAnimation: animation,
-                      secondaryRouteAnimation: secondaryAnimation,
-                      linearTransition: false,
-                      child: child,
-                    );
-                  },
-                ),
+            pageBuilder: (_, _) => CustomTransitionPage(
+              child: PopScope(
+                canPop: false,
+                onPopInvokedWithResult: (bool didPop, _) async {
+                  if (didPop) return;
+                  // 竖屏
+                  await Flame.device.setPortrait();
+                },
+                child: const MiniGameScreen(),
+              ),
+              transitionsBuilder: (_, animation, secondaryAnimation, child) {
+                return CupertinoPageTransition(
+                  primaryRouteAnimation: animation,
+                  secondaryRouteAnimation: secondaryAnimation,
+                  linearTransition: false,
+                  child: child,
+                );
+              },
+            ),
           ),
         ],
       ),
@@ -355,18 +348,17 @@ abstract final class AppRouter {
         path: '/${Routes.laboratoryFFI}',
         name: Routes.laboratoryFFI,
         parentNavigatorKey: rootNavigatorKey,
-        pageBuilder:
-            (_, _) => CustomTransitionPage(
-              child: const FFIScreen(),
-              transitionsBuilder: (_, animation, secondaryAnimation, child) {
-                return CupertinoPageTransition(
-                  primaryRouteAnimation: animation,
-                  secondaryRouteAnimation: secondaryAnimation,
-                  linearTransition: false,
-                  child: child,
-                );
-              },
-            ),
+        pageBuilder: (_, _) => CustomTransitionPage(
+          child: const FFIScreen(),
+          transitionsBuilder: (_, animation, secondaryAnimation, child) {
+            return CupertinoPageTransition(
+              primaryRouteAnimation: animation,
+              secondaryRouteAnimation: secondaryAnimation,
+              linearTransition: false,
+              child: child,
+            );
+          },
+        ),
       ),
 
       /// WebView
@@ -374,18 +366,17 @@ abstract final class AppRouter {
         path: '/${Routes.webViewPage}/:url',
         name: Routes.webViewPage,
         parentNavigatorKey: rootNavigatorKey,
-        pageBuilder:
-            (_, state) => CustomTransitionPage(
-              child: WebViewScreen(url: state.pathParameters['url'] ?? ''),
-              transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return CupertinoPageTransition(
-                  primaryRouteAnimation: animation,
-                  secondaryRouteAnimation: secondaryAnimation,
-                  linearTransition: false,
-                  child: child,
-                );
-              },
-            ),
+        pageBuilder: (_, state) => CustomTransitionPage(
+          child: WebViewScreen(url: state.pathParameters['url'] ?? ''),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return CupertinoPageTransition(
+              primaryRouteAnimation: animation,
+              secondaryRouteAnimation: secondaryAnimation,
+              linearTransition: false,
+              child: child,
+            );
+          },
+        ),
       ),
     ],
   );

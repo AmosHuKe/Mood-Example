@@ -192,152 +192,155 @@ class _CalendarState extends State<Calendar> {
         boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 6)],
         borderRadius: BorderRadius.circular(18),
       ),
-      child: Selector<
-        MoodViewModel,
-        ({DateTime selectDateTime, List<MoodRecordDateModel> moodRecordDateAllList})
-      >(
-        selector: (BuildContext, moodViewModel) {
-          return (
-            selectDateTime: moodViewModel.selectDateTime,
-            moodRecordDateAllList: moodViewModel.moodRecordDateAllList,
-          );
-        },
-        builder: (context, data, child) {
-          /// 当前选中的日期
-          final selectDateTime = data.selectDateTime;
+      child:
+          Selector<
+            MoodViewModel,
+            ({DateTime selectDateTime, List<MoodRecordDateModel> moodRecordDateAllList})
+          >(
+            selector: (BuildContext, moodViewModel) {
+              return (
+                selectDateTime: moodViewModel.selectDateTime,
+                moodRecordDateAllList: moodViewModel.moodRecordDateAllList,
+              );
+            },
+            builder: (context, data, child) {
+              /// 当前选中的日期
+              final selectDateTime = data.selectDateTime;
 
-          /// 所有心情的记录日期数据
-          final moodRecordDateAllList = data.moodRecordDateAllList;
+              /// 所有心情的记录日期数据
+              final moodRecordDateAllList = data.moodRecordDateAllList;
 
-          return TableCalendar(
-            locale: appL10n.localeName,
-            firstDay: DateTime.utc(2021, 10, 01),
-            lastDay: DateTime.now(),
-            focusedDay: selectDateTime,
-            startingDayOfWeek: StartingDayOfWeek.monday,
-            calendarFormat: calendarFormat,
-            formatAnimationCurve: Curves.linearToEaseOut,
-            pageAnimationCurve: Curves.linearToEaseOut,
-            rowHeight: 52,
-            daysOfWeekHeight: 24,
-            // 头部样式
-            headerStyle: const HeaderStyle(
-              formatButtonVisible: false,
-              titleCentered: true,
-              titleTextStyle: TextStyle(fontSize: 14),
-              leftChevronIcon: Icon(
-                Remix.arrow_left_s_line,
-                size: 24,
-                color: AppTheme.staticSubColor,
-                semanticLabel: '日历向前翻页',
-              ),
-              rightChevronIcon: Icon(
-                Remix.arrow_right_s_line,
-                size: 24,
-                color: AppTheme.staticSubColor,
-                semanticLabel: '日历向后翻页',
-              ),
-              formatButtonTextStyle: TextStyle(fontSize: 10, color: AppTheme.staticSubColor),
-              formatButtonDecoration: BoxDecoration(
-                border: Border.fromBorderSide(BorderSide(color: AppTheme.staticBackgroundColor1)),
-                borderRadius: BorderRadius.all(Radius.circular(6)),
-              ),
-            ),
-            daysOfWeekStyle: const DaysOfWeekStyle(
-              weekdayStyle: TextStyle(fontSize: 14, color: AppTheme.staticSubColor),
-              weekendStyle: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: AppTheme.staticSubColor,
-              ),
-            ),
-            // 自定义界面构建
-            calendarBuilders: CalendarBuilders(
-              defaultBuilder: (context, day, focusedDay) {
-                return calenderBuilder(
-                  day: day,
-                  moodRecordDateList: moodRecordDateAllList,
-                  textStyle: TextStyle(color: isDark ? Colors.white : Colors.black87),
-                );
-              },
-              selectedBuilder: (context, day, focusedDay) {
-                return calenderBuilder(
-                  day: day,
-                  bodyColors: [themePrimaryColor, themePrimaryColor],
-                  boxShadow: [
-                    BoxShadow(color: themePrimaryColor.withValues(alpha: 0.2), blurRadius: 6),
-                  ],
-                  textStyle: const TextStyle(color: Colors.white),
-                );
-              },
-              outsideBuilder: (context, day, focusedDay) {
-                const staticSubColor = AppTheme.staticSubColor;
-                return calenderBuilder(
-                  day: day,
-                  textStyle: TextStyle(
-                    color: isDark ? staticSubColor.withValues(alpha: 0.6) : staticSubColor,
+              return TableCalendar(
+                locale: appL10n.localeName,
+                firstDay: DateTime.utc(2021, 10, 01),
+                lastDay: DateTime.now(),
+                focusedDay: selectDateTime,
+                startingDayOfWeek: StartingDayOfWeek.monday,
+                calendarFormat: calendarFormat,
+                formatAnimationCurve: Curves.linearToEaseOut,
+                pageAnimationCurve: Curves.linearToEaseOut,
+                rowHeight: 52,
+                daysOfWeekHeight: 24,
+                // 头部样式
+                headerStyle: const HeaderStyle(
+                  formatButtonVisible: false,
+                  titleCentered: true,
+                  titleTextStyle: TextStyle(fontSize: 14),
+                  leftChevronIcon: Icon(
+                    Remix.arrow_left_s_line,
+                    size: 24,
+                    color: AppTheme.staticSubColor,
+                    semanticLabel: '日历向前翻页',
                   ),
-                );
-              },
-              todayBuilder: (context, day, focusedDay) {
-                return calenderBuilder(
-                  day: day,
-                  moodRecordDateList: moodRecordDateAllList,
-                  bodyColors: [
-                    themePrimaryColor.withValues(alpha: 0.2),
-                    themePrimaryColor.withValues(alpha: 0.2),
-                  ],
-                  textStyle: TextStyle(color: isDark ? Colors.white : Colors.black87),
-                );
-              },
-              disabledBuilder: (context, day, focusedDay) {
-                return calenderBuilder(
-                  day: day,
-                  textStyle: TextStyle(
-                    color: isDark ? const Color(0x20BFBFBF) : const Color(0x50BFBFBF),
+                  rightChevronIcon: Icon(
+                    Remix.arrow_right_s_line,
+                    size: 24,
+                    color: AppTheme.staticSubColor,
+                    semanticLabel: '日历向后翻页',
                   ),
-                );
-              },
-            ),
-            onFormatChanged: (format) => setState(() => calendarFormat = format),
-            availableCalendarFormats: const {
-              CalendarFormat.month: '小',
-              CalendarFormat.twoWeeks: '大',
-              CalendarFormat.week: '中',
-            },
-            selectedDayPredicate: (day) => isSameDay(selectDateTime, day),
-            onDaySelected: (selectedDay, focusedDay) {
-              /// 之前选择的日期
-              final oldSelectedDay = selectDateTime;
+                  formatButtonTextStyle: TextStyle(fontSize: 10, color: AppTheme.staticSubColor),
+                  formatButtonDecoration: BoxDecoration(
+                    border: Border.fromBorderSide(
+                      BorderSide(color: AppTheme.staticBackgroundColor1),
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                  ),
+                ),
+                daysOfWeekStyle: const DaysOfWeekStyle(
+                  weekdayStyle: TextStyle(fontSize: 14, color: AppTheme.staticSubColor),
+                  weekendStyle: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: AppTheme.staticSubColor,
+                  ),
+                ),
+                // 自定义界面构建
+                calendarBuilders: CalendarBuilders(
+                  defaultBuilder: (context, day, focusedDay) {
+                    return calenderBuilder(
+                      day: day,
+                      moodRecordDateList: moodRecordDateAllList,
+                      textStyle: TextStyle(color: isDark ? Colors.white : Colors.black87),
+                    );
+                  },
+                  selectedBuilder: (context, day, focusedDay) {
+                    return calenderBuilder(
+                      day: day,
+                      bodyColors: [themePrimaryColor, themePrimaryColor],
+                      boxShadow: [
+                        BoxShadow(color: themePrimaryColor.withValues(alpha: 0.2), blurRadius: 6),
+                      ],
+                      textStyle: const TextStyle(color: Colors.white),
+                    );
+                  },
+                  outsideBuilder: (context, day, focusedDay) {
+                    const staticSubColor = AppTheme.staticSubColor;
+                    return calenderBuilder(
+                      day: day,
+                      textStyle: TextStyle(
+                        color: isDark ? staticSubColor.withValues(alpha: 0.6) : staticSubColor,
+                      ),
+                    );
+                  },
+                  todayBuilder: (context, day, focusedDay) {
+                    return calenderBuilder(
+                      day: day,
+                      moodRecordDateList: moodRecordDateAllList,
+                      bodyColors: [
+                        themePrimaryColor.withValues(alpha: 0.2),
+                        themePrimaryColor.withValues(alpha: 0.2),
+                      ],
+                      textStyle: TextStyle(color: isDark ? Colors.white : Colors.black87),
+                    );
+                  },
+                  disabledBuilder: (context, day, focusedDay) {
+                    return calenderBuilder(
+                      day: day,
+                      textStyle: TextStyle(
+                        color: isDark ? const Color(0x20BFBFBF) : const Color(0x50BFBFBF),
+                      ),
+                    );
+                  },
+                ),
+                onFormatChanged: (format) => setState(() => calendarFormat = format),
+                availableCalendarFormats: const {
+                  CalendarFormat.month: '小',
+                  CalendarFormat.twoWeeks: '大',
+                  CalendarFormat.week: '中',
+                },
+                selectedDayPredicate: (day) => isSameDay(selectDateTime, day),
+                onDaySelected: (selectedDay, focusedDay) {
+                  /// 之前选择的日期
+                  final oldSelectedDay = selectDateTime;
 
-              /// 选择的日期相同则不操作
-              if (oldSelectedDay == selectedDay) return;
-              final moodViewModel = context.read<MoodViewModel>();
+                  /// 选择的日期相同则不操作
+                  if (oldSelectedDay == selectedDay) return;
+                  final moodViewModel = context.read<MoodViewModel>();
 
-              /// 赋值当前选择的日期
-              moodViewModel.selectDateTime = selectedDay;
+                  /// 赋值当前选择的日期
+                  moodViewModel.selectDateTime = selectedDay;
 
-              /// 获取心情数据
-              moodViewModel.loadMoodDataList();
+                  /// 获取心情数据
+                  moodViewModel.loadMoodDataList();
+                },
+                onCalendarCreated: (pageController) {
+                  /// 初始化触发一次
+                  Future.delayed(const Duration(milliseconds: 1), () {
+                    pageController.previousPage(
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.linearToEaseOut,
+                    );
+                  });
+                  Future.delayed(const Duration(milliseconds: 1000), () {
+                    pageController.nextPage(
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.linearToEaseOut,
+                    );
+                  });
+                },
+              );
             },
-            onCalendarCreated: (pageController) {
-              /// 初始化触发一次
-              Future.delayed(const Duration(milliseconds: 1), () {
-                pageController.previousPage(
-                  duration: const Duration(milliseconds: 400),
-                  curve: Curves.linearToEaseOut,
-                );
-              });
-              Future.delayed(const Duration(milliseconds: 1000), () {
-                pageController.nextPage(
-                  duration: const Duration(milliseconds: 400),
-                  curve: Curves.linearToEaseOut,
-                );
-              });
-            },
-          );
-        },
-      ),
+          ),
     );
   }
 
@@ -520,10 +523,9 @@ class MoodCard extends StatelessWidget {
                               height: 48,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                color:
-                                    isDark
-                                        ? const Color(0xFF2B3034)
-                                        : AppTheme.staticBackgroundColor3,
+                                color: isDark
+                                    ? const Color(0xFF2B3034)
+                                    : AppTheme.staticBackgroundColor3,
                                 borderRadius: BorderRadius.circular(14),
                               ),
                               child: ExcludeSemantics(
@@ -592,21 +594,24 @@ class MoodCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       softWrap: true,
                       style: TextStyle(
-                        color:
-                            moodData.content != null
-                                ? theme.textTheme.bodyMedium!.color
-                                : AppTheme.staticSubColor,
+                        color: moodData.content != null
+                            ? theme.textTheme.bodyMedium!.color
+                            : AppTheme.staticSubColor,
                         fontSize: 14,
                       ),
-                      semanticsLabel:
-                          moodData.content != null ? '记录内容：${moodData.content}' : '没有记录内容',
+                      semanticsLabel: moodData.content != null
+                          ? '记录内容：${moodData.content}'
+                          : '没有记录内容',
                     ),
                   ),
                 ],
               ),
             ),
             onTap: () {
-              showModalBottomDetail(context: context, child: MoodDetail(moodData: moodData));
+              showModalBottomDetail(
+                context: context,
+                child: MoodDetail(moodData: moodData),
+              );
             },
           ),
         ),
@@ -648,7 +653,9 @@ class MoodDetail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               /// 心情卡片
-              ExcludeSemantics(child: MoodOptionCard(icon: moodData.icon, title: moodData.title)),
+              ExcludeSemantics(
+                child: MoodOptionCard(icon: moodData.icon, title: moodData.title),
+              ),
 
               /// 打分
               Expanded(
@@ -685,12 +692,11 @@ class MoodDetail extends StatelessWidget {
           child: Text(
             moodData.content ?? appL10n.mood_data_content_empty,
             style: TextStyle(
-              color:
-                  moodData.content != null
-                      ? isDark
-                          ? Colors.white
-                          : Colors.black87
-                      : AppTheme.staticSubColor,
+              color: moodData.content != null
+                  ? isDark
+                        ? Colors.white
+                        : Colors.black87
+                  : AppTheme.staticSubColor,
               fontSize: 14,
             ),
             semanticsLabel: moodData.content != null ? '记录内容：${moodData.content}' : '没有记录内容',

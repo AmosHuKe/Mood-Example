@@ -30,37 +30,36 @@ class _WebViewScreenState extends State<WebViewScreen> {
     super.initState();
 
     final url = ValueBase64(widget.url).decode();
-    pageWebViewController =
-        WebViewController()
-          ..setJavaScriptMode(JavaScriptMode.unrestricted)
-          ..setNavigationDelegate(
-            NavigationDelegate(
-              onProgress: (int progress) {
-                print('加载中：$progress');
-                if (!mounted) return;
-                final appL10n = AppL10n.of(context);
-                setState(() {
-                  pageTitle = '${appL10n.web_view_loading_text} ${progress - 1}%';
-                });
-              },
-              onPageStarted: (String url) {
-                print('开始加载：$url');
-                if (!mounted) return;
-                setState(() {
-                  pageTitle = url;
-                });
-              },
-              onPageFinished: (String url) {
-                print('加载完成：$url');
-                if (!mounted) return;
-                webViewInit();
-              },
-              onWebResourceError: (WebResourceError error) {
-                print('加载错误：$error');
-              },
-            ),
-          )
-          ..loadRequest(Uri.parse(url));
+    pageWebViewController = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onProgress: (int progress) {
+            print('加载中：$progress');
+            if (!mounted) return;
+            final appL10n = AppL10n.of(context);
+            setState(() {
+              pageTitle = '${appL10n.web_view_loading_text} ${progress - 1}%';
+            });
+          },
+          onPageStarted: (String url) {
+            print('开始加载：$url');
+            if (!mounted) return;
+            setState(() {
+              pageTitle = url;
+            });
+          },
+          onPageFinished: (String url) {
+            print('加载完成：$url');
+            if (!mounted) return;
+            webViewInit();
+          },
+          onWebResourceError: (WebResourceError error) {
+            print('加载错误：$error');
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(url));
   }
 
   @override
@@ -105,44 +104,44 @@ class _WebViewScreenState extends State<WebViewScreen> {
         builder: (_) {
           return canGoBack || canGoForward
               ? Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Builder(
-                    builder: (_) {
-                      return canGoBack
-                          ? Expanded(
-                            child: IconButton(
-                              onPressed: () async {
-                                await pageWebViewController.goBack();
-                              },
-                              icon: Icon(
-                                Remix.arrow_left_s_line,
-                                color: theme.textTheme.bodyMedium!.color,
-                              ),
-                            ),
-                          )
-                          : const SizedBox();
-                    },
-                  ),
-                  Builder(
-                    builder: (_) {
-                      return canGoForward
-                          ? Expanded(
-                            child: IconButton(
-                              onPressed: () async {
-                                await pageWebViewController.goForward();
-                              },
-                              icon: Icon(
-                                Remix.arrow_right_s_line,
-                                color: theme.textTheme.bodyMedium!.color,
-                              ),
-                            ),
-                          )
-                          : const SizedBox();
-                    },
-                  ),
-                ],
-              )
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Builder(
+                      builder: (_) {
+                        return canGoBack
+                            ? Expanded(
+                                child: IconButton(
+                                  onPressed: () async {
+                                    await pageWebViewController.goBack();
+                                  },
+                                  icon: Icon(
+                                    Remix.arrow_left_s_line,
+                                    color: theme.textTheme.bodyMedium!.color,
+                                  ),
+                                ),
+                              )
+                            : const SizedBox();
+                      },
+                    ),
+                    Builder(
+                      builder: (_) {
+                        return canGoForward
+                            ? Expanded(
+                                child: IconButton(
+                                  onPressed: () async {
+                                    await pageWebViewController.goForward();
+                                  },
+                                  icon: Icon(
+                                    Remix.arrow_right_s_line,
+                                    color: theme.textTheme.bodyMedium!.color,
+                                  ),
+                                ),
+                              )
+                            : const SizedBox();
+                      },
+                    ),
+                  ],
+                )
               : const SizedBox();
         },
       ),

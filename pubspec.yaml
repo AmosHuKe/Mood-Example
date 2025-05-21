@@ -1,10 +1,10 @@
 name: moodexample
 description: 管理自己的情绪，记录当下所见所想。
 publish_to: 'none'
-version: 1.9.11+476
+version: 1.9.11+477
 
 environment:
-  sdk: ^3.7.0
+  sdk: ^3.8.0
 
 dependencies:
   flutter:
@@ -26,8 +26,8 @@ dependencies:
   fl_chart: ^1.0.0 # 图表
   excel: ^4.0.6 # Excel
   share_plus: ^11.0.0 # 分享
-  file_picker: ^10.1.5 # 文件选择
-  webview_flutter: ^4.11.0 # WebView
+  file_picker: ^10.1.9 # 文件选择
+  webview_flutter: ^4.12.0 # WebView
   ditredi: ^2.0.2 # 3D 数据集显示
   vector_math: ^2.1.4
   awesome_notifications: ^0.10.1 # 本地通知

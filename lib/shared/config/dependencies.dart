@@ -69,7 +69,9 @@ abstract final class Dependencies {
     Provider(create: (context) => DataImportExportDao(database: context.read())),
     Provider(create: (context) => SecurityKeyDao(sharedPreferencesDB: context.read())),
     Provider(create: (context) => MoodDataDao(database: context.read())),
-    Provider(create: (context) => MoodCategoryDao(database: context.read(), sharedPreferencesDB: context.read())),
+    Provider(
+      create: (context) => MoodCategoryDao(database: context.read(), sharedPreferencesDB: context.read()),
+    ),
     Provider(create: (context) => StatisticDao(database: context.read())),
 
     Provider(create: (context) => ApplicationRepositoryLocal(applicationDao: context.read()) as ApplicationRepository),

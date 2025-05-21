@@ -224,7 +224,10 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
             Say(
               text: [
                 const TextSpan(text: '你...好...陌...生...人...'),
-                const TextSpan(text: '  怪物已经向你冲来！！！', style: TextStyle(color: Colors.red)),
+                const TextSpan(
+                  text: '  怪物已经向你冲来！！！',
+                  style: TextStyle(color: Colors.red),
+                ),
               ],
               person: CustomSpriteAnimationWidget(animation: SpriteSheetPlayer.idleBottomRight),
               personSayDirection: PersonSayDirection.LEFT,

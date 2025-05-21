@@ -15,9 +15,7 @@ class MoodDataDao {
     final list = await db.query(
       MoodInfo.tableName,
       orderBy: '${MoodInfo.create_time} asc, ${MoodInfo.mood_id} desc',
-      where: '''
-        ${MoodInfo.create_time} like ? 
-      ''',
+      where: '${MoodInfo.create_time} like ?',
       whereArgs: ['$datetime%'],
     );
     return list;

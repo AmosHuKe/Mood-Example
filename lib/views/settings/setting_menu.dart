@@ -182,10 +182,9 @@ class Menu extends StatelessWidget {
           title: Text(appL10n.app_setting_about, style: menuTextStyle),
           onTap: () {
             print('关于');
-            final url =
-                ValueBase64(
-                  'https://github.com/AmosHuKe/Mood-Example',
-                ).encode();
+            final url = ValueBase64(
+              'https://github.com/AmosHuKe/Mood-Example',
+            ).encode();
             GoRouter.of(
               context,
             ).pushNamed(Routes.webViewPage, pathParameters: {'url': url});

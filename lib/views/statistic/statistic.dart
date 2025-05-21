@@ -181,43 +181,44 @@ class OverallStatistics extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
-      child: Selector<
-        StatisticViewModel,
-        ({int appUsageDays, int appMoodCount, int moodScoreAverage})
-      >(
-        selector: (_, statisticViewModel) {
-          return (
-            appUsageDays: statisticViewModel.appUsageDays,
-            appMoodCount: statisticViewModel.appMoodCount,
-            moodScoreAverage: statisticViewModel.moodScoreAverage,
-          );
-        },
-        builder: (context, data, child) {
-          return Wrap(
-            spacing: 12,
-            runSpacing: 12,
-            children: [
-              StatisticsCard(
-                icon: Remix.time_line,
-                title: AppL10n.of(context).statistic_overall_daysCount_title(data.appUsageDays),
-                subTitle: appL10n.statistic_overall_daysCount_subTitle,
-              ),
-              StatisticsCard(
-                icon: Remix.file_list_2_line,
-                title: AppL10n.of(context).statistic_overall_moodCount_title(data.appMoodCount),
-                subTitle: appL10n.statistic_overall_moodCount_subTitle,
-              ),
-              StatisticsCard(
-                icon: Remix.pulse_line,
-                title: AppL10n.of(
-                  context,
-                ).statistic_overall_moodScoreAverage_title(data.moodScoreAverage),
-                subTitle: appL10n.statistic_overall_moodScoreAverage_subTitle,
-              ),
-            ],
-          );
-        },
-      ),
+      child:
+          Selector<
+            StatisticViewModel,
+            ({int appUsageDays, int appMoodCount, int moodScoreAverage})
+          >(
+            selector: (_, statisticViewModel) {
+              return (
+                appUsageDays: statisticViewModel.appUsageDays,
+                appMoodCount: statisticViewModel.appMoodCount,
+                moodScoreAverage: statisticViewModel.moodScoreAverage,
+              );
+            },
+            builder: (context, data, child) {
+              return Wrap(
+                spacing: 12,
+                runSpacing: 12,
+                children: [
+                  StatisticsCard(
+                    icon: Remix.time_line,
+                    title: AppL10n.of(context).statistic_overall_daysCount_title(data.appUsageDays),
+                    subTitle: appL10n.statistic_overall_daysCount_subTitle,
+                  ),
+                  StatisticsCard(
+                    icon: Remix.file_list_2_line,
+                    title: AppL10n.of(context).statistic_overall_moodCount_title(data.appMoodCount),
+                    subTitle: appL10n.statistic_overall_moodCount_subTitle,
+                  ),
+                  StatisticsCard(
+                    icon: Remix.pulse_line,
+                    title: AppL10n.of(
+                      context,
+                    ).statistic_overall_moodScoreAverage_title(data.moodScoreAverage),
+                    subTitle: appL10n.statistic_overall_moodScoreAverage_subTitle,
+                  ),
+                ],
+              );
+            },
+          ),
     );
   }
 }
@@ -406,10 +407,9 @@ class StatisticMoodLineBody extends StatelessWidget {
               drawVerticalLine: true,
               getDrawingHorizontalLine: (value) {
                 return FlLine(
-                  color:
-                      isDark
-                          ? Colors.white.withValues(alpha: 0.1)
-                          : Colors.black.withValues(alpha: 0.1),
+                  color: isDark
+                      ? Colors.white.withValues(alpha: 0.1)
+                      : Colors.black.withValues(alpha: 0.1),
                   strokeWidth: 0.6,
                 );
               },
@@ -733,7 +733,9 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
           ],
         ),
         padding: const EdgeInsets.all(1),
-        child: Center(child: Text(title ?? '', style: TextStyle(fontSize: badgeFontSize))),
+        child: Center(
+          child: Text(title ?? '', style: TextStyle(fontSize: badgeFontSize)),
+        ),
       ),
       badgePositionPercentageOffset: 0.9,
       titlePositionPercentageOffset: 0.6,

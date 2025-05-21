@@ -232,7 +232,9 @@ class OptionCard extends StatelessWidget {
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 18),
-                child: Align(child: Text(icon, style: const TextStyle(fontSize: iconSize))),
+                child: Align(
+                  child: Text(icon, style: const TextStyle(fontSize: iconSize)),
+                ),
               ),
             ),
           ),

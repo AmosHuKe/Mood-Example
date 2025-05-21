@@ -26,8 +26,8 @@ class MoodCategoryLoadUseCase {
       MoodCategoryModel(icon: '🤩', title: '崇拜'),
       MoodCategoryModel(icon: '😡', title: '生气'),
     ];
-    final getInitMoodCategoryDefaultResult =
-        await _moodCategoryRepository.getInitMoodCategoryDefault();
+    final getInitMoodCategoryDefaultResult = await _moodCategoryRepository
+        .getInitMoodCategoryDefault();
     switch (getInitMoodCategoryDefaultResult) {
       case Success<bool?>():
         {

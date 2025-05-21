@@ -46,7 +46,7 @@ class AppThemeDefault implements AppMultipleTheme {
       // bottomNavigationBar
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(backgroundColor: Colors.white),
       // TabBar
-      tabBarTheme: const TabBarTheme(
+      tabBarTheme: const TabBarThemeData(
         labelColor: Colors.black,
         unselectedLabelColor: Color(0xFFAFB8BF),
       ),
@@ -112,7 +112,7 @@ class AppThemeDefault implements AppMultipleTheme {
         backgroundColor: Color(0xFF1A1D1F),
       ),
       // TabBar
-      tabBarTheme: const TabBarTheme(
+      tabBarTheme: const TabBarThemeData(
         labelColor: Colors.white,
         unselectedLabelColor: Color(0xFF6F767E),
       ),

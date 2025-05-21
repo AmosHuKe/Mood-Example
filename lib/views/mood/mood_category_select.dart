@@ -82,51 +82,52 @@ class MoodCategorySelectBody extends StatelessWidget {
         /// 标题
         Padding(
           padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 48),
-          child: Selector<
-            MoodCategorySelectViewModel,
-            ({MoodCategorySelectType screenType, DateTime selectDateTime})
-          >(
-            selector: (_, moodCategorySelectViewModel) {
-              return (
-                screenType: moodCategorySelectViewModel.screenType,
-                selectDateTime: moodCategorySelectViewModel.selectDateTime,
-              );
-            },
-            builder: (context, data, _) {
-              final screenType = data.screenType;
-              final titleText = switch (screenType) {
-                MoodCategorySelectType.add => appL10n.mood_category_select_title_1,
-                MoodCategorySelectType.edit => appL10n.mood_category_select_title_2,
-              };
-              final selectDatatimeText = switch (screenType) {
-                MoodCategorySelectType.add => LocaleDatetime.yMMMd(
-                  context,
-                  Utils.datetimeFormatToString(data.selectDateTime),
-                ),
-                MoodCategorySelectType.edit => '',
-              };
-
-              return Column(
-                children: [
-                  Text(
-                    titleText,
-                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 4),
-                    child: Text(
-                      selectDatatimeText,
-                      style: const TextStyle(
-                        color: AppTheme.staticSubColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
+          child:
+              Selector<
+                MoodCategorySelectViewModel,
+                ({MoodCategorySelectType screenType, DateTime selectDateTime})
+              >(
+                selector: (_, moodCategorySelectViewModel) {
+                  return (
+                    screenType: moodCategorySelectViewModel.screenType,
+                    selectDateTime: moodCategorySelectViewModel.selectDateTime,
+                  );
+                },
+                builder: (context, data, _) {
+                  final screenType = data.screenType;
+                  final titleText = switch (screenType) {
+                    MoodCategorySelectType.add => appL10n.mood_category_select_title_1,
+                    MoodCategorySelectType.edit => appL10n.mood_category_select_title_2,
+                  };
+                  final selectDatatimeText = switch (screenType) {
+                    MoodCategorySelectType.add => LocaleDatetime.yMMMd(
+                      context,
+                      Utils.datetimeFormatToString(data.selectDateTime),
                     ),
-                  ),
-                ],
-              );
-            },
-          ),
+                    MoodCategorySelectType.edit => '',
+                  };
+
+                  return Column(
+                    children: [
+                      Text(
+                        titleText,
+                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Text(
+                          selectDatatimeText,
+                          style: const TextStyle(
+                            color: AppTheme.staticSubColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
         ),
 
         /// 心情选项
@@ -145,28 +146,30 @@ class MoodOption extends StatelessWidget {
     return Align(
       child: Padding(
         padding: const EdgeInsets.only(left: 24, right: 24, bottom: 48),
-        child: Selector<
-          MoodCategorySelectViewModel,
-          ({bool loadMoodCategoryAllLoading, List<MoodCategoryModel> moodCategoryAll})
-        >(
-          selector: (_, moodCategorySelectViewModel) {
-            return (
-              loadMoodCategoryAllLoading: moodCategorySelectViewModel.loadMoodCategoryAllLoading,
-              moodCategoryAll: moodCategorySelectViewModel.moodCategoryAll,
-            );
-          },
-          builder: (context, data, child) {
-            if (data.loadMoodCategoryAllLoading) {
-              return const Center(child: CupertinoActivityIndicator(radius: 12));
-            }
+        child:
+            Selector<
+              MoodCategorySelectViewModel,
+              ({bool loadMoodCategoryAllLoading, List<MoodCategoryModel> moodCategoryAll})
+            >(
+              selector: (_, moodCategorySelectViewModel) {
+                return (
+                  loadMoodCategoryAllLoading:
+                      moodCategorySelectViewModel.loadMoodCategoryAllLoading,
+                  moodCategoryAll: moodCategorySelectViewModel.moodCategoryAll,
+                );
+              },
+              builder: (context, data, child) {
+                if (data.loadMoodCategoryAllLoading) {
+                  return const Center(child: CupertinoActivityIndicator(radius: 12));
+                }
 
-            final widgetList = <Widget>[];
-            for (final list in data.moodCategoryAll) {
-              widgetList.add(MoodOptionCard(icon: list.icon, title: list.title));
-            }
-            return Wrap(spacing: 24, runSpacing: 24, children: widgetList);
-          },
-        ),
+                final widgetList = <Widget>[];
+                for (final list in data.moodCategoryAll) {
+                  widgetList.add(MoodOptionCard(icon: list.icon, title: list.title));
+                }
+                return Wrap(spacing: 24, runSpacing: 24, children: widgetList);
+              },
+            ),
       ),
     );
   }
