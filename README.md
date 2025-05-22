@@ -1,10 +1,10 @@
 
-<p align="center"><img alt="Preview1" src="./README/preview/preview1.png"></p>
+<p align="center"><img alt="Preview" src="./README/preview/preview0.png"></p>
 
 <br/>
 
 <h1 align="center">
-  <img alt="Logo" src="./README/logo/logo.png" width="48px" style="border-radius:16px;" /> <span>Mood Example</span>
+  <img alt="Logo" src="./README/logo/logo-round.png" width="48px" /> <span>Mood Example</span>
 
   [![Sparkline](https://stars.medv.io/AmosHuKe/Mood-Example.svg)](https://stars.medv.io/AmosHuKe/Mood-Example)
 </h1> 
