@@ -7,7 +7,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
-import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 
 /// 类型定义
@@ -124,20 +123,20 @@ class _FFIScreenState extends State<FFIScreen> {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(useMaterial3: false),
+      data: ThemeData(),
       child: Scaffold(
-        backgroundColor: const Color(0xFFF6F8FA),
+        backgroundColor: const Color(0xFFF1F2F3),
         appBar: AppBar(
           elevation: 0,
           forceMaterialTransparency: true,
-          backgroundColor: const Color(0xFFF6F8FA),
+          backgroundColor: const Color(0xFFF1F2F3),
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
           titleTextStyle: const TextStyle(color: Colors.black, fontSize: 14),
           title: const Text('FFI 异步调用 C/C++'),
           leading: ActionButton(
             decoration: const BoxDecoration(
-              color: AppTheme.staticBackgroundColor1,
+              color: Colors.transparent,
               borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
             ),
             child: const Icon(Remix.arrow_left_line, size: 24),

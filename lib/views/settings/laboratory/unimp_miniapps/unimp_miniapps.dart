@@ -4,8 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
-import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
+
+import '../laboratory.dart' show OpenCard;
 
 class UniMPMiniappsScreen extends StatelessWidget {
   const UniMPMiniappsScreen({super.key});
@@ -13,20 +14,20 @@ class UniMPMiniappsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(useMaterial3: false),
+      data: ThemeData(),
       child: Scaffold(
-        backgroundColor: const Color(0xFFF6F8FA),
+        backgroundColor: const Color(0xFFF1F2F3),
         appBar: AppBar(
           elevation: 0,
           forceMaterialTransparency: true,
-          backgroundColor: const Color(0xFFF6F8FA),
+          backgroundColor: const Color(0xFFF1F2F3),
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
           titleTextStyle: const TextStyle(color: Colors.black, fontSize: 14),
           title: const Text('uniapp 小程序'),
           leading: ActionButton(
             decoration: const BoxDecoration(
-              color: AppTheme.staticBackgroundColor1,
+              color: Colors.transparent,
               borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
             ),
             child: const Icon(Remix.arrow_left_line, size: 24),
@@ -84,68 +85,22 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
 
         /// 小程序
         OpenCard(
-          leading: const Icon(Remix.mini_program_fill, size: 32, color: Colors.black87),
+          icon: Remix.mini_program_fill,
           title: 'uView UI',
           subtitle: '多平台快速开发的 UI 框架',
-          onPressed: () async {
+          onTap: () async {
             await callNativeMethod('__UNI__F87B0CE');
           },
         ),
         OpenCard(
-          leading: const Icon(Remix.mini_program_fill, size: 32, color: Colors.black87),
+          icon: Remix.mini_program_fill,
           title: 'hello-uniapp',
           subtitle: '演示 uni-app 框架的组件、接口、模板等',
-          onPressed: () async {
+          onTap: () async {
             await callNativeMethod('__UNI__3BC70CE');
           },
         ),
       ],
-    );
-  }
-}
-
-class OpenCard extends StatelessWidget {
-  const OpenCard({
-    super.key,
-    required this.title,
-    required this.subtitle,
-    required this.leading,
-    this.onPressed,
-  });
-
-  /// 标题
-  final String title;
-
-  /// 描述
-  final String subtitle;
-
-  /// 图标
-  final Widget leading;
-
-  /// 点击打开触发
-  final VoidCallback? onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 12),
-      shadowColor: Colors.black38,
-      shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(48)),
-      child: Padding(
-        padding: const EdgeInsets.all(14),
-        child: Column(
-          children: [
-            ListTile(leading: leading, title: Text(title), subtitle: Text(subtitle)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(onPressed: onPressed, child: const Text('打开')),
-                const SizedBox(width: 8),
-              ],
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

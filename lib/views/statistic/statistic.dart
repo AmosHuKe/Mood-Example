@@ -132,7 +132,7 @@ class StatisticBody extends StatelessWidget {
                       return StatisticLayout(
                         title: appL10n.statistic_moodScore_title,
                         subTitle: AppL10n.of(context).statistic_moodScore_content(data.selectDays),
-                        height: 180,
+                        height: 240,
                         statistic: child!,
                       );
                     },
@@ -154,7 +154,7 @@ class StatisticBody extends StatelessWidget {
                         subTitle: AppL10n.of(
                           context,
                         ).statistic_moodStatistics_content(data.selectDays),
-                        height: 320,
+                        height: 480,
                         statistic: child!,
                       );
                     },
@@ -253,7 +253,7 @@ class StatisticMoodLine extends StatelessWidget {
         return StatisticLayout(
           title: appL10n.statistic_moodScoreAverage_title(moodScoreAverage.toString()),
           subTitle: AppL10n.of(context).statistic_moodScoreAverage_content(data.selectDays),
-          height: 240,
+          height: 320,
           statistic: child!,
         );
       },
@@ -763,37 +763,35 @@ class StatisticsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Semantics(
       container: true,
       label: '$subTitle$title',
       excludeSemantics: true,
-      child: Card(
-        elevation: 0,
-        margin: const EdgeInsets.all(0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        child: Container(
-          constraints: const BoxConstraints(minWidth: 88, minHeight: 110),
-          margin: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 36,
-                height: 36,
-                decoration: const BoxDecoration(color: Colors.black, shape: BoxShape.circle),
-                child: Icon(icon, size: 18, color: Colors.white),
+      child: Container(
+        constraints: const BoxConstraints(minWidth: 100, minHeight: 110),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(color: theme.cardColor, borderRadius: BorderRadius.circular(16)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 36,
+              height: 36,
+              decoration: const BoxDecoration(color: Colors.black, shape: BoxShape.circle),
+              child: Icon(icon, size: 18, color: Colors.white),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20, bottom: 10),
+              child: Text(
+                title,
+                style: const TextStyle(fontSize: 14),
+                strutStyle: const StrutStyle(forceStrutHeight: false, leading: 1.5),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: 10, left: 6),
-                child: Text(
-                  title,
-                  style: const TextStyle(fontSize: 14),
-                  strutStyle: const StrutStyle(forceStrutHeight: false, leading: 1.5),
-                ),
-              ),
-              Text(subTitle, style: const TextStyle(color: AppTheme.staticSubColor, fontSize: 12)),
-            ],
-          ),
+            ),
+            Text(subTitle, style: const TextStyle(color: AppTheme.staticSubColor, fontSize: 12)),
+          ],
         ),
       ),
     );
@@ -824,36 +822,34 @@ class StatisticLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Semantics(
       container: true,
       label: '$title$subTitle',
       excludeSemantics: true,
-      child: Card(
-        elevation: 0,
-        margin: const EdgeInsets.all(0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        child: Container(
-          height: height,
-          margin: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 4),
-              Text(
-                subTitle,
-                style: const TextStyle(
-                  color: AppTheme.staticSubColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal,
-                ),
+      child: Container(
+        height: height,
+        decoration: BoxDecoration(color: theme.cardColor, borderRadius: BorderRadius.circular(16)),
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 4),
+            Text(
+              subTitle,
+              style: const TextStyle(
+                color: AppTheme.staticSubColor,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
               ),
-              const SizedBox(height: 38),
-              Expanded(child: statistic),
-            ],
-          ),
+            ),
+            const SizedBox(height: 38),
+            Expanded(child: statistic),
+          ],
         ),
       ),
     );

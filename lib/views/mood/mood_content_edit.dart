@@ -47,59 +47,65 @@ class MoodContentEditScreen extends StatelessWidget {
                 LocaleDatetime.yMMMd(context, moodData.create_time),
                 style: const TextStyle(fontSize: 14),
               ),
-              leading: ActionButton(
-                key: const Key('widget_action_button_close'),
-                semanticsLabel: '关闭',
-                decoration: BoxDecoration(
-                  color: isDark ? theme.cardColor : AppTheme.staticBackgroundColor1,
-                  borderRadius: const BorderRadius.only(bottomRight: Radius.circular(18)),
+              leading: Align(
+                alignment: Alignment.topLeft,
+                child: ActionButton(
+                  key: const Key('widget_action_button_close'),
+                  semanticsLabel: '关闭',
+                  decoration: BoxDecoration(
+                    color: isDark ? theme.cardColor : AppTheme.staticBackgroundColor1,
+                    borderRadius: const BorderRadius.only(bottomRight: Radius.circular(18)),
+                  ),
+                  child: const Icon(Remix.close_fill, size: 24),
+                  onTap: () {
+                    onClose(context);
+                  },
                 ),
-                child: const Icon(Remix.close_fill, size: 24),
-                onTap: () {
-                  onClose(context);
-                },
               ),
               actions: [
-                ActionButton(
-                  key: const Key('widget_mood_actions_button'),
-                  semanticsLabel: '确认记录',
-                  decoration: BoxDecoration(
-                    color: isDark ? theme.cardColor : const Color(0xFFD6F2E2),
-                    borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(18)),
-                  ),
-                  child: Icon(
-                    Remix.check_fill,
-                    size: 24,
-                    color: isDark ? theme.textTheme.displayLarge!.color : const Color(0xFF587966),
-                  ),
-                  onTap: () async {
-                    FocusScope.of(context).unfocus();
-                    final moodViewModel = context.read<MoodViewModel>();
+                Align(
+                  alignment: Alignment.topRight,
+                  child: ActionButton(
+                    key: const Key('widget_mood_actions_button'),
+                    semanticsLabel: '确认记录',
+                    decoration: BoxDecoration(
+                      color: isDark ? theme.cardColor : const Color(0xFFD6F2E2),
+                      borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(18)),
+                    ),
+                    child: Icon(
+                      Remix.check_fill,
+                      size: 24,
+                      color: isDark ? theme.textTheme.displayLarge!.color : const Color(0xFF587966),
+                    ),
+                    onTap: () async {
+                      FocusScope.of(context).unfocus();
+                      final moodViewModel = context.read<MoodViewModel>();
 
-                    /// 是否操作成功
-                    var result = const Result<bool>.success(false);
+                      /// 是否操作成功
+                      var result = const Result<bool>.success(false);
 
-                    /// 存在ID的操作（代表修改）
-                    if (moodData.mood_id != null) {
-                      /// 修改心情数据
-                      /// 赋值修改时间
-                      moodContentEditViewModel.moodData = moodData.copyWith(
-                        update_time: Utils.datetimeFormatToString(DateTime.now()),
-                      );
-                      result = await moodViewModel.editMoodData(moodData);
-                    } else {
-                      /// 创建心情数据
-                      result = await moodViewModel.addMoodData(moodData);
-                    }
-                    switch (result) {
-                      case Success<bool>():
-                        if (result.value) {
-                          if (!context.mounted) return;
-                          context.pop();
-                        }
-                      case Error<bool>():
-                    }
-                  },
+                      /// 存在ID的操作（代表修改）
+                      if (moodData.mood_id != null) {
+                        /// 修改心情数据
+                        /// 赋值修改时间
+                        moodContentEditViewModel.moodData = moodData.copyWith(
+                          update_time: Utils.datetimeFormatToString(DateTime.now()),
+                        );
+                        result = await moodViewModel.editMoodData(moodData);
+                      } else {
+                        /// 创建心情数据
+                        result = await moodViewModel.addMoodData(moodData);
+                      }
+                      switch (result) {
+                        case Success<bool>():
+                          if (result.value) {
+                            if (!context.mounted) return;
+                            context.pop();
+                          }
+                        case Error<bool>():
+                      }
+                    },
+                  ),
                 ),
               ],
             ),

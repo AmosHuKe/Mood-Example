@@ -19,7 +19,6 @@ class AppThemeDefault implements AppMultipleTheme {
   @override
   ThemeData lightTheme() {
     return ThemeData(
-      useMaterial3: false,
       brightness: Brightness.light,
       // 字体
       fontFamily: null,
@@ -43,26 +42,27 @@ class AppThemeDefault implements AppMultipleTheme {
           systemNavigationBarColor: Colors.transparent,
         ),
       ),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        elevation: 0,
+        hoverElevation: 0,
+        focusElevation: 0,
+        highlightElevation: 0,
+      ),
       // bottomNavigationBar
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(backgroundColor: Colors.white),
       // TabBar
       tabBarTheme: const TabBarThemeData(
         labelColor: Colors.black,
         unselectedLabelColor: Color(0xFFAFB8BF),
+        dividerHeight: 0,
+        indicatorColor: Colors.transparent,
       ),
-      // 回弹波浪颜色
-      primarySwatch: const MaterialColor(0xFF545454, {
-        50: Color(0xFF545454),
-        100: Color(0xFF545454),
-        200: Color(0xFF545454),
-        300: Color(0xFF545454),
-        400: Color(0xFF545454),
-        500: Color(0xFF545454),
-        600: Color(0xFF545454),
-        700: Color(0xFF545454),
-        800: Color(0xFF545454),
-        900: Color(0xFF545454),
-      }),
+      // OutlinedButton
+      outlinedButtonTheme: const OutlinedButtonThemeData(
+        style: ButtonStyle(side: WidgetStatePropertyAll(BorderSide.none)),
+      ),
+      // 水波纹
+      splashFactory: NoSplash.splashFactory,
       // 点击时水波颜色
       splashColor: Colors.transparent,
       // 点击时背景高亮颜色
@@ -83,7 +83,6 @@ class AppThemeDefault implements AppMultipleTheme {
   @override
   ThemeData darkTheme() {
     return ThemeData(
-      useMaterial3: false,
       brightness: Brightness.dark,
       // 字体
       fontFamily: null,
@@ -107,6 +106,12 @@ class AppThemeDefault implements AppMultipleTheme {
           systemNavigationBarColor: Colors.transparent,
         ),
       ),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        elevation: 0,
+        hoverElevation: 0,
+        focusElevation: 0,
+        highlightElevation: 0,
+      ),
       // bottomNavigationBar
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: Color(0xFF1A1D1F),
@@ -115,20 +120,14 @@ class AppThemeDefault implements AppMultipleTheme {
       tabBarTheme: const TabBarThemeData(
         labelColor: Colors.white,
         unselectedLabelColor: Color(0xFF6F767E),
+        dividerHeight: 0,
+        indicatorColor: Colors.transparent,
+      ), // OutlinedButton
+      outlinedButtonTheme: const OutlinedButtonThemeData(
+        style: ButtonStyle(side: WidgetStatePropertyAll(BorderSide.none)),
       ),
-      // 回弹波浪颜色
-      primarySwatch: const MaterialColor(0xFF545454, {
-        50: Color(0xFF545454),
-        100: Color(0xFF545454),
-        200: Color(0xFF545454),
-        300: Color(0xFF545454),
-        400: Color(0xFF545454),
-        500: Color(0xFF545454),
-        600: Color(0xFF545454),
-        700: Color(0xFF545454),
-        800: Color(0xFF545454),
-        900: Color(0xFF545454),
-      }),
+      // 水波纹
+      splashFactory: NoSplash.splashFactory,
       // 点击时水波颜色
       splashColor: Colors.transparent,
       // 点击时背景高亮颜色

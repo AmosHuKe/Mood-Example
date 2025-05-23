@@ -33,7 +33,6 @@ class _SettingDatabaseState extends State<SettingDatabase> with TickerProviderSt
         children: [
           TabBar(
             controller: tabController,
-            indicatorColor: Colors.transparent,
             labelStyle: const TextStyle(fontWeight: FontWeight.w900),
             unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
             tabs: [

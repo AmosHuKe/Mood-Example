@@ -122,15 +122,14 @@ class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appL10n = AppL10n.of(context);
-    const menuTextStyle = TextStyle(fontSize: 14, height: 1);
-    const menuIconSize = 20.0;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 8,
       children: [
         MenuItem(
-          icon: const Icon(Remix.database_2_line, size: menuIconSize),
-          title: Text(appL10n.app_setting_database, style: menuTextStyle),
+          icon: Remix.database_2_line,
+          title: appL10n.app_setting_database,
           onTap: () {
             print('数据');
             showModalBottomDetail(
@@ -140,16 +139,16 @@ class Menu extends StatelessWidget {
           },
         ),
         MenuItem(
-          icon: const Icon(Remix.shield_keyhole_line, size: menuIconSize),
-          title: Text(appL10n.app_setting_security, style: menuTextStyle),
+          icon: Remix.shield_keyhole_line,
+          title: appL10n.app_setting_security,
           onTap: () {
             print('安全');
             showModalBottomDetail(context: context, child: const SettingKey());
           },
         ),
         MenuItem(
-          icon: const Icon(Remix.bubble_chart_line, size: menuIconSize),
-          title: Text(appL10n.app_setting_theme, style: menuTextStyle),
+          icon: Remix.bubble_chart_line,
+          title: appL10n.app_setting_theme,
           onTap: () {
             print('主题');
             showModalBottomDetail(
@@ -159,8 +158,8 @@ class Menu extends StatelessWidget {
           },
         ),
         MenuItem(
-          icon: const Icon(Remix.global_line, size: menuIconSize),
-          title: Text(appL10n.app_setting_language, style: menuTextStyle),
+          icon: Remix.global_line,
+          title: appL10n.app_setting_language,
           onTap: () {
             print('语言');
             showModalBottomDetail(
@@ -170,16 +169,16 @@ class Menu extends StatelessWidget {
           },
         ),
         MenuItem(
-          icon: const Icon(Remix.flask_line, size: menuIconSize),
-          title: Text(appL10n.app_setting_laboratory, style: menuTextStyle),
+          icon: Remix.flask_line,
+          title: appL10n.app_setting_laboratory,
           onTap: () {
             print('实验室');
             GoRouter.of(context).pushNamed(Routes.settingLaboratory);
           },
         ),
         MenuItem(
-          icon: const Icon(Remix.heart_3_line, size: menuIconSize),
-          title: Text(appL10n.app_setting_about, style: menuTextStyle),
+          icon: Remix.heart_3_line,
+          title: appL10n.app_setting_about,
           onTap: () {
             print('关于');
             final url = ValueBase64(
@@ -197,26 +196,54 @@ class Menu extends StatelessWidget {
 
 /// 菜单列表
 class MenuItem extends StatelessWidget {
-  const MenuItem({super.key, this.icon, required this.title, this.onTap});
+  const MenuItem({
+    super.key,
+    required this.icon,
+    required this.title,
+    this.onTap,
+  });
 
-  // 图标
-  final Widget? icon;
-  // 标题
-  final Widget title;
-  // 点击事件
+  /// 图标
+  final IconData icon;
+
+  /// 标题
+  final String title;
+
+  /// 点击事件
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
+    const menuTextStyle = TextStyle(
+      color: Colors.white,
+      fontSize: 14,
+      height: 1,
+    );
+    const menuTextStrutStyle = StrutStyle(
+      forceStrutHeight: true,
+      fontSize: 14,
+      height: 1,
+    );
+    const menuIconSize = 20.0;
+
     return BlockSemanticsToDrawerClosed(
-      child: ListTile(
-        leading: icon,
-        title: title,
-        textColor: Colors.white,
-        iconColor: Colors.white,
-        minLeadingWidth: 0,
-        horizontalTitleGap: 28,
+      child: GestureDetector(
         onTap: onTap,
+        behavior: HitTestBehavior.opaque,
+        child: Padding(
+          padding: const EdgeInsetsGeometry.only(
+            left: 10.0,
+            top: 12.0,
+            bottom: 12.0,
+          ),
+          child: Row(
+            spacing: 20.0,
+            children: [
+              Icon(icon, size: menuIconSize, color: Colors.white),
+              Text(title, style: menuTextStyle, strutStyle: menuTextStrutStyle),
+            ],
+          ),
+        ),
       ),
     );
   }

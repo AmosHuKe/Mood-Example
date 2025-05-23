@@ -51,14 +51,17 @@ class MoodCategorySelectScreen extends StatelessWidget {
           foregroundColor: theme.textTheme.displayLarge!.color,
           shadowColor: Colors.transparent,
           titleTextStyle: const TextStyle(color: Colors.black, fontSize: 14),
-          leading: ActionButton(
-            semanticsLabel: '关闭',
-            decoration: BoxDecoration(
-              color: isDark ? theme.cardColor : AppTheme.staticBackgroundColor1,
-              borderRadius: const BorderRadius.only(bottomRight: Radius.circular(18)),
+          leading: Align(
+            alignment: Alignment.topLeft,
+            child: ActionButton(
+              semanticsLabel: '关闭',
+              decoration: BoxDecoration(
+                color: isDark ? theme.cardColor : AppTheme.staticBackgroundColor1,
+                borderRadius: const BorderRadius.only(bottomRight: Radius.circular(18)),
+              ),
+              child: const Icon(Remix.arrow_left_line, size: 24),
+              onTap: () => context.pop(),
             ),
-            child: const Icon(Remix.arrow_left_line, size: 24),
-            onTap: () => context.pop(),
           ),
         ),
         body: const SafeArea(

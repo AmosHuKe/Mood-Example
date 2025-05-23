@@ -63,17 +63,23 @@ class _KeyBodyState extends State<KeyBody> {
     final securityKeyViewModel = context.read<SecurityKeyViewModel>();
     final localAuthUtils = await LocalAuthUtils();
     localAuthList = await localAuthUtils.localAuthList();
-    localAuthIcon = LocalAuthUtils.localAuthIcon(localAuthList);
-    localAuthText = LocalAuthUtils.localAuthText(context, localAuthList);
+
+    setState(() {
+      localAuthIcon = LocalAuthUtils.localAuthIcon(localAuthList);
+      localAuthText = LocalAuthUtils.localAuthText(context, localAuthList);
+    });
 
     /// 获取-安全-生物特征识别是否开启
-    securityKeyViewModel.loadKeyBiometric();
+    await securityKeyViewModel.loadKeyBiometric();
   }
 
   @override
   void initState() {
     super.initState();
-    init(context);
+
+    WidgetsBinding.instance.endOfFrame.then((_) {
+      if (mounted) init(context);
+    });
   }
 
   @override

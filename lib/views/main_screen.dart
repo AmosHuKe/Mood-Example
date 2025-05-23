@@ -112,7 +112,8 @@ class _MainBodyState extends State<MainBody> with TickerProviderStateMixin {
     final appL10n = AppL10n.of(context);
     final zoomDrawer = ZoomDrawer.of(context);
     final statisticViewModel = context.read<StatisticViewModel>();
-    const double tabIconSize = 20;
+    const tabIconSize = 20.0;
+    const tabIconMargin = EdgeInsets.only(bottom: 10.0);
 
     return Scaffold(
       body: widget.navigationShell,
@@ -130,7 +131,6 @@ class _MainBodyState extends State<MainBody> with TickerProviderStateMixin {
                 enableFeedback: true,
                 padding: const EdgeInsets.only(left: 40),
                 controller: tabController,
-                indicatorColor: Colors.transparent,
                 labelStyle: const TextStyle(height: 0.5, fontSize: 10, fontWeight: FontWeight.bold),
                 unselectedLabelStyle: const TextStyle(
                   height: 0.5,
@@ -141,16 +141,19 @@ class _MainBodyState extends State<MainBody> with TickerProviderStateMixin {
                   Tab(
                     key: const Key('tab_home'),
                     text: appL10n.app_bottomNavigationBar_title_home,
+                    iconMargin: tabIconMargin,
                     icon: const Icon(Remix.home_line, size: tabIconSize),
                   ),
                   Tab(
                     key: const Key('tab_mood'),
                     text: appL10n.app_bottomNavigationBar_title_mood,
+                    iconMargin: tabIconMargin,
                     icon: const Icon(Remix.heart_3_line, size: tabIconSize),
                   ),
                   Tab(
                     key: const Key('tab_statistic'),
                     text: appL10n.app_bottomNavigationBar_title_statistic,
+                    iconMargin: tabIconMargin,
                     icon: const Icon(Remix.bar_chart_line, size: tabIconSize),
                   ),
                 ],

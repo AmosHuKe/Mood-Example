@@ -5,7 +5,6 @@ import 'package:remixicon/remixicon.dart';
 import 'package:bonfire/bonfire.dart';
 
 import 'package:moodexample/router.dart';
-import 'package:moodexample/themes/app_theme.dart';
 import 'package:moodexample/widgets/action_button/action_button.dart';
 import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/sprite_sheet/sprite_sheet_orc.dart'
     as mini_fantasy;
@@ -16,26 +15,28 @@ import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_shee
 import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_sheet/sprite_sheet_player.dart'
     as mini_game;
 
+import '../laboratory.dart' show OpenCard;
+
 class GameScreen extends StatelessWidget {
   const GameScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(useMaterial3: false),
+      data: ThemeData(),
       child: Scaffold(
-        backgroundColor: const Color(0xFFF6F8FA),
+        backgroundColor: const Color(0xFFF1F2F3),
         appBar: AppBar(
           elevation: 0,
           forceMaterialTransparency: true,
-          backgroundColor: const Color(0xFFF6F8FA),
+          backgroundColor: const Color(0xFFF1F2F3),
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
           titleTextStyle: const TextStyle(color: Colors.black, fontSize: 14),
           title: const Text('游戏合集'),
           leading: ActionButton(
             decoration: const BoxDecoration(
-              color: AppTheme.staticBackgroundColor1,
+              color: Colors.transparent,
               borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
             ),
             child: const Icon(Remix.arrow_left_line, size: 24),
@@ -59,11 +60,11 @@ class GameBody extends StatelessWidget {
       padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 20),
       physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       children: [
-        GameCard(
-          leading: const Icon(Remix.gamepad_line, size: 32, color: Colors.black87),
+        OpenCard(
+          icon: Remix.gamepad_line,
           title: 'Mini Fantasy',
           subtitle: '2D 地牢风格游戏，基于 Mini Fantasy 示例，修改了一些奇怪的东西。',
-          onPressed: () async {
+          onTap: () async {
             /// 载入游戏静态资源
             await mini_fantasy.SpriteSheetOrc.load();
             await mini_fantasy.SpriteSheetPlayer.load();
@@ -71,12 +72,12 @@ class GameBody extends StatelessWidget {
             GoRouter.of(context).pushNamed(Routes.laboratoryGameMiniFantasy);
           },
         ),
-        GameCard(
-          leading: const Icon(Remix.gamepad_line, size: 32, color: Colors.black87),
+        OpenCard(
+          icon: Remix.gamepad_line,
           title: '疯狂射击、怪物生成',
           subtitle:
               '素材来源：https://github.com/RafaelBarbosatec/mini_fantasy、https://0x72.itch.io/dungeontileset-ii',
-          onPressed: () async {
+          onTap: () async {
             /// 横屏
             await Flame.device.setLandscape();
 
@@ -88,52 +89,6 @@ class GameBody extends StatelessWidget {
           },
         ),
       ],
-    );
-  }
-}
-
-class GameCard extends StatelessWidget {
-  const GameCard({
-    super.key,
-    required this.title,
-    required this.subtitle,
-    required this.leading,
-    this.onPressed,
-  });
-
-  /// 标题
-  final String title;
-
-  /// 描述
-  final String subtitle;
-
-  /// 图标
-  final Widget leading;
-
-  /// 点击打开触发
-  final VoidCallback? onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 12),
-      shadowColor: Colors.black38,
-      shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(48)),
-      child: Padding(
-        padding: const EdgeInsets.all(14),
-        child: Column(
-          children: [
-            ListTile(leading: leading, title: Text(title), subtitle: Text(subtitle)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(onPressed: onPressed, child: const Text('打开')),
-                const SizedBox(width: 8),
-              ],
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

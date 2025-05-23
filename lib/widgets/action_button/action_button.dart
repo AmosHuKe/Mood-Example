@@ -27,8 +27,8 @@ class ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _width = width ?? 48.0;
-    final _height = height ?? 48.0;
+    final _width = width ?? kToolbarHeight;
+    final _height = height ?? kToolbarHeight;
     final _decoration =
         decoration ??
         BoxDecoration(

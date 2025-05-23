@@ -36,15 +36,11 @@ class MoodScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         key: const Key('widget_add_mood_button'),
         heroTag: 'addmood',
-        backgroundColor: themePrimaryColor,
-        hoverElevation: 0,
-        focusElevation: 0,
-        elevation: 0,
-        highlightElevation: 0,
+        backgroundColor: Colors.transparent,
         child: Container(
-          width: 32,
-          height: 32,
-          decoration: const BoxDecoration(shape: BoxShape.circle),
+          width: 64,
+          height: 64,
+          decoration: BoxDecoration(color: themePrimaryColor, shape: BoxShape.circle),
           child: const Icon(Remix.add_fill, color: Colors.white, size: 18),
         ),
         onPressed: () {
