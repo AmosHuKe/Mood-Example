@@ -37,10 +37,10 @@ packages:
     dependency: "direct main"
     description:
       name: bonfire
-      sha256: "1f98a13afef209f0abf9d3fae08fb05f89de5e374ab07152ce7913af63b2e9b7"
+      sha256: d933c4769711da9e6cf0fa16096aed82a055c8c636fd69649b505a452bc44c88
       url: "https://pub.dev"
     source: hosted
-    version: "3.14.0"
+    version: "3.15.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -149,10 +149,10 @@ packages:
     dependency: "direct main"
     description:
       name: file_picker
-      sha256: "77f8e81d22d2a07d0dee2c62e1dda71dc1da73bf43bb2d45af09727406167964"
+      sha256: ef9908739bdd9c476353d6adff72e88fd00c625f5b959ae23f7567bd5137db0a
       url: "https://pub.dev"
     source: hosted
-    version: "10.1.9"
+    version: "10.2.0"
   fixnum:
     dependency: transitive
     description:
@@ -191,10 +191,10 @@ packages:
     dependency: "direct dev"
     description:
       name: flutter_lints
-      sha256: "5398f14efa795ffb7a33e9b6a08798b26a180edac4ad7db3f231e40f82ce11e1"
+      sha256: "3105dc8492f6183fb076ccf1f351ac3d60564bff92e20bfc4af9cc1651f4e7e1"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.0"
+    version: "6.0.0"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -212,10 +212,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_screen_lock
-      sha256: "525c198c9ecd0f2db88903bf061903fe88de3e9e04bcce5d6478727ff41408d0"
+      sha256: "540fc2f02a5284ed6fb150b1e4c0ba0a74ed9777bc8a8208bb1a610396feb9a3"
       url: "https://pub.dev"
     source: hosted
-    version: "9.2.1+1"
+    version: "9.2.2+2"
   flutter_slidable:
     dependency: "direct main"
     description:
@@ -228,10 +228,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_smart_dialog
-      sha256: a3aaf690b2737ee6b2c7e7a983bc685e5f118e5de7e2042d2e0b7db26eb074f2
+      sha256: d09a661b928b0af0bff58c84c5a5244ab342fc7ce6f910ac1d01b0b284d821be
       url: "https://pub.dev"
     source: hosted
-    version: "4.9.8+7"
+    version: "4.9.8+8"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -267,10 +267,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "0b1e06223bee260dee31a171fb1153e306907563a0b0225e8c1733211911429a"
+      sha256: ac294be30ba841830cfa146e5a3b22bb09f8dc5a0fdd9ca9332b04b0bde99ebf
       url: "https://pub.dev"
     source: hosted
-    version: "15.1.2"
+    version: "15.2.4"
   http:
     dependency: transitive
     description:
@@ -328,10 +328,10 @@ packages:
     dependency: transitive
     description:
       name: lints
-      sha256: c35bb79562d980e9a453fc715854e1ed39e24e7d0297a880ef54e17f9874a9d7
+      sha256: a5e2b223cb7c9c8efdc663ef484fdd95bb243bff242ef5b13e26883547fce9a0
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.1"
+    version: "6.0.0"
   local_auth:
     dependency: "direct main"
     description:
@@ -853,10 +853,10 @@ packages:
     dependency: "direct main"
     description:
       name: webview_flutter
-      sha256: "62d763c27ce7f6cef04b3bec01c85a28d60149bffd155884aa4b8fd4941ea2e4"
+      sha256: c3e4fe614b1c814950ad07186007eff2f2e5dd2935eba7b9a9a1af8e5885f1ba
       url: "https://pub.dev"
     source: hosted
-    version: "4.12.0"
+    version: "4.13.0"
   webview_flutter_android:
     dependency: transitive
     description:
@@ -869,10 +869,10 @@ packages:
     dependency: transitive
     description:
       name: webview_flutter_platform_interface
-      sha256: "7cb32b21825bd65569665c32bb00a34ded5779786d6201f5350979d2d529940d"
+      sha256: f0dc2dc3a2b1e3a6abdd6801b9355ebfeb3b8f6cde6b9dc7c9235909c4a1f147
       url: "https://pub.dev"
     source: hosted
-    version: "2.13.0"
+    version: "2.13.1"
   webview_flutter_wkwebview:
     dependency: transitive
     description:
@@ -885,10 +885,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: "329edf97fdd893e0f1e3b9e88d6a0e627128cc17cc316a8d67fda8f1451178ba"
+      sha256: "66814138c3562338d05613a6e368ed8cfb237ad6d64a9e9334be3f309acfca03"
       url: "https://pub.dev"
     source: hosted
-    version: "5.13.0"
+    version: "5.14.0"
   xdg_directories:
     dependency: transitive
     description:

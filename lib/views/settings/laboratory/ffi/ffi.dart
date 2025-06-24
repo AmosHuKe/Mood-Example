@@ -154,7 +154,7 @@ class _FFIScreenState extends State<FFIScreen> {
                   style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
                 testLoading1
-                    ? const CupertinoActivityIndicator()
+                    ? const CupertinoActivityIndicator(color: Colors.grey)
                     : Text(testText1, style: const TextStyle(fontSize: 14)),
                 const SizedBox(height: 24),
                 Text(
@@ -162,7 +162,7 @@ class _FFIScreenState extends State<FFIScreen> {
                   style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
                 testLoading2
-                    ? const CupertinoActivityIndicator()
+                    ? const CupertinoActivityIndicator(color: Colors.grey)
                     : Text(testText2, style: const TextStyle(fontSize: 14)),
               ],
             ),
