@@ -1,11 +1,11 @@
 name: moodexample
 description: 管理自己的情绪，记录当下所见所想。
 publish_to: 'none'
-version: 1.9.11+480
+version: 1.9.11+481
 
 environment:
   sdk: ^3.8.0
-  flutter: 3.32.5
+  flutter: 3.32.6
 
 dependencies:
   flutter:

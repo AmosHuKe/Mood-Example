@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="/CHANGELOG.md"><img alt="Mood-Example v1.9.11" src="https://img.shields.io/badge/Mood--Example-v1.9.11-3e4663"/></a> 
-  <a href="https://flutter.dev/"><img alt="Flutter v3.32.5" src="https://img.shields.io/badge/Flutter-v3.32.5-0468D7"/></a> 
+  <a href="https://flutter.dev/"><img alt="Flutter v3.32.6" src="https://img.shields.io/badge/Flutter-v3.32.6-0468D7"/></a> 
   <a href="https://dart.dev/"><img alt="Dart v3.8.1" src="https://img.shields.io/badge/Dart-v3.8.1-04599C"/></a> 
   <a href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/License-BSD--3--Clause-green"/></a> 
 </p> 
@@ -98,12 +98,12 @@
 
 Windows:   
 ```
-[√] Flutter (Channel stable, 3.32.5, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
+[√] Flutter (Channel stable, 3.32.6, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 36.0.0)
 [√] Visual Studio - develop Windows apps (Visual Studio Community 2022 17.14.7)
 [√] Android Studio (version 2025.1.1)
 [√] IntelliJ IDEA Ultimate Edition (version 2025.1)
-[√] VS Code (version 1.101.2)
+[√] VS Code (version 1.102.0)
 ```  
 
 macOS:   
