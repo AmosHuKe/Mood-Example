@@ -4,16 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:bonfire/bonfire.dart';
 
-import 'package:moodexample/router.dart';
-import 'package:moodexample/widgets/action_button/action_button.dart';
-import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/sprite_sheet/sprite_sheet_orc.dart'
-    as mini_fantasy;
-import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/sprite_sheet/sprite_sheet_player.dart'
-    as mini_fantasy;
-import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_sheet/sprite_sheet_orc.dart'
-    as mini_game;
-import 'package:moodexample/views/settings/laboratory/game/mini_game/sprite_sheet/sprite_sheet_player.dart'
-    as mini_game;
+import '../../../../router.dart';
+import '../../../../widgets/action_button/action_button.dart';
+import 'mini_fantasy/sprite_sheet/sprite_sheet_orc.dart' as mini_fantasy;
+import 'mini_fantasy/sprite_sheet/sprite_sheet_player.dart' as mini_fantasy;
+import 'mini_game/sprite_sheet/sprite_sheet_orc.dart' as mini_game;
+import 'mini_game/sprite_sheet/sprite_sheet_player.dart' as mini_game;
 
 import '../laboratory.dart' show OpenCard;
 

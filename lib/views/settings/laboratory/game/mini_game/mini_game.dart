@@ -6,9 +6,9 @@ import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:bonfire/bonfire.dart';
 
-import 'package:moodexample/widgets/action_button/action_button.dart';
-import 'package:moodexample/views/settings/laboratory/game/mini_game/components/human_player.dart';
-import 'package:moodexample/views/settings/laboratory/game/mini_game/components/light.dart';
+import '../../../../../widgets/action_button/action_button.dart';
+import 'components/human_player.dart';
+import 'components/light.dart';
 
 class MiniGameScreen extends StatelessWidget {
   const MiniGameScreen({super.key});

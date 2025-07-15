@@ -6,10 +6,10 @@ import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:bonfire/bonfire.dart';
 
-import 'package:moodexample/widgets/action_button/action_button.dart';
-import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/components/human_player.dart';
-import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/components/light.dart';
-import 'package:moodexample/views/settings/laboratory/game/mini_fantasy/components/orc.dart';
+import '../../../../../widgets/action_button/action_button.dart';
+import 'components/human_player.dart';
+import 'components/light.dart';
+import 'components/orc.dart';
 
 class MiniFantasyScreen extends StatelessWidget {
   const MiniFantasyScreen({super.key});

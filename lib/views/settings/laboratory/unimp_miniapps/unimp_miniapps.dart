@@ -4,8 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
-import 'package:moodexample/widgets/action_button/action_button.dart';
-
+import '../../../../widgets/action_button/action_button.dart';
 import '../laboratory.dart' show OpenCard;
 
 class UniMPMiniappsScreen extends StatelessWidget {
