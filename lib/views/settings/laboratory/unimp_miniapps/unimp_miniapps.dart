@@ -75,9 +75,9 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('UniMPSDK_Android 版本：4.45'),
+              Text('UniMPSDK_Android 版本：4.75'),
               Text('UniMPSDK_iOS 版本：4.15'),
-              Text('HBuilderX 版本：4.45'),
+              Text('HBuilderX 版本：4.75'),
             ],
           ),
         ),

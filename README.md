@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="/CHANGELOG.md"><img alt="Mood-Example v1.9.11" src="https://img.shields.io/badge/Mood--Example-v1.9.11-3e4663"/></a> 
-  <a href="https://flutter.dev/"><img alt="Flutter v3.32.6" src="https://img.shields.io/badge/Flutter-v3.32.6-0468D7"/></a> 
+  <a href="https://flutter.dev/"><img alt="Flutter v3.32.7" src="https://img.shields.io/badge/Flutter-v3.32.7-0468D7"/></a> 
   <a href="https://dart.dev/"><img alt="Dart v3.8.1" src="https://img.shields.io/badge/Dart-v3.8.1-04599C"/></a> 
   <a href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/License-BSD--3--Clause-green"/></a> 
 </p> 
@@ -85,7 +85,7 @@
 - [x] 本地通知  
 - [x] 动画  
 - [x] 实验室（占用 APP 大部分包体积，源码位置查看项目结构）  
-  - [x] uniapp 小程序（UniMPSDK v4.45）  
+  - [x] uniapp 小程序（UniMPSDK v4.75）  
   - [x] 3D 城市（obj 格式）  
   - [x] 游戏合集（Bonfire, Flame）  
   - [x] FFI 异步调用 C/C++  
@@ -98,9 +98,9 @@
 
 Windows:   
 ```
-[√] Flutter (Channel stable, 3.32.6, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
+[√] Flutter (Channel stable, 3.32.7, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 36.0.0)
-[√] Visual Studio - develop Windows apps (Visual Studio Community 2022 17.14.7)
+[√] Visual Studio - develop Windows apps (Visual Studio Community 2022 17.14.9)
 [√] Android Studio (version 2025.1.1)
 [√] IntelliJ IDEA Ultimate Edition (version 2025.1)
 [√] VS Code (version 1.102.0)
@@ -259,7 +259,7 @@ $ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 > 跟着以下步骤可以恢复正常使用：  
 
 1、下载 UniMPSDK_iOS 库（如链接失效，请麻烦联系我）  
-* 链接: https://pan.baidu.com/s/1j1FgMfiFTwg5H8i5Rr0m_A 提取码: qbit  
+* 链接: 
 
 2、将 UniMPSDK 中 Core/Libs 所有库添加到项目中，具体如下：
 * 使用 Xcode 打开 Mood-Example/ios 目录 -->
