@@ -30,6 +30,17 @@
 		B050DF7A2873423500A346E3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF792873423500A346E3 /* CoreLocation.framework */; };
 		B050DF7C2873423F00A346E3 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF7B2873423F00A346E3 /* AddressBook.framework */; };
 		B050DF7E2873424800A346E3 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B050DF7D2873424800A346E3 /* libiconv.tbd */; };
+		B06146A52E2E341F00EBC908 /* libcoreSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BD2B2CABA2009E3AF9 /* libcoreSupport.a */; };
+		B06146A62E2E341F00EBC908 /* liblibIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9B82B2CABA2009E3AF9 /* liblibIO.a */; };
+		B06146A72E2E341F00EBC908 /* liblibNativeObj.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9C12B2CABA2009E3AF9 /* liblibNativeObj.a */; };
+		B06146A82E2E341F00EBC908 /* liblibNativeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BB2B2CABA2009E3AF9 /* liblibNativeUI.a */; };
+		B06146A92E2E341F00EBC908 /* liblibNavigator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BF2B2CABA2009E3AF9 /* liblibNavigator.a */; };
+		B06146AA2E2E341F00EBC908 /* liblibPDRCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BA2B2CABA2009E3AF9 /* liblibPDRCore.a */; };
+		B06146AB2E2E341F00EBC908 /* liblibStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BE2B2CABA2009E3AF9 /* liblibStorage.a */; };
+		B06146AC2E2E341F00EBC908 /* liblibUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BC2B2CABA2009E3AF9 /* liblibUI.a */; };
+		B06146AD2E2E341F00EBC908 /* liblibWeex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9B92B2CABA2009E3AF9 /* liblibWeex.a */; };
+		B06146AE2E2E341F00EBC908 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9B72B2CABA2009E3AF9 /* libSDWebImage.a */; };
+		B06146AF2E2E341F00EBC908 /* storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9C02B2CABA2009E3AF9 /* storage.framework */; };
 		B07CD96A2B2CA1B6009E3AF9 /* __uniappes6.js in Resources */ = {isa = PBXBuildFile; fileRef = B07CD9632B2CA1B5009E3AF9 /* __uniappes6.js */; };
 		B07CD96B2B2CA1B6009E3AF9 /* uni-jsframework.js in Resources */ = {isa = PBXBuildFile; fileRef = B07CD9642B2CA1B5009E3AF9 /* uni-jsframework.js */; };
 		B07CD96C2B2CA1B6009E3AF9 /* PandoraApi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B07CD9652B2CA1B5009E3AF9 /* PandoraApi.bundle */; };
@@ -37,17 +48,6 @@
 		B07CD96E2B2CA1B6009E3AF9 /* unincomponents.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B07CD9672B2CA1B5009E3AF9 /* unincomponents.ttf */; };
 		B07CD96F2B2CA1B6009E3AF9 /* weex-polyfill.js in Resources */ = {isa = PBXBuildFile; fileRef = B07CD9682B2CA1B5009E3AF9 /* weex-polyfill.js */; };
 		B07CD9702B2CA1B6009E3AF9 /* weexUniJs.js in Resources */ = {isa = PBXBuildFile; fileRef = B07CD9692B2CA1B5009E3AF9 /* weexUniJs.js */; };
-		B07CD9C22B2CABA2009E3AF9 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9B72B2CABA2009E3AF9 /* libSDWebImage.a */; };
-		B07CD9C32B2CABA2009E3AF9 /* liblibIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9B82B2CABA2009E3AF9 /* liblibIO.a */; };
-		B07CD9C42B2CABA2009E3AF9 /* liblibWeex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9B92B2CABA2009E3AF9 /* liblibWeex.a */; };
-		B07CD9C52B2CABA2009E3AF9 /* liblibPDRCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BA2B2CABA2009E3AF9 /* liblibPDRCore.a */; };
-		B07CD9C62B2CABA2009E3AF9 /* liblibNativeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BB2B2CABA2009E3AF9 /* liblibNativeUI.a */; };
-		B07CD9C72B2CABA2009E3AF9 /* liblibUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BC2B2CABA2009E3AF9 /* liblibUI.a */; };
-		B07CD9C82B2CABA2009E3AF9 /* libcoreSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BD2B2CABA2009E3AF9 /* libcoreSupport.a */; };
-		B07CD9C92B2CABA2009E3AF9 /* liblibStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BE2B2CABA2009E3AF9 /* liblibStorage.a */; };
-		B07CD9CA2B2CABA2009E3AF9 /* liblibNavigator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9BF2B2CABA2009E3AF9 /* liblibNavigator.a */; };
-		B07CD9CB2B2CABA2009E3AF9 /* storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9C02B2CABA2009E3AF9 /* storage.framework */; };
-		B07CD9CC2B2CABA2009E3AF9 /* liblibNativeObj.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07CD9C12B2CABA2009E3AF9 /* liblibNativeObj.a */; };
 		B09C54B22875EEAE00FA78D2 /* __UNI__F87B0CE.wgt in Resources */ = {isa = PBXBuildFile; fileRef = B09C54B02875EEAE00FA78D2 /* __UNI__F87B0CE.wgt */; };
 		B09C54B52875F10A00FA78D2 /* __UNI__3BC70CE.wgt in Resources */ = {isa = PBXBuildFile; fileRef = B09C54B42875F10A00FA78D2 /* __UNI__3BC70CE.wgt */; };
 		B0F09DB92D76D32100503C78 /* dart_api_dl.c in Sources */ = {isa = PBXBuildFile; fileRef = B0F09DB02D76D32100503C78 /* dart_api_dl.c */; };
@@ -218,27 +218,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B06146A52E2E341F00EBC908 /* libcoreSupport.a in Frameworks */,
+				B06146A62E2E341F00EBC908 /* liblibIO.a in Frameworks */,
+				B06146A72E2E341F00EBC908 /* liblibNativeObj.a in Frameworks */,
+				B06146A82E2E341F00EBC908 /* liblibNativeUI.a in Frameworks */,
+				B06146A92E2E341F00EBC908 /* liblibNavigator.a in Frameworks */,
+				B06146AA2E2E341F00EBC908 /* liblibPDRCore.a in Frameworks */,
+				B06146AB2E2E341F00EBC908 /* liblibStorage.a in Frameworks */,
+				B06146AC2E2E341F00EBC908 /* liblibUI.a in Frameworks */,
+				B06146AD2E2E341F00EBC908 /* liblibWeex.a in Frameworks */,
+				B06146AE2E2E341F00EBC908 /* libSDWebImage.a in Frameworks */,
+				B06146AF2E2E341F00EBC908 /* storage.framework in Frameworks */,
 				B050DF7E2873424800A346E3 /* libiconv.tbd in Frameworks */,
 				B050DF7C2873423F00A346E3 /* AddressBook.framework in Frameworks */,
 				B050DF7A2873423500A346E3 /* CoreLocation.framework in Frameworks */,
 				B050DF782873422D00A346E3 /* AssetsLibrary.framework in Frameworks */,
 				B050DF762873422400A346E3 /* CoreTelephony.framework in Frameworks */,
 				B050DF742873421A00A346E3 /* QuickLook.framework in Frameworks */,
-				B07CD9C42B2CABA2009E3AF9 /* liblibWeex.a in Frameworks */,
-				B07CD9C82B2CABA2009E3AF9 /* libcoreSupport.a in Frameworks */,
 				B050DF722873421200A346E3 /* libc++.tbd in Frameworks */,
-				B07CD9C92B2CABA2009E3AF9 /* liblibStorage.a in Frameworks */,
-				B07CD9CB2B2CABA2009E3AF9 /* storage.framework in Frameworks */,
 				B050DF702873420900A346E3 /* CoreGraphics.framework in Frameworks */,
 				B050DF6E287341FD00A346E3 /* QuartzCore.framework in Frameworks */,
-				B07CD9C62B2CABA2009E3AF9 /* liblibNativeUI.a in Frameworks */,
-				B07CD9C22B2CABA2009E3AF9 /* libSDWebImage.a in Frameworks */,
 				B050DF6C287341F300A346E3 /* CoreText.framework in Frameworks */,
-				B07CD9C72B2CABA2009E3AF9 /* liblibUI.a in Frameworks */,
-				B07CD9C32B2CABA2009E3AF9 /* liblibIO.a in Frameworks */,
-				B07CD9C52B2CABA2009E3AF9 /* liblibPDRCore.a in Frameworks */,
-				B07CD9CA2B2CABA2009E3AF9 /* liblibNavigator.a in Frameworks */,
-				B07CD9CC2B2CABA2009E3AF9 /* liblibNativeObj.a in Frameworks */,
 				B050DF6A287341EB00A346E3 /* OpenGLES.framework in Frameworks */,
 				B050DF68287341DD00A346E3 /* GLKit.framework in Frameworks */,
 				B050DF66287341CE00A346E3 /* AVKit.framework in Frameworks */,
