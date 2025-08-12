@@ -22,7 +22,7 @@ jobs:
     name: 'Code Analysis'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
@@ -46,7 +46,7 @@ jobs:
       matrix:
         api-level: [31, 35]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
@@ -79,12 +79,21 @@ jobs:
             adb devices -l
             flutter test integration_test/app_test.dart --dart-define=test_mode=true -d emulator-5554 -r github
 
-  test-build-ios:
+  test-build:
     needs: [integration-test-android]
-    name: 'Test Build :: macOS :: iOS'
-    runs-on: macos-latest
+    strategy:
+      matrix:
+        include:
+          - os: macos-latest
+            build: iOS
+          - os: macos-latest
+            build: Android
+          - os: windows-latest
+            build: Android
+    name: 'Test Build :: ${{ matrix.os }} :: ${{ matrix.build }}'
+    runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
@@ -99,27 +108,8 @@ jobs:
           flutter --version
           flutter pub get
       - name: Build
+        if: matrix.build == 'iOS'
         run: flutter build ios --no-codesign
-
-  test-build-android:
-    needs: [integration-test-android]
-    name: 'Test Build :: Windows :: Android'
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: '21'
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          flutter-version-file: pubspec.yaml
-      - name: Prepare dependencies
-        run: |
-          dart --version
-          flutter --version
-          flutter pub get
       - name: Build
+        if: matrix.build == 'Android'
         run: flutter build apk --debug
-        working-directory: ${{ github.workspace }}
