@@ -16,6 +16,7 @@ class SettingLanguage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appL10n = AppL10n.of(context);
+    final theme = Theme.of(context);
 
     return ListView(
       physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
@@ -25,16 +26,19 @@ class SettingLanguage extends StatelessWidget {
           selector: (_, applicationViewModel) => applicationViewModel.localeSystem,
           builder: (context, localeSystem, child) {
             final applicationViewModel = context.read<ApplicationViewModel>();
-            return RadioListTile<bool>(
-              value: localeSystem,
+            return RadioGroup(
               groupValue: true,
-              title: Text(
-                appL10n.app_setting_language_system,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium!.copyWith(fontSize: 14, fontWeight: FontWeight.normal),
-              ),
               onChanged: (_) => applicationViewModel.localeSystem = true,
+              child: RadioListTile<bool>(
+                value: localeSystem,
+                title: Text(
+                  appL10n.app_setting_language_system,
+                  style: theme.textTheme.bodyMedium!.copyWith(
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              ),
             );
           },
         ),
@@ -48,23 +52,26 @@ class SettingLanguage extends StatelessWidget {
             );
           },
           builder: (context, data, child) {
-            return Column(
-              children: List<Widget>.generate(languageList.length, (index) {
-                return RadioListTile<Locale>(
-                  value: languageList[index].locale,
-                  groupValue: !data.localeSystem ? data.locale : null,
-                  title: Text(
-                    languageList[index].title,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyMedium!.copyWith(fontSize: 14, fontWeight: FontWeight.normal),
-                  ),
-                  onChanged: (value) {
-                    final applicationViewModel = context.read<ApplicationViewModel>();
-                    applicationViewModel.locale = value!;
-                  },
-                );
-              }),
+            return RadioGroup(
+              groupValue: !data.localeSystem ? data.locale : null,
+              onChanged: (value) {
+                final applicationViewModel = context.read<ApplicationViewModel>();
+                applicationViewModel.locale = value!;
+              },
+              child: Column(
+                children: List<Widget>.generate(languageList.length, (index) {
+                  return RadioListTile<Locale>(
+                    value: languageList[index].locale,
+                    title: Text(
+                      languageList[index].title,
+                      style: theme.textTheme.bodyMedium!.copyWith(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  );
+                }),
+              ),
             );
           },
         ),

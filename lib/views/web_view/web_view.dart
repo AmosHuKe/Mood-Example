@@ -28,7 +28,10 @@ class _WebViewScreenState extends State<WebViewScreen> {
   @override
   void initState() {
     super.initState();
+    initWebView();
+  }
 
+  void initWebView() {
     final url = ValueBase64(widget.url).decode();
     pageWebViewController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)

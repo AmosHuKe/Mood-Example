@@ -11,8 +11,8 @@
 
 <p align="center">
   <a href="/CHANGELOG.md"><img alt="Mood-Example v1.9.11" src="https://img.shields.io/badge/Mood--Example-v1.9.11-3e4663"/></a> 
-  <a href="https://flutter.dev/"><img alt="Flutter v3.32.8" src="https://img.shields.io/badge/Flutter-v3.32.8-0468D7"/></a> 
-  <a href="https://dart.dev/"><img alt="Dart v3.8.1" src="https://img.shields.io/badge/Dart-v3.8.1-04599C"/></a> 
+  <a href="https://flutter.dev/"><img alt="Flutter v3.35.1" src="https://img.shields.io/badge/Flutter-v3.35.1-0468D7"/></a> 
+  <a href="https://dart.dev/"><img alt="Dart v3.9.0" src="https://img.shields.io/badge/Dart-v3.9.0-04599C"/></a> 
   <a href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/License-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -86,8 +86,8 @@
 - [x] 动画  
 - [x] 实验室（占用 APP 大部分包体积，源码位置查看项目结构）  
   - [x] uniapp 小程序（UniMPSDK v4.75）  
-  - [x] 3D 城市（obj 格式）  
   - [x] 游戏合集（Bonfire, Flame）  
+  - [x] 3D 城市（obj 格式）  
   - [x] FFI 异步调用 C/C++  
 ……
 
@@ -98,17 +98,17 @@
 
 Windows:   
 ```
-[√] Flutter (Channel stable, 3.32.8, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
+[√] Flutter (Channel stable, 3.35.1, on Microsoft Windows [版本 10.0.22621.3007], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 36.0.0)
 [√] Visual Studio - develop Windows apps (Visual Studio Community 2022 17.14.9)
 [√] Android Studio (version 2025.1.2)
 [√] IntelliJ IDEA Ultimate Edition (version 2025.1)
-[√] VS Code (version 1.103.0)
+[√] VS Code (version 1.103.1)
 ```  
 
 macOS:   
 ```
-[✓] Flutter (Channel stable, 3.32.8, on macOS 14.7 23H124 darwin-x64, locale zh-Hans-CN)
+[✓] Flutter (Channel stable, 3.35.1, on macOS 14.7 23H124 darwin-x64, locale zh-Hans-CN)
 [✓] Android toolchain - develop for Android devices (Android SDK version 36.0.0)
 [✓] Xcode - develop for iOS and macOS (Xcode 16.2)
 [✓] Android Studio (version 2025.1)
@@ -219,15 +219,16 @@ $ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 │   ├── utils/                                      # 工具相关
 │   ├── views/                                      # 视图
 │   │   ├── home/                                   # 首页
+│   │   ├── laboratory/                             # 实验室
+│   │   │   ├── 3d/                                 # 3D 城市
+│   │   │   ├── ffi/                                # ffi 测试
+│   │   │   ├── game/                               # 游戏合集
+│   │   │   ├── tilt_example/                       # 倾斜视差卡片
+│   │   │   ├── unimp_miniapps/                     # uniapp 小程序
+│   │   │   └── laboratory.dart                     # 实验室首页
 │   │   ├── mood/                                   # 心情页
 │   │   ├── onboarding/                             # 用户引导页
 │   │   ├── settings/                               # 侧边设置栏-其他页面（实验室等）
-│   │   │   ├── laboratory/                         # 实验室
-│   │   │   │   ├── 3d/                             # 3D 城市
-│   │   │   │   ├── ffi/                            # ffi 测试
-│   │   │   │   ├── game/                           # 游戏合集
-│   │   │   │   ├── unimp_miniapps/                 # uniapp 小程序
-│   │   │   │   └── laboratory.dart                 # 实验室首页
 │   │   │   └── setting_menu.dart                   # 侧边设置栏页
 │   │   ├── statistic/                              # 统计页
 │   │   ├── web_view/                               # WebView

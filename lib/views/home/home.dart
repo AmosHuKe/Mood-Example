@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_tilt/flutter_tilt.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
@@ -254,94 +253,18 @@ class NoticeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appL10n = AppL10n.of(context);
-
-    return Tilt(
-      disable: Utils.envTestMode,
-      tiltConfig: const TiltConfig(
-        leaveDuration: Duration(seconds: 1),
-        leaveCurve: Curves.elasticOut,
-      ),
-      lightConfig: const LightConfig(disable: true),
-      shadowConfig: const ShadowConfig(disable: true),
-      childLayout: ChildLayout(
-        outer: [
-          Positioned(
-            right: -20,
-            child: TiltParallax(
-              size: const Offset(15, 15),
-              child: Image.asset(
-                'assets/images/onboarding/onboarding_3.png',
-                fit: BoxFit.contain,
-                width: 180,
-              ),
-            ),
-          ),
-        ],
-        inner: [
-          Positioned(
-            left: 24,
-            bottom: 24,
-            child: TiltParallax(
-              size: const Offset(5, 5),
-              child: Container(
-                constraints: const BoxConstraints(minHeight: 45, minWidth: 95),
-                child: AnimatedPress(
-                  child: OutlinedButton(
-                    style: ButtonStyle(
-                      foregroundColor: WidgetStateProperty.all(Colors.white),
-                      backgroundColor: WidgetStateProperty.all(Colors.black87),
-                      textStyle: WidgetStateProperty.all(
-                        const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-                      ),
-                      shape: WidgetStateProperty.all(
-                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                      ),
-                      overlayColor: WidgetStateProperty.all(Colors.white10),
-                    ),
-                    onPressed: () {
-                      /// 导航到新路由
-                      GoRouter.of(context).pushNamed(Routes.onboarding);
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 4),
-                          child: Text(
-                            appL10n.home_upgrade_button,
-                            strutStyle: const StrutStyle(forceStrutHeight: false, leading: 1),
-                            style: const TextStyle(fontSize: 14),
-                          ),
-                        ),
-                        const Icon(Remix.play_circle_fill, size: 24),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-        behind: [
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 328),
+      child: Stack(
+        children: [
           /// 阴影
-          TiltParallax(
-            size: const Offset(-16, -16),
-            child: shadow(
-              opacity: 0.2,
-              margin: const EdgeInsets.only(left: 24, right: 24, top: 32),
-            ),
-          ),
-          TiltParallax(
-            size: const Offset(-8, -8),
-            child: shadow(
-              opacity: 0.4,
-              margin: const EdgeInsets.only(left: 12, right: 12, top: 16),
-            ),
-          ),
+          shadow(opacity: 0.2, margin: const EdgeInsets.only(left: 24, right: 24, top: 16)),
+          shadow(opacity: 0.4, margin: const EdgeInsets.only(left: 12, right: 12, top: 8)),
+
+          /// 正文
+          const SizedBox(height: 190, child: NoticeMainCard()),
         ],
       ),
-      child: const SizedBox(height: 190, child: ActionCard()),
     );
   }
 
@@ -358,16 +281,15 @@ class NoticeCard extends StatelessWidget {
   }
 }
 
-/// 操作卡片
-class ActionCard extends StatelessWidget {
-  const ActionCard({super.key});
+/// 公告主卡片
+class NoticeMainCard extends StatelessWidget {
+  const NoticeMainCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     final appL10n = AppL10n.of(context);
 
-    return Container(
-      padding: const EdgeInsets.all(24),
+    return DecoratedBox(
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           begin: Alignment.bottomLeft,
@@ -376,34 +298,93 @@ class ActionCard extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(30),
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.centerLeft,
               children: [
-                Text(
-                  appL10n.home_upgrade_title,
-                  style: const TextStyle(
-                    color: Colors.black87,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w900,
+                /// 图片或装饰
+                Positioned(
+                  bottom: -18,
+                  left: 140,
+                  child: Image.asset(
+                    'assets/images/onboarding/onboarding_3.png',
+                    fit: BoxFit.contain,
+                    width: 180,
                   ),
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(
-                      appL10n.home_upgrade_content,
-                      style: const TextStyle(color: Colors.black87, fontSize: 16),
+
+                /// 文字和按钮
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            appL10n.home_upgrade_title,
+                            style: const TextStyle(
+                              color: Colors.black87,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8),
+                            child: Text(
+                              appL10n.home_upgrade_content,
+                              style: const TextStyle(color: Colors.black87, fontSize: 16),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
+                    Container(
+                      constraints: const BoxConstraints(minHeight: 45, minWidth: 95),
+                      child: AnimatedPress(
+                        child: OutlinedButton(
+                          onPressed: () {
+                            GoRouter.of(context).pushNamed(Routes.onboarding);
+                          },
+                          style: ButtonStyle(
+                            foregroundColor: WidgetStateProperty.all(Colors.white),
+                            backgroundColor: WidgetStateProperty.all(Colors.black87),
+                            textStyle: WidgetStateProperty.all(
+                              const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                            ),
+                            shape: WidgetStateProperty.all(
+                              RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                            ),
+                            overlayColor: WidgetStateProperty.all(Colors.white10),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 4),
+                                child: Text(
+                                  appL10n.home_upgrade_button,
+                                  strutStyle: const StrutStyle(forceStrutHeight: false, leading: 1),
+                                  style: const TextStyle(fontSize: 14),
+                                ),
+                              ),
+                              const Icon(Remix.play_circle_fill, size: 24),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

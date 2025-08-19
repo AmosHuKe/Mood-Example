@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
-import '../../../../widgets/action_button/action_button.dart';
+import '../../../widgets/action_button/action_button.dart';
 import '../laboratory.dart' show OpenCard;
 
 class UniMPMiniappsScreen extends StatelessWidget {
@@ -41,30 +41,14 @@ class UniMPMiniappsScreen extends StatelessWidget {
   }
 }
 
-class UniMPMiniappsBody extends StatefulWidget {
+class UniMPMiniappsBody extends StatelessWidget {
   const UniMPMiniappsBody({super.key});
 
-  @override
-  State<UniMPMiniappsBody> createState() => _UniMPMiniappsBodyState();
-}
+  // 创建渠道与原生沟通
+  static const channel = MethodChannel('UniMP_mini_apps');
 
-class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
   @override
   Widget build(BuildContext context) {
-    // 创建渠道与原生沟通
-    const channel = MethodChannel('UniMP_mini_apps');
-
-    Future callNativeMethod(String appID) async {
-      try {
-        // 通过渠道，调用原生代码代码的方法
-        final future = await channel.invokeMethod('open', {'AppID': appID});
-        // 打印执行的结果
-        print(future.toString());
-      } on PlatformException catch (e) {
-        print(e.toString());
-      }
-    }
-
     return ListView(
       padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 20),
       physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
@@ -101,5 +85,16 @@ class _UniMPMiniappsBodyState extends State<UniMPMiniappsBody> {
         ),
       ],
     );
+  }
+
+  Future callNativeMethod(String appID) async {
+    try {
+      // 通过渠道，调用原生代码代码的方法
+      final future = await channel.invokeMethod('open', {'AppID': appID});
+      // 打印执行的结果
+      print(future.toString());
+    } on PlatformException catch (e) {
+      print(e.toString());
+    }
   }
 }

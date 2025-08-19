@@ -649,7 +649,11 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
 
         /// 空占位
         if (listData.isEmpty) {
-          return const Empty(padding: EdgeInsets.only(top: 48), width: 120, height: 100);
+          return const Empty(
+            icon: Icons.donut_small_rounded,
+            size: 64.0,
+            padding: EdgeInsets.only(top: 100),
+          );
         }
 
         return PieChart(

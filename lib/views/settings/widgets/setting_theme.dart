@@ -149,14 +149,9 @@ class DarkThemeBody extends StatelessWidget {
 }
 
 /// 多主题设置
-class MultipleThemeBody extends StatefulWidget {
+class MultipleThemeBody extends StatelessWidget {
   const MultipleThemeBody({super.key});
 
-  @override
-  State<MultipleThemeBody> createState() => _MultipleThemeBodyState();
-}
-
-class _MultipleThemeBodyState extends State<MultipleThemeBody> {
   @override
   Widget build(BuildContext context) {
     /// 获取多主题

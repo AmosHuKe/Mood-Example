@@ -6,16 +6,16 @@ import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 import 'package:bonfire/bonfire.dart';
 
-import '../../../../../widgets/action_button/action_button.dart';
+import '../../../../widgets/action_button/action_button.dart';
 import 'components/human_player.dart';
 import 'components/light.dart';
+import 'components/orc.dart';
 
-class MiniGameScreen extends StatelessWidget {
-  const MiniGameScreen({super.key});
+class MiniFantasyScreen extends StatelessWidget {
+  const MiniFantasyScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // 按横屏计算
     return Theme(
       data: ThemeData(),
       child: Scaffold(
@@ -27,16 +27,14 @@ class MiniGameScreen extends StatelessWidget {
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
           titleTextStyle: const TextStyle(color: Colors.black, fontSize: 14),
-          title: const Text('MiniGame'),
+          title: const Text('MiniFantasy'),
           leading: ActionButton(
             decoration: const BoxDecoration(
               color: Colors.transparent,
               borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
             ),
             child: const Icon(Remix.arrow_left_line, size: 24),
-            onTap: () async {
-              await Flame.device.setPortrait();
-              if (!context.mounted) return;
+            onTap: () {
               context.pop();
             },
           ),
@@ -49,11 +47,10 @@ class MiniGameScreen extends StatelessWidget {
 
 class Game extends StatelessWidget {
   const Game({super.key});
+  static const assetsPath = 'game/mini_fantasy';
 
   @override
   Widget build(BuildContext context) {
-    const assetsPath = 'game/mini_game';
-
     return LayoutBuilder(
       builder: (context, constraints) {
         final tileSize = max(constraints.maxHeight, constraints.maxWidth) / 20;
@@ -62,57 +59,27 @@ class Game extends StatelessWidget {
           showCollisionArea: false,
           playerControllers: [
             Joystick(
-              directional: JoystickDirectional(
-                spriteBackgroundDirectional: Sprite.load('$assetsPath/joystick_background.png'),
-                spriteKnobDirectional: Sprite.load('$assetsPath/joystick_knob.png'),
-                size: 80,
-                margin: const EdgeInsets.only(bottom: 50, left: 50),
-                isFixed: false,
-              ),
+              directional: JoystickDirectional(margin: const EdgeInsets.all(65)),
               actions: [
                 JoystickAction(
-                  actionId: PlayerAttackType.attackMelee,
-                  sprite: Sprite.load('$assetsPath/joystick_atack.png'),
-                  spritePressed: Sprite.load('$assetsPath/joystick_atack_selected.png'),
-                  size: 70,
-                  margin: const EdgeInsets.only(bottom: 50, right: 50),
-                ),
-                JoystickAction(
-                  actionId: PlayerAttackType.attackRange,
-                  sprite: Sprite.load('$assetsPath/joystick_atack_range.png'),
-                  spritePressed: Sprite.load('$assetsPath/joystick_atack_range_selected.png'),
-                  spriteBackgroundDirection: Sprite.load('$assetsPath/joystick_background.png'),
-                  size: 40,
-                  enableDirection: true,
-                  margin: const EdgeInsets.only(bottom: 30, right: 150),
-                ),
-                JoystickAction(
-                  actionId: PlayerAttackType.attackRangeShotguns,
-                  sprite: Sprite.load('$assetsPath/joystick_atack_range.png'),
-                  spritePressed: Sprite.load('$assetsPath/joystick_atack_range_selected.png'),
-                  spriteBackgroundDirection: Sprite.load('$assetsPath/joystick_background.png'),
-                  size: 40,
-                  enableDirection: true,
-                  margin: const EdgeInsets.only(bottom: 90, right: 150),
+                  actionId: 1,
+                  color: Colors.deepOrange,
+                  margin: const EdgeInsets.all(65),
                 ),
               ],
             ),
             Keyboard(config: KeyboardConfig(acceptedKeys: [LogicalKeyboardKey.space])),
           ],
           map: WorldMapByTiled(
-            WorldMapReader.fromAsset('$assetsPath/tiles/mini_game_map.json'),
+            WorldMapReader.fromAsset('$assetsPath/tiles/map.json'),
             forceTileSize: Vector2(tileSize, tileSize),
             objectsBuilder: {
-              'light': (properties) => Light(position: properties.position, size: properties.size),
+              'light': (properties) => Light(properties.position, properties.size),
+              'orc': (properties) => Orc(properties.position),
             },
           ),
-          cameraConfig: CameraConfig(
-            zoom: 1,
-            moveOnlyMapArea: true,
-            // smoothCameraEnabled: true,
-            // smoothCameraSpeed: 2,
-          ),
-          player: HumanPlayer(Vector2(tileSize * 15, tileSize * 13)),
+          player: HumanPlayer(Vector2(4 * tileSize, 4 * tileSize)),
+          cameraConfig: CameraConfig(zoom: 1),
           lightingColorGame: Colors.black.withValues(alpha: 0.7),
           // progress: Container(
           //   color: Colors.black,
@@ -127,12 +94,14 @@ class Game extends StatelessWidget {
             'miniMap': (context, game) {
               return MiniMap(
                 game: game,
+                zoom: 0.8,
                 margin: const EdgeInsets.all(20),
                 borderRadius: BorderRadius.circular(100),
-                size: Vector2.all(constraints.maxHeight / 3),
-                zoom: 0.6,
+                size: Vector2.all(constraints.maxHeight / 5),
                 border: Border.all(color: Colors.white.withValues(alpha: 0.5)),
+                playerColor: Colors.green,
                 enemyColor: Colors.red,
+                npcColor: Colors.red,
               );
             },
           },

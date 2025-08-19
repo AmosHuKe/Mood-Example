@@ -16,13 +16,14 @@ import 'views/mood/mood.dart';
 import 'views/mood/mood_category_select.dart';
 import 'views/mood/mood_content_edit.dart';
 import 'views/statistic/statistic.dart';
-import 'views/settings/laboratory/laboratory.dart';
-import 'views/settings/laboratory/unimp_miniapps/unimp_miniapps.dart';
-import 'views/settings/laboratory/3d/3d.dart';
-import 'views/settings/laboratory/game/game.dart';
-import 'views/settings/laboratory/game/mini_fantasy/mini_fantasy.dart';
-import 'views/settings/laboratory/game/mini_game/mini_game.dart';
-import 'views/settings/laboratory/ffi/ffi.dart';
+import 'views/laboratory/laboratory.dart';
+import 'views/laboratory/unimp_miniapps/unimp_miniapps.dart';
+import 'views/laboratory/tilt_example/tilt_example.dart';
+import 'views/laboratory/game/game.dart';
+import 'views/laboratory/game/mini_fantasy/mini_fantasy.dart';
+import 'views/laboratory/game/mini_game/mini_game.dart';
+import 'views/laboratory/ffi/ffi.dart';
+import 'views/laboratory/3d/3d.dart';
 import 'views/web_view/web_view.dart';
 
 /// 定义路由名称
@@ -56,8 +57,8 @@ abstract final class Routes {
   /// 设置页-实验室-uniapp 小程序
   static const String laboratoryUniMPMiniapps = 'laboratoryUniMPMiniapps';
 
-  /// 设置页-实验室-3D 城市
-  static const String laboratoryPage3D = 'laboratoryPage3D';
+  /// 设置页-实验室-倾斜视差卡片
+  static const String laboratoryTiltExample = 'laboratoryTiltExample';
 
   /// 设置页-实验室-游戏合集
   static const String laboratoryGame = 'laboratoryGame';
@@ -67,6 +68,9 @@ abstract final class Routes {
 
   /// 设置页-实验室-游戏合集-疯狂射击、怪物生成
   static const String laboratoryGameMiniGame = 'laboratoryGameMiniGame';
+
+  /// 设置页-实验室-3D 城市
+  static const String laboratoryPage3D = 'laboratoryPage3D';
 
   /// 设置页-实验室-FFI 异步调用 C/C++
   static const String laboratoryFFI = 'laboratoryFFI';
@@ -264,13 +268,13 @@ abstract final class AppRouter {
         ),
       ),
 
-      /// 设置页-实验室-3D 城市
+      /// 设置页-实验室-倾斜视差卡片
       GoRoute(
-        path: '/${Routes.laboratoryPage3D}',
-        name: Routes.laboratoryPage3D,
+        path: '/${Routes.laboratoryTiltExample}',
+        name: Routes.laboratoryTiltExample,
         parentNavigatorKey: rootNavigatorKey,
         pageBuilder: (_, _) => CustomTransitionPage(
-          child: const Demo3DScreen(),
+          child: const TiltExampleScreen(),
           transitionsBuilder: (_, animation, secondaryAnimation, child) {
             return CupertinoPageTransition(
               primaryRouteAnimation: animation,
@@ -350,6 +354,24 @@ abstract final class AppRouter {
         parentNavigatorKey: rootNavigatorKey,
         pageBuilder: (_, _) => CustomTransitionPage(
           child: const FFIScreen(),
+          transitionsBuilder: (_, animation, secondaryAnimation, child) {
+            return CupertinoPageTransition(
+              primaryRouteAnimation: animation,
+              secondaryRouteAnimation: secondaryAnimation,
+              linearTransition: false,
+              child: child,
+            );
+          },
+        ),
+      ),
+
+      /// 设置页-实验室-3D 城市
+      GoRoute(
+        path: '/${Routes.laboratoryPage3D}',
+        name: Routes.laboratoryPage3D,
+        parentNavigatorKey: rootNavigatorKey,
+        pageBuilder: (_, _) => CustomTransitionPage(
+          child: const Demo3DScreen(),
           transitionsBuilder: (_, animation, secondaryAnimation, child) {
             return CupertinoPageTransition(
               primaryRouteAnimation: animation,

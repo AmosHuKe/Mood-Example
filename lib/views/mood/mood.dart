@@ -87,11 +87,6 @@ class MoodBody extends StatelessWidget {
                     style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
                     semanticsLabel: appL10n.app_bottomNavigationBar_title_mood,
                   ),
-                  Image.asset(
-                    'assets/images/woolly/woolly-heart.png',
-                    height: 60,
-                    excludeFromSemantics: true,
-                  ),
                 ],
               ),
             ),
@@ -135,7 +130,11 @@ class MoodBody extends StatelessWidget {
             /// 没有数据的占位
             if (data.moodDataList.length <= 0) {
               return const SliverToBoxAdapter(
-                child: Empty(padding: EdgeInsets.only(top: 64), height: 160, width: 90),
+                child: Empty(
+                  icon: Icons.subject_rounded,
+                  size: 64.0,
+                  padding: EdgeInsets.only(top: 120),
+                ),
               );
             }
 

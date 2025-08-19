@@ -4,25 +4,24 @@ import 'package:flutter/material.dart';
 class Empty extends StatelessWidget {
   const Empty({
     super.key,
-    this.opacity = 0.4,
+    required this.icon,
+    this.size,
+    this.opacity = 0.1,
     this.padding = const EdgeInsets.all(0),
-    this.height,
-    this.width,
   });
+
+  final IconData icon;
+  final double? size;
 
   /// 透明度
   final double opacity;
 
   final EdgeInsetsGeometry padding;
 
-  /// 图片高度
-  final double? height;
-
-  /// 图片宽度
-  final double? width;
-
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Align(
       child: Opacity(
         alwaysIncludeSemantics: true,
@@ -31,11 +30,11 @@ class Empty extends StatelessWidget {
           children: [
             Padding(
               padding: padding,
-              child: Image.asset(
-                'assets/images/woolly/woolly-password-1.png',
-                height: height,
-                width: width,
-                semanticLabel: '空',
+              child: Icon(
+                icon,
+                size: size,
+                color: theme.textTheme.bodyMedium?.color,
+                semanticLabel: '空内容',
               ),
             ),
           ],

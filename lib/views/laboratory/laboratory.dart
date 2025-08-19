@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
-import '../../../router.dart';
-import '../../../l10n/gen/app_localizations.dart';
-import '../../../widgets/animation/animation.dart';
-import '../../../widgets/action_button/action_button.dart';
+import '../../router.dart';
+import '../../l10n/gen/app_localizations.dart';
+import '../../widgets/animation/animation.dart';
+import '../../widgets/action_button/action_button.dart';
 
 class LaboratoryScreen extends StatelessWidget {
   const LaboratoryScreen({super.key});
@@ -97,11 +97,11 @@ class LaboratoryBody extends StatelessWidget {
           },
         ),
         OpenCard(
-          icon: Remix.building_2_line,
-          title: '3D 城市',
-          subtitle: '3D 来源 https://github.com/pissang/little-big-city',
+          icon: Remix.image_circle_line,
+          title: '倾斜视差卡片',
+          subtitle: 'https://pub.dev/packages/flutter_tilt',
           onTap: () {
-            GoRouter.of(context).pushNamed(Routes.laboratoryPage3D);
+            GoRouter.of(context).pushNamed(Routes.laboratoryTiltExample);
           },
         ),
         OpenCard(
@@ -110,6 +110,14 @@ class LaboratoryBody extends StatelessWidget {
           subtitle: '基于 Flame、Bonfire 的 2D 游戏。',
           onTap: () {
             GoRouter.of(context).pushNamed(Routes.laboratoryGame);
+          },
+        ),
+        OpenCard(
+          icon: Remix.building_2_line,
+          title: '3D 城市',
+          subtitle: '3D 来源 https://github.com/pissang/little-big-city',
+          onTap: () {
+            GoRouter.of(context).pushNamed(Routes.laboratoryPage3D);
           },
         ),
         OpenCard(

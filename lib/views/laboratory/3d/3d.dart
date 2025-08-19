@@ -5,7 +5,7 @@ import 'package:ditredi/ditredi.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
-import '../../../../widgets/action_button/action_button.dart';
+import '../../../widgets/action_button/action_button.dart';
 
 class Demo3DScreen extends StatelessWidget {
   const Demo3DScreen({super.key});
