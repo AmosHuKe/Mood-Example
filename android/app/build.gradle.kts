@@ -29,7 +29,7 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         ndk {
-            setOf("x86","x86_64","armeabi-v7a","arm64-v8a")
+            abiFilters += setOf("armeabi-v7a","arm64-v8a") // ,"x86","x86_64"
         }
 
         manifestPlaceholders += mapOf(
@@ -64,6 +64,15 @@ android {
         cmake {
             // Provides a relative path to your CMake build script.
             path = file("../CMakeLists.txt")
+        }
+    }
+
+    packaging {
+        dex {
+            useLegacyPackaging = true
+        }
+        jniLibs {
+            useLegacyPackaging = true
         }
     }
 }
