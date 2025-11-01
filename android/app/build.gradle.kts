@@ -29,6 +29,7 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         ndk {
+            abiFilters.clear()
             abiFilters += setOf("armeabi-v7a","arm64-v8a") // ,"x86","x86_64"
         }
 
@@ -73,6 +74,8 @@ android {
         }
         jniLibs {
             useLegacyPackaging = true
+            // 排除 x86
+            excludes += setOf("lib/x86/**")
         }
     }
 }

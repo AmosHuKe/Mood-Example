@@ -9,13 +9,18 @@ on:
   push:
     branches:
       - main
+      - dev
     paths-ignore:
       - '**.md'
   pull_request:
     branches:
       - main
+      - dev
     paths-ignore:
       - '**.md'
+
+env:
+  FLUTTER_VERSION: '3.35.7'
 
 jobs:
   code-analysis:
@@ -23,10 +28,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: subosito/flutter-action@v2
+      - uses: flutter-actions/setup-flutter@v4
         with:
           channel: stable
-          flutter-version-file: pubspec.yaml
+          version: ${{ env.FLUTTER_VERSION }}
       - name: Prepare dependencies
         run: |
           flutter --version
@@ -51,10 +56,10 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '21'
-      - uses: subosito/flutter-action@v2
+      - uses: flutter-actions/setup-flutter@v4
         with:
           channel: stable
-          flutter-version-file: pubspec.yaml
+          version: ${{ env.FLUTTER_VERSION }}
       - name: Prepare dependencies
         run: |
           flutter --version
@@ -98,18 +103,18 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '21'
-      - uses: subosito/flutter-action@v2
+      - uses: flutter-actions/setup-flutter@v4
         with:
           channel: stable
-          flutter-version-file: pubspec.yaml
+          version: ${{ env.FLUTTER_VERSION }}
       - name: Prepare dependencies
         run: |
           dart --version
           flutter --version
           flutter pub get
-      - name: Build
+      - name: Build iOS
         if: matrix.build == 'iOS'
         run: flutter build ios --no-codesign
-      - name: Build
+      - name: Build Android
         if: matrix.build == 'Android'
-        run: flutter build apk --debug
+        run: flutter build apk --release
