@@ -38,11 +38,13 @@ class LocalAuthUtils {
       try {
         final didAuthenticate = await auth.authenticate(
           localizedReason: appL10n.app_setting_security_localauth_localizedreason,
-          options: const AuthenticationOptions(biometricOnly: true, stickyAuth: true),
+          biometricOnly: true,
+          sensitiveTransaction: true,
+          persistAcrossBackgrounding: true,
           authMessages: <AuthMessages>[
             AndroidAuthMessages(
               signInTitle: appL10n.app_setting_security_localauth_signIntitle,
-              biometricHint: '',
+              signInHint: '',
               cancelButton: appL10n.app_setting_security_localauth_cancel,
             ),
             IOSAuthMessages(cancelButton: appL10n.app_setting_security_localauth_cancel),
