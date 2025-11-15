@@ -58,7 +58,7 @@ void main() {
         MultiProvider(providers: Dependencies.providersLocal, child: const Application()),
       );
       await tester.pumpAndSettle();
-      await Future.delayed(const .new(seconds: 3));
+      // await Future.delayed(const .new(seconds: 3));
       final BuildContext context = tester.element(find.byKey(const .new('widget_menu_page')));
       final l10n = AppL10n.of(context);
 
@@ -207,7 +207,7 @@ void main() {
         MultiProvider(providers: Dependencies.providersLocal, child: const Application()),
       );
       await tester.pumpAndSettle();
-      await Future.delayed(const .new(seconds: 3));
+      // await Future.delayed(const .new(seconds: 3));
       final BuildContext context = tester.element(find.byKey(const .new('widget_menu_page')));
       final l10n = AppL10n.of(context);
 
@@ -315,7 +315,7 @@ void main() {
         MultiProvider(providers: Dependencies.providersLocal, child: const Application()),
       );
       await tester.pumpAndSettle();
-      await Future.delayed(const .new(seconds: 3));
+      // await Future.delayed(const .new(seconds: 3));
       final BuildContext context = tester.element(find.byKey(const .new('widget_menu_page')));
       final l10n = AppL10n.of(context);
 
@@ -436,7 +436,7 @@ void main() {
         MultiProvider(providers: Dependencies.providersLocal, child: const Application()),
       );
       await tester.pumpAndSettle();
-      await Future.delayed(const .new(seconds: 3));
+      // await Future.delayed(const .new(seconds: 3));
       final BuildContext context = tester.element(find.byKey(const .new('widget_menu_page')));
       final l10n = AppL10n.of(context);
 

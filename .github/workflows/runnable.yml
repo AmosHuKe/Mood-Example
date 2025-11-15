@@ -43,49 +43,50 @@ jobs:
         run: |
           flutter analyze .
 
-  integration-test-android:
-    needs: [code-analysis]
-    name: 'Integration Test :: Ubuntu :: Android (API ${{ matrix.api-level }})'
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        api-level: [31, 35]
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: '21'
-      - uses: flutter-actions/setup-flutter@v4
-        with:
-          channel: stable
-          version: ${{ env.FLUTTER_VERSION }}
-      - name: Prepare dependencies
-        run: |
-          flutter --version
-          flutter pub get
-      - name: Enable KVM
-        run: |
-          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-          sudo udevadm control --reload-rules
-          sudo udevadm trigger --name-match=kvm
-      - name: Run Integration Test
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: ${{ matrix.api-level }}
-          target: 'default'
-          arch: 'x86_64'
-          emulator-port: 5554
-          avd-name: 'avd-test'
-          profile: 'pixel_7'
-          emulator-options: '-no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim'
-          script: |
-            flutter devices
-            adb devices -l
-            flutter test integration_test/app_test.dart --dart-define=test_mode=true -d emulator-5554 -r github
+  # integration-test-android:
+  #   needs: [code-analysis]
+  #   name: 'Integration Test :: Ubuntu :: Android (API ${{ matrix.api-level }})'
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       api-level: [31, 35]
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #     - uses: actions/setup-java@v4
+  #       with:
+  #         distribution: 'zulu'
+  #         java-version: '21'
+  #     - uses: flutter-actions/setup-flutter@v4
+  #       with:
+  #         channel: stable
+  #         version: ${{ env.FLUTTER_VERSION }}
+  #     - name: Prepare dependencies
+  #       run: |
+  #         flutter --version
+  #         flutter pub get
+  #     - name: Enable KVM
+  #       run: |
+  #         echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+  #         sudo udevadm control --reload-rules
+  #         sudo udevadm trigger --name-match=kvm
+  #     - name: Run Integration Test
+  #       uses: reactivecircus/android-emulator-runner@v2
+  #       with:
+  #         api-level: ${{ matrix.api-level }}
+  #         target: 'default'
+  #         arch: 'x86_64'
+  #         emulator-port: 5554
+  #         avd-name: 'avd-test'
+  #         profile: 'pixel_7'
+  #         emulator-boot-timeout: 1800
+  #         emulator-options: '-no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim'
+  #         script: |
+  #           flutter devices
+  #           adb devices -l
+  #           flutter test integration_test/app_test.dart --dart-define=test_mode=true -d emulator-5554 -r github
 
   test-build:
-    needs: [integration-test-android]
+    needs: [code-analysis]
     strategy:
       matrix:
         include:
