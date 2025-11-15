@@ -7,7 +7,7 @@ extension LogColorExtension on String {
 }
 
 abstract final class LogUtils {
-  static void log(Object? value, {Result<Object?> result = const Result.success(null)}) {
+  static void log(Object? value, {Result<Object?> result = const .success(null)}) {
     switch (result) {
       case Success<Object?>():
         print('${'[log success]'.green} ${value}');

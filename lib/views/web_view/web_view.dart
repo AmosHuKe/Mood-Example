@@ -34,7 +34,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
   void initWebView() {
     final url = ValueBase64(widget.url).decode();
     pageWebViewController = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setJavaScriptMode(.unrestricted)
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
@@ -77,14 +77,14 @@ class _WebViewScreenState extends State<WebViewScreen> {
         backgroundColor: theme.scaffoldBackgroundColor,
         foregroundColor: theme.textTheme.displayLarge!.color,
         shadowColor: Colors.transparent,
-        titleTextStyle: TextStyle(color: theme.textTheme.bodyMedium!.color, fontSize: 14),
+        titleTextStyle: .new(color: theme.textTheme.bodyMedium!.color, fontSize: 14),
         title: Text(pageTitle),
         leading: ActionButton(
-          key: const Key('widget_web_view_close'),
+          key: const .new('widget_web_view_close'),
           semanticsLabel: '返回',
           decoration: BoxDecoration(
             color: isDark ? theme.cardColor : AppTheme.staticBackgroundColor1,
-            borderRadius: const BorderRadius.only(bottomRight: Radius.circular(18)),
+            borderRadius: const .only(bottomRight: .circular(18)),
           ),
           child: const Icon(Remix.close_fill, size: 24),
           onTap: () {
@@ -107,7 +107,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
         builder: (_) {
           return canGoBack || canGoForward
               ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: .spaceAround,
                   children: [
                     Builder(
                       builder: (_) {

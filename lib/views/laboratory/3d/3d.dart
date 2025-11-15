@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:vector_math/vector_math_64.dart' as vector;
 import 'package:ditredi/ditredi.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
@@ -13,7 +12,7 @@ class Demo3DScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(),
+      data: .new(),
       child: Scaffold(
         backgroundColor: const Color(0xFFF1F2F3),
         appBar: AppBar(
@@ -27,7 +26,7 @@ class Demo3DScreen extends StatelessWidget {
           leading: ActionButton(
             decoration: const BoxDecoration(
               color: Colors.transparent,
-              borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
+              borderRadius: .only(bottomRight: .circular(18)),
             ),
             child: const Icon(Remix.arrow_left_line, size: 24),
             onTap: () => context.pop(),
@@ -52,9 +51,9 @@ class _Body3DState extends State<Body3D> {
   @override
   void initState() {
     super.initState();
-    controller = DiTreDiController();
+    controller = .new();
     controller.update(
-      light: vector.Vector3(-50, -50, 50),
+      light: .new(-50, -50, 50),
       lightStrength: 1.2,
       ambientLightStrength: 0.6,
       userScale: 1.5,
@@ -76,7 +75,7 @@ class _Body3DState extends State<Body3D> {
         builder: (context, snapshot) {
           Widget widget;
           switch (snapshot.connectionState) {
-            case ConnectionState.done:
+            case .done:
               if (snapshot.hasError) {
                 widget = const Text('3D模型加载出错了');
               } else {

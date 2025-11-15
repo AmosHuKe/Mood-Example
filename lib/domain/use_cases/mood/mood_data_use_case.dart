@@ -10,7 +10,7 @@ class MoodDataUseCase {
 
   final MoodDataRepository _moodDataRepository;
 
-  void _log(Object? value, {Result<Object?> result = const Result.success(null)}) {
+  void _log(Object? value, {Result<Object?> result = const .success(null)}) {
     LogUtils.log('${'[${this.runtimeType}]'.blue} ${value}', result: result);
   }
 
@@ -22,10 +22,10 @@ class MoodDataUseCase {
     switch (result) {
       case Success<List<MoodDataModel>>():
         _log('${getMoodDataByDateTime.toString()} ${jsonEncode(result.value)}', result: result);
-        return Result.success(result.value);
+        return .success(result.value);
       case Error<List<MoodDataModel>>():
         _log('${getMoodDataByDateTime.toString()} ${result.error}', result: result);
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -35,38 +35,38 @@ class MoodDataUseCase {
     switch (result) {
       case Success<List<MoodRecordDateModel>>():
         _log('${getMoodRecordDateAll.toString()} ${jsonEncode(result.value)}', result: result);
-        return Result.success(result.value);
+        return .success(result.value);
       case Error<List<MoodRecordDateModel>>():
         _log('${getMoodRecordDateAll.toString()} ${result.error}', result: result);
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
   /// 添加心情详细数据
   Future<Result<bool>> addMoodData(MoodDataModel moodData) async {
-    if (moodData.mood_id != null) return Result.error(Exception('MoodDataModel.mood_id 必须为空'));
+    if (moodData.mood_id != null) return .error(Exception('MoodDataModel.mood_id 必须为空'));
     final result = await _moodDataRepository.addMoodData(moodData);
     switch (result) {
       case Success<bool>():
         _log('${addMoodData.toString()} ${jsonEncode(moodData)}', result: result);
-        return Result.success(result.value);
+        return .success(result.value);
       case Error<bool>():
         _log('${addMoodData.toString()} ${result.error}', result: result);
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
   /// 修改心情详细数据
   Future<Result<bool>> editMoodData(MoodDataModel moodData) async {
-    if (moodData.mood_id == null) return Result.error(Exception('MoodDataModel.mood_id 不能为空'));
+    if (moodData.mood_id == null) return .error(Exception('MoodDataModel.mood_id 不能为空'));
     final result = await _moodDataRepository.editMoodData(moodData);
     switch (result) {
       case Success<bool>():
         _log('${editMoodData.toString()} ${jsonEncode(moodData)}', result: result);
-        return Result.success(result.value);
+        return .success(result.value);
       case Error<bool>():
         _log('${editMoodData.toString()} ${result.error}', result: result);
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -78,10 +78,10 @@ class MoodDataUseCase {
     switch (result) {
       case Success<bool>():
         _log('${deleteMoodData.toString()} ${moodId}', result: result);
-        return Result.success(result.value);
+        return .success(result.value);
       case Error<bool>():
         _log('${deleteMoodData.toString()} ${result.error}', result: result);
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 }

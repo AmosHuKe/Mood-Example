@@ -10,7 +10,7 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import '../l10n/gen/app_localizations.dart';
 
 class LocalAuthUtils {
-  final LocalAuthentication auth = LocalAuthentication();
+  final LocalAuthentication auth = .new();
 
   /// 设备是否支持生物特征识别
   Future<bool> localAuthSupported() async {
@@ -65,11 +65,11 @@ class LocalAuthUtils {
   /// 识别图标
   static IconData? localAuthIcon(List<BiometricType> localAuthList) {
     final authIcon = switch (localAuthList) {
-      [BiometricType.weak, ...] => Remix.body_scan_line,
-      [BiometricType.strong, ...] => Remix.body_scan_line,
-      [BiometricType.iris, ...] => Remix.eye_line,
-      [BiometricType.face, ...] => Remix.body_scan_line,
-      [BiometricType.fingerprint, ...] => Remix.fingerprint_line,
+      [.weak, ...] => Remix.body_scan_line,
+      [.strong, ...] => Remix.body_scan_line,
+      [.iris, ...] => Remix.eye_line,
+      [.face, ...] => Remix.body_scan_line,
+      [.fingerprint, ...] => Remix.fingerprint_line,
       [] => null,
     };
     return authIcon;
@@ -79,11 +79,11 @@ class LocalAuthUtils {
   static String localAuthText(BuildContext context, List<BiometricType> localAuthList) {
     final appL10n = AppL10n.of(context);
     final authText = switch (localAuthList) {
-      [BiometricType.weak, ...] => appL10n.app_setting_security_biometric_weak,
-      [BiometricType.strong, ...] => appL10n.app_setting_security_biometric_weak,
-      [BiometricType.iris, ...] => appL10n.app_setting_security_biometric_iris,
-      [BiometricType.face, ...] => appL10n.app_setting_security_biometric_face,
-      [BiometricType.fingerprint, ...] => appL10n.app_setting_security_biometric_fingerprint,
+      [.weak, ...] => appL10n.app_setting_security_biometric_weak,
+      [.strong, ...] => appL10n.app_setting_security_biometric_weak,
+      [.iris, ...] => appL10n.app_setting_security_biometric_iris,
+      [.face, ...] => appL10n.app_setting_security_biometric_face,
+      [.fingerprint, ...] => appL10n.app_setting_security_biometric_fingerprint,
       [] => '',
     };
     return authText;

@@ -12,7 +12,7 @@ class StatisticViewModel extends ChangeNotifier {
   final StatisticUseCase _statisticUseCase;
 
   /// 筛选统计天数
-  static const _statisticFilterDays = [7, 15, 30];
+  static const _statisticFilterDays = <int>[7, 15, 30];
   List<int> get statisticFilterDays => _statisticFilterDays;
 
   /// 选择的统计天数
@@ -59,9 +59,9 @@ class StatisticViewModel extends ChangeNotifier {
       case Success<int>():
         _appUsageDays = result.value;
         notifyListeners();
-        return const Result.success(null);
+        return const .success(null);
       case Error<int>():
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -72,9 +72,9 @@ class StatisticViewModel extends ChangeNotifier {
       case Success<int>():
         _appMoodCount = result.value;
         notifyListeners();
-        return const Result.success(null);
+        return const .success(null);
       case Error<int>():
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -85,9 +85,9 @@ class StatisticViewModel extends ChangeNotifier {
       case Success<int>():
         _moodScoreAverage = result.value;
         notifyListeners();
-        return const Result.success(null);
+        return const .success(null);
       case Error<int>():
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -98,9 +98,9 @@ class StatisticViewModel extends ChangeNotifier {
       case Success<List<StatisticMoodScoreAverageRecentlyModel>>():
         _moodScoreAverageRecently = result.value;
         notifyListeners();
-        return const Result.success(null);
+        return const .success(null);
       case Error<List<StatisticMoodScoreAverageRecentlyModel>>():
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -111,9 +111,9 @@ class StatisticViewModel extends ChangeNotifier {
       case Success<List<StatisticMoodCountRecentlyModel>>():
         _moodCountRecently = result.value;
         notifyListeners();
-        return const Result.success(null);
+        return const .success(null);
       case Error<List<StatisticMoodCountRecentlyModel>>():
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 }

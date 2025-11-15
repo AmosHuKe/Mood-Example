@@ -101,7 +101,7 @@ Future<void> createLockScreen(
     },
     cancelButton: Text(
       appL10n.app_setting_security_lock_cancel,
-      style: TextStyle(fontSize: 14, color: theme.textTheme.bodyMedium?.color),
+      style: .new(fontSize: 14, color: theme.textTheme.bodyMedium?.color),
     ),
     deleteButton: Icon(
       Remix.delete_back_2_fill,
@@ -115,7 +115,7 @@ Future<void> createLockScreen(
       },
       child: Text(
         appL10n.app_setting_security_lock_resetinput,
-        style: TextStyle(fontSize: 14, color: theme.textTheme.bodyMedium?.color),
+        style: .new(fontSize: 14, color: theme.textTheme.bodyMedium?.color),
       ),
     ),
     onError: (value) {

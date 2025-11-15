@@ -10,21 +10,21 @@ class MoodCategoryLoadUseCase {
 
   final MoodCategoryRepository _moodCategoryRepository;
 
-  void _log(Object? value, {Result<Object?> result = const Result.success(null)}) {
+  void _log(Object? value, {Result<Object?> result = const .success(null)}) {
     LogUtils.log('${'[${this.runtimeType}]'.blue} ${value}', result: result);
   }
 
   Future<Result<List<MoodCategoryModel>>> execute() async {
     /// 默认值
-    const moodCategoryList = [
-      MoodCategoryModel(icon: '😊', title: '开心'),
-      MoodCategoryModel(icon: '🎉', title: '惊喜'),
-      MoodCategoryModel(icon: '🤡', title: '滑稽'),
-      MoodCategoryModel(icon: '😅', title: '尴尬'),
-      MoodCategoryModel(icon: '😟', title: '伤心'),
-      MoodCategoryModel(icon: '🤯', title: '惊讶'),
-      MoodCategoryModel(icon: '🤩', title: '崇拜'),
-      MoodCategoryModel(icon: '😡', title: '生气'),
+    const moodCategoryList = <MoodCategoryModel>[
+      .new(icon: '😊', title: '开心'),
+      .new(icon: '🎉', title: '惊喜'),
+      .new(icon: '🤡', title: '滑稽'),
+      .new(icon: '😅', title: '尴尬'),
+      .new(icon: '😟', title: '伤心'),
+      .new(icon: '🤯', title: '惊讶'),
+      .new(icon: '🤩', title: '崇拜'),
+      .new(icon: '😡', title: '生气'),
     ];
     final getInitMoodCategoryDefaultResult = await _moodCategoryRepository
         .getInitMoodCategoryDefault();
@@ -49,7 +49,7 @@ class MoodCategoryLoadUseCase {
                   '${execute.toString()} ${setMoodCategoryDefaultResult.error}',
                   result: setMoodCategoryDefaultResult,
                 );
-                return Result.error(setMoodCategoryDefaultResult.error);
+                return .error(setMoodCategoryDefaultResult.error);
             }
           }
         }
@@ -58,7 +58,7 @@ class MoodCategoryLoadUseCase {
           '${execute.toString()} ${getInitMoodCategoryDefaultResult.error}',
           result: getInitMoodCategoryDefaultResult,
         );
-        return Result.error(getInitMoodCategoryDefaultResult.error);
+        return .error(getInitMoodCategoryDefaultResult.error);
     }
   }
 
@@ -71,13 +71,13 @@ class MoodCategoryLoadUseCase {
           '${_getMoodCategoryAll.toString()} ${json.encode(getMoodCategoryAllResult.value)}',
           result: getMoodCategoryAllResult,
         );
-        return Result.success(getMoodCategoryAllResult.value);
+        return .success(getMoodCategoryAllResult.value);
       case Error<List<MoodCategoryModel>>():
         _log(
           '${_getMoodCategoryAll.toString()} ${getMoodCategoryAllResult.error}',
           result: getMoodCategoryAllResult,
         );
-        return Result.error(getMoodCategoryAllResult.error);
+        return .error(getMoodCategoryAllResult.error);
     }
   }
 }

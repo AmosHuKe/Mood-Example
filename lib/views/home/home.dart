@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
       create: (context) {
         return HomeViewModel(moodCategoryLoadUseCase: context.read());
       },
-      child: const Scaffold(body: HomeBody(key: Key('widget_home_body'))),
+      child: const Scaffold(body: HomeBody(key: .new('widget_home_body'))),
     );
   }
 }
@@ -49,23 +49,25 @@ class HomeBody extends StatelessWidget {
           forceMaterialTransparency: true,
           backgroundColor: Colors.transparent,
           flexibleSpace: SafeArea(
-            child: Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.symmetric(horizontal: 24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    appL10n.home_hi,
-                    style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-                    semanticsLabel: appL10n.app_bottomNavigationBar_title_home,
-                  ),
-                  Image.asset(
-                    'assets/images/woolly/woolly-yellow-star.png',
-                    height: 60,
-                    excludeFromSemantics: true,
-                  ),
-                ],
+            child: Padding(
+              padding: const .symmetric(horizontal: 24),
+              child: Align(
+                alignment: .center,
+                child: Row(
+                  mainAxisAlignment: .spaceBetween,
+                  children: [
+                    Text(
+                      appL10n.home_hi,
+                      style: const .new(fontSize: 48, fontWeight: .bold),
+                      semanticsLabel: appL10n.app_bottomNavigationBar_title_home,
+                    ),
+                    Image.asset(
+                      'assets/images/woolly/woolly-yellow-star.png',
+                      height: 60,
+                      excludeFromSemantics: true,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -74,41 +76,41 @@ class HomeBody extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 48),
+            padding: const .only(bottom: 48),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: .start,
               children: [
                 /// 头部
                 Padding(
-                  padding: const EdgeInsets.only(top: 12, left: 24, right: 24),
+                  padding: const .only(top: 12, left: 24, right: 24),
                   child: Semantics(container: true, child: const Header()),
                 ),
 
                 /// 情绪选项卡
                 const Padding(
-                  padding: EdgeInsets.only(top: 12),
-                  child: MoodOption(key: Key('widget_mood_option')),
+                  padding: .only(top: 12),
+                  child: MoodOption(key: .new('widget_mood_option')),
                 ),
 
                 /// 公告卡片
                 const Padding(
-                  padding: EdgeInsets.all(24),
+                  padding: .all(24),
                   child: MergeSemantics(child: NoticeCard()),
                 ),
 
                 /// 相关文章
                 Padding(
-                  padding: const EdgeInsets.all(24),
+                  padding: const .all(24),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: .start,
                     children: [
                       Semantics(
                         container: true,
                         child: Padding(
-                          padding: const EdgeInsets.only(bottom: 24),
+                          padding: const .only(bottom: 24),
                           child: Text(
                             appL10n.home_help_title,
-                            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                            style: const .new(fontSize: 24, fontWeight: .bold),
                           ),
                         ),
                       ),
@@ -137,7 +139,7 @@ class Header extends StatelessWidget {
         Expanded(
           child: Text(
             appL10n.home_moodChoice_title,
-            style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 24),
+            style: const .new(fontWeight: .normal, fontSize: 24),
           ),
         ),
         Selector<HomeViewModel, ({bool loading, List<MoodCategoryModel> moodCategoryAll})>(
@@ -164,8 +166,8 @@ class MoodOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-      scrollDirection: Axis.horizontal,
+      padding: const .symmetric(horizontal: 24, vertical: 12),
+      scrollDirection: .horizontal,
       physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       child: Selector<HomeViewModel, ({bool loading, List<MoodCategoryModel> moodCategoryAll})>(
         selector: (_, homeViewModel) {
@@ -182,7 +184,7 @@ class MoodOption extends StatelessWidget {
 
           return Wrap(
             spacing: 24,
-            alignment: WrapAlignment.spaceBetween,
+            alignment: .spaceBetween,
             children: widgetList, // dart format
           );
         },
@@ -202,12 +204,12 @@ class OptionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = AppTheme(context).isDarkMode;
-    const double iconSize = 32;
+    const iconSize = 32.0;
 
     return GestureDetector(
       onTap: () {
         // 跳转输入内容页
-        final nowDateTime = Utils.datetimeFormatToString(DateTime.now());
+        final nowDateTime = Utils.datetimeFormatToString(.now());
         final moodData = MoodDataModel(
           icon: icon,
           title: title,
@@ -223,23 +225,25 @@ class OptionCard extends StatelessWidget {
       child: Column(
         children: [
           AnimatedPress(
-            child: Container(
-              constraints: const BoxConstraints(minWidth: 52),
-              decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF2B3034) : AppTheme.staticBackgroundColor1,
-                borderRadius: BorderRadius.circular(18),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 18),
-                child: Align(
-                  child: Text(icon, style: const TextStyle(fontSize: iconSize)),
+            child: ConstrainedBox(
+              constraints: const .new(minWidth: 52),
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: isDark ? const Color(0xFF2B3034) : AppTheme.staticBackgroundColor1,
+                  borderRadius: .circular(18),
+                ),
+                child: Padding(
+                  padding: const .symmetric(horizontal: 8, vertical: 18),
+                  child: Align(
+                    child: Text(icon, style: const .new(fontSize: iconSize)),
+                  ),
                 ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(title, style: const TextStyle(fontSize: 14)),
+            padding: const .only(top: 10),
+            child: Text(title, style: const .new(fontSize: 14)),
           ),
         ],
       ),
@@ -254,12 +258,12 @@ class NoticeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 328),
+      constraints: const .new(maxWidth: 328),
       child: Stack(
         children: [
           /// 阴影
-          shadow(opacity: 0.2, margin: const EdgeInsets.only(left: 24, right: 24, top: 16)),
-          shadow(opacity: 0.4, margin: const EdgeInsets.only(left: 12, right: 12, top: 8)),
+          shadow(opacity: 0.2, margin: const .only(left: 24, right: 24, top: 16)),
+          shadow(opacity: 0.4, margin: const .only(left: 12, right: 12, top: 8)),
 
           /// 正文
           const SizedBox(height: 190, child: NoticeMainCard()),
@@ -269,13 +273,18 @@ class NoticeCard extends StatelessWidget {
   }
 
   /// 阴影
-  Widget shadow({EdgeInsetsGeometry? margin, required double opacity}) {
-    return Container(
-      height: 190,
-      margin: margin,
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFBBBB).withValues(alpha: opacity),
-        borderRadius: BorderRadius.circular(24),
+  Widget shadow({required EdgeInsetsGeometry margin, required double opacity}) {
+    return Padding(
+      padding: margin,
+      child: SizedBox(
+        width: double.infinity,
+        height: 190,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: const Color(0xFFFFBBBB).withValues(alpha: opacity),
+            borderRadius: .circular(24),
+          ),
+        ),
       ),
     );
   }
@@ -292,20 +301,20 @@ class NoticeMainCard extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
+          begin: .bottomLeft,
+          end: .topRight,
           colors: [Color(0xFFFFBBBB), Color(0xFFFFBBBB), Color(0xFFFFC5C5)],
         ),
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: .circular(30),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const .all(24),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: .start,
           children: [
             Stack(
-              clipBehavior: Clip.none,
-              alignment: Alignment.centerLeft,
+              clipBehavior: .none,
+              alignment: .centerLeft,
               children: [
                 /// 图片或装饰
                 Positioned(
@@ -313,64 +322,64 @@ class NoticeMainCard extends StatelessWidget {
                   left: 140,
                   child: Image.asset(
                     'assets/images/onboarding/onboarding_3.png',
-                    fit: BoxFit.contain,
+                    fit: .contain,
                     width: 180,
                   ),
                 ),
 
                 /// 文字和按钮
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: .start,
                   children: [
                     Expanded(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: .start,
                         children: [
                           Text(
                             appL10n.home_upgrade_title,
-                            style: const TextStyle(
+                            style: const .new(
                               color: Colors.black87,
                               fontSize: 20,
-                              fontWeight: FontWeight.w900,
+                              fontWeight: .w900,
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 8),
+                            padding: const .only(top: 8),
                             child: Text(
                               appL10n.home_upgrade_content,
-                              style: const TextStyle(color: Colors.black87, fontSize: 16),
+                              style: const .new(color: Colors.black87, fontSize: 16),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Container(
-                      constraints: const BoxConstraints(minHeight: 45, minWidth: 95),
+                    ConstrainedBox(
+                      constraints: const .new(minHeight: 45, minWidth: 95),
                       child: AnimatedPress(
                         child: OutlinedButton(
                           onPressed: () {
                             GoRouter.of(context).pushNamed(Routes.onboarding);
                           },
-                          style: ButtonStyle(
-                            foregroundColor: WidgetStateProperty.all(Colors.white),
-                            backgroundColor: WidgetStateProperty.all(Colors.black87),
-                            textStyle: WidgetStateProperty.all(
-                              const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                          style: .new(
+                            foregroundColor: const WidgetStatePropertyAll(Colors.white),
+                            backgroundColor: const WidgetStatePropertyAll(Colors.black87),
+                            textStyle: const WidgetStatePropertyAll(
+                              .new(fontSize: 14, fontWeight: .w400),
                             ),
-                            shape: WidgetStateProperty.all(
-                              RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                            shape: WidgetStatePropertyAll(
+                              RoundedRectangleBorder(borderRadius: .circular(14)),
                             ),
-                            overlayColor: WidgetStateProperty.all(Colors.white10),
+                            overlayColor: const WidgetStatePropertyAll(Colors.white10),
                           ),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: .center,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(right: 4),
+                                padding: const .only(right: 4),
                                 child: Text(
                                   appL10n.home_upgrade_button,
-                                  strutStyle: const StrutStyle(forceStrutHeight: false, leading: 1),
-                                  style: const TextStyle(fontSize: 14),
+                                  strutStyle: const .new(forceStrutHeight: false, leading: 1),
+                                  style: const .new(fontSize: 14),
                                 ),
                               ),
                               const Icon(Remix.play_circle_fill, size: 24),
@@ -408,14 +417,14 @@ class Article extends StatelessWidget {
         return Wrap(
           spacing: 16,
           runSpacing: 24,
-          crossAxisAlignment: WrapCrossAlignment.end,
+          crossAxisAlignment: .end,
           children: [
             ArticleCard(
-              key: const Key('widget_home_article_1'),
+              key: const .new('widget_home_article_1'),
               width: widgetWidth,
               gradient: const LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
+                begin: .bottomLeft,
+                end: .topRight,
                 colors: [Color(0xFFFFCEBD), Color(0xFFFFCEBD), Color(0xFFFFDCCF)],
               ),
               onTap: () {
@@ -428,8 +437,8 @@ class Article extends StatelessWidget {
               },
               children: [
                 Stack(
-                  clipBehavior: Clip.none,
-                  alignment: Alignment.bottomCenter,
+                  clipBehavior: .none,
+                  alignment: .bottomCenter,
                   children: [
                     /// 图片或装饰
                     Positioned(
@@ -437,32 +446,28 @@ class Article extends StatelessWidget {
                       left: 0,
                       child: Image.asset(
                         'assets/images/onboarding/onboarding_2.png',
-                        fit: BoxFit.contain,
+                        fit: .contain,
                         height: 120,
                       ),
                     ),
 
                     /// 文字和按钮
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: .start,
                       children: [
                         Text(
                           appL10n.home_help_article_title_1,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w900,
-                          ),
+                          style: const .new(color: Colors.black, fontSize: 16, fontWeight: .w900),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 6),
+                          padding: const .symmetric(vertical: 6),
                           child: Text(
                             appL10n.home_help_article_content_1,
-                            style: const TextStyle(color: Colors.black87, fontSize: 14),
+                            style: const .new(color: Colors.black87, fontSize: 14),
                           ),
                         ),
                         const Padding(
-                          padding: EdgeInsets.only(top: 4),
+                          padding: .only(top: 4),
                           child: Icon(
                             Remix.arrow_right_circle_fill,
                             size: 24,
@@ -478,12 +483,12 @@ class Article extends StatelessWidget {
             ),
 
             ArticleCard(
-              key: const Key('widget_home_article_2'),
+              key: const .new('widget_home_article_2'),
               width: widgetWidth,
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: .end,
               gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+                begin: .topLeft,
+                end: .bottomRight,
                 colors: [Color(0xFFFFD390), Color(0xFFFFD390), Color(0xFFFFE1B3)],
               ),
               onTap: () {
@@ -494,8 +499,8 @@ class Article extends StatelessWidget {
               },
               children: [
                 Stack(
-                  clipBehavior: Clip.none,
-                  alignment: Alignment.topCenter,
+                  clipBehavior: .none,
+                  alignment: .topCenter,
                   children: [
                     /// 图片或装饰
                     Positioned(
@@ -503,33 +508,29 @@ class Article extends StatelessWidget {
                       left: 0,
                       child: Image.asset(
                         'assets/images/onboarding/onboarding_1.png',
-                        fit: BoxFit.contain,
+                        fit: .contain,
                         height: 120,
                       ),
                     ),
 
                     /// 文字和按钮
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: .start,
                       children: [
                         const SizedBox(height: 72),
                         Text(
                           appL10n.home_help_article_title_2,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w900,
-                          ),
+                          style: const .new(color: Colors.black, fontSize: 16, fontWeight: .w900),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 6),
+                          padding: const .symmetric(vertical: 6),
                           child: Text(
                             appL10n.home_help_article_content_2,
-                            style: const TextStyle(color: Colors.black87, fontSize: 14),
+                            style: const .new(color: Colors.black87, fontSize: 14),
                           ),
                         ),
                         const Padding(
-                          padding: EdgeInsets.only(top: 4),
+                          padding: .only(top: 4),
                           child: Icon(
                             Remix.arrow_right_circle_fill,
                             size: 24,
@@ -571,17 +572,21 @@ class ArticleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedPress(
-      scaleEnd: 0.9,
+      scaleEnd: 0.95,
       child: GestureDetector(
         onTap: onTap,
-        child: Container(
+        child: SizedBox(
           width: width,
-          padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(gradient: gradient, borderRadius: BorderRadius.circular(18)),
-          child: Column(
-            mainAxisAlignment: mainAxisAlignment,
-            crossAxisAlignment: crossAxisAlignment,
-            children: children,
+          child: DecoratedBox(
+            decoration: BoxDecoration(gradient: gradient, borderRadius: BorderRadius.circular(18)),
+            child: Padding(
+              padding: const .all(14),
+              child: Column(
+                mainAxisAlignment: mainAxisAlignment,
+                crossAxisAlignment: crossAxisAlignment,
+                children: children,
+              ),
+            ),
           ),
         ),
       ),

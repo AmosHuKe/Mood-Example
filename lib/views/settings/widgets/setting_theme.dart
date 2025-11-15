@@ -22,10 +22,10 @@ class SettingTheme extends StatelessWidget {
       children: [
         /// 主题外观设置
         Padding(
-          padding: const EdgeInsets.only(left: 6, top: 6, bottom: 14),
+          padding: const .only(left: 6, top: 6, bottom: 14),
           child: Text(
             appL10n.app_setting_theme_appearance,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            style: const .new(fontWeight: .bold, fontSize: 14),
           ),
         ),
 
@@ -34,10 +34,10 @@ class SettingTheme extends StatelessWidget {
 
         /// 多主题设置-可浅色、深色模式独立配色方案
         Padding(
-          padding: const EdgeInsets.only(left: 6, top: 6, bottom: 14),
+          padding: const .only(left: 6, top: 6, bottom: 14),
           child: Text(
             appL10n.app_setting_theme_themes,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            style: const .new(fontWeight: .bold, fontSize: 14),
           ),
         ),
 
@@ -65,25 +65,25 @@ class DarkThemeBody extends StatelessWidget {
         final applicationViewModel = context.read<ApplicationViewModel>();
         final themeMode = data.themeMode;
         return Wrap(
-          alignment: WrapAlignment.center,
-          direction: Axis.horizontal,
+          alignment: .center,
+          direction: .horizontal,
           runSpacing: 16,
           spacing: 16,
           children: [
             ThemeCard(
               title: appL10n.app_setting_theme_appearance_system,
-              selected: themeMode == ThemeMode.system,
+              selected: themeMode == .system,
               child: Row(
                 children: [
                   Expanded(
                     child: Container(
-                      alignment: Alignment.center,
+                      alignment: .center,
                       color: isDark ? const Color(0xFFF6F8FA) : const Color(0xFF111315),
                       child: Text(
                         'Aa',
-                        style: TextStyle(
+                        style: .new(
                           color: isDark ? Colors.black87 : const Color(0xFFEFEFEF),
-                          fontWeight: FontWeight.bold,
+                          fontWeight: .bold,
                           fontSize: 14,
                         ),
                       ),
@@ -91,13 +91,13 @@ class DarkThemeBody extends StatelessWidget {
                   ),
                   Expanded(
                     child: Container(
-                      alignment: Alignment.center,
+                      alignment: .center,
                       color: isDark ? const Color(0xFF111315) : const Color(0xFFF6F8FA),
                       child: Text(
                         'Aa',
-                        style: TextStyle(
+                        style: .new(
                           color: isDark ? const Color(0xFFEFEFEF) : Colors.black87,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: .bold,
                           fontSize: 14,
                         ),
                       ),
@@ -105,41 +105,33 @@ class DarkThemeBody extends StatelessWidget {
                   ),
                 ],
               ),
-              onTap: () => applicationViewModel.themeMode = ThemeMode.system,
+              onTap: () => applicationViewModel.themeMode = .system,
             ),
             ThemeCard(
               title: appL10n.app_setting_theme_appearance_light,
-              selected: themeMode == ThemeMode.light,
+              selected: themeMode == .light,
               child: Container(
-                alignment: Alignment.center,
+                alignment: .center,
                 color: const Color(0xFFF6F8FA),
                 child: const Text(
                   'Aa',
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
+                  style: .new(color: Colors.black87, fontWeight: .bold, fontSize: 18),
                 ),
               ),
-              onTap: () => applicationViewModel.themeMode = ThemeMode.light,
+              onTap: () => applicationViewModel.themeMode = .light,
             ),
             ThemeCard(
               title: appL10n.app_setting_theme_appearance_dark,
-              selected: themeMode == ThemeMode.dark,
+              selected: themeMode == .dark,
               child: Container(
-                alignment: Alignment.center,
+                alignment: .center,
                 color: const Color(0xFF111315),
                 child: const Text(
                   'Aa',
-                  style: TextStyle(
-                    color: Color(0xFFEFEFEF),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
+                  style: .new(color: Color(0xFFEFEFEF), fontWeight: .bold, fontSize: 18),
                 ),
               ),
-              onTap: () => applicationViewModel.themeMode = ThemeMode.dark,
+              onTap: () => applicationViewModel.themeMode = .dark,
             ),
           ],
         );
@@ -164,19 +156,19 @@ class MultipleThemeBody extends StatelessWidget {
       builder: (context, data, child) {
         final multipleThemeMode = data.multipleThemeMode;
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const .symmetric(horizontal: 12),
           child: Wrap(
-            alignment: WrapAlignment.center,
-            direction: Axis.horizontal,
+            alignment: .center,
+            direction: .horizontal,
             runSpacing: 16,
             spacing: 16,
-            children: List.generate(multipleThemeModeList.length, (index) {
+            children: .generate(multipleThemeModeList.length, (index) {
               final appMultipleThemeMode = multipleThemeModeList[index];
               final primaryColor = appMultipleThemeMode.data.lightTheme().primaryColor;
               return MultipleThemeCard(
-                key: Key('widget_multiple_theme_card_${appMultipleThemeMode.name}'),
+                key: .new('widget_multiple_theme_card_${appMultipleThemeMode.name}'),
                 selected: multipleThemeMode == appMultipleThemeMode,
-                child: Container(alignment: Alignment.center, color: primaryColor),
+                child: Container(alignment: .center, color: primaryColor),
                 onTap: () {
                   print('当前选择主题：${appMultipleThemeMode.name}');
                   final applicationViewModel = context.read<ApplicationViewModel>();
@@ -228,11 +220,8 @@ class MultipleThemeCard extends StatelessWidget {
                 Container(
                   width: 64,
                   height: 64,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    border: borderStyle,
-                  ),
-                  child: ClipRRect(borderRadius: BorderRadius.circular(50), child: child),
+                  decoration: BoxDecoration(borderRadius: .circular(50), border: borderStyle),
+                  child: ClipRRect(borderRadius: .circular(50), child: child),
                 ),
                 Builder(
                   builder: (_) {
@@ -240,7 +229,7 @@ class MultipleThemeCard extends StatelessWidget {
                       return const SizedBox();
                     }
                     return Padding(
-                      padding: const EdgeInsets.only(right: 12, bottom: 12),
+                      padding: const .only(right: 12, bottom: 12),
                       child: Icon(
                         Remix.checkbox_circle_fill,
                         size: 20,
@@ -299,12 +288,9 @@ class ThemeCard extends StatelessWidget {
                 Container(
                   width: 100,
                   height: 72,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18),
-                    border: borderStyle,
-                  ),
+                  decoration: BoxDecoration(borderRadius: .circular(18), border: borderStyle),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: .circular(14),
                     child: ExcludeSemantics(child: child),
                   ),
                 ),
@@ -314,7 +300,7 @@ class ThemeCard extends StatelessWidget {
                       return const SizedBox();
                     }
                     return Padding(
-                      padding: const EdgeInsets.only(right: 8, bottom: 8),
+                      padding: const .only(right: 8, bottom: 8),
                       child: Icon(
                         Remix.checkbox_circle_fill,
                         size: 20,
@@ -326,11 +312,8 @@ class ThemeCard extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Text(
-                title ?? '',
-                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-              ),
+              padding: const .only(top: 4),
+              child: Text(title ?? '', style: const .new(fontSize: 14, fontWeight: .bold)),
             ),
           ],
         ),

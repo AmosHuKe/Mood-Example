@@ -45,16 +45,16 @@ class MoodContentEditScreen extends StatelessWidget {
               centerTitle: true,
               title: Text(
                 LocaleDatetime.yMMMd(context, moodData.create_time),
-                style: const TextStyle(fontSize: 14),
+                style: const .new(fontSize: 14),
               ),
               leading: Align(
                 alignment: Alignment.topLeft,
                 child: ActionButton(
-                  key: const Key('widget_action_button_close'),
+                  key: const .new('widget_action_button_close'),
                   semanticsLabel: '关闭',
                   decoration: BoxDecoration(
                     color: isDark ? theme.cardColor : AppTheme.staticBackgroundColor1,
-                    borderRadius: const BorderRadius.only(bottomRight: Radius.circular(18)),
+                    borderRadius: const .only(bottomRight: .circular(18)),
                   ),
                   child: const Icon(Remix.close_fill, size: 24),
                   onTap: () {
@@ -64,13 +64,13 @@ class MoodContentEditScreen extends StatelessWidget {
               ),
               actions: [
                 Align(
-                  alignment: Alignment.topRight,
+                  alignment: .topRight,
                   child: ActionButton(
-                    key: const Key('widget_mood_actions_button'),
+                    key: const .new('widget_mood_actions_button'),
                     semanticsLabel: '确认记录',
                     decoration: BoxDecoration(
                       color: isDark ? theme.cardColor : const Color(0xFFD6F2E2),
-                      borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(18)),
+                      borderRadius: const .only(bottomLeft: .circular(18)),
                     ),
                     child: Icon(
                       Remix.check_fill,
@@ -137,22 +137,22 @@ class MoodContentEditScreen extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return Theme(
-          data: isDark ? ThemeData.dark() : ThemeData.light(),
+          data: isDark ? .dark() : .light(),
           child: CupertinoAlertDialog(
             title: Text(appL10n.mood_content_close_button_title),
             content: Text(appL10n.mood_content_close_button_content),
             actions: <CupertinoDialogAction>[
-              CupertinoDialogAction(
+              .new(
                 isDefaultAction: true,
                 child: Text(appL10n.mood_content_close_button_cancel),
-                textStyle: TextStyle(color: theme.textTheme.bodyMedium?.color),
+                textStyle: .new(color: theme.textTheme.bodyMedium?.color),
                 onPressed: () {
                   context.pop();
                 },
               ),
-              CupertinoDialogAction(
+              .new(
                 child: Text(appL10n.mood_content_close_button_confirm),
-                textStyle: TextStyle(color: theme.textTheme.bodyMedium?.color),
+                textStyle: .new(color: theme.textTheme.bodyMedium?.color),
                 onPressed: () {
                   context.pop();
                   context.pop();
@@ -175,9 +175,9 @@ class MoodContentEditBody extends StatelessWidget {
       physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 24, left: 24, right: 24),
+          padding: const .only(top: 24, left: 24, right: 24),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: .spaceBetween,
             children: [
               Consumer<MoodContentEditViewModel>(
                 builder: (context, moodContentEditViewModel, child) {
@@ -218,7 +218,7 @@ class MoodContentEditBody extends StatelessWidget {
           ),
         ),
         const Padding(
-          padding: EdgeInsets.only(top: 24, bottom: 48, left: 24, right: 24),
+          padding: .only(top: 24, bottom: 48, left: 24, right: 24),
           child: InputContent(),
         ),
       ],
@@ -243,46 +243,49 @@ class _InputContentState extends State<InputContent> {
     final theme = Theme.of(context);
     final appL10n = AppL10n.of(context);
 
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-      decoration: BoxDecoration(color: theme.cardColor, borderRadius: BorderRadius.circular(32)),
-      child: Form(
-        key: formContentKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Consumer<MoodContentEditViewModel>(
-              builder: (context, moodContentEditViewModel, child) {
-                final moodData = moodContentEditViewModel.moodData;
-                return TextFormField(
-                  key: const Key('content'),
-                  initialValue: moodData.content,
-                  autocorrect: true,
-                  autofocus: true,
-                  keyboardType: TextInputType.multiline,
-                  maxLines: 10,
-                  maxLength: 5000,
-                  scrollPhysics: const AlwaysScrollableScrollPhysics(
-                    parent: BouncingScrollPhysics(),
-                  ),
-                  style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-                  decoration: InputDecoration(
-                    hintText: appL10n.mood_content_hintText,
-                    hintStyle: theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
-                    border: InputBorder.none,
-                    filled: true,
-                    fillColor: theme.cardColor,
-                  ),
-                  buildCounter: (context, {required currentLength, required isFocused, maxLength}) {
-                    return Text('$currentLength/$maxLength', style: const TextStyle(fontSize: 12));
-                  },
-                  onChanged: (value) {
-                    moodContentEditViewModel.moodData = moodData.copyWith(content: value);
-                  },
-                );
-              },
-            ),
-          ],
+    return DecoratedBox(
+      decoration: BoxDecoration(color: theme.cardColor, borderRadius: .circular(32)),
+      child: Padding(
+        padding: const .symmetric(vertical: 12, horizontal: 24),
+        child: Form(
+          key: formContentKey,
+          child: Column(
+            crossAxisAlignment: .start,
+            children: [
+              Consumer<MoodContentEditViewModel>(
+                builder: (context, moodContentEditViewModel, child) {
+                  final moodData = moodContentEditViewModel.moodData;
+                  return TextFormField(
+                    key: const .new('content'),
+                    initialValue: moodData.content,
+                    autocorrect: true,
+                    autofocus: true,
+                    keyboardType: .multiline,
+                    maxLines: 10,
+                    maxLength: 5000,
+                    scrollPhysics: const AlwaysScrollableScrollPhysics(
+                      parent: BouncingScrollPhysics(),
+                    ),
+                    style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+                    decoration: .new(
+                      hintText: appL10n.mood_content_hintText,
+                      hintStyle: theme.textTheme.bodyMedium!.copyWith(fontSize: 14),
+                      border: .none,
+                      filled: true,
+                      fillColor: theme.cardColor,
+                    ),
+                    buildCounter:
+                        (context, {required currentLength, required isFocused, maxLength}) {
+                          return Text('$currentLength/$maxLength', style: const .new(fontSize: 12));
+                        },
+                    onChanged: (value) {
+                      moodContentEditViewModel.moodData = moodData.copyWith(content: value);
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -307,14 +310,14 @@ class MoodScore extends StatelessWidget {
         return Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 12, left: 24, right: 24),
-              child: Text(appL10n.mood_data_score_title, style: const TextStyle(fontSize: 16)),
+              padding: const .only(bottom: 12, left: 24, right: 24),
+              child: Text(appL10n.mood_data_score_title, style: const .new(fontSize: 16)),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 12, left: 24, right: 24),
+              padding: const .only(bottom: 12, left: 24, right: 24),
               child: Text(
                 (moodScore ~/ 1).toString(),
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: const .new(fontSize: 24, fontWeight: .bold),
               ),
             ),
             Slider(

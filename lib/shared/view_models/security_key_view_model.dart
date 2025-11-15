@@ -45,9 +45,9 @@ class SecurityKeyViewModel extends ChangeNotifier {
       case Success<String>():
         _keyPassword = result.value;
         notifyListeners();
-        return const Result.success(null);
+        return const .success(null);
       case Error<String>():
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -58,9 +58,9 @@ class SecurityKeyViewModel extends ChangeNotifier {
       case Success<bool>():
         _keyBiometric = result.value;
         notifyListeners();
-        return const Result.success(null);
+        return const .success(null);
       case Error<bool>():
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 

@@ -25,16 +25,16 @@ class NotificationViewModel extends ChangeNotifier {
 
   /// 通知初始化
   Future<void> init() async {
-    final channels = [
-      NotificationChannel(
+    final channels = <NotificationChannel>[
+      .new(
         channelKey: 'notification',
         channelName: '通知',
         channelDescription: 'Mood 通知',
         playSound: true,
         onlyAlertOnce: true,
-        groupAlertBehavior: GroupAlertBehavior.Children,
-        importance: NotificationImportance.High,
-        defaultPrivacy: NotificationPrivacy.Private,
+        groupAlertBehavior: .Children,
+        importance: .High,
+        defaultPrivacy: .Private,
       ),
     ];
     await _awesomeNotifications.initialize('resource://drawable/app_icon', channels, debug: true);
@@ -65,13 +65,13 @@ class NotificationViewModel extends ChangeNotifier {
     if (!isAllowed) return;
 
     await _awesomeNotifications.createNotification(
-      content: NotificationContent(
+      content: .new(
         id: 1,
         channelKey: 'notification',
         title: appL10n.local_notification_welcome_title,
         body: appL10n.local_notification_welcome_body,
-        actionType: ActionType.Default,
-        category: NotificationCategory.Event,
+        actionType: .Default,
+        category: .Event,
       ),
     );
   }
@@ -84,13 +84,13 @@ class NotificationViewModel extends ChangeNotifier {
     if (!isAllowed) return;
 
     await _awesomeNotifications.createNotification(
-      content: NotificationContent(
+      content: .new(
         id: -1, // 随机ID
         channelKey: 'notification',
         title: appL10n.local_notification_schedule_title,
         body: appL10n.local_notification_schedule_body,
-        actionType: ActionType.Default,
-        category: NotificationCategory.Event,
+        actionType: .Default,
+        category: .Event,
       ),
       schedule: NotificationCalendar(
         second: 0, // 当秒到达 0 时将会通知，意味着每个分钟的整点会通知
@@ -113,25 +113,25 @@ class NotificationViewModel extends ChangeNotifier {
       context: context,
       builder: (BuildContext context) {
         return Theme(
-          data: isDark ? ThemeData.dark() : ThemeData.light(),
+          data: isDark ? .dark() : .light(),
           child: CupertinoAlertDialog(
-            key: const Key('notification_rationale_dialog'),
+            key: const .new('notification_rationale_dialog'),
             title: Text(appL10n.local_notification_dialog_allow_title),
             content: Text(appL10n.local_notification_dialog_allow_content),
             actions: <CupertinoDialogAction>[
-              CupertinoDialogAction(
-                key: const Key('notification_rationale_close'),
+              .new(
+                key: const .new('notification_rationale_close'),
                 child: Text(appL10n.local_notification_dialog_allow_cancel),
-                textStyle: TextStyle(color: theme.textTheme.bodyMedium?.color),
+                textStyle: .new(color: theme.textTheme.bodyMedium?.color),
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ),
               CupertinoDialogAction(
-                key: const Key('notification_rationale_ok'),
+                key: const .new('notification_rationale_ok'),
                 isDefaultAction: true,
                 child: Text(appL10n.local_notification_dialog_allow_confirm),
-                textStyle: TextStyle(color: theme.textTheme.bodyMedium?.color),
+                textStyle: .new(color: theme.textTheme.bodyMedium?.color),
                 onPressed: () {
                   userAuthorized = true;
                   Navigator.pop(context);

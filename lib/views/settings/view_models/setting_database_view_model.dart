@@ -46,9 +46,9 @@ class SettingDatabaseViewModel extends ChangeNotifier {
     switch (moodDataListResult) {
       case Success<List<MoodDataModel>>():
         _moodDataAllList = moodDataListResult.value;
-        return const Result.success(null);
+        return const .success(null);
       case Error<List<MoodDataModel>>():
-        return Result.error(moodDataListResult.error);
+        return .error(moodDataListResult.error);
     }
   }
 
@@ -56,7 +56,7 @@ class SettingDatabaseViewModel extends ChangeNotifier {
   ///
   /// @return [String] 导出路径
   Future<Result<String>> exportMoodDataAll() async {
-    if (_exportPath.isNotEmpty) return Result.success(_exportPath);
+    if (_exportPath.isNotEmpty) return .success(_exportPath);
     _exportLoading = true;
     notifyListeners();
 
@@ -89,48 +89,46 @@ class SettingDatabaseViewModel extends ChangeNotifier {
 
       /// 单元格样式
       final cellStyle = CellStyle(
-        fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
+        fontColorHex: .fromHexString('#FFFFFF'),
         fontSize: 10,
         bold: true,
-        fontFamily: getFontFamily(FontFamily.Microsoft_Sans_Serif),
-        backgroundColorHex: ExcelColor.fromHexString('#3E4663'),
-        horizontalAlign: HorizontalAlign.Center,
-        verticalAlign: VerticalAlign.Center,
+        fontFamily: getFontFamily(.Microsoft_Sans_Serif),
+        backgroundColorHex: .fromHexString('#3E4663'),
+        horizontalAlign: .Center,
+        verticalAlign: .Center,
       );
 
       /// 创建大标题
-      sheetObject.merge(CellIndex.indexByString('A1'), CellIndex.indexByString('F1'));
-      sheetObject.cell(CellIndex.indexByString('A1'))
+      sheetObject.merge(.indexByString('A1'), .indexByString('F1'));
+      sheetObject.cell(.indexByString('A1'))
         ..value = TextCellValue('MoodExample')
-        ..cellStyle = CellStyle(
-          fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
+        ..cellStyle = .new(
+          fontColorHex: .fromHexString('#FFFFFF'),
           fontSize: 10,
           bold: true,
-          fontFamily: getFontFamily(FontFamily.Microsoft_Sans_Serif),
-          backgroundColorHex: ExcelColor.fromHexString('#3E4663'),
-          horizontalAlign: HorizontalAlign.Center,
-          verticalAlign: VerticalAlign.Center,
+          fontFamily: getFontFamily(.Microsoft_Sans_Serif),
+          backgroundColorHex: .fromHexString('#3E4663'),
+          horizontalAlign: .Center,
+          verticalAlign: .Center,
         );
 
       /// 创建字段标题
-      sheetObject.cell(CellIndex.indexByString('A2'))
+      sheetObject.cell(.indexByString('A2'))
         ..value = TextCellValue('表情')
-        ..cellStyle = cellStyle.copyWith(
-          fontFamilyVal: getFontFamily(FontFamily.Apple_Color_Emoji),
-        );
-      sheetObject.cell(CellIndex.indexByString('B2'))
+        ..cellStyle = cellStyle.copyWith(fontFamilyVal: getFontFamily(.Apple_Color_Emoji));
+      sheetObject.cell(.indexByString('B2'))
         ..value = TextCellValue('心情')
         ..cellStyle = cellStyle;
-      sheetObject.cell(CellIndex.indexByString('C2'))
+      sheetObject.cell(.indexByString('C2'))
         ..value = TextCellValue('内容')
         ..cellStyle = cellStyle;
-      sheetObject.cell(CellIndex.indexByString('D2'))
+      sheetObject.cell(.indexByString('D2'))
         ..value = TextCellValue('心情程度')
         ..cellStyle = cellStyle;
-      sheetObject.cell(CellIndex.indexByString('E2'))
+      sheetObject.cell(.indexByString('E2'))
         ..value = TextCellValue('创建时间')
         ..cellStyle = cellStyle;
-      sheetObject.cell(CellIndex.indexByString('F2'))
+      sheetObject.cell(.indexByString('F2'))
         ..value = TextCellValue('修改时间')
         ..cellStyle = cellStyle;
 
@@ -161,12 +159,12 @@ class SettingDatabaseViewModel extends ChangeNotifier {
       _exportPath = fileName;
       _exportLoading = false;
       notifyListeners();
-      return Result.success(fileName);
+      return .success(fileName);
     } on Exception catch (e) {
       print('exportMoodDataAll error：$e');
       _exportLoading = false;
       notifyListeners();
-      return Result.error(e);
+      return .error(e);
     }
   }
 
@@ -174,7 +172,7 @@ class SettingDatabaseViewModel extends ChangeNotifier {
   ///
   /// @return [String] 导出路径
   Future<Result<String>> importMoodDataTemplate() async {
-    if (_importTemplatePath.isNotEmpty) return Result.success(_importTemplatePath);
+    if (_importTemplatePath.isNotEmpty) return .success(_importTemplatePath);
     try {
       /// 获取 App 文件临时根路径
       final directory = (await getTemporaryDirectory()).path;
@@ -201,45 +199,43 @@ class SettingDatabaseViewModel extends ChangeNotifier {
 
       /// 单元格样式
       final cellStyle = CellStyle(
-        fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
+        fontColorHex: .fromHexString('#FFFFFF'),
         fontSize: 10,
         bold: true,
-        fontFamily: getFontFamily(FontFamily.Microsoft_Sans_Serif),
-        backgroundColorHex: ExcelColor.fromHexString('#3E4663'),
-        horizontalAlign: HorizontalAlign.Center,
-        verticalAlign: VerticalAlign.Center,
+        fontFamily: getFontFamily(.Microsoft_Sans_Serif),
+        backgroundColorHex: .fromHexString('#3E4663'),
+        horizontalAlign: .Center,
+        verticalAlign: .Center,
       );
 
       /// 创建大标题
-      sheetObject.merge(CellIndex.indexByString('A1'), CellIndex.indexByString('E1'));
-      sheetObject.cell(CellIndex.indexByString('A1'))
+      sheetObject.merge(.indexByString('A1'), .indexByString('E1'));
+      sheetObject.cell(.indexByString('A1'))
         ..value = TextCellValue('MoodExample')
-        ..cellStyle = CellStyle(
-          fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
+        ..cellStyle = .new(
+          fontColorHex: .fromHexString('#FFFFFF'),
           fontSize: 10,
           bold: true,
-          fontFamily: getFontFamily(FontFamily.Microsoft_Sans_Serif),
-          backgroundColorHex: ExcelColor.fromHexString('#3E4663'),
-          horizontalAlign: HorizontalAlign.Center,
-          verticalAlign: VerticalAlign.Center,
+          fontFamily: getFontFamily(.Microsoft_Sans_Serif),
+          backgroundColorHex: .fromHexString('#3E4663'),
+          horizontalAlign: .Center,
+          verticalAlign: .Center,
         );
 
       /// 创建字段标题
-      sheetObject.cell(CellIndex.indexByString('A2'))
+      sheetObject.cell(.indexByString('A2'))
         ..value = TextCellValue('表情')
-        ..cellStyle = cellStyle.copyWith(
-          fontFamilyVal: getFontFamily(FontFamily.Apple_Color_Emoji),
-        );
-      sheetObject.cell(CellIndex.indexByString('B2'))
+        ..cellStyle = cellStyle.copyWith(fontFamilyVal: getFontFamily(.Apple_Color_Emoji));
+      sheetObject.cell(.indexByString('B2'))
         ..value = TextCellValue('心情')
         ..cellStyle = cellStyle;
-      sheetObject.cell(CellIndex.indexByString('C2'))
+      sheetObject.cell(.indexByString('C2'))
         ..value = TextCellValue('内容')
         ..cellStyle = cellStyle;
-      sheetObject.cell(CellIndex.indexByString('D2'))
+      sheetObject.cell(.indexByString('D2'))
         ..value = TextCellValue('心情程度')
         ..cellStyle = cellStyle;
-      sheetObject.cell(CellIndex.indexByString('E2'))
+      sheetObject.cell(.indexByString('E2'))
         ..value = TextCellValue('创建时间')
         ..cellStyle = cellStyle;
 
@@ -249,7 +245,7 @@ class SettingDatabaseViewModel extends ChangeNotifier {
         TextCellValue('开心'),
         TextCellValue('今天很开心'),
         TextCellValue('55'),
-        TextCellValue(Utils.datetimeFormatToString(DateTime.now())),
+        TextCellValue(Utils.datetimeFormatToString(.now())),
       ]);
 
       /// 保存 Excel
@@ -261,10 +257,10 @@ class SettingDatabaseViewModel extends ChangeNotifier {
         ..writeAsBytesSync(fileBytes!);
 
       _importTemplatePath = fileName;
-      return Result.success(fileName);
+      return .success(fileName);
     } on Exception catch (e) {
       print('importMoodDataTemplate error：$e');
-      return Result.error(e);
+      return .error(e);
     }
   }
 
@@ -283,7 +279,7 @@ class SettingDatabaseViewModel extends ChangeNotifier {
 
       /// 选择文件
       final pickedFile = await FilePicker.platform.pickFiles(
-        type: FileType.custom,
+        type: .custom,
         allowedExtensions: ['xlsx'],
         allowMultiple: false,
       );
@@ -316,8 +312,8 @@ class SettingDatabaseViewModel extends ChangeNotifier {
                     print('错误文件：${errorFilePath}');
                     _importLoading = false;
                     notifyListeners();
-                    return Result.success(
-                      (importState: ImportState.error, errorFilePath: errorFilePath), // dart format
+                    return .success(
+                      (importState: .error, errorFilePath: errorFilePath), // dart format
                     );
                   } else {
                     /// 正式导入数据操作
@@ -328,14 +324,14 @@ class SettingDatabaseViewModel extends ChangeNotifier {
                       case Success<void>():
                         _importLoading = false;
                         notifyListeners();
-                        return const Result.success(
-                          (importState: ImportState.success, errorFilePath: ''), // dart format
+                        return const .success(
+                          (importState: .success, errorFilePath: ''), // dart format
                         );
                       case Error<void>():
                         print('importMoodData error：${importMoodDataBeginResult.error}');
                         _importLoading = false;
                         notifyListeners();
-                        return Result.error(importMoodDataBeginResult.error);
+                        return .error(importMoodDataBeginResult.error);
                     }
                   }
                 }
@@ -343,21 +339,21 @@ class SettingDatabaseViewModel extends ChangeNotifier {
                 print('importMoodData error：${importMoodDataErrorResult.error}');
                 _importLoading = false;
                 notifyListeners();
-                return Result.error(importMoodDataErrorResult.error);
+                return .error(importMoodDataErrorResult.error);
             }
           }
         }
 
         _importLoading = false;
         notifyListeners();
-        return Result.error(Exception('未找到指定工作表'));
+        return .error(Exception('未找到指定工作表'));
       } else {
         print('importMoodData error：未选择文件');
-        return Result.error(Exception('未选择文件'));
+        return .error(Exception('未选择文件'));
       }
     } on Exception catch (e) {
       print('importMoodData error：$e');
-      return Result.error(e);
+      return .error(e);
     }
   }
 
@@ -398,36 +394,34 @@ class SettingDatabaseViewModel extends ChangeNotifier {
 
         /// 单元格样式
         final cellStyle = CellStyle(
-          fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
+          fontColorHex: .fromHexString('#FFFFFF'),
           fontSize: 10,
           bold: true,
-          fontFamily: getFontFamily(FontFamily.Microsoft_Sans_Serif),
-          backgroundColorHex: ExcelColor.fromHexString('#3E4663'),
-          horizontalAlign: HorizontalAlign.Center,
-          verticalAlign: VerticalAlign.Center,
+          fontFamily: getFontFamily(.Microsoft_Sans_Serif),
+          backgroundColorHex: .fromHexString('#3E4663'),
+          horizontalAlign: .Center,
+          verticalAlign: .Center,
         );
 
         /// 创建大标题
-        sheetObject.merge(CellIndex.indexByString('A1'), CellIndex.indexByString('B1'));
-        sheetObject.cell(CellIndex.indexByString('A1'))
+        sheetObject.merge(.indexByString('A1'), .indexByString('B1'));
+        sheetObject.cell(.indexByString('A1'))
           ..value = TextCellValue('MoodExample')
-          ..cellStyle = CellStyle(
-            fontColorHex: ExcelColor.fromHexString('#FFFFFF'),
+          ..cellStyle = .new(
+            fontColorHex: .fromHexString('#FFFFFF'),
             fontSize: 10,
             bold: true,
-            fontFamily: getFontFamily(FontFamily.Microsoft_Sans_Serif),
-            backgroundColorHex: ExcelColor.fromHexString('#3E4663'),
-            horizontalAlign: HorizontalAlign.Center,
-            verticalAlign: VerticalAlign.Center,
+            fontFamily: getFontFamily(.Microsoft_Sans_Serif),
+            backgroundColorHex: .fromHexString('#3E4663'),
+            horizontalAlign: .Center,
+            verticalAlign: .Center,
           );
 
         /// 创建字段标题
-        sheetObject.cell(CellIndex.indexByString('A2'))
+        sheetObject.cell(.indexByString('A2'))
           ..value = TextCellValue('错误所在行')
-          ..cellStyle = cellStyle.copyWith(
-            fontFamilyVal: getFontFamily(FontFamily.Apple_Color_Emoji),
-          );
-        sheetObject.cell(CellIndex.indexByString('B2'))
+          ..cellStyle = cellStyle.copyWith(fontFamilyVal: getFontFamily(.Apple_Color_Emoji));
+        sheetObject.cell(.indexByString('B2'))
           ..value = TextCellValue('错误内容')
           ..cellStyle = cellStyle;
 
@@ -446,10 +440,10 @@ class SettingDatabaseViewModel extends ChangeNotifier {
 
         errorFilePath = fileName;
       }
-      return Result.success(errorFilePath);
+      return .success(errorFilePath);
     } on Exception catch (e) {
       print('importMoodDataError error：$e');
-      return Result.error(e);
+      return .error(e);
     }
   }
 
@@ -501,7 +495,6 @@ class SettingDatabaseViewModel extends ChangeNotifier {
           /// 创建日期、修改日期
           case 4:
             final tryValue = Utils.datetimeParseToString(cellValue.toString());
-            print(tryValue);
             if (tryValue.isEmpty) {
               errorText += '【创建时间只能为文本，如2000-01-01】 ';
             }
@@ -509,7 +502,6 @@ class SettingDatabaseViewModel extends ChangeNotifier {
 
         /// 导入数据（一组数据完成）并且错误内容不为空
         if (rowIndex == 4 && errorText.isNotEmpty) {
-          print('一组数据');
           errorData.add([TextCellValue('第 $dataIndex 行'), TextCellValue(errorText)]);
         }
 
@@ -572,7 +564,7 @@ class SettingDatabaseViewModel extends ChangeNotifier {
 
         /// 导入数据（一组数据完成）
         if (colIndex == 4) {
-          print('当前数据：${moodData.toJson()}');
+          print('当前导入数据：${moodData.toJson()}');
           moodDataList.add(moodData);
         }
       }

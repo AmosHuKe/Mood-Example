@@ -12,7 +12,7 @@ class Orc extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLi
   Orc(Vector2 position)
     : super(
         position: position,
-        animation: SimpleDirectionAnimation(
+        animation: .new(
           idleLeft: SpriteSheetOrc.getIdleBottomLeft(),
           idleRight: SpriteSheetOrc.getIdleBottomRight(),
           idleDownRight: SpriteSheetOrc.getIdleBottomRight(),
@@ -32,11 +32,11 @@ class Orc extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLi
     /// 生命条
     setupLifeBar(
       size: Vector2(tileSize * 1.5, tileSize / 5),
-      barLifeDrawPosition: BarLifeDrawPosition.top,
+      barLifeDrawPosition: .top,
       showLifeText: false,
       borderWidth: 2,
       borderColor: Colors.white.withValues(alpha: 0.5),
-      borderRadius: BorderRadius.circular(2),
+      borderRadius: .circular(2),
       textOffset: Vector2(16, tileSize * 0.5),
     );
   }
@@ -138,29 +138,29 @@ class Orc extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLi
   void addAttackAnimation() {
     Future<SpriteAnimation> newAnimation;
     switch (lastDirection) {
-      case Direction.left:
+      case .left:
         newAnimation = SpriteSheetOrc.getAttackBottomLeft();
-      case Direction.right:
+      case .right:
         newAnimation = SpriteSheetOrc.getAttackBottomRight();
-      case Direction.up:
-        if (lastDirectionHorizontal == Direction.right) {
+      case .up:
+        if (lastDirectionHorizontal == .right) {
           newAnimation = SpriteSheetOrc.getAttackTopRight();
         } else {
           newAnimation = SpriteSheetOrc.getAttackTopLeft();
         }
-      case Direction.down:
-        if (lastDirectionHorizontal == Direction.right) {
+      case .down:
+        if (lastDirectionHorizontal == .right) {
           newAnimation = SpriteSheetOrc.getAttackBottomRight();
         } else {
           newAnimation = SpriteSheetOrc.getAttackBottomLeft();
         }
-      case Direction.upLeft:
+      case .upLeft:
         newAnimation = SpriteSheetOrc.getAttackTopLeft();
-      case Direction.upRight:
+      case .upRight:
         newAnimation = SpriteSheetOrc.getAttackTopRight();
-      case Direction.downLeft:
+      case .downLeft:
         newAnimation = SpriteSheetOrc.getAttackBottomLeft();
-      case Direction.downRight:
+      case .downRight:
         newAnimation = SpriteSheetOrc.getAttackBottomRight();
     }
     animation?.playOnce(newAnimation, runToTheEnd: true);
@@ -171,29 +171,29 @@ class Orc extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLi
     _canMove = false;
     Future<SpriteAnimation> newAnimation;
     switch (lastDirection) {
-      case Direction.left:
+      case .left:
         newAnimation = SpriteSheetOrc.getDamageBottomLeft();
-      case Direction.right:
+      case .right:
         newAnimation = SpriteSheetOrc.getDamageBottomRight();
-      case Direction.up:
-        if (lastDirectionHorizontal == Direction.right) {
+      case .up:
+        if (lastDirectionHorizontal == .right) {
           newAnimation = SpriteSheetOrc.getDamageTopRight();
         } else {
           newAnimation = SpriteSheetOrc.getDamageTopLeft();
         }
-      case Direction.down:
-        if (lastDirectionHorizontal == Direction.right) {
+      case .down:
+        if (lastDirectionHorizontal == .right) {
           newAnimation = SpriteSheetOrc.getDamageBottomRight();
         } else {
           newAnimation = SpriteSheetOrc.getDamageBottomLeft();
         }
-      case Direction.upLeft:
+      case .upLeft:
         newAnimation = SpriteSheetOrc.getDamageTopLeft();
-      case Direction.upRight:
+      case .upRight:
         newAnimation = SpriteSheetOrc.getDamageTopRight();
-      case Direction.downLeft:
+      case .downLeft:
         newAnimation = SpriteSheetOrc.getDamageBottomLeft();
-      case Direction.downRight:
+      case .downRight:
         newAnimation = SpriteSheetOrc.getDamageBottomRight();
     }
     animation?.playOnce(

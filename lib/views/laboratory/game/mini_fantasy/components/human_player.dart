@@ -12,7 +12,7 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
   HumanPlayer(Vector2 position)
     : super(
         position: position,
-        animation: SimpleDirectionAnimation(
+        animation: .new(
           idleLeft: SpriteSheetPlayer.idleBottomLeft,
           idleRight: SpriteSheetPlayer.idleBottomRight,
           idleUp: SpriteSheetPlayer.idleTopRight,
@@ -27,7 +27,7 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
         ),
         speed: maxSpeed,
         life: 1000,
-        size: Vector2.all(tileSize * 2.9),
+        size: .all(tileSize * 2.9),
       ) {
     /// 发光
     setupLighting(
@@ -37,11 +37,11 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
     /// 生命条
     setupLifeBar(
       size: Vector2(tileSize * 1.5, tileSize / 5),
-      barLifeDrawPosition: BarLifeDrawPosition.top,
+      barLifeDrawPosition: .top,
       showLifeText: false,
       borderWidth: 2,
       borderColor: Colors.white.withValues(alpha: 0.5),
-      borderRadius: BorderRadius.circular(2),
+      borderRadius: .circular(2),
       textOffset: Vector2(6, tileSize * 0.2),
     );
   }
@@ -90,7 +90,7 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
     if ((event.id == LogicalKeyboardKey.space.keyId ||
             event.id == LogicalKeyboardKey.select.keyId ||
             event.id == 1) &&
-        event.event == ActionEvent.DOWN) {
+        event.event == .DOWN) {
       /// 攻击动画
       addAttackAnimation();
 
@@ -156,29 +156,29 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
   void addAttackAnimation() {
     Future<SpriteAnimation> newAnimation;
     switch (lastDirection) {
-      case Direction.left:
+      case .left:
         newAnimation = SpriteSheetPlayer.getAttackBottomLeft();
-      case Direction.right:
+      case .right:
         newAnimation = SpriteSheetPlayer.getAttackBottomRight();
-      case Direction.up:
-        if (lastDirectionHorizontal == Direction.left) {
+      case .up:
+        if (lastDirectionHorizontal == .left) {
           newAnimation = SpriteSheetPlayer.getAttackTopLeft();
         } else {
           newAnimation = SpriteSheetPlayer.getAttackTopRight();
         }
-      case Direction.down:
-        if (lastDirectionHorizontal == Direction.left) {
+      case .down:
+        if (lastDirectionHorizontal == .left) {
           newAnimation = SpriteSheetPlayer.getAttackBottomLeft();
         } else {
           newAnimation = SpriteSheetPlayer.getAttackBottomRight();
         }
-      case Direction.upLeft:
+      case .upLeft:
         newAnimation = SpriteSheetPlayer.getAttackTopLeft();
-      case Direction.upRight:
+      case .upRight:
         newAnimation = SpriteSheetPlayer.getAttackTopRight();
-      case Direction.downLeft:
+      case .downLeft:
         newAnimation = SpriteSheetPlayer.getAttackBottomLeft();
-      case Direction.downRight:
+      case .downRight:
         newAnimation = SpriteSheetPlayer.getAttackBottomRight();
     }
     animation?.playOnce(newAnimation);

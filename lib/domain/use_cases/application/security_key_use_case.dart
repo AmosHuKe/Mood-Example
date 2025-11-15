@@ -8,7 +8,7 @@ class SecurityKeyUseCase {
 
   final SecurityKeyRepository _securityKeyRepository;
 
-  void _log(Object? value, {Result<Object?> result = const Result.success(null)}) {
+  void _log(Object? value, {Result<Object?> result = const .success(null)}) {
     LogUtils.log('${'[${this.runtimeType}]'.blue} ${value}', result: result);
   }
 
@@ -18,10 +18,10 @@ class SecurityKeyUseCase {
     switch (keyPasswordResult) {
       case Success<String?>():
         _log('${getKeyPassword.toString()} ${keyPasswordResult.value}', result: keyPasswordResult);
-        return Result.success(keyPasswordResult.value ?? '');
+        return .success(keyPasswordResult.value ?? '');
       case Error<String?>():
         _log('${getKeyPassword.toString()} ${keyPasswordResult.error}', result: keyPasswordResult);
-        return Result.error(keyPasswordResult.error);
+        return .error(keyPasswordResult.error);
     }
   }
 
@@ -31,10 +31,10 @@ class SecurityKeyUseCase {
     switch (result) {
       case Success<bool>():
         _log('${setKeyPassword.toString()} ${keyPassword}', result: result);
-        return Result.success(result.value);
+        return .success(result.value);
       case Error<bool>():
         _log('${setKeyPassword.toString()} ${result.error}', result: result);
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -45,13 +45,13 @@ class SecurityKeyUseCase {
       case Success<bool?>():
         final resultValue = keyBiometricResult.value ?? false;
         _log('${getKeyBiometric.toString()} ${resultValue}', result: keyBiometricResult);
-        return Result.success(resultValue);
+        return .success(resultValue);
       case Error<bool?>():
         _log(
           '${getKeyBiometric.toString()} ${keyBiometricResult.error}',
           result: keyBiometricResult,
         );
-        return Result.error(keyBiometricResult.error);
+        return .error(keyBiometricResult.error);
     }
   }
 
@@ -61,10 +61,10 @@ class SecurityKeyUseCase {
     switch (result) {
       case Success<bool>():
         _log('${setKeyBiometric.toString()} ${keyBiometric}', result: result);
-        return Result.success(result.value);
+        return .success(result.value);
       case Error<bool>():
         _log('${setKeyBiometric.toString()} ${result.error}', result: result);
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 }

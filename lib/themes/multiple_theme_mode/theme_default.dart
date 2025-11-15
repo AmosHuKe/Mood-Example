@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import '../app_theme.dart';
 
@@ -19,17 +18,17 @@ class AppThemeDefault implements AppMultipleTheme {
   @override
   ThemeData lightTheme() {
     return ThemeData(
-      brightness: Brightness.light,
+      brightness: .light,
       // 字体
       fontFamily: null,
       // 文字
-      textTheme: const TextTheme(
-        displayLarge: TextStyle(color: Colors.black87),
-        displayMedium: TextStyle(color: Colors.black87),
-        displaySmall: TextStyle(color: Colors.black87),
-        bodyLarge: TextStyle(color: Colors.black87),
-        bodyMedium: TextStyle(color: Colors.black87),
-        bodySmall: TextStyle(color: Colors.black87),
+      textTheme: const .new(
+        displayLarge: .new(color: Colors.black87),
+        displayMedium: .new(color: Colors.black87),
+        displaySmall: .new(color: Colors.black87),
+        bodyLarge: .new(color: Colors.black87),
+        bodyMedium: .new(color: Colors.black87),
+        bodySmall: .new(color: Colors.black87),
       ),
       // 主颜色
       primaryColor: primaryColor,
@@ -37,30 +36,28 @@ class AppThemeDefault implements AppMultipleTheme {
       scaffoldBackgroundColor: const Color(0xFFF6F8FA),
       // AppBar
       appBarTheme: AppBarTheme(
-        systemOverlayStyle: SystemUiOverlayStyle.dark.copyWith(
+        systemOverlayStyle: .dark.copyWith(
           statusBarColor: Colors.transparent,
           systemNavigationBarColor: Colors.transparent,
         ),
       ),
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      floatingActionButtonTheme: const .new(
         elevation: 0,
         hoverElevation: 0,
         focusElevation: 0,
         highlightElevation: 0,
       ),
       // bottomNavigationBar
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(backgroundColor: Colors.white),
+      bottomNavigationBarTheme: const .new(backgroundColor: Colors.white),
       // TabBar
-      tabBarTheme: const TabBarThemeData(
+      tabBarTheme: const .new(
         labelColor: Colors.black,
         unselectedLabelColor: Color(0xFFAFB8BF),
         dividerHeight: 0,
         indicatorColor: Colors.transparent,
       ),
       // OutlinedButton
-      outlinedButtonTheme: const OutlinedButtonThemeData(
-        style: ButtonStyle(side: WidgetStatePropertyAll(BorderSide.none)),
-      ),
+      outlinedButtonTheme: const .new(style: .new(side: WidgetStatePropertyAll(BorderSide.none))),
       // 水波纹
       splashFactory: NoSplash.splashFactory,
       // 点击时水波颜色
@@ -70,11 +67,11 @@ class AppThemeDefault implements AppMultipleTheme {
       // Card
       cardColor: Colors.white,
       // bottomSheet
-      bottomSheetTheme: const BottomSheetThemeData(modalBackgroundColor: Color(0xFFF6F8FA)),
+      bottomSheetTheme: const .new(modalBackgroundColor: Color(0xFFF6F8FA)),
       // Radio
-      radioTheme: RadioThemeData(
-        fillColor: WidgetStateProperty.all(const Color(0xFF111315)),
-        overlayColor: WidgetStateProperty.all(const Color(0xFF111315)),
+      radioTheme: const .new(
+        fillColor: WidgetStatePropertyAll(Color(0xFF111315)),
+        overlayColor: WidgetStatePropertyAll(Color(0xFF111315)),
       ),
     );
   }
@@ -83,17 +80,17 @@ class AppThemeDefault implements AppMultipleTheme {
   @override
   ThemeData darkTheme() {
     return ThemeData(
-      brightness: Brightness.dark,
+      brightness: .dark,
       // 字体
       fontFamily: null,
       // 文字
-      textTheme: const TextTheme(
-        displayLarge: TextStyle(color: Color(0xFFEFEFEF)),
-        displayMedium: TextStyle(color: Color(0xFFEFEFEF)),
-        displaySmall: TextStyle(color: Color(0xFFEFEFEF)),
-        bodyLarge: TextStyle(color: Color(0xFFEFEFEF)),
-        bodyMedium: TextStyle(color: Color(0xFFEFEFEF)),
-        bodySmall: TextStyle(color: Color(0xFFEFEFEF)),
+      textTheme: const .new(
+        displayLarge: .new(color: Color(0xFFEFEFEF)),
+        displayMedium: .new(color: Color(0xFFEFEFEF)),
+        displaySmall: .new(color: Color(0xFFEFEFEF)),
+        bodyLarge: .new(color: Color(0xFFEFEFEF)),
+        bodyMedium: .new(color: Color(0xFFEFEFEF)),
+        bodySmall: .new(color: Color(0xFFEFEFEF)),
       ),
       // 主颜色
       primaryColor: primaryColor,
@@ -101,29 +98,28 @@ class AppThemeDefault implements AppMultipleTheme {
       scaffoldBackgroundColor: const Color(0xFF111315),
       // AppBar
       appBarTheme: AppBarTheme(
-        systemOverlayStyle: SystemUiOverlayStyle.light.copyWith(
+        systemOverlayStyle: .light.copyWith(
           statusBarColor: Colors.transparent,
           systemNavigationBarColor: Colors.transparent,
         ),
       ),
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      floatingActionButtonTheme: const .new(
         elevation: 0,
         hoverElevation: 0,
         focusElevation: 0,
         highlightElevation: 0,
       ),
       // bottomNavigationBar
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: Color(0xFF1A1D1F),
-      ),
+      bottomNavigationBarTheme: const .new(backgroundColor: Color(0xFF1A1D1F)),
       // TabBar
-      tabBarTheme: const TabBarThemeData(
+      tabBarTheme: const .new(
         labelColor: Colors.white,
         unselectedLabelColor: Color(0xFF6F767E),
         dividerHeight: 0,
         indicatorColor: Colors.transparent,
-      ), // OutlinedButton
-      outlinedButtonTheme: const OutlinedButtonThemeData(
+      ),
+      // OutlinedButton
+      outlinedButtonTheme: const .new(
         style: ButtonStyle(side: WidgetStatePropertyAll(BorderSide.none)),
       ),
       // 水波纹
@@ -135,11 +131,11 @@ class AppThemeDefault implements AppMultipleTheme {
       // Card
       cardColor: const Color(0xFF202427),
       // bottomSheet
-      bottomSheetTheme: const BottomSheetThemeData(modalBackgroundColor: Color(0xFF111315)),
+      bottomSheetTheme: const .new(modalBackgroundColor: Color(0xFF111315)),
       // Radio
-      radioTheme: RadioThemeData(
-        fillColor: WidgetStateProperty.all(const Color(0xFFEFEFEF)),
-        overlayColor: WidgetStateProperty.all(const Color(0xFFEFEFEF)),
+      radioTheme: const .new(
+        fillColor: WidgetStatePropertyAll(Color(0xFFEFEFEF)),
+        overlayColor: WidgetStatePropertyAll(Color(0xFFEFEFEF)),
       ),
     );
   }

@@ -13,13 +13,13 @@ class DataImportExportRepositoryLocal implements DataImportExportRepository {
   Future<Result<List<MoodDataModel>>> getMoodDataAll() async {
     try {
       final moodData = await _dataImportExportDao.getMoodDataAll();
-      return Result.success(
+      return .success(
         moodData.map((value) {
           return MoodDataModel.fromJson(value);
         }).toList(),
       );
     } on Exception catch (e) {
-      return Result.error(e);
+      return .error(e);
     }
   }
 
@@ -27,9 +27,9 @@ class DataImportExportRepositoryLocal implements DataImportExportRepository {
   Future<Result<bool>> addMoodDataAll(List<MoodDataModel> moodDataList) async {
     try {
       final result = await _dataImportExportDao.addMoodDataAll(moodDataList);
-      return Result.success(result);
+      return .success(result);
     } on Exception catch (e) {
-      return Result.error(e);
+      return .error(e);
     }
   }
 }

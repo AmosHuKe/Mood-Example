@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 /// 动画-按下
 class AnimatedPress extends StatefulWidget {
-  const AnimatedPress({super.key, required this.child, this.scaleEnd = 0.9});
+  const AnimatedPress({super.key, required this.child, this.scaleEnd = 0.95});
 
   final Widget child;
 
@@ -16,17 +16,17 @@ class AnimatedPress extends StatefulWidget {
 }
 
 class _AnimatedPressState extends State<AnimatedPress> with SingleTickerProviderStateMixin {
-  late AnimationController controller;
+  late AnimationController animationController;
   late CurvedAnimation curve;
   late Animation<double> scale;
 
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 300))
+    animationController = .new(vsync: this, duration: const .new(milliseconds: 300))
       ..addListener(() {});
-    curve = CurvedAnimation(
-      parent: controller,
+    curve = .new(
+      parent: animationController,
       curve: Curves.decelerate,
       reverseCurve: Curves.easeIn,
     );
@@ -35,21 +35,21 @@ class _AnimatedPressState extends State<AnimatedPress> with SingleTickerProvider
 
   @override
   void dispose() {
-    controller.dispose();
+    animationController.dispose();
     super.dispose();
   }
 
   /// 开始动画
   void controllerForward() {
-    final status = controller.status;
-    if (status != AnimationStatus.forward && status != AnimationStatus.completed) {
-      controller.forward();
+    final status = animationController.status;
+    if (status != .forward && status != .completed) {
+      animationController.forward();
     }
   }
 
   /// 结束动画
   void controllerReverse() {
-    controller.reverse();
+    animationController.reverse();
   }
 
   @override
@@ -61,7 +61,7 @@ class _AnimatedPressState extends State<AnimatedPress> with SingleTickerProvider
       onPointerCancel: (_) => controllerReverse(),
       onPointerUp: (_) => controllerReverse(),
       child: AnimatedBuilder(
-        animation: controller,
+        animation: animationController,
         builder: (context, child) => Transform.scale(scale: scale.value, child: child),
         child: widget.child,
       ),

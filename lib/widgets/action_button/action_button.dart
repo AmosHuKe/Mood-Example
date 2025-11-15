@@ -15,7 +15,6 @@ class ActionButton extends StatelessWidget {
     this.onTap,
   });
 
-  /// 语义描述
   final String? semanticsLabel;
   final double? width;
   final double? height;
@@ -31,10 +30,7 @@ class ActionButton extends StatelessWidget {
     final _height = height ?? kToolbarHeight;
     final _decoration =
         decoration ??
-        BoxDecoration(
-          color: AppTheme.staticBackgroundColor1,
-          borderRadius: BorderRadius.circular(18),
-        );
+        BoxDecoration(color: AppTheme.staticBackgroundColor1, borderRadius: .circular(18));
 
     return Semantics(
       button: true,

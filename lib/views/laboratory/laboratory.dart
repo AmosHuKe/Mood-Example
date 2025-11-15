@@ -19,22 +19,22 @@ class LaboratoryScreen extends StatelessWidget {
     final themePrimaryColor = theme.primaryColor;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.dark.copyWith(
+      value: .dark.copyWith(
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Colors.transparent,
       ),
       child: Theme(
-        data: ThemeData(),
+        data: .new(),
         child: Scaffold(
           backgroundColor: const Color(0xFFF1F2F3),
           floatingActionButton: ActionButton(
-            key: const Key('widget_laboratory_back_button'),
+            key: const .new('widget_laboratory_back_button'),
             semanticsLabel: '返回',
             width: 48,
             height: 48,
             decoration: BoxDecoration(
               color: themePrimaryColor,
-              borderRadius: BorderRadius.circular(18),
+              borderRadius: .circular(18),
             ),
             child: const Icon(
               Remix.arrow_left_line,
@@ -45,8 +45,8 @@ class LaboratoryScreen extends StatelessWidget {
               context.pop();
             },
           ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-          body: const LaboratoryBody(key: Key('widget_laboratory_page')),
+          floatingActionButtonLocation: .startFloat,
+          body: const LaboratoryBody(key: .new('widget_laboratory_page')),
         ),
       ),
     );
@@ -61,7 +61,7 @@ class LaboratoryBody extends StatelessWidget {
     final appL10n = AppL10n.of(context);
 
     return ListView(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 24, bottom: 64),
+      padding: const .only(left: 20, right: 20, top: 24, bottom: 64),
       physics: const AlwaysScrollableScrollPhysics(
         parent: BouncingScrollPhysics(),
       ),
@@ -69,17 +69,17 @@ class LaboratoryBody extends StatelessWidget {
         /// 标题
         SafeArea(
           bottom: false,
-          child: Container(
-            margin: const EdgeInsets.only(bottom: 32),
+          child: Padding(
+            padding: const .only(bottom: 32),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: .spaceBetween,
               children: [
                 Text(
                   appL10n.app_setting_laboratory,
-                  style: const TextStyle(
+                  style: const .new(
                     color: Colors.black87,
                     fontSize: 36,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: .bold,
                   ),
                 ),
                 const Icon(Remix.flask_line, size: 48, color: Colors.black12),
@@ -158,62 +158,61 @@ class OpenCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedPress(
       scaleEnd: 0.95,
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10),
-        padding: const EdgeInsets.all(20.0),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(24),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 10.0,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+      child: Padding(
+        padding: const .symmetric(vertical: 10),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: .circular(24),
+          ),
+          child: Padding(
+            padding: const .all(20.0),
+            child: Column(
+              crossAxisAlignment: .start,
               spacing: 10.0,
               children: [
-                Icon(icon, size: 32, color: Colors.black87),
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: Colors.black87,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    height: 1,
+                Row(
+                  crossAxisAlignment: .center,
+                  spacing: 10.0,
+                  children: [
+                    Icon(icon, size: 32, color: Colors.black87),
+                    Text(
+                      title,
+                      style: const .new(
+                        color: Colors.black87,
+                        fontSize: 16,
+                        fontWeight: .bold,
+                        height: 1,
+                      ),
+                      strutStyle: const .new(
+                        forceStrutHeight: true,
+                        fontSize: 16,
+                        height: 1,
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const .only(left: 4),
+                  child: Text(
+                    subtitle,
+                    style: const .new(color: Colors.black54, fontSize: 14),
                   ),
-                  strutStyle: const StrutStyle(
-                    forceStrutHeight: true,
-                    fontSize: 16,
-                    height: 1,
+                ),
+                Align(
+                  alignment: .bottomRight,
+                  child: GestureDetector(
+                    onTap: onTap,
+                    behavior: .opaque,
+                    child: const Padding(
+                      padding: .only(top: 4, bottom: 4, left: 4, right: 6),
+                      child: Text('打开'),
+                    ),
                   ),
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsetsGeometry.only(left: 4),
-              child: Text(
-                subtitle,
-                style: const TextStyle(color: Colors.black54, fontSize: 14),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: GestureDetector(
-                onTap: onTap,
-                behavior: HitTestBehavior.opaque,
-                child: const Padding(
-                  padding: EdgeInsetsGeometry.only(
-                    top: 4,
-                    bottom: 4,
-                    left: 4,
-                    right: 6,
-                  ),
-                  child: Text('打开'),
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

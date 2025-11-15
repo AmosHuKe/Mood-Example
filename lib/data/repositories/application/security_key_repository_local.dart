@@ -12,9 +12,9 @@ class SecurityKeyRepositoryLocal implements SecurityKeyRepository {
   Future<Result<String?>> getKeyPassword() async {
     try {
       final value = await _securityKeyDao.getAppKeyPassword();
-      return Result.success(value);
+      return .success(value);
     } on Exception catch (e) {
-      return Result.error(e);
+      return .error(e);
     }
   }
 
@@ -22,9 +22,9 @@ class SecurityKeyRepositoryLocal implements SecurityKeyRepository {
   Future<Result<bool>> setKeyPassword(String keyPassword) async {
     try {
       await _securityKeyDao.setAppKeyPassword(keyPassword);
-      return const Result.success(true);
+      return const .success(true);
     } on Exception catch (e) {
-      return Result.error(e);
+      return .error(e);
     }
   }
 
@@ -32,9 +32,9 @@ class SecurityKeyRepositoryLocal implements SecurityKeyRepository {
   Future<Result<bool?>> getKeyBiometric() async {
     try {
       final value = await _securityKeyDao.getAppKeyBiometric();
-      return Result.success(value);
+      return .success(value);
     } on Exception catch (e) {
-      return Result.error(e);
+      return .error(e);
     }
   }
 
@@ -42,9 +42,9 @@ class SecurityKeyRepositoryLocal implements SecurityKeyRepository {
   Future<Result<bool>> setKeyBiometric(bool keyBiometric) async {
     try {
       await _securityKeyDao.setAppKeyBiometric(keyBiometric);
-      return const Result.success(true);
+      return const .success(true);
     } on Exception catch (e) {
-      return Result.error(e);
+      return .error(e);
     }
   }
 }

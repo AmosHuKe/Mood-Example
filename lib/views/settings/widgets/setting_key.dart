@@ -24,17 +24,17 @@ class SettingKey extends StatelessWidget {
       children: [
         /// 安全
         Padding(
-          padding: const EdgeInsets.only(left: 6, top: 6, bottom: 2),
+          padding: const .only(left: 6, top: 6, bottom: 2),
           child: Text(
             appL10n.app_setting_security,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            style: const .new(fontWeight: .bold, fontSize: 20),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 6, top: 6, bottom: 14),
+          padding: const .only(left: 6, top: 6, bottom: 14),
           child: Text(
             appL10n.app_setting_security_content,
-            style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
+            style: const .new(fontWeight: .normal, fontSize: 14),
           ),
         ),
 
@@ -110,11 +110,9 @@ class _KeyBodyState extends State<KeyBody> {
             ),
             title: Text(
               localAuthText,
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-                height: 1.0,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium!.copyWith(fontSize: 14, fontWeight: .normal, height: 1.0),
             ),
             trailing: Semantics(
               label: localAuthText,
@@ -147,11 +145,9 @@ class _KeyBodyState extends State<KeyBody> {
               ),
               title: Text(
                 appL10n.app_setting_security_lock,
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal,
-                  height: 1.0,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium!.copyWith(fontSize: 14, fontWeight: .normal, height: 1.0),
               ),
               trailing: Semantics(
                 label: appL10n.app_setting_security_lock,

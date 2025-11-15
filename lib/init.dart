@@ -52,9 +52,8 @@ class _InitState extends State<Init> {
   @override
   Widget build(BuildContext context) {
     switch (defaultTargetPlatform) {
-      case TargetPlatform.android:
-
-        /// 沉浸模式（全屏模式）
+      case .android:
+        // 沉浸模式（全屏模式）
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
       case _:
     }

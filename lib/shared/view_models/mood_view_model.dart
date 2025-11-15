@@ -12,7 +12,7 @@ class MoodViewModel extends ChangeNotifier {
   final MoodDataUseCase _moodDataUseCase;
 
   /// 当前选择的日期
-  DateTime _selectDateTime = DateTime.now();
+  DateTime _selectDateTime = .now();
   DateTime get selectDateTime => _selectDateTime;
   String get selectDateTimeToString => Utils.datetimeFormatToString(_selectDateTime);
   set selectDateTime(DateTime value) {
@@ -48,9 +48,9 @@ class MoodViewModel extends ChangeNotifier {
         _moodDataList = moodDataListResult.value;
         _moodDataListLoading = false;
         notifyListeners();
-        return const Result.success(null);
+        return const .success(null);
       case Error<List<MoodDataModel>>():
-        return Result.error(moodDataListResult.error);
+        return .error(moodDataListResult.error);
     }
   }
 
@@ -64,7 +64,7 @@ class MoodViewModel extends ChangeNotifier {
         }
         return result;
       case Error<bool>():
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -78,7 +78,7 @@ class MoodViewModel extends ChangeNotifier {
         }
         return result;
       case Error<bool>():
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -94,7 +94,7 @@ class MoodViewModel extends ChangeNotifier {
         }
         return result;
       case Error<bool>():
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -105,9 +105,9 @@ class MoodViewModel extends ChangeNotifier {
       case Success<List<MoodRecordDateModel>>():
         _moodRecordDateAllList = moodRecordDateListResult.value;
         notifyListeners();
-        return const Result.success(null);
+        return const .success(null);
       case Error<List<MoodRecordDateModel>>():
-        return Result.error(moodRecordDateListResult.error);
+        return .error(moodRecordDateListResult.error);
     }
   }
 }

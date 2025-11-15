@@ -10,7 +10,7 @@ class DataImportExportUseCase {
 
   final DataImportExportRepository _dataImportExportRepository;
 
-  void _log(Object? value, {Result<Object?> result = const Result.success(null)}) {
+  void _log(Object? value, {Result<Object?> result = const .success(null)}) {
     LogUtils.log('${'[${this.runtimeType}]'.blue} ${value}', result: result);
   }
 
@@ -20,24 +20,24 @@ class DataImportExportUseCase {
     switch (result) {
       case Success<List<MoodDataModel>>():
         _log('${getMoodDataAll.toString()} ${json.encode(result.value)}', result: result);
-        return Result.success(result.value);
+        return .success(result.value);
       case Error<List<MoodDataModel>>():
         _log('${getMoodDataAll.toString()} ${result.error}', result: result);
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
   /// 添加心情数据
   Future<Result<bool>> addMoodDataAll(List<MoodDataModel> moodDataList) async {
-    if (moodDataList.length <= 0) return Result.error(Exception('心情数据不能为空'));
+    if (moodDataList.length <= 0) return .error(Exception('心情数据不能为空'));
     final result = await _dataImportExportRepository.addMoodDataAll(moodDataList);
     switch (result) {
       case Success<bool>():
         _log('${addMoodDataAll.toString()} ${json.encode(moodDataList)}', result: result);
-        return Result.success(result.value);
+        return .success(result.value);
       case Error<bool>():
         _log('${addMoodDataAll.toString()} ${result.error}', result: result);
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 }

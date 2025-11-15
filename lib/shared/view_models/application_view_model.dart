@@ -16,7 +16,7 @@ class ApplicationViewModel extends ChangeNotifier {
   final ApplicationUseCase _applicationUseCase;
 
   /// 主题模式
-  ThemeMode _themeMode = ThemeMode.system;
+  ThemeMode _themeMode = .system;
   ThemeMode get themeMode => _themeMode;
   set themeMode(ThemeMode value) {
     _applicationUseCase.setThemeMode(value);
@@ -25,7 +25,7 @@ class ApplicationViewModel extends ChangeNotifier {
   }
 
   /// 多主题模式
-  MultipleThemeMode _multipleThemeMode = MultipleThemeMode.kDefault;
+  MultipleThemeMode _multipleThemeMode = .kDefault;
   MultipleThemeMode get multipleThemeMode => _multipleThemeMode;
   set multipleThemeMode(MultipleThemeMode value) {
     _applicationUseCase.setMultipleThemeMode(value);
@@ -59,9 +59,9 @@ class ApplicationViewModel extends ChangeNotifier {
       case Success<ThemeMode>():
         _themeMode = result.value;
         notifyListeners();
-        return const Result.success(null);
+        return const .success(null);
       case Error<ThemeMode>():
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -72,9 +72,9 @@ class ApplicationViewModel extends ChangeNotifier {
       case Success<MultipleThemeMode>():
         _multipleThemeMode = result.value;
         notifyListeners();
-        return const Result.success(null);
+        return const .success(null);
       case Error<MultipleThemeMode>():
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -85,9 +85,9 @@ class ApplicationViewModel extends ChangeNotifier {
       case Success<bool>():
         _localeSystem = result.value;
         notifyListeners();
-        return const Result.success(null);
+        return const .success(null);
       case Error<bool>():
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -98,9 +98,9 @@ class ApplicationViewModel extends ChangeNotifier {
       case Success<Locale>():
         _locale = result.value;
         notifyListeners();
-        return const Result.success(null);
+        return const .success(null);
       case Error<Locale>():
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 }

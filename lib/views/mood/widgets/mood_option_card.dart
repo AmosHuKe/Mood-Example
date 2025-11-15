@@ -17,28 +17,30 @@ class MoodOptionCard extends StatelessWidget {
     final isDark = AppTheme(context).isDarkMode;
 
     return AnimatedPress(
-      child: Container(
+      child: SizedBox(
         width: 128,
         height: 128,
-        decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF202427) : Colors.white,
-          borderRadius: BorderRadius.circular(32),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 6),
-              child: Text(icon ?? '', style: const TextStyle(fontSize: 32)),
-            ),
-            Text(
-              title ?? '',
-              style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                fontSize: 16,
-                fontWeight: FontWeight.w400, // dart format
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: isDark ? const Color(0xFF202427) : Colors.white,
+            borderRadius: .circular(32),
+          ),
+          child: Column(
+            mainAxisAlignment: .center,
+            children: [
+              Padding(
+                padding: const .only(bottom: 6),
+                child: Text(icon ?? '', style: const .new(fontSize: 32)),
               ),
-            ),
-          ],
+              Text(
+                title ?? '',
+                style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                  fontSize: 16,
+                  fontWeight: .w400, // dart format
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

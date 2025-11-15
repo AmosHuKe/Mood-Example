@@ -40,7 +40,7 @@ class MainScreen extends StatelessWidget {
       angle: 0,
       mainScreenScale: 0.3,
       slideWidth: slideWidth == 0 ? 250.0 : slideWidth,
-      style: DrawerStyle.defaultStyle,
+      style: .defaultStyle,
     );
   }
 }
@@ -57,7 +57,7 @@ class MainWrap extends StatelessWidget {
     return ValueListenableBuilder<DrawerState>(
       valueListenable: ZoomDrawer.of(context)!.stateNotifier,
       builder: (_, state, child) {
-        return AbsorbPointer(absorbing: state != DrawerState.closed, child: child);
+        return AbsorbPointer(absorbing: state != .closed, child: child);
       },
       child: MainBody(navigationShell: navigationShell),
     );
@@ -85,16 +85,13 @@ class _MainBodyState extends State<MainBody> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    tabController = TabController(
+    tabController = .new(
       initialIndex: currentIndex,
       length: widget.navigationShell.route.branches.length,
       vsync: this,
     );
-    stepButtonController = AnimationController(
-      duration: const Duration(milliseconds: 500),
-      vsync: this,
-    );
-    stepButtonCurve = CurvedAnimation(parent: stepButtonController, curve: Curves.fastOutSlowIn);
+    stepButtonController = .new(duration: const .new(milliseconds: 500), vsync: this);
+    stepButtonCurve = .new(parent: stepButtonController, curve: Curves.fastOutSlowIn);
     stepButtonAnimation = Tween(begin: 0.0, end: 1.0).animate(stepButtonController);
   }
 
@@ -120,38 +117,34 @@ class _MainBodyState extends State<MainBody> with TickerProviderStateMixin {
       bottomNavigationBar: DecoratedBox(
         decoration: BoxDecoration(
           color: theme.bottomNavigationBarTheme.backgroundColor ?? Colors.white,
-          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 24)],
+          boxShadow: [.new(color: Colors.black.withValues(alpha: 0.04), blurRadius: 24)],
         ),
         child: SafeArea(
           child: Stack(
-            alignment: Alignment.centerLeft,
+            alignment: .centerLeft,
             children: [
               /// 菜单
               TabBar(
                 enableFeedback: true,
-                padding: const EdgeInsets.only(left: 40),
+                padding: const .only(left: 40),
                 controller: tabController,
-                labelStyle: const TextStyle(height: 0.5, fontSize: 10, fontWeight: FontWeight.bold),
-                unselectedLabelStyle: const TextStyle(
-                  height: 0.5,
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                ),
+                labelStyle: const .new(height: 0.5, fontSize: 10, fontWeight: .bold),
+                unselectedLabelStyle: const .new(height: 0.5, fontSize: 10, fontWeight: .bold),
                 tabs: [
                   Tab(
-                    key: const Key('tab_home'),
+                    key: const .new('tab_home'),
                     text: appL10n.app_bottomNavigationBar_title_home,
                     iconMargin: tabIconMargin,
                     icon: const Icon(Remix.home_line, size: tabIconSize),
                   ),
                   Tab(
-                    key: const Key('tab_mood'),
+                    key: const .new('tab_mood'),
                     text: appL10n.app_bottomNavigationBar_title_mood,
                     iconMargin: tabIconMargin,
                     icon: const Icon(Remix.heart_3_line, size: tabIconSize),
                   ),
                   Tab(
-                    key: const Key('tab_statistic'),
+                    key: const .new('tab_statistic'),
                     text: appL10n.app_bottomNavigationBar_title_statistic,
                     iconMargin: tabIconMargin,
                     icon: const Icon(Remix.bar_chart_line, size: tabIconSize),
@@ -172,42 +165,44 @@ class _MainBodyState extends State<MainBody> with TickerProviderStateMixin {
                 button: true,
                 label: '打开设置',
                 child: GestureDetector(
-                  key: const Key('tab_screen_left'),
-                  child: Container(
+                  key: const .new('tab_screen_left'),
+                  child: SizedBox(
                     width: 42,
                     height: 42,
-                    decoration: BoxDecoration(
-                      color: isDark ? Colors.black12 : AppTheme.staticBackgroundColor1,
-                      borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(14),
-                        bottomRight: Radius.circular(14),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: isDark ? Colors.black12 : AppTheme.staticBackgroundColor1,
+                        borderRadius: const .only(
+                          topRight: .circular(14),
+                          bottomRight: .circular(14),
+                        ),
                       ),
-                    ),
-                    child: ValueListenableBuilder<DrawerState>(
-                      valueListenable: zoomDrawer!.stateNotifier,
-                      builder: (_, state, child) {
-                        switch (state) {
-                          case DrawerState.closed:
-                            stepButtonController.reverse();
-                          case _:
-                            stepButtonController.forward();
-                        }
+                      child: ValueListenableBuilder<DrawerState>(
+                        valueListenable: zoomDrawer!.stateNotifier,
+                        builder: (_, state, child) {
+                          switch (state) {
+                            case .closed:
+                              stepButtonController.reverse();
+                            case _:
+                              stepButtonController.forward();
+                          }
 
-                        return AnimatedBuilder(
-                          animation: stepButtonAnimation,
-                          builder: (context, child) {
-                            return Transform.rotate(
-                              angle: stepButtonCurve.value * 3.14,
-                              child: child,
-                            );
-                          },
-                          child: Icon(
-                            Remix.arrow_right_line,
-                            size: 16,
-                            color: isDark ? const Color(0xFFEFEFEF) : Colors.black,
-                          ),
-                        );
-                      },
+                          return AnimatedBuilder(
+                            animation: stepButtonAnimation,
+                            builder: (context, child) {
+                              return Transform.rotate(
+                                angle: stepButtonCurve.value * 3.14,
+                                child: child,
+                              );
+                            },
+                            child: Icon(
+                              Remix.arrow_right_line,
+                              size: 16,
+                              color: isDark ? const Color(0xFFEFEFEF) : Colors.black,
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                   onTap: () => zoomDrawer.toggle.call(),

@@ -34,7 +34,7 @@ class SettingMenuBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light.copyWith(
+      value: .light.copyWith(
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Colors.transparent,
       ),
@@ -46,23 +46,18 @@ class SettingMenuBody extends StatelessWidget {
           ),
           children: [
             const Padding(
-              padding: EdgeInsets.only(
-                top: 72,
-                bottom: 48,
-                left: 24,
-                right: 24,
-              ),
+              padding: .only(top: 72, bottom: 48, left: 24, right: 24),
               child: Header(),
             ),
             const Padding(
-              padding: EdgeInsets.only(bottom: 24, left: 24, right: 24),
+              padding: .only(bottom: 24, left: 24, right: 24),
               child: Menu(),
             ),
 
             /// 插画
             BlockSemanticsToDrawerClosed(
-              child: Container(
-                padding: const EdgeInsets.only(left: 24, bottom: 24),
+              child: Padding(
+                padding: const .only(left: 24, bottom: 24),
                 child: Image.asset(
                   'assets/images/woolly/woolly-comet-2.png',
                   width: 240,
@@ -88,8 +83,8 @@ class Header extends StatelessWidget {
         child: Row(
           children: [
             ClipRRect(
-              key: const Key('widget_menu_screen_left_logo'),
-              borderRadius: BorderRadius.circular(14),
+              key: const .new('widget_menu_screen_left_logo'),
+              borderRadius: .circular(14),
               child: Image.asset(
                 'assets/images/logo.png',
                 width: 42,
@@ -97,13 +92,13 @@ class Header extends StatelessWidget {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(left: 12),
+              padding: .only(left: 12),
               child: Text(
                 'Mood',
-                style: TextStyle(
+                style: .new(
                   color: Colors.white,
                   fontSize: 28,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: .bold,
                 ),
                 semanticsLabel: '',
               ),
@@ -124,7 +119,7 @@ class Menu extends StatelessWidget {
     final appL10n = AppL10n.of(context);
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: .start,
       spacing: 8,
       children: [
         MenuItem(
@@ -229,13 +224,9 @@ class MenuItem extends StatelessWidget {
     return BlockSemanticsToDrawerClosed(
       child: GestureDetector(
         onTap: onTap,
-        behavior: HitTestBehavior.opaque,
+        behavior: .opaque,
         child: Padding(
-          padding: const EdgeInsetsGeometry.only(
-            left: 10.0,
-            top: 12.0,
-            bottom: 12.0,
-          ),
+          padding: const .only(left: 10.0, top: 12.0, bottom: 12.0),
           child: Row(
             spacing: 20.0,
             children: [
@@ -260,10 +251,7 @@ class BlockSemanticsToDrawerClosed extends StatelessWidget {
     return ValueListenableBuilder<DrawerState>(
       valueListenable: ZoomDrawer.of(context)!.stateNotifier,
       builder: (_, state, child) {
-        return BlockSemantics(
-          blocking: state == DrawerState.closed,
-          child: child,
-        );
+        return BlockSemantics(blocking: state == .closed, child: child);
       },
       child: child,
     );

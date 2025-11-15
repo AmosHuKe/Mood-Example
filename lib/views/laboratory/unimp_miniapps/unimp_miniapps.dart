@@ -13,7 +13,7 @@ class UniMPMiniappsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(),
+      data: .new(),
       child: Scaffold(
         backgroundColor: const Color(0xFFF1F2F3),
         appBar: AppBar(
@@ -22,12 +22,12 @@ class UniMPMiniappsScreen extends StatelessWidget {
           backgroundColor: const Color(0xFFF1F2F3),
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
-          titleTextStyle: const TextStyle(color: Colors.black, fontSize: 14),
+          titleTextStyle: const .new(color: Colors.black, fontSize: 14),
           title: const Text('uniapp 小程序'),
           leading: ActionButton(
             decoration: const BoxDecoration(
               color: Colors.transparent,
-              borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
+              borderRadius: .only(bottomRight: .circular(18)),
             ),
             child: const Icon(Remix.arrow_left_line, size: 24),
             onTap: () {
@@ -50,14 +50,14 @@ class UniMPMiniappsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 20),
+      padding: const .only(left: 24, right: 24, top: 24, bottom: 20),
       physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       children: [
         /// 版本
         const Padding(
-          padding: EdgeInsets.only(bottom: 24),
+          padding: .only(bottom: 24),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: .start,
             children: [
               Text('UniMPSDK_Android 版本：4.75'),
               Text('UniMPSDK_iOS 版本：4.75'),

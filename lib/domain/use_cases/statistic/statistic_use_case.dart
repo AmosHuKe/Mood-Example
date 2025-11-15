@@ -10,7 +10,7 @@ class StatisticUseCase {
 
   final StatisticRepository _statisticRepository;
 
-  void _log(Object? value, {Result<Object?> result = const Result.success(null)}) {
+  void _log(Object? value, {Result<Object?> result = const .success(null)}) {
     LogUtils.log('${'[${this.runtimeType}]'.blue} ${value}', result: result);
   }
 
@@ -20,10 +20,10 @@ class StatisticUseCase {
     switch (result) {
       case Success<int>():
         _log('${getAppUsageDays.toString()} ${result.value}', result: result);
-        return Result.success(result.value);
+        return .success(result.value);
       case Error<int>():
         _log('${getAppUsageDays.toString()} ${result.error}', result: result);
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -33,10 +33,10 @@ class StatisticUseCase {
     switch (result) {
       case Success<int>():
         _log('${getAppMoodCount.toString()} ${result.value}', result: result);
-        return Result.success(result.value);
+        return .success(result.value);
       case Error<int>():
         _log('${getAppMoodCount.toString()} ${result.error}', result: result);
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -46,10 +46,10 @@ class StatisticUseCase {
     switch (result) {
       case Success<int>():
         _log('${getMoodScoreAverage.toString()} ${result.value}', result: result);
-        return Result.success(result.value);
+        return .success(result.value);
       case Error<int>():
         _log('${getMoodScoreAverage.toString()} ${result.error}', result: result);
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -66,10 +66,10 @@ class StatisticUseCase {
           '${getMoodScoreAverageRecently.toString()} ${jsonEncode(result.value)}',
           result: result,
         );
-        return Result.success(result.value);
+        return .success(result.value);
       case Error<List<StatisticMoodScoreAverageRecentlyModel>>():
         _log('${getMoodScoreAverageRecently.toString()} ${result.error}', result: result);
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 
@@ -81,10 +81,10 @@ class StatisticUseCase {
     switch (result) {
       case Success<List<StatisticMoodCountRecentlyModel>>():
         _log('${getMoodCountRecently.toString()} ${jsonEncode(result.value)}', result: result);
-        return Result.success(result.value);
+        return .success(result.value);
       case Error<List<StatisticMoodCountRecentlyModel>>():
         _log('${getMoodCountRecently.toString()} ${result.error}', result: result);
-        return Result.error(result.error);
+        return .error(result.error);
     }
   }
 }

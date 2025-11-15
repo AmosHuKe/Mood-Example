@@ -11,7 +11,7 @@ class TiltExampleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(),
+      data: .new(),
       child: Scaffold(
         backgroundColor: const Color(0xFFF1F2F3),
         appBar: AppBar(
@@ -25,7 +25,7 @@ class TiltExampleScreen extends StatelessWidget {
           leading: ActionButton(
             decoration: const BoxDecoration(
               color: Colors.transparent,
-              borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
+              borderRadius: .only(bottomRight: .circular(18)),
             ),
             child: const Icon(Remix.arrow_left_line, size: 24),
             onTap: () => context.pop(),
@@ -47,14 +47,16 @@ class TiltExample extends StatelessWidget {
       innerBox.add(
         TiltParallax(
           size: Offset(-20.0 * i, -30.0 * i),
-          child: Container(
+          child: SizedBox(
             width: 200 * (1 - i * 0.05),
             height: 200 * (1 - i * 0.05),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                width: 4 * (1 - i * 0.05),
-                color: Colors.white.withValues(alpha: 1 - (i - 1) * 0.1),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                shape: .circle,
+                border: .all(
+                  width: 4 * (1 - i * 0.05),
+                  color: Colors.white.withValues(alpha: 1 - (i - 1) * 0.1),
+                ),
               ),
             ),
           ),
@@ -64,25 +66,25 @@ class TiltExample extends StatelessWidget {
 
     return Center(
       child: Tilt(
-        borderRadius: BorderRadius.circular(24.0),
-        tiltConfig: const TiltConfig(
+        borderRadius: .circular(24.0),
+        tiltConfig: const .new(
           angle: 20,
           leaveCurve: Curves.easeInOutCubicEmphasized,
-          leaveDuration: Duration(milliseconds: 1200),
+          leaveDuration: .new(milliseconds: 1200),
         ),
-        lightConfig: const LightConfig(disable: true),
-        shadowConfig: const ShadowConfig(disable: true),
-        childLayout: ChildLayout(
+        lightConfig: const .new(disable: true),
+        shadowConfig: const .new(disable: true),
+        childLayout: .new(
           inner: [
             ...innerBox,
             const Positioned(
               left: 30.0,
               top: 30.0,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: .start,
                 children: [
-                  Text('Flutter Tilt', style: TextStyle(fontSize: 14, color: Colors.white70)),
-                  Text('Layout', style: TextStyle(fontSize: 32, color: Colors.white, height: 1)),
+                  Text('Flutter Tilt', style: .new(fontSize: 14, color: Colors.white70)),
+                  Text('Layout', style: .new(fontSize: 32, color: Colors.white, height: 1)),
                 ],
               ),
             ),
@@ -90,21 +92,18 @@ class TiltExample extends StatelessWidget {
               left: 30.0,
               bottom: 30.0,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: .start,
                 children: [
-                  Text(
-                    'Touch and move around.',
-                    style: TextStyle(fontSize: 14, color: Colors.white70),
-                  ),
+                  Text('Touch and move around.', style: .new(fontSize: 14, color: Colors.white70)),
                 ],
               ),
             ),
           ],
         ),
-        child: Container(
+        child: const SizedBox(
           width: 300,
           height: 500,
-          decoration: const BoxDecoration(color: Colors.black),
+          child: DecoratedBox(decoration: BoxDecoration(color: Colors.black)),
         ),
       ),
     );

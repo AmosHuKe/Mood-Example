@@ -23,7 +23,7 @@ class StatisticScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      body: const StatisticBody(key: Key('widget_statistic_body')),
+      body: const StatisticBody(key: .new('widget_statistic_body')),
     );
   }
 }
@@ -31,7 +31,7 @@ class StatisticScreen extends StatelessWidget {
 class StatisticBody extends StatelessWidget {
   const StatisticBody({super.key});
 
-  final EdgeInsets listPadding = const EdgeInsets.symmetric(horizontal: 24);
+  final listPadding = const EdgeInsets.symmetric(horizontal: 24);
 
   @override
   Widget build(BuildContext context) {
@@ -57,15 +57,15 @@ class StatisticBody extends StatelessWidget {
           flexibleSpace: SafeArea(
             child: Align(
               child: Container(
-                width: double.maxFinite,
-                margin: const EdgeInsets.symmetric(horizontal: 24),
+                width: .maxFinite,
+                margin: const .symmetric(horizontal: 24),
                 child: Wrap(
-                  alignment: WrapAlignment.spaceBetween,
-                  crossAxisAlignment: WrapCrossAlignment.center,
+                  alignment: .spaceBetween,
+                  crossAxisAlignment: .center,
                   children: [
                     Text(
                       appL10n.statistic_title,
-                      style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                      style: const .new(fontSize: 36, fontWeight: .bold),
                       semanticsLabel: appL10n.app_bottomNavigationBar_title_statistic,
                     ),
                     Selector<StatisticViewModel, ({int selectDays})>(
@@ -75,8 +75,8 @@ class StatisticBody extends StatelessWidget {
                       builder: (context, data, child) {
                         final selectDays = data.selectDays;
                         return Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: List.generate(statisticFilterDays.length, (index) {
+                          mainAxisSize: .min,
+                          children: .generate(statisticFilterDays.length, (index) {
                             final filterDays = statisticFilterDays[index];
                             final filterTitle = statisticFilterTitle[index];
                             return FilterButton(
@@ -110,7 +110,7 @@ class StatisticBody extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 48),
+            padding: const .only(bottom: 48),
             child: Column(
               children: [
                 /// 总体统计
@@ -252,7 +252,7 @@ class StatisticMoodLine extends StatelessWidget {
         moodScoreAverage = double.parse((moodScoreSum / data.selectDays).toStringAsFixed(1));
         return StatisticLayout(
           title: appL10n.statistic_moodScoreAverage_title(moodScoreAverage.toString()),
-          subTitle: AppL10n.of(context).statistic_moodScoreAverage_content(data.selectDays),
+          subTitle: appL10n.statistic_moodScoreAverage_content(data.selectDays),
           height: 320,
           statistic: child!,
         );
@@ -314,7 +314,7 @@ class StatisticMoodLineBody extends StatelessWidget {
 
         /// 数据为空的占位
         if (moodEmpty) {
-          listData = List.generate(days, (i) {
+          listData = .generate(days, (i) {
             return const StatisticMoodScoreAverageRecentlyModel(datetime: '', score: 0);
           });
         }
@@ -328,13 +328,13 @@ class StatisticMoodLineBody extends StatelessWidget {
 
         return LineChart(
           LineChartData(
-            clipData: const FlClipData.vertical(),
+            clipData: const .vertical(),
             maxX: days + 1,
             minY: -50,
             maxY: 120,
             lineBarsData: [
               LineChartBarData(
-                spots: List<FlSpot>.generate(listFlSpot.length, (i) {
+                spots: .generate(listFlSpot.length, (i) {
                   return FlSpot(
                     double.parse((i).toString()),
                     double.parse(listFlSpot[i].score.toString()),
@@ -352,21 +352,21 @@ class StatisticMoodLineBody extends StatelessWidget {
                 //   offset: Offset.fromDirection(0, 0),
                 // ),
                 isStrokeCapRound: true,
-                dotData: const FlDotData(show: false),
-                belowBarData: BarAreaData(
+                dotData: const .new(show: false),
+                belowBarData: .new(
                   show: true,
                   gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
+                    begin: .topCenter,
+                    end: .bottomCenter,
                     colors: [themePrimaryColor.withValues(alpha: 0.1), theme.cardColor],
                   ),
                 ),
               ),
             ],
-            lineTouchData: LineTouchData(
-              touchTooltipData: LineTouchTooltipData(
+            lineTouchData: .new(
+              touchTooltipData: .new(
                 fitInsideHorizontally: true,
-                tooltipBorderRadius: BorderRadius.circular(24),
+                tooltipBorderRadius: .circular(24),
                 tooltipMargin: 24,
                 getTooltipColor: (_) => themePrimaryColor,
                 getTooltipItems: (List<LineBarSpot> touchedSpots) {
@@ -382,19 +382,11 @@ class StatisticMoodLineBody extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: '${listFlSpot[i].score} ',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: const .new(color: Colors.white, fontSize: 14, fontWeight: .bold),
                         ),
                         TextSpan(
                           text: listFlSpot[i].datetime.substring(5, 10),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.normal,
-                          ),
+                          style: const .new(color: Colors.white, fontSize: 12, fontWeight: .normal),
                         ),
                       ],
                     );
@@ -422,11 +414,11 @@ class StatisticMoodLineBody extends StatelessWidget {
             ),
             titlesData: FlTitlesData(
               show: true,
-              leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-              rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-              topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-              bottomTitles: AxisTitles(
-                sideTitles: SideTitles(
+              leftTitles: const .new(sideTitles: .new(showTitles: false)),
+              rightTitles: const .new(sideTitles: .new(showTitles: false)),
+              topTitles: const .new(sideTitles: .new(showTitles: false)),
+              bottomTitles: .new(
+                sideTitles: .new(
                   showTitles: true,
                   reservedSize: 18,
                   interval: days > 7 ? ((days / 7) + 1) : (days / 7),
@@ -434,9 +426,9 @@ class StatisticMoodLineBody extends StatelessWidget {
                     final nowListDate = listFlSpot[value.toInt()].datetime;
                     return Text(
                       (nowListDate.toString() != '' ? nowListDate.toString().substring(8, 10) : ''),
-                      style: const TextStyle(
+                      style: const .new(
                         color: AppTheme.staticSubColor,
-                        fontWeight: FontWeight.normal,
+                        fontWeight: .normal,
                         fontSize: 14,
                       ),
                     );
@@ -444,12 +436,12 @@ class StatisticMoodLineBody extends StatelessWidget {
                 ),
               ),
             ),
-            borderData: FlBorderData(
+            borderData: .new(
               show: true,
-              border: Border.all(color: themePrimaryColor.withValues(alpha: 0.1), width: 0.2),
+              border: .all(color: themePrimaryColor.withValues(alpha: 0.1), width: 0.2),
             ),
           ),
-          duration: const Duration(milliseconds: 450),
+          duration: const .new(milliseconds: 450),
           curve: Curves.linearToEaseOut,
         );
       },
@@ -493,7 +485,7 @@ class _StatisticMoodBarState extends State<StatisticMoodBar> {
 
         /// 数据为空的占位
         if (listData.isEmpty) {
-          listData = List.generate(selectDays, (i) {
+          listData = .generate(selectDays, (i) {
             return const StatisticMoodScoreAverageRecentlyModel(
               datetime: '---------- --------',
               score: 0,
@@ -511,7 +503,7 @@ class _StatisticMoodBarState extends State<StatisticMoodBar> {
 
         return BarChart(
           BarChartData(
-            barGroups: List<BarChartGroupData>.generate(listData.length, (i) {
+            barGroups: .generate(listData.length, (i) {
               return makeGroupData(
                 i,
                 double.parse(listData[i].score.toString()),
@@ -519,30 +511,22 @@ class _StatisticMoodBarState extends State<StatisticMoodBar> {
                 width: barWidth,
               );
             }),
-            barTouchData: BarTouchData(
-              touchTooltipData: BarTouchTooltipData(
-                tooltipBorderRadius: BorderRadius.circular(12),
+            barTouchData: .new(
+              touchTooltipData: .new(
+                tooltipBorderRadius: .circular(12),
                 getTooltipColor: (_) => themePrimaryColor,
                 getTooltipItem: (group, groupIndex, rod, rodIndex) {
                   return BarTooltipItem(
                     '',
-                    const TextStyle(),
+                    const .new(),
                     children: [
-                      TextSpan(
+                      .new(
                         text: '${rod.toY}\n',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: const .new(color: Colors.white, fontSize: 14, fontWeight: .bold),
                       ),
-                      TextSpan(
+                      .new(
                         text: listData[group.x].datetime.substring(5, 10),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.normal,
-                        ),
+                        style: const .new(color: Colors.white, fontSize: 12, fontWeight: .normal),
                       ),
                     ],
                   );
@@ -561,23 +545,23 @@ class _StatisticMoodBarState extends State<StatisticMoodBar> {
               },
             ),
             maxY: 100,
-            titlesData: FlTitlesData(
-              topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-              bottomTitles: AxisTitles(
-                sideTitles: SideTitles(
+            titlesData: .new(
+              topTitles: const .new(sideTitles: .new(showTitles: false)),
+              bottomTitles: .new(
+                sideTitles: .new(
                   showTitles: true,
                   getTitlesWidget: (value, titleMeta) {
-                    return const Text('', style: TextStyle(fontSize: 14));
+                    return const Text('', style: .new(fontSize: 14));
                   },
                 ),
               ),
-              leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-              rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              leftTitles: const .new(sideTitles: .new(showTitles: false)),
+              rightTitles: const .new(sideTitles: .new(showTitles: false)),
             ),
-            gridData: const FlGridData(show: false),
-            borderData: FlBorderData(show: false),
+            gridData: const .new(show: false),
+            borderData: .new(show: false),
           ),
-          duration: const Duration(milliseconds: 1000),
+          duration: const .new(milliseconds: 1000),
           curve: Curves.linearToEaseOut,
         );
       },
@@ -605,13 +589,13 @@ class _StatisticMoodBarState extends State<StatisticMoodBar> {
           fromY: 0,
           toY: y,
           gradient: LinearGradient(
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
+            begin: .bottomCenter,
+            end: .topCenter,
             colors: isTouched ? colorTouched : colorUntouched,
           ),
           width: width ?? 14,
-          borderRadius: BorderRadius.circular(14),
-          backDrawRodData: BackgroundBarChartRodData(
+          borderRadius: .circular(14),
+          backDrawRodData: .new(
             show: true,
             color: isDark ? const Color(0xFF2B3034) : AppTheme.staticBackgroundColor1,
             fromY: 100,
@@ -649,16 +633,12 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
 
         /// 空占位
         if (listData.isEmpty) {
-          return const Empty(
-            icon: Icons.donut_small_rounded,
-            size: 64.0,
-            padding: EdgeInsets.only(top: 100),
-          );
+          return const Empty(icon: Icons.donut_small_rounded, size: 64.0, padding: .only(top: 100));
         }
 
         return PieChart(
           PieChartData(
-            sections: List<PieChartSectionData>.generate(listData.length, (i) {
+            sections: .generate(listData.length, (i) {
               /// 数据
               final item = listData[i];
 
@@ -693,11 +673,11 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
                 });
               },
             ),
-            borderData: FlBorderData(show: false),
+            borderData: .new(show: false),
             sectionsSpace: 0,
             centerSpaceRadius: 0,
           ),
-          duration: const Duration(milliseconds: 250),
+          duration: const .new(milliseconds: 250),
           curve: Curves.linearToEaseOut,
         );
       },
@@ -720,25 +700,25 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
       value: value,
       title: value?.toInt().toString(),
       radius: radius,
-      titleStyle: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: Colors.white),
+      titleStyle: .new(fontSize: fontSize, fontWeight: .bold, color: Colors.white),
       badgeWidget: AnimatedContainer(
         duration: PieChart.defaultDuration,
         width: badgeWidth,
         height: badgeHeight,
         decoration: BoxDecoration(
           color: Colors.white,
-          shape: BoxShape.circle,
+          shape: .circle,
           boxShadow: [
-            BoxShadow(
+            .new(
               color: Colors.black.withValues(alpha: 0.2),
-              offset: const Offset(0, 0),
+              offset: const .new(0, 0),
               blurRadius: 4,
             ),
           ],
         ),
-        padding: const EdgeInsets.all(1),
+        padding: const .all(1),
         child: Center(
-          child: Text(title ?? '', style: TextStyle(fontSize: badgeFontSize)),
+          child: Text(title ?? '', style: .new(fontSize: badgeFontSize)),
         ),
       ),
       badgePositionPercentageOffset: 0.9,
@@ -774,27 +754,27 @@ class StatisticsCard extends StatelessWidget {
       label: '$subTitle$title',
       excludeSemantics: true,
       child: Container(
-        constraints: const BoxConstraints(minWidth: 100, minHeight: 110),
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(color: theme.cardColor, borderRadius: BorderRadius.circular(16)),
+        constraints: const .new(minWidth: 100, minHeight: 110),
+        padding: const .all(12),
+        decoration: BoxDecoration(color: theme.cardColor, borderRadius: .circular(16)),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: .start,
           children: [
             Container(
               width: 36,
               height: 36,
-              decoration: const BoxDecoration(color: Colors.black, shape: BoxShape.circle),
+              decoration: const BoxDecoration(color: Colors.black, shape: .circle),
               child: Icon(icon, size: 18, color: Colors.white),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 20, bottom: 10),
+              padding: const .only(top: 20, bottom: 10),
               child: Text(
                 title,
-                style: const TextStyle(fontSize: 14),
-                strutStyle: const StrutStyle(forceStrutHeight: false, leading: 1.5),
+                style: const .new(fontSize: 14),
+                strutStyle: const .new(forceStrutHeight: false, leading: 1.5),
               ),
             ),
-            Text(subTitle, style: const TextStyle(color: AppTheme.staticSubColor, fontSize: 12)),
+            Text(subTitle, style: const .new(color: AppTheme.staticSubColor, fontSize: 12)),
           ],
         ),
       ),
@@ -834,22 +814,18 @@ class StatisticLayout extends StatelessWidget {
       excludeSemantics: true,
       child: Container(
         height: height,
-        decoration: BoxDecoration(color: theme.cardColor, borderRadius: BorderRadius.circular(16)),
-        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(color: theme.cardColor, borderRadius: .circular(16)),
+        padding: const .all(24),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: .stretch,
+          mainAxisAlignment: .start,
+          mainAxisSize: .max,
           children: [
-            Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            Text(title, style: const .new(fontSize: 20, fontWeight: .bold)),
             const SizedBox(height: 4),
             Text(
               subTitle,
-              style: const TextStyle(
-                color: AppTheme.staticSubColor,
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-              ),
+              style: const .new(color: AppTheme.staticSubColor, fontSize: 14, fontWeight: .normal),
             ),
             const SizedBox(height: 38),
             Expanded(child: statistic),
@@ -903,16 +879,16 @@ class FilterButton extends StatelessWidget {
           child: Container(
             width: 42,
             height: 42,
-            margin: const EdgeInsets.symmetric(horizontal: 6),
-            alignment: Alignment.center,
+            margin: const .symmetric(horizontal: 6),
+            alignment: .center,
             decoration: BoxDecoration(
               color: checked ? themePrimaryColor : theme.cardColor,
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: .circular(14),
               boxShadow: checked ? boxShadowChecked : boxShadowUnchecked,
             ),
             child: Text(
               text,
-              style: TextStyle(
+              style: .new(
                 color: checked ? Colors.white : (isDark ? Colors.white : Colors.black87),
                 fontSize: 12,
               ),

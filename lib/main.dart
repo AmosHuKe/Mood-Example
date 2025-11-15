@@ -12,8 +12,5 @@ void main() {
   local.main();
 
   /// 强制竖屏
-  SystemChrome.setPreferredOrientations(<DeviceOrientation>[
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
+  SystemChrome.setPreferredOrientations(<DeviceOrientation>[.portraitUp, .portraitDown]);
 }

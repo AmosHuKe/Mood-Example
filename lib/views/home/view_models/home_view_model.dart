@@ -29,9 +29,9 @@ class HomeViewModel extends ChangeNotifier {
         _moodCategoryAll = loadUseCaseResult.value;
         _loading = false;
         notifyListeners();
-        return const Result.success(null);
+        return const .success(null);
       case Error<List<MoodCategoryModel>>():
-        return Result.error(loadUseCaseResult.error);
+        return .error(loadUseCaseResult.error);
     }
   }
 }

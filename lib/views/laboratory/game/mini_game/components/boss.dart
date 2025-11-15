@@ -20,11 +20,11 @@ class Boss extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseL
     /// 生命条
     setupLifeBar(
       size: Vector2(tileSize * 2.5, tileSize / 5),
-      barLifeDrawPosition: BarLifeDrawPosition.top,
+      barLifeDrawPosition: .top,
       showLifeText: false,
       borderWidth: 2,
       borderColor: Colors.white.withValues(alpha: 0.5),
-      borderRadius: BorderRadius.circular(2),
+      borderRadius: .circular(2),
       textOffset: Vector2(16, tileSize * 0.2),
     );
   }

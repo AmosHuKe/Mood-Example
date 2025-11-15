@@ -50,14 +50,14 @@ class MoodCategorySelectScreen extends StatelessWidget {
           backgroundColor: theme.scaffoldBackgroundColor,
           foregroundColor: theme.textTheme.displayLarge!.color,
           shadowColor: Colors.transparent,
-          titleTextStyle: const TextStyle(color: Colors.black, fontSize: 14),
+          titleTextStyle: const .new(color: Colors.black, fontSize: 14),
           leading: Align(
-            alignment: Alignment.topLeft,
+            alignment: .topLeft,
             child: ActionButton(
               semanticsLabel: '关闭',
               decoration: BoxDecoration(
                 color: isDark ? theme.cardColor : AppTheme.staticBackgroundColor1,
-                borderRadius: const BorderRadius.only(bottomRight: Radius.circular(18)),
+                borderRadius: const .only(bottomRight: .circular(18)),
               ),
               child: const Icon(Remix.arrow_left_line, size: 24),
               onTap: () => context.pop(),
@@ -65,7 +65,7 @@ class MoodCategorySelectScreen extends StatelessWidget {
           ),
         ),
         body: const SafeArea(
-          child: MoodCategorySelectBody(key: Key('widget_mood_category_select_body')),
+          child: MoodCategorySelectBody(key: .new('widget_mood_category_select_body')),
         ),
       ),
     );
@@ -84,7 +84,7 @@ class MoodCategorySelectBody extends StatelessWidget {
       children: [
         /// 标题
         Padding(
-          padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 48),
+          padding: const .only(left: 24, right: 24, top: 24, bottom: 48),
           child:
               Selector<
                 MoodCategorySelectViewModel,
@@ -99,31 +99,28 @@ class MoodCategorySelectBody extends StatelessWidget {
                 builder: (context, data, _) {
                   final screenType = data.screenType;
                   final titleText = switch (screenType) {
-                    MoodCategorySelectType.add => appL10n.mood_category_select_title_1,
-                    MoodCategorySelectType.edit => appL10n.mood_category_select_title_2,
+                    .add => appL10n.mood_category_select_title_1,
+                    .edit => appL10n.mood_category_select_title_2,
                   };
                   final selectDatatimeText = switch (screenType) {
-                    MoodCategorySelectType.add => LocaleDatetime.yMMMd(
+                    .add => LocaleDatetime.yMMMd(
                       context,
                       Utils.datetimeFormatToString(data.selectDateTime),
                     ),
-                    MoodCategorySelectType.edit => '',
+                    .edit => '',
                   };
 
                   return Column(
                     children: [
-                      Text(
-                        titleText,
-                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
+                      Text(titleText, style: const .new(fontSize: 24, fontWeight: .bold)),
                       Padding(
-                        padding: const EdgeInsets.only(top: 4),
+                        padding: const .only(top: 4),
                         child: Text(
                           selectDatatimeText,
-                          style: const TextStyle(
+                          style: const .new(
                             color: AppTheme.staticSubColor,
                             fontSize: 14,
-                            fontWeight: FontWeight.normal,
+                            fontWeight: .normal,
                           ),
                         ),
                       ),
@@ -148,7 +145,7 @@ class MoodOption extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       child: Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24, bottom: 48),
+        padding: const .only(left: 24, right: 24, bottom: 48),
         child:
             Selector<
               MoodCategorySelectViewModel,
@@ -205,27 +202,26 @@ class MoodOptionCard extends StatelessWidget {
 
         return AnimatedPress(
           child: GestureDetector(
-            child: Container(
+            child: SizedBox(
               width: 128,
               height: 128,
-              decoration: BoxDecoration(
-                color: theme.cardColor,
-                borderRadius: BorderRadius.circular(32),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 6),
-                    child: Text(icon, style: const TextStyle(fontSize: 32)),
-                  ),
-                  Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
-                ],
+              child: DecoratedBox(
+                decoration: BoxDecoration(color: theme.cardColor, borderRadius: .circular(32)),
+                child: Column(
+                  mainAxisAlignment: .center,
+                  children: [
+                    Padding(
+                      padding: const .only(bottom: 6),
+                      child: Text(icon, style: const .new(fontSize: 32)),
+                    ),
+                    Text(title, style: const .new(fontSize: 16, fontWeight: .w400)),
+                  ],
+                ),
               ),
             ),
             onTap: () {
               switch (screenType) {
-                case MoodCategorySelectType.add:
+                case .add:
                   {
                     final moodData = MoodDataModel(
                       icon: icon,
@@ -242,7 +238,7 @@ class MoodOptionCard extends StatelessWidget {
                       pathParameters: {'moodData': jsonEncode(moodData.toJson())},
                     );
                   }
-                case MoodCategorySelectType.edit:
+                case .edit:
                   {
                     final moodCategoryData = MoodCategoryModel(icon: icon, title: title);
 

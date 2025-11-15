@@ -33,10 +33,7 @@ class SettingLanguage extends StatelessWidget {
                 value: localeSystem,
                 title: Text(
                   appL10n.app_setting_language_system,
-                  style: theme.textTheme.bodyMedium!.copyWith(
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                  ),
+                  style: theme.textTheme.bodyMedium!.copyWith(fontSize: 14, fontWeight: .normal),
                 ),
               ),
             );
@@ -66,7 +63,7 @@ class SettingLanguage extends StatelessWidget {
                       languageList[index].title,
                       style: theme.textTheme.bodyMedium!.copyWith(
                         fontSize: 14,
-                        fontWeight: FontWeight.normal,
+                        fontWeight: .normal,
                       ),
                     ),
                   );

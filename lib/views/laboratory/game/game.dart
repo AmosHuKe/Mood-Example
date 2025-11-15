@@ -19,7 +19,7 @@ class GameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(),
+      data: .new(),
       child: Scaffold(
         backgroundColor: const Color(0xFFF1F2F3),
         appBar: AppBar(
@@ -28,12 +28,12 @@ class GameScreen extends StatelessWidget {
           backgroundColor: const Color(0xFFF1F2F3),
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
-          titleTextStyle: const TextStyle(color: Colors.black, fontSize: 14),
+          titleTextStyle: const .new(color: Colors.black, fontSize: 14),
           title: const Text('游戏合集'),
           leading: ActionButton(
             decoration: const BoxDecoration(
               color: Colors.transparent,
-              borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
+              borderRadius: .only(bottomRight: .circular(18)),
             ),
             child: const Icon(Remix.arrow_left_line, size: 24),
             onTap: () {
@@ -53,7 +53,7 @@ class GameBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 20),
+      padding: const .only(left: 24, right: 24, top: 24, bottom: 20),
       physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       children: [
         OpenCard(

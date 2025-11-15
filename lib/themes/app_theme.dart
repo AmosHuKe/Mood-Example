@@ -42,17 +42,17 @@ class AppTheme implements AppMultipleTheme {
   /// 主题模式 FromString
   ///
   /// - [themeMode]: [ThemeMode.system.name]
-  static ThemeMode themeModeFromString(String themeMode) => ThemeMode.values.firstWhere(
+  static ThemeMode themeModeFromString(String themeMode) => .values.firstWhere(
     (e) => e.name == themeMode,
-    orElse: () => ThemeMode.system, // dart format
+    orElse: () => .system, // dart format
   );
 
   /// 是否深色模式
   bool get isDarkMode {
     Theme.of(context);
     return switch (themeMode) {
-      ThemeMode.system => View.of(context).platformDispatcher.platformBrightness == Brightness.dark,
-      ThemeMode.dark => true,
+      .system => View.of(context).platformDispatcher.platformBrightness == .dark,
+      .dark => true,
       _ => false,
     };
   }

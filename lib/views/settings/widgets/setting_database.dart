@@ -33,19 +33,19 @@ class _SettingDatabaseState extends State<SettingDatabase> with TickerProviderSt
         children: [
           TabBar(
             controller: tabController,
-            labelStyle: const TextStyle(fontWeight: FontWeight.w900),
-            unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
+            labelStyle: const .new(fontWeight: .w900),
+            unselectedLabelStyle: const .new(fontWeight: .w500),
             tabs: [
               Tab(
                 child: Text(
                   appL10n.app_setting_database_export_data,
-                  style: const TextStyle(fontSize: 14),
+                  style: const .new(fontSize: 14),
                 ),
               ),
               Tab(
                 child: Text(
                   appL10n.app_setting_database_import_data,
-                  style: const TextStyle(fontSize: 14),
+                  style: const .new(fontSize: 14),
                 ),
               ),
             ],
@@ -56,16 +56,10 @@ class _SettingDatabaseState extends State<SettingDatabase> with TickerProviderSt
               physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
               children: [
                 /// 导出数据
-                Container(
-                  margin: const EdgeInsets.only(top: 64),
-                  child: const ExportDatabaseBody(),
-                ),
+                const Padding(padding: const .only(top: 64), child: ExportDatabaseBody()),
 
                 /// 导入数据
-                Container(
-                  margin: const EdgeInsets.only(top: 64),
-                  child: const ImportDatabaseBody(),
-                ),
+                const Padding(padding: const .only(top: 64), child: ImportDatabaseBody()),
               ],
             ),
           ),
@@ -96,8 +90,8 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
     return Column(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: .center,
+          crossAxisAlignment: .end,
           children: [
             /// 导入按钮
             AnimatedPress(
@@ -106,81 +100,83 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                   return (importLoading: settingDatabaseViewModel.importLoading);
                 },
                 builder: (context, data, _) {
-                  return Container(
+                  return SizedBox(
                     width: 156,
                     height: 156,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                        colors: [themePrimaryColor, themePrimaryColor.withAlpha(140)],
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: themePrimaryColor.withValues(alpha: 0.2),
-                          offset: const Offset(0, 5.0),
-                          blurRadius: 15.0,
-                          spreadRadius: 2.0,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: .bottomCenter,
+                          end: .topCenter,
+                          colors: [themePrimaryColor, themePrimaryColor.withAlpha(140)],
                         ),
-                      ],
-                      shape: BoxShape.circle,
-                    ),
-                    child: data.importLoading
-                        ? const CupertinoActivityIndicator(radius: 14, color: Color(0xFFFFFFFF))
-                        : Material(
-                            color: Colors.transparent,
-                            child: IconButton(
-                              tooltip: '导入数据按钮',
-                              splashColor: Colors.white10,
-                              highlightColor: Colors.white10,
-                              icon: const Icon(Remix.arrow_up_line),
-                              iconSize: 48,
-                              color: const Color(0xFFFFFFFF),
-                              padding: const EdgeInsets.all(22),
-                              onPressed: () async {
-                                final settingDatabaseViewModel = context
-                                    .read<SettingDatabaseViewModel>();
-                                final importMoodDataResult = await settingDatabaseViewModel
-                                    .importMoodData();
-                                switch (importMoodDataResult) {
-                                  case Success<({String errorFilePath, ImportState importState})>():
-                                    {
-                                      final importState = importMoodDataResult.value.importState;
-                                      switch (importState) {
-                                        /// 导入成功
-                                        case ImportState.success:
-                                          {
-                                            SmartDialog.showToast(
-                                              AppL10n.of(
-                                                context,
-                                              ).app_setting_database_import_data_toast_success,
-                                            );
-
-                                            /// 更新心情数据
-                                            final moodViewModel = context.read<MoodViewModel>();
-                                            moodViewModel.load();
-                                          }
-
-                                        /// 导入错误
-                                        case ImportState.error:
-                                          {
-                                            setState(() {
-                                              errorFilePath =
-                                                  importMoodDataResult.value.errorFilePath;
-                                            });
-                                            SmartDialog.showToast(
-                                              AppL10n.of(
-                                                context,
-                                              ).app_setting_database_import_data_toast_error,
-                                            );
-                                          }
-                                      }
-                                    }
-                                  case Error<({String errorFilePath, ImportState importState})>():
-                                }
-                              },
-                            ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: themePrimaryColor.withValues(alpha: 0.2),
+                            offset: const .new(0, 5.0),
+                            blurRadius: 15.0,
+                            spreadRadius: 2.0,
                           ),
+                        ],
+                        shape: .circle,
+                      ),
+                      child: data.importLoading
+                          ? const CupertinoActivityIndicator(radius: 14, color: Color(0xFFFFFFFF))
+                          : Material(
+                              color: Colors.transparent,
+                              child: IconButton(
+                                tooltip: '导入数据按钮',
+                                splashColor: Colors.white10,
+                                highlightColor: Colors.white10,
+                                icon: const Icon(Remix.arrow_up_line),
+                                iconSize: 48,
+                                color: const Color(0xFFFFFFFF),
+                                padding: const .all(22),
+                                onPressed: () async {
+                                  final settingDatabaseViewModel = context
+                                      .read<SettingDatabaseViewModel>();
+                                  final importMoodDataResult = await settingDatabaseViewModel
+                                      .importMoodData();
+                                  switch (importMoodDataResult) {
+                                    case Success<
+                                      ({String errorFilePath, ImportState importState})
+                                    >():
+                                      {
+                                        final importState = importMoodDataResult.value.importState;
+                                        switch (importState) {
+                                          /// 导入成功
+                                          case .success:
+                                            {
+                                              SmartDialog.showToast(
+                                                appL10n
+                                                    .app_setting_database_import_data_toast_success,
+                                              );
+
+                                              /// 更新心情数据
+                                              final moodViewModel = context.read<MoodViewModel>();
+                                              moodViewModel.load();
+                                            }
+
+                                          /// 导入错误
+                                          case .error:
+                                            {
+                                              setState(() {
+                                                errorFilePath =
+                                                    importMoodDataResult.value.errorFilePath;
+                                              });
+                                              SmartDialog.showToast(
+                                                appL10n
+                                                    .app_setting_database_import_data_toast_error,
+                                              );
+                                            }
+                                        }
+                                      }
+                                    case Error<({String errorFilePath, ImportState importState})>():
+                                  }
+                                },
+                              ),
+                            ),
+                    ),
                   );
                 },
               ),
@@ -195,32 +191,30 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                             child: Container(
                               width: 64,
                               height: 64,
-                              margin: const EdgeInsets.only(left: 12),
+                              margin: const .only(left: 12),
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
+                                  begin: .bottomCenter,
+                                  end: .topCenter,
                                   colors: [
                                     const Color(0xFFf5222d),
                                     const Color(0xFFf5222d).withAlpha(140),
                                   ],
                                 ),
                                 boxShadow: [
-                                  BoxShadow(
+                                  .new(
                                     color: const Color(0xFFf5222d).withValues(alpha: 0.2),
-                                    offset: const Offset(0, 5.0),
+                                    offset: const .new(0, 5.0),
                                     blurRadius: 15.0,
                                     spreadRadius: 2.0,
                                   ),
                                 ],
-                                shape: BoxShape.circle,
+                                shape: .circle,
                               ),
                               child: Material(
                                 color: Colors.transparent,
                                 child: TextButton(
-                                  style: ButtonStyle(
-                                    shape: WidgetStateProperty.all(const CircleBorder()),
-                                  ),
+                                  style: const .new(shape: WidgetStatePropertyAll(CircleBorder())),
                                   onPressed: () {
                                     /// 分享文件
                                     SharePlus.instance.share(
@@ -229,7 +223,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                                   },
                                   child: Text(
                                     appL10n.app_setting_database_import_data_button_error,
-                                    style: const TextStyle(color: Colors.white, fontSize: 12),
+                                    style: const .new(color: Colors.white, fontSize: 12),
                                     semanticsLabel: '导入错误原因下载',
                                   ),
                                 ),
@@ -245,17 +239,17 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                   child: Container(
                     width: 64,
                     height: 64,
-                    margin: const EdgeInsets.only(left: 12, top: 12),
+                    margin: const .only(left: 12, top: 12),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
+                        begin: .bottomCenter,
+                        end: .topCenter,
                         colors: [themePrimaryColor, themePrimaryColor.withAlpha(140)],
                       ),
                       boxShadow: [
                         BoxShadow(
                           color: themePrimaryColor.withValues(alpha: 0.2),
-                          offset: const Offset(0, 5.0),
+                          offset: const .new(0, 5.0),
                           blurRadius: 15.0,
                           spreadRadius: 2.0,
                         ),
@@ -265,7 +259,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                     child: Material(
                       color: Colors.transparent,
                       child: TextButton(
-                        style: ButtonStyle(shape: WidgetStateProperty.all(const CircleBorder())),
+                        style: const .new(shape: WidgetStatePropertyAll(CircleBorder())),
                         onPressed: () async {
                           final settingDatabaseViewModel = context.read<SettingDatabaseViewModel>();
                           final importMoodDataTemplateResult = await settingDatabaseViewModel
@@ -283,7 +277,7 @@ class _ImportDatabaseBodyState extends State<ImportDatabaseBody> {
                         },
                         child: Text(
                           appL10n.app_setting_database_import_data_button_template,
-                          style: const TextStyle(color: Colors.white, fontSize: 12),
+                          style: const .new(color: Colors.white, fontSize: 12),
                           semanticsLabel: '导入模板下载',
                         ),
                       ),
@@ -317,58 +311,62 @@ class ExportDatabaseBody extends StatelessWidget {
               return (exportLoading: settingDatabaseViewModel.exportLoading);
             },
             builder: (context, data, _) {
-              return Container(
+              return SizedBox(
                 width: 156,
                 height: 156,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [themePrimaryColor, themePrimaryColor.withAlpha(140)],
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: themePrimaryColor.withValues(alpha: 0.2),
-                      offset: const Offset(0, 5.0),
-                      blurRadius: 15.0,
-                      spreadRadius: 2.0,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: .topCenter,
+                      end: .bottomCenter,
+                      colors: [themePrimaryColor, themePrimaryColor.withAlpha(140)],
                     ),
-                  ],
-                  shape: BoxShape.circle,
-                ),
-                child: data.exportLoading
-                    ? const CupertinoActivityIndicator(radius: 14, color: Color(0xFFFFFFFF))
-                    : Material(
-                        color: Colors.transparent,
-                        child: IconButton(
-                          tooltip: '导出数据按钮',
-                          splashColor: Colors.white10,
-                          highlightColor: Colors.white10,
-                          icon: const Icon(Remix.arrow_down_line),
-                          iconSize: 48,
-                          color: const Color(0xFFFFFFFF),
-                          padding: const EdgeInsets.all(22),
-                          onPressed: () async {
-                            final settingDatabaseViewModel = context
-                                .read<SettingDatabaseViewModel>();
-                            final exportMoodDataAllResult = await settingDatabaseViewModel
-                                .exportMoodDataAll();
-                            switch (exportMoodDataAllResult) {
-                              case Success<String>():
-                                {
-                                  final exportPath = exportMoodDataAllResult.value;
-                                  SmartDialog.showToast(
-                                    appL10n.app_setting_database_export_data_toast_success,
-                                  );
-
-                                  /// 分享文件
-                                  SharePlus.instance.share(ShareParams(files: [XFile(exportPath)]));
-                                }
-                              case Error<String>():
-                            }
-                          },
-                        ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: themePrimaryColor.withValues(alpha: 0.2),
+                        offset: const .new(0, 5.0),
+                        blurRadius: 15.0,
+                        spreadRadius: 2.0,
                       ),
+                    ],
+                    shape: BoxShape.circle,
+                  ),
+                  child: data.exportLoading
+                      ? const CupertinoActivityIndicator(radius: 14, color: Color(0xFFFFFFFF))
+                      : Material(
+                          color: Colors.transparent,
+                          child: IconButton(
+                            tooltip: '导出数据按钮',
+                            splashColor: Colors.white10,
+                            highlightColor: Colors.white10,
+                            icon: const Icon(Remix.arrow_down_line),
+                            iconSize: 48,
+                            color: const Color(0xFFFFFFFF),
+                            padding: const .all(22),
+                            onPressed: () async {
+                              final settingDatabaseViewModel = context
+                                  .read<SettingDatabaseViewModel>();
+                              final exportMoodDataAllResult = await settingDatabaseViewModel
+                                  .exportMoodDataAll();
+                              switch (exportMoodDataAllResult) {
+                                case Success<String>():
+                                  {
+                                    final exportPath = exportMoodDataAllResult.value;
+                                    SmartDialog.showToast(
+                                      appL10n.app_setting_database_export_data_toast_success,
+                                    );
+
+                                    /// 分享文件
+                                    SharePlus.instance.share(
+                                      ShareParams(files: [XFile(exportPath)]),
+                                    );
+                                  }
+                                case Error<String>():
+                              }
+                            },
+                          ),
+                        ),
+                ),
               );
             },
           ),

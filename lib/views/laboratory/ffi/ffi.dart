@@ -29,10 +29,10 @@ class _FFIScreenState extends State<FFIScreen> {
   late DynamicLibrary dl;
 
   /// 接收端口1
-  final ReceivePort receivePort1 = ReceivePort();
+  final ReceivePort receivePort1 = .new();
 
   /// 接收端口2
-  final ReceivePort receivePort2 = ReceivePort();
+  final ReceivePort receivePort2 = .new();
 
   String testText1 = '';
   String testText2 = '';
@@ -59,7 +59,7 @@ class _FFIScreenState extends State<FFIScreen> {
   /// 初始化 FFI
   void ffiInit() {
     /// 加载库 符号表
-    dl = Platform.isAndroid ? DynamicLibrary.open('libffi.so') : DynamicLibrary.process();
+    dl = Platform.isAndroid ? .open('libffi.so') : .process();
 
     /// 查找 DartApi 初始化函数
     final initDartApiDL = dl.lookupFunction<NativeDartInitializeApiDL, DartInitializeApiDL>(
@@ -123,7 +123,7 @@ class _FFIScreenState extends State<FFIScreen> {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(),
+      data: .new(),
       child: Scaffold(
         backgroundColor: const Color(0xFFF1F2F3),
         appBar: AppBar(
@@ -132,12 +132,12 @@ class _FFIScreenState extends State<FFIScreen> {
           backgroundColor: const Color(0xFFF1F2F3),
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
-          titleTextStyle: const TextStyle(color: Colors.black, fontSize: 14),
+          titleTextStyle: const .new(color: Colors.black, fontSize: 14),
           title: const Text('FFI 异步调用 C/C++'),
           leading: ActionButton(
             decoration: const BoxDecoration(
               color: Colors.transparent,
-              borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
+              borderRadius: .only(bottomRight: .circular(18)),
             ),
             child: const Icon(Remix.arrow_left_line, size: 24),
             onTap: () => context.pop(),
@@ -145,25 +145,25 @@ class _FFIScreenState extends State<FFIScreen> {
         ),
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(12),
+            padding: const .all(12),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: .start,
               children: [
                 Text(
                   '接收端口 ${receivePort1.sendPort.nativePort} 信息：',
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  style: const .new(fontSize: 14, fontWeight: .bold),
                 ),
                 testLoading1
                     ? const CupertinoActivityIndicator(color: Colors.grey)
-                    : Text(testText1, style: const TextStyle(fontSize: 14)),
+                    : Text(testText1, style: const .new(fontSize: 14)),
                 const SizedBox(height: 24),
                 Text(
                   '接收端口 ${receivePort2.sendPort.nativePort} 信息：',
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 14, fontWeight: .bold),
                 ),
                 testLoading2
                     ? const CupertinoActivityIndicator(color: Colors.grey)
-                    : Text(testText2, style: const TextStyle(fontSize: 14)),
+                    : Text(testText2, style: const .new(fontSize: 14)),
               ],
             ),
           ),

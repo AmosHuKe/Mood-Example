@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
@@ -17,7 +16,7 @@ class MiniFantasyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(),
+      data: .new(),
       child: Scaffold(
         backgroundColor: const Color(0xFFF1F2F3),
         appBar: AppBar(
@@ -26,12 +25,12 @@ class MiniFantasyScreen extends StatelessWidget {
           backgroundColor: const Color(0xFFF1F2F3),
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
-          titleTextStyle: const TextStyle(color: Colors.black, fontSize: 14),
+          titleTextStyle: const .new(color: Colors.black, fontSize: 14),
           title: const Text('MiniFantasy'),
           leading: ActionButton(
             decoration: const BoxDecoration(
               color: Colors.transparent,
-              borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
+              borderRadius: .only(bottomRight: .circular(18)),
             ),
             child: const Icon(Remix.arrow_left_line, size: 24),
             onTap: () {
@@ -59,16 +58,10 @@ class Game extends StatelessWidget {
           showCollisionArea: false,
           playerControllers: [
             Joystick(
-              directional: JoystickDirectional(margin: const EdgeInsets.all(65)),
-              actions: [
-                JoystickAction(
-                  actionId: 1,
-                  color: Colors.deepOrange,
-                  margin: const EdgeInsets.all(65),
-                ),
-              ],
+              directional: .new(margin: const .all(65)),
+              actions: [.new(actionId: 1, color: Colors.deepOrange, margin: const .all(65))],
             ),
-            Keyboard(config: KeyboardConfig(acceptedKeys: [LogicalKeyboardKey.space])),
+            Keyboard(config: .new(acceptedKeys: [.space])),
           ],
           map: WorldMapByTiled(
             WorldMapReader.fromAsset('$assetsPath/tiles/map.json'),
@@ -79,7 +72,7 @@ class Game extends StatelessWidget {
             },
           ),
           player: HumanPlayer(Vector2(4 * tileSize, 4 * tileSize)),
-          cameraConfig: CameraConfig(zoom: 1),
+          cameraConfig: .new(zoom: 1),
           lightingColorGame: Colors.black.withValues(alpha: 0.7),
           // progress: Container(
           //   color: Colors.black,
@@ -95,10 +88,10 @@ class Game extends StatelessWidget {
               return MiniMap(
                 game: game,
                 zoom: 0.8,
-                margin: const EdgeInsets.all(20),
-                borderRadius: BorderRadius.circular(100),
+                margin: const .all(20),
+                borderRadius: .circular(100),
                 size: Vector2.all(constraints.maxHeight / 5),
-                border: Border.all(color: Colors.white.withValues(alpha: 0.5)),
+                border: .all(color: Colors.white.withValues(alpha: 0.5)),
                 playerColor: Colors.green,
                 enemyColor: Colors.red,
                 npcColor: Colors.red,

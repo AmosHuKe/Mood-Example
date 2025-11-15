@@ -16,9 +16,9 @@ class ApplicationRepositoryLocal implements ApplicationRepository {
     try {
       final value = await _applicationDao.getAppThemeMode();
       final appThemeMode = AppTheme.themeModeFromString(value ?? '');
-      return Result.success(appThemeMode);
+      return .success(appThemeMode);
     } on Exception catch (e) {
-      return Result.error(e);
+      return .error(e);
     }
   }
 
@@ -26,9 +26,9 @@ class ApplicationRepositoryLocal implements ApplicationRepository {
   Future<Result<bool>> setThemeMode(ThemeMode themeMode) async {
     try {
       await _applicationDao.setAppThemeMode(themeMode);
-      return const Result.success(true);
+      return const .success(true);
     } on Exception catch (e) {
-      return Result.error(e);
+      return .error(e);
     }
   }
 
@@ -37,9 +37,9 @@ class ApplicationRepositoryLocal implements ApplicationRepository {
     try {
       final value = await _applicationDao.getAppMultipleThemeMode();
       final appMultipleThemeMode = MultipleThemeMode.fromString(value ?? '');
-      return Result.success(appMultipleThemeMode);
+      return .success(appMultipleThemeMode);
     } on Exception catch (e) {
-      return Result.error(e);
+      return .error(e);
     }
   }
 
@@ -47,9 +47,9 @@ class ApplicationRepositoryLocal implements ApplicationRepository {
   Future<Result<bool>> setMultipleThemeMode(MultipleThemeMode multipleThemeMode) async {
     try {
       await _applicationDao.setAppMultipleThemeMode(multipleThemeMode.name);
-      return const Result.success(true);
+      return const .success(true);
     } on Exception catch (e) {
-      return Result.error(e);
+      return .error(e);
     }
   }
 
@@ -57,9 +57,9 @@ class ApplicationRepositoryLocal implements ApplicationRepository {
   Future<Result<bool?>> getLocaleSystem() async {
     try {
       final value = await _applicationDao.getAppIsLocaleSystem();
-      return Result.success(value);
+      return .success(value);
     } on Exception catch (e) {
-      return Result.error(e);
+      return .error(e);
     }
   }
 
@@ -67,9 +67,9 @@ class ApplicationRepositoryLocal implements ApplicationRepository {
   Future<Result<bool>> setLocaleSystem(bool localeSystem) async {
     try {
       await _applicationDao.setAppIsLocaleSystem(localeSystem);
-      return const Result.success(true);
+      return const .success(true);
     } on Exception catch (e) {
-      return Result.error(e);
+      return .error(e);
     }
   }
 
@@ -79,14 +79,14 @@ class ApplicationRepositoryLocal implements ApplicationRepository {
       final value = await _applicationDao.getAppLocale();
       if (value != null) {
         final localeLanguageTag = value.split('-');
-        return Result.success(
+        return .success(
           Locale(localeLanguageTag[0], localeLanguageTag.length > 1 ? localeLanguageTag[1] : null),
         );
       } else {
-        return const Result.success(null);
+        return const .success(null);
       }
     } on Exception catch (e) {
-      return Result.error(e);
+      return .error(e);
     }
   }
 
@@ -94,9 +94,9 @@ class ApplicationRepositoryLocal implements ApplicationRepository {
   Future<Result<bool>> setLocale(Locale locale) async {
     try {
       await _applicationDao.setAppLocale(locale);
-      return const Result.success(true);
+      return const .success(true);
     } on Exception catch (e) {
-      return Result.error(e);
+      return .error(e);
     }
   }
 }

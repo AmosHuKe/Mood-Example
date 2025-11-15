@@ -86,22 +86,16 @@ abstract final class AppRouter {
   const AppRouter._();
 
   /// 根路由
-  static final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>(
-    debugLabel: 'root',
-  );
+  static final GlobalKey<NavigatorState> rootNavigatorKey = .new(debugLabel: 'root');
 
   /// 子路由-主屏幕-主页
-  static final GlobalKey<NavigatorState> shellHomeNavigatorKey = GlobalKey<NavigatorState>(
-    debugLabel: 'shellHome',
-  );
+  static final GlobalKey<NavigatorState> shellHomeNavigatorKey = .new(debugLabel: 'shellHome');
 
   /// 子路由-主屏幕-心情详情列表页
-  static final GlobalKey<NavigatorState> shellMoodNavigatorKey = GlobalKey<NavigatorState>(
-    debugLabel: 'shellMood',
-  );
+  static final GlobalKey<NavigatorState> shellMoodNavigatorKey = .new(debugLabel: 'shellMood');
 
   /// 子路由-主屏幕-统计页
-  static final GlobalKey<NavigatorState> shellStatisticNavigatorKey = GlobalKey<NavigatorState>(
+  static final GlobalKey<NavigatorState> shellStatisticNavigatorKey = .new(
     debugLabel: 'shellStatistic',
   );
 
@@ -120,7 +114,7 @@ abstract final class AppRouter {
               /// 主屏幕
               return Init(
                 child: MainScreen(
-                  key: const Key('widget_menu_page'),
+                  key: const .new('widget_menu_page'),
                   navigationShell: navigationShell,
                 ),
               );
