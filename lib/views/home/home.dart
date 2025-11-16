@@ -257,17 +257,19 @@ class NoticeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const .new(maxWidth: 328),
-      child: Stack(
-        children: [
-          /// 阴影
-          shadow(opacity: 0.2, margin: const .only(left: 24, right: 24, top: 16)),
-          shadow(opacity: 0.4, margin: const .only(left: 12, right: 12, top: 8)),
+    return Center(
+      child: ConstrainedBox(
+        constraints: const .new(maxWidth: 328),
+        child: Stack(
+          children: [
+            /// 阴影
+            shadow(opacity: 0.2, margin: const .only(left: 24, right: 24, top: 16)),
+            shadow(opacity: 0.4, margin: const .only(left: 12, right: 12, top: 8)),
 
-          /// 正文
-          const SizedBox(height: 190, child: NoticeMainCard()),
-        ],
+            /// 正文
+            const SizedBox(height: 190, child: NoticeMainCard()),
+          ],
+        ),
       ),
     );
   }

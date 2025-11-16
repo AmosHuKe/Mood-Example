@@ -106,7 +106,7 @@ Windows:
 
 macOS:   
 ```
-[✓] Flutter (Channel stable, 3.35.7, on macOS 14.7 23H124 darwin-x64, locale zh-Hans-CN)
+[✓] Flutter (Channel stable, 3.38.1, on macOS 14.7 23H124 darwin-x64, locale zh-Hans-CN)
 [✓] Android toolchain - develop for Android devices (Android SDK version 36.0.0)
 [✓] Xcode - develop for iOS and macOS (Xcode 16.2)
 [✓] Android Studio (version 2025.1)

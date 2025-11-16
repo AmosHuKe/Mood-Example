@@ -2,21 +2,34 @@ import Flutter
 import UIKit
 
 @main
-@objc class AppDelegate: FlutterAppDelegate,DCUniMPSDKEngineDelegate {
+@objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate, DCUniMPSDKEngineDelegate {
+  var savedLaunchOptions: [UIApplication.LaunchOptionsKey: Any]?
+
   override func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
-    let uniMPMiniApps = FlutterMethodChannel(name: "UniMP_mini_apps",
-                                             binaryMessenger: controller.binaryMessenger)
+    self.savedLaunchOptions = launchOptions
+    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+
+  func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
+    GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
+
+    let uniMPMiniApps = FlutterMethodChannel(name: "UniMP_mini_apps", binaryMessenger: engineBridge.applicationRegistrar.messenger())
     uniMPMiniApps.setMethodCallHandler({
       [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
       switch(call.method) {
         case "open":
           if let arguments = call.arguments as? Dictionary<String,Any> {
             let AppID: String = arguments["AppID"] as? String ?? ""
-            let options = NSMutableDictionary.init(dictionary: launchOptions ?? [:])
+            var opts: [AnyHashable: Any] = [:]
+            if let saved = self?.savedLaunchOptions {
+              for (k, v) in saved {
+                opts[k] = v
+              }
+            }
+            let options = NSMutableDictionary.init(dictionary: opts)
             options.setValue(NSNumber.init(value:true), forKey: "debug")
             DCUniMPSDKEngine.initSDKEnvironment(launchOptions: options as! [AnyHashable : Any]);
             self?.checkUniMPResoutce(appid:AppID)
@@ -28,8 +41,6 @@ import UIKit
         break
       }
     })
-    GeneratedPluginRegistrant.register(with: self)
-    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 
   func checkUniMPResoutce(appid: String) -> Void {
