@@ -10,10 +10,6 @@ class MoodCategoryLoadUseCase {
 
   final MoodCategoryRepository _moodCategoryRepository;
 
-  void _log(Object? value, {Result<Object?> result = const .success(null)}) {
-    LogUtils.log('${'[${this.runtimeType}]'.blue} ${value}', result: result);
-  }
-
   Future<Result<List<MoodCategoryModel>>> execute() async {
     /// 默认值
     const moodCategoryList = <MoodCategoryModel>[
@@ -39,25 +35,16 @@ class MoodCategoryLoadUseCase {
                 .setMoodCategoryDefault(moodCategoryList);
             switch (setMoodCategoryDefaultResult) {
               case Success<bool>():
-                _log(
-                  '${execute.toString()} ${setMoodCategoryDefaultResult.value}',
-                  result: setMoodCategoryDefaultResult,
-                );
+                LogUtils.stackTraceLog(StackTrace.current, result: setMoodCategoryDefaultResult);
                 return _getMoodCategoryAll();
               case Error<bool>():
-                _log(
-                  '${execute.toString()} ${setMoodCategoryDefaultResult.error}',
-                  result: setMoodCategoryDefaultResult,
-                );
+                LogUtils.stackTraceLog(StackTrace.current, result: setMoodCategoryDefaultResult);
                 return .error(setMoodCategoryDefaultResult.error);
             }
           }
         }
       case Error<bool?>():
-        _log(
-          '${execute.toString()} ${getInitMoodCategoryDefaultResult.error}',
-          result: getInitMoodCategoryDefaultResult,
-        );
+        LogUtils.stackTraceLog(StackTrace.current, result: getInitMoodCategoryDefaultResult);
         return .error(getInitMoodCategoryDefaultResult.error);
     }
   }
@@ -67,16 +54,14 @@ class MoodCategoryLoadUseCase {
     final getMoodCategoryAllResult = await _moodCategoryRepository.getMoodCategoryAll();
     switch (getMoodCategoryAllResult) {
       case Success<List<MoodCategoryModel>>():
-        _log(
-          '${_getMoodCategoryAll.toString()} ${json.encode(getMoodCategoryAllResult.value)}',
+        LogUtils.stackTraceLog(
+          StackTrace.current,
           result: getMoodCategoryAllResult,
+          message: json.encode(getMoodCategoryAllResult.value),
         );
         return .success(getMoodCategoryAllResult.value);
       case Error<List<MoodCategoryModel>>():
-        _log(
-          '${_getMoodCategoryAll.toString()} ${getMoodCategoryAllResult.error}',
-          result: getMoodCategoryAllResult,
-        );
+        LogUtils.stackTraceLog(StackTrace.current, result: getMoodCategoryAllResult);
         return .error(getMoodCategoryAllResult.error);
     }
   }

@@ -8,19 +8,15 @@ class SecurityKeyUseCase {
 
   final SecurityKeyRepository _securityKeyRepository;
 
-  void _log(Object? value, {Result<Object?> result = const .success(null)}) {
-    LogUtils.log('${'[${this.runtimeType}]'.blue} ${value}', result: result);
-  }
-
   /// 获取安全密码内容
   Future<Result<String>> getKeyPassword() async {
     final keyPasswordResult = await _securityKeyRepository.getKeyPassword();
     switch (keyPasswordResult) {
       case Success<String?>():
-        _log('${getKeyPassword.toString()} ${keyPasswordResult.value}', result: keyPasswordResult);
+        LogUtils.stackTraceLog(StackTrace.current, result: keyPasswordResult);
         return .success(keyPasswordResult.value ?? '');
       case Error<String?>():
-        _log('${getKeyPassword.toString()} ${keyPasswordResult.error}', result: keyPasswordResult);
+        LogUtils.stackTraceLog(StackTrace.current, result: keyPasswordResult);
         return .error(keyPasswordResult.error);
     }
   }
@@ -30,10 +26,10 @@ class SecurityKeyUseCase {
     final result = await _securityKeyRepository.setKeyPassword(keyPassword);
     switch (result) {
       case Success<bool>():
-        _log('${setKeyPassword.toString()} ${keyPassword}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .success(result.value);
       case Error<bool>():
-        _log('${setKeyPassword.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
@@ -44,13 +40,10 @@ class SecurityKeyUseCase {
     switch (keyBiometricResult) {
       case Success<bool?>():
         final resultValue = keyBiometricResult.value ?? false;
-        _log('${getKeyBiometric.toString()} ${resultValue}', result: keyBiometricResult);
+        LogUtils.stackTraceLog(StackTrace.current, result: keyBiometricResult);
         return .success(resultValue);
       case Error<bool?>():
-        _log(
-          '${getKeyBiometric.toString()} ${keyBiometricResult.error}',
-          result: keyBiometricResult,
-        );
+        LogUtils.stackTraceLog(StackTrace.current, result: keyBiometricResult);
         return .error(keyBiometricResult.error);
     }
   }
@@ -60,10 +53,10 @@ class SecurityKeyUseCase {
     final result = await _securityKeyRepository.setKeyBiometric(keyBiometric);
     switch (result) {
       case Success<bool>():
-        _log('${setKeyBiometric.toString()} ${keyBiometric}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .success(result.value);
       case Error<bool>():
-        _log('${setKeyBiometric.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }

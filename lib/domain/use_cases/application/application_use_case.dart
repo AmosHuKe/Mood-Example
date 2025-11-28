@@ -11,19 +11,15 @@ class ApplicationUseCase {
 
   final ApplicationRepository _applicationRepository;
 
-  void _log(Object? value, {Result<Object?> result = const .success(null)}) {
-    LogUtils.log('${'[${this.runtimeType}]'.blue} ${value}', result: result);
-  }
-
   /// 获取主题模式
   Future<Result<ThemeMode>> getThemeMode() async {
     final result = await _applicationRepository.getThemeMode();
     switch (result) {
       case Success<ThemeMode>():
-        _log('${getThemeMode.toString()} ${result.value}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .success(result.value);
       case Error<ThemeMode>():
-        _log('${getThemeMode.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
@@ -33,10 +29,10 @@ class ApplicationUseCase {
     final result = await _applicationRepository.setThemeMode(themeMode);
     switch (result) {
       case Success<bool>():
-        _log('${setThemeMode.toString()} ${themeMode}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .success(result.value);
       case Error<bool>():
-        _log('${setThemeMode.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
@@ -46,10 +42,10 @@ class ApplicationUseCase {
     final result = await _applicationRepository.getMultipleThemeMode();
     switch (result) {
       case Success<MultipleThemeMode>():
-        _log('${getMultipleThemeMode.toString()} ${result.value}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .success(result.value);
       case Error<MultipleThemeMode>():
-        _log('${getMultipleThemeMode.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
@@ -59,10 +55,10 @@ class ApplicationUseCase {
     final result = await _applicationRepository.setMultipleThemeMode(multipleThemeMode);
     switch (result) {
       case Success<bool>():
-        _log('${setMultipleThemeMode.toString()} ${multipleThemeMode}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .success(result.value);
       case Error<bool>():
-        _log('${setMultipleThemeMode.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
@@ -73,10 +69,10 @@ class ApplicationUseCase {
     switch (result) {
       case Success<bool?>():
         final resultValue = result.value ?? true;
-        _log('${getLocaleSystem.toString()} ${resultValue}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .success(resultValue);
       case Error<bool?>():
-        _log('${getLocaleSystem.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
@@ -86,10 +82,10 @@ class ApplicationUseCase {
     final result = await _applicationRepository.setLocaleSystem(localeSystem);
     switch (result) {
       case Success<bool>():
-        _log('${setLocaleSystem.toString()} ${localeSystem}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .success(result.value);
       case Error<bool>():
-        _log('${setLocaleSystem.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
@@ -100,10 +96,10 @@ class ApplicationUseCase {
     switch (result) {
       case Success<Locale?>():
         final resultValue = result.value ?? Language.zhCN.locale;
-        _log('${getLocale.toString()} ${resultValue}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .success(resultValue);
       case Error<Locale?>():
-        _log('${getLocale.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
@@ -113,10 +109,10 @@ class ApplicationUseCase {
     final result = await _applicationRepository.setLocale(locale);
     switch (result) {
       case Success<bool>():
-        _log('${setLocale.toString()} ${locale}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return setLocaleSystem(false);
       case Error<bool>():
-        _log('${setLocale.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }

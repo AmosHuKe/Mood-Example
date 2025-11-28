@@ -1,4 +1,3 @@
-import 'dart:convert';
 import '../../../utils/log_utils.dart';
 import '../../../utils/result.dart';
 import '../../models/mood/mood_data_model.dart';
@@ -10,19 +9,15 @@ class DataImportExportUseCase {
 
   final DataImportExportRepository _dataImportExportRepository;
 
-  void _log(Object? value, {Result<Object?> result = const .success(null)}) {
-    LogUtils.log('${'[${this.runtimeType}]'.blue} ${value}', result: result);
-  }
-
   /// 获取所有心情数据
   Future<Result<List<MoodDataModel>>> getMoodDataAll() async {
     final result = await _dataImportExportRepository.getMoodDataAll();
     switch (result) {
       case Success<List<MoodDataModel>>():
-        _log('${getMoodDataAll.toString()} ${json.encode(result.value)}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .success(result.value);
       case Error<List<MoodDataModel>>():
-        _log('${getMoodDataAll.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
@@ -33,10 +28,10 @@ class DataImportExportUseCase {
     final result = await _dataImportExportRepository.addMoodDataAll(moodDataList);
     switch (result) {
       case Success<bool>():
-        _log('${addMoodDataAll.toString()} ${json.encode(moodDataList)}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .success(result.value);
       case Error<bool>():
-        _log('${addMoodDataAll.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }

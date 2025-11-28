@@ -1,4 +1,7 @@
-# 1.9.11 (Unreleased)
+# 1.9.12 (Unreleased)
+- [升级] Flutter 3.38.3，Package 升级及适配
+
+# 1.9.11
 - [升级] Flutter 3.38.1
 - [升级] UniMPSDK 4.75 (Android, iOS)
 - [优化] 代码重构

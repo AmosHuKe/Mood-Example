@@ -10,10 +10,6 @@ class MoodDataUseCase {
 
   final MoodDataRepository _moodDataRepository;
 
-  void _log(Object? value, {Result<Object?> result = const .success(null)}) {
-    LogUtils.log('${'[${this.runtimeType}]'.blue} ${value}', result: result);
-  }
-
   /// 获取心情数据
   ///
   /// - [dateTime] 当前选择的日期
@@ -21,10 +17,14 @@ class MoodDataUseCase {
     final result = await _moodDataRepository.getMoodDataByDateTime(dateTime);
     switch (result) {
       case Success<List<MoodDataModel>>():
-        _log('${getMoodDataByDateTime.toString()} ${jsonEncode(result.value)}', result: result);
+        LogUtils.stackTraceLog(
+          StackTrace.current,
+          result: result,
+          message: jsonEncode(result.value),
+        );
         return .success(result.value);
       case Error<List<MoodDataModel>>():
-        _log('${getMoodDataByDateTime.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
@@ -34,10 +34,14 @@ class MoodDataUseCase {
     final result = await _moodDataRepository.getMoodRecordDateAll();
     switch (result) {
       case Success<List<MoodRecordDateModel>>():
-        _log('${getMoodRecordDateAll.toString()} ${jsonEncode(result.value)}', result: result);
+        LogUtils.stackTraceLog(
+          StackTrace.current,
+          result: result,
+          message: jsonEncode(result.value),
+        );
         return .success(result.value);
       case Error<List<MoodRecordDateModel>>():
-        _log('${getMoodRecordDateAll.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
@@ -48,10 +52,10 @@ class MoodDataUseCase {
     final result = await _moodDataRepository.addMoodData(moodData);
     switch (result) {
       case Success<bool>():
-        _log('${addMoodData.toString()} ${jsonEncode(moodData)}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result, message: jsonEncode(moodData));
         return .success(result.value);
       case Error<bool>():
-        _log('${addMoodData.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
@@ -62,10 +66,10 @@ class MoodDataUseCase {
     final result = await _moodDataRepository.editMoodData(moodData);
     switch (result) {
       case Success<bool>():
-        _log('${editMoodData.toString()} ${jsonEncode(moodData)}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result, message: jsonEncode(moodData));
         return .success(result.value);
       case Error<bool>():
-        _log('${editMoodData.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
@@ -77,10 +81,10 @@ class MoodDataUseCase {
     final result = await _moodDataRepository.deleteMoodData(moodId);
     switch (result) {
       case Success<bool>():
-        _log('${deleteMoodData.toString()} ${moodId}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result, message: moodId.toString());
         return .success(result.value);
       case Error<bool>():
-        _log('${deleteMoodData.toString()} ${result.error}', result: result);
+        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
