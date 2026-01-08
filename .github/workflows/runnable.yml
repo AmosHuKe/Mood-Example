@@ -20,14 +20,14 @@ on:
       - '**.md'
 
 env:
-  FLUTTER_VERSION: '3.38.3'
+  FLUTTER_VERSION: '3.38.5'
 
 jobs:
   code-analysis:
     name: 'Code Analysis'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: flutter-actions/setup-flutter@v4
         with:
           channel: stable
@@ -51,7 +51,7 @@ jobs:
   #     matrix:
   #       api-level: [31, 35]
   #   steps:
-  #     - uses: actions/checkout@v5
+  #     - uses: actions/checkout@v6
   #     - uses: actions/setup-java@v4
   #       with:
   #         distribution: 'zulu'
@@ -99,7 +99,7 @@ jobs:
     name: 'Test Build :: ${{ matrix.os }} :: ${{ matrix.build }}'
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
