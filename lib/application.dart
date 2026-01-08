@@ -9,6 +9,7 @@ import 'router.dart';
 import 'shared/config/multiple_theme_mode.dart';
 import 'shared/providers/application_provider.dart';
 import 'shared/themes/app_theme.dart';
+import 'shared/utils/log_utils.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});
@@ -46,8 +47,8 @@ class Application extends StatelessWidget {
           localizationsDelegates: AppL10n.localizationsDelegates,
           locale: data.localeSystem ? null : data.locale,
           localeListResolutionCallback: (locales, supportedLocales) {
-            print('App 当前的语言环境：$locales');
-            print('App 支持的语言环境：$supportedLocales');
+            Log.instance.info('App 当前的语言环境：$locales');
+            Log.instance.info('App 支持的语言环境：$supportedLocales');
             return null;
           },
           title: 'Mood',

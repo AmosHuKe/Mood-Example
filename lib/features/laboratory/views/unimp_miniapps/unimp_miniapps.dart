@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
+import '../../../../shared/utils/log_utils.dart';
 import '../../../../widgets/action_button/action_button.dart';
 import '../laboratory.dart' show OpenCard;
 
@@ -92,9 +93,9 @@ class UniMPMiniappsBody extends StatelessWidget {
       // 通过渠道，调用原生代码代码的方法
       final future = await channel.invokeMethod('open', {'AppID': appID});
       // 打印执行的结果
-      print(future.toString());
+      Log.instance.success(future.toString());
     } on PlatformException catch (e) {
-      print(e.toString());
+      Log.instance.error(e.toString());
     }
   }
 }

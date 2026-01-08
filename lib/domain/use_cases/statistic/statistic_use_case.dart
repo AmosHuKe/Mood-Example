@@ -1,6 +1,6 @@
 import 'dart:convert';
-import '../../../utils/log_utils.dart';
-import '../../../utils/result.dart';
+import '../../../shared/utils/log_utils.dart';
+import '../../../shared/utils/result.dart';
 import '../../models/statistic/statistic_model.dart';
 import '../../repositories/statistic/statistic_repository.dart';
 
@@ -13,12 +13,13 @@ class StatisticUseCase {
   /// 获取 App 累计记录天数
   Future<Result<int>> getAppUsageDays() async {
     final result = await _statisticRepository.getAppUsageDays();
+    if (Log.isDebug) {
+      Log.instance.resultStackTraceLog(StackTrace.current, result);
+    }
     switch (result) {
       case Success<int>():
-        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .success(result.value);
       case Error<int>():
-        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
@@ -26,12 +27,13 @@ class StatisticUseCase {
   /// 获取 App 累计记录条数
   Future<Result<int>> getAppMoodCount() async {
     final result = await _statisticRepository.getAppMoodCount();
+    if (Log.isDebug) {
+      Log.instance.resultStackTraceLog(StackTrace.current, result);
+    }
     switch (result) {
       case Success<int>():
-        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .success(result.value);
       case Error<int>():
-        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
@@ -39,12 +41,13 @@ class StatisticUseCase {
   /// 获取平均情绪波动
   Future<Result<int>> getMoodScoreAverage() async {
     final result = await _statisticRepository.getMoodScoreAverage();
+    if (Log.isDebug) {
+      Log.instance.resultStackTraceLog(StackTrace.current, result);
+    }
     switch (result) {
       case Success<int>():
-        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .success(result.value);
       case Error<int>():
-        LogUtils.stackTraceLog(StackTrace.current, result: result);
         return .error(result.error);
     }
   }
@@ -58,14 +61,14 @@ class StatisticUseCase {
     final result = await _statisticRepository.getMoodScoreAverageRecently(days);
     switch (result) {
       case Success<List<StatisticMoodScoreAverageRecentlyModel>>():
-        LogUtils.stackTraceLog(
-          StackTrace.current,
-          result: result,
-          message: jsonEncode(result.value),
-        );
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(StackTrace.current, result, jsonEncode(result.value));
+        }
         return .success(result.value);
       case Error<List<StatisticMoodScoreAverageRecentlyModel>>():
-        LogUtils.stackTraceLog(StackTrace.current, result: result);
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(StackTrace.current, result);
+        }
         return .error(result.error);
     }
   }
@@ -77,14 +80,14 @@ class StatisticUseCase {
     final result = await _statisticRepository.getMoodCountRecently(days);
     switch (result) {
       case Success<List<StatisticMoodCountRecentlyModel>>():
-        LogUtils.stackTraceLog(
-          StackTrace.current,
-          result: result,
-          message: jsonEncode(result.value),
-        );
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(StackTrace.current, result, jsonEncode(result.value));
+        }
         return .success(result.value);
       case Error<List<StatisticMoodCountRecentlyModel>>():
-        LogUtils.stackTraceLog(StackTrace.current, result: result);
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(StackTrace.current, result);
+        }
         return .error(result.error);
     }
   }

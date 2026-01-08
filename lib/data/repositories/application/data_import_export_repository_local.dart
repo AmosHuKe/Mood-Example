@@ -1,6 +1,6 @@
 import '../../../domain/models/mood/mood_data_model.dart';
 import '../../../domain/repositories/application/data_import_export_repository.dart';
-import '../../../utils/result.dart';
+import '../../../shared/utils/result.dart';
 import '../../dao/application/data_import_export_dao.dart';
 
 class DataImportExportRepositoryLocal implements DataImportExportRepository {

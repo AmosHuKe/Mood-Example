@@ -7,7 +7,7 @@ import 'package:remixicon/remixicon.dart';
 
 import '../../l10n/gen/app_localizations.dart';
 import '../../shared/providers/security_key_provider.dart';
-import '../../utils/local_auth_utils.dart';
+import '../../shared/utils/local_auth_utils.dart';
 
 /// 锁屏界面弹出
 ///

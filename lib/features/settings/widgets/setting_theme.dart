@@ -6,6 +6,7 @@ import '../../../l10n/gen/app_localizations.dart';
 import '../../../shared/config/multiple_theme_mode.dart';
 import '../../../shared/providers/application_provider.dart';
 import '../../../shared/themes/app_theme.dart';
+import '../../../shared/utils/log_utils.dart';
 import '../../../widgets/animation/animation.dart';
 
 /// 主题设置
@@ -169,7 +170,7 @@ class MultipleThemeBody extends StatelessWidget {
                 selected: multipleThemeMode == appMultipleThemeMode,
                 child: Container(alignment: .center, color: primaryColor),
                 onTap: () {
-                  print('当前选择主题：${appMultipleThemeMode.name}');
+                  Log.instance.info('当前选择主题：${appMultipleThemeMode.name}');
                   final applicationProvider = context.read<ApplicationProvider>();
                   applicationProvider.multipleThemeMode = appMultipleThemeMode;
                 },

@@ -5,7 +5,8 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../l10n/gen/app_localizations.dart';
 import '../../../shared/themes/app_theme.dart';
-import '../../../utils/utils.dart';
+import '../../../shared/utils/log_utils.dart';
+import '../../../shared/utils/utils.dart';
 import '../../../widgets/action_button/action_button.dart';
 import '../../../widgets/animation/animation.dart';
 
@@ -37,7 +38,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
-            print('加载中：$progress');
+            Log.instance.info('加载中：$progress');
             if (!mounted) return;
             final appL10n = AppL10n.of(context);
             setState(() {
@@ -45,19 +46,19 @@ class _WebViewScreenState extends State<WebViewScreen> {
             });
           },
           onPageStarted: (String url) {
-            print('开始加载：$url');
+            Log.instance.info('开始加载：$url');
             if (!mounted) return;
             setState(() {
               pageTitle = url;
             });
           },
           onPageFinished: (String url) {
-            print('加载完成：$url');
+            Log.instance.success('加载完成：$url');
             if (!mounted) return;
             webViewInit();
           },
           onWebResourceError: (WebResourceError error) {
-            print('加载错误：$error');
+            Log.instance.error('加载错误：$error');
           },
         ),
       )

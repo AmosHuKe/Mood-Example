@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../shared/config/multiple_theme_mode.dart';
-import '../../../utils/result.dart';
+import '../../../shared/utils/result.dart';
 
 abstract class ApplicationRepository {
   /// 获取主题模式

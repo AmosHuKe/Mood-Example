@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
-import '../l10n/gen/app_localizations.dart';
+import '../../l10n/gen/app_localizations.dart';
 
 /// 国际化日期
 abstract final class LocaleDatetime {

@@ -7,7 +7,8 @@ import 'package:remixicon/remixicon.dart';
 
 import '../../../l10n/gen/app_localizations.dart';
 import '../../../router.dart';
-import '../../../utils/utils.dart';
+import '../../../shared/utils/log_utils.dart';
+import '../../../shared/utils/utils.dart';
 import '../../../widgets/show_modal_bottom_detail/show_modal_bottom_detail.dart';
 import '../widgets/setting_database.dart';
 import '../widgets/setting_key.dart';
@@ -125,7 +126,7 @@ class Menu extends StatelessWidget {
           icon: Remix.database_2_line,
           title: appL10n.app_setting_database,
           onTap: () {
-            print('数据');
+            Log.instance.info('数据');
             showModalBottomDetail(
               context: context,
               child: const SettingDatabase(),
@@ -136,7 +137,7 @@ class Menu extends StatelessWidget {
           icon: Remix.shield_keyhole_line,
           title: appL10n.app_setting_security,
           onTap: () {
-            print('安全');
+            Log.instance.info('安全');
             showModalBottomDetail(context: context, child: const SettingKey());
           },
         ),
@@ -144,7 +145,7 @@ class Menu extends StatelessWidget {
           icon: Remix.bubble_chart_line,
           title: appL10n.app_setting_theme,
           onTap: () {
-            print('主题');
+            Log.instance.info('主题');
             showModalBottomDetail(
               context: context,
               child: const SettingTheme(),
@@ -155,7 +156,7 @@ class Menu extends StatelessWidget {
           icon: Remix.global_line,
           title: appL10n.app_setting_language,
           onTap: () {
-            print('语言');
+            Log.instance.info('语言');
             showModalBottomDetail(
               context: context,
               child: const SettingLanguage(),
@@ -166,7 +167,7 @@ class Menu extends StatelessWidget {
           icon: Remix.flask_line,
           title: appL10n.app_setting_laboratory,
           onTap: () {
-            print('实验室');
+            Log.instance.info('实验室');
             GoRouter.of(context).pushNamed(Routes.settingLaboratory);
           },
         ),
@@ -174,7 +175,7 @@ class Menu extends StatelessWidget {
           icon: Remix.heart_3_line,
           title: appL10n.app_setting_about,
           onTap: () {
-            print('关于');
+            Log.instance.info('关于');
             final url = ValueBase64(
               'https://github.com/AmosHuKe/Mood-Example',
             ).encode();

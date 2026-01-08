@@ -6,7 +6,8 @@ import 'package:local_auth_android/local_auth_android.dart';
 import 'package:local_auth_darwin/local_auth_darwin.dart';
 import 'package:remixicon/remixicon.dart';
 
-import '../l10n/gen/app_localizations.dart';
+import '../../l10n/gen/app_localizations.dart';
+import 'log_utils.dart';
 
 class LocalAuthUtils {
   final LocalAuthentication auth = .new();
@@ -51,7 +52,7 @@ class LocalAuthUtils {
         );
         return didAuthenticate;
       } on PlatformException catch (e) {
-        print('LocalAuthUtils localAuthBiometric error: ${e.toString()}');
+        Log.instance.error('LocalAuthUtils localAuthBiometric error: ${e.toString()}');
         if (e.code == 'LockedOut') {
           SmartDialog.showToast(appL10n.app_setting_security_localauth_error_1);
         }

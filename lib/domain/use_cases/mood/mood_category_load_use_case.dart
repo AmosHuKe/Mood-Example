@@ -1,6 +1,6 @@
 import 'dart:convert';
-import '../../../utils/log_utils.dart';
-import '../../../utils/result.dart';
+import '../../../shared/utils/log_utils.dart';
+import '../../../shared/utils/result.dart';
 import '../../models/mood/mood_category_model.dart';
 import '../../repositories/mood/mood_category_repository.dart';
 
@@ -33,18 +33,21 @@ class MoodCategoryLoadUseCase {
           } else {
             final setMoodCategoryDefaultResult = await _moodCategoryRepository
                 .setMoodCategoryDefault(moodCategoryList);
+            if (Log.isDebug) {
+              Log.instance.resultStackTraceLog(StackTrace.current, setMoodCategoryDefaultResult);
+            }
             switch (setMoodCategoryDefaultResult) {
               case Success<bool>():
-                LogUtils.stackTraceLog(StackTrace.current, result: setMoodCategoryDefaultResult);
                 return _getMoodCategoryAll();
               case Error<bool>():
-                LogUtils.stackTraceLog(StackTrace.current, result: setMoodCategoryDefaultResult);
                 return .error(setMoodCategoryDefaultResult.error);
             }
           }
         }
       case Error<bool?>():
-        LogUtils.stackTraceLog(StackTrace.current, result: getInitMoodCategoryDefaultResult);
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(StackTrace.current, getInitMoodCategoryDefaultResult);
+        }
         return .error(getInitMoodCategoryDefaultResult.error);
     }
   }
@@ -54,14 +57,18 @@ class MoodCategoryLoadUseCase {
     final getMoodCategoryAllResult = await _moodCategoryRepository.getMoodCategoryAll();
     switch (getMoodCategoryAllResult) {
       case Success<List<MoodCategoryModel>>():
-        LogUtils.stackTraceLog(
-          StackTrace.current,
-          result: getMoodCategoryAllResult,
-          message: json.encode(getMoodCategoryAllResult.value),
-        );
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(
+            StackTrace.current,
+            getMoodCategoryAllResult,
+            json.encode(getMoodCategoryAllResult.value),
+          );
+        }
         return .success(getMoodCategoryAllResult.value);
       case Error<List<MoodCategoryModel>>():
-        LogUtils.stackTraceLog(StackTrace.current, result: getMoodCategoryAllResult);
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(StackTrace.current, getMoodCategoryAllResult);
+        }
         return .error(getMoodCategoryAllResult.error);
     }
   }

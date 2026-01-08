@@ -8,7 +8,7 @@ import '../../../domain/models/statistic/statistic_model.dart';
 import '../../../l10n/gen/app_localizations.dart';
 import '../../../shared/providers/statistic_provider.dart';
 import '../../../shared/themes/app_theme.dart';
-import '../../../utils/utils.dart';
+import '../../../shared/utils/utils.dart';
 import '../../../widgets/animation/animation.dart';
 import '../../../widgets/empty/empty.dart';
 

@@ -229,8 +229,8 @@ $ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 │   │   ├── themes/                                 # 主题相关
 │   │   │   ├── multiple_theme_mode/                # 多主题配色
 │   │   │   │   └── theme_default.dart              # 多主题默认配色
-│   │   └── └── app_theme.dart                      # 主题基础
-│   ├── utils/                                      # 工具相关
+│   │   │   └── app_theme.dart                      # 主题基础
+│   │   └── utils/                                  # 工具相关
 │   ├── widgets/                                    # 通用 Widget 相关
 │   ├── application.dart                            # 主应用
 │   ├── init.dart                                   # 初始化相关
@@ -348,6 +348,7 @@ $ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 | [flutter_lints](https://pub.dev/packages/flutter_lints) | [BSD-3-Clause License](https://pub.dev/packages/flutter_lints/license) |  
 | [intl](https://pub.dev/packages/intl) | [BSD-3-Clause License](https://pub.dev/packages/intl/license) |  
 | [local_auth](https://pub.dev/packages/local_auth) | [BSD-3-Clause License](https://pub.dev/packages/local_auth/license) |  
+| [logging](https://pub.dev/packages/logging) | [BSD-3-Clause License](https://pub.dev/packages/logging/license) |  
 | [go_router](https://pub.dev/packages/go_router) | [BSD-3-Clause License](https://pub.dev/packages/go_router/license) |  
 | [path_provider](https://pub.dev/packages/path_provider) | [BSD-3-Clause License](https://pub.dev/packages/path_provider/license) |  
 | [share_plus](https://pub.dev/packages/share_plus) | [BSD-3-Clause License](https://pub.dev/packages/share_plus/license) |  

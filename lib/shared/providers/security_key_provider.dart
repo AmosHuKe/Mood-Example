@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 
 import '../../domain/use_cases/application/security_key_use_case.dart';
-import '../../utils/result.dart';
 import '../../widgets/lock_screen/lock_screen.dart';
+import '../utils/result.dart';
 
 /// 安全密钥相关
 class SecurityKeyProvider extends ChangeNotifier {

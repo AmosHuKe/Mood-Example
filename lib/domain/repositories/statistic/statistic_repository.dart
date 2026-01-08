@@ -1,5 +1,5 @@
 // dart format width=200
-import '../../../utils/result.dart';
+import '../../../shared/utils/result.dart';
 import '../../models/statistic/statistic_model.dart';
 
 abstract class StatisticRepository {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../domain/repositories/application/application_repository.dart';
 import '../../../shared/config/multiple_theme_mode.dart';
 import '../../../shared/themes/app_theme.dart';
-import '../../../utils/result.dart';
+import '../../../shared/utils/result.dart';
 import '../../dao/application/application_dao.dart';
 
 class ApplicationRepositoryLocal implements ApplicationRepository {

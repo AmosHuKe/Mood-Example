@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../domain/models/statistic/statistic_model.dart';
 import '../../domain/use_cases/statistic/statistic_use_case.dart';
-import '../../utils/result.dart';
+import '../utils/result.dart';
 
 class StatisticProvider extends ChangeNotifier {
   StatisticProvider({required StatisticUseCase statisticUseCase})

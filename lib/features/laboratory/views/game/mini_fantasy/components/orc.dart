@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../shared/utils/log_utils.dart';
 import '../sprite_sheet/sprite_sheet_orc.dart';
 
 const double tileSize = 20.0;
@@ -65,7 +66,7 @@ class Orc extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLi
   void onCollision(Set<Vector2> points, PositionComponent other) {
     /// 碰撞 Orc 不发生碰撞
     if (other is Orc) {
-      print('碰撞 Orc');
+      Log.instance.info('碰撞 Orc');
       return;
     }
     super.onCollision(points, other);

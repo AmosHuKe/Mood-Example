@@ -11,7 +11,7 @@ import '../../../domain/models/mood/mood_data_model.dart';
 import '../../../l10n/gen/app_localizations.dart';
 import '../../../router.dart';
 import '../../../shared/themes/app_theme.dart';
-import '../../../utils/utils.dart';
+import '../../../shared/utils/utils.dart';
 import '../../../widgets/animation/animation.dart';
 import '../providers/home_provider.dart';
 

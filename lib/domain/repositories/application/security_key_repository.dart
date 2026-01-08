@@ -1,4 +1,4 @@
-import '../../../utils/result.dart';
+import '../../../shared/utils/result.dart';
 
 abstract class SecurityKeyRepository {
   /// 获取安全密码内容

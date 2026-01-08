@@ -1,7 +1,7 @@
 import '../../../domain/models/statistic/statistic_model.dart';
 import '../../../domain/repositories/statistic/statistic_repository.dart';
-import '../../../utils/result.dart';
-import '../../../utils/utils.dart';
+import '../../../shared/utils/result.dart';
+import '../../../shared/utils/utils.dart';
 import '../../dao/statistic/statistic_dao.dart';
 
 class StatisticRepositoryLocal implements StatisticRepository {

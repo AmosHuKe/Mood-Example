@@ -7,7 +7,7 @@ import 'package:remixicon/remixicon.dart';
 import '../../../l10n/gen/app_localizations.dart';
 import '../../../shared/providers/security_key_provider.dart';
 import '../../../shared/themes/app_theme.dart';
-import '../../../utils/local_auth_utils.dart';
+import '../../../shared/utils/local_auth_utils.dart';
 import '../../../widgets/lock_screen/lock_screen.dart';
 
 /// 安全

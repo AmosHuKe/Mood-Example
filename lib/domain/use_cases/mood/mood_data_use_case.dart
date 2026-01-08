@@ -1,6 +1,6 @@
 import 'dart:convert';
-import '../../../utils/log_utils.dart';
-import '../../../utils/result.dart';
+import '../../../shared/utils/log_utils.dart';
+import '../../../shared/utils/result.dart';
 import '../../models/mood/mood_data_model.dart';
 import '../../repositories/mood/mood_data_repository.dart';
 
@@ -17,14 +17,14 @@ class MoodDataUseCase {
     final result = await _moodDataRepository.getMoodDataByDateTime(dateTime);
     switch (result) {
       case Success<List<MoodDataModel>>():
-        LogUtils.stackTraceLog(
-          StackTrace.current,
-          result: result,
-          message: jsonEncode(result.value),
-        );
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(StackTrace.current, result, jsonEncode(result.value));
+        }
         return .success(result.value);
       case Error<List<MoodDataModel>>():
-        LogUtils.stackTraceLog(StackTrace.current, result: result);
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(StackTrace.current, result);
+        }
         return .error(result.error);
     }
   }
@@ -34,14 +34,14 @@ class MoodDataUseCase {
     final result = await _moodDataRepository.getMoodRecordDateAll();
     switch (result) {
       case Success<List<MoodRecordDateModel>>():
-        LogUtils.stackTraceLog(
-          StackTrace.current,
-          result: result,
-          message: jsonEncode(result.value),
-        );
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(StackTrace.current, result, jsonEncode(result.value));
+        }
         return .success(result.value);
       case Error<List<MoodRecordDateModel>>():
-        LogUtils.stackTraceLog(StackTrace.current, result: result);
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(StackTrace.current, result);
+        }
         return .error(result.error);
     }
   }
@@ -52,10 +52,14 @@ class MoodDataUseCase {
     final result = await _moodDataRepository.addMoodData(moodData);
     switch (result) {
       case Success<bool>():
-        LogUtils.stackTraceLog(StackTrace.current, result: result, message: jsonEncode(moodData));
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(StackTrace.current, result, jsonEncode(moodData));
+        }
         return .success(result.value);
       case Error<bool>():
-        LogUtils.stackTraceLog(StackTrace.current, result: result);
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(StackTrace.current, result);
+        }
         return .error(result.error);
     }
   }
@@ -66,10 +70,14 @@ class MoodDataUseCase {
     final result = await _moodDataRepository.editMoodData(moodData);
     switch (result) {
       case Success<bool>():
-        LogUtils.stackTraceLog(StackTrace.current, result: result, message: jsonEncode(moodData));
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(StackTrace.current, result, jsonEncode(moodData));
+        }
         return .success(result.value);
       case Error<bool>():
-        LogUtils.stackTraceLog(StackTrace.current, result: result);
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(StackTrace.current, result);
+        }
         return .error(result.error);
     }
   }
@@ -81,10 +89,14 @@ class MoodDataUseCase {
     final result = await _moodDataRepository.deleteMoodData(moodId);
     switch (result) {
       case Success<bool>():
-        LogUtils.stackTraceLog(StackTrace.current, result: result, message: moodId.toString());
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(StackTrace.current, result, moodId.toString());
+        }
         return .success(result.value);
       case Error<bool>():
-        LogUtils.stackTraceLog(StackTrace.current, result: result);
+        if (Log.isDebug) {
+          Log.instance.resultStackTraceLog(StackTrace.current, result);
+        }
         return .error(result.error);
     }
   }

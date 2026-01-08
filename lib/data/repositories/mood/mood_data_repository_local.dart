@@ -1,7 +1,7 @@
 import '../../../domain/models/mood/mood_data_model.dart';
 import '../../../domain/repositories/mood/mood_data_repository.dart';
-import '../../../utils/result.dart';
-import '../../../utils/utils.dart';
+import '../../../shared/utils/result.dart';
+import '../../../shared/utils/utils.dart';
 import '../../dao/mood/mood_data_dao.dart';
 
 class MoodDataRepositoryLocal implements MoodDataRepository {

@@ -1,6 +1,6 @@
 import '../../../domain/models/mood/mood_category_model.dart';
 import '../../../domain/repositories/mood/mood_category_repository.dart';
-import '../../../utils/result.dart';
+import '../../../shared/utils/result.dart';
 import '../../dao/mood/mood_category_dao.dart';
 
 class MoodCategoryRepositoryLocal implements MoodCategoryRepository {

@@ -1,4 +1,4 @@
-import '../../../utils/result.dart';
+import '../../../shared/utils/result.dart';
 import '../../models/mood/mood_data_model.dart';
 
 abstract class DataImportExportRepository {

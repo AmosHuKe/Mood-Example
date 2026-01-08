@@ -8,8 +8,9 @@ import 'package:path_provider/path_provider.dart';
 
 import '../../../domain/models/mood/mood_data_model.dart';
 import '../../../domain/use_cases/application/data_import_export_use_case.dart';
-import '../../../utils/result.dart';
-import '../../../utils/utils.dart';
+import '../../../shared/utils/log_utils.dart';
+import '../../../shared/utils/result.dart';
+import '../../../shared/utils/utils.dart';
 
 /// 导入状态
 enum ImportState { success, error }
@@ -75,7 +76,7 @@ class SettingDatabaseProvider extends ChangeNotifier {
       try {
         Directory(filePath).deleteSync(recursive: true);
       } on FileSystemException catch (e) {
-        print('exportMoodDataAll deleteSync error：$e');
+        Log.instance.error('exportMoodDataAll deleteSync error：$e');
       }
 
       /// 创建 Excel
@@ -161,7 +162,7 @@ class SettingDatabaseProvider extends ChangeNotifier {
       notifyListeners();
       return .success(fileName);
     } on Exception catch (e) {
-      print('exportMoodDataAll error：$e');
+      Log.instance.error('exportMoodDataAll error：$e');
       _exportLoading = false;
       notifyListeners();
       return .error(e);
@@ -185,7 +186,7 @@ class SettingDatabaseProvider extends ChangeNotifier {
       try {
         Directory(filePath).deleteSync(recursive: true);
       } on FileSystemException catch (e) {
-        print('importMoodDataTemplate deleteSync error：$e');
+        Log.instance.error('importMoodDataTemplate deleteSync error：$e');
       }
 
       /// 创建 Excel
@@ -259,7 +260,7 @@ class SettingDatabaseProvider extends ChangeNotifier {
       _importTemplatePath = fileName;
       return .success(fileName);
     } on Exception catch (e) {
-      print('importMoodDataTemplate error：$e');
+      Log.instance.error('importMoodDataTemplate error：$e');
       return .error(e);
     }
   }
@@ -284,7 +285,7 @@ class SettingDatabaseProvider extends ChangeNotifier {
         allowMultiple: false,
       );
       if (pickedFile != null) {
-        print('已选择导入文件');
+        Log.instance.info('已选择导入文件');
         _importLoading = true;
         notifyListeners();
 
@@ -296,9 +297,9 @@ class SettingDatabaseProvider extends ChangeNotifier {
           /// 工作表
           final excelTable = excel.tables[table];
           if (excelTable == null) continue;
-          print('当前工作表：$table');
-          print('当前工作表最大列数：${excelTable.maxColumns}');
-          print('当前工作表最大行数：${excelTable.maxRows}');
+          Log.instance.info('当前工作表：$table');
+          Log.instance.info('当前工作表最大列数：${excelTable.maxColumns}');
+          Log.instance.info('当前工作表最大行数：${excelTable.maxRows}');
 
           /// 判断是否是需要的工作表
           if (table == 'MoodExample') {
@@ -309,7 +310,7 @@ class SettingDatabaseProvider extends ChangeNotifier {
                 {
                   final errorFilePath = importMoodDataErrorResult.value;
                   if (errorFilePath.isNotEmpty) {
-                    print('错误文件：${errorFilePath}');
+                    Log.instance.info('错误文件：${errorFilePath}');
                     _importLoading = false;
                     notifyListeners();
                     return .success(
@@ -328,7 +329,9 @@ class SettingDatabaseProvider extends ChangeNotifier {
                           (importState: .success, errorFilePath: ''), // dart format
                         );
                       case Error<void>():
-                        print('importMoodData error：${importMoodDataBeginResult.error}');
+                        Log.instance.error(
+                          'importMoodData error：${importMoodDataBeginResult.error}',
+                        );
                         _importLoading = false;
                         notifyListeners();
                         return .error(importMoodDataBeginResult.error);
@@ -336,7 +339,7 @@ class SettingDatabaseProvider extends ChangeNotifier {
                   }
                 }
               case Error<String>():
-                print('importMoodData error：${importMoodDataErrorResult.error}');
+                Log.instance.error('importMoodData error：${importMoodDataErrorResult.error}');
                 _importLoading = false;
                 notifyListeners();
                 return .error(importMoodDataErrorResult.error);
@@ -348,11 +351,11 @@ class SettingDatabaseProvider extends ChangeNotifier {
         notifyListeners();
         return .error(Exception('未找到指定工作表'));
       } else {
-        print('importMoodData error：未选择文件');
+        Log.instance.info('importMoodData error：未选择文件');
         return .error(Exception('未选择文件'));
       }
     } on Exception catch (e) {
-      print('importMoodData error：$e');
+      Log.instance.error('importMoodData error：$e');
       return .error(e);
     }
   }
@@ -380,7 +383,7 @@ class SettingDatabaseProvider extends ChangeNotifier {
         try {
           Directory(filePath).deleteSync(recursive: true);
         } on FileSystemException catch (e) {
-          print('importMoodDataError deleteSync error：$e');
+          Log.instance.error('importMoodDataError deleteSync error：$e');
         }
 
         /// 创建 Excel
@@ -442,7 +445,7 @@ class SettingDatabaseProvider extends ChangeNotifier {
       }
       return .success(errorFilePath);
     } on Exception catch (e) {
-      print('importMoodDataError error：$e');
+      Log.instance.error('importMoodDataError error：$e');
       return .error(e);
     }
   }
@@ -564,7 +567,7 @@ class SettingDatabaseProvider extends ChangeNotifier {
 
         /// 导入数据（一组数据完成）
         if (colIndex == 4) {
-          print('当前导入数据：${moodData.toJson()}');
+          Log.instance.info('当前导入数据：${moodData.toJson()}');
           moodDataList.add(moodData);
         }
       }

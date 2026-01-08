@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../../domain/models/mood/mood_category_model.dart';
 import '../../../domain/use_cases/mood/mood_category_load_use_case.dart';
-import '../../../utils/result.dart';
+import '../../../shared/utils/result.dart';
 
 class HomeProvider extends ChangeNotifier {
   HomeProvider({required MoodCategoryLoadUseCase moodCategoryLoadUseCase})

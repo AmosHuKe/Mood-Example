@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'data/database/database.dart';
 import 'shared/providers/notification_provider.dart';
 import 'shared/providers/security_key_provider.dart';
+import 'shared/utils/log_utils.dart';
 
 class Init extends StatefulWidget {
   const Init({super.key, required this.child});
@@ -27,16 +28,16 @@ class _InitState extends State<Init> {
 
     /// App 生命周期
     appLifecycleListener = AppLifecycleListener(
-      onResume: () => print('App Resume'),
-      onInactive: () => print('App Inactive'),
-      onHide: () => print('App Hide'),
-      onShow: () => print('App Show'),
+      onResume: () => Log.instance.info('App Resume'),
+      onInactive: () => Log.instance.info('App Inactive'),
+      onHide: () => Log.instance.info('App Hide'),
+      onShow: () => Log.instance.info('App Show'),
       onPause: () {
-        print('App Pause');
+        Log.instance.info('App Pause');
         securityKeyProvider.loadlockScreen(context);
       },
-      onRestart: () => print('App Restart'),
-      onDetach: () => print('App Detach'),
+      onRestart: () => Log.instance.info('App Restart'),
+      onDetach: () => Log.instance.info('App Detach'),
     );
 
     init();
@@ -61,6 +62,9 @@ class _InitState extends State<Init> {
   }
 
   void init() {
+    /// 初始化日志
+    Log.instance.onRecord();
+
     /// 初始化数据库
     DB.instance.database;
 

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:remixicon/remixicon.dart';
 
+import '../../../../shared/utils/log_utils.dart';
 import '../../../../widgets/action_button/action_button.dart';
 
 /// 类型定义
@@ -70,9 +71,9 @@ class _FFIScreenState extends State<FFIScreen> {
     final dartApiInited = initDartApiDL(NativeApi.initializeApiDLData);
 
     if (dartApiInited == 0) {
-      print('初始化 Dart Native API 成功');
+      Log.instance.success('初始化 Dart Native API 成功');
     } else {
-      print('初始化 Dart Native API 失败');
+      Log.instance.error('初始化 Dart Native API 失败');
     }
   }
 

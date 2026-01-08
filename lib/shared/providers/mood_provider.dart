@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 
 import '../../domain/models/mood/mood_data_model.dart';
 import '../../domain/use_cases/mood/mood_data_use_case.dart';
-import '../../utils/result.dart';
-import '../../utils/utils.dart';
+import '../utils/result.dart';
+import '../utils/utils.dart';
 
 class MoodProvider extends ChangeNotifier {
   MoodProvider({required MoodDataUseCase moodDataUseCase}) : _moodDataUseCase = moodDataUseCase {

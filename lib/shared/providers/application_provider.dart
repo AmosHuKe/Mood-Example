@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/use_cases/application/application_use_case.dart';
-import '../../utils/result.dart';
 import '../config/language.dart';
 import '../config/multiple_theme_mode.dart';
+import '../utils/result.dart';
 
 class ApplicationProvider extends ChangeNotifier {
   ApplicationProvider({required ApplicationUseCase applicationUseCase})

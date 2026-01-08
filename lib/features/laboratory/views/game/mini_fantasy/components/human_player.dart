@@ -2,6 +2,7 @@ import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../../../../shared/utils/log_utils.dart';
 import '../sprite_sheet/sprite_sheet_player.dart';
 import 'orc.dart';
 
@@ -73,7 +74,7 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
   void onCollision(Set<Vector2> points, PositionComponent other) {
     /// 碰撞 Orc 不发生碰撞
     if (other is Orc) {
-      print('碰撞 Orc');
+      Log.instance.info('碰撞 Orc');
       return;
     }
     super.onCollision(points, other);

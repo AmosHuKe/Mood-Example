@@ -1,5 +1,7 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+
+import '../../shared/utils/log_utils.dart';
 import 'tables/mood_info.dart';
 import 'tables/mood_info_category.dart';
 
@@ -32,7 +34,7 @@ class DB {
 
   /// 创建
   Future<void> _onCreate(Database db, int newVersion) async {
-    print('数据库 _onCreate 版本：$newVersion');
+    Log.instance.info('数据库 _onCreate 版本：$newVersion');
     final batch = db.batch();
 
     /// 心情详细内容表
@@ -48,8 +50,8 @@ class DB {
 
   /// 升级
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    print('数据库 _onUpgrade 旧版本：$oldVersion');
-    print('数据库 _onUpgrade 新版本：$newVersion');
+    Log.instance.info('数据库 _onUpgrade 旧版本：$oldVersion');
+    Log.instance.info('数据库 _onUpgrade 新版本：$newVersion');
 
     final batch = db.batch();
 

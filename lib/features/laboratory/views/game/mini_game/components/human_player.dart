@@ -4,6 +4,7 @@ import 'package:bonfire/bonfire.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../../../../shared/utils/log_utils.dart';
 import '../sprite_sheet/sprite_sheet_fire_ball.dart';
 import '../sprite_sheet/sprite_sheet_player.dart';
 import '../util/custom_sprite_animation_widget.dart';
@@ -268,11 +269,11 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
   /// 敌对生物生成 Orc
   void enemyOrcCreate(double dt) {
     if (checkInterval('EnemyBossCreate', 1000, dt)) {
-      print('怪物数量：${gameRef.enemies().length}');
+      Log.instance.info('怪物数量：${gameRef.enemies().length}');
 
       /// 限制数量
       if (gameRef.enemies().length >= 100) return;
-      print('Orc 生成了');
+      Log.instance.info('Orc 生成了');
 
       /// 生成
       for (var i = 0; i < 4; i++) {
@@ -291,11 +292,11 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
   /// 敌对生物生成 Boss
   void enemyBossCreate(double dt) {
     if (checkInterval('EnemyBossCreate', 1000, dt)) {
-      print('怪物数量：${gameRef.enemies().length}');
+      Log.instance.info('怪物数量：${gameRef.enemies().length}');
 
       /// 限制数量
       if (gameRef.enemies().length >= 100) return;
-      print('Boss 生成了');
+      Log.instance.info('Boss 生成了');
 
       /// 生成
       for (var i = 0; i < 2; i++) {

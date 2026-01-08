@@ -7,7 +7,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../../l10n/gen/app_localizations.dart';
 import '../../../shared/providers/mood_provider.dart';
-import '../../../utils/result.dart';
+import '../../../shared/utils/result.dart';
 import '../../../widgets/animation/animation.dart';
 import '../providers/setting_database_provider.dart';
 
