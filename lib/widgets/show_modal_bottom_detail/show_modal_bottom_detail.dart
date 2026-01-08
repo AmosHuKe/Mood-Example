@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../themes/app_theme.dart';
+import '../../shared/themes/app_theme.dart';
 
 /// 底部详情内容弹出
 Future<T?> showModalBottomDetail<T>({required BuildContext context, required Widget child}) {

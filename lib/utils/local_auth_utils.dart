@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:local_auth_android/local_auth_android.dart';
 import 'package:local_auth_darwin/local_auth_darwin.dart';
 import 'package:remixicon/remixicon.dart';
-import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 import '../l10n/gen/app_localizations.dart';
 

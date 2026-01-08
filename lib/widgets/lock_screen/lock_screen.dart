@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screen_lock/flutter_screen_lock.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:remixicon/remixicon.dart';
-import 'package:flutter_screen_lock/flutter_screen_lock.dart';
-import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
-import '../../utils/local_auth_utils.dart';
 import '../../l10n/gen/app_localizations.dart';
-import '../../shared/view_models/security_key_view_model.dart';
+import '../../shared/providers/security_key_provider.dart';
+import '../../utils/local_auth_utils.dart';
 
 /// 锁屏界面弹出
 ///
@@ -22,7 +21,7 @@ Future<void> lockScreen(
   final theme = Theme.of(context);
   final appL10n = AppL10n.of(context);
   final localAuthUtils = await LocalAuthUtils();
-  final securityKeyViewModel = context.read<SecurityKeyViewModel>();
+  final securityKeyProvider = context.read<SecurityKeyProvider>();
 
   /// 支持生物特征识别处理
   Widget? customizedButtonChild;
@@ -53,18 +52,18 @@ Future<void> lockScreen(
         customizedButtonTap: () async {
           final localAuthBiometric = await localAuthUtils.localAuthBiometric(context);
           if (localAuthBiometric) {
-            securityKeyViewModel.keyPasswordScreenOpen = false;
+            securityKeyProvider.keyPasswordScreenOpen = false;
             if (context.mounted) {
               context.pop();
             }
           }
         },
         onOpened: () async {
-          securityKeyViewModel.keyPasswordScreenOpen = true;
+          securityKeyProvider.keyPasswordScreenOpen = true;
           if (keyBiometric) {
             final localAuthBiometric = await localAuthUtils.localAuthBiometric(context);
             if (localAuthBiometric) {
-              securityKeyViewModel.keyPasswordScreenOpen = false;
+              securityKeyProvider.keyPasswordScreenOpen = false;
               if (context.mounted) {
                 context.pop();
               }
@@ -72,7 +71,7 @@ Future<void> lockScreen(
           }
         },
         onUnlocked: () {
-          securityKeyViewModel.keyPasswordScreenOpen = false;
+          securityKeyProvider.keyPasswordScreenOpen = false;
           context.pop();
         },
       );

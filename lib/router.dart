@@ -1,30 +1,29 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 
-import 'package:go_router/go_router.dart';
 import 'package:bonfire/bonfire.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:go_router/go_router.dart';
 
 import 'domain/models/mood/mood_data_model.dart';
-
+import 'features/home/views/home.dart';
+import 'features/laboratory/views/3d/3d.dart';
+import 'features/laboratory/views/ffi/ffi.dart';
+import 'features/laboratory/views/game/game.dart';
+import 'features/laboratory/views/game/mini_fantasy/mini_fantasy.dart';
+import 'features/laboratory/views/game/mini_game/mini_game.dart';
+import 'features/laboratory/views/laboratory.dart';
+import 'features/laboratory/views/tilt_example/tilt_example.dart';
+import 'features/laboratory/views/unimp_miniapps/unimp_miniapps.dart';
+import 'features/main_screen.dart';
+import 'features/mood/providers/mood_category_select_provider.dart';
+import 'features/mood/views/mood.dart';
+import 'features/mood/views/mood_category_select.dart';
+import 'features/mood/views/mood_content_edit.dart';
+import 'features/onboarding/views/onboarding.dart';
+import 'features/statistic/views/statistic.dart';
+import 'features/web_view/views/web_view.dart';
 import 'init.dart';
-import 'views/main_screen.dart';
-import 'views/home/home.dart';
-import 'views/mood/view_models/mood_category_select_view_model.dart';
-import 'views/onboarding/onboarding.dart';
-import 'views/mood/mood.dart';
-import 'views/mood/mood_category_select.dart';
-import 'views/mood/mood_content_edit.dart';
-import 'views/statistic/statistic.dart';
-import 'views/laboratory/laboratory.dart';
-import 'views/laboratory/unimp_miniapps/unimp_miniapps.dart';
-import 'views/laboratory/tilt_example/tilt_example.dart';
-import 'views/laboratory/game/game.dart';
-import 'views/laboratory/game/mini_fantasy/mini_fantasy.dart';
-import 'views/laboratory/game/mini_game/mini_game.dart';
-import 'views/laboratory/ffi/ffi.dart';
-import 'views/laboratory/3d/3d.dart';
-import 'views/web_view/web_view.dart';
 
 /// 定义路由名称
 abstract final class Routes {

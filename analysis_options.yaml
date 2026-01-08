@@ -24,6 +24,7 @@ linter:
     avoid_unnecessary_containers: true
     avoid_void_async: true
     curly_braces_in_flow_control_structures: true
+    directives_ordering: true
     library_annotations: false
     omit_local_variable_types: true
     prefer_const_constructors: true

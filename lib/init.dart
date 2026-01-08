@@ -1,12 +1,11 @@
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'data/database/database.dart';
-import 'shared/view_models/security_key_view_model.dart';
-import 'shared/view_models/notification_view_model.dart';
+import 'shared/providers/notification_provider.dart';
+import 'shared/providers/security_key_provider.dart';
 
 class Init extends StatefulWidget {
   const Init({super.key, required this.child});
@@ -19,8 +18,8 @@ class Init extends StatefulWidget {
 
 class _InitState extends State<Init> {
   late final AppLifecycleListener appLifecycleListener;
-  late final securityKeyViewModel = context.read<SecurityKeyViewModel>();
-  late final notificationViewModel = context.read<NotificationViewModel>();
+  late final securityKeyProvider = context.read<SecurityKeyProvider>();
+  late final notificationProvider = context.read<NotificationProvider>();
 
   @override
   void initState() {
@@ -34,7 +33,7 @@ class _InitState extends State<Init> {
       onShow: () => print('App Show'),
       onPause: () {
         print('App Pause');
-        securityKeyViewModel.loadlockScreen(context);
+        securityKeyProvider.loadlockScreen(context);
       },
       onRestart: () => print('App Restart'),
       onDetach: () => print('App Detach'),
@@ -66,10 +65,10 @@ class _InitState extends State<Init> {
     DB.instance.database;
 
     /// 锁屏
-    securityKeyViewModel.loadlockScreen(context);
+    securityKeyProvider.loadlockScreen(context);
 
     /// 通知
-    notificationViewModel.allowedNotification(context);
-    notificationViewModel.sendTest(context);
+    notificationProvider.allowedNotification(context);
+    notificationProvider.sendTest(context);
   }
 }

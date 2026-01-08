@@ -1,5 +1,5 @@
-import '../../../utils/result.dart';
 import '../../../domain/repositories/application/security_key_repository.dart';
+import '../../../utils/result.dart';
 import '../../dao/application/security_key_dao.dart';
 
 class SecurityKeyRepositoryLocal implements SecurityKeyRepository {

@@ -1,14 +1,14 @@
 // dart format width=80
 import 'package:flutter/material.dart';
 
-import 'package:provider/provider.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:provider/provider.dart';
 
 import 'l10n/gen/app_localizations.dart';
-import 'shared/config/multiple_theme_mode.dart';
-import 'shared/view_models/application_view_model.dart';
-import 'themes/app_theme.dart';
 import 'router.dart';
+import 'shared/config/multiple_theme_mode.dart';
+import 'shared/providers/application_provider.dart';
+import 'shared/themes/app_theme.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});
@@ -16,7 +16,7 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Selector<
-      ApplicationViewModel,
+      ApplicationProvider,
       ({
         ThemeMode themeMode,
         MultipleThemeMode multipleThemeMode,
@@ -24,12 +24,12 @@ class Application extends StatelessWidget {
         Locale locale,
       })
     >(
-      selector: (_, applicationViewModel) {
+      selector: (_, applicationProvider) {
         return (
-          themeMode: applicationViewModel.themeMode,
-          multipleThemeMode: applicationViewModel.multipleThemeMode,
-          localeSystem: applicationViewModel.localeSystem,
-          locale: applicationViewModel.locale,
+          themeMode: applicationProvider.themeMode,
+          multipleThemeMode: applicationProvider.multipleThemeMode,
+          localeSystem: applicationProvider.localeSystem,
+          locale: applicationProvider.locale,
         );
       },
       builder: (context, data, child) {

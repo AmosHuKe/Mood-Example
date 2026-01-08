@@ -1,15 +1,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:integration_test/integration_test.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:integration_test/integration_test.dart';
 
-import 'package:moodexample/l10n/gen/app_localizations.dart';
-import 'package:moodexample/shared/config/language.dart';
-import 'package:moodexample/shared/config/multiple_theme_mode.dart';
-import 'package:moodexample/shared/config/dependencies.dart';
-import 'package:moodexample/application.dart' show Application;
+import '../lib/application.dart' show Application;
+import '../lib/l10n/gen/app_localizations.dart';
+import '../lib/shared/config/dependencies.dart';
+import '../lib/shared/config/language.dart';
+import '../lib/shared/config/multiple_theme_mode.dart';
 
 void main() {
   /// 集成测试环境初始化
