@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.example.moodexample"
     compileSdk = 36
-    ndkVersion = "28.2.13676358" // flutter.ndkVersion
+    ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
