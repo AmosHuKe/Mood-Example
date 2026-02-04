@@ -6,21 +6,21 @@ extension LogColorExtension on String {
   String get red {
     /// https://github.com/flutter/flutter/issues/20663
     return switch (defaultTargetPlatform) {
-      TargetPlatform.macOS => this,
+      TargetPlatform.macOS || TargetPlatform.iOS => this,
       _ => '\x1B[31m$this\x1B[0m',
     };
   }
 
   String get green {
     return switch (defaultTargetPlatform) {
-      TargetPlatform.macOS => this,
+      TargetPlatform.macOS || TargetPlatform.iOS => this,
       _ => '\x1B[32m$this\x1B[0m',
     };
   }
 
   String get blue {
     return switch (defaultTargetPlatform) {
-      TargetPlatform.macOS => this,
+      TargetPlatform.macOS || TargetPlatform.iOS => this,
       _ => '\x1B[34m$this\x1B[0m',
     };
   }
