@@ -112,7 +112,7 @@ class MoodCategorySelectBody extends StatelessWidget {
 
                   return Column(
                     children: [
-                      Text(titleText, style: const .new(fontSize: 24, fontWeight: .bold)),
+                      Text(titleText, style: const .new(fontSize: 24, fontWeight: .w600)),
                       Padding(
                         padding: const .only(top: 4),
                         child: Text(

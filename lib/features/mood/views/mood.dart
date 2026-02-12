@@ -87,7 +87,7 @@ class MoodBody extends StatelessWidget {
                   children: [
                     Text(
                       appL10n.mood_title,
-                      style: const .new(fontSize: 36, fontWeight: .bold),
+                      style: const .new(fontSize: 36, fontWeight: .w600),
                       semanticsLabel: appL10n.app_bottomNavigationBar_title_mood,
                     ),
                   ],
@@ -245,7 +245,7 @@ class _CalendarState extends State<Calendar> {
                       weekdayStyle: .new(fontSize: 14, color: AppTheme.staticSubColor),
                       weekendStyle: .new(
                         fontSize: 14,
-                        fontWeight: .bold,
+                        fontWeight: .w600,
                         color: AppTheme.staticSubColor,
                       ),
                     ),
@@ -537,7 +537,7 @@ class MoodCard extends StatelessWidget {
                                         moodData.title,
                                         maxLines: 1,
                                         overflow: .ellipsis,
-                                        style: const .new(fontSize: 18, fontWeight: .bold),
+                                        style: const .new(fontSize: 18, fontWeight: .w600),
                                       ),
                                     ),
                                     Padding(
@@ -569,7 +569,7 @@ class MoodCard extends StatelessWidget {
                         ),
                         child: Text(
                           moodData.score.toString(),
-                          style: const .new(fontSize: 14, fontWeight: .bold),
+                          style: const .new(fontSize: 14, fontWeight: .w600),
                           semanticsLabel: '${appL10n.mood_data_score_title}：${moodData.score}',
                         ),
                       ),
@@ -629,7 +629,7 @@ class MoodDetail extends StatelessWidget {
           heightFactor: 2,
           child: Text(
             LocaleDatetime.yMMMd(context, moodData.create_time),
-            style: const .new(fontSize: 16, fontWeight: .bold, color: AppTheme.staticSubColor),
+            style: const .new(fontSize: 16, fontWeight: .w600, color: AppTheme.staticSubColor),
             semanticsLabel:
                 '${LocaleDatetime.yMMMd(context, moodData.create_time)} 心情：${moodData.title}',
           ),
@@ -655,7 +655,7 @@ class MoodDetail extends StatelessWidget {
                       ),
                       Text(
                         moodData.score.toString(),
-                        style: const .new(fontSize: 24, fontWeight: .bold),
+                        style: const .new(fontSize: 24, fontWeight: .w600),
                       ),
                     ],
                   ),

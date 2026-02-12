@@ -127,8 +127,8 @@ class _MainBodyState extends State<MainBody> with TickerProviderStateMixin {
                 enableFeedback: true,
                 padding: const .only(left: 40),
                 controller: tabController,
-                labelStyle: const .new(height: 0.5, fontSize: 10, fontWeight: .bold),
-                unselectedLabelStyle: const .new(height: 0.5, fontSize: 10, fontWeight: .bold),
+                labelStyle: const .new(height: 0.5, fontSize: 10, fontWeight: .w600),
+                unselectedLabelStyle: const .new(height: 0.5, fontSize: 10, fontWeight: .w600),
                 tabs: [
                   Tab(
                     key: const .new('tab_home'),

@@ -316,7 +316,7 @@ class MoodScore extends StatelessWidget {
               padding: const .only(bottom: 12, left: 24, right: 24),
               child: Text(
                 (moodScore ~/ 1).toString(),
-                style: const .new(fontSize: 24, fontWeight: .bold),
+                style: const .new(fontSize: 24, fontWeight: .w600),
               ),
             ),
             Slider(

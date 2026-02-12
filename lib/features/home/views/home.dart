@@ -58,7 +58,7 @@ class HomeBody extends StatelessWidget {
                   children: [
                     Text(
                       appL10n.home_hi,
-                      style: const .new(fontSize: 48, fontWeight: .bold),
+                      style: const .new(fontSize: 48, fontWeight: .w600),
                       semanticsLabel: appL10n.app_bottomNavigationBar_title_home,
                     ),
                     Image.asset(
@@ -110,7 +110,7 @@ class HomeBody extends StatelessWidget {
                           padding: const .only(bottom: 24),
                           child: Text(
                             appL10n.home_help_title,
-                            style: const .new(fontSize: 24, fontWeight: .bold),
+                            style: const .new(fontSize: 24, fontWeight: .w600),
                           ),
                         ),
                       ),
@@ -342,7 +342,7 @@ class NoticeMainCard extends StatelessWidget {
                             style: const .new(
                               color: Colors.black87,
                               fontSize: 20,
-                              fontWeight: .w900,
+                              fontWeight: .w600,
                             ),
                           ),
                           Padding(
@@ -459,7 +459,7 @@ class Article extends StatelessWidget {
                       children: [
                         Text(
                           appL10n.home_help_article_title_1,
-                          style: const .new(color: Colors.black, fontSize: 16, fontWeight: .w900),
+                          style: const .new(color: Colors.black, fontSize: 16, fontWeight: .w600),
                         ),
                         Padding(
                           padding: const .symmetric(vertical: 6),
@@ -522,7 +522,7 @@ class Article extends StatelessWidget {
                         const SizedBox(height: 72),
                         Text(
                           appL10n.home_help_article_title_2,
-                          style: const .new(color: Colors.black, fontSize: 16, fontWeight: .w900),
+                          style: const .new(color: Colors.black, fontSize: 16, fontWeight: .w600),
                         ),
                         Padding(
                           padding: const .symmetric(vertical: 6),

@@ -205,7 +205,7 @@ class TextImageSwiper extends StatelessWidget {
           padding: const .only(left: 32, right: 32),
           child: Text(
             title,
-            style: const .new(fontSize: 32, fontWeight: .w900), // dart format
+            style: const .new(fontSize: 32, fontWeight: .w600), // dart format
           ),
         ),
         Padding(

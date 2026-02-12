@@ -64,7 +64,7 @@ class StatisticBody extends StatelessWidget {
                   children: [
                     Text(
                       appL10n.statistic_title,
-                      style: const .new(fontSize: 36, fontWeight: .bold),
+                      style: const .new(fontSize: 36, fontWeight: .w600),
                       semanticsLabel: appL10n.app_bottomNavigationBar_title_statistic,
                     ),
                     Selector<StatisticProvider, ({int selectDays})>(
@@ -378,7 +378,7 @@ class StatisticMoodLineBody extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: '${listFlSpot[i].score} ',
-                          style: const .new(color: Colors.white, fontSize: 14, fontWeight: .bold),
+                          style: const .new(color: Colors.white, fontSize: 14, fontWeight: .w600),
                         ),
                         TextSpan(
                           text: listFlSpot[i].datetime.substring(5, 10),
@@ -518,7 +518,7 @@ class _StatisticMoodBarState extends State<StatisticMoodBar> {
                     children: [
                       .new(
                         text: '${rod.toY}\n',
-                        style: const .new(color: Colors.white, fontSize: 14, fontWeight: .bold),
+                        style: const .new(color: Colors.white, fontSize: 14, fontWeight: .w600),
                       ),
                       .new(
                         text: listData[group.x].datetime.substring(5, 10),
@@ -693,7 +693,7 @@ class _StatisticCategoryMoodState extends State<StatisticCategoryMood> {
       value: value,
       title: value?.toInt().toString(),
       radius: radius,
-      titleStyle: .new(fontSize: fontSize, fontWeight: .bold, color: Colors.white),
+      titleStyle: .new(fontSize: fontSize, fontWeight: .w600, color: Colors.white),
       badgeWidget: AnimatedContainer(
         duration: PieChart.defaultDuration,
         width: badgeWidth,
@@ -814,7 +814,7 @@ class StatisticLayout extends StatelessWidget {
           mainAxisAlignment: .start,
           mainAxisSize: .max,
           children: [
-            Text(title, style: const .new(fontSize: 20, fontWeight: .bold)),
+            Text(title, style: const .new(fontSize: 20, fontWeight: .w600)),
             const SizedBox(height: 4),
             Text(
               subTitle,

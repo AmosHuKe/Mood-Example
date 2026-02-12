@@ -25,7 +25,7 @@ class SettingTheme extends StatelessWidget {
           padding: const .only(left: 6, top: 6, bottom: 14),
           child: Text(
             appL10n.app_setting_theme_appearance,
-            style: const .new(fontWeight: .bold, fontSize: 14),
+            style: const .new(fontWeight: .w600, fontSize: 14),
           ),
         ),
 
@@ -37,7 +37,7 @@ class SettingTheme extends StatelessWidget {
           padding: const .only(left: 6, top: 6, bottom: 14),
           child: Text(
             appL10n.app_setting_theme_themes,
-            style: const .new(fontWeight: .bold, fontSize: 14),
+            style: const .new(fontWeight: .w600, fontSize: 14),
           ),
         ),
 
@@ -83,7 +83,7 @@ class DarkThemeBody extends StatelessWidget {
                         'Aa',
                         style: .new(
                           color: isDark ? Colors.black87 : const Color(0xFFEFEFEF),
-                          fontWeight: .bold,
+                          fontWeight: .w600,
                           fontSize: 14,
                         ),
                       ),
@@ -97,7 +97,7 @@ class DarkThemeBody extends StatelessWidget {
                         'Aa',
                         style: .new(
                           color: isDark ? const Color(0xFFEFEFEF) : Colors.black87,
-                          fontWeight: .bold,
+                          fontWeight: .w600,
                           fontSize: 14,
                         ),
                       ),
@@ -115,7 +115,7 @@ class DarkThemeBody extends StatelessWidget {
                 color: const Color(0xFFF6F8FA),
                 child: const Text(
                   'Aa',
-                  style: .new(color: Colors.black87, fontWeight: .bold, fontSize: 18),
+                  style: .new(color: Colors.black87, fontWeight: .w600, fontSize: 18),
                 ),
               ),
               onTap: () => applicationProvider.themeMode = .light,
@@ -128,7 +128,7 @@ class DarkThemeBody extends StatelessWidget {
                 color: const Color(0xFF111315),
                 child: const Text(
                   'Aa',
-                  style: .new(color: Color(0xFFEFEFEF), fontWeight: .bold, fontSize: 18),
+                  style: .new(color: Color(0xFFEFEFEF), fontWeight: .w600, fontSize: 18),
                 ),
               ),
               onTap: () => applicationProvider.themeMode = .dark,
@@ -313,7 +313,7 @@ class ThemeCard extends StatelessWidget {
             ),
             Padding(
               padding: const .only(top: 4),
-              child: Text(title ?? '', style: const .new(fontSize: 14, fontWeight: .bold)),
+              child: Text(title ?? '', style: const .new(fontSize: 14, fontWeight: .w600)),
             ),
           ],
         ),

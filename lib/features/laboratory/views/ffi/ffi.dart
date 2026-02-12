@@ -152,7 +152,7 @@ class _FFIScreenState extends State<FFIScreen> {
               children: [
                 Text(
                   '接收端口 ${receivePort1.sendPort.nativePort} 信息：',
-                  style: const .new(fontSize: 14, fontWeight: .bold),
+                  style: const .new(fontSize: 14, fontWeight: .w600),
                 ),
                 testLoading1
                     ? const CupertinoActivityIndicator(color: Colors.grey)
@@ -160,7 +160,7 @@ class _FFIScreenState extends State<FFIScreen> {
                 const SizedBox(height: 24),
                 Text(
                   '接收端口 ${receivePort2.sendPort.nativePort} 信息：',
-                  style: const TextStyle(fontSize: 14, fontWeight: .bold),
+                  style: const TextStyle(fontSize: 14, fontWeight: .w600),
                 ),
                 testLoading2
                     ? const CupertinoActivityIndicator(color: Colors.grey)

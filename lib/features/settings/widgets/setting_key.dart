@@ -26,7 +26,7 @@ class SettingKey extends StatelessWidget {
           padding: const .only(left: 6, top: 6, bottom: 2),
           child: Text(
             appL10n.app_setting_security,
-            style: const .new(fontWeight: .bold, fontSize: 20),
+            style: const .new(fontWeight: .w600, fontSize: 20),
           ),
         ),
         Padding(

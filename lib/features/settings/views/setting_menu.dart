@@ -98,7 +98,7 @@ class Header extends StatelessWidget {
                 style: .new(
                   color: Colors.white,
                   fontSize: 28,
-                  fontWeight: .bold,
+                  fontWeight: .w600,
                 ),
                 semanticsLabel: '',
               ),

@@ -78,7 +78,7 @@ class LaboratoryBody extends StatelessWidget {
                   style: const .new(
                     color: Colors.black87,
                     fontSize: 36,
-                    fontWeight: .bold,
+                    fontWeight: .w600,
                   ),
                 ),
                 const Icon(Remix.flask_line, size: 48, color: Colors.black12),
@@ -180,7 +180,7 @@ class OpenCard extends StatelessWidget {
                       style: const .new(
                         color: Colors.black87,
                         fontSize: 16,
-                        fontWeight: .bold,
+                        fontWeight: .w600,
                         height: 1,
                       ),
                       strutStyle: const .new(
