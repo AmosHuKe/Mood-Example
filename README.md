@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="/CHANGELOG.md"><img alt="Mood-Example v1.9.12" src="https://img.shields.io/badge/Mood--Example-v1.9.12-3e4663"/></a> 
-  <a href="https://flutter.dev/"><img alt="Flutter v3.41.0" src="https://img.shields.io/badge/Flutter-v3.41.0-0468D7"/></a> 
+  <a href="https://flutter.dev/"><img alt="Flutter v3.41.1" src="https://img.shields.io/badge/Flutter-v3.41.1-0468D7"/></a> 
   <a href="https://dart.dev/"><img alt="Dart v3.11.0" src="https://img.shields.io/badge/Dart-v3.11.0-04599C"/></a> 
   <a href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/License-BSD--3--Clause-green"/></a> 
 </p> 
@@ -98,13 +98,13 @@
 
 Windows:   
 ```
-[√] Flutter (Channel stable, 3.41.0, on Microsoft Windows)
+[√] Flutter (Channel stable, 3.41.1, on Microsoft Windows)
 [√] Android toolchain - develop for Android devices (Android SDK version 36.1.0)
 ```  
 
 macOS:   
 ```
-[✓] Flutter (Channel stable, 3.41.0, on macOS)
+[✓] Flutter (Channel stable, 3.41.1, on macOS)
 [✓] Android toolchain - develop for Android devices (Android SDK version 36.0.0)
 ```  
 

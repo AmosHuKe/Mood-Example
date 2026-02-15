@@ -5,7 +5,7 @@ version: 1.9.12+496
 
 environment:
   sdk: 3.11.0
-  flutter: 3.41.0
+  flutter: 3.41.1
 
 dependencies:
   flutter:
@@ -32,7 +32,7 @@ dependencies:
   ditredi: 2.0.2 # 3D 数据集显示
   awesome_notifications: 0.10.1 # 本地通知
   bonfire: 3.16.1 # 游戏引擎相关
-  flame: 1.35.0 # 游戏引擎相关
+  flame: 1.35.1 # 游戏引擎相关
   flutter_screen_lock: 9.2.2+2 # 密码锁
   local_auth: 3.0.0 # 本地认证
   local_auth_android: 2.0.4 # 本地认证
