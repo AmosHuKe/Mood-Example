@@ -20,7 +20,7 @@ on:
       - '**.md'
 
 env:
-  FLUTTER_VERSION: '3.41.1'
+  FLUTTER_VERSION: '3.41.4'
 
 jobs:
   code-analysis:

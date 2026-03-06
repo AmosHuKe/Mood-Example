@@ -1,34 +1,15 @@
 PODS:
-  - awesome_notifications (0.10.0):
+  - awesome_notifications (0.11.0):
     - Flutter
-    - IosAwnCore (~> 0.10.0)
-  - CropViewController (2.6.1)
-  - DKCamera (1.6.7)
-  - DKImagePickerController (4.3.4):
-    - DKImagePickerController/Camera (= 4.3.4)
-    - DKImagePickerController/Core (= 4.3.4)
-    - DKImagePickerController/ImageDataManager (= 4.3.4)
-    - DKImagePickerController/InlineCamera (= 4.3.4)
-    - DKImagePickerController/PhotoEditor (= 4.3.4)
-    - DKImagePickerController/PhotoGallery (= 4.3.4)
-    - DKImagePickerController/Resource (= 4.3.4)
-  - DKImagePickerController/Camera (4.3.4):
-    - DKCamera
-    - DKImagePickerController/Core
-  - DKImagePickerController/Core (4.3.4):
+    - IosAwnCore (~> 0.11.0)
+  - DKImagePickerController/Core (4.3.9):
     - DKImagePickerController/ImageDataManager
     - DKImagePickerController/Resource
-  - DKImagePickerController/ImageDataManager (4.3.4)
-  - DKImagePickerController/InlineCamera (4.3.4):
-    - DKCamera
-    - DKImagePickerController/Core
-  - DKImagePickerController/PhotoEditor (4.3.4):
-    - CropViewController (~> 2.5)
-    - DKImagePickerController/Core
-  - DKImagePickerController/PhotoGallery (4.3.4):
+  - DKImagePickerController/ImageDataManager (4.3.9)
+  - DKImagePickerController/PhotoGallery (4.3.9):
     - DKImagePickerController/Core
     - DKPhotoGallery
-  - DKImagePickerController/Resource (4.3.4)
+  - DKImagePickerController/Resource (4.3.9)
   - DKPhotoGallery (0.0.19):
     - DKPhotoGallery/Core (= 0.0.19)
     - DKPhotoGallery/Model (= 0.0.19)
@@ -58,13 +39,13 @@ PODS:
   - Flutter (1.0.0)
   - integration_test (0.0.1):
     - Flutter
-  - IosAwnCore (0.10.0)
+  - IosAwnCore (0.11.0)
   - local_auth_darwin (0.0.1):
     - Flutter
     - FlutterMacOS
-  - SDWebImage (5.20.0):
-    - SDWebImage/Core (= 5.20.0)
-  - SDWebImage/Core (5.20.0)
+  - SDWebImage (5.21.7):
+    - SDWebImage/Core (= 5.21.7)
+  - SDWebImage/Core (5.21.7)
   - sensors_plus (0.0.1):
     - Flutter
   - share_plus (0.0.1):
@@ -82,7 +63,6 @@ PODS:
 
 DEPENDENCIES:
   - awesome_notifications (from `.symlinks/plugins/awesome_notifications/ios`)
-  - DKImagePickerController (= 4.3.4)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
@@ -95,8 +75,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - CropViewController
-    - DKCamera
     - DKImagePickerController
     - DKPhotoGallery
     - IosAwnCore
@@ -126,17 +104,15 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/darwin"
 
 SPEC CHECKSUMS:
-  awesome_notifications: dd5518ff1c80be03d4f1c40f04da9d9cc2a37af5
-  CropViewController: 58fb440f30dac788b129d2a1f24cffdcb102669c
-  DKCamera: a902b66921fca14b7a75266feb8c7568aa7caa71
-  DKImagePickerController: b512c28220a2b8ac7419f21c491fc8534b7601ac
+  awesome_notifications: 73d2ed099914aedfd0ac8f40c4d177f22206cce6
+  DKImagePickerController: 946cec48c7873164274ecc4624d19e3da4c1ef3c
   DKPhotoGallery: b3834fecb755ee09a593d7c9e389d8b5d6deed60
   file_picker: b159e0c068aef54932bb15dc9fd1571818edaf49
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   integration_test: 252f60fa39af5e17c3aa9899d35d908a0721b573
-  IosAwnCore: 653786a911089012092ce831f2945cd339855a89
+  IosAwnCore: 32019505f4a4909fa9079ee401b2c82aeeab78a8
   local_auth_darwin: 63c73d6d28cc3e239be2b6aa460ea6e317cd5100
-  SDWebImage: 73c6079366fea25fa4bb9640d5fb58f0893facd8
+  SDWebImage: e9fc87c1aab89a8ab1bbd74eba378c6f53be8abf
   sensors_plus: 7229095999f30740798f0eeef5cd120357a8f4f2
   share_plus: 8b6f8b3447e494cca5317c8c3073de39b3600d1f
   shared_preferences_foundation: 5086985c1d43c5ba4d5e69a4e8083a389e2909e6
@@ -144,6 +120,6 @@ SPEC CHECKSUMS:
   SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
   webview_flutter_wkwebview: 29eb20d43355b48fe7d07113835b9128f84e3af4
 
-PODFILE CHECKSUM: 36c79fffc4b1cb01d3fb3d556cf824070b6c1d93
+PODFILE CHECKSUM: cad62e6e17b0b519d9ed86da8c1c30ce33e1ca94
 
 COCOAPODS: 1.16.2
