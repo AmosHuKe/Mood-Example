@@ -6,7 +6,7 @@
 <h1 align="center">
   <img alt="Logo" src="./README/logo/logo-round.png" width="48px" /> <span>Mood Example</span>
 
-  [![Sparkline](https://stars.medv.io/AmosHuKe/Mood-Example.svg)](https://stars.medv.io/AmosHuKe/Mood-Example)
+  <!-- [![Sparkline](https://stars.medv.io/AmosHuKe/Mood-Example.svg)](https://stars.medv.io/AmosHuKe/Mood-Example) -->
 </h1> 
 
 <p align="center">
@@ -16,7 +16,7 @@
   <a href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/License-BSD--3--Clause-green"/></a> 
 </p> 
 
-<sub>
+<!-- <sub>
 
 - [简介](#-简介)
 
@@ -44,11 +44,11 @@
 
 - [License](#-License)
 
-</sub>
+</sub> -->
 
 <br/>
 
-## 🐦 简介
+<!-- ## 🐦 简介 -->
 
 `情绪记录` 样例工程  
 管理自己的情绪，记录当下所见所想，以及其他`实验室`功能（不定期更新一些功能）  
@@ -164,13 +164,13 @@ $ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 │   │   │   │   │   └── data/                         # 包含 UniMPSDK 内容
 │   │   │   │   ├── kotlin/com/example/moodexample/
 │   │   │   │   │   ├── channel/                      # Flutter 与 Android 原生通信
-│   │   │   │   │   │   ├── UniMpMethodCallHandler.kt # UniMP 方法分发
-│   │   │   │   │   │   └── UniMpMethodChannel.kt     # UniMP 通道注册
+│   │   │   │   │   │   ├── UniMpMethodCallHandler.kt # UniMPSDK 方法分发
+│   │   │   │   │   │   └── UniMpMethodChannel.kt     # UniMPSDK 通道注册
 │   │   │   │   │   ├── unimp/
 │   │   │   │   │   │   ├── config/
-│   │   │   │   │   │   │   └── UniMpConfigFactory.kt # UniMP 初始化配置
+│   │   │   │   │   │   │   └── UniMpConfigFactory.kt # UniMPSDK 初始化配置
 │   │   │   │   │   │   ├── manager/
-│   │   │   │   │   │   │   └── UniMpManager.kt       # UniMP SDK 管理
+│   │   │   │   │   │   │   └── UniMpManager.kt       # UniMPSDK 管理
 │   │   │   │   │   └── MainActivity.kt               # Flutter 的 Android 默认入口
 │   └── CMakeLists.txt                                # CMake（目前编译 FFI 需要的文件）
 ├── assets/                                           # 静态资源文件
