@@ -154,90 +154,95 @@ $ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 ## 📑 项目结构
 
 ```md
-├── android/                                        # Android 工程文件 
+├── android/                                          # Android 工程文件 
 │   ├── app/
-│   │   ├── libs/                                   # 包含 UniMPSDK 依赖库
+│   │   ├── libs/                                     # 包含 UniMPSDK 依赖库
 │   │   ├── src/
 │   │   │   ├── main/
-│   │   │   │   ├── assets/                         # 包含 UniMPSDK 内容
-│   │   │   │   │   ├── apps/                       # 包含 UniMPSDK 的 uniapp 小程序
-│   │   │   │   │   └── data/                       # 包含 UniMPSDK 内容
-│   │   │   │   ├── kotlin/
-│   │   │   │   │   ├── com/
-│   │   │   │   │   │   ├── example/
-│   │   │   │   │   │   │   ├── moodexample/
-│   │   └── └── └── └── └── └── └── MainActivity.kt # Flutter 的 Android 默认入口
-│   └── CMakeLists.txt                              # CMake（目前编译 FFI 需要的文件）
-├── assets/                                         # 静态资源文件
-├── build/                                          # 编译或运行后产物
-├── integration_test/                               # 集成测试
-│   └── app_test.dart                               # 集成测试入口 用例
-├── ios/                                            # iOS 工程文件
-│   ├── Classes/                                    # Classes（目前存放 FFI 相关文件）
+│   │   │   │   ├── assets/                           # 包含 UniMPSDK 内容
+│   │   │   │   │   ├── apps/                         # 包含 UniMPSDK 的 uniapp 小程序
+│   │   │   │   │   └── data/                         # 包含 UniMPSDK 内容
+│   │   │   │   ├── kotlin/com/example/moodexample/
+│   │   │   │   │   ├── channel/                      # Flutter 与 Android 原生通信
+│   │   │   │   │   │   ├── UniMpMethodCallHandler.kt # UniMP 方法分发
+│   │   │   │   │   │   └── UniMpMethodChannel.kt     # UniMP 通道注册
+│   │   │   │   │   ├── unimp/
+│   │   │   │   │   │   ├── config/
+│   │   │   │   │   │   │   └── UniMpConfigFactory.kt # UniMP 初始化配置
+│   │   │   │   │   │   ├── manager/
+│   │   │   │   │   │   │   └── UniMpManager.kt       # UniMP SDK 管理
+│   │   │   │   │   └── MainActivity.kt               # Flutter 的 Android 默认入口
+│   └── CMakeLists.txt                                # CMake（目前编译 FFI 需要的文件）
+├── assets/                                           # 静态资源文件
+├── build/                                            # 编译或运行后产物
+├── integration_test/                                 # 集成测试
+│   └── app_test.dart                                 # 集成测试入口 用例
+├── ios/                                              # iOS 工程文件
+│   ├── Classes/                                      # Classes（目前存放 FFI 相关文件）
 │   │   ├── include/
-│   │   │   └── dart_native_api/                    # DartNativeAPI 接口库
-│   │   └── ffi.cpp                                 # FFI 逻辑测试
-│   ├── Runner/                                     # Runner
-│   │   ├── UniMPSDK/                               # 包含 UniMPSDK 内容
-│   │   │   ├── Apps/                               # 包含 UniMPSDK 的 uniapp 小程序
-│   │   │   └── Core/                               # 包含 UniMPSDK 依赖库
-│   │   ├── AppDelegate.swift                       # Flutter 的 iOS 默认入口
-│   │   ├── Info.plist                              # 项目配置
-│   │   └── Runner-Bridging-Header.h                # 依赖库引入
-│   └── Podfile                                     # 依赖配置
-├── lib/                                            # 工程相关文件（主要编码）
-│   ├── data/                                       # 数据层
-│   │   ├── dao/                                    # 原始数据访问操作
-│   │   ├── database/                               # 数据基础设施
-│   │   │   ├── tables/                             # sqflite 数据表配置
-│   │   │   ├── database.dart                       # sqflite 数据库相关
-│   │   │   └── shared_preferences_db.dart          # shared_preferences 数据相关
-│   │   └── repositories/                           # 仓库实现层（协调业务逻辑）
-│   ├── domain/                                     # 领域层（业务抽象）
-│   │   ├── models/                                 # 数据模型
-│   │   ├── repositories/                           # 仓库抽象层（抽象业务接口）
-│   │   └── use_cases/                              # 业务用例
-│   ├── features/                                   # 视图
-│   │   ├── home/                                   # 首页
-│   │   ├── laboratory/                             # 实验室
+│   │   │   └── dart_native_api/                      # DartNativeAPI 接口库
+│   │   └── ffi.cpp                                   # FFI 逻辑测试
+│   ├── Runner/                                       # Runner
+│   │   ├── UniMPSDK/                                 # 包含 UniMPSDK 内容
+│   │   │   ├── Apps/                                 # 包含 UniMPSDK 的 uniapp 小程序
+│   │   │   └── Core/                                 # 包含 UniMPSDK 依赖库
+│   │   ├── AppDelegate.swift                         # Flutter 的 iOS 默认入口
+│   │   ├── Info.plist                                # 项目配置
+│   │   └── Runner-Bridging-Header.h                  # 依赖库引入
+│   └── Podfile                                       # 依赖配置
+├── lib/                                              # 工程相关文件（主要编码）
+│   ├── data/                                         # 数据层
+│   │   ├── dao/                                      # 原始数据访问操作
+│   │   ├── database/                                 # 数据基础设施
+│   │   │   ├── tables/                               # sqflite 数据表配置
+│   │   │   ├── database.dart                         # sqflite 数据库相关
+│   │   │   └── shared_preferences_db.dart            # shared_preferences 数据相关
+│   │   └── repositories/                             # 仓库实现层（协调业务逻辑）
+│   ├── domain/                                       # 领域层（业务抽象）
+│   │   ├── models/                                   # 数据模型
+│   │   ├── repositories/                             # 仓库抽象层（抽象业务接口）
+│   │   └── use_cases/                                # 业务用例
+│   ├── features/                                     # 视图
+│   │   ├── home/                                     # 首页
+│   │   ├── laboratory/                               # 实验室
 │   │   │   ├── views/
-│   │   │   │   ├── 3d/                             # 3D 城市
-│   │   │   │   ├── ffi/                            # FFI 测试
-│   │   │   │   ├── game/                           # 游戏合集
-│   │   │   │   ├── tilt_example/                   # 倾斜视差卡片
-│   │   │   │   ├── unimp_miniapps/                 # uniapp 小程序
-│   │   │   └── └── laboratory.dart                 # 实验室首页
-│   │   ├── mood/                                   # 心情页
-│   │   ├── onboarding/                             # 用户引导页
-│   │   ├── settings/                               # 侧边设置栏
-│   │   ├── statistic/                              # 统计页
-│   │   ├── web_view/                               # WebView
-│   │   └── main_screen.dart                        # 主屏幕
-│   ├── l10n/                                       # l10n 语言包
-│   │   └── gen/                                    # l10n 语言包生成的文件夹（不用编码，自动生成）
-│   ├── shared/                                     # 共享相关
-│   │   ├── config/                                 # 配置
-│   │   │   ├── dependencies.dart                   # 依赖注入
-│   │   │   ├── language.dart                       # 语言配置
-│   │   │   └── multiple_theme_mode.dart            # 多主题配置
-│   │   ├── providers/                              # 状态管理
-│   │   ├── themes/                                 # 主题相关
-│   │   │   ├── multiple_theme_mode/                # 多主题配色
-│   │   │   │   └── theme_default.dart              # 多主题默认配色
-│   │   │   └── app_theme.dart                      # 主题基础
-│   │   └── utils/                                  # 工具相关
-│   ├── widgets/                                    # 通用 Widget 相关
-│   ├── application.dart                            # 主应用
-│   ├── init.dart                                   # 初始化相关
-│   ├── main_local.dart                             # 主应用入口（本地数据依赖注入）
-│   ├── main.dart                                   # 主应用入口
-│   └── router.dart                                 # 路由管理
-├── .gitignore                                      # Git 提交仓库忽略文件配置
-├── .metadata                                       # 当前 workspace 配置记录
-├── analysis_options.yaml                           # Dart 代码规范/风格配置
-├── l10n.yaml                                       # l10n 配置
-├── pubspec.lock                                    # 依赖生成的文件（锁定依赖版本等）
-└── pubspec.yaml                                    # 核心配置文件（项目配置、依赖等）
+│   │   │   │   ├── 3d/                               # 3D 城市
+│   │   │   │   ├── ffi/                              # FFI 测试
+│   │   │   │   ├── game/                             # 游戏合集
+│   │   │   │   ├── tilt_example/                     # 倾斜视差卡片
+│   │   │   │   ├── unimp_miniapps/                   # uniapp 小程序
+│   │   │   └── └── laboratory.dart                   # 实验室首页
+│   │   ├── mood/                                     # 心情页
+│   │   ├── onboarding/                               # 用户引导页
+│   │   ├── settings/                                 # 侧边设置栏
+│   │   ├── statistic/                                # 统计页
+│   │   ├── web_view/                                 # WebView
+│   │   └── main_screen.dart                          # 主屏幕
+│   ├── l10n/                                         # l10n 语言包
+│   │   └── gen/                                      # l10n 语言包生成的文件夹（不用编码，自动生成）
+│   ├── shared/                                       # 共享相关
+│   │   ├── config/                                   # 配置
+│   │   │   ├── dependencies.dart                     # 依赖注入
+│   │   │   ├── language.dart                         # 语言配置
+│   │   │   └── multiple_theme_mode.dart              # 多主题配置
+│   │   ├── providers/                                # 状态管理
+│   │   ├── themes/                                   # 主题相关
+│   │   │   ├── multiple_theme_mode/                  # 多主题配色
+│   │   │   │   └── theme_default.dart                # 多主题默认配色
+│   │   │   └── app_theme.dart                        # 主题基础
+│   │   └── utils/                                    # 工具相关
+│   ├── widgets/                                      # 通用 Widget 相关
+│   ├── application.dart                              # 主应用
+│   ├── init.dart                                     # 初始化相关
+│   ├── main_local.dart                               # 主应用入口（本地数据依赖注入）
+│   ├── main.dart                                     # 主应用入口
+│   └── router.dart                                   # 路由管理
+├── .gitignore                                        # Git 提交仓库忽略文件配置
+├── .metadata                                         # 当前 workspace 配置记录
+├── analysis_options.yaml                             # Dart 代码规范/风格配置
+├── l10n.yaml                                         # l10n 配置
+├── pubspec.lock                                      # 依赖生成的文件（锁定依赖版本等）
+└── pubspec.yaml                                      # 核心配置文件（项目配置、依赖等）
 ```
 
 
