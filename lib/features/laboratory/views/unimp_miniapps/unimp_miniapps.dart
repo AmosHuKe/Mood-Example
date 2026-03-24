@@ -60,9 +60,9 @@ class UniMPMiniappsBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: .start,
             children: [
-              Text('UniMPSDK_Android 版本：4.75'),
+              Text('UniMPSDK_Android 版本：4.85'),
               Text('UniMPSDK_iOS 版本：4.75'),
-              Text('HBuilderX 版本：4.75'),
+              Text('HBuilderX 版本：4.85'),
             ],
           ),
         ),

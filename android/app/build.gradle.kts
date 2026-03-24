@@ -98,8 +98,8 @@ dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.appcompat:appcompat:1.1.0")
     implementation("com.alibaba:fastjson:1.2.83")
-    implementation("com.facebook.fresco:fresco:2.5.0")
-    implementation("com.facebook.fresco:animated-gif:2.5.0")
+    implementation("com.facebook.fresco:fresco:3.4.0")
+    implementation("com.facebook.fresco:animated-gif:3.4.0")
     implementation("com.github.bumptech.glide:glide:4.9.0")
     implementation("androidx.webkit:webkit:1.5.0")
 }
