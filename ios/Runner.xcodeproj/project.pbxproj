@@ -53,6 +53,11 @@
 		B0F09DB92D76D32100503C78 /* dart_api_dl.c in Sources */ = {isa = PBXBuildFile; fileRef = B0F09DB02D76D32100503C78 /* dart_api_dl.c */; };
 		B0F09DBA2D76D32100503C78 /* ffi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0F09DB72D76D32100503C78 /* ffi.cpp */; };
 		B0F09DBB2D76D32100503C78 /* BUILD.gn in Resources */ = {isa = PBXBuildFile; fileRef = B0F09DAD2D76D32100503C78 /* BUILD.gn */; };
+		B0F1B9F22F73C4BD00A0E779 /* UniMPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1B9ED2F73C4BD00A0E779 /* UniMPManager.swift */; };
+		B0F1B9F32F73C4BD00A0E779 /* UniMPLaunchOptionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1B9EB2F73C4BD00A0E779 /* UniMPLaunchOptionsBuilder.swift */; };
+		B0F1B9F42F73C4BD00A0E779 /* UniMPAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1B9EF2F73C4BD00A0E779 /* UniMPAppDelegate.swift */; };
+		B0F1B9F52F73C4BD00A0E779 /* UniMPRegistrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1B9F02F73C4BD00A0E779 /* UniMPRegistrant.swift */; };
+		B0F1B9F62F73C4BD00A0E779 /* UniMPMethodChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1B9E92F73C4BD00A0E779 /* UniMPMethodChannel.swift */; };
 		E6785185D82D85A9E7DD848B /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2E6ACD1DAB48B7E4C4F77FE /* Pods_Runner.framework */; };
 /* End PBXBuildFile section */
 
@@ -210,6 +215,11 @@
 		B0F09DB32D76D32100503C78 /* dart_tools_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dart_tools_api.h; sourceTree = "<group>"; };
 		B0F09DB42D76D32100503C78 /* dart_version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dart_version.h; sourceTree = "<group>"; };
 		B0F09DB72D76D32100503C78 /* ffi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ffi.cpp; sourceTree = "<group>"; };
+		B0F1B9E92F73C4BD00A0E779 /* UniMPMethodChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniMPMethodChannel.swift; sourceTree = "<group>"; };
+		B0F1B9EB2F73C4BD00A0E779 /* UniMPLaunchOptionsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniMPLaunchOptionsBuilder.swift; sourceTree = "<group>"; };
+		B0F1B9ED2F73C4BD00A0E779 /* UniMPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniMPManager.swift; sourceTree = "<group>"; };
+		B0F1B9EF2F73C4BD00A0E779 /* UniMPAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniMPAppDelegate.swift; sourceTree = "<group>"; };
+		B0F1B9F02F73C4BD00A0E779 /* UniMPRegistrant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniMPRegistrant.swift; sourceTree = "<group>"; };
 		E2E6ACD1DAB48B7E4C4F77FE /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -322,6 +332,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				B0F1B9F12F73C4BD00A0E779 /* UniMP */,
 				B050DFF32874834400A346E3 /* UniMPSDK */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
@@ -536,6 +547,42 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		B0F1B9EA2F73C4BD00A0E779 /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				B0F1B9E92F73C4BD00A0E779 /* UniMPMethodChannel.swift */,
+			);
+			path = Channel;
+			sourceTree = "<group>";
+		};
+		B0F1B9EC2F73C4BD00A0E779 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				B0F1B9EB2F73C4BD00A0E779 /* UniMPLaunchOptionsBuilder.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		B0F1B9EE2F73C4BD00A0E779 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				B0F1B9ED2F73C4BD00A0E779 /* UniMPManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		B0F1B9F12F73C4BD00A0E779 /* UniMP */ = {
+			isa = PBXGroup;
+			children = (
+				B0F1B9EA2F73C4BD00A0E779 /* Channel */,
+				B0F1B9EC2F73C4BD00A0E779 /* Config */,
+				B0F1B9EE2F73C4BD00A0E779 /* Manager */,
+				B0F1B9EF2F73C4BD00A0E779 /* UniMPAppDelegate.swift */,
+				B0F1B9F02F73C4BD00A0E779 /* UniMPRegistrant.swift */,
+			);
+			path = UniMP;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -698,6 +745,11 @@
 			files = (
 				B0F09DB92D76D32100503C78 /* dart_api_dl.c in Sources */,
 				B0F09DBA2D76D32100503C78 /* ffi.cpp in Sources */,
+				B0F1B9F22F73C4BD00A0E779 /* UniMPManager.swift in Sources */,
+				B0F1B9F32F73C4BD00A0E779 /* UniMPLaunchOptionsBuilder.swift in Sources */,
+				B0F1B9F42F73C4BD00A0E779 /* UniMPAppDelegate.swift in Sources */,
+				B0F1B9F52F73C4BD00A0E779 /* UniMPRegistrant.swift in Sources */,
+				B0F1B9F62F73C4BD00A0E779 /* UniMPMethodChannel.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 			);
