@@ -592,10 +592,10 @@ packages:
     dependency: "direct main"
     description:
       name: remixicon
-      sha256: "78c984c2f8cfe2fc4a620e89e36445795d7291851a6ffd36a4402c210f2920c4"
+      sha256: "9a0e6a67d622a1d6ddc5e5cff4898f9711ec8880fc2ebeb720f6e0bc268ea905"
       url: "https://pub.dev"
     source: hosted
-    version: "4.9.2"
+    version: "1.4.1"
   sensors_plus:
     dependency: transitive
     description:

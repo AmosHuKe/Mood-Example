@@ -39,7 +39,7 @@ dependencies:
   local_auth_darwin: 2.0.3 # 本地认证
   flutter_tilt: 3.3.2 # 倾斜视差
   logging: 1.3.0
-  remixicon: 4.9.2 # Remixicon
+  remixicon: 1.4.1 # Remixicon
 
 # https://dart.dev/tools/pub/dependencies#dependency-overrides
 dependency_overrides:
