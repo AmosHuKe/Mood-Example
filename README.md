@@ -183,6 +183,15 @@ $ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 │   │   │   └── dart_native_api/                      # DartNativeAPI 接口库
 │   │   └── ffi.cpp                                   # FFI 逻辑测试
 │   ├── Runner/                                       # Runner
+│   │   ├── UniMP/                                    # UniMPSDK 原生接入
+│   │   │   ├── Channel/
+│   │   │   │   └── UniMPMethodChannel.swift          # UniMPSDK 通道注册
+│   │   │   ├── Config/
+│   │   │   │   └── UniMPLaunchOptionsBuilder.swift   # UniMPSDK 启动参数构建
+│   │   │   ├── Manager/
+│   │   │   │   └── UniMPManager.swift                # UniMPSDK 管理
+│   │   │   ├── UniMPAppDelegate.swift                # UniMPSDK 生命周期代理
+│   │   │   └── UniMPRegistrant.swift                 # UniMPSDK 能力注册
 │   │   ├── UniMPSDK/                                 # 包含 UniMPSDK 内容
 │   │   │   ├── Apps/                                 # 包含 UniMPSDK 的 uniapp 小程序
 │   │   │   └── Core/                                 # 包含 UniMPSDK 依赖库
