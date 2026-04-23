@@ -32,34 +32,31 @@ class LocalAuthUtils {
   Future<bool> localAuthBiometric(BuildContext context) async {
     final appL10n = AppL10n.of(context);
     final canAuthenticate = await localAuthSupported();
-    final canAuthenticateBiometrics = await canLocalAuthBiometrics();
     if (!canAuthenticate) return false;
-    if (canAuthenticateBiometrics) {
-      try {
-        final didAuthenticate = await auth.authenticate(
-          localizedReason: appL10n.app_setting_security_localauth_localizedreason,
-          biometricOnly: true,
-          sensitiveTransaction: true,
-          persistAcrossBackgrounding: true,
-          authMessages: <AuthMessages>[
-            AndroidAuthMessages(
-              signInTitle: appL10n.app_setting_security_localauth_signIntitle,
-              signInHint: '',
-              cancelButton: appL10n.app_setting_security_localauth_cancel,
-            ),
-            IOSAuthMessages(cancelButton: appL10n.app_setting_security_localauth_cancel),
-          ],
-        );
-        return didAuthenticate;
-      } on PlatformException catch (e) {
-        Log.instance.error('LocalAuthUtils localAuthBiometric error: ${e.toString()}');
-        if (e.code == 'LockedOut') {
-          SmartDialog.showToast(appL10n.app_setting_security_localauth_error_1);
-        }
-        return false;
+
+    try {
+      final didAuthenticate = await auth.authenticate(
+        localizedReason: appL10n.app_setting_security_localauth_localizedreason,
+        biometricOnly: true,
+        sensitiveTransaction: true,
+        persistAcrossBackgrounding: true,
+        authMessages: <AuthMessages>[
+          AndroidAuthMessages(
+            signInTitle: appL10n.app_setting_security_localauth_signIntitle,
+            signInHint: '',
+            cancelButton: appL10n.app_setting_security_localauth_cancel,
+          ),
+          IOSAuthMessages(cancelButton: appL10n.app_setting_security_localauth_cancel),
+        ],
+      );
+      return didAuthenticate;
+    } on PlatformException catch (e) {
+      Log.instance.error('LocalAuthUtils localAuthBiometric error: ${e.toString()}');
+      if (e.code == 'LockedOut') {
+        SmartDialog.showToast(appL10n.app_setting_security_localauth_error_1);
       }
+      return false;
     }
-    return false;
   }
 
   /// 识别图标
@@ -70,7 +67,7 @@ class LocalAuthUtils {
       [.iris, ...] => Remix.eye_line,
       [.face, ...] => Remix.body_scan_line,
       [.fingerprint, ...] => Remix.fingerprint_line,
-      [] => null,
+      [] => Remix.body_scan_line,
     };
     return authIcon;
   }
@@ -84,7 +81,7 @@ class LocalAuthUtils {
       [.iris, ...] => appL10n.app_setting_security_biometric_iris,
       [.face, ...] => appL10n.app_setting_security_biometric_face,
       [.fingerprint, ...] => appL10n.app_setting_security_biometric_fingerprint,
-      [] => '',
+      [] => appL10n.app_setting_security_biometric_weak,
     };
     return authText;
   }

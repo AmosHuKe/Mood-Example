@@ -54,6 +54,7 @@ class KeyBody extends StatefulWidget {
 
 class _KeyBodyState extends State<KeyBody> {
   static const double titleIconSize = 18;
+  bool localAuthSupporteded = false;
   List<BiometricType> localAuthList = [];
   IconData? localAuthIcon;
   String localAuthText = '';
@@ -61,6 +62,7 @@ class _KeyBodyState extends State<KeyBody> {
   Future<void> init(BuildContext context) async {
     final securityKeyProvider = context.read<SecurityKeyProvider>();
     final localAuthUtils = await LocalAuthUtils();
+    localAuthSupporteded = await localAuthUtils.localAuthSupported();
     localAuthList = await localAuthUtils.localAuthList();
 
     setState(() {
@@ -100,7 +102,7 @@ class _KeyBodyState extends State<KeyBody> {
         final keyBiometric = data.keyBiometric;
 
         Widget biometricsAuth = const SizedBox();
-        if (keyPassword != '' && localAuthText != '') {
+        if (keyPassword != '' && localAuthSupporteded) {
           biometricsAuth = ListTile(
             leading: Icon(
               localAuthIcon,

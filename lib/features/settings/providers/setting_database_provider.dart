@@ -276,10 +276,10 @@ class SettingDatabaseProvider extends ChangeNotifier {
   Future<Result<({ImportState importState, String errorFilePath})>> importMoodData() async {
     try {
       /// 清除选择文件的缓存
-      await FilePicker.platform.clearTemporaryFiles();
+      await FilePicker.clearTemporaryFiles();
 
       /// 选择文件
-      final pickedFile = await FilePicker.platform.pickFiles(
+      final pickedFile = await FilePicker.pickFiles(
         type: .custom,
         allowedExtensions: ['xlsx'],
         allowMultiple: false,
