@@ -16,6 +16,9 @@ on:
     paths-ignore:
       - '**.md'
 
+env:
+  FLUTTER_VERSION: '3.41.9'
+
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
@@ -62,9 +65,10 @@ jobs:
         java-version: '17'
     - name: Set up Flutter
       if: matrix.build-mode == 'manual'
-      uses: subosito/flutter-action@v2
+      uses: flutter-actions/setup-flutter@18c66a64fb6f6d3338c63cabbc5cd6da395e7f1d
       with:
         channel: stable
+        version: ${{ env.FLUTTER_VERSION }}
     - name: Flutter pub get
       if: matrix.build-mode == 'manual'
       run: flutter pub get
@@ -120,9 +124,22 @@ jobs:
       if: matrix.language == 'java-kotlin'
       run: flutter build apk --debug
 
+    - name: Prepare iOS project for Swift analysis
+      if: matrix.language == 'swift'
+      run: flutter build ios --debug --simulator --config-only
     - name: Build iOS for Swift analysis
       if: matrix.language == 'swift'
-      run: flutter build ios --debug --no-codesign
+      shell: bash
+      run: |
+        xcodebuild \
+          -workspace ios/Runner.xcworkspace \
+          -scheme Runner \
+          -configuration Debug \
+          -sdk iphonesimulator \
+          -destination 'generic/platform=iOS Simulator' \
+          CODE_SIGNING_ALLOWED=NO \
+          COMPILER_INDEX_STORE_ENABLE=NO \
+          build
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@9e0d7b8d25671d64c341c19c0152d693099fb5ba
