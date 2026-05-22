@@ -1,11 +1,11 @@
 name: moodexample
 description: 管理自己的情绪，记录当下所见所想。
 publish_to: 'none'
-version: 1.9.12+500
+version: 1.9.13+501
 
 environment:
-  sdk: 3.11.5
-  flutter: 3.41.9
+  sdk: 3.12.0
+  flutter: 3.44.0
 
 dependencies:
   flutter:
@@ -27,8 +27,8 @@ dependencies:
 
   # 功能/集成
   excel: 4.0.6 # Excel
-  share_plus: 12.0.1 # 分享
-  file_picker: 11.0.2 # 文件选择
+  share_plus: 13.1.0 # 分享
+  file_picker: 12.0.0-beta.3 # 文件选择
   webview_flutter: 4.13.1 # WebView
   awesome_notifications: 0.11.0 # 本地通知
   ditredi: 2.0.2 # 3D 数据集显示
@@ -41,8 +41,8 @@ dependencies:
   card_swiper: 3.0.1 # 轮播
   fl_chart: 1.2.0 # 图表
   flutter_screen_lock: 9.2.2+2 # 密码锁
-  flutter_tilt: 3.3.5 # 倾斜视差
-  remixicon: 1.4.1 # Remixicon
+  flutter_tilt: 4.0.0 # 倾斜视差
+  remixicon: 4.9.3 # Remixicon
 
   # 游戏相关
   bonfire: 3.17.2 # 游戏引擎

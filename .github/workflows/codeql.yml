@@ -17,7 +17,7 @@ on:
       - '**.md'
 
 env:
-  FLUTTER_VERSION: '3.41.9'
+  FLUTTER_VERSION: '3.44.0'
 
 jobs:
   analyze:
