@@ -16,8 +16,7 @@ import '../../../shared/utils/utils.dart';
 enum ImportState { success, error }
 
 class SettingDatabaseProvider extends ChangeNotifier {
-  SettingDatabaseProvider({required DataImportExportUseCase dataImportExportUseCase})
-    : _dataImportExportUseCase = dataImportExportUseCase {}
+  SettingDatabaseProvider({required this._dataImportExportUseCase}) {}
 
   final DataImportExportUseCase _dataImportExportUseCase;
 

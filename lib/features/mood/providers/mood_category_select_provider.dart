@@ -16,12 +16,10 @@ enum MoodCategorySelectType {
 
 class MoodCategorySelectProvider extends ChangeNotifier {
   MoodCategorySelectProvider({
-    required MoodCategoryLoadUseCase moodCategoryLoadUseCase,
-    required MoodCategorySelectType screenType,
-    required DateTime selectDateTime,
-  }) : _moodCategoryLoadUseCase = moodCategoryLoadUseCase,
-       _screenType = screenType,
-       _selectDateTime = selectDateTime {
+    required this._moodCategoryLoadUseCase,
+    required this._screenType,
+    required this._selectDateTime,
+  }) {
     loadMoodCategoryAll();
   }
 

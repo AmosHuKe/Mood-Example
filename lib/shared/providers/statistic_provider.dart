@@ -5,8 +5,7 @@ import '../../domain/use_cases/statistic/statistic_use_case.dart';
 import '../utils/result.dart';
 
 class StatisticProvider extends ChangeNotifier {
-  StatisticProvider({required StatisticUseCase statisticUseCase})
-    : _statisticUseCase = statisticUseCase {
+  StatisticProvider({required this._statisticUseCase}) {
     load();
   }
 

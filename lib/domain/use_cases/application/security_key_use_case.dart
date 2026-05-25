@@ -3,8 +3,7 @@ import '../../../shared/utils/result.dart';
 import '../../repositories/application/security_key_repository.dart';
 
 class SecurityKeyUseCase {
-  SecurityKeyUseCase({required SecurityKeyRepository securityKeyRepository})
-    : _securityKeyRepository = securityKeyRepository;
+  SecurityKeyUseCase({required this._securityKeyRepository});
 
   final SecurityKeyRepository _securityKeyRepository;
 

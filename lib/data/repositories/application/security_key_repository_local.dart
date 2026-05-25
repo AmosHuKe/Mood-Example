@@ -3,8 +3,7 @@ import '../../../shared/utils/result.dart';
 import '../../dao/application/security_key_dao.dart';
 
 class SecurityKeyRepositoryLocal implements SecurityKeyRepository {
-  SecurityKeyRepositoryLocal({required SecurityKeyDao securityKeyDao})
-    : _securityKeyDao = securityKeyDao;
+  SecurityKeyRepositoryLocal({required this._securityKeyDao});
 
   final SecurityKeyDao _securityKeyDao;
 

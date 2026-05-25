@@ -5,8 +5,7 @@ import '../../models/mood/mood_category_model.dart';
 import '../../repositories/mood/mood_category_repository.dart';
 
 class MoodCategoryLoadUseCase {
-  MoodCategoryLoadUseCase({required MoodCategoryRepository moodCategoryRepository})
-    : _moodCategoryRepository = moodCategoryRepository;
+  MoodCategoryLoadUseCase({required this._moodCategoryRepository});
 
   final MoodCategoryRepository _moodCategoryRepository;
 

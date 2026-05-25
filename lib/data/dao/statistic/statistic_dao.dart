@@ -2,7 +2,7 @@ import '../../database/database.dart';
 import '../../database/tables/mood_info.dart';
 
 class StatisticDao {
-  StatisticDao({required DB database}) : _database = database;
+  StatisticDao({required this._database});
 
   final DB _database;
 

@@ -4,9 +4,7 @@ import '../../database/shared_preferences_db.dart';
 import '../../database/tables/mood_info_category.dart';
 
 class MoodCategoryDao {
-  MoodCategoryDao({required DB database, required SharedPreferencesDB sharedPreferencesDB})
-    : _database = database,
-      _sharedPreferencesDB = sharedPreferencesDB;
+  MoodCategoryDao({required this._database, required this._sharedPreferencesDB});
 
   final DB _database;
   final SharedPreferencesDB _sharedPreferencesDB;

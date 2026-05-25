@@ -5,8 +5,7 @@ import '../../../domain/use_cases/mood/mood_category_load_use_case.dart';
 import '../../../shared/utils/result.dart';
 
 class HomeProvider extends ChangeNotifier {
-  HomeProvider({required MoodCategoryLoadUseCase moodCategoryLoadUseCase})
-    : _moodCategoryLoadUseCase = moodCategoryLoadUseCase {
+  HomeProvider({required this._moodCategoryLoadUseCase}) {
     loadMoodCategoryAll();
   }
 

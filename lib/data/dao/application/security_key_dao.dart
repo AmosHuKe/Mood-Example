@@ -1,8 +1,7 @@
 import '../../database/shared_preferences_db.dart';
 
 class SecurityKeyDao {
-  SecurityKeyDao({required SharedPreferencesDB sharedPreferencesDB})
-    : _sharedPreferencesDB = sharedPreferencesDB;
+  SecurityKeyDao({required this._sharedPreferencesDB});
 
   final SharedPreferencesDB _sharedPreferencesDB;
 

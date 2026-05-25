@@ -4,8 +4,7 @@ import '../../../shared/utils/result.dart';
 import '../../dao/mood/mood_category_dao.dart';
 
 class MoodCategoryRepositoryLocal implements MoodCategoryRepository {
-  MoodCategoryRepositoryLocal({required MoodCategoryDao moodCategoryDao})
-    : _moodCategoryDao = moodCategoryDao;
+  MoodCategoryRepositoryLocal({required this._moodCategoryDao});
 
   final MoodCategoryDao _moodCategoryDao;
 

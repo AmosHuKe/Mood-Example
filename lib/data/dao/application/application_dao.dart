@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import '../../database/shared_preferences_db.dart';
 
 class ApplicationDao {
-  ApplicationDao({required SharedPreferencesDB sharedPreferencesDB})
-    : _sharedPreferencesDB = sharedPreferencesDB;
+  ApplicationDao({required this._sharedPreferencesDB});
 
   final SharedPreferencesDB _sharedPreferencesDB;
 

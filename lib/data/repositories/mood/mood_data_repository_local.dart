@@ -5,7 +5,7 @@ import '../../../shared/utils/utils.dart';
 import '../../dao/mood/mood_data_dao.dart';
 
 class MoodDataRepositoryLocal implements MoodDataRepository {
-  MoodDataRepositoryLocal({required MoodDataDao moodDataDao}) : _moodDataDao = moodDataDao;
+  MoodDataRepositoryLocal({required this._moodDataDao});
 
   final MoodDataDao _moodDataDao;
 

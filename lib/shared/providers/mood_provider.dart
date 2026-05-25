@@ -6,7 +6,7 @@ import '../utils/result.dart';
 import '../utils/utils.dart';
 
 class MoodProvider extends ChangeNotifier {
-  MoodProvider({required MoodDataUseCase moodDataUseCase}) : _moodDataUseCase = moodDataUseCase {
+  MoodProvider({required this._moodDataUseCase}) {
     load();
   }
 

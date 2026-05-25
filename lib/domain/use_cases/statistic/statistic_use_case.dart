@@ -5,8 +5,7 @@ import '../../models/statistic/statistic_model.dart';
 import '../../repositories/statistic/statistic_repository.dart';
 
 class StatisticUseCase {
-  StatisticUseCase({required StatisticRepository statisticRepository})
-    : _statisticRepository = statisticRepository;
+  StatisticUseCase({required this._statisticRepository});
 
   final StatisticRepository _statisticRepository;
 

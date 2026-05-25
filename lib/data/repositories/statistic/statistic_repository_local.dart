@@ -5,7 +5,7 @@ import '../../../shared/utils/utils.dart';
 import '../../dao/statistic/statistic_dao.dart';
 
 class StatisticRepositoryLocal implements StatisticRepository {
-  StatisticRepositoryLocal({required StatisticDao statisticDao}) : _statisticDao = statisticDao;
+  StatisticRepositoryLocal({required this._statisticDao});
 
   final StatisticDao _statisticDao;
 

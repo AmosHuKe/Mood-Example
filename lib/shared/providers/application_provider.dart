@@ -6,8 +6,7 @@ import '../config/multiple_theme_mode.dart';
 import '../utils/result.dart';
 
 class ApplicationProvider extends ChangeNotifier {
-  ApplicationProvider({required ApplicationUseCase applicationUseCase})
-    : _applicationUseCase = applicationUseCase {
+  ApplicationProvider({required this._applicationUseCase}) {
     loadThemeMode();
     loadMultipleThemeMode();
     loadLocaleSystem();

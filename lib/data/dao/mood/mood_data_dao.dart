@@ -3,7 +3,7 @@ import '../../database/database.dart';
 import '../../database/tables/mood_info.dart';
 
 class MoodDataDao {
-  MoodDataDao({required DB database}) : _database = database;
+  MoodDataDao({required this._database});
 
   final DB _database;
 

@@ -7,8 +7,7 @@ import '../../../shared/utils/result.dart';
 import '../../dao/application/application_dao.dart';
 
 class ApplicationRepositoryLocal implements ApplicationRepository {
-  ApplicationRepositoryLocal({required ApplicationDao applicationDao})
-    : _applicationDao = applicationDao;
+  ApplicationRepositoryLocal({required this._applicationDao});
 
   final ApplicationDao _applicationDao;
 

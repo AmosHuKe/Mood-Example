@@ -3,7 +3,7 @@ import '../../database/database.dart';
 import '../../database/tables/mood_info.dart';
 
 class DataImportExportDao {
-  DataImportExportDao({required DB database}) : _database = database;
+  DataImportExportDao({required this._database});
 
   final DB _database;
 

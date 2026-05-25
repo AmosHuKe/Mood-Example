@@ -4,8 +4,7 @@ import '../../models/mood/mood_data_model.dart';
 import '../../repositories/application/data_import_export_repository.dart';
 
 class DataImportExportUseCase {
-  DataImportExportUseCase({required DataImportExportRepository dataImportExportRepository})
-    : _dataImportExportRepository = dataImportExportRepository;
+  DataImportExportUseCase({required this._dataImportExportRepository});
 
   final DataImportExportRepository _dataImportExportRepository;
 

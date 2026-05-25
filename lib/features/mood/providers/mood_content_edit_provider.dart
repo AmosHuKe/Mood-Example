@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import '../../../domain/models/mood/mood_data_model.dart';
 
 class MoodContentEditProvider extends ChangeNotifier {
-  MoodContentEditProvider({required MoodDataModel moodData}) : _moodData = moodData {}
+  MoodContentEditProvider({required this._moodData}) {}
 
   /// 当前心情详细数据
   MoodDataModel _moodData;

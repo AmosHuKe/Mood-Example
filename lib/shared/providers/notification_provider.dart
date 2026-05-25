@@ -7,8 +7,7 @@ import '../themes/app_theme.dart';
 
 /// 通知相关
 class NotificationProvider extends ChangeNotifier {
-  NotificationProvider({required AwesomeNotifications awesomeNotifications})
-    : _awesomeNotifications = awesomeNotifications {
+  NotificationProvider({required this._awesomeNotifications}) {
     init();
   }
 

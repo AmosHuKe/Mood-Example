@@ -7,8 +7,7 @@ import '../../../shared/utils/result.dart';
 import '../../repositories/application/application_repository.dart';
 
 class ApplicationUseCase {
-  ApplicationUseCase({required ApplicationRepository applicationRepository})
-    : _applicationRepository = applicationRepository;
+  ApplicationUseCase({required this._applicationRepository});
 
   final ApplicationRepository _applicationRepository;
 

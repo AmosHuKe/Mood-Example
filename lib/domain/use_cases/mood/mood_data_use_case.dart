@@ -5,8 +5,7 @@ import '../../models/mood/mood_data_model.dart';
 import '../../repositories/mood/mood_data_repository.dart';
 
 class MoodDataUseCase {
-  MoodDataUseCase({required MoodDataRepository moodDataRepository})
-    : _moodDataRepository = moodDataRepository;
+  MoodDataUseCase({required this._moodDataRepository});
 
   final MoodDataRepository _moodDataRepository;
 

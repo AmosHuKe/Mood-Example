@@ -4,8 +4,7 @@ import '../../../shared/utils/result.dart';
 import '../../dao/application/data_import_export_dao.dart';
 
 class DataImportExportRepositoryLocal implements DataImportExportRepository {
-  DataImportExportRepositoryLocal({required DataImportExportDao dataImportExportDao})
-    : _dataImportExportDao = dataImportExportDao;
+  DataImportExportRepositoryLocal({required this._dataImportExportDao});
 
   final DataImportExportDao _dataImportExportDao;
 

@@ -6,8 +6,7 @@ import '../utils/result.dart';
 
 /// 安全密钥相关
 class SecurityKeyProvider extends ChangeNotifier {
-  SecurityKeyProvider({required SecurityKeyUseCase securityKeyUseCase})
-    : _securityKeyUseCase = securityKeyUseCase {
+  SecurityKeyProvider({required this._securityKeyUseCase}) {
     loadKeyPassword();
     loadKeyBiometric();
   }
