@@ -278,18 +278,14 @@ class SettingDatabaseProvider extends ChangeNotifier {
       await FilePicker.clearTemporaryFiles();
 
       /// 选择文件
-      final pickedFile = await FilePicker.pickFiles(
-        type: .custom,
-        allowedExtensions: ['xlsx'],
-        allowMultiple: false,
-      );
+      final pickedFile = await FilePicker.pickFile(type: .custom, allowedExtensions: ['xlsx']);
       if (pickedFile != null) {
         Log.instance.info('已选择导入文件');
         _importLoading = true;
         notifyListeners();
 
         /// 文件路径、内容
-        final file = pickedFile.files.single.path ?? '';
+        final file = pickedFile.path ?? '';
         final bytes = File(file).readAsBytesSync();
         final excel = Excel.decodeBytes(bytes);
         for (final table in excel.tables.keys) {

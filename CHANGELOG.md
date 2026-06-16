@@ -1,5 +1,5 @@
 # 1.9.13 (Unreleased)
-- [升级] Flutter 3.44.0，Package 升级及适配
+- [升级] Flutter 3.44.2，Package 升级及适配
 
 # 1.9.12
 - [升级] Flutter 3.41.7，Package 升级及适配

@@ -11,8 +11,8 @@
 
 <p align="center">
   <a href="/CHANGELOG.md"><img alt="Mood-Example v1.9.13" src="https://img.shields.io/badge/Mood--Example-v1.9.13-3e4663"/></a> 
-  <a href="https://flutter.dev/"><img alt="Flutter v3.44.0" src="https://img.shields.io/badge/Flutter-v3.44.0-0468D7"/></a> 
-  <a href="https://dart.dev/"><img alt="Dart v3.12.0" src="https://img.shields.io/badge/Dart-v3.12.0-04599C"/></a> 
+  <a href="https://flutter.dev/"><img alt="Flutter v3.44.2" src="https://img.shields.io/badge/Flutter-v3.44.2-0468D7"/></a> 
+  <a href="https://dart.dev/"><img alt="Dart v3.12.2" src="https://img.shields.io/badge/Dart-v3.12.2-04599C"/></a> 
   <a href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/License-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -98,13 +98,13 @@
 
 Windows:   
 ```
-[√] Flutter (Channel stable, 3.44.0, on Microsoft Windows)
+[√] Flutter (Channel stable, 3.44.2, on Microsoft Windows)
 [√] Android toolchain - develop for Android devices (Android SDK version 37.0.0)
 ```  
 
 macOS:   
 ```
-[✓] Flutter (Channel stable, 3.44.0, on macOS)
+[✓] Flutter (Channel stable, 3.44.2, on macOS)
 [✓] Android toolchain - develop for Android devices (Android SDK version 37.0.0)
 ```  
 
@@ -335,34 +335,34 @@ $ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 
 感谢开源  
 
-| Packages | License |  
-|---|---|  
-| [bonfire](https://pub.dev/packages/bonfire) | [MIT License](https://pub.dev/packages/bonfire/license) |  
-| [card_swiper](https://pub.dev/packages/card_swiper) | [MIT License](https://pub.dev/packages/card_swiper/license) |  
-| [ditredi](https://pub.dev/packages/ditredi) | [MIT License](https://pub.dev/packages/ditredi/license) |  
-| [excel](https://pub.dev/packages/excel) | [MIT License](https://pub.dev/packages/excel/license) |  
-| [flame](https://pub.dev/packages/flame) | [MIT License](https://pub.dev/packages/flame/license) |  
-| [file_picker](https://pub.dev/packages/file_picker) | [MIT License](https://pub.dev/packages/file_picker/license) |  
-| [flutter_slidable](https://pub.dev/packages/flutter_slidable) | [MIT License](https://pub.dev/packages/flutter_slidable/license) |  
-| [flutter_zoom_drawer](https://pub.dev/packages/flutter_zoom_drawer) | [MIT License](https://pub.dev/packages/flutter_zoom_drawer/license) |  
-| [flutter_screen_lock](https://pub.dev/packages/flutter_screen_lock) | [MIT License](https://pub.dev/packages/flutter_screen_lock/license) |  
-| [flutter_smart_dialog](https://pub.dev/packages/flutter_smart_dialog) | [MIT License](https://pub.dev/packages/flutter_smart_dialog/license) |  
-| [flutter_tilt](https://pub.dev/packages/flutter_tilt) | [MIT License](https://pub.dev/packages/flutter_tilt/license) |  
-| [provider](https://pub.dev/packages/provider) | [MIT License](https://pub.dev/packages/provider/license) |  
-| [remixicon](https://pub.dev/packages/remixicon) | [MIT License](https://pub.dev/packages/remixicon/license) |  
-| [awesome_notifications](https://pub.dev/packages/awesome_notifications) | [Apache-2.0 License](https://pub.dev/packages/awesome_notifications/license) |  
-| [table_calendar](https://pub.dev/packages/table_calendar) | [Apache-2.0 License](https://pub.dev/packages/table_calendar/license) |  
-| [sqflite](https://pub.dev/packages/sqflite) | [BSD-2-Clause License](https://pub.dev/packages/sqflite/license) |  
-| [fl_chart](https://pub.dev/packages/fl_chart) | [BSD-3-Clause License](https://pub.dev/packages/fl_chart/license) |  
-| [flutter_lints](https://pub.dev/packages/flutter_lints) | [BSD-3-Clause License](https://pub.dev/packages/flutter_lints/license) |  
-| [intl](https://pub.dev/packages/intl) | [BSD-3-Clause License](https://pub.dev/packages/intl/license) |  
-| [local_auth](https://pub.dev/packages/local_auth) | [BSD-3-Clause License](https://pub.dev/packages/local_auth/license) |  
-| [logging](https://pub.dev/packages/logging) | [BSD-3-Clause License](https://pub.dev/packages/logging/license) |  
-| [go_router](https://pub.dev/packages/go_router) | [BSD-3-Clause License](https://pub.dev/packages/go_router/license) |  
-| [path_provider](https://pub.dev/packages/path_provider) | [BSD-3-Clause License](https://pub.dev/packages/path_provider/license) |  
-| [share_plus](https://pub.dev/packages/share_plus) | [BSD-3-Clause License](https://pub.dev/packages/share_plus/license) |  
-| [shared_preferences](https://pub.dev/packages/shared_preferences) | [BSD-3-Clause License](https://pub.dev/packages/shared_preferences/license) |  
-| [webview_flutter](https://pub.dev/packages/webview_flutter) | [BSD-3-Clause License](https://pub.dev/packages/webview_flutter/license) |  
+| Packages                                                                | License                                                                      |
+| ----------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [bonfire](https://pub.dev/packages/bonfire)                             | [MIT License](https://pub.dev/packages/bonfire/license)                      |
+| [card_swiper](https://pub.dev/packages/card_swiper)                     | [MIT License](https://pub.dev/packages/card_swiper/license)                  |
+| [ditredi](https://pub.dev/packages/ditredi)                             | [MIT License](https://pub.dev/packages/ditredi/license)                      |
+| [excel](https://pub.dev/packages/excel)                                 | [MIT License](https://pub.dev/packages/excel/license)                        |
+| [flame](https://pub.dev/packages/flame)                                 | [MIT License](https://pub.dev/packages/flame/license)                        |
+| [file_picker](https://pub.dev/packages/file_picker)                     | [MIT License](https://pub.dev/packages/file_picker/license)                  |
+| [flutter_slidable](https://pub.dev/packages/flutter_slidable)           | [MIT License](https://pub.dev/packages/flutter_slidable/license)             |
+| [flutter_zoom_drawer](https://pub.dev/packages/flutter_zoom_drawer)     | [MIT License](https://pub.dev/packages/flutter_zoom_drawer/license)          |
+| [flutter_screen_lock](https://pub.dev/packages/flutter_screen_lock)     | [MIT License](https://pub.dev/packages/flutter_screen_lock/license)          |
+| [flutter_smart_dialog](https://pub.dev/packages/flutter_smart_dialog)   | [MIT License](https://pub.dev/packages/flutter_smart_dialog/license)         |
+| [flutter_tilt](https://pub.dev/packages/flutter_tilt)                   | [MIT License](https://pub.dev/packages/flutter_tilt/license)                 |
+| [provider](https://pub.dev/packages/provider)                           | [MIT License](https://pub.dev/packages/provider/license)                     |
+| [remixicon](https://pub.dev/packages/remixicon)                         | [MIT License](https://pub.dev/packages/remixicon/license)                    |
+| [awesome_notifications](https://pub.dev/packages/awesome_notifications) | [Apache-2.0 License](https://pub.dev/packages/awesome_notifications/license) |
+| [table_calendar](https://pub.dev/packages/table_calendar)               | [Apache-2.0 License](https://pub.dev/packages/table_calendar/license)        |
+| [sqflite](https://pub.dev/packages/sqflite)                             | [BSD-2-Clause License](https://pub.dev/packages/sqflite/license)             |
+| [fl_chart](https://pub.dev/packages/fl_chart)                           | [BSD-3-Clause License](https://pub.dev/packages/fl_chart/license)            |
+| [flutter_lints](https://pub.dev/packages/flutter_lints)                 | [BSD-3-Clause License](https://pub.dev/packages/flutter_lints/license)       |
+| [intl](https://pub.dev/packages/intl)                                   | [BSD-3-Clause License](https://pub.dev/packages/intl/license)                |
+| [local_auth](https://pub.dev/packages/local_auth)                       | [BSD-3-Clause License](https://pub.dev/packages/local_auth/license)          |
+| [logging](https://pub.dev/packages/logging)                             | [BSD-3-Clause License](https://pub.dev/packages/logging/license)             |
+| [go_router](https://pub.dev/packages/go_router)                         | [BSD-3-Clause License](https://pub.dev/packages/go_router/license)           |
+| [path_provider](https://pub.dev/packages/path_provider)                 | [BSD-3-Clause License](https://pub.dev/packages/path_provider/license)       |
+| [share_plus](https://pub.dev/packages/share_plus)                       | [BSD-3-Clause License](https://pub.dev/packages/share_plus/license)          |
+| [shared_preferences](https://pub.dev/packages/shared_preferences)       | [BSD-3-Clause License](https://pub.dev/packages/shared_preferences/license)  |
+| [webview_flutter](https://pub.dev/packages/webview_flutter)             | [BSD-3-Clause License](https://pub.dev/packages/webview_flutter/license)     |
 
 
 ## 🖼️ Illustration
