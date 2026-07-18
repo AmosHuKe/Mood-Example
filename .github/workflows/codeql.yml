@@ -67,7 +67,7 @@ jobs:
         java-version: '17'
     - name: Set up Flutter
       if: matrix.build-mode == 'manual'
-      uses: flutter-actions/setup-flutter@18c66a64fb6f6d3338c63cabbc5cd6da395e7f1d
+      uses: flutter-actions/setup-flutter@adb607ae976a9e00473569facfc69813c637a060
       with:
         channel: stable
         version: ${{ env.FLUTTER_VERSION }}
