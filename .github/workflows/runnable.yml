@@ -52,7 +52,7 @@ jobs:
   #       api-level: [31, 35]
   #   steps:
   #     - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
-  #     - uses: actions/setup-java@0f481fcb613427c0f801b606911222b5b6f3083a
+  #     - uses: actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95
   #       with:
   #         distribution: 'zulu'
   #         java-version: '17'
@@ -100,7 +100,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
-      - uses: actions/setup-java@0f481fcb613427c0f801b606911222b5b6f3083a
+      - uses: actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95
         with:
           distribution: 'zulu'
           java-version: '17'
