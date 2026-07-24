@@ -13,3 +13,7 @@ updates:
       - "infra"
       - "auto.dependencies"
       - "auto.github-action"
+    groups:
+      codeql-action:
+        patterns:
+          - "github/codeql-action/*"
