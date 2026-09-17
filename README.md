@@ -11,8 +11,8 @@
 
 <p align="center">
   <a href="/CHANGELOG.md"><img alt="Mood-Example v1.9.14" src="https://img.shields.io/badge/Mood--Example-v1.9.14-3e4663"/></a> 
-  <a href="https://flutter.dev/"><img alt="Flutter v3.47.1" src="https://img.shields.io/badge/Flutter-v3.47.1-0468D7"/></a> 
-  <a href="https://dart.dev/"><img alt="Dart v3.13.1" src="https://img.shields.io/badge/Dart-v3.13.1-04599C"/></a> 
+  <a href="https://flutter.dev/"><img alt="Flutter v3.47.4" src="https://img.shields.io/badge/Flutter-v3.47.4-0468D7"/></a> 
+  <a href="https://dart.dev/"><img alt="Dart v3.13.3" src="https://img.shields.io/badge/Dart-v3.13.3-04599C"/></a> 
   <a href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/License-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -98,13 +98,13 @@
 
 Windows:   
 ```
-[√] Flutter (Channel stable, 3.47.0, on Microsoft Windows)
+[√] Flutter (Channel stable, 3.47.4, on Microsoft Windows)
 [√] Android toolchain - develop for Android devices (Android SDK version 37.0.0)
 ```  
 
 macOS:   
 ```
-[✓] Flutter (Channel stable, 3.47.0, on macOS)
+[✓] Flutter (Channel stable, 3.47.4, on macOS)
 [✓] Android toolchain - develop for Android devices (Android SDK version 37.0.0)
 ```  
 
@@ -364,11 +364,6 @@ $ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 ## 🖼️ Illustration
 
 Illustration by <a href="https://icons8.com/illustrations/author/iAdLsFJOKDrk">Tanya Krasutska</a> from <a href="https://icons8.com/illustrations">Ouch!</a> 
-
-
-## 🎨 Design
-
-Design by [Mindfulness Concept App](https://dribbble.com/shots/15733031-Mindfulness-Concept-App) from Bogusław Podhalicz.  
 
 
 ## 📄 License
