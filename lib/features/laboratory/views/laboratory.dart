@@ -121,7 +121,7 @@ class LaboratoryBody extends StatelessWidget {
         ),
         OpenCard(
           icon: Remix.align_vertically,
-          title: 'FFI (Hook) 异步调用 C/C++',
+          title: 'FFI (Hooks) 异步调用 C/C++',
           subtitle: '通过 FFI 异步调用 C/C++ 并监听',
           onTap: () {
             GoRouter.of(context).pushNamed(Routes.laboratoryFFI);

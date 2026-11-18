@@ -1,6 +1,9 @@
-# 1.9.14 (Unreleased)
+# 1.9.15 (Unreleased)
+- [升级] Flutter 3.50.0，Package 升级及适配
+
+# 1.9.14
 - [升级] Flutter 3.47.4，Package 升级及适配
-- [修改] FFI 使用 Hook
+- [修改] FFI 使用 Hooks
 
 # 1.9.13
 - [升级] Flutter 3.44.2，Package 升级及适配

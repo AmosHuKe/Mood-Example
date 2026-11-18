@@ -10,9 +10,9 @@
 </h1> 
 
 <p align="center">
-  <a href="/CHANGELOG.md"><img alt="Mood-Example v1.9.14" src="https://img.shields.io/badge/Mood--Example-v1.9.14-3e4663"/></a> 
-  <a href="https://flutter.dev/"><img alt="Flutter v3.47.4" src="https://img.shields.io/badge/Flutter-v3.47.4-0468D7"/></a> 
-  <a href="https://dart.dev/"><img alt="Dart v3.13.3" src="https://img.shields.io/badge/Dart-v3.13.3-04599C"/></a> 
+  <a href="/CHANGELOG.md"><img alt="Mood-Example v1.9.15" src="https://img.shields.io/badge/Mood--Example-v1.9.15-3e4663"/></a> 
+  <a href="https://flutter.dev/"><img alt="Flutter v3.50.0" src="https://img.shields.io/badge/Flutter-v3.50.0-0468D7"/></a> 
+  <a href="https://dart.dev/"><img alt="Dart v3.14.0" src="https://img.shields.io/badge/Dart-v3.14.0-04599C"/></a> 
   <a href="https://github.com/AmosHuKe/Mood-Example/blob/main/LICENSE"><img alt="BSD-3-Clause License" src="https://img.shields.io/badge/License-BSD--3--Clause-green"/></a> 
 </p> 
 
@@ -98,13 +98,13 @@
 
 Windows:   
 ```
-[√] Flutter (Channel stable, 3.47.4, on Microsoft Windows)
+[√] Flutter (Channel stable, 3.50.0, on Microsoft Windows)
 [√] Android toolchain - develop for Android devices (Android SDK version 37.0.0)
 ```  
 
 macOS:   
 ```
-[✓] Flutter (Channel stable, 3.47.4, on macOS)
+[✓] Flutter (Channel stable, 3.50.0, on macOS)
 [✓] Android toolchain - develop for Android devices (Android SDK version 37.0.0)
 ```  
 
@@ -336,7 +336,7 @@ $ flutter test integration_test/app_test.dart --dart-define=test_mode=true
 | [bonfire](https://pub.dev/packages/bonfire)                             | [MIT License](https://pub.dev/packages/bonfire/license)                      |
 | [card_swiper](https://pub.dev/packages/card_swiper)                     | [MIT License](https://pub.dev/packages/card_swiper/license)                  |
 | [ditredi](https://pub.dev/packages/ditredi)                             | [MIT License](https://pub.dev/packages/ditredi/license)                      |
-| [excel](https://pub.dev/packages/excel)                                 | [MIT License](https://pub.dev/packages/excel/license)                        |
+| [excel_plus](https://pub.dev/packages/excel_plus)                       | [MIT License](https://pub.dev/packages/excel_plus/license)                   |
 | [flame](https://pub.dev/packages/flame)                                 | [MIT License](https://pub.dev/packages/flame/license)                        |
 | [file_picker](https://pub.dev/packages/file_picker)                     | [MIT License](https://pub.dev/packages/file_picker/license)                  |
 | [flutter_slidable](https://pub.dev/packages/flutter_slidable)           | [MIT License](https://pub.dev/packages/flutter_slidable/license)             |

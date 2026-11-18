@@ -8,7 +8,8 @@ import '../sprite_sheet/sprite_sheet_orc.dart';
 
 const double tileSize = 20.0;
 
-class Orc extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLifeBar {
+class Orc extends SimpleEnemy
+    with WithRandomMovement, WithCollision, WithLifeBar, WithVision, WithLife, WithAttack {
   Orc(Vector2 position)
     : super(
         position: position,
@@ -30,17 +31,21 @@ class Orc extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLi
         size: Vector2.all(tileSize * 2.9),
       ) {
     /// 生命条
-    setupLifeBar(
+    lifeBar.setup(
       size: Vector2(tileSize * 1.5, tileSize / 5),
-      barLifeDrawPosition: .top,
+      drawPosition: .top,
       showLifeText: false,
       borderWidth: 2,
       borderColor: Colors.white.withValues(alpha: 0.5),
       borderRadius: .circular(2),
       textOffset: Vector2(6, tileSize * 0.2),
     );
+
+    life.onDieListener(_onDie);
+    life.onRemoveLifeListener(_onReceiveDamage);
   }
 
+  final _attackMeleeTick = IntervalTick(800);
   bool _canMove = true;
 
   @override
@@ -76,16 +81,17 @@ class Orc extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLi
   void update(double dt) {
     if (_canMove) {
       // 发现并攻击玩家
-      seeAndMoveToPlayer(
+      vision.seeAndMoveToPlayer(
         radiusVision: tileSize * 5,
         closePlayer: (comp) {
           /// 抵达玩家，开始攻击
-          execAttack();
+          execAttack(dt);
         },
         // 未发现
         notObserved: () {
           /// 随机移动
-          runRandomMovement(dt, speed: speed / 3, maxDistance: tileSize * 2);
+          randomMovement.setup(speed: speed / 3, maxDistance: tileSize * 2);
+          randomMovement.run(dt);
           return false;
         },
       );
@@ -94,8 +100,7 @@ class Orc extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLi
   }
 
   /// 死亡
-  @override
-  void onDie() {
+  void _onDie() {
     _canMove = false;
     gameRef.lighting?.animateToColor(Colors.black.withValues(alpha: 0.7));
 
@@ -108,24 +113,14 @@ class Orc extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLi
       },
       runToTheEnd: true,
     );
-    super.onDie();
-  }
-
-  /// 处理攻击
-  @override
-  bool handleAttack(AttackOriginEnum attacker, double damage, identify) {
-    return super.handleAttack(attacker, damage, identify);
   }
 
   /// 受伤触发
-  @override
-  void onReceiveDamage(AttackOriginEnum attacker, double damage, identify) {
+  void _onReceiveDamage(double amount) {
     if (!isDead) {
-      super.onReceiveDamage(attacker, damage, identify);
-
       /// 伤害显示
-      showDamage(
-        damage,
+      util.showDamage(
+        amount,
         initVelocityVertical: -2,
         config: const TextStyle(color: Colors.amberAccent, fontSize: tileSize / 2),
       );
@@ -138,22 +133,22 @@ class Orc extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLi
   /// 攻击动画
   void addAttackAnimation() {
     Future<SpriteAnimation> newAnimation;
-    switch (lastDirection) {
+    switch (direction) {
       case .left:
         newAnimation = SpriteSheetOrc.getAttackBottomLeft();
       case .right:
         newAnimation = SpriteSheetOrc.getAttackBottomRight();
       case .up:
-        if (lastDirectionHorizontal == .right) {
-          newAnimation = SpriteSheetOrc.getAttackTopRight();
-        } else {
+        if (hDirection == .left) {
           newAnimation = SpriteSheetOrc.getAttackTopLeft();
+        } else {
+          newAnimation = SpriteSheetOrc.getAttackTopRight();
         }
       case .down:
-        if (lastDirectionHorizontal == .right) {
-          newAnimation = SpriteSheetOrc.getAttackBottomRight();
-        } else {
+        if (hDirection == .left) {
           newAnimation = SpriteSheetOrc.getAttackBottomLeft();
+        } else {
+          newAnimation = SpriteSheetOrc.getAttackBottomRight();
         }
       case .upLeft:
         newAnimation = SpriteSheetOrc.getAttackTopLeft();
@@ -207,14 +202,10 @@ class Orc extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLi
   // }
 
   /// 攻击
-  void execAttack() {
-    simpleAttackMelee(
-      damage: 50 + Random().nextDouble() * 200,
-      size: Vector2.all(tileSize * 1.5),
-      interval: 800,
-      execute: () {
-        addAttackAnimation();
-      },
-    );
+  void execAttack(double dt) {
+    if (_attackMeleeTick.update(dt)) {
+      addAttackAnimation();
+      attack.melee(damage: 50 + Random().nextDouble() * 200, size: Vector2.all(tileSize * 1.5));
+    }
   }
 }

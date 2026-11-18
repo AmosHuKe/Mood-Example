@@ -79,7 +79,7 @@ class _FFIScreenState extends State<FFIScreen> {
           foregroundColor: Colors.black87,
           shadowColor: Colors.transparent,
           titleTextStyle: const .new(color: Colors.black, fontSize: 14),
-          title: const Text('FFI (Hook) 异步调用 C/C++'),
+          title: const Text('FFI (Hooks) 异步调用 C/C++'),
           leading: ActionButton(
             decoration: const BoxDecoration(
               color: Colors.transparent,

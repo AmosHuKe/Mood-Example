@@ -71,7 +71,7 @@ abstract final class Routes {
   /// 设置页-实验室-3D 城市
   static const String laboratoryPage3D = 'laboratoryPage3D';
 
-  /// 设置页-实验室-FFI (Hook) 异步调用 C/C++
+  /// 设置页-实验室-FFI (Hooks) 异步调用 C/C++
   static const String laboratoryFFI = 'laboratoryFFI';
 
   /// WebView
@@ -340,7 +340,7 @@ abstract final class AppRouter {
         ],
       ),
 
-      /// 设置页-实验室-FFI (Hook) 异步调用 C/C++
+      /// 设置页-实验室-FFI (Hooks) 异步调用 C/C++
       GoRoute(
         path: '/${Routes.laboratoryFFI}',
         name: Routes.laboratoryFFI,

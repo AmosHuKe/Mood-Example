@@ -8,7 +8,8 @@ import 'orc.dart';
 
 const double tileSize = 20.0;
 
-class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, UseLifeBar {
+class HumanPlayer extends SimplePlayer
+    with WithCollision, WithLighting, WithLifeBar, WithAttack, WithLife {
   HumanPlayer(Vector2 position)
     : super(
         position: position,
@@ -30,20 +31,23 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
         size: .all(tileSize * 2.9),
       ) {
     /// 发光
-    setupLighting(
+    lighting.setup(
       LightingConfig(radius: width / 2, blurBorder: width / 2, color: Colors.transparent),
     );
 
     /// 生命条
-    setupLifeBar(
+    lifeBar.setup(
       size: Vector2(tileSize * 1.5, tileSize / 5),
-      barLifeDrawPosition: .top,
+      drawPosition: .top,
       showLifeText: false,
       borderWidth: 2,
       borderColor: Colors.white.withValues(alpha: 0.5),
       borderRadius: .circular(2),
       textOffset: Vector2(6, tileSize * 0.2),
     );
+
+    life.onDieListener(_onDie);
+    life.onRemoveLifeListener(_onReceiveDamage);
   }
 
   static double maxSpeed = tileSize * 4;
@@ -95,7 +99,7 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
       addAttackAnimation();
 
       /// 攻击范围
-      simpleAttackMelee(damage: 10, size: Vector2.all(tileSize * 1.5), withPush: false);
+      attack.melee(damage: 10, size: Vector2.all(tileSize * 1.5), withPush: false);
     }
     super.onJoystickAction(event);
   }
@@ -109,21 +113,12 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
     super.onJoystickChangeDirectional(event);
   }
 
-  /// 处理攻击
-  @override
-  bool handleAttack(AttackOriginEnum attacker, double damage, identify) {
-    return super.handleAttack(attacker, damage, identify);
-  }
-
   /// 受伤触发
-  @override
-  void onReceiveDamage(AttackOriginEnum attacker, double damage, dynamic from) {
+  void _onReceiveDamage(double amount) {
     if (!isDead) {
-      super.onReceiveDamage(attacker, damage, from);
-
       /// 伤害显示
-      showDamage(
-        damage,
+      util.showDamage(
+        amount,
         initVelocityVertical: -2,
         config: const TextStyle(color: Colors.white, fontSize: tileSize / 2),
       );
@@ -140,8 +135,8 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
     }
   }
 
-  @override
-  void onDie() {
+  /// 死亡
+  void _onDie() {
     animation?.playOnce(
       SpriteSheetPlayer.getDie(),
       onFinish: () {
@@ -149,25 +144,24 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
       },
       runToTheEnd: true,
     );
-    super.onDie();
   }
 
   /// 攻击动画
   void addAttackAnimation() {
     Future<SpriteAnimation> newAnimation;
-    switch (lastDirection) {
+    switch (direction) {
       case .left:
         newAnimation = SpriteSheetPlayer.getAttackBottomLeft();
       case .right:
         newAnimation = SpriteSheetPlayer.getAttackBottomRight();
       case .up:
-        if (lastDirectionHorizontal == .left) {
+        if (hDirection == .left) {
           newAnimation = SpriteSheetPlayer.getAttackTopLeft();
         } else {
           newAnimation = SpriteSheetPlayer.getAttackTopRight();
         }
       case .down:
-        if (lastDirectionHorizontal == .left) {
+        if (hDirection == .left) {
           newAnimation = SpriteSheetPlayer.getAttackBottomLeft();
         } else {
           newAnimation = SpriteSheetPlayer.getAttackBottomRight();

@@ -8,7 +8,8 @@ import 'orc.dart';
 
 const double tileSize = 20.0;
 
-class Boss extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseLifeBar {
+class Boss extends SimpleEnemy
+    with WithRandomMovement, WithCollision, WithLifeBar, WithVision, WithLife, WithAttack {
   Boss(Vector2 position)
     : super(
         position: position,
@@ -18,17 +19,21 @@ class Boss extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseL
         size: Vector2.all(tileSize * 5),
       ) {
     /// 生命条
-    setupLifeBar(
+    lifeBar.setup(
       size: Vector2(tileSize * 2.5, tileSize / 5),
-      barLifeDrawPosition: .top,
+      drawPosition: .top,
       showLifeText: false,
       borderWidth: 2,
       borderColor: Colors.white.withValues(alpha: 0.5),
       borderRadius: .circular(2),
       textOffset: Vector2(16, tileSize * 0.2),
     );
+
+    life.onDieListener(_onDie);
+    life.onRemoveLifeListener(_onReceiveDamage);
   }
 
+  final _attackMeleeTick = IntervalTick(800);
   bool _canMove = true;
 
   @override
@@ -61,17 +66,18 @@ class Boss extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseL
   void update(double dt) {
     if (_canMove) {
       /// 发现并攻击玩家
-      seeAndMoveToPlayer(
+      vision.seeAndMoveToPlayer(
         radiusVision: tileSize * 10000,
         visionAngle: tileSize * 10000,
         closePlayer: (comp) {
           /// 抵达玩家，开始攻击
-          execAttack();
+          execAttack(dt);
         },
         // 未发现
         notObserved: () {
           /// 随机移动
-          runRandomMovement(dt, speed: speed / 1.5, maxDistance: tileSize * 100);
+          randomMovement.setup(speed: speed / 1.5, maxDistance: tileSize * 100);
+          randomMovement.run(dt);
           return false;
         },
       );
@@ -80,28 +86,17 @@ class Boss extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseL
   }
 
   /// 死亡
-  @override
-  void onDie() {
+  void _onDie() {
     _canMove = false;
     removeFromParent();
-    super.onDie();
-  }
-
-  /// 处理攻击
-  @override
-  bool handleAttack(AttackOriginEnum attacker, double damage, identify) {
-    return super.handleAttack(attacker, damage, identify);
   }
 
   /// 受伤触发
-  @override
-  void onReceiveDamage(AttackOriginEnum attacker, double damage, identify) {
+  void _onReceiveDamage(double amount) {
     if (!isDead) {
-      super.onReceiveDamage(attacker, damage, identify);
-
       /// 伤害显示
-      showDamage(
-        damage,
+      util.showDamage(
+        amount,
         initVelocityVertical: -2,
         config: const TextStyle(color: Colors.amberAccent, fontSize: tileSize / 2),
       );
@@ -109,7 +104,9 @@ class Boss extends SimpleEnemy with RandomMovement, BlockMovementCollision, UseL
   }
 
   /// 攻击
-  void execAttack() {
-    simpleAttackMelee(damage: 20, size: Vector2.all(tileSize * 5), interval: 800, execute: () {});
+  void execAttack(double dt) {
+    if (_attackMeleeTick.update(dt)) {
+      attack.melee(damage: 20, size: Vector2.all(tileSize * 5));
+    }
   }
 }

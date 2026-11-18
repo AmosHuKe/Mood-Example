@@ -7,7 +7,7 @@ import 'package:material_ui/material_ui.dart';
 import '../../../../../../shared/utils/log_utils.dart';
 import '../sprite_sheet/sprite_sheet_fire_ball.dart';
 import '../sprite_sheet/sprite_sheet_player.dart';
-import '../util/custom_sprite_animation_widget.dart';
+// import '../util/custom_sprite_animation_widget.dart';
 import 'boss.dart';
 import 'orc.dart';
 
@@ -15,7 +15,8 @@ const double tileSize = 20.0;
 
 enum PlayerAttackType { attackMelee, attackRange, attackRangeShotguns }
 
-class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, UseLifeBar {
+class HumanPlayer extends SimplePlayer
+    with WithCollision, WithLighting, WithLifeBar, WithAttack, WithLife {
   HumanPlayer(Vector2 position)
     : super(
         position: position,
@@ -37,23 +38,26 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
         size: Vector2.all(tileSize * 3.2),
       ) {
     /// 发光
-    setupLighting(.new(radius: width * 2, blurBorder: width * 6, color: Colors.transparent));
+    lighting.setup(.new(radius: width * 2, blurBorder: width * 6, color: Colors.transparent));
     // 生命条
-    setupLifeBar(
+    lifeBar.setup(
       size: Vector2(tileSize * 1.5, tileSize / 5),
-      barLifeDrawPosition: .top,
+      drawPosition: .top,
       showLifeText: false,
       borderWidth: 2,
       borderColor: Colors.white.withValues(alpha: 0.5),
       borderRadius: .circular(2),
       textOffset: Vector2(8, tileSize * 0.2),
     );
+
+    life.onDieListener(_onDie);
+    life.onRemoveLifeListener(_onReceiveDamage);
   }
 
   static const assetsPath = 'game/mini_game/player/human';
 
   /// 第一次游玩
-  bool firstPlayer = false;
+  bool firstPlay = false;
 
   /// 最大速度
   static double maxSpeed = tileSize * 5;
@@ -65,10 +69,15 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
   bool lockMove = false;
 
   /// 攻击
+  final _attackRangeTick = IntervalTick(150);
   bool executingRangeAttack = false;
   double radAngleRangeAttack = 0;
+  final _attackRangeShotgunsTick = IntervalTick(50);
   bool executingRangeShotgunsAttack = false;
   double radAngleRangeShotgunsAttack = 0;
+
+  final _enemyOrcCreateTick = IntervalTick(1000);
+  final _enemyBossCreateTick = IntervalTick(1000);
 
   @override
   Future<void> onLoad() {
@@ -93,7 +102,7 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
     if (!isDead) {
       enemyOrcCreate(dt);
       enemyBossCreate(dt);
-      firstPlayerSay();
+      // firstPlaySay();
 
       handleActionAttackRange(dt);
       handleActionAttackRangeShotguns(dt);
@@ -136,7 +145,7 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
       addAttackAnimation();
 
       /// 攻击范围
-      simpleAttackMelee(damage: 50, size: Vector2.all(tileSize), withPush: false);
+      attack.melee(damage: 50, size: Vector2.all(tileSize), withPush: false);
     }
 
     /// 远程攻击
@@ -175,21 +184,12 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
     super.onJoystickChangeDirectional(event);
   }
 
-  /// 处理攻击
-  @override
-  bool handleAttack(AttackOriginEnum attacker, double damage, identify) {
-    return super.handleAttack(attacker, damage, identify);
-  }
-
   /// 受伤触发
-  @override
-  void onReceiveDamage(AttackOriginEnum attacker, double damage, dynamic from) {
+  void _onReceiveDamage(double amount) {
     if (!isDead) {
-      super.onReceiveDamage(attacker, damage, from);
-
       /// 伤害显示
-      showDamage(
-        damage,
+      util.showDamage(
+        amount,
         initVelocityVertical: -2,
         config: const TextStyle(color: Colors.white, fontSize: tileSize / 2),
       );
@@ -206,33 +206,32 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
   }
 
   /// 死亡
-  @override
-  void onDie() {
+  void _onDie() {
     handleDie();
-    super.onDie();
   }
 
   /// 第一次游玩对话
-  void firstPlayerSay() {
-    if (!firstPlayer) {
-      firstPlayer = true;
+  void firstPlaySay() {
+    if (!firstPlay) {
+      firstPlay = true;
       gameRef.camera.moveToTargetAnimated(
         target: this,
         onComplete: () {
-          TalkDialog.show(gameRef.context, [
-            Say(
-              text: [
-                const TextSpan(text: '你...好...陌...生...人...'),
-                const TextSpan(
-                  text: '  怪物已经向你冲来！！！',
-                  style: .new(color: Colors.red),
-                ),
-              ],
-              person: CustomSpriteAnimationWidget(animation: SpriteSheetPlayer.idleBottomRight),
-              personSayDirection: .LEFT,
-              speed: 100,
-            ),
-          ]);
+          // TODO: 等 package 迁移至 material_ui 再使用
+          // TalkDialog.show(gameRef.context, [
+          //   Say(
+          //     text: [
+          //       const TextSpan(text: '你...好...陌...生...人...'),
+          //       const TextSpan(
+          //         text: '  怪物已经向你冲来！！！',
+          //         style: .new(color: Colors.red),
+          //       ),
+          //     ],
+          //     person: CustomSpriteAnimationWidget(animation: SpriteSheetPlayer.idleBottomRight),
+          //     personSayDirection: .LEFT,
+          //     speed: 100,
+          //   ),
+          // ]);
         },
       );
     }
@@ -242,14 +241,15 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
   void handleDie() {
     final playerPosition = gameRef.player?.position ?? Vector2(position.x, position.y);
     gameRef.camera.moveToTargetAnimated(target: this, onComplete: () {});
-    TalkDialog.show(gameRef.context, [
-      Say(
-        text: [const TextSpan(text: '恩... 好像失败了...')],
-        person: CustomSpriteAnimationWidget(animation: SpriteSheetPlayer.getDamageTopRight()),
-        personSayDirection: .LEFT,
-        speed: 100,
-      ),
-    ]);
+    // TODO: 等 package 迁移至 material_ui 再使用
+    // TalkDialog.show(gameRef.context, [
+    //   Say(
+    //     text: [const TextSpan(text: '恩... 好像失败了...')],
+    //     person: CustomSpriteAnimationWidget(animation: SpriteSheetPlayer.getDamageTopRight()),
+    //     personSayDirection: .LEFT,
+    //     speed: 100,
+    //   ),
+    // ]);
     animation?.playOnce(
       SpriteSheetPlayer.getDie(),
       onFinish: () {
@@ -268,7 +268,7 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
 
   /// 敌对生物生成 Orc
   void enemyOrcCreate(double dt) {
-    if (checkInterval('EnemyBossCreate', 1000, dt)) {
+    if (_enemyOrcCreateTick.update(dt)) {
       Log.instance.info('怪物数量：${gameRef.enemies().length}');
 
       /// 限制数量
@@ -291,7 +291,7 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
 
   /// 敌对生物生成 Boss
   void enemyBossCreate(double dt) {
-    if (checkInterval('EnemyBossCreate', 1000, dt)) {
+    if (_enemyBossCreateTick.update(dt)) {
       Log.instance.info('怪物数量：${gameRef.enemies().length}');
 
       /// 限制数量
@@ -315,8 +315,7 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
   /// 远程攻击
   void handleActionAttackRange(double dt) {
     /// 远程攻击触发（发射间隔）
-    final execRangeAttackInterval = checkInterval('AttackRange', 150, dt);
-    if (executingRangeAttack && execRangeAttackInterval) {
+    if (executingRangeAttack && _attackRangeTick.update(dt)) {
       actionAttackRange(radAngleRangeAttack);
     }
   }
@@ -324,15 +323,14 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
   /// 远程混乱攻击
   void handleActionAttackRangeShotguns(double dt) {
     /// 远程混乱攻击触发（发射间隔）
-    final execRangeShotgunsAttackInterval = checkInterval('AttackRangeShotguns', 50, dt);
-    if (executingRangeShotgunsAttack && execRangeShotgunsAttackInterval) {
+    if (executingRangeShotgunsAttack && _attackRangeShotgunsTick.update(dt)) {
       actionAttackRangeShotguns(radAngleRangeShotgunsAttack);
     }
   }
 
   /// 远程攻击
   void actionAttackRange(double fireAngle) {
-    simpleAttackRangeByAngle(
+    attack.rangeByAngle(
       animation: SpriteSheetFireBall.fireBallAttackRight(),
       animationDestroy: SpriteSheetFireBall.fireBallExplosion(),
       size: Vector2(tileSize * 2, tileSize * 2),
@@ -356,7 +354,7 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
 
   /// 远程混乱攻击
   void actionAttackRangeShotguns(double fireAngle) {
-    simpleAttackRangeByAngle(
+    attack.rangeByAngle(
       animation: SpriteSheetFireBall.fireBallAttackRight(),
       animationDestroy: SpriteSheetFireBall.fireBallExplosion(),
       size: Vector2(tileSize * 2, tileSize * 2),
@@ -381,19 +379,19 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
   /// 攻击动画
   void addAttackAnimation() {
     Future<SpriteAnimation> newAnimation;
-    switch (lastDirection) {
+    switch (direction) {
       case .left:
         newAnimation = SpriteSheetPlayer.getAttackBottomLeft();
       case .right:
         newAnimation = SpriteSheetPlayer.getAttackBottomRight();
       case .up:
-        if (lastDirectionHorizontal == .left) {
+        if (hDirection == .left) {
           newAnimation = SpriteSheetPlayer.getAttackTopLeft();
         } else {
           newAnimation = SpriteSheetPlayer.getAttackTopRight();
         }
       case .down:
-        if (lastDirectionHorizontal == .left) {
+        if (hDirection == .left) {
           newAnimation = SpriteSheetPlayer.getAttackBottomLeft();
         } else {
           newAnimation = SpriteSheetPlayer.getAttackBottomRight();
@@ -413,19 +411,19 @@ class HumanPlayer extends SimplePlayer with BlockMovementCollision, Lighting, Us
   /// 受伤动画
   void addDamageAnimation(VoidCallback onFinish) {
     Future<SpriteAnimation> newAnimation;
-    switch (lastDirection) {
+    switch (direction) {
       case .left:
         newAnimation = SpriteSheetPlayer.getDamageBottomLeft();
       case .right:
         newAnimation = SpriteSheetPlayer.getDamageBottomRight();
       case .up:
-        if (lastDirectionHorizontal == .left) {
+        if (hDirection == .left) {
           newAnimation = SpriteSheetPlayer.getDamageTopLeft();
         } else {
           newAnimation = SpriteSheetPlayer.getDamageTopRight();
         }
       case .down:
-        if (lastDirectionHorizontal == .left) {
+        if (hDirection == .left) {
           newAnimation = SpriteSheetPlayer.getDamageBottomLeft();
         } else {
           newAnimation = SpriteSheetPlayer.getDamageBottomRight();
