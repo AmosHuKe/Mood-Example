@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
-      - uses: flutter-actions/setup-flutter@adb607ae976a9e00473569facfc69813c637a060 #4.3
+      - uses: flutter-actions/setup-flutter@0e3ac53a5126c46be01612423cf26b5d59018adc #5.0
         with:
           channel: stable
           version: ${{ env.FLUTTER_VERSION }}
@@ -57,7 +57,7 @@ jobs:
   #       with:
   #         distribution: 'zulu'
   #         java-version: '17'
-  #     - uses: flutter-actions/setup-flutter@adb607ae976a9e00473569facfc69813c637a060 #4.3
+  #     - uses: flutter-actions/setup-flutter@0e3ac53a5126c46be01612423cf26b5d59018adc #5.0
   #       with:
   #         channel: stable
   #         version: ${{ env.FLUTTER_VERSION }}
@@ -106,7 +106,7 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '17'
-      - uses: flutter-actions/setup-flutter@adb607ae976a9e00473569facfc69813c637a060 #4.3
+      - uses: flutter-actions/setup-flutter@0e3ac53a5126c46be01612423cf26b5d59018adc #5.0
         with:
           channel: stable
           version: ${{ env.FLUTTER_VERSION }}
